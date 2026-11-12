@@ -548,7 +548,7 @@ AUTHZAPI
 BOOL
 WINAPI
 AuthzAccessCheck(
-    _In_      DWORD                              Flags,
+    _Win32_AssociatedEnum_(AUTHZ_ACCESS_CHECK_FLAGS) _In_      DWORD                              Flags,
     _In_      AUTHZ_CLIENT_CONTEXT_HANDLE        hAuthzClientContext,
     _In_      PAUTHZ_ACCESS_REQUEST              pRequest,
     _In_opt_  AUTHZ_AUDIT_EVENT_HANDLE           hAuditEvent,
@@ -685,7 +685,7 @@ AUTHZAPI
 BOOL
 WINAPI
 AuthzInitializeResourceManagerEx(
-    _In_opt_ DWORD                          Flags,
+    _Win32_AssociatedEnum_(AUTHZ_RESOURCE_MANAGER_FLAGS) _In_opt_ DWORD                          Flags,
     _In_opt_ PAUTHZ_INIT_INFO               pAuthzInitInfo,
     _Out_    PAUTHZ_RESOURCE_MANAGER_HANDLE phAuthzResourceManager
     );
@@ -917,7 +917,7 @@ AUTHZAPI
 BOOL
 WINAPI
 AuthzInitializeObjectAccessAuditEvent(
-    _In_    DWORD                         Flags,
+    _Win32_AssociatedEnum_(AUTHZ_INITIALIZE_OBJECT_ACCESS_AUDIT_EVENT_FLAGS) _In_    DWORD                         Flags,
     _In_    AUTHZ_AUDIT_EVENT_TYPE_HANDLE hAuditEventType,
     _In_    PWSTR                         szOperationType,
     _In_    PWSTR                         szObjectType,
@@ -1165,4 +1165,15 @@ AuthzFreeCentralAccessPolicyCache(
 
 #if _MSC_VER >= 1200
 #pragma warning(pop)
+#endif
+
+#ifndef _WIN32METADATA_AUTHZ_SECURITY_SYSTEM_91_GROUPS_
+#define _WIN32METADATA_AUTHZ_SECURITY_SYSTEM_91_GROUPS_
+_Win32_FlagsEnum_(AUTHZ_RESOURCE_MANAGER_FLAGS, unsigned int, AUTHZ_RM_FLAG_NO_AUDIT, AUTHZ_RM_FLAG_INITIALIZE_UNDER_IMPERSONATION, AUTHZ_RM_FLAG_NO_CENTRAL_ACCESS_POLICIES);
+_Win32_Enum_(AUTHZ_ACCESS_CHECK_FLAGS, unsigned int, AUTHZ_ACCESS_CHECK_NO_DEEP_COPY_SD);
+_Win32_Enum_(AUTHZ_INITIALIZE_OBJECT_ACCESS_AUDIT_EVENT_FLAGS, unsigned int, AUTHZ_NO_SUCCESS_AUDIT, AUTHZ_NO_FAILURE_AUDIT, AUTHZ_NO_ALLOC_STRINGS);
+_Win32_Enum_(AUTHZ_GENERATE_RESULTS, unsigned int, AUTHZ_GENERATE_SUCCESS_AUDIT, AUTHZ_GENERATE_FAILURE_AUDIT);
+_Win32_AnnotateField_(AUTHZ_ACCESS_REPLY::SaclEvaluationResults, _Win32_AssociatedEnum_(AUTHZ_GENERATE_RESULTS));
+_Win32_FlagsEnum_(AUTHZ_SECURITY_ATTRIBUTE_FLAGS, unsigned int, AUTHZ_SECURITY_ATTRIBUTE_NON_INHERITABLE, AUTHZ_SECURITY_ATTRIBUTE_VALUE_CASE_SENSITIVE);
+_Win32_AnnotateField_(AUTHZ_SECURITY_ATTRIBUTE_V1::Flags, _Win32_AssociatedEnum_(AUTHZ_SECURITY_ATTRIBUTE_FLAGS));
 #endif

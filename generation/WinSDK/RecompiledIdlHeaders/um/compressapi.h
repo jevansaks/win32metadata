@@ -74,7 +74,7 @@ _Win32_SetLastError_
 BOOL
 WINAPI
 CreateCompressor (
-    _In_ DWORD Algorithm,
+    _Win32_AssociatedEnum_(COMPRESS_ALGORITHM) _In_ DWORD Algorithm,
     _In_opt_ PCOMPRESS_ALLOCATION_ROUTINES AllocationRoutines,
     _Out_ PCOMPRESSOR_HANDLE CompressorHandle
     );
@@ -134,7 +134,7 @@ _Win32_SetLastError_
 BOOL
 WINAPI
 CreateDecompressor (
-    _In_ DWORD Algorithm,
+    _Win32_AssociatedEnum_(COMPRESS_ALGORITHM) _In_ DWORD Algorithm,
     _In_opt_ PCOMPRESS_ALLOCATION_ROUTINES AllocationRoutines,
     _Out_ PDECOMPRESSOR_HANDLE DecompressorHandle
     );
@@ -195,4 +195,9 @@ CloseDecompressor (
 }
 #endif
 
+#endif
+
+#ifndef _WIN32METADATA_COMPRESSAPI_SECURITY_SYSTEM_91_GROUPS_
+#define _WIN32METADATA_COMPRESSAPI_SECURITY_SYSTEM_91_GROUPS_
+_Win32_Enum_(COMPRESS_ALGORITHM, unsigned int, COMPRESS_ALGORITHM_MSZIP, COMPRESS_ALGORITHM_XPRESS, COMPRESS_ALGORITHM_XPRESS_HUFF, COMPRESS_ALGORITHM_LZMS);
 #endif

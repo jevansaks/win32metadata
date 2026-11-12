@@ -183,7 +183,7 @@ NetJoinDomain(
     _In_opt_ LPCWSTR lpMachineAccountOU,
     _In_opt_ LPCWSTR lpAccount,
     _In_opt_ LPCWSTR lpPassword,
-    _In_ DWORD   fJoinOptions
+    _Win32_AssociatedEnum_(NET_JOIN_DOMAIN_JOIN_OPTIONS) _In_ DWORD   fJoinOptions
     );
 
 NET_API_STATUS
@@ -361,7 +361,7 @@ NetProvisionComputerAccount(
    _In_z_          LPCWSTR lpMachineName,
    _In_opt_z_      LPCWSTR lpMachineAccountOU,
    _In_opt_z_      LPCWSTR lpDcName,
-   _In_            DWORD   dwOptions,
+   _Win32_AssociatedEnum_(NETSETUP_PROVISION) _In_            DWORD   dwOptions,
    _Outptr_opt_result_bytebuffer_maybenull_(*pdwProvisionBinDataSize)
                    PBYTE  *pProvisionBinData,
    _Out_opt_       DWORD  *pdwProvisionBinDataSize,
@@ -375,7 +375,7 @@ NET_API_FUNCTION
 NetRequestOfflineDomainJoin(
     _In_reads_bytes_(cbProvisionBinDataSize) BYTE *pProvisionBinData,
     _In_    DWORD   cbProvisionBinDataSize,
-    _In_    DWORD   dwOptions,
+    _Win32_AssociatedEnum_(NET_REQUEST_PROVISION_OPTIONS) _In_    DWORD   dwOptions,
     _In_z_  LPCWSTR lpWindowsPath
 );
 
@@ -426,7 +426,7 @@ NET_API_FUNCTION
 NetRequestProvisioningPackageInstall(
     _In_reads_bytes_(dwPackageBinDataSize) BYTE *pPackageBinData,
     _In_ DWORD dwPackageBinDataSize,
-    _In_ DWORD dwProvisionOptions,
+    _Win32_AssociatedEnum_(NET_REQUEST_PROVISION_OPTIONS) _In_ DWORD dwProvisionOptions,
     _In_z_ LPCWSTR lpWindowsPath,
     _Reserved_ PVOID pvReserved
     );
@@ -496,3 +496,11 @@ NetGetJoinInformation(
 #endif
 
 #endif // __LMJOIN_H__
+
+#ifndef _WIN32METADATA_LMJOIN_SECURITY_SYSTEM_91_GROUPS_
+#define _WIN32METADATA_LMJOIN_SECURITY_SYSTEM_91_GROUPS_
+_Win32_FlagsEnum_(NET_REQUEST_PROVISION_OPTIONS, unsigned int, NETSETUP_PROVISION_ONLINE_CALLER);
+_Win32_FlagsEnum_(NET_JOIN_DOMAIN_JOIN_OPTIONS, unsigned int, NETSETUP_JOIN_DOMAIN, NETSETUP_ACCT_CREATE, NETSETUP_WIN9X_UPGRADE, NETSETUP_DOMAIN_JOIN_IF_JOINED, NETSETUP_JOIN_UNSECURE, NETSETUP_MACHINE_PWD_PASSED, NETSETUP_DEFER_SPN_SET, NETSETUP_JOIN_DC_ACCOUNT, NETSETUP_JOIN_WITH_NEW_NAME, NETSETUP_JOIN_READONLY, NETSETUP_AMBIGUOUS_DC, NETSETUP_NO_NETLOGON_CACHE, NETSETUP_DONT_CONTROL_SERVICES, NETSETUP_SET_MACHINE_NAME, NETSETUP_FORCE_SPN_SET, NETSETUP_NO_ACCT_REUSE, NETSETUP_IGNORE_UNSUPPORTED_FLAGS);
+_Win32_FlagsEnum_(NETSETUP_PROVISION, unsigned int, NETSETUP_PROVISION_DOWNLEVEL_PRIV_SUPPORT, NETSETUP_PROVISION_REUSE_ACCOUNT, NETSETUP_PROVISION_USE_DEFAULT_PASSWORD, NETSETUP_PROVISION_SKIP_ACCOUNT_SEARCH, NETSETUP_PROVISION_ROOT_CA_CERTS);
+_Win32_AnnotateField_(NETSETUP_PROVISIONING_PARAMS::dwProvisionOptions, _Win32_AssociatedEnum_(NETSETUP_PROVISION));
+#endif

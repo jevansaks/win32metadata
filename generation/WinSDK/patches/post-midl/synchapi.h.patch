@@ -377,8 +377,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/synchapi.h b/generation/W
  
  WINBASEAPI
  _Ret_maybenull_
-@@ -601,6 +671,8 @@
-     _In_ DWORD dwFlags,
+@@ -598,9 +668,11 @@
+ CreateEventExA(
+     _In_opt_ LPSECURITY_ATTRIBUTES lpEventAttributes,
+     _In_opt_ LPCSTR lpName,
+-    _In_ DWORD dwFlags,
++    _Win32_AssociatedEnum_(CREATE_EVENT) _In_ DWORD dwFlags,
      _In_ DWORD dwDesiredAccess
      );
 +_Win32_SetLastError_
@@ -386,6 +390,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/synchapi.h b/generation/W
  
  WINBASEAPI
  _Ret_maybenull_
+@@ -609,7 +681,7 @@
+ CreateEventExW(
+     _In_opt_ LPSECURITY_ATTRIBUTES lpEventAttributes,
+     _In_opt_ LPCWSTR lpName,
+-    _In_ DWORD dwFlags,
++    _Win32_AssociatedEnum_(CREATE_EVENT) _In_ DWORD dwFlags,
+     _In_ DWORD dwDesiredAccess
+     );
+ 
 @@ -618,6 +690,8 @@
  #else
  #define CreateEventEx  CreateEventExA
@@ -478,3 +491,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/synchapi.h b/generation/W
  
  WINBASEAPI
  _Ret_maybenull_
+@@ -789,3 +878,8 @@
+ #endif
+ 
+ #endif // _SYNCHAPI_H_
++
++#ifndef _WIN32METADATA_SYNCHAPI_SECURITY_SYSTEM_91_GROUPS_
++#define _WIN32METADATA_SYNCHAPI_SECURITY_SYSTEM_91_GROUPS_
++_Win32_FlagsEnum_(CREATE_EVENT, unsigned int, CREATE_EVENT_INITIAL_SET, CREATE_EVENT_MANUAL_RESET);
++#endif

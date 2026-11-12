@@ -29,6 +29,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/bcrypt.h b/generation
  
  _Must_inspect_result_
  NTSTATUS
+@@ -1281,7 +1287,7 @@
+     _Out_       BCRYPT_ALG_HANDLE   *phAlgorithm,
+     _In_z_      LPCWSTR pszAlgId,
+     _In_opt_z_  LPCWSTR pszImplementation,
+-    _In_        ULONG   dwFlags);
++    _Win32_AssociatedEnum_(BCRYPT_OPEN_ALGORITHM_PROVIDER_FLAGS) _In_        ULONG   dwFlags);
+ 
+ 
+ 
 @@ -1311,6 +1317,7 @@
      ULONG   dwFlags;
  
@@ -242,7 +251,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/bcrypt.h b/generation
  
  _Must_inspect_result_
  NTSTATUS
-@@ -1693,6 +1726,7 @@
+@@ -1689,10 +1722,11 @@
+     _In_opt_                        BCRYPT_ALG_HANDLE   hAlgorithm,
+     _Out_writes_bytes_(cbBuffer)    PUCHAR  pbBuffer,
+     _In_                            ULONG   cbBuffer,
+-    _In_                            ULONG   dwFlags);
++    _Win32_AssociatedEnum_(BCRYPTGENRANDOM_FLAGS) _In_                            ULONG   dwFlags);
  
  
  #if (NTDDI_VERSION >= NTDDI_WIN7)
@@ -266,7 +280,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/bcrypt.h b/generation
  
  
  _Must_inspect_result_
-@@ -1994,6 +2030,7 @@
+@@ -1990,10 +2026,11 @@
+ WINAPI
+ BCryptQueryProviderRegistration(
+     _In_z_ LPCWSTR pszProvider,
+-    _In_ ULONG dwMode,
++    _Win32_AssociatedEnum_(BCRYPT_QUERY_PROVIDER_MODE) _In_ ULONG dwMode,
      _In_ ULONG dwInterface,
      _Inout_ ULONG* pcbBuffer,
      _Outptr_opt_result_bytebuffer_all_maybenull_(*pcbBuffer) PCRYPT_PROVIDER_REG *ppBuffer);
@@ -282,39 +301,51 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/bcrypt.h b/generation
  
  //
  // Context Configuration Functions
-@@ -2012,6 +2050,7 @@
-     _In_ ULONG dwTable,
+@@ -2009,121 +2047,133 @@
+ NTSTATUS
+ WINAPI
+ BCryptCreateContext(
+-    _In_ ULONG dwTable,
++    _Win32_AssociatedEnum_(BCRYPT_TABLE) _In_ ULONG dwTable,
      _In_z_ LPCWSTR pszContext,
      _In_opt_ PCRYPT_CONTEXT_CONFIG pConfig); // Optional
 +_Win32_SupportedOS_WindowsVista_
  
  _Must_inspect_result_
  NTSTATUS
-@@ -2019,6 +2058,7 @@
+ WINAPI
  BCryptDeleteContext(
-     _In_ ULONG dwTable,
+-    _In_ ULONG dwTable,
++    _Win32_AssociatedEnum_(BCRYPT_TABLE) _In_ ULONG dwTable,
      _In_z_ LPCWSTR pszContext);
 +_Win32_SupportedOS_WindowsVista_
  
  _Must_inspect_result_
  NTSTATUS
-@@ -2027,6 +2067,7 @@
-     _In_ ULONG dwTable,
+ WINAPI
+ BCryptEnumContexts(
+-    _In_ ULONG dwTable,
++    _Win32_AssociatedEnum_(BCRYPT_TABLE) _In_ ULONG dwTable,
      _Inout_ ULONG* pcbBuffer,
      _Outptr_opt_result_bytebuffer_all_maybenull_(*pcbBuffer) PCRYPT_CONTEXTS *ppBuffer);
 +_Win32_SupportedOS_WindowsVista_
  
  _Must_inspect_result_
  NTSTATUS
-@@ -2035,6 +2076,7 @@
-     _In_ ULONG dwTable,
+ WINAPI
+ BCryptConfigureContext(
+-    _In_ ULONG dwTable,
++    _Win32_AssociatedEnum_(BCRYPT_TABLE) _In_ ULONG dwTable,
      _In_z_ LPCWSTR pszContext,
      _In_ PCRYPT_CONTEXT_CONFIG pConfig);
 +_Win32_SupportedOS_WindowsVista_
  
  _Must_inspect_result_
  NTSTATUS
-@@ -2044,6 +2086,7 @@
+ WINAPI
+ BCryptQueryContextConfiguration(
+-    _In_ ULONG dwTable,
++    _Win32_AssociatedEnum_(BCRYPT_TABLE) _In_ ULONG dwTable,
      _In_z_ LPCWSTR pszContext,
      _Inout_ ULONG* pcbBuffer,
      _Outptr_opt_result_bytebuffer_all_maybenull_(*pcbBuffer) PCRYPT_CONTEXT_CONFIG *ppBuffer);
@@ -322,7 +353,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/bcrypt.h b/generation
  
  _Must_inspect_result_
  NTSTATUS
-@@ -2054,6 +2097,7 @@
+ WINAPI
+ BCryptAddContextFunction(
+-    _In_ ULONG dwTable,
++    _Win32_AssociatedEnum_(BCRYPT_TABLE) _In_ ULONG dwTable,
+     _In_z_ LPCWSTR pszContext,
      _In_ ULONG dwInterface,
      _In_z_ LPCWSTR pszFunction,
      _In_ ULONG dwPosition);
@@ -330,7 +365,10 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/bcrypt.h b/generation
  
  _Must_inspect_result_
  NTSTATUS
-@@ -2063,6 +2107,7 @@
+ WINAPI
+ BCryptRemoveContextFunction(
+-    _In_ ULONG dwTable,
++    _Win32_AssociatedEnum_(BCRYPT_TABLE) _In_ ULONG dwTable,
      _In_z_ LPCWSTR pszContext,
      _In_ ULONG dwInterface,
      _In_z_ LPCWSTR pszFunction);
@@ -338,7 +376,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/bcrypt.h b/generation
  
  _Must_inspect_result_
  NTSTATUS
-@@ -2073,6 +2118,7 @@
+ WINAPI
+ BCryptEnumContextFunctions(
+-    _In_ ULONG dwTable,
++    _Win32_AssociatedEnum_(BCRYPT_TABLE) _In_ ULONG dwTable,
+     _In_z_ LPCWSTR pszContext,
      _In_ ULONG dwInterface,
      _Inout_ ULONG* pcbBuffer,
      _Outptr_opt_result_bytebuffer_all_maybenull_(*pcbBuffer) PCRYPT_CONTEXT_FUNCTIONS *ppBuffer);
@@ -346,7 +388,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/bcrypt.h b/generation
  
  _Must_inspect_result_
  NTSTATUS
-@@ -2083,6 +2129,7 @@
+ WINAPI
+ BCryptConfigureContextFunction(
+-    _In_ ULONG dwTable,
++    _Win32_AssociatedEnum_(BCRYPT_TABLE) _In_ ULONG dwTable,
+     _In_z_ LPCWSTR pszContext,
      _In_ ULONG dwInterface,
      _In_z_ LPCWSTR pszFunction,
      _In_ PCRYPT_CONTEXT_FUNCTION_CONFIG pConfig);
@@ -354,7 +400,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/bcrypt.h b/generation
  
  _Must_inspect_result_
  NTSTATUS
-@@ -2094,6 +2141,7 @@
+ WINAPI
+ BCryptQueryContextFunctionConfiguration(
+-    _In_ ULONG dwTable,
++    _Win32_AssociatedEnum_(BCRYPT_TABLE) _In_ ULONG dwTable,
+     _In_z_ LPCWSTR pszContext,
+     _In_ ULONG dwInterface,
      _In_z_ LPCWSTR pszFunction,
      _Inout_ ULONG* pcbBuffer,
      _Outptr_opt_result_bytebuffer_all_maybenull_(*pcbBuffer) PCRYPT_CONTEXT_FUNCTION_CONFIG *ppBuffer);
@@ -362,7 +413,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/bcrypt.h b/generation
  
  
  _Must_inspect_result_
-@@ -2106,6 +2154,7 @@
+ NTSTATUS
+ WINAPI
+ BCryptEnumContextFunctionProviders(
+-    _In_ ULONG dwTable,
++    _Win32_AssociatedEnum_(BCRYPT_TABLE) _In_ ULONG dwTable,
+     _In_z_ LPCWSTR pszContext,
+     _In_ ULONG dwInterface,
      _In_z_ LPCWSTR pszFunction,
      _Inout_ ULONG* pcbBuffer,
      _Outptr_opt_result_bytebuffer_all_maybenull_(*pcbBuffer) PCRYPT_CONTEXT_FUNCTION_PROVIDERS *ppBuffer);
@@ -370,7 +427,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/bcrypt.h b/generation
  
  _Must_inspect_result_
  NTSTATUS
-@@ -2118,6 +2167,7 @@
+ WINAPI
+ BCryptSetContextFunctionProperty(
+-    _In_ ULONG dwTable,
++    _Win32_AssociatedEnum_(BCRYPT_TABLE) _In_ ULONG dwTable,
+     _In_z_ LPCWSTR pszContext,
+     _In_ ULONG dwInterface,
+     _In_z_ LPCWSTR pszFunction,
      _In_z_ LPCWSTR pszProperty,
      _In_ ULONG cbValue,
      _In_reads_bytes_opt_(cbValue) PUCHAR pbValue);
@@ -378,6 +441,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/bcrypt.h b/generation
  
  _Must_inspect_result_
  NTSTATUS
+ WINAPI
+ BCryptQueryContextFunctionProperty(
+-    _In_ ULONG dwTable,
++    _Win32_AssociatedEnum_(BCRYPT_TABLE) _In_ ULONG dwTable,
+     _In_z_ LPCWSTR pszContext,
+     _In_ ULONG dwInterface,
+     _In_z_ LPCWSTR pszFunction,
 @@ -2164,6 +2214,7 @@
  BCryptUnregisterConfigChangeNotify(
      _In_ HANDLE hEvent);
@@ -386,6 +456,17 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/bcrypt.h b/generation
  
  //
  // Provider Resolution Functions
+@@ -2175,8 +2226,8 @@
+     _In_opt_ ULONG dwInterface,
+     _In_opt_z_ LPCWSTR pszFunction,
+     _In_opt_z_ LPCWSTR pszProvider,
+-    _In_ ULONG dwMode,
+-    _In_ ULONG dwFlags,
++    _Win32_AssociatedEnum_(BCRYPT_QUERY_PROVIDER_MODE) _In_ ULONG dwMode,
++    _Win32_AssociatedEnum_(BCRYPT_RESOLVE_PROVIDERS_FLAGS) _In_ ULONG dwFlags,
+     _Inout_ ULONG* pcbBuffer,
+     _Outptr_opt_result_bytebuffer_all_maybenull_(*pcbBuffer) PCRYPT_PROVIDER_REFS *ppBuffer);
+ 
 @@ -2185,6 +2236,7 @@
  
  #pragma region Application Family or OneCore Family
@@ -394,8 +475,27 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/bcrypt.h b/generation
  
  //
  // Miscellaneous queries about the crypto environment
-@@ -2217,4 +2269,3 @@
- #if _MSC_VER >= 1200
+@@ -2218,3 +2270,23 @@
  #pragma warning(pop)
  #endif
--
+ 
++#ifndef _WIN32METADATA_BCRYPT_SECURITY_SYSTEM_91_GROUPS_
++#define _WIN32METADATA_BCRYPT_SECURITY_SYSTEM_91_GROUPS_
++_Win32_Enum_(BCRYPT_TABLE, unsigned int, CRYPT_LOCAL, CRYPT_DOMAIN);
++_Win32_AnnotateField_(CRYPT_INTERFACE_REG::dwFlags, _Win32_AssociatedEnum_(BCRYPT_TABLE));
++_Win32_Enum_(BCRYPT_QUERY_PROVIDER_MODE, unsigned int, CRYPT_ANY, CRYPT_UM, CRYPT_KM, CRYPT_MM);
++_Win32_FlagsEnum_(BCRYPT_OPEN_ALGORITHM_PROVIDER_FLAGS, unsigned int, BCRYPT_ALG_HANDLE_HMAC_FLAG, BCRYPT_PROV_DISPATCH, BCRYPT_HASH_REUSABLE_FLAG);
++_Win32_FlagsEnum_(BCRYPT_RESOLVE_PROVIDERS_FLAGS, unsigned int, CRYPT_ALL_FUNCTIONS, CRYPT_ALL_PROVIDERS);
++_Win32_FlagsEnum_(CRYPT_IMAGE_REF_FLAGS, unsigned int, CRYPT_MIN_DEPENDENCIES, CRYPT_PROCESS_ISOLATE);
++_Win32_AnnotateField_(CRYPT_IMAGE_REF::dwFlags, _Win32_AssociatedEnum_(CRYPT_IMAGE_REF_FLAGS));
++_Win32_FlagsEnum_(CRYPT_CONTEXT_CONFIG_FLAGS, unsigned int, CRYPT_EXCLUSIVE, CRYPT_OVERRIDE);
++_Win32_AnnotateField_(CRYPT_CONTEXT_CONFIG::dwFlags, _Win32_AssociatedEnum_(CRYPT_CONTEXT_CONFIG_FLAGS));
++_Win32_Enum_(BCRYPT_DSA_MAGIC, unsigned int, BCRYPT_DSA_PUBLIC_MAGIC, BCRYPT_DSA_PRIVATE_MAGIC);
++_Win32_AnnotateField_(BCRYPT_DSA_KEY_BLOB_V2::dwMagic, _Win32_AssociatedEnum_(BCRYPT_DSA_MAGIC));
++_Win32_AnnotateField_(BCRYPT_DSA_KEY_BLOB::dwMagic, _Win32_AssociatedEnum_(BCRYPT_DSA_MAGIC));
++_Win32_Enum_(BCRYPT_RSAKEY_BLOB_MAGIC, unsigned int, BCRYPT_RSAPUBLIC_MAGIC, BCRYPT_RSAPRIVATE_MAGIC, BCRYPT_RSAFULLPRIVATE_MAGIC);
++_Win32_AnnotateField_(BCRYPT_RSAKEY_BLOB::Magic, _Win32_AssociatedEnum_(BCRYPT_RSAKEY_BLOB_MAGIC));
++_Win32_Enum_(BCRYPT_DH_KEY_BLOB_MAGIC, unsigned int, BCRYPT_DH_PUBLIC_MAGIC, BCRYPT_DH_PRIVATE_MAGIC);
++_Win32_AnnotateField_(BCRYPT_DH_KEY_BLOB::dwMagic, _Win32_AssociatedEnum_(BCRYPT_DH_KEY_BLOB_MAGIC));
++_Win32_Enum_(BCRYPTGENRANDOM_FLAGS, unsigned int, BCRYPT_RNG_USE_ENTROPY_IN_BUFFER, BCRYPT_USE_SYSTEM_PREFERRED_RNG);
++#endif

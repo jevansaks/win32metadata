@@ -461,7 +461,7 @@ WerReportAddFile(
     _In_ HREPORT hReportHandle,
     _In_ PCWSTR pwzPath,
     _In_ WER_FILE_TYPE repFileType,
-    _In_ DWORD  dwFileFlags
+    _Win32_AssociatedEnum_(WER_FILE) _In_ DWORD  dwFileFlags
     );
 
 HRESULT
@@ -610,7 +610,7 @@ WINAPI
 WerRegisterFile(
     _In_ PCWSTR pwzFile,
     _In_ WER_REGISTER_FILE_TYPE regFileType,
-    _In_ DWORD dwFlags
+    _Win32_AssociatedEnum_(WER_FILE) _In_ DWORD dwFlags
     );
 
 HRESULT
@@ -704,14 +704,14 @@ _Win32_SupportedOS_WindowsVista_
 HRESULT
 WINAPI
 WerSetFlags(
-    _In_ DWORD dwFlags
+    _Win32_AssociatedEnum_(WER_FAULT_REPORTING) _In_ DWORD dwFlags
     );
 
 HRESULT
 WINAPI
 WerGetFlags(
     _In_ HANDLE hProcess,
-    _Out_ PDWORD pdwFlags
+    _Win32_AssociatedEnum_(WER_FAULT_REPORTING) _Out_ PDWORD pdwFlags
     );
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM) */
@@ -1102,3 +1102,8 @@ WerStoreUploadReport(
 }
 #endif
 
+#ifndef _WIN32METADATA_WERAPI_SECURITY_SYSTEM_91_GROUPS_
+#define _WIN32METADATA_WERAPI_SECURITY_SYSTEM_91_GROUPS_
+_Win32_FlagsEnum_(WER_FILE, unsigned int, WER_FILE_ANONYMOUS_DATA, WER_FILE_DELETE_WHEN_DONE);
+_Win32_FlagsEnum_(WER_FAULT_REPORTING, unsigned int, WER_FAULT_REPORTING_FLAG_DISABLE_THREAD_SUSPENSION, WER_FAULT_REPORTING_FLAG_NOHEAP, WER_FAULT_REPORTING_FLAG_QUEUE, WER_FAULT_REPORTING_FLAG_QUEUE_UPLOAD, WER_FAULT_REPORTING_ALWAYS_SHOW_UI);
+#endif

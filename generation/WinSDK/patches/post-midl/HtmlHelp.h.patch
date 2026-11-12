@@ -1,6 +1,5 @@
 # SDK-Version: 10.0.28000.2705
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/HtmlHelp.h b/generation/WinSDK/RecompiledIdlHeaders/um/HtmlHelp.h
-index 5f2fd73f..eef6645c 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/HtmlHelp.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/HtmlHelp.h
 @@ -14,6 +14,7 @@
@@ -11,7 +10,7 @@ index 5f2fd73f..eef6645c 100644
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
-@@ -370,7 +371,7 @@ typedef struct tagHHNTRACK
+@@ -370,7 +371,7 @@
      HH_WINTYPE* phhWinType; // Current window type structure
  } HHNTRACK;
  
@@ -20,7 +19,7 @@ index 5f2fd73f..eef6645c 100644
  WINAPI
  HtmlHelpA(
      _In_opt_ HWND hwndCaller,
-@@ -379,7 +380,7 @@ HtmlHelpA(
+@@ -379,7 +380,7 @@
      _In_ DWORD_PTR dwData
      );
  
@@ -29,3 +28,12 @@ index 5f2fd73f..eef6645c 100644
  WINAPI
  HtmlHelpW(
      _In_opt_ HWND hwndCaller,
+@@ -437,3 +438,8 @@
+ #pragma endregion
+ 
+ #endif // __HTMLHELP_H__
++
++#ifndef _WIN32METADATA_HTMLHELP_SECURITY_SYSTEM_91_GROUPS_
++#define _WIN32METADATA_HTMLHELP_SECURITY_SYSTEM_91_GROUPS_
++_Win32_Enum_(HTML_HELP_COMMAND, int, HH_DISPLAY_TOPIC, HH_HELP_FINDER, HH_DISPLAY_TOC, HH_DISPLAY_INDEX, HH_DISPLAY_SEARCH, HH_SET_WIN_TYPE, HH_GET_WIN_TYPE, HH_GET_WIN_HANDLE, HH_ENUM_INFO_TYPE, HH_SET_INFO_TYPE, HH_SYNC, HH_RESERVED1, HH_RESERVED2, HH_RESERVED3, HH_KEYWORD_LOOKUP, HH_DISPLAY_TEXT_POPUP, HH_HELP_CONTEXT, HH_TP_HELP_CONTEXTMENU, HH_TP_HELP_WM_HELP, HH_CLOSE_ALL, HH_ALINK_LOOKUP, HH_GET_LAST_ERROR, HH_ENUM_CATEGORY, HH_ENUM_CATEGORY_IT, HH_RESET_IT_FILTER, HH_SET_INCLUSIVE_FILTER, HH_SET_EXCLUSIVE_FILTER, HH_INITIALIZE, HH_UNINITIALIZE, HH_SET_QUERYSERVICE, HH_PRETRANSLATEMESSAGE, HH_SET_GLOBAL_PROPERTY, HH_SAFE_DISPLAY_TOPIC, HH_MAX_TABS, HH_MAX_TABS_CUSTOM, HH_FTS_DEFAULT_PROXIMITY);
++#endif

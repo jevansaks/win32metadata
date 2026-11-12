@@ -176,3 +176,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/perflib.h b/generation/Wi
  
  /*
  PerfDeleteCounters:
+@@ -1016,3 +1040,9 @@
+ #pragma endregion
+ 
+ #endif /* _PERFLIB_H_ */
++
++#ifndef _WIN32METADATA_PERFLIB_SECURITY_SYSTEM_91_GROUPS_
++#define _WIN32METADATA_PERFLIB_SECURITY_SYSTEM_91_GROUPS_
++_Win32_Enum_(PERF_COUNTER_AGGREGATE_FUNC, unsigned int, PERF_AGGREGATE_UNDEFINED, PERF_AGGREGATE_TOTAL, PERF_AGGREGATE_AVG, PERF_AGGREGATE_MIN, PERF_AGGREGATE_MAX);
++_Win32_AnnotateField_(PERF_COUNTER_REG_INFO::AggregateFunc, _Win32_AssociatedEnum_(PERF_COUNTER_AGGREGATE_FUNC));
++#endif

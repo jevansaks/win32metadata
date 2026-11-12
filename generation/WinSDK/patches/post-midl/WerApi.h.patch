@@ -15,6 +15,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WerApi.h b/generation/Win
  
  HRESULT
  WINAPI
+@@ -459,7 +461,7 @@
+     _In_ HREPORT hReportHandle,
+     _In_ PCWSTR pwzPath,
+     _In_ WER_FILE_TYPE repFileType,
+-    _In_ DWORD  dwFileFlags
++    _Win32_AssociatedEnum_(WER_FILE) _In_ DWORD  dwFileFlags
+     );
+ 
+ HRESULT
 @@ -469,6 +471,7 @@
      _In_ WER_REPORT_UI repUITypeID,
      _In_ PCWSTR pwzValue
@@ -31,7 +40,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WerApi.h b/generation/Win
  
  HRESULT
  WINAPI
-@@ -599,6 +603,7 @@
+@@ -599,13 +603,14 @@
  
  #pragma region Application Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
@@ -39,6 +48,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WerApi.h b/generation/Win
  
  HRESULT
  WINAPI
+ WerRegisterFile(
+     _In_ PCWSTR pwzFile,
+     _In_ WER_REGISTER_FILE_TYPE regFileType,
+-    _In_ DWORD dwFlags
++    _Win32_AssociatedEnum_(WER_FILE) _In_ DWORD dwFlags
+     );
+ 
+ HRESULT
 @@ -613,6 +618,7 @@
  WerUnregisterFile(
      _In_ PCWSTR pwzFilePath
@@ -109,7 +126,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WerApi.h b/generation/Win
  
  STDAPI
  WerUnregisterAppLocalDump();
-@@ -684,6 +699,7 @@
+@@ -684,18 +699,19 @@
  
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
@@ -117,6 +134,20 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WerApi.h b/generation/Win
  
  HRESULT
  WINAPI
+ WerSetFlags(
+-    _In_ DWORD dwFlags
++    _Win32_AssociatedEnum_(WER_FAULT_REPORTING) _In_ DWORD dwFlags
+     );
+ 
+ HRESULT
+ WINAPI
+ WerGetFlags(
+     _In_ HANDLE hProcess,
+-    _Out_ PDWORD pdwFlags
++    _Win32_AssociatedEnum_(WER_FAULT_REPORTING) _Out_ PDWORD pdwFlags
+     );
+ 
+ #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM) */
 @@ -703,6 +719,7 @@
  
  #pragma region Desktop Family
@@ -173,3 +204,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WerApi.h b/generation/Win
  
  __control_entrypoint(DllExport)
  VOID
+@@ -1079,3 +1102,8 @@
+ }
+ #endif
+ 
++#ifndef _WIN32METADATA_WERAPI_SECURITY_SYSTEM_91_GROUPS_
++#define _WIN32METADATA_WERAPI_SECURITY_SYSTEM_91_GROUPS_
++_Win32_FlagsEnum_(WER_FILE, unsigned int, WER_FILE_ANONYMOUS_DATA, WER_FILE_DELETE_WHEN_DONE);
++_Win32_FlagsEnum_(WER_FAULT_REPORTING, unsigned int, WER_FAULT_REPORTING_FLAG_DISABLE_THREAD_SUSPENSION, WER_FAULT_REPORTING_FLAG_NOHEAP, WER_FAULT_REPORTING_FLAG_QUEUE, WER_FAULT_REPORTING_FLAG_QUEUE_UPLOAD, WER_FAULT_REPORTING_ALWAYS_SHOW_UI);
++#endif

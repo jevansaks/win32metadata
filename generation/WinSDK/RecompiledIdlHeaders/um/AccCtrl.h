@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*+-------------------------------------------------------------------
 
  Microsoft Windows
@@ -814,3 +815,10 @@ typedef PINHERITED_FROMA PINHERITED_FROM;
 #endif
 
 #endif /* __ACCESS_CONTROL__ */
+
+#ifndef _WIN32METADATA_ACCCTRL_SECURITY_SYSTEM_91_GROUPS_
+#define _WIN32METADATA_ACCCTRL_SECURITY_SYSTEM_91_GROUPS_
+_Win32_Enum_(ACTRL_ACCESS_ENTRY_ACCESS_FLAGS, unsigned int, ACTRL_ACCESS_ALLOWED, ACTRL_ACCESS_DENIED, ACTRL_AUDIT_SUCCESS, ACTRL_AUDIT_FAILURE);
+_Win32_AnnotateField_(ACTRL_ACCESS_ENTRYA::fAccessFlags, _Win32_AssociatedEnum_(ACTRL_ACCESS_ENTRY_ACCESS_FLAGS));
+_Win32_AnnotateField_(ACTRL_ACCESS_ENTRYW::fAccessFlags, _Win32_AssociatedEnum_(ACTRL_ACCESS_ENTRY_ACCESS_FLAGS));
+#endif

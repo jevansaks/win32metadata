@@ -1,10 +1,11 @@
 # Working-first recovery and sidecar reduction
 
-**Current accepted cohort:** [twelve shared RPC/security groups](#shared-rpc-and-security-subdivision)
-above preserved `de614703eec248d5783d6ae9c1d3a5a0db725b15`, following
-[two native primitive storage selections](#native-primitive-storage-subdivision)
-and the previous 459 groups above `85444f25`.
-Its actual WinMD is `FF717275...`; the complete 35,379-type dump is
+**Current accepted cohort:** [91 security/system groups](#security-and-system-subdivision)
+above preserved `2f09979cfcc58c27b81e01134d2c6702571beead`, following
+the twelve shared RPC/security groups and the previous 459 groups above `85444f25`.
+The broader qualification also restores BOOL's legacy storage after exposing
+bitfield backing-type changes; COLORREF's native selection remains.
+Its actual WinMD is `4E3243C8...`; the complete 35,379-type dump is
 `1F4F3839...`, byte-identical to accepted structural checkpoint 6d44.
 Earlier authorized fictitious-handle/AssociatedEnum changes remain completely
 accounted for relative to the original parent; no arbitrary API loss is
@@ -14,23 +15,23 @@ historical checkpoints, not the current totals.
 | Inventory / units | Recovery | Accepted current | Net retired |
 |---|---:|---:|---:|
 | Original parameter attribute atoms | 770 | 361 | 409 |
-| All RSP value rows | 146,789 | 134,510 | 12,279 |
+| All RSP value rows | 146,789 | 134,601 | 12,188 |
 | Allowed documentation URL rows | 90,502 | 90,502 | 0 (outside backlog) |
-| Other RSP rows, mixed configuration/API units | 56,287 | 44,008 | 12,279 |
+| Other RSP rows, mixed configuration/API units | 56,287 | 44,099 | 12,188 |
 | Emitter `memberRemap` rows | 2,295 | 1,592 | 703 |
 | LastError rows | 3,362 | 468 | 2,894 |
 | Availability rows | 17,070 | 7,883 | 9,187 |
-| Enum JSON records, mixed definitions/additional uses | 1,070 | 524 | 546 |
+| Enum JSON records, mixed definitions/additional uses | 1,070 | 433 | 637 |
 | autoTypes records | 444 | 436 | 8 |
 | Function-pointer fixup records | 27 | 27 | 0 |
 
 | Remaining category | Measured accepted quantity | Examination state |
 |---|---:|---|
-| Definition-bearing enum records | 500 | 471 further whole definitions accepted across seven cohorts. The shared-header trial retains twelve groups and restores FACILITY_CODE; the earlier six C-header closures remain restored. Another 102 new security/system candidates are preflighted only, excluding seven already-examined closures. |
+| Definition-bearing enum records | 409 | 562 further whole definitions accepted across eight cohorts. The new 102-group preflight retains 91 and restores eleven complete closures; actual parse/emission/API failures and one IDL-owner deferral are itemized below. Another 24 file/memory/PE groups are preflighted only, not accepted coverage. |
 | Additional-use enum records / selector rows | 23 / 55 | Exact retained FILE/REG/SNMP/process, STGM, COM/MIDL and Cloud closures; observed boundaries are in [PROBLEMS.md](PROBLEMS.md). |
 | Genuine CLR flags request | 1 record | Native enum use override already redundant/retired; flags effect still unqualified. |
-| Native type/storage/ownership inputs | 436 records | 423 legacy-storage / 13 native selections; genuine types remain. BOOL/COLORREF storage and two redundant NativeTypedef flags are retired, not their records. BOOLEAN and six DiagnosticDataQuery selections/producer closures remain restored; thirteen contextual cleanup records are separate boundaries, not all 436 records. |
-| Parameter atoms | 361 | Individually inventoried; nine CLR selectors explicitly excepted, other unqualified/failed owner closures remain exact facts. |
+| Native type/storage/ownership inputs | 436 records | 424 legacy-storage / 12 native selections; genuine types remain. COLORREF storage and its redundant NativeTypedef flag are retired, not its record. BOOL/BOOLEAN and six DiagnosticDataQuery selections/producer closures remain restored; thirteen contextual cleanup records are separate boundaries, not all 436 records. |
+| Parameter atoms | 361 | Individually inventoried; nine CLR selectors explicitly excepted. Two actual font/theme association controls isolate storage-policy conflicts on all three targets; this does not establish failure of all related selectors. |
 | DLL mappings | 26,376 automatic + 385 manual rows | Retained, not exempt; no new DLL migration claimed. |
 | Other RSP operational/API rows | Exact file/option TSV | Parser/global/routing configuration is separate from semantic retirement; do not remove it to inflate counts. |
 
@@ -50,6 +51,88 @@ rewriting history, or changing lower stack layers. This conservative batch keeps
 only the already-qualified parent header pilots. **No additional broad-migration
 header coverage is claimed.** All 737 broad patches and their sidecar retirements
 are deferred until they can be enabled in small batches that each emit.
+
+## Security and system subdivision
+
+Of 102 preflighted groups, MENU_ITEM_FLAGS was deferred before source writes
+because its OLEVERB field requires an owning-IDL closure. The actual 101-group
+trial found an unavailable CONFIGFLAG_NETBOOT_CARD operand and RASENTRYA/W
+macro-expanded field-carrier expressions. The configuration-flags closure
+is restored; using the SDK's actual injected tagRASENTRYA/W record names
+corrects the carrier input without changing the reader.
+
+The remaining 100 groups parsed across 65 owner/consumer partitions, but
+ENUM_PROCESS_MODULES_EX_FLAGS and its four LIST_MODULES_* members were
+duplicated across PsApi1/PsApi2 at emission. Restoring that complete closure
+allowed a 99-group output, whose full comparison then exposed:
+
+- Four additional dependent globals, including NCRYPT_RNG_OPERATION.
+- Five lost MODIFIERKEYS_FLAGS interface associations/nominal typings. These
+  qualified method selectors are active IDL uses, not inactive free functions.
+- Two CryptXML native values differing from their legacy JSON values.
+- Ten integer bitfield backing fields changing to the genuine BOOL wrapper.
+
+Seven enum closures and BOOL's original `int` / `NativeTypedef: true` selection
+were restored. A fresh 65-partition evaluation of the resulting 92 groups
+removed every difference except NCRYPT_RNG_OPERATION. Its native definition is
+an alias of BCRYPT_RNG_OPERATION, so the complete BCRYPT_OPERATION closure
+also remains restored alongside NCRYPT_OPERATION. No added global is masked.
+
+The accepted **91 groups / 511 members / 179 active uses** remove exactly
+91 JSON records and add 91 namespace routing rows. There are zero inactive
+selectors in this cohort. Cumulative additional definition retirement above
+85444 is **562 groups / 4,953 members / 1,062 active uses**, with twelve earlier
+inactive selectors still separate. The RSP count rises by 91 routing rows;
+these are configuration, not new semantic annotations or a retirement claim.
+
+The actual WinMD is
+`4E3243C8E09F01732AAC577C080A0DC370A2D07CB620A153DD11B31DE21FA70C`
+(24,174,592 bytes). Its unmasked comparison against the actual 2f099 output
+reports no differences, and its complete raw declaration dump is the same
+`1F4F38395D602095972A5095C4A25EF6C117BE5E1D716DAB5C3108BE6AC589BA`.
+Integrity passes 54/54 and native SDK controls pass 23/23. All 352 selected
+post-MIDL patches replay to the exact consumed headers; 60 loaded native
+owners preserve their parent byte chain, BOMs and non-ASCII lines.
+
+The final dependency subdivision reuses the completed 92-group raw cache:
+all other native sources differ only in nonsemantic include-guard labels.
+Foundation, Identity and Security.Cryptography are refreshed for the restored
+BCrypt closure, followed by fresh production emission and full comparison.
+No generated RSP is edited, nor is a partial or failed candidate accepted.
+
+Focused controls additionally reproduce BOOL's MENUBARINFO bitfield backing
+change on all three targets (six successful scrapes). Actual CreateFontW
+and GetThemeInt native controls pass on all three targets; their associated
+byte FONT_CHARSET and unsigned THEME_PROPERTY_SYMBOL_ID variants each reject
+storage conflicts on all three targets. Only those two exact parameter
+selectors are individually reproduced; all production parameter facts remain.
+The current contract requires associated storage to match its group.
+
+### Generation cost qualification
+
+The retained full recovery run took 12m32.63s, versus 14m46.57s scraping plus
+4m45.44s emission (19m32.01s) for the later fresh complete 91-group run:
+an observed **6m59.38s / 55.7% increase**. These are not controlled matched
+runs and do not establish attribution to annotation processing. The recorded
+command/concurrency/cache context remains evidence, not a new benchmark:
+the recovery used MaxDegreeOfParallelism 8 on 32 processors. The shared-RPC
+filtered cycle took 6m10.90s, C-header64 took 6m45.59s, and this final
+three-partition dependency refresh/emission took 1m06.55s + 4m43.83s.
+Filtered refreshes are not comparable to full generation. Broad-generation
+cost remains a qualification concern; no timeout, concurrency or tooling
+change is used to conceal it.
+
+| Retained evaluation | Scope / cache | Scrape/constants | Emission | Total |
+|---|---|---:|---:|---:|
+| Recovery | Complete all-architecture, empty output | Combined pipeline | Included | 12m32.63s |
+| Earlier fresh full91 | Complete all-architecture, empty output | 14m46.57s | 4m45.44s | 19m32.01s |
+| Security/system92 subdivision | 65 owner/consumer partitions, existing raw cache | 5m12.93s | 4m53.90s | 10m06.83s |
+| Accepted security/system91 | 3 dependent partitions, qualified 92 raw cache | 1m06.55s | 4m43.83s | 5m50.38s |
+
+These are retained required evaluations, not a separate benchmark loop.
+Future accepted checkpoints retain both stage times and scope/cache context;
+an upward trend in comparable runs needs attention even while the user
+accepts the current observed cost.
 
 ## Shared RPC and security subdivision
 
@@ -88,7 +171,7 @@ propagation, not evidence that BOOLEAN is fictitious, nor the earlier global
 callback aggregation failure. BOOLEAN's original byte storage and
 `NativeTypedef: true` remain restored.
 
-The retained two-selection union replaces BOOL's `int` and COLORREF's
+The then-retained two-selection union replaces BOOL's `int` and COLORREF's
 `uint` storage with `native`, removing only their redundant `NativeTypedef`
 flags. Actual native declarations still produce both genuine types. No
 autoTypes record, parameter atom or RSP row is removed by this cohort.
@@ -98,6 +181,11 @@ WinMD is `CE20171725434A9B37CBDE44A3982860CCFA2D9A26F66965E065860459F9D56C`.
 Integrity passes 54/54. All 23 native SDK controls pass after binding the
 eleven-selection control to its preserved fc60 input; its assertions remain
 unchanged. The earlier failed control runs are retained, not counted as passes.
+
+This was a bounded four-partition qualification. The later security/system
+refresh exposes BOOL bitfield backing-type changes outside that coverage;
+the current accepted union restores BOOL, retaining only COLORREF from
+this two-selection trial. The historical checkpoint and its evidence remain.
 
 ## Retained sidecars
 

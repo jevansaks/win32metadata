@@ -25,7 +25,7 @@ CreateFontA::iCharSet	"AssociatedEnum(""FONT_CHARSET"")"	AssociatedEnum	Per-para
 CreateFontA::iClipPrecision	"AssociatedEnum(""FONT_CLIP_PRECISION"")"	AssociatedEnum	Per-parameter enum association; definition-only enum retirement does not replace this binding	-	-
 CreateFontA::iOutPrecision	"AssociatedEnum(""FONT_OUTPUT_PRECISION"")"	AssociatedEnum	Per-parameter enum association; definition-only enum retirement does not replace this binding	-	-
 CreateFontA::iQuality	"AssociatedEnum(""FONT_QUALITY"")"	AssociatedEnum	Per-parameter enum association; definition-only enum retirement does not replace this binding	-	-
-CreateFontW::iCharSet	"AssociatedEnum(""FONT_CHARSET"")"	AssociatedEnum	Per-parameter enum association; definition-only enum retirement does not replace this binding	-	-
+CreateFontW::iCharSet	"AssociatedEnum(""FONT_CHARSET"")"	AssociatedEnum	Actual SDK DWORD parameter versus byte FONT_CHARSET group; native control passes and association rejects storage conflicts on all three targets	-	-
 CreateFontW::iClipPrecision	"AssociatedEnum(""FONT_CLIP_PRECISION"")"	AssociatedEnum	Per-parameter enum association; definition-only enum retirement does not replace this binding	-	-
 CreateFontW::iOutPrecision	"AssociatedEnum(""FONT_OUTPUT_PRECISION"")"	AssociatedEnum	Per-parameter enum association; definition-only enum retirement does not replace this binding	-	-
 CreateFontW::iQuality	"AssociatedEnum(""FONT_QUALITY"")"	AssociatedEnum	Per-parameter enum association; definition-only enum retirement does not replace this binding	-	-
@@ -85,7 +85,7 @@ GetThemeBool::iPropId	"AssociatedEnum(""THEME_PROPERTY_SYMBOL_ID"")"	AssociatedE
 GetThemeColor::iPropId	"AssociatedEnum(""THEME_PROPERTY_SYMBOL_ID"")"	AssociatedEnum	Per-parameter enum association; definition-only enum retirement does not replace this binding	-	-
 GetThemeEnumValue::iPropId	"AssociatedEnum(""THEME_PROPERTY_SYMBOL_ID"")"	AssociatedEnum	Per-parameter enum association; definition-only enum retirement does not replace this binding	-	-
 GetThemeFilename::iPropId	"AssociatedEnum(""THEME_PROPERTY_SYMBOL_ID"")"	AssociatedEnum	Per-parameter enum association; definition-only enum retirement does not replace this binding	-	-
-GetThemeInt::iPropId	"AssociatedEnum(""THEME_PROPERTY_SYMBOL_ID"")"	AssociatedEnum	Per-parameter enum association; definition-only enum retirement does not replace this binding	-	-
+GetThemeInt::iPropId	"AssociatedEnum(""THEME_PROPERTY_SYMBOL_ID"")"	AssociatedEnum	Actual SDK signed int parameter versus uint THEME_PROPERTY_SYMBOL_ID group; native control passes and association rejects storage conflicts on all three targets	-	-
 GetThemeIntList::iPropId	"AssociatedEnum(""THEME_PROPERTY_SYMBOL_ID"")"	AssociatedEnum	Per-parameter enum association; definition-only enum retirement does not replace this binding	-	-
 GetThemeMargins::iPropId	"AssociatedEnum(""THEME_PROPERTY_SYMBOL_ID"")"	AssociatedEnum	Per-parameter enum association; definition-only enum retirement does not replace this binding	-	-
 GetThemeMetric::iPropId	"AssociatedEnum(""THEME_PROPERTY_SYMBOL_ID"")"	AssociatedEnum	Per-parameter enum association; definition-only enum retirement does not replace this binding	-	-

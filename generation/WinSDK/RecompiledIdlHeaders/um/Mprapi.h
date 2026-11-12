@@ -3343,3 +3343,27 @@ MprInfoBlockQuerySize(
 
 #endif // __ROUTING_MPRADMIN_H__
 
+#ifndef _WIN32METADATA_MPRAPI_SECURITY_SYSTEM_91_GROUPS_
+#define _WIN32METADATA_MPRAPI_SECURITY_SYSTEM_91_GROUPS_
+_Win32_Enum_(MPR_INTERFACE_DIAL_MODE, unsigned int, MPRDM_DialFirst, MPRDM_DialAll, MPRDM_DialAsNeeded);
+_Win32_AnnotateField_(MPR_INTERFACE_3::dwDialMode, _Win32_AssociatedEnum_(MPR_INTERFACE_DIAL_MODE));
+_Win32_AnnotateField_(MPR_INTERFACE_2::dwDialMode, _Win32_AssociatedEnum_(MPR_INTERFACE_DIAL_MODE));
+_Win32_Enum_(MPR_ET, unsigned int, MPR_ET_None, MPR_ET_Require, MPR_ET_RequireMax, MPR_ET_Optional);
+_Win32_AnnotateField_(MPR_INTERFACE_2::dwEncryptionType, _Win32_AssociatedEnum_(MPR_ET));
+_Win32_AnnotateField_(MPR_INTERFACE_3::dwEncryptionType, _Win32_AssociatedEnum_(MPR_ET));
+_Win32_Enum_(PPP_LCP, unsigned int, PPP_LCP_PAP, PPP_LCP_CHAP, PPP_LCP_EAP, PPP_LCP_SPAP);
+_Win32_AnnotateField_(PPP_PROJECTION_INFO::dwAuthenticationProtocol, _Win32_AssociatedEnum_(PPP_LCP));
+_Win32_AnnotateField_(PPP_PROJECTION_INFO2::dwAuthenticationProtocol, _Win32_AssociatedEnum_(PPP_LCP));
+_Win32_AnnotateField_(PPP_PROJECTION_INFO2::dwRemoteAuthenticationProtocol, _Win32_AssociatedEnum_(PPP_LCP));
+_Win32_AnnotateField_(PPP_PROJECTION_INFO::dwRemoteAuthenticationProtocol, _Win32_AssociatedEnum_(PPP_LCP));
+_Win32_AnnotateField_(PPP_LCP_INFO::dwAuthenticationProtocol, _Win32_AssociatedEnum_(PPP_LCP));
+_Win32_Enum_(PPP_LCP_INFO_AUTH_DATA, unsigned int, PPP_LCP_CHAP_MD5, PPP_LCP_CHAP_MS, PPP_LCP_CHAP_MSV2);
+_Win32_AnnotateField_(PPP_LCP_INFO::dwAuthenticationData, _Win32_AssociatedEnum_(PPP_LCP_INFO_AUTH_DATA));
+_Win32_AnnotateField_(PPP_PROJECTION_INFO::dwAuthenticationData, _Win32_AssociatedEnum_(PPP_LCP_INFO_AUTH_DATA));
+_Win32_AnnotateField_(PPP_PROJECTION_INFO2::dwAuthenticationData, _Win32_AssociatedEnum_(PPP_LCP_INFO_AUTH_DATA));
+_Win32_AnnotateField_(PPP_PROJECTION_INFO2::dwRemoteAuthenticationData, _Win32_AssociatedEnum_(PPP_LCP_INFO_AUTH_DATA));
+_Win32_AnnotateField_(PPP_PROJECTION_INFO::dwRemoteAuthenticationData, _Win32_AssociatedEnum_(PPP_LCP_INFO_AUTH_DATA));
+_Win32_Enum_(MPR_VS, unsigned int, MPR_VS_Default, MPR_VS_PptpOnly, MPR_VS_PptpFirst, MPR_VS_L2tpOnly, MPR_VS_L2tpFirst);
+_Win32_AnnotateField_(MPR_INTERFACE_2::dwVpnStrategy, _Win32_AssociatedEnum_(MPR_VS));
+_Win32_AnnotateField_(MPR_INTERFACE_3::dwVpnStrategy, _Win32_AssociatedEnum_(MPR_VS));
+#endif

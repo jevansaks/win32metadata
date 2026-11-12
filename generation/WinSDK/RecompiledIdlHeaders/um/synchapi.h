@@ -668,7 +668,7 @@ WINAPI
 CreateEventExA(
     _In_opt_ LPSECURITY_ATTRIBUTES lpEventAttributes,
     _In_opt_ LPCSTR lpName,
-    _In_ DWORD dwFlags,
+    _Win32_AssociatedEnum_(CREATE_EVENT) _In_ DWORD dwFlags,
     _In_ DWORD dwDesiredAccess
     );
 _Win32_SetLastError_
@@ -681,7 +681,7 @@ WINAPI
 CreateEventExW(
     _In_opt_ LPSECURITY_ATTRIBUTES lpEventAttributes,
     _In_opt_ LPCWSTR lpName,
-    _In_ DWORD dwFlags,
+    _Win32_AssociatedEnum_(CREATE_EVENT) _In_ DWORD dwFlags,
     _In_ DWORD dwDesiredAccess
     );
 
@@ -878,3 +878,8 @@ CreateWaitableTimerW(
 #endif
 
 #endif // _SYNCHAPI_H_
+
+#ifndef _WIN32METADATA_SYNCHAPI_SECURITY_SYSTEM_91_GROUPS_
+#define _WIN32METADATA_SYNCHAPI_SECURITY_SYSTEM_91_GROUPS_
+_Win32_FlagsEnum_(CREATE_EVENT, unsigned int, CREATE_EVENT_INITIAL_SET, CREATE_EVENT_MANUAL_RESET);
+#endif

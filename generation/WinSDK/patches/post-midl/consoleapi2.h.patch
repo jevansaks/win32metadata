@@ -143,7 +143,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/consoleapi2.h b/generatio
  
  WINBASEAPI
  COORD
-@@ -223,6 +241,7 @@
+@@ -223,13 +241,14 @@
  GetLargestConsoleWindowSize(
      _In_ HANDLE hConsoleOutput
      );
@@ -151,6 +151,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/consoleapi2.h b/generatio
  
  WINBASEAPI
  BOOL
+ WINAPI
+ SetConsoleTextAttribute(
+     _In_ HANDLE hConsoleOutput,
+-    _In_ WORD wAttributes
++    _Win32_AssociatedEnum_(CONSOLE_CHARACTER_ATTRIBUTES) _In_ WORD wAttributes
+     );
+ 
+ WINBASEAPI
 @@ -240,6 +259,7 @@
      _In_ BOOL bAbsolute,
      _In_ CONST SMALL_RECT* lpConsoleWindow
@@ -311,3 +319,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/consoleapi2.h b/generatio
  
  WINBASEAPI
  BOOL
+@@ -505,3 +544,10 @@
+ #endif
+ 
+ #endif // _APISETCONSOLEL2_
++
++#ifndef _WIN32METADATA_CONSOLEAPI2_SECURITY_SYSTEM_91_GROUPS_
++#define _WIN32METADATA_CONSOLEAPI2_SECURITY_SYSTEM_91_GROUPS_
++_Win32_FlagsEnum_(CONSOLE_CHARACTER_ATTRIBUTES, unsigned short, FOREGROUND_BLUE, FOREGROUND_GREEN, FOREGROUND_RED, FOREGROUND_INTENSITY, BACKGROUND_BLUE, BACKGROUND_GREEN, BACKGROUND_RED, BACKGROUND_INTENSITY, COMMON_LVB_LEADING_BYTE, COMMON_LVB_TRAILING_BYTE, COMMON_LVB_GRID_HORIZONTAL, COMMON_LVB_GRID_LVERTICAL, COMMON_LVB_GRID_RVERTICAL, COMMON_LVB_REVERSE_VIDEO, COMMON_LVB_UNDERSCORE, COMMON_LVB_SBCSDBCS);
++_Win32_AnnotateField_(CONSOLE_SCREEN_BUFFER_INFO::wAttributes, _Win32_AssociatedEnum_(CONSOLE_CHARACTER_ATTRIBUTES));
++_Win32_AnnotateField_(CONSOLE_SCREEN_BUFFER_INFOEX::wAttributes, _Win32_AssociatedEnum_(CONSOLE_CHARACTER_ATTRIBUTES));
++#endif

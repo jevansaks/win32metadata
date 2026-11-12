@@ -60,25 +60,6 @@
     ]
   },
   {
-    "name": "DRAWEDGE_FLAGS",
-    "flags": true,
-    "autoPopulate": {
-      "filter": "BDR_|EDGE_",
-      "header": "WinUser.h"
-    },
-    "members": [],
-    "uses": [
-      {
-        "method": "DrawEdge",
-        "parameter": "edge"
-      },
-      {
-        "method": "DrawThemeEdge",
-        "parameter": "uEdge"
-      }
-    ]
-  },
-  {
     "name": "COMMON_DLG_ERRORS",
     "type": "uint",
     "autoPopulate": {
@@ -842,58 +823,6 @@
       {
         "method": "CreateUri",
         "parameter": "dwFlags"
-      }
-    ]
-  },
-  {
-    "type": "uint",
-    "name": "MPR_INTERFACE_DIAL_MODE",
-    "members": [
-      {
-        "name": "MPRDM_DialFirst",
-        "value": "0"
-      },
-      {
-        "name": "MPRDM_DialAll",
-        "value": "RASENTRY_DIAL_MODE.RASEDM_DialAll"
-      },
-      {
-        "name": "MPRDM_DialAsNeeded",
-        "value": "RASENTRY_DIAL_MODE.RASEDM_DialAsNeeded"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "MPR_INTERFACE_3",
-        "field": "dwDialMode"
-      },
-      {
-        "struct": "MPR_INTERFACE_2",
-        "field": "dwDialMode"
-      }
-    ]
-  },
-  {
-    "type": "uint",
-    "name": "RASENTRY_DIAL_MODE",
-    "members": [
-      {
-        "name": "RASEDM_DialAll",
-        "value": "1"
-      },
-      {
-        "name": "RASEDM_DialAsNeeded",
-        "value": "2"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "RASENTRYA",
-        "field": "dwDialMode"
-      },
-      {
-        "struct": "RASENTRYW",
-        "field": "dwDialMode"
       }
     ]
   },
@@ -3219,74 +3148,6 @@
     ]
   },
   {
-    "name": "TTEMBED_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "TTEMBED_EMBEDEUDC"
-      },
-      {
-        "name": "TTEMBED_RAW"
-      },
-      {
-        "name": "TTEMBED_SUBSET"
-      },
-      {
-        "name": "TTEMBED_TTCOMPRESSED"
-      }
-    ],
-    "uses": [
-      {
-        "method": "TTEmbedFont",
-        "parameter": "ulFlags"
-      },
-      {
-        "method": "TTEmbedFontEx",
-        "parameter": "ulFlags"
-      },
-      {
-        "method": "TTEmbedFontFromFileA",
-        "parameter": "ulFlags"
-      },
-      {
-        "method": "TTGetEmbeddedFontInfo",
-        "parameter": "ulFlags"
-      }
-    ]
-  },
-  {
-    "name": "CLFS_FLAG",
-    "flags": true,
-    "members": [
-      {
-        "name": "CLFS_FLAG_FORCE_APPEND"
-      },
-      {
-        "name": "CLFS_FLAG_FORCE_FLUSH"
-      },
-      {
-        "name": "CLFS_FLAG_NO_FLAGS"
-      },
-      {
-        "name": "CLFS_FLAG_USE_RESERVATION"
-      }
-    ],
-    "uses": [
-      {
-        "method": "ReserveAndAppendLog",
-        "parameter": "fFlags"
-      },
-      {
-        "method": "ReserveAndAppendLogAligned",
-        "parameter": "fFlags"
-      },
-      {
-        "method": "WriteLogRestartArea",
-        "parameter": "fFlags"
-      }
-    ]
-  },
-  {
     "name": "SNMP_API_TRANSLATE_MODE",
     "members": [
       {
@@ -3343,114 +3204,6 @@
       {
         "method": "AccSetRunningUtilityState",
         "parameter": "dwUtilityState"
-      }
-    ]
-  },
-  {
-    "name": "DRAW_TEXT_FORMAT",
-    "flags": true,
-    "members": [
-      {
-        "name": "DT_BOTTOM"
-      },
-      {
-        "name": "DT_CALCRECT"
-      },
-      {
-        "name": "DT_CENTER"
-      },
-      {
-        "name": "DT_EDITCONTROL"
-      },
-      {
-        "name": "DT_END_ELLIPSIS"
-      },
-      {
-        "name": "DT_EXPANDTABS"
-      },
-      {
-        "name": "DT_EXTERNALLEADING"
-      },
-      {
-        "name": "DT_HIDEPREFIX"
-      },
-      {
-        "name": "DT_INTERNAL"
-      },
-      {
-        "name": "DT_LEFT"
-      },
-      {
-        "name": "DT_MODIFYSTRING"
-      },
-      {
-        "name": "DT_NOCLIP"
-      },
-      {
-        "name": "DT_NOFULLWIDTHCHARBREAK"
-      },
-      {
-        "name": "DT_NOPREFIX"
-      },
-      {
-        "name": "DT_PATH_ELLIPSIS"
-      },
-      {
-        "name": "DT_PREFIXONLY"
-      },
-      {
-        "name": "DT_RIGHT"
-      },
-      {
-        "name": "DT_RTLREADING"
-      },
-      {
-        "name": "DT_SINGLELINE"
-      },
-      {
-        "name": "DT_TABSTOP"
-      },
-      {
-        "name": "DT_TOP"
-      },
-      {
-        "name": "DT_VCENTER"
-      },
-      {
-        "name": "DT_WORDBREAK"
-      },
-      {
-        "name": "DT_WORD_ELLIPSIS"
-      }
-    ],
-    "uses": [
-      {
-        "method": "DrawTextExW",
-        "parameter": "format"
-      },
-      {
-        "method": "DrawTextExA",
-        "parameter": "format"
-      },
-      {
-        "method": "DrawTextA",
-        "parameter": "format"
-      },
-      {
-        "method": "DrawTextW",
-        "parameter": "format"
-      },
-      {
-        "method": "DrawThemeText",
-        "parameter": "dwTextFlags"
-      },
-      {
-        "method": "DrawThemeTextEx",
-        "parameter": "dwTextFlags"
-      },
-      {
-        "method": "GetThemeTextExtent",
-        "parameter": "dwTextFlags"
       }
     ]
   },
@@ -3572,23 +3325,6 @@
       {
         "method": "SetErrorMode",
         "parameter": "return"
-      }
-    ]
-  },
-  {
-    "name": "REAL_TIME_DATA_SOURCE_ID_FLAGS",
-    "members": [
-      {
-        "name": "DATA_SOURCE_REGISTRY"
-      },
-      {
-        "name": "DATA_SOURCE_WBEM"
-      }
-    ],
-    "uses": [
-      {
-        "method": "PdhSetDefaultRealTimeDataSource",
-        "parameter": "dwDataSourceId"
       }
     ]
   },
@@ -3829,32 +3565,6 @@
       {
         "method": "QueryContextAttributesExA",
         "parameter": "ulAttribute"
-      }
-    ]
-  },
-  {
-    "name": "EMBED_FONT_CHARSET",
-    "type": "uint",
-    "members": [
-      {
-        "name": "CHARSET_UNICODE"
-      },
-      {
-        "name": "CHARSET_SYMBOL"
-      }
-    ],
-    "uses": [
-      {
-        "method": "TTEmbedFont",
-        "parameter": "ulCharSet"
-      },
-      {
-        "method": "TTEmbedFontEx",
-        "parameter": "ulCharSet"
-      },
-      {
-        "method": "TTEmbedFontFromFileA",
-        "parameter": "ulCharSet"
       }
     ]
   },
@@ -4127,45 +3837,6 @@
     ]
   },
   {
-    "name": "CREATE_TOOLHELP_SNAPSHOT_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "TH32CS_INHERIT",
-        "value": "2147483648"
-      },
-      {
-        "name": "TH32CS_SNAPALL"
-      },
-      {
-        "name": "TH32CS_SNAPHEAPLIST",
-        "value": "1"
-      },
-      {
-        "name": "TH32CS_SNAPMODULE",
-        "value": "8"
-      },
-      {
-        "name": "TH32CS_SNAPMODULE32",
-        "value": "16"
-      },
-      {
-        "name": "TH32CS_SNAPPROCESS",
-        "value": "2"
-      },
-      {
-        "name": "TH32CS_SNAPTHREAD",
-        "value": "4"
-      }
-    ],
-    "uses": [
-      {
-        "method": "CreateToolhelp32Snapshot",
-        "parameter": "dwFlags"
-      }
-    ]
-  },
-  {
     "name": "UNC_INFO_LEVEL",
     "members": [
       {
@@ -4187,26 +3858,6 @@
       {
         "method": "WNetGetUniversalNameA",
         "parameter": "dwInfoLevel"
-      }
-    ]
-  },
-  {
-    "name": "NET_REQUEST_PROVISION_OPTIONS",
-    "flags": true,
-    "members": [
-      {
-        "name": "NETSETUP_PROVISION_ONLINE_CALLER",
-        "value": "1073741824"
-      }
-    ],
-    "uses": [
-      {
-        "method": "NetRequestProvisioningPackageInstall",
-        "parameter": "dwProvisionOptions"
-      },
-      {
-        "method": "NetRequestOfflineDomainJoin",
-        "parameter": "dwOptions"
       }
     ]
   },
@@ -4541,59 +4192,6 @@
     ]
   },
   {
-    "name": "WER_FILE",
-    "flags": true,
-    "members": [
-      {
-        "name": "WER_FILE_ANONYMOUS_DATA"
-      },
-      {
-        "name": "WER_FILE_DELETE_WHEN_DONE"
-      }
-    ],
-    "uses": [
-      {
-        "method": "WerReportAddFile",
-        "parameter": "dwFileFlags"
-      },
-      {
-        "method": "WerRegisterFile",
-        "parameter": "dwFlags"
-      }
-    ]
-  },
-  {
-    "name": "TRACE_MESSAGE_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "TRACE_MESSAGE_COMPONENTID"
-      },
-      {
-        "name": "TRACE_MESSAGE_GUID"
-      },
-      {
-        "name": "TRACE_MESSAGE_SEQUENCE"
-      },
-      {
-        "name": "TRACE_MESSAGE_SYSTEMINFO"
-      },
-      {
-        "name": "TRACE_MESSAGE_TIMESTAMP"
-      }
-    ],
-    "uses": [
-      {
-        "method": "TraceMessage",
-        "parameter": "MessageFlags"
-      },
-      {
-        "method": "TraceMessageVa",
-        "parameter": "MessageFlags"
-      }
-    ]
-  },
-  {
     "name": "MODIFY_WORLD_TRANSFORM_MODE",
     "members": [
       {
@@ -4614,155 +4212,6 @@
       {
         "method": "EMRMODIFYWORLDTRANSFORM",
         "parameter": "iMode"
-      }
-    ]
-  },
-  {
-    "name": "BCRYPT_TABLE",
-    "members": [
-      {
-        "name": "CRYPT_LOCAL"
-      },
-      {
-        "name": "CRYPT_DOMAIN"
-      }
-    ],
-    "uses": [
-      {
-        "method": "BCryptConfigureContext",
-        "parameter": "dwTable"
-      },
-      {
-        "method": "BCryptEnumContextFunctionProviders",
-        "parameter": "dwTable"
-      },
-      {
-        "method": "BCryptQueryContextConfiguration",
-        "parameter": "dwTable"
-      },
-      {
-        "method": "BCryptQueryContextFunctionProperty",
-        "parameter": "dwTable"
-      },
-      {
-        "method": "BCryptConfigureContextFunction",
-        "parameter": "dwTable"
-      },
-      {
-        "method": "BCryptEnumContexts",
-        "parameter": "dwTable"
-      },
-      {
-        "method": "BCryptAddContextFunction",
-        "parameter": "dwTable"
-      },
-      {
-        "method": "BCryptCreateContext",
-        "parameter": "dwTable"
-      },
-      {
-        "method": "BCryptDeleteContext",
-        "parameter": "dwTable"
-      },
-      {
-        "method": "BCryptEnumContextFunctions",
-        "parameter": "dwTable"
-      },
-      {
-        "method": "BCryptQueryContextFunctionConfiguration",
-        "parameter": "dwTable"
-      },
-      {
-        "method": "BCryptSetContextFunctionProperty",
-        "parameter": "dwTable"
-      },
-      {
-        "method": "BCryptRemoveContextFunction",
-        "parameter": "dwTable"
-      },
-      {
-        "struct": "CRYPT_INTERFACE_REG",
-        "field": "dwFlags"
-      }
-    ]
-  },
-  {
-    "name": "NET_JOIN_DOMAIN_JOIN_OPTIONS",
-    "flags": true,
-    "members": [
-      {
-        "name": "NETSETUP_JOIN_DOMAIN",
-        "value": "1"
-      },
-      {
-        "name": "NETSETUP_ACCT_CREATE",
-        "value": "2"
-      },
-      {
-        "name": "NETSETUP_WIN9X_UPGRADE",
-        "value": "16"
-      },
-      {
-        "name": "NETSETUP_DOMAIN_JOIN_IF_JOINED",
-        "value": "32"
-      },
-      {
-        "name": "NETSETUP_JOIN_UNSECURE",
-        "value": "64"
-      },
-      {
-        "name": "NETSETUP_MACHINE_PWD_PASSED",
-        "value": "128"
-      },
-      {
-        "name": "NETSETUP_DEFER_SPN_SET",
-        "value": "256"
-      },
-      {
-        "name": "NETSETUP_JOIN_DC_ACCOUNT",
-        "value": "512"
-      },
-      {
-        "name": "NETSETUP_JOIN_WITH_NEW_NAME",
-        "value": "1024"
-      },
-      {
-        "name": "NETSETUP_JOIN_READONLY",
-        "value": "2048"
-      },
-      {
-        "name": "NETSETUP_AMBIGUOUS_DC",
-        "value": "4096"
-      },
-      {
-        "name": "NETSETUP_NO_NETLOGON_CACHE",
-        "value": "8192"
-      },
-      {
-        "name": "NETSETUP_DONT_CONTROL_SERVICES",
-        "value": "16384"
-      },
-      {
-        "name": "NETSETUP_SET_MACHINE_NAME",
-        "value": "32768"
-      },
-      {
-        "name": "NETSETUP_FORCE_SPN_SET",
-        "value": "65536"
-      },
-      {
-        "name": "NETSETUP_NO_ACCT_REUSE",
-        "value": "131072"
-      },
-      {
-        "name": "NETSETUP_IGNORE_UNSUPPORTED_FLAGS",
-        "value": "268435456"
-      }
-    ],
-    "uses": [
-      {
-        "method": "NetJoinDomain",
-        "parameter": "fJoinOptions"
       }
     ]
   },
@@ -4810,70 +4259,6 @@
       {
         "struct": "QUERY_SERVICE_CONFIGA",
         "field": "dwErrorControl"
-      }
-    ]
-  },
-  {
-    "name": "PDH_FMT",
-    "members": [
-      {
-        "name": "PDH_FMT_DOUBLE"
-      },
-      {
-        "name": "PDH_FMT_LARGE"
-      },
-      {
-        "name": "PDH_FMT_LONG"
-      }
-    ],
-    "uses": [
-      {
-        "method": "PdhCalculateCounterFromRawValue",
-        "parameter": "dwFormat"
-      },
-      {
-        "method": "PdhGetFormattedCounterArrayA",
-        "parameter": "dwFormat"
-      },
-      {
-        "method": "PdhGetFormattedCounterArrayW",
-        "parameter": "dwFormat"
-      },
-      {
-        "method": "PdhComputeCounterStatistics",
-        "parameter": "dwFormat"
-      },
-      {
-        "method": "PdhFormatFromRawValue",
-        "parameter": "dwFormat"
-      },
-      {
-        "method": "PdhGetFormattedCounterValue",
-        "parameter": "dwFormat"
-      }
-    ]
-  },
-  {
-    "name": "CREATE_EVENT",
-    "flags": true,
-    "members": [
-      {
-        "name": "CREATE_EVENT_INITIAL_SET",
-        "value": "2"
-      },
-      {
-        "name": "CREATE_EVENT_MANUAL_RESET",
-        "value": "1"
-      }
-    ],
-    "uses": [
-      {
-        "method": "CreateEventExW",
-        "parameter": "dwFlags"
-      },
-      {
-        "method": "CreateEventExA",
-        "parameter": "dwFlags"
       }
     ]
   },
@@ -5436,43 +4821,6 @@
     ]
   },
   {
-    "name": "PDH_LOG_TYPE",
-    "members": [
-      {
-        "name": "PDH_LOG_TYPE_UNDEFINED"
-      },
-      {
-        "name": "PDH_LOG_TYPE_CSV"
-      },
-      {
-        "name": "PDH_LOG_TYPE_SQL"
-      },
-      {
-        "name": "PDH_LOG_TYPE_TSV"
-      },
-      {
-        "name": "PDH_LOG_TYPE_BINARY"
-      },
-      {
-        "name": "PDH_LOG_TYPE_PERFMON"
-      }
-    ],
-    "uses": [
-      {
-        "method": "PdhOpenLogW",
-        "parameter": "lpdwLogType"
-      },
-      {
-        "method": "PdhOpenLogA",
-        "parameter": "lpdwLogType"
-      },
-      {
-        "struct": "PDH_RAW_LOG_RECORD",
-        "field": "dwRecordType"
-      }
-    ]
-  },
-  {
     "name": "ENUM_SERVICE_TYPE",
     "flags": true,
     "members": [
@@ -5797,30 +5145,6 @@
       {
         "method": "CryptUIWizExport",
         "parameter": "dwFlags"
-      }
-    ]
-  },
-  {
-    "name": "PDH_LOG",
-    "members": [
-      {
-        "name": "PDH_LOG_READ_ACCESS"
-      },
-      {
-        "name": "PDH_LOG_WRITE_ACCESS"
-      },
-      {
-        "name": "PDH_LOG_UPDATE_ACCESS"
-      }
-    ],
-    "uses": [
-      {
-        "method": "PdhOpenLogA",
-        "parameter": "dwAccessFlags"
-      },
-      {
-        "method": "PdhOpenLogW",
-        "parameter": "dwAccessFlags"
       }
     ]
   },
@@ -6227,49 +5551,6 @@
     ]
   },
   {
-    "name": "CRYPT_XML_FLAGS",
-    "members": [
-      {
-        "name": "CRYPT_XML_FLAG_DISABLE_EXTENSIONS",
-        "value": "268435456"
-      },
-      {
-        "name": "CRYPT_XML_FLAG_NO_SERIALIZE",
-        "value": "2147483648"
-      },
-      {
-        "name": "CRYPT_XML_SIGN_ADD_KEYVALUE",
-        "value": "1"
-      }
-    ],
-    "uses": [
-      {
-        "method": "CryptXmlImportPublicKey",
-        "parameter": "dwFlags"
-      },
-      {
-        "method": "CryptXmlGetAlgorithmInfo",
-        "parameter": "dwFlags"
-      },
-      {
-        "method": "CryptXmlVerifySignature",
-        "parameter": "dwFlags"
-      },
-      {
-        "method": "CryptXmlOpenToEncode",
-        "parameter": "dwFlags"
-      },
-      {
-        "method": "CryptXmlOpenToDecode",
-        "parameter": "dwFlags"
-      },
-      {
-        "method": "CryptXmlSign",
-        "parameter": "dwFlags"
-      }
-    ]
-  },
-  {
     "name": "ACE_FLAGS",
     "flags": true,
     "members": [
@@ -6467,61 +5748,6 @@
       {
         "method": "FindFirstChangeNotificationW",
         "parameter": "dwNotifyFilter"
-      }
-    ]
-  },
-  {
-    "name": "COMPRESS_ALGORITHM",
-    "members": [
-      {
-        "name": "COMPRESS_ALGORITHM_MSZIP",
-        "value": "2"
-      },
-      {
-        "name": "COMPRESS_ALGORITHM_XPRESS",
-        "value": "3"
-      },
-      {
-        "name": "COMPRESS_ALGORITHM_XPRESS_HUFF",
-        "value": "4"
-      },
-      {
-        "name": "COMPRESS_ALGORITHM_LZMS",
-        "value": "5"
-      }
-    ],
-    "uses": [
-      {
-        "method": "CreateDecompressor",
-        "parameter": "Algorithm"
-      },
-      {
-        "method": "CreateCompressor",
-        "parameter": "Algorithm"
-      }
-    ]
-  },
-  {
-    "name": "AUTHZ_RESOURCE_MANAGER_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "AUTHZ_RM_FLAG_NO_AUDIT",
-        "value": "1"
-      },
-      {
-        "name": "AUTHZ_RM_FLAG_INITIALIZE_UNDER_IMPERSONATION",
-        "value": "2"
-      },
-      {
-        "name": "AUTHZ_RM_FLAG_NO_CENTRAL_ACCESS_POLICIES",
-        "value": "4"
-      }
-    ],
-    "uses": [
-      {
-        "method": "AuthzInitializeResourceManagerEx",
-        "parameter": "Flags"
       }
     ]
   },
@@ -6942,45 +6168,6 @@
     ]
   },
   {
-    "name": "EMBEDDED_FONT_PRIV_STATUS",
-    "members": [
-      {
-        "name": "EMBED_PREVIEWPRINT"
-      },
-      {
-        "name": "EMBED_EDITABLE"
-      },
-      {
-        "name": "EMBED_INSTALLABLE"
-      },
-      {
-        "name": "EMBED_NOEMBEDDING"
-      }
-    ],
-    "uses": [
-      {
-        "method": "TTLoadEmbeddedFont",
-        "parameter": "pulPrivStatus"
-      },
-      {
-        "method": "TTEmbedFont",
-        "parameter": "pulPrivStatus"
-      },
-      {
-        "method": "TTEmbedFontFromFileA",
-        "parameter": "pulPrivStatus"
-      },
-      {
-        "method": "TTEmbedFontEx",
-        "parameter": "pulPrivStatus"
-      },
-      {
-        "method": "TTGetEmbeddingType",
-        "parameter": "pulEmbedType"
-      }
-    ]
-  },
-  {
     "name": "CERT_CREATE_REQUEST_FLAGS",
     "type": "int",
     "members": [
@@ -7191,24 +6378,6 @@
     ]
   },
   {
-    "name": "OPEN_THEME_DATA_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "OTD_FORCE_RECT_SIZING"
-      },
-      {
-        "name": "OTD_NONCLIENT"
-      }
-    ],
-    "uses": [
-      {
-        "method": "OpenThemeDataEx",
-        "parameter": "dwFlags"
-      }
-    ]
-  },
-  {
     "name": "SECURITY_INFO_PAGE_FLAGS",
     "flags": true,
     "members": [
@@ -7307,33 +6476,6 @@
     ]
   },
   {
-    "name": "EVENT_TRACE_CONTROL",
-    "members": [
-      {
-        "name": "EVENT_TRACE_CONTROL_FLUSH"
-      },
-      {
-        "name": "EVENT_TRACE_CONTROL_QUERY"
-      },
-      {
-        "name": "EVENT_TRACE_CONTROL_STOP"
-      },
-      {
-        "name": "EVENT_TRACE_CONTROL_UPDATE"
-      }
-    ],
-    "uses": [
-      {
-        "method": "ControlTraceA",
-        "parameter": "ControlCode"
-      },
-      {
-        "method": "ControlTraceW",
-        "parameter": "ControlCode"
-      }
-    ]
-  },
-  {
     "name": "TEXT_STORE_CHANGE_FLAGS",
     "flags": true,
     "members": [
@@ -7349,26 +6491,6 @@
       {
         "interface": "ITextStoreAnchorSink",
         "method": "OnTextChange",
-        "parameter": "dwFlags"
-      }
-    ]
-  },
-  {
-    "name": "GET_THEME_BITMAP_FLAGS",
-    "members": [
-      {
-        "name": "GBF_DIRECT"
-      },
-      {
-        "name": "GBF_COPY"
-      },
-      {
-        "name": "GBF_VALIDBITS"
-      }
-    ],
-    "uses": [
-      {
-        "method": "GetThemeBitmap",
         "parameter": "dwFlags"
       }
     ]
@@ -7466,25 +6588,6 @@
       {
         "method": "NetRemoteComputerSupports",
         "parameter": "OptionsWanted"
-      }
-    ]
-  },
-  {
-    "name": "WLAN_SET_EAPHOST_FLAGS",
-    "members": [
-      {
-        "name": "WLAN_SET_EAPHOST_DATA_ALL_USERS",
-        "value": "1"
-      }
-    ],
-    "uses": [
-      {
-        "method": "WlanSetProfileEapUserData",
-        "parameter": "dwFlags"
-      },
-      {
-        "method": "WlanSetProfileEapXmlUserData",
-        "parameter": "dwFlags"
       }
     ]
   },
@@ -8074,33 +7177,6 @@
     ]
   },
   {
-    "name": "BCRYPT_QUERY_PROVIDER_MODE",
-    "members": [
-      {
-        "name": "CRYPT_ANY"
-      },
-      {
-        "name": "CRYPT_UM"
-      },
-      {
-        "name": "CRYPT_KM"
-      },
-      {
-        "name": "CRYPT_MM"
-      }
-    ],
-    "uses": [
-      {
-        "method": "BCryptQueryProviderRegistration",
-        "parameter": "dwMode"
-      },
-      {
-        "method": "BCryptResolveProviders",
-        "parameter": "dwMode"
-      }
-    ]
-  },
-  {
     "name": "ADDED_CERT_TYPE",
     "type": "int",
     "members": [
@@ -8215,21 +7291,6 @@
       {
         "method": "RegNotifyChangeKeyValue",
         "parameter": "dwNotifyFilter"
-      }
-    ]
-  },
-  {
-    "name": "AUTHZ_ACCESS_CHECK_FLAGS",
-    "members": [
-      {
-        "name": "AUTHZ_ACCESS_CHECK_NO_DEEP_COPY_SD",
-        "value": "1"
-      }
-    ],
-    "uses": [
-      {
-        "method": "AuthzAccessCheck",
-        "parameter": "Flags"
       }
     ]
   },
@@ -8398,64 +7459,6 @@
         "interface": "ISecurityInformation",
         "method": "PropertySheetPageCallback",
         "parameter": "uMsg"
-      }
-    ]
-  },
-  {
-    "name": "BCRYPT_OPEN_ALGORITHM_PROVIDER_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "BCRYPT_ALG_HANDLE_HMAC_FLAG"
-      },
-      {
-        "name": "BCRYPT_PROV_DISPATCH"
-      },
-      {
-        "name": "BCRYPT_HASH_REUSABLE_FLAG"
-      }
-    ],
-    "uses": [
-      {
-        "method": "BCryptOpenAlgorithmProvider",
-        "parameter": "dwFlags"
-      }
-    ]
-  },
-  {
-    "name": "PDH_DLL_VERSION",
-    "members": [
-      {
-        "name": "PDH_CVERSION_WIN50"
-      },
-      {
-        "name": "PDH_VERSION"
-      }
-    ],
-    "uses": [
-      {
-        "method": "PdhGetDllVersion",
-        "parameter": "lpdwVersion"
-      }
-    ]
-  },
-  {
-    "name": "AUTHZ_INITIALIZE_OBJECT_ACCESS_AUDIT_EVENT_FLAGS",
-    "members": [
-      {
-        "name": "AUTHZ_NO_SUCCESS_AUDIT"
-      },
-      {
-        "name": "AUTHZ_NO_FAILURE_AUDIT"
-      },
-      {
-        "name": "AUTHZ_NO_ALLOC_STRINGS"
-      }
-    ],
-    "uses": [
-      {
-        "method": "AuthzInitializeObjectAccessAuditEvent",
-        "parameter": "Flags"
       }
     ]
   },
@@ -8683,24 +7686,6 @@
         "interface": "ICertAdmin2",
         "method": "DeleteRow",
         "parameter": "Table"
-      }
-    ]
-  },
-  {
-    "name": "TTLOAD_EMBEDDED_FONT_STATUS",
-    "flags": true,
-    "members": [
-      {
-        "name": "TTLOAD_FONT_SUBSETTED"
-      },
-      {
-        "name": "TTLOAD_FONT_IN_SYSSTARTUP"
-      }
-    ],
-    "uses": [
-      {
-        "method": "TTLoadEmbeddedFont",
-        "parameter": "pulStatus"
       }
     ]
   },
@@ -8957,37 +7942,6 @@
     ]
   },
   {
-    "name": "WER_FAULT_REPORTING",
-    "flags": true,
-    "members": [
-      {
-        "name": "WER_FAULT_REPORTING_FLAG_DISABLE_THREAD_SUSPENSION"
-      },
-      {
-        "name": "WER_FAULT_REPORTING_FLAG_NOHEAP"
-      },
-      {
-        "name": "WER_FAULT_REPORTING_FLAG_QUEUE"
-      },
-      {
-        "name": "WER_FAULT_REPORTING_FLAG_QUEUE_UPLOAD"
-      },
-      {
-        "name": "WER_FAULT_REPORTING_ALWAYS_SHOW_UI"
-      }
-    ],
-    "uses": [
-      {
-        "method": "WerSetFlags",
-        "parameter": "dwFlags"
-      },
-      {
-        "method": "WerGetFlags",
-        "parameter": "pdwFlags"
-      }
-    ]
-  },
-  {
     "name": "SNMP_LOG",
     "type": "int",
     "members": [
@@ -9230,79 +8184,6 @@
     ]
   },
   {
-    "name": "DRAW_EDGE_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "BF_ADJUST"
-      },
-      {
-        "name": "BF_BOTTOM"
-      },
-      {
-        "name": "BF_BOTTOMLEFT"
-      },
-      {
-        "name": "BF_BOTTOMRIGHT"
-      },
-      {
-        "name": "BF_DIAGONAL"
-      },
-      {
-        "name": "BF_DIAGONAL_ENDBOTTOMLEFT"
-      },
-      {
-        "name": "BF_DIAGONAL_ENDBOTTOMRIGHT"
-      },
-      {
-        "name": "BF_DIAGONAL_ENDTOPLEFT"
-      },
-      {
-        "name": "BF_DIAGONAL_ENDTOPRIGHT"
-      },
-      {
-        "name": "BF_FLAT"
-      },
-      {
-        "name": "BF_LEFT"
-      },
-      {
-        "name": "BF_MIDDLE"
-      },
-      {
-        "name": "BF_MONO"
-      },
-      {
-        "name": "BF_RECT"
-      },
-      {
-        "name": "BF_RIGHT"
-      },
-      {
-        "name": "BF_SOFT"
-      },
-      {
-        "name": "BF_TOP"
-      },
-      {
-        "name": "BF_TOPLEFT"
-      },
-      {
-        "name": "BF_TOPRIGHT"
-      }
-    ],
-    "uses": [
-      {
-        "method": "DrawEdge",
-        "parameter": "grfFlags"
-      },
-      {
-        "method": "DrawThemeEdge",
-        "parameter": "uFlags"
-      }
-    ]
-  },
-  {
     "name": "MULTI_BYTE_TO_WIDE_CHAR_FLAGS",
     "flags": true,
     "members": [
@@ -9382,39 +8263,6 @@
     ]
   },
   {
-    "name": "NET_RESOURCE_TYPE",
-    "flags": true,
-    "members": [
-      {
-        "name": "RESOURCETYPE_ANY"
-      },
-      {
-        "name": "RESOURCETYPE_DISK"
-      },
-      {
-        "name": "RESOURCETYPE_PRINT"
-      }
-    ],
-    "uses": [
-      {
-        "method": "WNetOpenEnumA",
-        "parameter": "dwType"
-      },
-      {
-        "method": "WNetOpenEnumW",
-        "parameter": "dwType"
-      },
-      {
-        "struct": "NETRESOURCEA",
-        "field": "dwType"
-      },
-      {
-        "struct": "NETRESOURCEW",
-        "field": "dwType"
-      }
-    ]
-  },
-  {
     "addUsesTo": "R2_MODE",
     "autoPopulate": {
       "filter": "R2_",
@@ -9467,56 +8315,6 @@
         "interface": "ICOMAdminCatalog2",
         "method": "InstallPartition",
         "parameter": "lOptions"
-      }
-    ]
-  },
-  {
-    "name": "WAIT_CHAIN_THREAD_OPTIONS",
-    "members": [
-      {
-        "name": "WCT_OUT_OF_PROC_COM_FLAG"
-      },
-      {
-        "name": "WCT_OUT_OF_PROC_CS_FLAG"
-      },
-      {
-        "name": "WCT_OUT_OF_PROC_FLAG"
-      }
-    ],
-    "uses": [
-      {
-        "method": "GetThreadWaitChain",
-        "parameter": "Flags"
-      }
-    ]
-  },
-  {
-    "name": "FONT_LICENSE_PRIVS",
-    "members": [
-      {
-        "name": "LICENSE_PREVIEWPRINT"
-      },
-      {
-        "name": "LICENSE_EDITABLE"
-      },
-      {
-        "name": "LICENSE_INSTALLABLE"
-      },
-      {
-        "name": "LICENSE_NOEMBEDDING"
-      },
-      {
-        "name": "LICENSE_DEFAULT"
-      }
-    ],
-    "uses": [
-      {
-        "method": "TTGetEmbeddedFontInfo",
-        "parameter": "ulPrivs"
-      },
-      {
-        "method": "TTLoadEmbeddedFont",
-        "parameter": "ulPrivs"
       }
     ]
   },
@@ -9629,23 +8427,6 @@
       {
         "method": "IsUserCetAvailableInEnvironment",
         "parameter": "UserCetEnvironment"
-      }
-    ]
-  },
-  {
-    "name": "SCARD_SCOPE",
-    "members": [
-      {
-        "name": "SCARD_SCOPE_USER"
-      },
-      {
-        "name": "SCARD_SCOPE_SYSTEM"
-      }
-    ],
-    "uses": [
-      {
-        "method": "SCardEstablishContext",
-        "parameter": "dwScope"
       }
     ]
   },
@@ -10257,27 +9038,6 @@
     ]
   },
   {
-    "name": "DRAW_THEME_PARENT_BACKGROUND_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "DTPB_WINDOWDC"
-      },
-      {
-        "name": "DTPB_USECTLCOLORSTATIC"
-      },
-      {
-        "name": "DTPB_USEERASEBKGND"
-      }
-    ],
-    "uses": [
-      {
-        "method": "DrawThemeParentBackgroundEx",
-        "parameter": "dwFlags"
-      }
-    ]
-  },
-  {
     "name": "HANDLE_FLAGS",
     "flags": true,
     "autoPopulate": {
@@ -10611,41 +9371,6 @@
     ]
   },
   {
-    "name": "NET_RESOURCE_SCOPE",
-    "members": [
-      {
-        "name": "RESOURCE_CONNECTED"
-      },
-      {
-        "name": "RESOURCE_CONTEXT"
-      },
-      {
-        "name": "RESOURCE_GLOBALNET"
-      },
-      {
-        "name": "RESOURCE_REMEMBERED"
-      }
-    ],
-    "uses": [
-      {
-        "method": "WNetOpenEnumW",
-        "parameter": "dwScope"
-      },
-      {
-        "method": "WNetOpenEnumA",
-        "parameter": "dwScope"
-      },
-      {
-        "struct": "NETRESOURCEA",
-        "field": "dwScope"
-      },
-      {
-        "struct": "NETRESOURCEW",
-        "field": "dwScope"
-      }
-    ]
-  },
-  {
     "name": "OS_PRODUCT_TYPE",
     "namespace": "Windows.Win32.System.SystemInformation",
     "autoPopulate": {
@@ -10723,25 +9448,6 @@
       {
         "method": "LPPROGRESS_ROUTINE",
         "parameter": "dwCallbackReason"
-      }
-    ]
-  },
-  {
-    "name": "CRYPTCAT_VERSION",
-    "members": [
-      {
-        "name": "CRYPTCAT_VERSION_1",
-        "value": "256"
-      },
-      {
-        "name": "CRYPTCAT_VERSION_2",
-        "value": "512"
-      }
-    ],
-    "uses": [
-      {
-        "method": "CryptCATOpen",
-        "parameter": "dwPublicVersion"
       }
     ]
   },
@@ -10942,111 +9648,6 @@
     ]
   },
   {
-    "name": "CRYPTCAT_OPEN_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "CRYPTCAT_OPEN_ALWAYS"
-      },
-      {
-        "name": "CRYPTCAT_OPEN_CREATENEW"
-      },
-      {
-        "name": "CRYPTCAT_OPEN_EXISTING"
-      },
-      {
-        "name": "CRYPTCAT_OPEN_EXCLUDE_PAGE_HASHES",
-        "value": "65536"
-      },
-      {
-        "name": "CRYPTCAT_OPEN_INCLUDE_PAGE_HASHES",
-        "value": "131072"
-      },
-      {
-        "name": "CRYPTCAT_OPEN_VERIFYSIGHASH",
-        "value": "268435456"
-      },
-      {
-        "name": "CRYPTCAT_OPEN_NO_CONTENT_HCRYPTMSG",
-        "value": "536870912"
-      },
-      {
-        "name": "CRYPTCAT_OPEN_SORTED",
-        "value": "1073741824"
-      },
-      {
-        "name": "CRYPTCAT_OPEN_FLAGS_MASK",
-        "value": "4294901760"
-      }
-    ],
-    "uses": [
-      {
-        "method": "CryptCATOpen",
-        "parameter": "fdwOpenFlags"
-      },
-      {
-        "struct": "CRYPTCATSTORE",
-        "field": "fdwStoreFlags"
-      }
-    ]
-  },
-  {
-    "name": "BCRYPT_RESOLVE_PROVIDERS_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "CRYPT_ALL_FUNCTIONS",
-        "value": "1"
-      },
-      {
-        "name": "CRYPT_ALL_PROVIDERS",
-        "value": "2"
-      }
-    ],
-    "uses": [
-      {
-        "method": "BCryptResolveProviders",
-        "parameter": "dwFlags"
-      }
-    ]
-  },
-  {
-    "name": "NETSETUP_PROVISION",
-    "flags": true,
-    "members": [
-      {
-        "name": "NETSETUP_PROVISION_DOWNLEVEL_PRIV_SUPPORT",
-        "value": "1"
-      },
-      {
-        "name": "NETSETUP_PROVISION_REUSE_ACCOUNT",
-        "value": "2"
-      },
-      {
-        "name": "NETSETUP_PROVISION_USE_DEFAULT_PASSWORD",
-        "value": "4"
-      },
-      {
-        "name": "NETSETUP_PROVISION_SKIP_ACCOUNT_SEARCH",
-        "value": "8"
-      },
-      {
-        "name": "NETSETUP_PROVISION_ROOT_CA_CERTS",
-        "value": "16"
-      }
-    ],
-    "uses": [
-      {
-        "method": "NetProvisionComputerAccount",
-        "parameter": "dwOptions"
-      },
-      {
-        "struct": "NETSETUP_PROVISIONING_PARAMS",
-        "field": "dwProvisionOptions"
-      }
-    ]
-  },
-  {
     "name": "HDC_MAP_MODE",
     "type": "int",
     "members": [
@@ -11230,127 +9831,6 @@
     ]
   },
   {
-    "name": "PERF_COUNTER_AGGREGATE_FUNC",
-    "members": [
-      {
-        "name": "PERF_AGGREGATE_UNDEFINED"
-      },
-      {
-        "name": "PERF_AGGREGATE_TOTAL"
-      },
-      {
-        "name": "PERF_AGGREGATE_AVG"
-      },
-      {
-        "name": "PERF_AGGREGATE_MIN"
-      },
-      {
-        "name": "PERF_AGGREGATE_MAX"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "PERF_COUNTER_REG_INFO",
-        "field": "AggregateFunc"
-      }
-    ]
-  },
-  {
-    "name": "AUTHZ_GENERATE_RESULTS",
-    "members": [
-      {
-        "name": "AUTHZ_GENERATE_SUCCESS_AUDIT",
-        "value": "1"
-      },
-      {
-        "name": "AUTHZ_GENERATE_FAILURE_AUDIT",
-        "value": "2"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "AUTHZ_ACCESS_REPLY",
-        "field": "SaclEvaluationResults"
-      }
-    ]
-  },
-  {
-    "name": "CRYPTUI_VIEWCERTIFICATE_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "CRYPTUI_HIDE_HIERARCHYPAGE"
-      },
-      {
-        "name": "CRYPTUI_HIDE_DETAILPAGE"
-      },
-      {
-        "name": "CRYPTUI_DISABLE_EDITPROPERTIES"
-      },
-      {
-        "name": "CRYPTUI_ENABLE_EDITPROPERTIES"
-      },
-      {
-        "name": "CRYPTUI_DISABLE_ADDTOSTORE"
-      },
-      {
-        "name": "CRYPTUI_ENABLE_ADDTOSTORE"
-      },
-      {
-        "name": "CRYPTUI_ACCEPT_DECLINE_STYLE"
-      },
-      {
-        "name": "CRYPTUI_IGNORE_UNTRUSTED_ROOT"
-      },
-      {
-        "name": "CRYPTUI_DONT_OPEN_STORES"
-      },
-      {
-        "name": "CRYPTUI_ONLY_OPEN_ROOT_STORE"
-      },
-      {
-        "name": "CRYPTUI_WARN_UNTRUSTED_ROOT"
-      },
-      {
-        "name": "CRYPTUI_ENABLE_REVOCATION_CHECKING"
-      },
-      {
-        "name": "CRYPTUI_WARN_REMOTE_TRUST"
-      },
-      {
-        "name": "CRYPTUI_DISABLE_EXPORT"
-      },
-      {
-        "name": "CRYPTUI_ENABLE_REVOCATION_CHECK_END_CERT"
-      },
-      {
-        "name": "CRYPTUI_ENABLE_REVOCATION_CHECK_CHAIN"
-      },
-      {
-        "name": "CRYPTUI_ENABLE_REVOCATION_CHECK_CHAIN_EXCLUDE_ROOT"
-      },
-      {
-        "name": "CRYPTUI_DISABLE_HTMLLINK"
-      },
-      {
-        "name": "CRYPTUI_DISABLE_ISSUERSTATEMENT"
-      },
-      {
-        "name": "CRYPTUI_CACHE_ONLY_URL_RETRIEVAL"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "CRYPTUI_VIEWCERTIFICATE_STRUCTW",
-        "field": "dwFlags"
-      },
-      {
-        "struct": "CRYPTUI_VIEWCERTIFICATE_STRUCTA",
-        "field": "dwFlags"
-      }
-    ]
-  },
-  {
     "name": "IPSEC_SA_BUNDLE_FLAGS",
     "flags": true,
     "members": [
@@ -11485,24 +9965,6 @@
       {
         "struct": "MODEMDEVCAPS",
         "field": "dwDialOptions"
-      }
-    ]
-  },
-  {
-    "name": "CRYPT_IMAGE_REF_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "CRYPT_MIN_DEPENDENCIES"
-      },
-      {
-        "name": "CRYPT_PROCESS_ISOLATE"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "CRYPT_IMAGE_REF",
-        "field": "dwFlags"
       }
     ]
   },
@@ -11904,33 +10366,6 @@
     ]
   },
   {
-    "name": "CRYPT_XML_KEY_VALUE_TYPE",
-    "members": [
-      {
-        "name": "CRYPT_XML_KEY_VALUE_TYPE_DSA",
-        "value": "1"
-      },
-      {
-        "name": "CRYPT_XML_KEY_VALUE_TYPE_RSA",
-        "value": "2"
-      },
-      {
-        "name": "CRYPT_XML_KEY_VALUE_TYPE_ECDSA",
-        "value": "3"
-      },
-      {
-        "name": "CRYPT_XML_KEY_VALUE_TYPE_CUSTOM",
-        "value": "4"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "CRYPT_XML_KEY_VALUE",
-        "field": "dwType"
-      }
-    ]
-  },
-  {
     "name": "IKEEXT_CERT_AUTH",
     "flags": true,
     "members": [
@@ -11984,23 +10419,6 @@
       {
         "struct": "VDS_FILE_SYSTEM_NOTIFICATION",
         "field": "ulEvent"
-      }
-    ]
-  },
-  {
-    "name": "WLAN_CONNECTION_NOTIFICATION_FLAGS",
-    "members": [
-      {
-        "name": "WLAN_CONNECTION_NOTIFICATION_ADHOC_NETWORK_FORMED"
-      },
-      {
-        "name": "WLAN_CONNECTION_NOTIFICATION_CONSOLE_USER_PROFILE"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "WLAN_CONNECTION_NOTIFICATION_DATA",
-        "field": "dwFlags"
       }
     ]
   },
@@ -12104,32 +10522,6 @@
     ]
   },
   {
-    "name": "CRYPTUI_WIZ_IMPORT_SUBJECT_OPTION",
-    "members": [
-      {
-        "name": "CRYPTUI_WIZ_IMPORT_SUBJECT_FILE"
-      },
-      {
-        "name": "CRYPTUI_WIZ_IMPORT_SUBJECT_CERT_CONTEXT"
-      },
-      {
-        "name": "CRYPTUI_WIZ_IMPORT_SUBJECT_CTL_CONTEXT"
-      },
-      {
-        "name": "CRYPTUI_WIZ_IMPORT_SUBJECT_CRL_CONTEXT"
-      },
-      {
-        "name": "CRYPTUI_WIZ_IMPORT_SUBJECT_CERT_STORE"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "CRYPTUI_WIZ_IMPORT_SRC_INFO",
-        "field": "dwSubjectChoice"
-      }
-    ]
-  },
-  {
     "name": "SHARE_INFO_PERMISSIONS",
     "members": [
       {
@@ -12202,62 +10594,6 @@
       {
         "struct": "KERB_ADD_BINDING_CACHE_ENTRY_EX_REQUEST",
         "field": "AddressType"
-      }
-    ]
-  },
-  {
-    "name": "SCARD_STATE",
-    "members": [
-      {
-        "name": "SCARD_STATE_UNAWARE"
-      },
-      {
-        "name": "SCARD_STATE_IGNORE"
-      },
-      {
-        "name": "SCARD_STATE_UNAVAILABLE"
-      },
-      {
-        "name": "SCARD_STATE_EMPTY"
-      },
-      {
-        "name": "SCARD_STATE_PRESENT"
-      },
-      {
-        "name": "SCARD_STATE_ATRMATCH"
-      },
-      {
-        "name": "SCARD_STATE_EXCLUSIVE"
-      },
-      {
-        "name": "SCARD_STATE_INUSE"
-      },
-      {
-        "name": "SCARD_STATE_MUTE"
-      },
-      {
-        "name": "SCARD_STATE_CHANGED"
-      },
-      {
-        "name": "SCARD_STATE_UNKNOWN"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "SCARD_READERSTATEA",
-        "field": "dwCurrentState"
-      },
-      {
-        "struct": "SCARD_READERSTATEW",
-        "field": "dwCurrentState"
-      },
-      {
-        "struct": "SCARD_READERSTATEA",
-        "field": "dwEventState"
-      },
-      {
-        "struct": "SCARD_READERSTATEW",
-        "field": "dwEventState"
       }
     ]
   },
@@ -12527,34 +10863,6 @@
     ]
   },
   {
-    "type": "uint",
-    "name": "MPR_ET",
-    "members": [
-      {
-        "name": "MPR_ET_None"
-      },
-      {
-        "name": "MPR_ET_Require"
-      },
-      {
-        "name": "MPR_ET_RequireMax"
-      },
-      {
-        "name": "MPR_ET_Optional"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "MPR_INTERFACE_2",
-        "field": "dwEncryptionType"
-      },
-      {
-        "struct": "MPR_INTERFACE_3",
-        "field": "dwEncryptionType"
-      }
-    ]
-  },
-  {
     "name": "PARAFORMAT_BORDERS",
     "type": "ushort",
     "flags": true,
@@ -12672,27 +10980,6 @@
       {
         "struct": "SCHANNEL_CRED",
         "field": "dwFlags"
-      }
-    ]
-  },
-  {
-    "name": "NETINFOSTRUCT_CHARACTERISTICS",
-    "flags": true,
-    "members": [
-      {
-        "name": "NETINFO_DLL16"
-      },
-      {
-        "name": "NETINFO_DISKRED"
-      },
-      {
-        "name": "NETINFO_PRINTERRED"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "NETINFOSTRUCT",
-        "field": "dwCharacteristics"
       }
     ]
   },
@@ -12896,24 +11183,6 @@
     ]
   },
   {
-    "name": "CRYPT_CONTEXT_CONFIG_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "CRYPT_EXCLUSIVE"
-      },
-      {
-        "name": "CRYPT_OVERRIDE"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "CRYPT_CONTEXT_CONFIG",
-        "field": "dwFlags"
-      }
-    ]
-  },
-  {
     "name": "IKEEXT_CERT_FLAGS",
     "flags": true,
     "members": [
@@ -12972,30 +11241,6 @@
     ]
   },
   {
-    "name": "RASPPP_PROJECTION_INFO_SERVER_AUTH_DATA",
-    "members": [
-      {
-        "name": "RASLCPAD_CHAP_MD5"
-      },
-      {
-        "name": "RASLCPAD_CHAP_MS"
-      },
-      {
-        "name": "RASLCPAD_CHAP_MSV2"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "RASPPP_PROJECTION_INFO",
-        "field": "dwServerAuthenticationData"
-      },
-      {
-        "struct": "RASPPP_PROJECTION_INFO",
-        "field": "dwAuthenticationData"
-      }
-    ]
-  },
-  {
     "name": "IPSEC_DOSP_FLAGS",
     "flags": true,
     "members": [
@@ -13022,29 +11267,6 @@
       {
         "struct": "IPSEC_DOSP_OPTIONS0",
         "field": "flags"
-      }
-    ]
-  },
-  {
-    "name": "BCRYPT_DSA_MAGIC",
-    "members": [
-      {
-        "name": "BCRYPT_DSA_PUBLIC_MAGIC",
-        "value": "1112560452"
-      },
-      {
-        "name": "BCRYPT_DSA_PRIVATE_MAGIC",
-        "value": "1448104772"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "BCRYPT_DSA_KEY_BLOB_V2",
-        "field": "dwMagic"
-      },
-      {
-        "struct": "BCRYPT_DSA_KEY_BLOB",
-        "field": "dwMagic"
       }
     ]
   },
@@ -13090,45 +11312,6 @@
       {
         "struct": "TIMECODE_SAMPLE",
         "field": "dwFlags"
-      }
-    ]
-  },
-  {
-    "name": "PPP_LCP",
-    "members": [
-      {
-        "name": "PPP_LCP_PAP"
-      },
-      {
-        "name": "PPP_LCP_CHAP"
-      },
-      {
-        "name": "PPP_LCP_EAP"
-      },
-      {
-        "name": "PPP_LCP_SPAP"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "PPP_PROJECTION_INFO",
-        "field": "dwAuthenticationProtocol"
-      },
-      {
-        "struct": "PPP_PROJECTION_INFO2",
-        "field": "dwAuthenticationProtocol"
-      },
-      {
-        "struct": "PPP_PROJECTION_INFO2",
-        "field": "dwRemoteAuthenticationProtocol"
-      },
-      {
-        "struct": "PPP_PROJECTION_INFO",
-        "field": "dwRemoteAuthenticationProtocol"
-      },
-      {
-        "struct": "PPP_LCP_INFO",
-        "field": "dwAuthenticationProtocol"
       }
     ]
   },
@@ -13220,33 +11403,6 @@
     ]
   },
   {
-    "name": "RASPPP_PROJECTION_INFO_SERVER_AUTH_PROTOCOL",
-    "members": [
-      {
-        "name": "RASLCPAP_PAP"
-      },
-      {
-        "name": "RASLCPAP_SPAP"
-      },
-      {
-        "name": "RASLCPAP_CHAP"
-      },
-      {
-        "name": "RASLCPAP_EAP"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "RASPPP_PROJECTION_INFO",
-        "field": "dwServerAuthenticationProtocol"
-      },
-      {
-        "struct": "RASPPP_PROJECTION_INFO",
-        "field": "dwAuthenticationProtocol"
-      }
-    ]
-  },
-  {
     "name": "TRUSTED_DOMAIN_TRUST_TYPE",
     "members": [
       {
@@ -13291,42 +11447,6 @@
       {
         "struct": "IMAGEHLP_GET_TYPE_INFO_PARAMS",
         "field": "Flags"
-      }
-    ]
-  },
-  {
-    "name": "PPP_LCP_INFO_AUTH_DATA",
-    "members": [
-      {
-        "name": "PPP_LCP_CHAP_MD5"
-      },
-      {
-        "name": "PPP_LCP_CHAP_MS"
-      },
-      {
-        "name": "PPP_LCP_CHAP_MSV2"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "PPP_LCP_INFO",
-        "field": "dwAuthenticationData"
-      },
-      {
-        "struct": "PPP_PROJECTION_INFO",
-        "field": "dwAuthenticationData"
-      },
-      {
-        "struct": "PPP_PROJECTION_INFO2",
-        "field": "dwAuthenticationData"
-      },
-      {
-        "struct": "PPP_PROJECTION_INFO2",
-        "field": "dwRemoteAuthenticationData"
-      },
-      {
-        "struct": "PPP_PROJECTION_INFO",
-        "field": "dwRemoteAuthenticationData"
       }
     ]
   },
@@ -13442,41 +11562,6 @@
     ]
   },
   {
-    "name": "CRYPT_XML_X509DATA_TYPE",
-    "members": [
-      {
-        "name": "CRYPT_XML_X509DATA_TYPE_ISSUER_SERIAL",
-        "value": "1"
-      },
-      {
-        "name": "CRYPT_XML_X509DATA_TYPE_SKI",
-        "value": "2"
-      },
-      {
-        "name": "CRYPT_XML_X509DATA_TYPE_SUBJECT_NAME",
-        "value": "3"
-      },
-      {
-        "name": "CRYPT_XML_X509DATA_TYPE_CERTIFICATE",
-        "value": "4"
-      },
-      {
-        "name": "CRYPT_XML_X509DATA_TYPE_CRL",
-        "value": "5"
-      },
-      {
-        "name": "CRYPT_XML_X509DATA_TYPE_CUSTOM",
-        "value": "6"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "CRYPT_XML_X509DATA_ITEM",
-        "field": "dwType"
-      }
-    ]
-  },
-  {
     "name": "INTERNET_ACCESS_TYPE",
     "members": [
       {
@@ -13493,27 +11578,6 @@
       {
         "struct": "INTERNET_PROXY_INFO",
         "field": "dwAccessType"
-      }
-    ]
-  },
-  {
-    "name": "RASIKEV_PROJECTION_INFO_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "RASIKEv2_FLAGS_MOBIKESUPPORTED"
-      },
-      {
-        "name": "RASIKEv2_FLAGS_BEHIND_NAT"
-      },
-      {
-        "name": "RASIKEv2_FLAGS_SERVERBEHIND_NAT"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "RASIKEV2_PROJECTION_INFO",
-        "field": "dwFlags"
       }
     ]
   },
@@ -13587,130 +11651,6 @@
     ]
   },
   {
-    "name": "EVENT_TRACE_FLAG",
-    "flags": true,
-    "members": [
-      {
-        "name": "EVENT_TRACE_FLAG_ALPC",
-        "value": "1048576"
-      },
-      {
-        "name": "EVENT_TRACE_FLAG_CSWITCH",
-        "value": "16"
-      },
-      {
-        "name": "EVENT_TRACE_FLAG_DBGPRINT",
-        "value": "262144"
-      },
-      {
-        "name": "EVENT_TRACE_FLAG_DISK_FILE_IO",
-        "value": "512"
-      },
-      {
-        "name": "EVENT_TRACE_FLAG_DISK_IO",
-        "value": "256"
-      },
-      {
-        "name": "EVENT_TRACE_FLAG_DISK_IO_INIT",
-        "value": "1024"
-      },
-      {
-        "name": "EVENT_TRACE_FLAG_DISPATCHER",
-        "value": "2048"
-      },
-      {
-        "name": "EVENT_TRACE_FLAG_DPC",
-        "value": "32"
-      },
-      {
-        "name": "EVENT_TRACE_FLAG_DRIVER",
-        "value": "8388608"
-      },
-      {
-        "name": "EVENT_TRACE_FLAG_FILE_IO",
-        "value": "33554432"
-      },
-      {
-        "name": "EVENT_TRACE_FLAG_FILE_IO_INIT",
-        "value": "67108864"
-      },
-      {
-        "name": "EVENT_TRACE_FLAG_IMAGE_LOAD",
-        "value": "4"
-      },
-      {
-        "name": "EVENT_TRACE_FLAG_INTERRUPT",
-        "value": "64"
-      },
-      {
-        "name": "EVENT_TRACE_FLAG_JOB",
-        "value": "524288"
-      },
-      {
-        "name": "EVENT_TRACE_FLAG_MEMORY_HARD_FAULTS",
-        "value": "8192"
-      },
-      {
-        "name": "EVENT_TRACE_FLAG_MEMORY_PAGE_FAULTS",
-        "value": "4096"
-      },
-      {
-        "name": "EVENT_TRACE_FLAG_NETWORK_TCPIP",
-        "value": "65536"
-      },
-      {
-        "name": "EVENT_TRACE_FLAG_NO_SYSCONFIG",
-        "value": "268435456"
-      },
-      {
-        "name": "EVENT_TRACE_FLAG_PROCESS",
-        "value": "1"
-      },
-      {
-        "name": "EVENT_TRACE_FLAG_PROCESS_COUNTERS",
-        "value": "8"
-      },
-      {
-        "name": "EVENT_TRACE_FLAG_PROFILE",
-        "value": "16777216"
-      },
-      {
-        "name": "EVENT_TRACE_FLAG_REGISTRY",
-        "value": "131072"
-      },
-      {
-        "name": "EVENT_TRACE_FLAG_SPLIT_IO",
-        "value": "2097152"
-      },
-      {
-        "name": "EVENT_TRACE_FLAG_SYSTEMCALL",
-        "value": "128"
-      },
-      {
-        "name": "EVENT_TRACE_FLAG_THREAD",
-        "value": "2"
-      },
-      {
-        "name": "EVENT_TRACE_FLAG_VAMAP",
-        "value": "32768"
-      },
-      {
-        "name": "EVENT_TRACE_FLAG_VIRTUAL_ALLOC",
-        "value": "16384"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "EVENT_TRACE_PROPERTIES",
-        "field": "EnableFlags"
-      },
-      {
-        "struct": "EVENT_TRACE_PROPERTIES_V2",
-        "field": "EnableFlags"
-      }
-    ]
-  },
-  {
     "name": "MODEMDEVCAPS_SPEAKER_VOLUME",
     "flags": true,
     "members": [
@@ -13731,36 +11671,6 @@
       {
         "struct": "MODEMDEVCAPS",
         "field": "dwSpeakerVolume"
-      }
-    ]
-  },
-  {
-    "name": "MPR_VS",
-    "members": [
-      {
-        "name": "MPR_VS_Default"
-      },
-      {
-        "name": "MPR_VS_PptpOnly"
-      },
-      {
-        "name": "MPR_VS_PptpFirst"
-      },
-      {
-        "name": "MPR_VS_L2tpOnly"
-      },
-      {
-        "name": "MPR_VS_L2tpFirst"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "MPR_INTERFACE_2",
-        "field": "dwVpnStrategy"
-      },
-      {
-        "struct": "MPR_INTERFACE_3",
-        "field": "dwVpnStrategy"
       }
     ]
   },
@@ -13821,41 +11731,6 @@
     ]
   },
   {
-    "name": "CRYPT_XML_STATUS_INFO_STATUS",
-    "members": [
-      {
-        "name": "CRYPT_XML_STATUS_INTERNAL_REFERENCE",
-        "value": "1"
-      },
-      {
-        "name": "CRYPT_XML_STATUS_KEY_AVAILABLE",
-        "value": "2"
-      },
-      {
-        "name": "CRYPT_XML_STATUS_DIGESTING",
-        "value": "4"
-      },
-      {
-        "name": "CRYPT_XML_STATUS_DIGEST_VALID",
-        "value": "8"
-      },
-      {
-        "name": "CRYPT_XML_STATUS_SIGNATURE_VALID",
-        "value": "65536"
-      },
-      {
-        "name": "CRYPT_XML_STATUS_OPENED_TO_ENCODE",
-        "value": "2147483648"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "CRYPT_XML_STATUS",
-        "field": "dwInfoStatus"
-      }
-    ]
-  },
-  {
     "name": "DTTOPTS_iTextShadowTypeFlags",
     "members": [
       {
@@ -13872,30 +11747,6 @@
       {
         "struct": "DTTOPTS",
         "field": "iTextShadowType"
-      }
-    ]
-  },
-  {
-    "name": "BP_PAINTPARAMS_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "BPPF_ERASE",
-        "value": "1"
-      },
-      {
-        "name": "BPPF_NOCLIP",
-        "value": "2"
-      },
-      {
-        "name": "BPPF_NONCLIENT",
-        "value": "4"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "BP_PAINTPARAMS",
-        "field": "dwFlags"
       }
     ]
   },
@@ -13948,81 +11799,6 @@
       {
         "struct": "MODEMDEVCAPS",
         "field": "dwSpeakerMode"
-      }
-    ]
-  },
-  {
-    "name": "CRYPT_XML_GROUP_ID",
-    "members": [
-      {
-        "name": "CRYPT_XML_GROUP_ID_HASH"
-      },
-      {
-        "name": "CRYPT_XML_GROUP_ID_SIGN"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "CRYPT_XML_ALGORITHM_INFO",
-        "field": "dwGroupId"
-      }
-    ]
-  },
-  {
-    "name": "CRYPTUI_WIZ_EXPORT_SUBJECT",
-    "members": [
-      {
-        "name": "CRYPTUI_WIZ_EXPORT_CERT_CONTEXT"
-      },
-      {
-        "name": "CRYPTUI_WIZ_EXPORT_CTL_CONTEXT"
-      },
-      {
-        "name": "CRYPTUI_WIZ_EXPORT_CRL_CONTEXT"
-      },
-      {
-        "name": "CRYPTUI_WIZ_EXPORT_CERT_STORE"
-      },
-      {
-        "name": "CRYPTUI_WIZ_EXPORT_CERT_STORE_CERTIFICATES_ONLY"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "CRYPTUI_WIZ_EXPORT_INFO",
-        "field": "dwSubjectChoice"
-      }
-    ]
-  },
-  {
-    "name": "TRACKMOUSEEVENT_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "TME_CANCEL",
-        "value": "2147483648"
-      },
-      {
-        "name": "TME_HOVER",
-        "value": "1"
-      },
-      {
-        "name": "TME_LEAVE",
-        "value": "2"
-      },
-      {
-        "name": "TME_NONCLIENT",
-        "value": "16"
-      },
-      {
-        "name": "TME_QUERY",
-        "value": "1073741824"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "TRACKMOUSEEVENT",
-        "field": "dwFlags"
       }
     ]
   },
@@ -14190,71 +11966,6 @@
     ]
   },
   {
-    "name": "ACTRL_ACCESS_ENTRY_ACCESS_FLAGS",
-    "members": [
-      {
-        "name": "ACTRL_ACCESS_ALLOWED",
-        "value": "1"
-      },
-      {
-        "name": "ACTRL_ACCESS_DENIED",
-        "value": "2"
-      },
-      {
-        "name": "ACTRL_AUDIT_SUCCESS",
-        "value": "4"
-      },
-      {
-        "name": "ACTRL_AUDIT_FAILURE",
-        "value": "8"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "ACTRL_ACCESS_ENTRYA",
-        "field": "fAccessFlags"
-      },
-      {
-        "struct": "ACTRL_ACCESS_ENTRYW",
-        "field": "fAccessFlags"
-      }
-    ]
-  },
-  {
-    "name": "CONNECTDLGSTRUCT_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "CONNDLG_RO_PATH"
-      },
-      {
-        "name": "CONNDLG_CONN_POINT"
-      },
-      {
-        "name": "CONNDLG_USE_MRU"
-      },
-      {
-        "name": "CONNDLG_HIDE_BOX"
-      },
-      {
-        "name": "CONNDLG_PERSIST"
-      },
-      {
-        "name": "CONNDLG_NOT_PERSIST"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "CONNECTDLGSTRUCTW",
-        "field": "dwFlags"
-      },
-      {
-        "struct": "CONNECTDLGSTRUCTA",
-        "field": "dwFlags"
-      }
-    ]
-  },
-  {
     "name": "DRAWITEMSTRUCT_CTL_TYPE",
     "members": [
       {
@@ -14295,23 +12006,6 @@
       {
         "struct": "COMPAREITEMSTRUCT",
         "field": "CtlType"
-      }
-    ]
-  },
-  {
-    "name": "CRYPTUI_WIZ_DIGITAL_SIGN_SIG_TYPE",
-    "members": [
-      {
-        "name": "CRYPTUI_WIZ_DIGITAL_SIGN_COMMERCIAL"
-      },
-      {
-        "name": "CRYPTUI_WIZ_DIGITAL_SIGN_INDIVIDUAL"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "CRYPTUI_WIZ_DIGITAL_SIGN_EXTENDED_INFO",
-        "field": "dwAttrFlags"
       }
     ]
   },
@@ -14555,48 +12249,6 @@
     ]
   },
   {
-    "name": "DISCDLGSTRUCT_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "DISC_UPDATE_PROFILE"
-      },
-      {
-        "name": "DISC_NO_FORCE"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "DISCDLGSTRUCTA",
-        "field": "dwFlags"
-      },
-      {
-        "struct": "DISCDLGSTRUCTW",
-        "field": "dwFlags"
-      }
-    ]
-  },
-  {
-    "name": "BCRYPT_RSAKEY_BLOB_MAGIC",
-    "members": [
-      {
-        "name": "BCRYPT_RSAPUBLIC_MAGIC"
-      },
-      {
-        "name": "BCRYPT_RSAPRIVATE_MAGIC"
-      },
-      {
-        "name": "BCRYPT_RSAFULLPRIVATE_MAGIC"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "BCRYPT_RSAKEY_BLOB",
-        "field": "Magic"
-      }
-    ]
-  },
-  {
     "name": "DEV_BROADCAST_HDR_DEVICE_TYPE",
     "members": [
       {
@@ -14624,57 +12276,6 @@
       {
         "struct": "DEV_BROADCAST_HDR",
         "field": "dbch_devicetype"
-      }
-    ]
-  },
-  {
-    "name": "CRYPT_XML_KEYINFO_TYPE",
-    "members": [
-      {
-        "name": "CRYPT_XML_KEYINFO_TYPE_KEYNAME",
-        "value": "1"
-      },
-      {
-        "name": "CRYPT_XML_KEYINFO_TYPE_KEYVALUE",
-        "value": "2"
-      },
-      {
-        "name": "CRYPT_XML_KEYINFO_TYPE_RETRIEVAL",
-        "value": "3"
-      },
-      {
-        "name": "CRYPT_XML_KEYINFO_TYPE_X509DATA",
-        "value": "4"
-      },
-      {
-        "name": "CRYPT_XML_KEYINFO_TYPE_CUSTOM",
-        "value": "5"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "CRYPT_XML_KEY_INFO_ITEM",
-        "field": "dwType"
-      }
-    ]
-  },
-  {
-    "name": "AUTHZ_SECURITY_ATTRIBUTE_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "AUTHZ_SECURITY_ATTRIBUTE_NON_INHERITABLE",
-        "value": "1"
-      },
-      {
-        "name": "AUTHZ_SECURITY_ATTRIBUTE_VALUE_CASE_SENSITIVE",
-        "value": "2"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "AUTHZ_SECURITY_ATTRIBUTE_V1",
-        "field": "Flags"
       }
     ]
   },
@@ -14839,23 +12440,6 @@
     ]
   },
   {
-    "name": "CRYPTUI_WIZ_DIGITAL_SIGN_PVK_OPTION",
-    "members": [
-      {
-        "name": "CRYPTUI_WIZ_DIGITAL_SIGN_PVK_FILE"
-      },
-      {
-        "name": "CRYPTUI_WIZ_DIGITAL_SIGN_PVK_PROV"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "CRYPTUI_WIZ_DIGITAL_SIGN_CERT_PVK_INFO",
-        "field": "dwPvkChoice"
-      }
-    ]
-  },
-  {
     "name": "DEV_BROADCAST_VOLUME_FLAGS",
     "type": "ushort",
     "members": [
@@ -14918,35 +12502,6 @@
       {
         "struct": "CERT_VIEWPROPERTIES_STRUCT_W",
         "field": "dwFlags"
-      }
-    ]
-  },
-  {
-    "name": "CRYPTUI_WIZ_EXPORT_FORMAT",
-    "members": [
-      {
-        "name": "CRYPTUI_WIZ_EXPORT_FORMAT_DER"
-      },
-      {
-        "name": "CRYPTUI_WIZ_EXPORT_FORMAT_PFX"
-      },
-      {
-        "name": "CRYPTUI_WIZ_EXPORT_FORMAT_PKCS7"
-      },
-      {
-        "name": "CRYPTUI_WIZ_EXPORT_FORMAT_BASE64"
-      },
-      {
-        "name": "CRYPTUI_WIZ_EXPORT_FORMAT_CRL"
-      },
-      {
-        "name": "CRYPTUI_WIZ_EXPORT_FORMAT_CTL"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "CRYPTUI_WIZ_EXPORT_CERTCONTEXT_INFO",
-        "field": "dwExportFormat"
       }
     ]
   },
@@ -15020,25 +12575,6 @@
     ]
   },
   {
-    "name": "BCRYPT_DH_KEY_BLOB_MAGIC",
-    "members": [
-      {
-        "name": "BCRYPT_DH_PUBLIC_MAGIC",
-        "value": "1112557636"
-      },
-      {
-        "name": "BCRYPT_DH_PRIVATE_MAGIC",
-        "value": "1448101956"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "BCRYPT_DH_KEY_BLOB",
-        "field": "dwMagic"
-      }
-    ]
-  },
-  {
     "name": "CRYPTUI_WIZ_DIGITAL_ADDITIONAL_CERT_CHOICE",
     "members": [
       {
@@ -15091,72 +12627,6 @@
       {
         "struct": "CRYPT_XML_STATUS",
         "field": "dwErrorStatus"
-      }
-    ]
-  },
-  {
-    "name": "HEAPENTRY32_FLAGS",
-    "members": [
-      {
-        "name": "LF32_FIXED"
-      },
-      {
-        "name": "LF32_FREE"
-      },
-      {
-        "name": "LF32_MOVEABLE"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "HEAPENTRY32",
-        "field": "dwFlags"
-      }
-    ]
-  },
-  {
-    "name": "NCRYPT_ALGORITHM_NAME_CLASS",
-    "members": [
-      {
-        "name": "NCRYPT_ASYMMETRIC_ENCRYPTION_INTERFACE",
-        "value": "3"
-      },
-      {
-        "name": "NCRYPT_SECRET_AGREEMENT_INTERFACE",
-        "value": "4"
-      },
-      {
-        "name": "NCRYPT_SIGNATURE_INTERFACE",
-        "value": "5"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "NCryptAlgorithmName",
-        "field": "dwClass"
-      }
-    ]
-  },
-  {
-    "name": "MPEGLAYER3WAVEFORMAT_FLAGS",
-    "members": [
-      {
-        "name": "MPEGLAYER3_FLAG_PADDING_ISO",
-        "value": "0"
-      },
-      {
-        "name": "MPEGLAYER3_FLAG_PADDING_ON",
-        "value": "1"
-      },
-      {
-        "name": "MPEGLAYER3_FLAG_PADDING_OFF",
-        "value": "2"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "MPEGLAYER3WAVEFORMAT",
-        "field": "fdwFlags"
       }
     ]
   },
@@ -15940,30 +13410,6 @@
     ]
   },
   {
-    "name": "CONSOLE_CHARACTER_ATTRIBUTES",
-    "type": "ushort",
-    "flags": true,
-    "autoPopulate": {
-      "filter": "FOREGROUND_|BACKGROUND_|COMMON_LVB_",
-      "header": "consoleapi2.h"
-    },
-    "members": [],
-    "uses": [
-      {
-        "method": "SetConsoleTextAttribute",
-        "parameter": "wAttributes"
-      },
-      {
-        "struct": "CONSOLE_SCREEN_BUFFER_INFO",
-        "field": "wAttributes"
-      },
-      {
-        "struct": "CONSOLE_SCREEN_BUFFER_INFOEX",
-        "field": "wAttributes"
-      }
-    ]
-  },
-  {
     "name": "SYNCHRONIZATION_ACCESS_RIGHTS",
     "flags": true,
     "members": [
@@ -16100,78 +13546,6 @@
       {
         "method": "ImmSetConversionStatus",
         "parameter": "param1"
-      }
-    ]
-  },
-  {
-    "name": "DTTOPTS_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "DTT_TEXTCOLOR",
-        "value": "0x1"
-      },
-      {
-        "name": "DTT_BORDERCOLOR",
-        "value": "0x2"
-      },
-      {
-        "name": "DTT_SHADOWCOLOR",
-        "value": "0x4"
-      },
-      {
-        "name": "DTT_SHADOWTYPE",
-        "value": "0x8"
-      },
-      {
-        "name": "DTT_SHADOWOFFSET",
-        "value": "0x10"
-      },
-      {
-        "name": "DTT_BORDERSIZE",
-        "value": "0x20"
-      },
-      {
-        "name": "DTT_FONTPROP",
-        "value": "0x40"
-      },
-      {
-        "name": "DTT_COLORPROP",
-        "value": "0x80"
-      },
-      {
-        "name": "DTT_STATEID",
-        "value": "0x100"
-      },
-      {
-        "name": "DTT_CALCRECT",
-        "value": "0x200"
-      },
-      {
-        "name": "DTT_APPLYOVERLAY",
-        "value": "0x400"
-      },
-      {
-        "name": "DTT_GLOWSIZE",
-        "value": "0x800"
-      },
-      {
-        "name": "DTT_CALLBACK",
-        "value": "0x1000"
-      },
-      {
-        "name": "DTT_COMPOSITED",
-        "value": "0x2000"
-      },
-      {
-        "name": "DTT_VALIDBITS",
-        "value": "(DTT_TEXTCOLOR | DTT_BORDERCOLOR | DTT_SHADOWCOLOR | DTT_SHADOWTYPE | DTT_SHADOWOFFSET | DTT_BORDERSIZE | DTT_FONTPROP | DTT_COLORPROP | DTT_STATEID | DTT_CALCRECT | DTT_APPLYOVERLAY | DTT_GLOWSIZE | DTT_COMPOSITED)"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "DTTOPTS",
-        "field": "dwFlags"
       }
     ]
   },
@@ -16691,24 +14065,6 @@
         "interface": "IEmptyVolumeCache",
         "method": "Deactivate",
         "parameter": "pdwFlags"
-      }
-    ]
-  },
-  {
-    "name": "MW_FILTERMODE",
-    "autoPopulate": {
-      "filter": "MW_FILTERMODE_",
-      "header": "magnification.h"
-    },
-    "members": [],
-    "uses": [
-      {
-        "method": "MagSetWindowFilterList",
-        "parameter": "dwFilterMode"
-      },
-      {
-        "method": "MagGetWindowFilterList",
-        "parameter": "pdwFilterMode"
       }
     ]
   },
@@ -18646,20 +16002,6 @@
     ]
   },
   {
-    "name": "HIT_TEST_BACKGROUND_OPTIONS",
-    "autoPopulate": {
-      "filter": "HTTB_",
-      "header": "uxtheme.h"
-    },
-    "members": [],
-    "uses": [
-      {
-        "method": "HitTestThemeBackground",
-        "parameter": "dwOptions"
-      }
-    ]
-  },
-  {
     "name": "PAN_FAMILY_TYPE",
     "type": "byte",
     "autoPopulate": {
@@ -19450,15 +16792,6 @@
     ]
   },
   {
-    "namespace": "Windows.Win32.Data.HtmlHelp",
-    "name": "HTML_HELP_COMMAND",
-    "autoPopulate": {
-      "filter": "HH_",
-      "header": "HtmlHelp.h"
-    },
-    "uses": []
-  },
-  {
     "name": "COMPRESSION_FORMAT",
     "type": "ushort",
     "autoPopulate": {
@@ -19608,15 +16941,6 @@
     ]
   },
   {
-    "namespace": "Windows.Win32.Devices.Properties",
-    "name": "DEVPROPTYPE",
-    "autoPopulate": {
-      "filter": "DEVPROP_TYPE_|DEVPROP_TYPEMOD_",
-      "header": "devpropdef.h"
-    },
-    "uses": []
-  },
-  {
     "addUsesTo": "CF_HYDRATION_POLICY_PRIMARY",
     "members": [],
     "uses": [
@@ -19701,23 +17025,6 @@
       {
         "method": "CompareStringOrdinal",
         "parameter": "return"
-      }
-    ]
-  },
-  {
-    "name": "BCRYPTGENRANDOM_FLAGS",
-    "members": [
-      {
-        "name": "BCRYPT_RNG_USE_ENTROPY_IN_BUFFER"
-      },
-      {
-        "name": "BCRYPT_USE_SYSTEM_PREFERRED_RNG"
-      }
-    ],
-    "uses": [
-      {
-        "method": "BCryptGenRandom",
-        "parameter": "dwFlags"
       }
     ]
   },
@@ -20189,25 +17496,6 @@
       {
         "method": "SetProcessWorkingSetSizeEx",
         "parameter": "Flags"
-      }
-    ]
-  },
-  {
-    "name": "WLAN_NOTIFICATION_SOURCES",
-    "flags": true,
-    "autoPopulate": {
-      "filter": "WLAN_NOTIFICATION_SOURCE_",
-      "header": "wlanapi.h"
-    },
-    "members": [],
-    "uses": [
-      {
-        "method": "WlanRegisterNotification",
-        "parameter": "dwNotifSource"
-      },
-      {
-        "struct": "L2_NOTIFICATION_DATA",
-        "field": "NotificationSource"
       }
     ]
   },
@@ -20710,20 +17998,6 @@
       "header": "powrprof.h;winnt.h"
     },
     "uses": []
-  },
-  {
-    "name": "CRYPTCATATTRIBUTE_FLAGS",
-    "flags": true,
-    "autoPopulate": {
-      "filter": "CRYPTCAT_ATTR_",
-      "header": "mscat.h"
-    },
-    "uses": [
-      {
-        "struct": "CRYPTCATATTRIBUTE",
-        "field": "dwAttrTypeAndAction"
-      }
-    ]
   },
   {
     "name": "COPYFILE_FLAGS",

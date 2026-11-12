@@ -7,7 +7,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/TlHelp32.h b/generation/W
  /*****************************************************************************\
  *                                                                             *
  * tlhelp32.h -  WIN32 tool help functions, types, and definitions             *
-@@ -26,6 +27,8 @@
+@@ -26,13 +27,15 @@
  #endif  /* __cplusplus */
  
  #define MAX_MODULE_NAME32 255
@@ -15,6 +15,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/TlHelp32.h b/generation/W
 +_Win32_SupportedOS_WindowsXP_
  
  /****** Shapshot function **********************************************/
+ 
+ HANDLE
+ WINAPI
+ CreateToolhelp32Snapshot(
+-    DWORD dwFlags,
++    _Win32_AssociatedEnum_(CREATE_TOOLHELP_SNAPSHOT_FLAGS) DWORD dwFlags,
+     DWORD th32ProcessID
+     );
  
 @@ -77,6 +80,7 @@
  //
@@ -128,3 +136,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/TlHelp32.h b/generation/W
  
  BOOL
  WINAPI
+@@ -319,3 +336,10 @@
+ #pragma endregion
+ 
+ #endif // _INC_TOOLHELP32
++
++#ifndef _WIN32METADATA_TLHELP32_SECURITY_SYSTEM_91_GROUPS_
++#define _WIN32METADATA_TLHELP32_SECURITY_SYSTEM_91_GROUPS_
++_Win32_FlagsEnum_(CREATE_TOOLHELP_SNAPSHOT_FLAGS, unsigned int, TH32CS_INHERIT, TH32CS_SNAPALL, TH32CS_SNAPHEAPLIST, TH32CS_SNAPMODULE, TH32CS_SNAPMODULE32, TH32CS_SNAPPROCESS, TH32CS_SNAPTHREAD);
++_Win32_Enum_(HEAPENTRY32_FLAGS, unsigned int, LF32_FIXED, LF32_FREE, LF32_MOVEABLE);
++_Win32_AnnotateField_(HEAPENTRY32::dwFlags, _Win32_AssociatedEnum_(HEAPENTRY32_FLAGS));
++#endif

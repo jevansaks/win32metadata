@@ -2,7 +2,8 @@
   {
     "Namespace": "Windows.Win32.Foundation",
     "Name": "BOOL",
-    "ValueType": "native"
+    "ValueType": "int",
+    "NativeTypedef": true
   },
   {
     "Namespace": "Windows.Win32.Foundation",

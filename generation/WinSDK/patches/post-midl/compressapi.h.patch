@@ -7,7 +7,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/compressapi.h b/generatio
  /*++
  
  Copyright (c) Microsoft Corporation. All rights reserved.
-@@ -66,6 +67,7 @@
+@@ -66,13 +67,14 @@
      COMPRESS_INFORMATION_CLASS_BLOCK_SIZE,
      COMPRESS_INFORMATION_CLASS_LEVEL
  } COMPRESS_INFORMATION_CLASS;
@@ -15,6 +15,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/compressapi.h b/generatio
  
  // Compression routines
  
+ BOOL
+ WINAPI
+ CreateCompressor (
+-    _In_ DWORD Algorithm,
++    _Win32_AssociatedEnum_(COMPRESS_ALGORITHM) _In_ DWORD Algorithm,
+     _In_opt_ PCOMPRESS_ALLOCATION_ROUTINES AllocationRoutines,
+     _Out_ PCOMPRESSOR_HANDLE CompressorHandle
+     );
 @@ -85,6 +87,8 @@
      _In_reads_bytes_(CompressInformationSize) LPCVOID CompressInformation,
      _In_ SIZE_T CompressInformationSize
@@ -33,7 +41,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/compressapi.h b/generatio
  
  BOOL
  WINAPI
-@@ -105,18 +111,23 @@
+@@ -105,25 +111,30 @@
      _In_ SIZE_T CompressedBufferSize,
      _Out_ PSIZE_T CompressedDataSize
      );
@@ -57,6 +65,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/compressapi.h b/generatio
  
  // Decompression routines
  
+ BOOL
+ WINAPI
+ CreateDecompressor (
+-    _In_ DWORD Algorithm,
++    _Win32_AssociatedEnum_(COMPRESS_ALGORITHM) _In_ DWORD Algorithm,
+     _In_opt_ PCOMPRESS_ALLOCATION_ROUTINES AllocationRoutines,
+     _Out_ PDECOMPRESSOR_HANDLE DecompressorHandle
+     );
 @@ -136,6 +147,8 @@
      _In_reads_bytes_(CompressInformationSize) LPCVOID CompressInformation,
      _In_ SIZE_T CompressInformationSize
@@ -92,3 +108,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/compressapi.h b/generatio
  
  BOOL
  WINAPI
+@@ -177,3 +196,8 @@
+ #endif
+ 
+ #endif
++
++#ifndef _WIN32METADATA_COMPRESSAPI_SECURITY_SYSTEM_91_GROUPS_
++#define _WIN32METADATA_COMPRESSAPI_SECURITY_SYSTEM_91_GROUPS_
++_Win32_Enum_(COMPRESS_ALGORITHM, unsigned int, COMPRESS_ALGORITHM_MSZIP, COMPRESS_ALGORITHM_XPRESS, COMPRESS_ALGORITHM_XPRESS_HUFF, COMPRESS_ALGORITHM_LZMS);
++#endif

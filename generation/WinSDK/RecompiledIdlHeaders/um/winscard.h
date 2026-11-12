@@ -112,7 +112,7 @@ _Win32_SupportedOS_WindowsXP_
 
 extern WINSCARDAPI LONG WINAPI
 SCardEstablishContext(
-    _In_  DWORD dwScope,
+    _Win32_AssociatedEnum_(SCARD_SCOPE) _In_  DWORD dwScope,
     _Reserved_  LPCVOID pvReserved1,
     _Reserved_  LPCVOID pvReserved2,
     _Out_ LPSCARDCONTEXT phContext);
@@ -1494,3 +1494,12 @@ SCardAudit(
 #endif
 #endif // _WINSCARD_H_
 
+#ifndef _WIN32METADATA_WINSCARD_SECURITY_SYSTEM_91_GROUPS_
+#define _WIN32METADATA_WINSCARD_SECURITY_SYSTEM_91_GROUPS_
+_Win32_Enum_(SCARD_SCOPE, unsigned int, SCARD_SCOPE_USER, SCARD_SCOPE_SYSTEM);
+_Win32_Enum_(SCARD_STATE, unsigned int, SCARD_STATE_UNAWARE, SCARD_STATE_IGNORE, SCARD_STATE_UNAVAILABLE, SCARD_STATE_EMPTY, SCARD_STATE_PRESENT, SCARD_STATE_ATRMATCH, SCARD_STATE_EXCLUSIVE, SCARD_STATE_INUSE, SCARD_STATE_MUTE, SCARD_STATE_CHANGED, SCARD_STATE_UNKNOWN);
+_Win32_AnnotateField_(SCARD_READERSTATEA::dwCurrentState, _Win32_AssociatedEnum_(SCARD_STATE));
+_Win32_AnnotateField_(SCARD_READERSTATEW::dwCurrentState, _Win32_AssociatedEnum_(SCARD_STATE));
+_Win32_AnnotateField_(SCARD_READERSTATEA::dwEventState, _Win32_AssociatedEnum_(SCARD_STATE));
+_Win32_AnnotateField_(SCARD_READERSTATEW::dwEventState, _Win32_AssociatedEnum_(SCARD_STATE));
+#endif

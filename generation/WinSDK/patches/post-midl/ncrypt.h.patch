@@ -175,8 +175,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h b/generation/Win
  
  _Check_return_
  SECURITY_STATUS
-@@ -1660,4 +1683,3 @@
- #endif
+@@ -1661,3 +1684,8 @@
  
  #endif // __NCRYPT_H__
--
+ 
++#ifndef _WIN32METADATA_NCRYPT_SECURITY_SYSTEM_91_GROUPS_
++#define _WIN32METADATA_NCRYPT_SECURITY_SYSTEM_91_GROUPS_
++_Win32_Enum_(NCRYPT_ALGORITHM_NAME_CLASS, unsigned int, NCRYPT_ASYMMETRIC_ENCRYPTION_INTERFACE, NCRYPT_SECRET_AGREEMENT_INTERFACE, NCRYPT_SIGNATURE_INTERFACE);
++_Win32_AnnotateField_(NCryptAlgorithmName::dwClass, _Win32_AssociatedEnum_(NCRYPT_ALGORITHM_NAME_CLASS));
++#endif

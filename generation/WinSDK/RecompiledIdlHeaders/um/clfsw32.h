@@ -512,7 +512,7 @@ CLFSUSER_API BOOL WINAPI WriteLogRestartArea (
                     IN PVOID pvRestartBuffer,
                     IN ULONG cbRestartBuffer,
                     IN PCLFS_LSN plsnBase OPTIONAL,
-                    IN ULONG fFlags,
+                    _Win32_AssociatedEnum_(CLFS_FLAG) IN ULONG fFlags,
                     OUT PULONG pcbWritten OPTIONAL,
                     OUT PCLFS_LSN plsnNext OPTIONAL,
                     IN OUT LPOVERLAPPED pOverlapped OPTIONAL
@@ -618,7 +618,7 @@ CLFSUSER_API BOOL WINAPI ReserveAndAppendLog (
                     IN PCLFS_LSN plsnPrevious OPTIONAL,
                     IN ULONG cReserveRecords,
                     IN OUT LONGLONG rgcbReservation [] OPTIONAL,
-                    IN ULONG fFlags,
+                    _Win32_AssociatedEnum_(CLFS_FLAG) IN ULONG fFlags,
                     OUT PCLFS_LSN plsn OPTIONAL,
                     IN OUT LPOVERLAPPED pOverlapped OPTIONAL
                     );
@@ -643,7 +643,7 @@ CLFSUSER_API BOOL WINAPI ReserveAndAppendLogAligned (
                     IN PCLFS_LSN plsnPrevious OPTIONAL,
                     IN ULONG cReserveRecords,
                     IN OUT LONGLONG rgcbReservation [] OPTIONAL,
-                    IN ULONG fFlags,
+                    _Win32_AssociatedEnum_(CLFS_FLAG) IN ULONG fFlags,
                     OUT PCLFS_LSN plsn OPTIONAL,
                     IN OUT LPOVERLAPPED pOverlapped OPTIONAL
                     );

@@ -314,7 +314,7 @@ _Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhGetDllVersion(
-    _Out_opt_ LPDWORD lpdwVersion
+    _Win32_AssociatedEnum_(PDH_DLL_VERSION) _Out_opt_ LPDWORD lpdwVersion
 );
 _Win32_SupportedOS_WindowsXP_
 
@@ -420,7 +420,7 @@ _Win32_SupportedOS_WindowsXP_
 PDH_FUNCTION
 PdhGetFormattedCounterValue(
     _In_      PDH_HCOUNTER          hCounter,
-    _In_      DWORD                 dwFormat,
+    _Win32_AssociatedEnum_(PDH_FMT) _In_      DWORD                 dwFormat,
     _Out_opt_ LPDWORD               lpdwType,
     _Out_     PPDH_FMT_COUNTERVALUE pValue
 );
@@ -430,7 +430,7 @@ _Success_(return == ERROR_SUCCESS)
 PDH_FUNCTION
 PdhGetFormattedCounterArrayA(
     _In_    PDH_HCOUNTER hCounter,
-    _In_    DWORD        dwFormat,
+    _Win32_AssociatedEnum_(PDH_FMT) _In_    DWORD        dwFormat,
     _Inout_ LPDWORD      lpdwBufferSize,
     _Out_   LPDWORD      lpdwItemCount,
     _Out_writes_bytes_opt_(* lpdwBufferSize) PPDH_FMT_COUNTERVALUE_ITEM_A ItemBuffer
@@ -441,7 +441,7 @@ _Success_(return == ERROR_SUCCESS)
 PDH_FUNCTION
 PdhGetFormattedCounterArrayW(
     _In_    PDH_HCOUNTER hCounter,
-    _In_    DWORD        dwFormat,
+    _Win32_AssociatedEnum_(PDH_FMT) _In_    DWORD        dwFormat,
     _Inout_ LPDWORD      lpdwBufferSize,
     _Out_   LPDWORD      lpdwItemCount,
     _Out_writes_bytes_opt_(* lpdwBufferSize) PPDH_FMT_COUNTERVALUE_ITEM_W ItemBuffer
@@ -494,7 +494,7 @@ _Win32_SupportedOS_WindowsXP_
 PDH_FUNCTION
 PdhCalculateCounterFromRawValue(
     _In_  PDH_HCOUNTER          hCounter,
-    _In_  DWORD                 dwFormat,
+    _Win32_AssociatedEnum_(PDH_FMT) _In_  DWORD                 dwFormat,
     _In_  PPDH_RAW_COUNTER      rawValue1,
     _In_  PPDH_RAW_COUNTER      rawValue2,
     _Out_ PPDH_FMT_COUNTERVALUE fmtValue
@@ -504,7 +504,7 @@ _Win32_SupportedOS_WindowsXP_
 PDH_FUNCTION
 PdhComputeCounterStatistics(
     _In_  PDH_HCOUNTER     hCounter,
-    _In_  DWORD            dwFormat,
+    _Win32_AssociatedEnum_(PDH_FMT) _In_  DWORD            dwFormat,
     _In_  DWORD            dwFirstEntry,
     _In_  DWORD            dwNumEntries,
     _In_  PPDH_RAW_COUNTER lpRawValueArray,
@@ -1029,8 +1029,8 @@ PdhExpandWildCardPathW(
 PDH_FUNCTION
 PdhOpenLogW(
     _In_     LPCWSTR     szLogFileName,
-    _In_     DWORD       dwAccessFlags,
-    _Inout_  LPDWORD     lpdwLogType,
+    _Win32_AssociatedEnum_(PDH_LOG) _In_     DWORD       dwAccessFlags,
+    _Win32_AssociatedEnum_(PDH_LOG_TYPE) _Inout_  LPDWORD     lpdwLogType,
     _In_opt_ PDH_HQUERY  hQuery,
     _In_     DWORD       dwMaxSize,
     _In_opt_ LPCWSTR     szUserCaption,
@@ -1040,8 +1040,8 @@ PdhOpenLogW(
 PDH_FUNCTION
 PdhOpenLogA(
     _In_     LPCSTR       szLogFileName,
-    _In_     DWORD        dwAccessFlags,
-    _Inout_  LPDWORD      lpdwLogType,
+    _Win32_AssociatedEnum_(PDH_LOG) _In_     DWORD        dwAccessFlags,
+    _Win32_AssociatedEnum_(PDH_LOG_TYPE) _Inout_  LPDWORD      lpdwLogType,
     _In_opt_ PDH_HQUERY   hQuery,
     _In_     DWORD        dwMaxSize,
     _In_opt_ LPCSTR       szUserCaption,
@@ -1150,7 +1150,7 @@ _Win32_SupportedOS_WindowsXP_
 PDH_FUNCTION
 PdhFormatFromRawValue(
     _In_  DWORD                   dwCounterType,
-    _In_  DWORD                   dwFormat,
+    _Win32_AssociatedEnum_(PDH_FMT) _In_  DWORD                   dwFormat,
     _In_opt_ LONGLONG*            pTimeBase,
     _In_  PPDH_RAW_COUNTER        pRawValue1,
     _In_  PPDH_RAW_COUNTER        pRawValue2,
@@ -1182,7 +1182,7 @@ _Win32_SupportedOS_WindowsXP_
 
 PDH_FUNCTION
 PdhSetDefaultRealTimeDataSource(
-    _In_ DWORD dwDataSourceId
+    _Win32_AssociatedEnum_(REAL_TIME_DATA_SOURCE_ID_FLAGS) _In_ DWORD dwDataSourceId
 );
 
 #if (_WIN32_WINDOWS >= 0x0501 || _WIN32_WINNT >= 0x0501 || (defined(NTDDI_VERSION) && NTDDI_VERSION >= NTDDI_WINXP))
@@ -1571,3 +1571,13 @@ PdhSetLogSetRunID(
 #pragma endregion
 
 #endif //_PDH_H_
+
+#ifndef _WIN32METADATA_PDH_SECURITY_SYSTEM_91_GROUPS_
+#define _WIN32METADATA_PDH_SECURITY_SYSTEM_91_GROUPS_
+_Win32_Enum_(REAL_TIME_DATA_SOURCE_ID_FLAGS, unsigned int, DATA_SOURCE_REGISTRY, DATA_SOURCE_WBEM);
+_Win32_Enum_(PDH_FMT, unsigned int, PDH_FMT_DOUBLE, PDH_FMT_LARGE, PDH_FMT_LONG);
+_Win32_Enum_(PDH_LOG_TYPE, unsigned int, PDH_LOG_TYPE_UNDEFINED, PDH_LOG_TYPE_CSV, PDH_LOG_TYPE_SQL, PDH_LOG_TYPE_TSV, PDH_LOG_TYPE_BINARY, PDH_LOG_TYPE_PERFMON);
+_Win32_AnnotateField_(PDH_RAW_LOG_RECORD::dwRecordType, _Win32_AssociatedEnum_(PDH_LOG_TYPE));
+_Win32_Enum_(PDH_LOG, unsigned int, PDH_LOG_READ_ACCESS, PDH_LOG_WRITE_ACCESS, PDH_LOG_UPDATE_ACCESS);
+_Win32_Enum_(PDH_DLL_VERSION, unsigned int, PDH_CVERSION_WIN50, PDH_VERSION);
+#endif

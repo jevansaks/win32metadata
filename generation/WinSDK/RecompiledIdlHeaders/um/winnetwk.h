@@ -538,8 +538,8 @@ _Win32_SupportedOS_Windows2000_
 _Check_return_
 DWORD APIENTRY
 WNetOpenEnumA(
-    _In_  DWORD          dwScope,
-    _In_  DWORD          dwType,
+    _Win32_AssociatedEnum_(NET_RESOURCE_SCOPE) _In_  DWORD          dwScope,
+    _Win32_AssociatedEnum_(NET_RESOURCE_TYPE) _In_  DWORD          dwType,
     _In_  DWORD          dwUsage,
     _In_opt_ LPNETRESOURCEA lpNetResource,
     _Out_ LPHANDLE       lphEnum
@@ -547,8 +547,8 @@ WNetOpenEnumA(
 _Check_return_
 DWORD APIENTRY
 WNetOpenEnumW(
-    _In_  DWORD          dwScope,
-    _In_  DWORD          dwType,
+    _Win32_AssociatedEnum_(NET_RESOURCE_SCOPE) _In_  DWORD          dwScope,
+    _Win32_AssociatedEnum_(NET_RESOURCE_TYPE) _In_  DWORD          dwType,
     _In_  DWORD          dwUsage,
     _In_opt_ LPNETRESOURCEW lpNetResource,
     _Out_ LPHANDLE       lphEnum
@@ -935,3 +935,20 @@ MultinetGetConnectionPerformanceW(
 
 #endif  // _WINNETWK_
 
+#ifndef _WIN32METADATA_WINNETWK_SECURITY_SYSTEM_91_GROUPS_
+#define _WIN32METADATA_WINNETWK_SECURITY_SYSTEM_91_GROUPS_
+_Win32_FlagsEnum_(NET_RESOURCE_TYPE, unsigned int, RESOURCETYPE_ANY, RESOURCETYPE_DISK, RESOURCETYPE_PRINT);
+_Win32_AnnotateField_(NETRESOURCEA::dwType, _Win32_AssociatedEnum_(NET_RESOURCE_TYPE));
+_Win32_AnnotateField_(NETRESOURCEW::dwType, _Win32_AssociatedEnum_(NET_RESOURCE_TYPE));
+_Win32_Enum_(NET_RESOURCE_SCOPE, unsigned int, RESOURCE_CONNECTED, RESOURCE_CONTEXT, RESOURCE_GLOBALNET, RESOURCE_REMEMBERED);
+_Win32_AnnotateField_(NETRESOURCEA::dwScope, _Win32_AssociatedEnum_(NET_RESOURCE_SCOPE));
+_Win32_AnnotateField_(NETRESOURCEW::dwScope, _Win32_AssociatedEnum_(NET_RESOURCE_SCOPE));
+_Win32_FlagsEnum_(NETINFOSTRUCT_CHARACTERISTICS, unsigned int, NETINFO_DLL16, NETINFO_DISKRED, NETINFO_PRINTERRED);
+_Win32_AnnotateField_(NETINFOSTRUCT::dwCharacteristics, _Win32_AssociatedEnum_(NETINFOSTRUCT_CHARACTERISTICS));
+_Win32_FlagsEnum_(CONNECTDLGSTRUCT_FLAGS, unsigned int, CONNDLG_RO_PATH, CONNDLG_CONN_POINT, CONNDLG_USE_MRU, CONNDLG_HIDE_BOX, CONNDLG_PERSIST, CONNDLG_NOT_PERSIST);
+_Win32_AnnotateField_(CONNECTDLGSTRUCTW::dwFlags, _Win32_AssociatedEnum_(CONNECTDLGSTRUCT_FLAGS));
+_Win32_AnnotateField_(CONNECTDLGSTRUCTA::dwFlags, _Win32_AssociatedEnum_(CONNECTDLGSTRUCT_FLAGS));
+_Win32_FlagsEnum_(DISCDLGSTRUCT_FLAGS, unsigned int, DISC_UPDATE_PROFILE, DISC_NO_FORCE);
+_Win32_AnnotateField_(DISCDLGSTRUCTA::dwFlags, _Win32_AssociatedEnum_(DISCDLGSTRUCT_FLAGS));
+_Win32_AnnotateField_(DISCDLGSTRUCTW::dwFlags, _Win32_AssociatedEnum_(DISCDLGSTRUCT_FLAGS));
+#endif

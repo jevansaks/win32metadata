@@ -1321,7 +1321,7 @@ HRESULT
 WINAPI
 CryptXmlOpenToEncode(
     _In_opt_        const CRYPT_XML_TRANSFORM_CHAIN_CONFIG    *pConfig,
-                    DWORD               dwFlags,
+                    _Win32_AssociatedEnum_(CRYPT_XML_FLAGS) DWORD               dwFlags,
     _In_opt_        LPCWSTR             wszId,
     _In_reads_opt_(cProperty) 
                     const CRYPT_XML_PROPERTY* rgProperty, 
@@ -1364,7 +1364,7 @@ HRESULT
 WINAPI
 CryptXmlOpenToDecode(
     _In_opt_        const CRYPT_XML_TRANSFORM_CHAIN_CONFIG    *pConfig,
-                    DWORD               dwFlags,
+                    _Win32_AssociatedEnum_(CRYPT_XML_FLAGS) DWORD               dwFlags,
     _In_reads_opt_(cProperty) 
                     const CRYPT_XML_PROPERTY* rgProperty, 
     _In_            ULONG               cProperty, 
@@ -1668,7 +1668,7 @@ CryptXmlSign(
     _In_            HCRYPTXML           hSignature,
     _In_opt_        HCRYPTPROV_OR_NCRYPT_KEY_HANDLE hKey,
                     DWORD               dwKeySpec,
-                    DWORD               dwFlags,
+                    _Win32_AssociatedEnum_(CRYPT_XML_FLAGS) DWORD               dwFlags,
                     CRYPT_XML_KEYINFO_SPEC dwKeyInfoSpec,
     _In_opt_        const void          *pvKeyInfoSpec,
     _In_            const CRYPT_XML_ALGORITHM *pSignatureMethod,
@@ -1700,7 +1700,7 @@ _Success_( return == 0 )
 HRESULT 
 WINAPI 
 CryptXmlImportPublicKey(
-                    DWORD               dwFlags,
+                    _Win32_AssociatedEnum_(CRYPT_XML_FLAGS) DWORD               dwFlags,
     _In_            const CRYPT_XML_KEY_VALUE *pKeyValue,
     _Out_           BCRYPT_KEY_HANDLE   *phKey
     );
@@ -1730,7 +1730,7 @@ WINAPI
 CryptXmlVerifySignature(
     _In_            HCRYPTXML           hSignature,
     _In_opt_        BCRYPT_KEY_HANDLE   hKey,
-                    DWORD               dwFlags
+                    _Win32_AssociatedEnum_(CRYPT_XML_FLAGS) DWORD               dwFlags
     );
 _Win32_SupportedOS_Windows7_
 
@@ -1912,7 +1912,7 @@ HRESULT
 WINAPI 
 CryptXmlGetAlgorithmInfo(
     _In_            const CRYPT_XML_ALGORITHM       *pXmlAlgorithm,
-                    DWORD                           dwFlags,
+                    _Win32_AssociatedEnum_(CRYPT_XML_FLAGS) DWORD                           dwFlags,
     _Outptr_     CRYPT_XML_ALGORITHM_INFO        **ppAlgInfo
     );
 
@@ -2411,3 +2411,17 @@ HRESULT
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PKG_APPXDEPLOYMENT) */
 #pragma endregion
 
+#ifndef _WIN32METADATA_CRYPTXML_SECURITY_SYSTEM_91_GROUPS_
+#define _WIN32METADATA_CRYPTXML_SECURITY_SYSTEM_91_GROUPS_
+_Win32_Enum_(CRYPT_XML_FLAGS, unsigned int, CRYPT_XML_FLAG_DISABLE_EXTENSIONS, CRYPT_XML_FLAG_NO_SERIALIZE, CRYPT_XML_SIGN_ADD_KEYVALUE);
+_Win32_Enum_(CRYPT_XML_KEY_VALUE_TYPE, unsigned int, CRYPT_XML_KEY_VALUE_TYPE_DSA, CRYPT_XML_KEY_VALUE_TYPE_RSA, CRYPT_XML_KEY_VALUE_TYPE_ECDSA, CRYPT_XML_KEY_VALUE_TYPE_CUSTOM);
+_Win32_AnnotateField_(CRYPT_XML_KEY_VALUE::dwType, _Win32_AssociatedEnum_(CRYPT_XML_KEY_VALUE_TYPE));
+_Win32_Enum_(CRYPT_XML_X509DATA_TYPE, unsigned int, CRYPT_XML_X509DATA_TYPE_ISSUER_SERIAL, CRYPT_XML_X509DATA_TYPE_SKI, CRYPT_XML_X509DATA_TYPE_SUBJECT_NAME, CRYPT_XML_X509DATA_TYPE_CERTIFICATE, CRYPT_XML_X509DATA_TYPE_CRL, CRYPT_XML_X509DATA_TYPE_CUSTOM);
+_Win32_AnnotateField_(CRYPT_XML_X509DATA_ITEM::dwType, _Win32_AssociatedEnum_(CRYPT_XML_X509DATA_TYPE));
+_Win32_Enum_(CRYPT_XML_STATUS_INFO_STATUS, unsigned int, CRYPT_XML_STATUS_INTERNAL_REFERENCE, CRYPT_XML_STATUS_KEY_AVAILABLE, CRYPT_XML_STATUS_DIGESTING, CRYPT_XML_STATUS_DIGEST_VALID, CRYPT_XML_STATUS_SIGNATURE_VALID, CRYPT_XML_STATUS_OPENED_TO_ENCODE);
+_Win32_AnnotateField_(CRYPT_XML_STATUS::dwInfoStatus, _Win32_AssociatedEnum_(CRYPT_XML_STATUS_INFO_STATUS));
+_Win32_Enum_(CRYPT_XML_GROUP_ID, unsigned int, CRYPT_XML_GROUP_ID_HASH, CRYPT_XML_GROUP_ID_SIGN);
+_Win32_AnnotateField_(CRYPT_XML_ALGORITHM_INFO::dwGroupId, _Win32_AssociatedEnum_(CRYPT_XML_GROUP_ID));
+_Win32_Enum_(CRYPT_XML_KEYINFO_TYPE, unsigned int, CRYPT_XML_KEYINFO_TYPE_KEYNAME, CRYPT_XML_KEYINFO_TYPE_KEYVALUE, CRYPT_XML_KEYINFO_TYPE_RETRIEVAL, CRYPT_XML_KEYINFO_TYPE_X509DATA, CRYPT_XML_KEYINFO_TYPE_CUSTOM);
+_Win32_AnnotateField_(CRYPT_XML_KEY_INFO_ITEM::dwType, _Win32_AssociatedEnum_(CRYPT_XML_KEYINFO_TYPE));
+#endif

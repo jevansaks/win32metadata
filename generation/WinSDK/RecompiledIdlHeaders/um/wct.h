@@ -137,7 +137,7 @@ BOOL WINAPI
 GetThreadWaitChain (
     _In_ HWCT WctHandle,
     _In_opt_ DWORD_PTR Context,
-    _In_ DWORD Flags,
+    _Win32_AssociatedEnum_(WAIT_CHAIN_THREAD_OPTIONS) _In_ DWORD Flags,
     _In_ DWORD ThreadId,
     _Inout_ LPDWORD NodeCount,
     _Out_writes_(*NodeCount) PWAITCHAIN_NODE_INFO NodeInfoArray,
@@ -162,3 +162,7 @@ RegisterWaitChainCOMCallback (
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
 #pragma endregion
 
+#ifndef _WIN32METADATA_WCT_SECURITY_SYSTEM_91_GROUPS_
+#define _WIN32METADATA_WCT_SECURITY_SYSTEM_91_GROUPS_
+_Win32_Enum_(WAIT_CHAIN_THREAD_OPTIONS, unsigned int, WCT_OUT_OF_PROC_COM_FLAG, WCT_OUT_OF_PROC_CS_FLAG, WCT_OUT_OF_PROC_FLAG);
+#endif

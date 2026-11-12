@@ -182,9 +182,9 @@ _Win32_SupportedOS_Windows2000_
 
 LONG WINAPI TTEmbedFont
 (
-    _In_ HDC       hDC,                    // device-context handle
-    _In_ ULONG     ulFlags,                // flags specifying the request
-    _In_ ULONG     ulCharSet,              // flags specifying char set
+    _In_ HDC       hDC,                    _Win32_AssociatedEnum_(TTEMBED_FLAGS) // device-context handle
+    _In_ ULONG     ulFlags,                _Win32_AssociatedEnum_(EMBED_FONT_CHARSET) // flags specifying the request
+    _In_ ULONG     ulCharSet,              _Win32_AssociatedEnum_(EMBEDDED_FONT_PRIV_STATUS) // flags specifying char set
     _Out_ ULONG*    pulPrivStatus,          // upon completion contains embedding priv of font
     _Out_ ULONG*    pulStatus,              // on completion may contain status flags for request
     __callback WRITEEMBEDPROC lpfnWriteToStream, // callback function for doc/disk writes
@@ -203,9 +203,9 @@ LONG WINAPI TTEmbedFontFromFileA
 (
     _In_    HDC       hDC,                    // device-context handle
     _In_    LPCSTR    szFontFileName,         // TrueType font file name
-    _In_    USHORT    usTTCIndex,             // If file image is a TTC, this must be zero based index
-    _In_    ULONG     ulFlags,                // flags specifying the request
-    _In_    ULONG     ulCharSet,              // flags specifying char set
+    _In_    USHORT    usTTCIndex,             _Win32_AssociatedEnum_(TTEMBED_FLAGS) // If file image is a TTC, this must be zero based index
+    _In_    ULONG     ulFlags,                _Win32_AssociatedEnum_(EMBED_FONT_CHARSET) // flags specifying the request
+    _In_    ULONG     ulCharSet,              _Win32_AssociatedEnum_(EMBEDDED_FONT_PRIV_STATUS) // flags specifying char set
     _Out_   ULONG*    pulPrivStatus,          // upon completion contains embedding priv of font
     _Out_   ULONG*    pulStatus,              // on completion may contain status flags for request
     __callback WRITEEMBEDPROC lpfnWriteToStream, // callback function for doc/disk writes
@@ -224,9 +224,9 @@ LONG WINAPI TTLoadEmbeddedFont
 (
     _Out_ HANDLE*   phFontReference,            // on completion, contains handle to identify embedded font installed
                                         // on system
-    _In_ ULONG    ulFlags,                  // flags specifying the request 
-    _Out_ ULONG*    pulPrivStatus,          // on completion, contains the embedding status
-    _In_ ULONG     ulPrivs,                 // allows for the reduction of licensing privileges
+    _In_ ULONG    ulFlags,                  _Win32_AssociatedEnum_(EMBEDDED_FONT_PRIV_STATUS) // flags specifying the request 
+    _Out_ ULONG*    pulPrivStatus,          _Win32_AssociatedEnum_(FONT_LICENSE_PRIVS) // on completion, contains the embedding status
+    _In_ ULONG     ulPrivs,                 _Win32_AssociatedEnum_(TTLOAD_EMBEDDED_FONT_STATUS) // allows for the reduction of licensing privileges
     _Out_ ULONG*    pulStatus,              // on completion, may contain status flags for request 
     _In_ READEMBEDPROC lpfnReadFromStream,  // callback function for doc/disk reads
     _In_ LPVOID    lpvReadStream,           // the input stream token
@@ -238,8 +238,8 @@ _Win32_SupportedOS_Windows2000_
 
 LONG WINAPI TTGetEmbeddedFontInfo
 (   
-    _In_ ULONG     ulFlags,                  // flags specifying the request
-    _Out_ ULONG*    pulPrivStatus,            // on completion, contains the embedding status
+    _Win32_AssociatedEnum_(TTEMBED_FLAGS) _In_ ULONG     ulFlags,                  // flags specifying the request
+    _Out_ ULONG*    pulPrivStatus,            _Win32_AssociatedEnum_(FONT_LICENSE_PRIVS) // on completion, contains the embedding status
     _In_ ULONG     ulPrivs,                  // allows for the reduction of licensing privileges
     _Out_ ULONG*    pulStatus,                // on completion, may contain status flags for request
     __callback READEMBEDPROC lpfnReadFromStream,   // callback function for doc/disk reads
@@ -258,7 +258,7 @@ _Win32_SupportedOS_Windows2000_
 
 LONG WINAPI TTGetEmbeddingType
 (
-    _In_ HDC         hDC,                   // device context handle
+    _In_ HDC         hDC,                   _Win32_AssociatedEnum_(EMBEDDED_FONT_PRIV_STATUS) // device context handle
     _Out_ ULONG*      pulEmbedType           // upon completion, contains the
                                        // embedding status
 );
@@ -309,9 +309,9 @@ _Win32_SupportedOS_Windows2000_
 
 LONG WINAPI TTEmbedFontEx
 (
-    _In_ HDC       hDC,                    // device-context handle
-    _In_ ULONG     ulFlags,                // flags specifying the request
-    _In_ ULONG     ulCharSet,              // flags specifying char set
+    _In_ HDC       hDC,                    _Win32_AssociatedEnum_(TTEMBED_FLAGS) // device-context handle
+    _In_ ULONG     ulFlags,                _Win32_AssociatedEnum_(EMBED_FONT_CHARSET) // flags specifying the request
+    _In_ ULONG     ulCharSet,              _Win32_AssociatedEnum_(EMBEDDED_FONT_PRIV_STATUS) // flags specifying char set
     _Out_ ULONG*    pulPrivStatus,          // upon completion contains embedding priv of font
     _Out_ ULONG*    pulStatus,              // on completion may contain status flags for request
     __callback WRITEEMBEDPROC lpfnWriteToStream, // callback function for doc/disk writes
@@ -352,3 +352,12 @@ LONG WINAPI TTGetNewFontName
 #pragma endregion
 
 #endif //__t2embapi__
+
+#ifndef _WIN32METADATA_T2EMBAPI_SECURITY_SYSTEM_91_GROUPS_
+#define _WIN32METADATA_T2EMBAPI_SECURITY_SYSTEM_91_GROUPS_
+_Win32_FlagsEnum_(TTEMBED_FLAGS, unsigned int, TTEMBED_EMBEDEUDC, TTEMBED_RAW, TTEMBED_SUBSET, TTEMBED_TTCOMPRESSED);
+_Win32_Enum_(EMBED_FONT_CHARSET, unsigned int, CHARSET_UNICODE, CHARSET_SYMBOL);
+_Win32_Enum_(EMBEDDED_FONT_PRIV_STATUS, unsigned int, EMBED_PREVIEWPRINT, EMBED_EDITABLE, EMBED_INSTALLABLE, EMBED_NOEMBEDDING);
+_Win32_FlagsEnum_(TTLOAD_EMBEDDED_FONT_STATUS, unsigned int, TTLOAD_FONT_SUBSETTED, TTLOAD_FONT_IN_SYSSTARTUP);
+_Win32_Enum_(FONT_LICENSE_PRIVS, unsigned int, LICENSE_PREVIEWPRINT, LICENSE_EDITABLE, LICENSE_INSTALLABLE, LICENSE_NOEMBEDDING, LICENSE_DEFAULT);
+#endif

@@ -1382,7 +1382,7 @@ _Win32_SupportedOS_WindowsVista_
 DWORD WINAPI
 WlanRegisterNotification(
     _In_ HANDLE hClientHandle,
-    _In_ DWORD dwNotifSource,
+    _Win32_AssociatedEnum_(WLAN_NOTIFICATION_SOURCES) _In_ DWORD dwNotifSource,
     _In_ BOOL bIgnoreDuplicate,
     _In_opt_ WLAN_NOTIFICATION_CALLBACK funcCallback,
     _In_opt_ PVOID pCallbackContext,
@@ -1410,7 +1410,7 @@ WlanSetProfileEapUserData(
     _In_ const GUID *pInterfaceGuid,
     _In_ LPCWSTR strProfileName,
     _In_ EAP_METHOD_TYPE eapType,
-    _In_ DWORD dwFlags,
+    _Win32_AssociatedEnum_(WLAN_SET_EAPHOST_FLAGS) _In_ DWORD dwFlags,
     _In_ DWORD dwEapUserDataSize,
     _In_reads_bytes_opt_(dwEapUserDataSize) const LPBYTE pbEapUserData,
     _Reserved_ PVOID pReserved
@@ -1422,7 +1422,7 @@ WlanSetProfileEapXmlUserData(
     _In_ HANDLE hClientHandle,
     _In_ const GUID *pInterfaceGuid,
     _In_ LPCWSTR strProfileName,
-    _In_ DWORD dwFlags,
+    _Win32_AssociatedEnum_(WLAN_SET_EAPHOST_FLAGS) _In_ DWORD dwFlags,
     _In_ LPCWSTR strEapXmlUserData,
     _Reserved_ PVOID pReserved
 );
@@ -2704,3 +2704,12 @@ DEFINE_DEVPROPKEY(
 #pragma endregion
 
 #endif  // _WLAN_WLANAPI_H
+
+#ifndef _WIN32METADATA_WLANAPI_SECURITY_SYSTEM_91_GROUPS_
+#define _WIN32METADATA_WLANAPI_SECURITY_SYSTEM_91_GROUPS_
+_Win32_Enum_(WLAN_SET_EAPHOST_FLAGS, unsigned int, WLAN_SET_EAPHOST_DATA_ALL_USERS);
+_Win32_Enum_(WLAN_CONNECTION_NOTIFICATION_FLAGS, unsigned int, WLAN_CONNECTION_NOTIFICATION_ADHOC_NETWORK_FORMED, WLAN_CONNECTION_NOTIFICATION_CONSOLE_USER_PROFILE);
+_Win32_AnnotateField_(WLAN_CONNECTION_NOTIFICATION_DATA::dwFlags, _Win32_AssociatedEnum_(WLAN_CONNECTION_NOTIFICATION_FLAGS));
+_Win32_FlagsEnum_(WLAN_NOTIFICATION_SOURCES, unsigned int, WLAN_NOTIFICATION_SOURCE_NONE, WLAN_NOTIFICATION_SOURCE_ALL, WLAN_NOTIFICATION_SOURCE_ACM, WLAN_NOTIFICATION_SOURCE_MSM, WLAN_NOTIFICATION_SOURCE_SECURITY, WLAN_NOTIFICATION_SOURCE_IHV, WLAN_NOTIFICATION_SOURCE_HNWK, WLAN_NOTIFICATION_SOURCE_ONEX, WLAN_NOTIFICATION_SOURCE_DEVICE_SERVICE);
+_Win32_AnnotateField_(L2_NOTIFICATION_DATA::NotificationSource, _Win32_AssociatedEnum_(WLAN_NOTIFICATION_SOURCES));
+#endif

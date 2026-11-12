@@ -1287,7 +1287,7 @@ BCryptOpenAlgorithmProvider(
     _Out_       BCRYPT_ALG_HANDLE   *phAlgorithm,
     _In_z_      LPCWSTR pszAlgId,
     _In_opt_z_  LPCWSTR pszImplementation,
-    _In_        ULONG   dwFlags);
+    _Win32_AssociatedEnum_(BCRYPT_OPEN_ALGORITHM_PROVIDER_FLAGS) _In_        ULONG   dwFlags);
 
 
 
@@ -1722,7 +1722,7 @@ BCryptGenRandom(
     _In_opt_                        BCRYPT_ALG_HANDLE   hAlgorithm,
     _Out_writes_bytes_(cbBuffer)    PUCHAR  pbBuffer,
     _In_                            ULONG   cbBuffer,
-    _In_                            ULONG   dwFlags);
+    _Win32_AssociatedEnum_(BCRYPTGENRANDOM_FLAGS) _In_                            ULONG   dwFlags);
 
 
 #if (NTDDI_VERSION >= NTDDI_WIN7)
@@ -2026,7 +2026,7 @@ NTSTATUS
 WINAPI
 BCryptQueryProviderRegistration(
     _In_z_ LPCWSTR pszProvider,
-    _In_ ULONG dwMode,
+    _Win32_AssociatedEnum_(BCRYPT_QUERY_PROVIDER_MODE) _In_ ULONG dwMode,
     _In_ ULONG dwInterface,
     _Inout_ ULONG* pcbBuffer,
     _Outptr_opt_result_bytebuffer_all_maybenull_(*pcbBuffer) PCRYPT_PROVIDER_REG *ppBuffer);
@@ -2047,7 +2047,7 @@ _Must_inspect_result_
 NTSTATUS
 WINAPI
 BCryptCreateContext(
-    _In_ ULONG dwTable,
+    _Win32_AssociatedEnum_(BCRYPT_TABLE) _In_ ULONG dwTable,
     _In_z_ LPCWSTR pszContext,
     _In_opt_ PCRYPT_CONTEXT_CONFIG pConfig); // Optional
 _Win32_SupportedOS_WindowsVista_
@@ -2056,7 +2056,7 @@ _Must_inspect_result_
 NTSTATUS
 WINAPI
 BCryptDeleteContext(
-    _In_ ULONG dwTable,
+    _Win32_AssociatedEnum_(BCRYPT_TABLE) _In_ ULONG dwTable,
     _In_z_ LPCWSTR pszContext);
 _Win32_SupportedOS_WindowsVista_
 
@@ -2064,7 +2064,7 @@ _Must_inspect_result_
 NTSTATUS
 WINAPI
 BCryptEnumContexts(
-    _In_ ULONG dwTable,
+    _Win32_AssociatedEnum_(BCRYPT_TABLE) _In_ ULONG dwTable,
     _Inout_ ULONG* pcbBuffer,
     _Outptr_opt_result_bytebuffer_all_maybenull_(*pcbBuffer) PCRYPT_CONTEXTS *ppBuffer);
 _Win32_SupportedOS_WindowsVista_
@@ -2073,7 +2073,7 @@ _Must_inspect_result_
 NTSTATUS
 WINAPI
 BCryptConfigureContext(
-    _In_ ULONG dwTable,
+    _Win32_AssociatedEnum_(BCRYPT_TABLE) _In_ ULONG dwTable,
     _In_z_ LPCWSTR pszContext,
     _In_ PCRYPT_CONTEXT_CONFIG pConfig);
 _Win32_SupportedOS_WindowsVista_
@@ -2082,7 +2082,7 @@ _Must_inspect_result_
 NTSTATUS
 WINAPI
 BCryptQueryContextConfiguration(
-    _In_ ULONG dwTable,
+    _Win32_AssociatedEnum_(BCRYPT_TABLE) _In_ ULONG dwTable,
     _In_z_ LPCWSTR pszContext,
     _Inout_ ULONG* pcbBuffer,
     _Outptr_opt_result_bytebuffer_all_maybenull_(*pcbBuffer) PCRYPT_CONTEXT_CONFIG *ppBuffer);
@@ -2092,7 +2092,7 @@ _Must_inspect_result_
 NTSTATUS
 WINAPI
 BCryptAddContextFunction(
-    _In_ ULONG dwTable,
+    _Win32_AssociatedEnum_(BCRYPT_TABLE) _In_ ULONG dwTable,
     _In_z_ LPCWSTR pszContext,
     _In_ ULONG dwInterface,
     _In_z_ LPCWSTR pszFunction,
@@ -2103,7 +2103,7 @@ _Must_inspect_result_
 NTSTATUS
 WINAPI
 BCryptRemoveContextFunction(
-    _In_ ULONG dwTable,
+    _Win32_AssociatedEnum_(BCRYPT_TABLE) _In_ ULONG dwTable,
     _In_z_ LPCWSTR pszContext,
     _In_ ULONG dwInterface,
     _In_z_ LPCWSTR pszFunction);
@@ -2113,7 +2113,7 @@ _Must_inspect_result_
 NTSTATUS
 WINAPI
 BCryptEnumContextFunctions(
-    _In_ ULONG dwTable,
+    _Win32_AssociatedEnum_(BCRYPT_TABLE) _In_ ULONG dwTable,
     _In_z_ LPCWSTR pszContext,
     _In_ ULONG dwInterface,
     _Inout_ ULONG* pcbBuffer,
@@ -2124,7 +2124,7 @@ _Must_inspect_result_
 NTSTATUS
 WINAPI
 BCryptConfigureContextFunction(
-    _In_ ULONG dwTable,
+    _Win32_AssociatedEnum_(BCRYPT_TABLE) _In_ ULONG dwTable,
     _In_z_ LPCWSTR pszContext,
     _In_ ULONG dwInterface,
     _In_z_ LPCWSTR pszFunction,
@@ -2135,7 +2135,7 @@ _Must_inspect_result_
 NTSTATUS
 WINAPI
 BCryptQueryContextFunctionConfiguration(
-    _In_ ULONG dwTable,
+    _Win32_AssociatedEnum_(BCRYPT_TABLE) _In_ ULONG dwTable,
     _In_z_ LPCWSTR pszContext,
     _In_ ULONG dwInterface,
     _In_z_ LPCWSTR pszFunction,
@@ -2148,7 +2148,7 @@ _Must_inspect_result_
 NTSTATUS
 WINAPI
 BCryptEnumContextFunctionProviders(
-    _In_ ULONG dwTable,
+    _Win32_AssociatedEnum_(BCRYPT_TABLE) _In_ ULONG dwTable,
     _In_z_ LPCWSTR pszContext,
     _In_ ULONG dwInterface,
     _In_z_ LPCWSTR pszFunction,
@@ -2160,7 +2160,7 @@ _Must_inspect_result_
 NTSTATUS
 WINAPI
 BCryptSetContextFunctionProperty(
-    _In_ ULONG dwTable,
+    _Win32_AssociatedEnum_(BCRYPT_TABLE) _In_ ULONG dwTable,
     _In_z_ LPCWSTR pszContext,
     _In_ ULONG dwInterface,
     _In_z_ LPCWSTR pszFunction,
@@ -2173,7 +2173,7 @@ _Must_inspect_result_
 NTSTATUS
 WINAPI
 BCryptQueryContextFunctionProperty(
-    _In_ ULONG dwTable,
+    _Win32_AssociatedEnum_(BCRYPT_TABLE) _In_ ULONG dwTable,
     _In_z_ LPCWSTR pszContext,
     _In_ ULONG dwInterface,
     _In_z_ LPCWSTR pszFunction,
@@ -2226,8 +2226,8 @@ BCryptResolveProviders(
     _In_opt_ ULONG dwInterface,
     _In_opt_z_ LPCWSTR pszFunction,
     _In_opt_z_ LPCWSTR pszProvider,
-    _In_ ULONG dwMode,
-    _In_ ULONG dwFlags,
+    _Win32_AssociatedEnum_(BCRYPT_QUERY_PROVIDER_MODE) _In_ ULONG dwMode,
+    _Win32_AssociatedEnum_(BCRYPT_RESOLVE_PROVIDERS_FLAGS) _In_ ULONG dwFlags,
     _Inout_ ULONG* pcbBuffer,
     _Outptr_opt_result_bytebuffer_all_maybenull_(*pcbBuffer) PCRYPT_PROVIDER_REFS *ppBuffer);
 
@@ -2268,4 +2268,25 @@ CngGetFipsAlgorithmMode(
 
 #if _MSC_VER >= 1200
 #pragma warning(pop)
+#endif
+
+#ifndef _WIN32METADATA_BCRYPT_SECURITY_SYSTEM_91_GROUPS_
+#define _WIN32METADATA_BCRYPT_SECURITY_SYSTEM_91_GROUPS_
+_Win32_Enum_(BCRYPT_TABLE, unsigned int, CRYPT_LOCAL, CRYPT_DOMAIN);
+_Win32_AnnotateField_(CRYPT_INTERFACE_REG::dwFlags, _Win32_AssociatedEnum_(BCRYPT_TABLE));
+_Win32_Enum_(BCRYPT_QUERY_PROVIDER_MODE, unsigned int, CRYPT_ANY, CRYPT_UM, CRYPT_KM, CRYPT_MM);
+_Win32_FlagsEnum_(BCRYPT_OPEN_ALGORITHM_PROVIDER_FLAGS, unsigned int, BCRYPT_ALG_HANDLE_HMAC_FLAG, BCRYPT_PROV_DISPATCH, BCRYPT_HASH_REUSABLE_FLAG);
+_Win32_FlagsEnum_(BCRYPT_RESOLVE_PROVIDERS_FLAGS, unsigned int, CRYPT_ALL_FUNCTIONS, CRYPT_ALL_PROVIDERS);
+_Win32_FlagsEnum_(CRYPT_IMAGE_REF_FLAGS, unsigned int, CRYPT_MIN_DEPENDENCIES, CRYPT_PROCESS_ISOLATE);
+_Win32_AnnotateField_(CRYPT_IMAGE_REF::dwFlags, _Win32_AssociatedEnum_(CRYPT_IMAGE_REF_FLAGS));
+_Win32_FlagsEnum_(CRYPT_CONTEXT_CONFIG_FLAGS, unsigned int, CRYPT_EXCLUSIVE, CRYPT_OVERRIDE);
+_Win32_AnnotateField_(CRYPT_CONTEXT_CONFIG::dwFlags, _Win32_AssociatedEnum_(CRYPT_CONTEXT_CONFIG_FLAGS));
+_Win32_Enum_(BCRYPT_DSA_MAGIC, unsigned int, BCRYPT_DSA_PUBLIC_MAGIC, BCRYPT_DSA_PRIVATE_MAGIC);
+_Win32_AnnotateField_(BCRYPT_DSA_KEY_BLOB_V2::dwMagic, _Win32_AssociatedEnum_(BCRYPT_DSA_MAGIC));
+_Win32_AnnotateField_(BCRYPT_DSA_KEY_BLOB::dwMagic, _Win32_AssociatedEnum_(BCRYPT_DSA_MAGIC));
+_Win32_Enum_(BCRYPT_RSAKEY_BLOB_MAGIC, unsigned int, BCRYPT_RSAPUBLIC_MAGIC, BCRYPT_RSAPRIVATE_MAGIC, BCRYPT_RSAFULLPRIVATE_MAGIC);
+_Win32_AnnotateField_(BCRYPT_RSAKEY_BLOB::Magic, _Win32_AssociatedEnum_(BCRYPT_RSAKEY_BLOB_MAGIC));
+_Win32_Enum_(BCRYPT_DH_KEY_BLOB_MAGIC, unsigned int, BCRYPT_DH_PUBLIC_MAGIC, BCRYPT_DH_PRIVATE_MAGIC);
+_Win32_AnnotateField_(BCRYPT_DH_KEY_BLOB::dwMagic, _Win32_AssociatedEnum_(BCRYPT_DH_KEY_BLOB_MAGIC));
+_Win32_Enum_(BCRYPTGENRANDOM_FLAGS, unsigned int, BCRYPT_RNG_USE_ENTROPY_IN_BUFFER, BCRYPT_USE_SYSTEM_PREFERRED_RNG);
 #endif

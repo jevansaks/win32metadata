@@ -509,6 +509,17 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinUser.h b/generation/Wi
  
  WINUSERAPI
  BOOL
+@@ -2988,8 +3078,8 @@
+ DrawEdge(
+     _In_ HDC hdc,
+     _Inout_ LPRECT qrc,
+-    _In_ UINT edge,
+-    _In_ UINT grfFlags);
++    _Win32_AssociatedEnum_(DRAWEDGE_FLAGS) _In_ UINT edge,
++    _Win32_AssociatedEnum_(DRAW_EDGE_FLAGS) _In_ UINT grfFlags);
+ 
+ #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
+ #pragma endregion
 @@ -3044,6 +3134,7 @@
  
  #pragma region Desktop Family
@@ -3258,6 +3269,24 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinUser.h b/generation/Wi
  
  WINUSERAPI
  _Success_(return)
+@@ -8357,7 +8934,7 @@
+     LPCSTR lpchText,
+     _In_ int cchText,
+     _Inout_ LPRECT lprc,
+-    _In_ UINT format);
++    _Win32_AssociatedEnum_(DRAW_TEXT_FORMAT) _In_ UINT format);
+ WINUSERAPI
+ _Success_(return)
+ int
+@@ -8369,7 +8946,7 @@
+     LPCWSTR lpchText,
+     _In_ int cchText,
+     _Inout_ LPRECT lprc,
+-    _In_ UINT format);
++    _Win32_AssociatedEnum_(DRAW_TEXT_FORMAT) _In_ UINT format);
+ #ifdef UNICODE
+ #define DrawText  DrawTextW
+ #else
 @@ -8404,6 +8981,7 @@
  
  
@@ -3266,14 +3295,26 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinUser.h b/generation/Wi
  WINUSERAPI
  _Success_(return)
  int
-@@ -8418,6 +8996,7 @@
+@@ -8416,8 +8994,9 @@
+     LPSTR lpchText,
+     _In_ int cchText,
      _Inout_ LPRECT lprc,
-     _In_ UINT format,
+-    _In_ UINT format,
++    _Win32_AssociatedEnum_(DRAW_TEXT_FORMAT) _In_ UINT format,
      _In_opt_ LPDRAWTEXTPARAMS lpdtp);
 +_Win32_SupportedOS_Windows2000_
  WINUSERAPI
  _Success_(return)
  int
+@@ -8430,7 +9009,7 @@
+     LPWSTR lpchText,
+     _In_ int cchText,
+     _Inout_ LPRECT lprc,
+-    _In_ UINT format,
++    _Win32_AssociatedEnum_(DRAW_TEXT_FORMAT) _In_ UINT format,
+     _In_opt_ LPDRAWTEXTPARAMS lpdtp);
+ #ifdef UNICODE
+ #define DrawTextEx  DrawTextExW
 @@ -8446,6 +9025,7 @@
  
  #pragma region Desktop Family
@@ -6103,7 +6144,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinUser.h b/generation/Wi
  
  WINUSERAPI
  BOOL
-@@ -16610,7 +17635,273 @@
+@@ -16610,7 +17635,282 @@
  }
  #endif  /* __cplusplus */
  
@@ -6378,4 +6419,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinUser.h b/generation/Wi
 +_Win32_Enum_(SCROLLBAR_COMMAND, int, SB_LINEUP, SB_LINELEFT, SB_LINEDOWN, SB_LINERIGHT, SB_PAGEUP, SB_PAGELEFT, SB_PAGEDOWN, SB_PAGERIGHT, SB_THUMBPOSITION, SB_THUMBTRACK, SB_TOP, SB_LEFT, SB_RIGHT, SB_BOTTOM, SB_ENDSCROLL);
 +_Win32_Enum_(MOUSE_STATE, unsigned short, MOUSE_MOVE_RELATIVE, MOUSE_MOVE_ABSOLUTE, MOUSE_VIRTUAL_DESKTOP, MOUSE_ATTRIBUTES_CHANGED, MOUSE_MOVE_NOCOALESCE);
 +_Win32_AnnotateField_(RAWMOUSE::usFlags, _Win32_AssociatedEnum_(MOUSE_STATE));
++#endif
++
++#ifndef _WIN32METADATA_WINUSER_SECURITY_SYSTEM_91_GROUPS_
++#define _WIN32METADATA_WINUSER_SECURITY_SYSTEM_91_GROUPS_
++_Win32_FlagsEnum_(DRAWEDGE_FLAGS, unsigned int, BDR_RAISEDOUTER, BDR_SUNKENOUTER, BDR_RAISEDINNER, BDR_SUNKENINNER, BDR_OUTER, BDR_INNER, BDR_RAISED, BDR_SUNKEN, EDGE_RAISED, EDGE_SUNKEN, EDGE_ETCHED, EDGE_BUMP);
++_Win32_FlagsEnum_(DRAW_TEXT_FORMAT, unsigned int, DT_BOTTOM, DT_CALCRECT, DT_CENTER, DT_EDITCONTROL, DT_END_ELLIPSIS, DT_EXPANDTABS, DT_EXTERNALLEADING, DT_HIDEPREFIX, DT_INTERNAL, DT_LEFT, DT_MODIFYSTRING, DT_NOCLIP, DT_NOFULLWIDTHCHARBREAK, DT_NOPREFIX, DT_PATH_ELLIPSIS, DT_PREFIXONLY, DT_RIGHT, DT_RTLREADING, DT_SINGLELINE, DT_TABSTOP, DT_TOP, DT_VCENTER, DT_WORDBREAK, DT_WORD_ELLIPSIS);
++_Win32_FlagsEnum_(DRAW_EDGE_FLAGS, unsigned int, BF_ADJUST, BF_BOTTOM, BF_BOTTOMLEFT, BF_BOTTOMRIGHT, BF_DIAGONAL, BF_DIAGONAL_ENDBOTTOMLEFT, BF_DIAGONAL_ENDBOTTOMRIGHT, BF_DIAGONAL_ENDTOPLEFT, BF_DIAGONAL_ENDTOPRIGHT, BF_FLAT, BF_LEFT, BF_MIDDLE, BF_MONO, BF_RECT, BF_RIGHT, BF_SOFT, BF_TOP, BF_TOPLEFT, BF_TOPRIGHT);
++_Win32_FlagsEnum_(TRACKMOUSEEVENT_FLAGS, unsigned int, TME_CANCEL, TME_HOVER, TME_LEAVE, TME_NONCLIENT, TME_QUERY);
++_Win32_AnnotateField_(TRACKMOUSEEVENT::dwFlags, _Win32_AssociatedEnum_(TRACKMOUSEEVENT_FLAGS));
 +#endif

@@ -7,7 +7,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  /*++
  
  Copyright (c) Microsoft Corporation. All rights reserved.
-@@ -307,6 +308,7 @@
+@@ -307,13 +308,15 @@
  //
  #define MAX_TIME_VALUE ((LONGLONG) 0x7FFFFFFFFFFFFFFF)
  #define MIN_TIME_VALUE ((LONGLONG) 0)
@@ -15,10 +15,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  // function definitions
  
-@@ -314,6 +316,7 @@
+ PDH_FUNCTION
  PdhGetDllVersion(
-     _Out_opt_ LPDWORD lpdwVersion
- );
+-    _Out_opt_ LPDWORD lpdwVersion
+-);
++    _Win32_AssociatedEnum_(PDH_DLL_VERSION) _Out_opt_ LPDWORD lpdwVersion
++);
 +_Win32_SupportedOS_WindowsXP_
  
  //
@@ -95,7 +97,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  //
  //  Counter Functions
-@@ -411,6 +424,7 @@
+@@ -407,26 +420,28 @@
+ PDH_FUNCTION
+ PdhGetFormattedCounterValue(
+     _In_      PDH_HCOUNTER          hCounter,
+-    _In_      DWORD                 dwFormat,
++    _Win32_AssociatedEnum_(PDH_FMT) _In_      DWORD                 dwFormat,
      _Out_opt_ LPDWORD               lpdwType,
      _Out_     PPDH_FMT_COUNTERVALUE pValue
  );
@@ -103,7 +110,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  _Success_(return == ERROR_SUCCESS)
  PDH_FUNCTION
-@@ -421,6 +435,7 @@
+ PdhGetFormattedCounterArrayA(
+     _In_    PDH_HCOUNTER hCounter,
+-    _In_    DWORD        dwFormat,
++    _Win32_AssociatedEnum_(PDH_FMT) _In_    DWORD        dwFormat,
+     _Inout_ LPDWORD      lpdwBufferSize,
      _Out_   LPDWORD      lpdwItemCount,
      _Out_writes_bytes_opt_(* lpdwBufferSize) PPDH_FMT_COUNTERVALUE_ITEM_A ItemBuffer
  );
@@ -111,6 +122,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  _Success_(return == ERROR_SUCCESS)
  PDH_FUNCTION
+ PdhGetFormattedCounterArrayW(
+     _In_    PDH_HCOUNTER hCounter,
+-    _In_    DWORD        dwFormat,
++    _Win32_AssociatedEnum_(PDH_FMT) _In_    DWORD        dwFormat,
+     _Inout_ LPDWORD      lpdwBufferSize,
+     _Out_   LPDWORD      lpdwItemCount,
+     _Out_writes_bytes_opt_(* lpdwBufferSize) PPDH_FMT_COUNTERVALUE_ITEM_W ItemBuffer
 @@ -446,6 +461,7 @@
  #define PDH_FMT_NOCAP100     ((DWORD) 0x00008000)
  #define PERF_DETAIL_COSTLY   ((DWORD) 0x00010000)
@@ -135,7 +153,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  _Success_(return == ERROR_SUCCESS)
  PDH_FUNCTION
-@@ -471,6 +489,7 @@
+@@ -471,25 +489,28 @@
      _Out_   LPDWORD       lpdwItemCount,
      _Out_writes_bytes_opt_(* lpdwBufferSize) PPDH_RAW_COUNTER_ITEM_W ItemBuffer
  );
@@ -143,7 +161,10 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhCalculateCounterFromRawValue(
-@@ -480,6 +499,7 @@
+     _In_  PDH_HCOUNTER          hCounter,
+-    _In_  DWORD                 dwFormat,
++    _Win32_AssociatedEnum_(PDH_FMT) _In_  DWORD                 dwFormat,
+     _In_  PPDH_RAW_COUNTER      rawValue1,
      _In_  PPDH_RAW_COUNTER      rawValue2,
      _Out_ PPDH_FMT_COUNTERVALUE fmtValue
  );
@@ -151,7 +172,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhComputeCounterStatistics(
-@@ -490,6 +510,7 @@
+     _In_  PDH_HCOUNTER     hCounter,
+-    _In_  DWORD            dwFormat,
++    _Win32_AssociatedEnum_(PDH_FMT) _In_  DWORD            dwFormat,
+     _In_  DWORD            dwFirstEntry,
+     _In_  DWORD            dwNumEntries,
      _In_  PPDH_RAW_COUNTER lpRawValueArray,
      _Out_ PPDH_STATISTICS  data
  );
@@ -388,6 +413,28 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhExpandWildCardPathW(
+@@ -978,8 +1029,8 @@
+ PDH_FUNCTION
+ PdhOpenLogW(
+     _In_     LPCWSTR     szLogFileName,
+-    _In_     DWORD       dwAccessFlags,
+-    _Inout_  LPDWORD     lpdwLogType,
++    _Win32_AssociatedEnum_(PDH_LOG) _In_     DWORD       dwAccessFlags,
++    _Win32_AssociatedEnum_(PDH_LOG_TYPE) _Inout_  LPDWORD     lpdwLogType,
+     _In_opt_ PDH_HQUERY  hQuery,
+     _In_     DWORD       dwMaxSize,
+     _In_opt_ LPCWSTR     szUserCaption,
+@@ -989,8 +1040,8 @@
+ PDH_FUNCTION
+ PdhOpenLogA(
+     _In_     LPCSTR       szLogFileName,
+-    _In_     DWORD        dwAccessFlags,
+-    _Inout_  LPDWORD      lpdwLogType,
++    _Win32_AssociatedEnum_(PDH_LOG) _In_     DWORD        dwAccessFlags,
++    _Win32_AssociatedEnum_(PDH_LOG_TYPE) _Inout_  LPDWORD      lpdwLogType,
+     _In_opt_ PDH_HQUERY   hQuery,
+     _In_     DWORD        dwMaxSize,
+     _In_opt_ LPCSTR       szUserCaption,
 @@ -1002,23 +1053,27 @@
      _In_     PDH_HLOG hLog,
      _In_opt_ LPCWSTR  szUserString
@@ -462,7 +509,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhCollectQueryDataEx(
-@@ -1084,6 +1145,7 @@
+@@ -1084,22 +1145,25 @@
      _In_ DWORD      dwIntervalTime,
      _In_ HANDLE     hNewDataEvent
  );
@@ -470,7 +517,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhFormatFromRawValue(
-@@ -1094,12 +1156,14 @@
+     _In_  DWORD                   dwCounterType,
+-    _In_  DWORD                   dwFormat,
++    _Win32_AssociatedEnum_(PDH_FMT) _In_  DWORD                   dwFormat,
+     _In_opt_ LONGLONG*            pTimeBase,
+     _In_  PPDH_RAW_COUNTER        pRawValue1,
      _In_  PPDH_RAW_COUNTER        pRawValue2,
      _Out_ PPDH_FMT_COUNTERVALUE   pFmtValue
  );
@@ -485,7 +536,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  _Success_(return == ERROR_SUCCESS)
  PDH_FUNCTION
-@@ -1114,6 +1178,7 @@
+@@ -1114,13 +1178,15 @@
  #define DATA_SOURCE_REGISTRY ((DWORD) 0x00000001)
  #define DATA_SOURCE_LOGFILE  ((DWORD) 0x00000002)
  #define DATA_SOURCE_WBEM     ((DWORD) 0x00000004)
@@ -493,7 +544,8 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhSetDefaultRealTimeDataSource(
-@@ -1121,6 +1186,7 @@
+-    _In_ DWORD dwDataSourceId
++    _Win32_AssociatedEnum_(REAL_TIME_DATA_SOURCE_ID_FLAGS) _In_ DWORD dwDataSourceId
  );
  
  #if (_WIN32_WINDOWS >= 0x0501 || _WIN32_WINNT >= 0x0501 || (defined(NTDDI_VERSION) && NTDDI_VERSION >= NTDDI_WINXP))
@@ -650,3 +702,17 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhEnumLogSetNamesA(
+@@ -1486,3 +1571,13 @@
+ #pragma endregion
+ 
+ #endif //_PDH_H_
++
++#ifndef _WIN32METADATA_PDH_SECURITY_SYSTEM_91_GROUPS_
++#define _WIN32METADATA_PDH_SECURITY_SYSTEM_91_GROUPS_
++_Win32_Enum_(REAL_TIME_DATA_SOURCE_ID_FLAGS, unsigned int, DATA_SOURCE_REGISTRY, DATA_SOURCE_WBEM);
++_Win32_Enum_(PDH_FMT, unsigned int, PDH_FMT_DOUBLE, PDH_FMT_LARGE, PDH_FMT_LONG);
++_Win32_Enum_(PDH_LOG_TYPE, unsigned int, PDH_LOG_TYPE_UNDEFINED, PDH_LOG_TYPE_CSV, PDH_LOG_TYPE_SQL, PDH_LOG_TYPE_TSV, PDH_LOG_TYPE_BINARY, PDH_LOG_TYPE_PERFMON);
++_Win32_AnnotateField_(PDH_RAW_LOG_RECORD::dwRecordType, _Win32_AssociatedEnum_(PDH_LOG_TYPE));
++_Win32_Enum_(PDH_LOG, unsigned int, PDH_LOG_READ_ACCESS, PDH_LOG_WRITE_ACCESS, PDH_LOG_UPDATE_ACCESS);
++_Win32_Enum_(PDH_DLL_VERSION, unsigned int, PDH_CVERSION_WIN50, PDH_VERSION);
++#endif

@@ -187,6 +187,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/clfsw32.h b/generation/Wi
  //------------------------------------------------------------------------------
  // WriteLogRestartArea
  //
+@@ -471,7 +512,7 @@
+                     IN PVOID pvRestartBuffer,
+                     IN ULONG cbRestartBuffer,
+                     IN PCLFS_LSN plsnBase OPTIONAL,
+-                    IN ULONG fFlags,
++                    _Win32_AssociatedEnum_(CLFS_FLAG) IN ULONG fFlags,
+                     OUT PULONG pcbWritten OPTIONAL,
+                     OUT PCLFS_LSN plsnNext OPTIONAL,
+                     IN OUT LPOVERLAPPED pOverlapped OPTIONAL
 @@ -494,6 +535,8 @@
  #endif /* _WIN32_WINNT */
  
@@ -232,7 +241,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/clfsw32.h b/generation/Wi
  //------------------------------------------------------------------------------
  // ReserveAndAppendLog
  //
-@@ -574,6 +625,8 @@
+@@ -567,13 +618,15 @@
+                     IN PCLFS_LSN plsnPrevious OPTIONAL,
+                     IN ULONG cReserveRecords,
+                     IN OUT LONGLONG rgcbReservation [] OPTIONAL,
+-                    IN ULONG fFlags,
++                    _Win32_AssociatedEnum_(CLFS_FLAG) IN ULONG fFlags,
+                     OUT PCLFS_LSN plsn OPTIONAL,
+                     IN OUT LPOVERLAPPED pOverlapped OPTIONAL
+                     );
  #endif /* _WIN32_WINNT */
  
  #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
@@ -241,7 +258,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/clfsw32.h b/generation/Wi
  //------------------------------------------------------------------------------
  // ReserveAndAppendLogAligned
  //
-@@ -597,6 +650,8 @@
+@@ -590,13 +643,15 @@
+                     IN PCLFS_LSN plsnPrevious OPTIONAL,
+                     IN ULONG cReserveRecords,
+                     IN OUT LONGLONG rgcbReservation [] OPTIONAL,
+-                    IN ULONG fFlags,
++                    _Win32_AssociatedEnum_(CLFS_FLAG) IN ULONG fFlags,
+                     OUT PCLFS_LSN plsn OPTIONAL,
+                     IN OUT LPOVERLAPPED pOverlapped OPTIONAL
+                     );
  #endif /* _WIN32_WINNT */
  
  #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
