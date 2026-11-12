@@ -255,7 +255,7 @@ DWORD WINAPI ImmGetProperty(IN HKL, IN DWORD);
 
 BOOL WINAPI ImmIsIME(IN HKL);
 
-BOOL WINAPI ImmSimulateHotKey(IN HWND, IN DWORD);
+BOOL WINAPI ImmSimulateHotKey(IN HWND, _Win32_AssociatedEnum_(IME_HOTKEY_IDENTIFIER) IN DWORD);
 
 HIMC WINAPI ImmCreateContext(void);
 BOOL WINAPI ImmDestroyContext(IN HIMC);
@@ -266,16 +266,16 @@ HIMC WINAPI ImmAssociateContext(IN HWND, IN HIMC);
 BOOL WINAPI ImmAssociateContextEx(_In_ HWND, _In_ HIMC, _In_ DWORD);
 #endif /* WINVER >= 0x040A */
 
-LONG  WINAPI ImmGetCompositionStringA(IN HIMC, IN DWORD, _Out_writes_bytes_opt_(dwBufLen) LPVOID lpBuf, IN DWORD dwBufLen);
-LONG  WINAPI ImmGetCompositionStringW(IN HIMC, IN DWORD, _Out_writes_bytes_opt_(dwBufLen) LPVOID lpBuf, IN DWORD dwBufLen);
+LONG  WINAPI ImmGetCompositionStringA(IN HIMC, _Win32_AssociatedEnum_(IME_COMPOSITION_STRING) IN DWORD, _Out_writes_bytes_opt_(dwBufLen) LPVOID lpBuf, IN DWORD dwBufLen);
+LONG  WINAPI ImmGetCompositionStringW(IN HIMC, _Win32_AssociatedEnum_(IME_COMPOSITION_STRING) IN DWORD, _Out_writes_bytes_opt_(dwBufLen) LPVOID lpBuf, IN DWORD dwBufLen);
 #ifdef UNICODE
 #define ImmGetCompositionString  ImmGetCompositionStringW
 #else
 #define ImmGetCompositionString  ImmGetCompositionStringA
 #endif // !UNICODE
 
-BOOL  WINAPI ImmSetCompositionStringA(IN HIMC, IN DWORD dwIndex, _In_reads_bytes_opt_(dwCompLen) LPVOID lpComp, IN DWORD dwCompLen, _In_reads_bytes_opt_(dwReadLen) LPVOID lpRead, IN DWORD dwReadLen);
-BOOL  WINAPI ImmSetCompositionStringW(IN HIMC, IN DWORD dwIndex, _In_reads_bytes_opt_(dwCompLen) LPVOID lpComp, IN DWORD dwCompLen, _In_reads_bytes_opt_(dwReadLen) LPVOID lpRead, IN DWORD dwReadLen);
+BOOL  WINAPI ImmSetCompositionStringA(IN HIMC, _Win32_AssociatedEnum_(SET_COMPOSITION_STRING_TYPE) IN DWORD dwIndex, _In_reads_bytes_opt_(dwCompLen) LPVOID lpComp, IN DWORD dwCompLen, _In_reads_bytes_opt_(dwReadLen) LPVOID lpRead, IN DWORD dwReadLen);
+BOOL  WINAPI ImmSetCompositionStringW(IN HIMC, _Win32_AssociatedEnum_(SET_COMPOSITION_STRING_TYPE) IN DWORD dwIndex, _In_reads_bytes_opt_(dwCompLen) LPVOID lpComp, IN DWORD dwCompLen, _In_reads_bytes_opt_(dwReadLen) LPVOID lpRead, IN DWORD dwReadLen);
 #ifdef UNICODE
 #define ImmSetCompositionString  ImmSetCompositionStringW
 #else
@@ -298,16 +298,16 @@ DWORD WINAPI ImmGetCandidateListW(IN HIMC, IN DWORD deIndex, _Out_writes_bytes_o
 #define ImmGetCandidateList  ImmGetCandidateListA
 #endif // !UNICODE
 
-DWORD WINAPI ImmGetGuideLineA(_In_ HIMC, _In_ DWORD dwIndex, _Out_writes_bytes_opt_(dwBufLen) LPSTR lpBuf, _In_ DWORD dwBufLen);
-DWORD WINAPI ImmGetGuideLineW(_In_ HIMC, _In_ DWORD dwIndex, _Out_writes_bytes_opt_(dwBufLen) LPWSTR lpBuf, _In_ DWORD dwBufLen);
+DWORD WINAPI ImmGetGuideLineA(_In_ HIMC, _Win32_AssociatedEnum_(GET_GUIDE_LINE_TYPE) _In_ DWORD dwIndex, _Out_writes_bytes_opt_(dwBufLen) LPSTR lpBuf, _In_ DWORD dwBufLen);
+DWORD WINAPI ImmGetGuideLineW(_In_ HIMC, _Win32_AssociatedEnum_(GET_GUIDE_LINE_TYPE) _In_ DWORD dwIndex, _Out_writes_bytes_opt_(dwBufLen) LPWSTR lpBuf, _In_ DWORD dwBufLen);
 #ifdef UNICODE
 #define ImmGetGuideLine  ImmGetGuideLineW
 #else
 #define ImmGetGuideLine  ImmGetGuideLineA
 #endif // !UNICODE
 
-BOOL WINAPI ImmGetConversionStatus(IN HIMC, _Out_opt_ LPDWORD lpfdwConversion, _Out_opt_ LPDWORD lpfdwSentence);
-BOOL WINAPI ImmSetConversionStatus(IN HIMC, IN DWORD, IN DWORD);
+BOOL WINAPI ImmGetConversionStatus(IN HIMC, _Out_opt_ LPDWORD lpfdwConversion, _Win32_AssociatedEnum_(IME_SENTENCE_MODE) _Out_opt_ LPDWORD lpfdwSentence);
+BOOL WINAPI ImmSetConversionStatus(IN HIMC, IN DWORD, _Win32_AssociatedEnum_(IME_SENTENCE_MODE) IN DWORD);
 BOOL WINAPI ImmGetOpenStatus(IN HIMC);
 BOOL WINAPI ImmSetOpenStatus(IN HIMC, IN BOOL);
 
@@ -337,23 +337,23 @@ BOOL    WINAPI ImmConfigureIMEW(IN HKL, IN HWND, IN DWORD, IN LPVOID);
 #define ImmConfigureIME  ImmConfigureIMEA
 #endif // !UNICODE
 
-LRESULT WINAPI ImmEscapeA(IN HKL, IN HIMC, IN UINT, IN LPVOID);
-LRESULT WINAPI ImmEscapeW(IN HKL, IN HIMC, IN UINT, IN LPVOID);
+LRESULT WINAPI ImmEscapeA(IN HKL, IN HIMC, _Win32_AssociatedEnum_(IME_ESCAPE) IN UINT, IN LPVOID);
+LRESULT WINAPI ImmEscapeW(IN HKL, IN HIMC, _Win32_AssociatedEnum_(IME_ESCAPE) IN UINT, IN LPVOID);
 #ifdef UNICODE
 #define ImmEscape  ImmEscapeW
 #else
 #define ImmEscape  ImmEscapeA
 #endif // !UNICODE
 
-DWORD   WINAPI ImmGetConversionListA(IN HKL, IN HIMC, _In_ LPCSTR lpSrc, _Out_writes_bytes_(dwBufLen) LPCANDIDATELIST lpDst, IN DWORD dwBufLen, IN UINT uFlag);
-DWORD   WINAPI ImmGetConversionListW(IN HKL, IN HIMC, _In_ LPCWSTR lpSrc, _Out_writes_bytes_(dwBufLen) LPCANDIDATELIST lpDst, IN DWORD dwBufLen, IN UINT uFlag);
+DWORD   WINAPI ImmGetConversionListA(IN HKL, IN HIMC, _In_ LPCSTR lpSrc, _Out_writes_bytes_(dwBufLen) LPCANDIDATELIST lpDst, IN DWORD dwBufLen, _Win32_AssociatedEnum_(GET_CONVERSION_LIST_FLAG) IN UINT uFlag);
+DWORD   WINAPI ImmGetConversionListW(IN HKL, IN HIMC, _In_ LPCWSTR lpSrc, _Out_writes_bytes_(dwBufLen) LPCANDIDATELIST lpDst, IN DWORD dwBufLen, _Win32_AssociatedEnum_(GET_CONVERSION_LIST_FLAG) IN UINT uFlag);
 #ifdef UNICODE
 #define ImmGetConversionList  ImmGetConversionListW
 #else
 #define ImmGetConversionList  ImmGetConversionListA
 #endif // !UNICODE
 
-BOOL    WINAPI ImmNotifyIME(IN HIMC, IN DWORD dwAction, IN DWORD dwIndex, IN DWORD dwValue);
+BOOL    WINAPI ImmNotifyIME(IN HIMC, _Win32_AssociatedEnum_(NOTIFY_IME_ACTION) IN DWORD dwAction, _Win32_AssociatedEnum_(NOTIFY_IME_INDEX) IN DWORD dwIndex, IN DWORD dwValue);
 
 BOOL WINAPI ImmGetStatusWindowPos(IN HIMC, _Out_ LPPOINT lpptPos);
 BOOL WINAPI ImmSetStatusWindowPos(IN HIMC, _In_ LPPOINT lpptPos);
@@ -790,3 +790,15 @@ _Win32_Enum_(IGP_ID, unsigned int,
 
 #endif  // _IMM_
 
+#ifndef _WIN32METADATA_IMM_NATIVE_C_64_GROUPS_
+#define _WIN32METADATA_IMM_NATIVE_C_64_GROUPS_
+_Win32_Enum_(SET_COMPOSITION_STRING_TYPE, unsigned int, SCS_SETSTR, SCS_CHANGEATTR, SCS_CHANGECLAUSE, SCS_SETRECONVERTSTRING, SCS_QUERYRECONVERTSTRING);
+_Win32_Enum_(GET_GUIDE_LINE_TYPE, unsigned int, GGL_LEVEL, GGL_INDEX, GGL_STRING, GGL_PRIVATE);
+_Win32_Enum_(NOTIFY_IME_INDEX, unsigned int, CPS_CANCEL, CPS_COMPLETE, CPS_CONVERT, CPS_REVERT);
+_Win32_Enum_(NOTIFY_IME_ACTION, unsigned int, NI_CHANGECANDIDATELIST, NI_CLOSECANDIDATE, NI_COMPOSITIONSTR, NI_IMEMENUSELECTED, NI_OPENCANDIDATE, NI_SELECTCANDIDATESTR, NI_SETCANDIDATE_PAGESIZE, NI_SETCANDIDATE_PAGESTART);
+_Win32_Enum_(GET_CONVERSION_LIST_FLAG, unsigned int, GCL_CONVERSION, GCL_REVERSECONVERSION, GCL_REVERSE_LENGTH);
+_Win32_FlagsEnum_(IME_SENTENCE_MODE, unsigned int, IME_SMODE_NONE, IME_SMODE_PLAURALCLAUSE, IME_SMODE_SINGLECONVERT, IME_SMODE_AUTOMATIC, IME_SMODE_PHRASEPREDICT, IME_SMODE_CONVERSATION, IME_SMODE_RESERVED);
+_Win32_FlagsEnum_(IME_COMPOSITION_STRING, unsigned int, GCS_COMPREADSTR, GCS_COMPREADATTR, GCS_COMPREADCLAUSE, GCS_COMPSTR, GCS_COMPATTR, GCS_COMPCLAUSE, GCS_CURSORPOS, GCS_DELTASTART, GCS_RESULTREADSTR, GCS_RESULTREADCLAUSE, GCS_RESULTSTR, GCS_RESULTCLAUSE);
+_Win32_Enum_(IME_ESCAPE, unsigned int, IME_ESC_QUERY_SUPPORT, IME_ESC_RESERVED_FIRST, IME_ESC_RESERVED_LAST, IME_ESC_PRIVATE_FIRST, IME_ESC_PRIVATE_LAST, IME_ESC_SEQUENCE_TO_INTERNAL, IME_ESC_GET_EUDC_DICTIONARY, IME_ESC_SET_EUDC_DICTIONARY, IME_ESC_MAX_KEY, IME_ESC_IME_NAME, IME_ESC_SYNC_HOTKEY, IME_ESC_HANJA_MODE, IME_ESC_AUTOMATA, IME_ESC_PRIVATE_HOTKEY, IME_ESC_GETHELPFILENAME);
+_Win32_Enum_(IME_HOTKEY_IDENTIFIER, unsigned int, IME_CHOTKEY_IME_NONIME_TOGGLE, IME_CHOTKEY_SHAPE_TOGGLE, IME_CHOTKEY_SYMBOL_TOGGLE, IME_JHOTKEY_CLOSE_OPEN, IME_KHOTKEY_SHAPE_TOGGLE, IME_KHOTKEY_HANJACONVERT, IME_KHOTKEY_ENGLISH, IME_THOTKEY_IME_NONIME_TOGGLE, IME_THOTKEY_SHAPE_TOGGLE, IME_THOTKEY_SYMBOL_TOGGLE, IME_ITHOTKEY_RESEND_RESULTSTR, IME_ITHOTKEY_PREVIOUS_COMPOSITION, IME_ITHOTKEY_UISTYLE_TOGGLE, IME_ITHOTKEY_RECONVERTSTRING);
+#endif

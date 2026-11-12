@@ -287,7 +287,7 @@ WINOLEAPI          OleCreateDefaultHandler(IN REFCLSID clsid, IN LPUNKNOWN pUnkO
 _Win32_SupportedOS_Windows2000_
 
 WINOLEAPI          OleCreateEmbeddingHelper(IN REFCLSID clsid, IN LPUNKNOWN pUnkOuter,
-                    IN DWORD flags, IN LPCLASSFACTORY pCF,
+                    _Win32_AssociatedEnum_(EMBDHLP_FLAGS) IN DWORD flags, IN LPCLASSFACTORY pCF,
                     IN REFIID riid, _COM_Outptr_ LPVOID FAR* lplpObj);
 _Win32_SupportedOS_Windows2000_
 
@@ -435,3 +435,7 @@ WINOLEAPI OleConvertOLESTREAMToIStorageEx2
 #pragma warning(pop)
 #endif
 
+#ifndef _WIN32METADATA_OLE2_NATIVE_C_64_GROUPS_
+#define _WIN32METADATA_OLE2_NATIVE_C_64_GROUPS_
+_Win32_FlagsEnum_(EMBDHLP_FLAGS, unsigned int, EMBDHLP_INPROC_HANDLER, EMBDHLP_INPROC_SERVER, EMBDHLP_CREATENOW, EMBDHLP_DELAYCREATE);
+#endif

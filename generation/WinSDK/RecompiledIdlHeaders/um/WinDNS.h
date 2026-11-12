@@ -773,7 +773,7 @@ WINAPI
 DnsQuery_A(
     _In_                PCSTR           pszName,
     _In_                WORD            wType,
-    _In_                DWORD           Options,
+    _Win32_AssociatedEnum_(DNS_QUERY_OPTIONS) _In_                DWORD           Options,
     _Inout_opt_         PVOID           pExtra,
     _Outptr_result_maybenull_     PDNS_RECORD *   ppQueryResults,
     _Outptr_opt_result_maybenull_ PVOID *         pReserved
@@ -785,7 +785,7 @@ WINAPI
 DnsQuery_UTF8(
     _In_                PCSTR           pszName,
     _In_                WORD            wType,
-    _In_                DWORD           Options,
+    _Win32_AssociatedEnum_(DNS_QUERY_OPTIONS) _In_                DWORD           Options,
     _Inout_opt_         PVOID           pExtra,
     _Outptr_result_maybenull_     PDNS_RECORD *   ppQueryResults,
     _Outptr_opt_result_maybenull_ PVOID *         pReserved
@@ -797,7 +797,7 @@ WINAPI
 DnsQuery_W(
     _In_                PCWSTR          pszName,
     _In_                WORD            wType,
-    _In_                DWORD           Options,
+    _Win32_AssociatedEnum_(DNS_QUERY_OPTIONS) _In_                DWORD           Options,
     _Inout_opt_         PVOID           pExtra,
     _Outptr_result_maybenull_     PDNS_RECORD *   ppQueryResults,
     _Outptr_opt_result_maybenull_ PVOID *         pReserved
@@ -1947,3 +1947,8 @@ DnsIsZtEnabled(VOID);
 #pragma endregion
 
 #endif // _WINDNS_INCLUDED_
+
+#ifndef _WIN32METADATA_WINDNS_NATIVE_C_64_GROUPS_
+#define _WIN32METADATA_WINDNS_NATIVE_C_64_GROUPS_
+_Win32_FlagsEnum_(DNS_QUERY_OPTIONS, unsigned int, DNS_QUERY_PARSE_ALL_RECORDS, DNS_QUERY_STANDARD, DNS_QUERY_ACCEPT_TRUNCATED_RESPONSE, DNS_QUERY_USE_TCP_ONLY, DNS_QUERY_NO_RECURSION, DNS_QUERY_BYPASS_CACHE, DNS_QUERY_NO_WIRE_QUERY, DNS_QUERY_NO_LOCAL_NAME, DNS_QUERY_NO_HOSTS_FILE, DNS_QUERY_NO_NETBT, DNS_QUERY_WIRE_ONLY, DNS_QUERY_RETURN_MESSAGE, DNS_QUERY_MULTICAST_ONLY, DNS_QUERY_NO_MULTICAST, DNS_QUERY_TREAT_AS_FQDN, DNS_QUERY_ADDRCONFIG, DNS_QUERY_DUAL_ADDR, DNS_QUERY_DONT_RESET_TTL_VALUES, DNS_QUERY_DISABLE_IDN_ENCODING, DNS_QUERY_APPEND_MULTILABEL, DNS_QUERY_DNSSEC_OK, DNS_QUERY_DNSSEC_CHECKING_DISABLED, DNS_QUERY_DNSSEC_REQUIRED, DNS_QUERY_RESERVED, DNS_QUERY_CACHE_ONLY, DNS_QUERY_REQUEST_VERSION1, DNS_QUERY_REQUEST_VERSION2, DNS_QUERY_RESULTS_VERSION1, DNS_QUERY_REQUEST_VERSION3, DNS_QUERY_RAW_RESULTS_VERSION1, DNS_QUERY_RAW_REQUEST_VERSION1, DNS_QUERY_RAW_OPTION_BEST_EFFORT_PARSE);
+#endif

@@ -111,3 +111,23 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/LMShare.h b/generation/Wi
  
  _Check_return_
  _Success_( return == 0)
+@@ -657,3 +671,19 @@
+ #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM) */
+ #pragma endregion
+ 
++#ifndef _WIN32METADATA_LMSHARE_NATIVE_C_64_GROUPS_
++#define _WIN32METADATA_LMSHARE_NATIVE_C_64_GROUPS_
++_Win32_FlagsEnum_(SHARE_TYPE, unsigned int, STYPE_DISKTREE, STYPE_PRINTQ, STYPE_DEVICE, STYPE_IPC, STYPE_SPECIAL, STYPE_TEMPORARY, STYPE_MASK);
++_Win32_AnnotateField_(SHARE_INFO_501::shi501_type, _Win32_AssociatedEnum_(SHARE_TYPE));
++_Win32_AnnotateField_(SHARE_INFO_2::shi2_type, _Win32_AssociatedEnum_(SHARE_TYPE));
++_Win32_AnnotateField_(SHARE_INFO_1::shi1_type, _Win32_AssociatedEnum_(SHARE_TYPE));
++_Win32_AnnotateField_(SHARE_INFO_502::shi502_type, _Win32_AssociatedEnum_(SHARE_TYPE));
++_Win32_AnnotateField_(CONNECTION_INFO_1::coni1_type, _Win32_AssociatedEnum_(SHARE_TYPE));
++_Win32_AnnotateField_(SHARE_INFO_503::shi503_type, _Win32_AssociatedEnum_(SHARE_TYPE));
++_Win32_Enum_(SESSION_INFO_USER_FLAGS, unsigned int, SESS_GUEST, SESS_NOENCRYPTION);
++_Win32_AnnotateField_(SESSION_INFO_502::sesi502_user_flags, _Win32_AssociatedEnum_(SESSION_INFO_USER_FLAGS));
++_Win32_AnnotateField_(SESSION_INFO_2::sesi2_user_flags, _Win32_AssociatedEnum_(SESSION_INFO_USER_FLAGS));
++_Win32_AnnotateField_(SESSION_INFO_1::sesi1_user_flags, _Win32_AssociatedEnum_(SESSION_INFO_USER_FLAGS));
++_Win32_FlagsEnum_(FILE_INFO_FLAGS_PERMISSIONS, unsigned int, PERM_FILE_READ, PERM_FILE_WRITE, PERM_FILE_CREATE);
++_Win32_AnnotateField_(FILE_INFO_3::fi3_permissions, _Win32_AssociatedEnum_(FILE_INFO_FLAGS_PERMISSIONS));
++#endif

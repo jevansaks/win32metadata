@@ -15,14 +15,24 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ddeml.h b/generation/WinS
  
  /* DLL registration functions */
  
-@@ -225,6 +227,7 @@
+@@ -223,14 +225,15 @@
+ DdeInitializeA(
+     _Inout_ LPDWORD pidInst,
      _In_ PFNCALLBACK pfnCallback,
-     _In_ DWORD afCmd,
+-    _In_ DWORD afCmd,
++    _Win32_AssociatedEnum_(DDE_INITIALIZE_COMMAND) _In_ DWORD afCmd,
      _Reserved_ DWORD ulRes);
 +_Win32_SupportedOS_Windows2000_
  UINT
  WINAPI
  DdeInitializeW(
+     _Inout_ LPDWORD pidInst,
+     _In_ PFNCALLBACK pfnCallback,
+-    _In_ DWORD afCmd,
++    _Win32_AssociatedEnum_(DDE_INITIALIZE_COMMAND) _In_ DWORD afCmd,
+     _Reserved_ DWORD ulRes);
+ #ifdef UNICODE
+ #define DdeInitialize  DdeInitializeW
 @@ -268,11 +271,13 @@
   */
  #define     APPCLASS_STANDARD            0x00000000L
@@ -101,11 +111,19 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ddeml.h b/generation/WinS
  
  
  /*
-@@ -348,6 +362,7 @@
+@@ -348,13 +362,14 @@
      _In_ DWORD idInst,
      _In_ HSZ hszTopic,
      _In_ HSZ hszItem);
 +_Win32_SupportedOS_Windows2000_
+ 
+ BOOL
+ WINAPI
+ DdeEnableCallback(
+     _In_ DWORD idInst,
+     _In_ HCONV hConv,
+-    _In_ UINT wCmd);
++    _Win32_AssociatedEnum_(DDE_ENABLE_CALLBACK_CMD) _In_ UINT wCmd);
  
  BOOL
  WINAPI
@@ -117,7 +135,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ddeml.h b/generation/WinS
  
  HDDEDATA
  WINAPI
-@@ -379,6 +395,7 @@
+@@ -373,12 +389,13 @@
+     _In_ DWORD idInst,
+     _In_opt_ HSZ hsz1,
+     _In_opt_ HSZ hsz2,
+-    _In_ UINT afCmd);
++    _Win32_AssociatedEnum_(DDE_NAME_SERVICE_CMD) _In_ UINT afCmd);
+ 
+ #define DNS_REGISTER        0x0001
  #define DNS_UNREGISTER      0x0002
  #define DNS_FILTERON        0x0004
  #define DNS_FILTEROFF       0x0008
@@ -125,8 +150,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ddeml.h b/generation/WinS
  
  /*
   * app client interface functions
-@@ -394,6 +411,7 @@
-     _In_ UINT wType,
+@@ -391,9 +408,10 @@
+     _In_ HCONV hConv,
+     _In_opt_ HSZ hszItem,
+     _In_ UINT wFmt,
+-    _In_ UINT wType,
++    _Win32_AssociatedEnum_(DDE_CLIENT_TRANSACTION_TYPE) _In_ UINT wType,
      _In_ DWORD dwTimeout,
      _Out_opt_ LPDWORD pdwResult);
 +_Win32_SupportedOS_Windows2000_
@@ -232,3 +261,20 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ddeml.h b/generation/WinS
  
  int
  WINAPI
+@@ -672,3 +703,16 @@
+ 
+ 
+ #endif /* _INC_DDEMLH */
++
++#ifndef _WIN32METADATA_DDEML_NATIVE_C_64_GROUPS_
++#define _WIN32METADATA_DDEML_NATIVE_C_64_GROUPS_
++_Win32_Enum_(DDE_ENABLE_CALLBACK_CMD, unsigned int, EC_ENABLEALL, EC_ENABLEONE, EC_DISABLE, EC_QUERYWAITING);
++_Win32_FlagsEnum_(DDE_INITIALIZE_COMMAND, unsigned int, APPCLASS_MONITOR, APPCLASS_STANDARD, APPCMD_CLIENTONLY, APPCMD_FILTERINITS, CBF_FAIL_ALLSVRXACTIONS, CBF_FAIL_ADVISES, CBF_FAIL_CONNECTIONS, CBF_FAIL_EXECUTES, CBF_FAIL_POKES, CBF_FAIL_REQUESTS, CBF_FAIL_SELFCONNECTIONS, CBF_SKIP_ALLNOTIFICATIONS, CBF_SKIP_CONNECT_CONFIRMS, CBF_SKIP_DISCONNECTS, CBF_SKIP_REGISTRATIONS, CBF_SKIP_UNREGISTRATIONS, MF_CALLBACKS, MF_CONV, MF_ERRORS, MF_HSZ_INFO, MF_LINKS, MF_POSTMSGS, MF_SENDMSGS);
++_Win32_Enum_(DDE_NAME_SERVICE_CMD, unsigned int, DNS_REGISTER, DNS_UNREGISTER, DNS_FILTERON, DNS_FILTEROFF);
++_Win32_Enum_(DDE_CLIENT_TRANSACTION_TYPE, unsigned int, XTYP_ADVSTART, XTYP_ADVSTOP, XTYP_EXECUTE, XTYP_POKE, XTYP_REQUEST, XTYP_ADVDATA, XTYP_ADVREQ, XTYP_CONNECT, XTYP_CONNECT_CONFIRM, XTYP_DISCONNECT, XTYP_MONITOR, XTYP_REGISTER, XTYP_UNREGISTER, XTYP_WILDCONNECT, XTYP_XACT_COMPLETE);
++_Win32_AnnotateField_(CONVINFO::wType, _Win32_AssociatedEnum_(DDE_CLIENT_TRANSACTION_TYPE));
++_Win32_Enum_(CONVINFO_CONVERSATION_STATE, unsigned int, XST_ADVACKRCVD, XST_ADVDATAACKRCVD, XST_ADVDATASENT, XST_ADVSENT, XST_CONNECTED, XST_DATARCVD, XST_EXECACKRCVD, XST_EXECSENT, XST_INCOMPLETE, XST_INIT1, XST_INIT2, XST_NULL, XST_POKEACKRCVD, XST_POKESENT, XST_REQSENT, XST_UNADVACKRCVD, XST_UNADVSENT);
++_Win32_AnnotateField_(CONVINFO::wConvst, _Win32_AssociatedEnum_(CONVINFO_CONVERSATION_STATE));
++_Win32_FlagsEnum_(CONVINFO_STATUS, unsigned int, ST_ADVISE, ST_BLOCKED, ST_BLOCKNEXT, ST_CLIENT, ST_CONNECTED, ST_INLIST, ST_ISLOCAL, ST_ISSELF, ST_TERMINATED);
++_Win32_AnnotateField_(CONVINFO::wStatus, _Win32_AssociatedEnum_(CONVINFO_STATUS));
++#endif

@@ -1710,7 +1710,7 @@ BOOLAPI FtpPutFileA(
     _In_ HINTERNET hConnect,
     _In_ LPCSTR lpszLocalFile,
     _In_ LPCSTR lpszNewRemoteFile,
-    _In_ DWORD dwFlags,
+    _Win32_AssociatedEnum_(FTP_FLAGS) _In_ DWORD dwFlags,
     _In_opt_ DWORD_PTR dwContext
     );
 _Win32_SetLastError_
@@ -1719,7 +1719,7 @@ BOOLAPI FtpPutFileW(
     _In_ HINTERNET hConnect,
     _In_ LPCWSTR lpszLocalFile,
     _In_ LPCWSTR lpszNewRemoteFile,
-    _In_ DWORD dwFlags,
+    _Win32_AssociatedEnum_(FTP_FLAGS) _In_ DWORD dwFlags,
     _In_opt_ DWORD_PTR dwContext
     );
 #ifdef UNICODE
@@ -1790,7 +1790,7 @@ INTERNETAPI_(HINTERNET) FtpOpenFileA(
     _In_ HINTERNET hConnect,
     _In_ LPCSTR lpszFileName,
     _In_ DWORD dwAccess,
-    _In_ DWORD dwFlags,
+    _Win32_AssociatedEnum_(FTP_FLAGS) _In_ DWORD dwFlags,
     _In_opt_ DWORD_PTR dwContext
     );
 _Win32_SetLastError_
@@ -1799,7 +1799,7 @@ INTERNETAPI_(HINTERNET) FtpOpenFileW(
     _In_ HINTERNET hConnect,
     _In_ LPCWSTR lpszFileName,
     _In_ DWORD dwAccess,
-    _In_ DWORD dwFlags,
+    _Win32_AssociatedEnum_(FTP_FLAGS) _In_ DWORD dwFlags,
     _In_opt_ DWORD_PTR dwContext
     );
 #ifdef UNICODE
@@ -1887,7 +1887,7 @@ _Win32_SupportedOS_Windows2000_
 BOOLAPI FtpCommandA(
     _In_ HINTERNET hConnect,
     _In_ BOOL fExpectResponse,
-    _In_ DWORD dwFlags,
+    _Win32_AssociatedEnum_(FTP_FLAGS) _In_ DWORD dwFlags,
     _In_ LPCSTR lpszCommand,
     _In_opt_ DWORD_PTR dwContext,
     _Out_opt_ HINTERNET *phFtpCommand
@@ -1897,7 +1897,7 @@ _Win32_SupportedOS_Windows2000_
 BOOLAPI FtpCommandW(
     _In_ HINTERNET hConnect,
     _In_ BOOL fExpectResponse,
-    _In_ DWORD dwFlags,
+    _Win32_AssociatedEnum_(FTP_FLAGS) _In_ DWORD dwFlags,
     _In_ LPCWSTR lpszCommand,
     _In_opt_ DWORD_PTR dwContext,
     _Out_opt_ HINTERNET *phFtpCommand
@@ -2685,7 +2685,7 @@ BOOLAPI HttpAddRequestHeadersA(
     _When_(dwHeadersLength != (DWORD)-1, _In_reads_(dwHeadersLength))
     LPCSTR lpszHeaders,
     _In_ DWORD dwHeadersLength,
-    _In_ DWORD dwModifiers
+    _Win32_AssociatedEnum_(HTTP_ADDREQ_FLAG) _In_ DWORD dwModifiers
     );
 BOOLAPI HttpAddRequestHeadersW(
     _In_ HINTERNET hRequest,
@@ -2693,7 +2693,7 @@ BOOLAPI HttpAddRequestHeadersW(
     _When_(dwHeadersLength != (DWORD)-1, _In_reads_(dwHeadersLength))
     LPCWSTR lpszHeaders,
     _In_ DWORD dwHeadersLength,
-    _In_ DWORD dwModifiers
+    _Win32_AssociatedEnum_(HTTP_ADDREQ_FLAG) _In_ DWORD dwModifiers
     );
 #ifdef UNICODE
 #define HttpAddRequestHeaders  HttpAddRequestHeadersW
@@ -2971,7 +2971,7 @@ InternetGetCookieExA(
     _In_opt_ LPCSTR lpszCookieName,
     _In_reads_opt_(*lpdwSize) LPSTR lpszCookieData,
     _Inout_ LPDWORD lpdwSize,
-    _In_ DWORD dwFlags,
+    _Win32_AssociatedEnum_(INTERNET_COOKIE_FLAGS) _In_ DWORD dwFlags,
     _Reserved_ LPVOID lpReserved
     );
 _Win32_SetLastError_
@@ -2982,7 +2982,7 @@ InternetGetCookieExW(
     _In_opt_ LPCWSTR lpszCookieName,
     _In_reads_opt_(*lpdwSize) LPWSTR lpszCookieData,
     _Inout_ LPDWORD lpdwSize,
-    _In_ DWORD dwFlags,
+    _Win32_AssociatedEnum_(INTERNET_COOKIE_FLAGS) _In_ DWORD dwFlags,
     _Reserved_ LPVOID lpReserved
     );
 #ifdef UNICODE
@@ -4080,7 +4080,7 @@ _Win32_SetLastError_
 _Win32_SupportedOS_Windows2000_
 
 BOOLAPI InternetAutodial(
-    _In_       DWORD  dwFlags,
+    _Win32_AssociatedEnum_(INTERNET_AUTODIAL) _In_       DWORD  dwFlags,
     _In_opt_ HWND   hwndParent);
 
 // Flags for InternetAutodial
@@ -4099,14 +4099,14 @@ _Win32_SetLastError_
 _Win32_SupportedOS_Windows2000_
 
 BOOLAPI InternetGetConnectedState(
-    _Out_  LPDWORD  lpdwFlags,
+    _Win32_AssociatedEnum_(INTERNET_CONNECTION) _Out_  LPDWORD  lpdwFlags,
     _Reserved_ DWORD    dwReserved);
 _Win32_SetLastError_
 _Win32_SupportedOS_Windows2000_
 
 BOOLAPI
 InternetGetConnectedStateExA(
-    _Out_opt_ LPDWORD lpdwFlags,
+    _Win32_AssociatedEnum_(INTERNET_CONNECTION) _Out_opt_ LPDWORD lpdwFlags,
     _Out_writes_opt_(cchNameLen) LPSTR lpszConnectionName,
     _In_ DWORD cchNameLen,
     _Reserved_ DWORD dwReserved
@@ -4116,7 +4116,7 @@ _Win32_SupportedOS_Windows2000_
 
 BOOLAPI
 InternetGetConnectedStateExW(
-    _Out_opt_ LPDWORD lpdwFlags,
+    _Win32_AssociatedEnum_(INTERNET_CONNECTION) _Out_opt_ LPDWORD lpdwFlags,
     _Out_writes_opt_(cchNameLen) LPWSTR lpszConnectionName,
     _In_ DWORD cchNameLen,
     _Reserved_ DWORD dwReserved
@@ -4228,7 +4228,7 @@ _Win32_SupportedOS_Windows2000_
 BOOLAPI DetectAutoProxyUrl(
     _Out_writes_(cchAutoProxyUrl) PSTR pszAutoProxyUrl,
     _In_ DWORD cchAutoProxyUrl,
-    _In_ DWORD dwDetectFlags
+    _Win32_AssociatedEnum_(PROXY_AUTO_DETECT_TYPE) _In_ DWORD dwDetectFlags
     );
 
 BOOLAPI CreateMD5SSOHash (
@@ -4247,7 +4247,7 @@ BOOLAPI CreateMD5SSOHash (
 _Win32_SetLastError_
 _Win32_SupportedOS_Windows2000_
 BOOLAPI InternetGetConnectedStateEx(
-    _Out_ LPDWORD lpdwFlags,
+    _Win32_AssociatedEnum_(INTERNET_CONNECTION) _Out_ LPDWORD lpdwFlags,
     _Out_writes_opt_(dwNameLen) LPSTR lpszConnectionName,
     _In_ DWORD dwNameLen,
     _In_ DWORD dwReserved
@@ -4444,3 +4444,18 @@ HttpIsHostHstsEnabled(
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP) */
 #pragma endregion
 
+#ifndef _WIN32METADATA_WININET_NATIVE_C_64_GROUPS_
+#define _WIN32METADATA_WININET_NATIVE_C_64_GROUPS_
+_Win32_Enum_(FTP_FLAGS, unsigned int, FTP_TRANSFER_TYPE_ASCII, FTP_TRANSFER_TYPE_BINARY, FTP_TRANSFER_TYPE_UNKNOWN, INTERNET_FLAG_TRANSFER_ASCII, INTERNET_FLAG_TRANSFER_BINARY);
+_Win32_FlagsEnum_(INTERNET_CONNECTION, unsigned int, INTERNET_CONNECTION_CONFIGURED, INTERNET_CONNECTION_LAN, INTERNET_CONNECTION_MODEM, INTERNET_CONNECTION_MODEM_BUSY, INTERNET_CONNECTION_OFFLINE, INTERNET_CONNECTION_PROXY, INTERNET_RAS_INSTALLED);
+_Win32_FlagsEnum_(HTTP_ADDREQ_FLAG, unsigned int, HTTP_ADDREQ_FLAG_ADD, HTTP_ADDREQ_FLAG_ADD_IF_NEW, HTTP_ADDREQ_FLAG_COALESCE, HTTP_ADDREQ_FLAG_COALESCE_WITH_COMMA, HTTP_ADDREQ_FLAG_COALESCE_WITH_SEMICOLON, HTTP_ADDREQ_FLAG_REPLACE);
+_Win32_Enum_(INTERNET_COOKIE_FLAGS, unsigned int, INTERNET_COOKIE_HTTPONLY, INTERNET_COOKIE_THIRD_PARTY, INTERNET_FLAG_RESTRICTED_ZONE);
+_Win32_FlagsEnum_(PROXY_AUTO_DETECT_TYPE, unsigned int, PROXY_AUTO_DETECT_TYPE_DHCP, PROXY_AUTO_DETECT_TYPE_DNS_A);
+_Win32_Enum_(INTERNET_AUTODIAL, unsigned int, INTERNET_AUTODIAL_FAILIFSECURITYCHECK, INTERNET_AUTODIAL_FORCE_ONLINE, INTERNET_AUTODIAL_FORCE_UNATTENDED, INTERNET_AUTODIAL_OVERRIDE_NET_PRESENT);
+_Win32_Enum_(GOPHER_TYPE, unsigned int, GOPHER_TYPE_ASK, GOPHER_TYPE_BINARY, GOPHER_TYPE_BITMAP, GOPHER_TYPE_CALENDAR, GOPHER_TYPE_CSO, GOPHER_TYPE_DIRECTORY, GOPHER_TYPE_DOS_ARCHIVE, GOPHER_TYPE_ERROR, GOPHER_TYPE_GIF, GOPHER_TYPE_GOPHER_PLUS, GOPHER_TYPE_HTML, GOPHER_TYPE_IMAGE, GOPHER_TYPE_INDEX_SERVER, GOPHER_TYPE_INLINE, GOPHER_TYPE_MAC_BINHEX, GOPHER_TYPE_MOVIE, GOPHER_TYPE_PDF, GOPHER_TYPE_REDUNDANT, GOPHER_TYPE_SOUND, GOPHER_TYPE_TELNET, GOPHER_TYPE_TEXT_FILE, GOPHER_TYPE_TN3270, GOPHER_TYPE_UNIX_UUENCODED, GOPHER_TYPE_UNKNOWN);
+_Win32_AnnotateField_(GOPHER_FIND_DATAW::GopherType, _Win32_AssociatedEnum_(GOPHER_TYPE));
+_Win32_AnnotateField_(GOPHER_FIND_DATAA::GopherType, _Win32_AssociatedEnum_(GOPHER_TYPE));
+_Win32_Enum_(INTERNET_PER_CONN, unsigned int, INTERNET_PER_CONN_AUTOCONFIG_URL, INTERNET_PER_CONN_AUTODISCOVERY_FLAGS, INTERNET_PER_CONN_FLAGS, INTERNET_PER_CONN_PROXY_BYPASS, INTERNET_PER_CONN_PROXY_SERVER, INTERNET_PER_CONN_AUTOCONFIG_SECONDARY_URL, INTERNET_PER_CONN_AUTOCONFIG_RELOAD_DELAY_MINS, INTERNET_PER_CONN_AUTOCONFIG_LAST_DETECT_TIME, INTERNET_PER_CONN_AUTOCONFIG_LAST_DETECT_URL);
+_Win32_AnnotateField_(INTERNET_PER_CONN_OPTIONA::dwOption, _Win32_AssociatedEnum_(INTERNET_PER_CONN));
+_Win32_AnnotateField_(INTERNET_PER_CONN_OPTIONW::dwOption, _Win32_AssociatedEnum_(INTERNET_PER_CONN));
+#endif

@@ -3,16 +3,6 @@
   "items":
 [
   {
-    "namespace": "Windows.Win32.UI.Controls",
-    "name": "THEME_PROPERTY_SYMBOL_ID",
-    "flags": false,
-    "autoPopulate": {
-      "filter": "TMT_",
-      "header": "vssym32.h"
-    },
-    "uses": []
-  },
-  {
     "name": "SET_THEME_APP_PROPERTIES_FLAGS",
     "type": "uint",
     "flags": true,
@@ -694,33 +684,6 @@
       {
         "struct": "NCryptAlgorithmName",
         "field": "dwAlgOperations"
-      }
-    ]
-  },
-  {
-    "name": "DDE_ENABLE_CALLBACK_CMD",
-    "members": [
-      {
-        "name": "EC_ENABLEALL",
-        "value": "0"
-      },
-      {
-        "name": "EC_ENABLEONE",
-        "value": "128"
-      },
-      {
-        "name": "EC_DISABLE",
-        "value": "8"
-      },
-      {
-        "name": "EC_QUERYWAITING",
-        "value": "2"
-      }
-    ],
-    "uses": [
-      {
-        "method": "DdeEnableCallback",
-        "parameter": "wCmd"
       }
     ]
   },
@@ -3123,63 +3086,6 @@
     ]
   },
   {
-    "name": "SHARE_TYPE",
-    "flags": true,
-    "members": [
-      {
-        "name": "STYPE_DISKTREE",
-        "value": "0"
-      },
-      {
-        "name": "STYPE_PRINTQ",
-        "value": "1"
-      },
-      {
-        "name": "STYPE_DEVICE",
-        "value": "2"
-      },
-      {
-        "name": "STYPE_IPC",
-        "value": "3"
-      },
-      {
-        "name": "STYPE_SPECIAL"
-      },
-      {
-        "name": "STYPE_TEMPORARY"
-      },
-      {
-        "name": "STYPE_MASK"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "SHARE_INFO_501",
-        "field": "shi501_type"
-      },
-      {
-        "struct": "SHARE_INFO_2",
-        "field": "shi2_type"
-      },
-      {
-        "struct": "SHARE_INFO_1",
-        "field": "shi1_type"
-      },
-      {
-        "struct": "SHARE_INFO_502",
-        "field": "shi502_type"
-      },
-      {
-        "struct": "CONNECTION_INFO_1",
-        "field": "coni1_type"
-      },
-      {
-        "struct": "SHARE_INFO_503",
-        "field": "shi503_type"
-      }
-    ]
-  },
-  {
     "name": "PERF_DETAIL",
     "members": [
       {
@@ -4672,52 +4578,6 @@
     ]
   },
   {
-    "name": "FTP_FLAGS",
-    "members": [
-      {
-        "name": "FTP_TRANSFER_TYPE_ASCII"
-      },
-      {
-        "name": "FTP_TRANSFER_TYPE_BINARY"
-      },
-      {
-        "name": "FTP_TRANSFER_TYPE_UNKNOWN"
-      },
-      {
-        "name": "INTERNET_FLAG_TRANSFER_ASCII"
-      },
-      {
-        "name": "INTERNET_FLAG_TRANSFER_BINARY"
-      }
-    ],
-    "uses": [
-      {
-        "method": "FtpPutFileA",
-        "parameter": "dwFlags"
-      },
-      {
-        "method": "FtpOpenFileW",
-        "parameter": "dwFlags"
-      },
-      {
-        "method": "FtpPutFileW",
-        "parameter": "dwFlags"
-      },
-      {
-        "method": "FtpOpenFileA",
-        "parameter": "dwFlags"
-      },
-      {
-        "method": "FtpCommandA",
-        "parameter": "dwFlags"
-      },
-      {
-        "method": "FtpCommandW",
-        "parameter": "dwFlags"
-      }
-    ]
-  },
-  {
     "name": "WINDOW_LONG_PTR_INDEX",
     "members": [
       {
@@ -4814,52 +4674,6 @@
       {
         "method": "PdhMakeCounterPathA",
         "parameter": "dwFlags"
-      }
-    ]
-  },
-  {
-    "name": "INTERNET_CONNECTION",
-    "flags": true,
-    "members": [
-      {
-        "name": "INTERNET_CONNECTION_CONFIGURED",
-        "value": "64"
-      },
-      {
-        "name": "INTERNET_CONNECTION_LAN"
-      },
-      {
-        "name": "INTERNET_CONNECTION_MODEM"
-      },
-      {
-        "name": "INTERNET_CONNECTION_MODEM_BUSY"
-      },
-      {
-        "name": "INTERNET_CONNECTION_OFFLINE"
-      },
-      {
-        "name": "INTERNET_CONNECTION_PROXY"
-      },
-      {
-        "name": "INTERNET_RAS_INSTALLED"
-      }
-    ],
-    "uses": [
-      {
-        "method": "InternetGetConnectedStateEx",
-        "parameter": "lpdwFlags"
-      },
-      {
-        "method": "InternetGetConnectedStateExA",
-        "parameter": "lpdwFlags"
-      },
-      {
-        "method": "InternetGetConnectedStateExW",
-        "parameter": "lpdwFlags"
-      },
-      {
-        "method": "InternetGetConnectedState",
-        "parameter": "lpdwFlags"
       }
     ]
   },
@@ -5241,39 +5055,6 @@
       {
         "method": "CreateEventExA",
         "parameter": "dwFlags"
-      }
-    ]
-  },
-  {
-    "name": "SET_COMPOSITION_STRING_TYPE",
-    "members": [
-      {
-        "name": "SCS_SETSTR",
-        "value": "(IME_COMPOSITION_STRING.GCS_COMPREADSTR|IME_COMPOSITION_STRING.GCS_COMPSTR)"
-      },
-      {
-        "name": "SCS_CHANGEATTR",
-        "value": "(IME_COMPOSITION_STRING.GCS_COMPREADATTR|IME_COMPOSITION_STRING.GCS_COMPATTR)"
-      },
-      {
-        "name": "SCS_CHANGECLAUSE",
-        "value": "(IME_COMPOSITION_STRING.GCS_COMPREADCLAUSE|IME_COMPOSITION_STRING.GCS_COMPCLAUSE)"
-      },
-      {
-        "name": "SCS_SETRECONVERTSTRING"
-      },
-      {
-        "name": "SCS_QUERYRECONVERTSTRING"
-      }
-    ],
-    "uses": [
-      {
-        "method": "ImmSetCompositionStringW",
-        "parameter": "dwIndex"
-      },
-      {
-        "method": "ImmSetCompositionStringA",
-        "parameter": "dwIndex"
       }
     ]
   },
@@ -6935,33 +6716,6 @@
     ]
   },
   {
-    "name": "GET_GUIDE_LINE_TYPE",
-    "members": [
-      {
-        "name": "GGL_LEVEL"
-      },
-      {
-        "name": "GGL_INDEX"
-      },
-      {
-        "name": "GGL_STRING"
-      },
-      {
-        "name": "GGL_PRIVATE"
-      }
-    ],
-    "uses": [
-      {
-        "method": "ImmGetGuideLineA",
-        "parameter": "dwIndex"
-      },
-      {
-        "method": "ImmGetGuideLineW",
-        "parameter": "dwIndex"
-      }
-    ]
-  },
-  {
     "name": "CR_DISP",
     "members": [
       {
@@ -7314,29 +7068,6 @@
     ]
   },
   {
-    "name": "NOTIFY_IME_INDEX",
-    "members": [
-      {
-        "name": "CPS_CANCEL"
-      },
-      {
-        "name": "CPS_COMPLETE"
-      },
-      {
-        "name": "CPS_CONVERT"
-      },
-      {
-        "name": "CPS_REVERT"
-      }
-    ],
-    "uses": [
-      {
-        "method": "ImmNotifyIME",
-        "parameter": "dwIndex"
-      }
-    ]
-  },
-  {
     "name": "DUPLICATE_HANDLE_OPTIONS",
     "flags": true,
     "autoPopulate": {
@@ -7471,40 +7202,6 @@
     ]
   },
   {
-    "name": "HTTP_ADDREQ_FLAG",
-    "flags": true,
-    "members": [
-      {
-        "name": "HTTP_ADDREQ_FLAG_ADD"
-      },
-      {
-        "name": "HTTP_ADDREQ_FLAG_ADD_IF_NEW"
-      },
-      {
-        "name": "HTTP_ADDREQ_FLAG_COALESCE"
-      },
-      {
-        "name": "HTTP_ADDREQ_FLAG_COALESCE_WITH_COMMA"
-      },
-      {
-        "name": "HTTP_ADDREQ_FLAG_COALESCE_WITH_SEMICOLON"
-      },
-      {
-        "name": "HTTP_ADDREQ_FLAG_REPLACE"
-      }
-    ],
-    "uses": [
-      {
-        "method": "HttpAddRequestHeadersA",
-        "parameter": "dwModifiers"
-      },
-      {
-        "method": "HttpAddRequestHeadersW",
-        "parameter": "dwModifiers"
-      }
-    ]
-  },
-  {
     "name": "MSG_WAIT_FOR_MULTIPLE_OBJECTS_EX_FLAGS",
     "flags": true,
     "members": [
@@ -7567,30 +7264,6 @@
       {
         "interface": "ITfSystemDeviceTypeLangBarItem",
         "method": "SetIconMode",
-        "parameter": "dwFlags"
-      }
-    ]
-  },
-  {
-    "name": "INTERNET_COOKIE_FLAGS",
-    "members": [
-      {
-        "name": "INTERNET_COOKIE_HTTPONLY"
-      },
-      {
-        "name": "INTERNET_COOKIE_THIRD_PARTY"
-      },
-      {
-        "name": "INTERNET_FLAG_RESTRICTED_ZONE"
-      }
-    ],
-    "uses": [
-      {
-        "method": "InternetGetCookieExW",
-        "parameter": "dwFlags"
-      },
-      {
-        "method": "InternetGetCookieExA",
         "parameter": "dwFlags"
       }
     ]
@@ -8578,41 +8251,6 @@
     ]
   },
   {
-    "name": "NOTIFY_IME_ACTION",
-    "members": [
-      {
-        "name": "NI_CHANGECANDIDATELIST"
-      },
-      {
-        "name": "NI_CLOSECANDIDATE"
-      },
-      {
-        "name": "NI_COMPOSITIONSTR"
-      },
-      {
-        "name": "NI_IMEMENUSELECTED"
-      },
-      {
-        "name": "NI_OPENCANDIDATE"
-      },
-      {
-        "name": "NI_SELECTCANDIDATESTR"
-      },
-      {
-        "name": "NI_SETCANDIDATE_PAGESIZE"
-      },
-      {
-        "name": "NI_SETCANDIDATE_PAGESTART"
-      }
-    ],
-    "uses": [
-      {
-        "method": "ImmNotifyIME",
-        "parameter": "dwAction"
-      }
-    ]
-  },
-  {
     "name": "FORCE_LEVEL_FLAGS",
     "members": [
       {
@@ -8636,30 +8274,6 @@
       {
         "method": "NetWkstaTransportDel",
         "parameter": "ucond"
-      }
-    ]
-  },
-  {
-    "name": "GET_CONVERSION_LIST_FLAG",
-    "members": [
-      {
-        "name": "GCL_CONVERSION"
-      },
-      {
-        "name": "GCL_REVERSECONVERSION"
-      },
-      {
-        "name": "GCL_REVERSE_LENGTH"
-      }
-    ],
-    "uses": [
-      {
-        "method": "ImmGetConversionListW",
-        "parameter": "uFlag"
-      },
-      {
-        "method": "ImmGetConversionListA",
-        "parameter": "uFlag"
       }
     ]
   },
@@ -8805,24 +8419,6 @@
       {
         "method": "RegNotifyChangeKeyValue",
         "parameter": "dwNotifyFilter"
-      }
-    ]
-  },
-  {
-    "name": "PROXY_AUTO_DETECT_TYPE",
-    "flags": true,
-    "members": [
-      {
-        "name": "PROXY_AUTO_DETECT_TYPE_DHCP"
-      },
-      {
-        "name": "PROXY_AUTO_DETECT_TYPE_DNS_A"
-      }
-    ],
-    "uses": [
-      {
-        "method": "DetectAutoProxyUrl",
-        "parameter": "dwDetectFlags"
       }
     ]
   },
@@ -9048,31 +8644,6 @@
     ]
   },
   {
-    "name": "ENUM_SYSTEM_LANGUAGE_GROUPS_FLAGS",
-    "members": [
-      {
-        "name": "LGRPID_INSTALLED"
-      },
-      {
-        "name": "LGRPID_SUPPORTED"
-      }
-    ],
-    "uses": [
-      {
-        "method": "EnumSystemLanguageGroupsW",
-        "parameter": "dwFlags"
-      },
-      {
-        "method": "IsValidLanguageGroup",
-        "parameter": "dwFlags"
-      },
-      {
-        "method": "EnumSystemLanguageGroupsA",
-        "parameter": "dwFlags"
-      }
-    ]
-  },
-  {
     "name": "AUTHZ_INITIALIZE_OBJECT_ACCESS_AUDIT_EVENT_FLAGS",
     "members": [
       {
@@ -9089,30 +8660,6 @@
       {
         "method": "AuthzInitializeObjectAccessAuditEvent",
         "parameter": "Flags"
-      }
-    ]
-  },
-  {
-    "name": "SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "SAFER_TOKEN_NULL_IF_EQUAL"
-      },
-      {
-        "name": "SAFER_TOKEN_COMPARE_ONLY"
-      },
-      {
-        "name": "SAFER_TOKEN_MAKE_INERT"
-      },
-      {
-        "name": "SAFER_TOKEN_WANT_FLAGS"
-      }
-    ],
-    "uses": [
-      {
-        "method": "SaferComputeTokenFromLevel",
-        "parameter": "dwFlags"
       }
     ]
   },
@@ -9381,110 +8928,6 @@
     ]
   },
   {
-    "name": "DDE_INITIALIZE_COMMAND",
-    "flags": true,
-    "members": [
-      {
-        "name": "APPCLASS_MONITOR"
-      },
-      {
-        "name": "APPCLASS_STANDARD"
-      },
-      {
-        "name": "APPCMD_CLIENTONLY"
-      },
-      {
-        "name": "APPCMD_FILTERINITS"
-      },
-      {
-        "name": "CBF_FAIL_ALLSVRXACTIONS",
-        "value": "258048"
-      },
-      {
-        "name": "CBF_FAIL_ADVISES",
-        "value": "16384"
-      },
-      {
-        "name": "CBF_FAIL_CONNECTIONS",
-        "value": "8192"
-      },
-      {
-        "name": "CBF_FAIL_EXECUTES",
-        "value": "32768"
-      },
-      {
-        "name": "CBF_FAIL_POKES",
-        "value": "65536"
-      },
-      {
-        "name": "CBF_FAIL_REQUESTS",
-        "value": "131072"
-      },
-      {
-        "name": "CBF_FAIL_SELFCONNECTIONS",
-        "value": "4096"
-      },
-      {
-        "name": "CBF_SKIP_ALLNOTIFICATIONS",
-        "value": "3932160"
-      },
-      {
-        "name": "CBF_SKIP_CONNECT_CONFIRMS",
-        "value": "262144"
-      },
-      {
-        "name": "CBF_SKIP_DISCONNECTS",
-        "value": "2097152"
-      },
-      {
-        "name": "CBF_SKIP_REGISTRATIONS",
-        "value": "524288"
-      },
-      {
-        "name": "CBF_SKIP_UNREGISTRATIONS",
-        "value": "1048576"
-      },
-      {
-        "name": "MF_CALLBACKS",
-        "value": "134217728"
-      },
-      {
-        "name": "MF_CONV",
-        "value": "1073741824"
-      },
-      {
-        "name": "MF_ERRORS",
-        "value": "268435456"
-      },
-      {
-        "name": "MF_HSZ_INFO",
-        "value": "16777216"
-      },
-      {
-        "name": "MF_LINKS",
-        "value": "536870912"
-      },
-      {
-        "name": "MF_POSTMSGS",
-        "value": "67108864"
-      },
-      {
-        "name": "MF_SENDMSGS",
-        "value": "33554432"
-      }
-    ],
-    "uses": [
-      {
-        "method": "DdeInitializeW",
-        "parameter": "afCmd"
-      },
-      {
-        "method": "DdeInitializeA",
-        "parameter": "afCmd"
-      }
-    ]
-  },
-  {
     "name": "HEADER_CONTROL_NOTIFICATION_BUTTON",
     "type": "int",
     "members": [
@@ -9714,48 +9157,6 @@
         "interface": "IBitsTokenOptions",
         "method": "GetHelperTokenFlags",
         "parameter": "pFlags"
-      }
-    ]
-  },
-  {
-    "name": "MSV_SUB_AUTHENTICATION_FILTER",
-    "members": [
-      {
-        "name": "LOGON_GUEST"
-      },
-      {
-        "name": "LOGON_NOENCRYPTION"
-      },
-      {
-        "name": "LOGON_CACHED_ACCOUNT"
-      },
-      {
-        "name": "LOGON_USED_LM_PASSWORD"
-      },
-      {
-        "name": "LOGON_EXTRA_SIDS"
-      },
-      {
-        "name": "LOGON_SUBAUTH_SESSION_KEY"
-      },
-      {
-        "name": "LOGON_SERVER_TRUST_ACCOUNT"
-      },
-      {
-        "name": "LOGON_PROFILE_PATH_RETURNED"
-      },
-      {
-        "name": "LOGON_RESOURCE_GROUPS"
-      }
-    ],
-    "uses": [
-      {
-        "method": "Msv1_0SubAuthenticationFilter",
-        "parameter": "UserFlags"
-      },
-      {
-        "struct": "MSV1_0_LM20_LOGON_PROFILE",
-        "field": "UserFlags"
       }
     ]
   },
@@ -10029,23 +9430,6 @@
       {
         "method": "PeekMessageA",
         "parameter": "wRemoveMsg"
-      }
-    ]
-  },
-  {
-    "name": "WINTRUST_GET_DEFAULT_FOR_USAGE_ACTION",
-    "members": [
-      {
-        "name": "DWACTION_ALLOCANDFILL"
-      },
-      {
-        "name": "DWACTION_FREE"
-      }
-    ],
-    "uses": [
-      {
-        "method": "WintrustGetDefaultForUsage",
-        "parameter": "dwAction"
       }
     ]
   },
@@ -10337,30 +9721,6 @@
       {
         "method": "TTLoadEmbeddedFont",
         "parameter": "ulPrivs"
-      }
-    ]
-  },
-  {
-    "name": "INTERNET_AUTODIAL",
-    "members": [
-      {
-        "name": "INTERNET_AUTODIAL_FAILIFSECURITYCHECK",
-        "value": "4"
-      },
-      {
-        "name": "INTERNET_AUTODIAL_FORCE_ONLINE"
-      },
-      {
-        "name": "INTERNET_AUTODIAL_FORCE_UNATTENDED"
-      },
-      {
-        "name": "INTERNET_AUTODIAL_OVERRIDE_NET_PRESENT"
-      }
-    ],
-    "uses": [
-      {
-        "method": "InternetAutodial",
-        "parameter": "dwFlags"
       }
     ]
   },
@@ -10960,33 +10320,6 @@
     ]
   },
   {
-    "name": "DDE_NAME_SERVICE_CMD",
-    "members": [
-      {
-        "name": "DNS_REGISTER",
-        "value": "1"
-      },
-      {
-        "name": "DNS_UNREGISTER",
-        "value": "2"
-      },
-      {
-        "name": "DNS_FILTERON",
-        "value": "4"
-      },
-      {
-        "name": "DNS_FILTEROFF",
-        "value": "8"
-      }
-    ],
-    "uses": [
-      {
-        "method": "DdeNameService",
-        "parameter": "afCmd"
-      }
-    ]
-  },
-  {
     "name": "TEXT_STORY_ACTIVE_STATE",
     "members": [
       {
@@ -11149,55 +10482,6 @@
     ]
   },
   {
-    "name": "WINTRUST_POLICY_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "WTPF_TRUSTTEST"
-      },
-      {
-        "name": "WTPF_TESTCANBEVALID"
-      },
-      {
-        "name": "WTPF_IGNOREEXPIRATION"
-      },
-      {
-        "name": "WTPF_IGNOREREVOKATION"
-      },
-      {
-        "name": "WTPF_OFFLINEOK_IND"
-      },
-      {
-        "name": "WTPF_OFFLINEOK_COM"
-      },
-      {
-        "name": "WTPF_OFFLINEOKNBU_IND"
-      },
-      {
-        "name": "WTPF_OFFLINEOKNBU_COM"
-      },
-      {
-        "name": "WTPF_VERIFY_V1_OFF"
-      },
-      {
-        "name": "WTPF_IGNOREREVOCATIONONTS"
-      },
-      {
-        "name": "WTPF_ALLOWONLYPERTRUST"
-      }
-    ],
-    "uses": [
-      {
-        "method": "WintrustGetRegPolicyFlags",
-        "parameter": "pdwPolicyFlags"
-      },
-      {
-        "method": "WintrustSetRegPolicyFlags",
-        "parameter": "dwPolicyFlags"
-      }
-    ]
-  },
-  {
     "name": "DRAW_THEME_PARENT_BACKGROUND_FLAGS",
     "flags": true,
     "members": [
@@ -11253,23 +10537,6 @@
     ]
   },
   {
-    "name": "IS_VALID_LOCALE_FLAGS",
-    "members": [
-      {
-        "name": "LCID_INSTALLED"
-      },
-      {
-        "name": "LCID_SUPPORTED"
-      }
-    ],
-    "uses": [
-      {
-        "method": "IsValidLocale",
-        "parameter": "dwFlags"
-      }
-    ]
-  },
-  {
     "name": "NETWORK_NAME_FORMAT_FLAGS",
     "members": [
       {
@@ -11282,27 +10549,6 @@
     "uses": [
       {
         "method": "NPFormatNetworkName",
-        "parameter": "dwFlags"
-      }
-    ]
-  },
-  {
-    "name": "ENUM_SYSTEM_CODE_PAGES_FLAGS",
-    "members": [
-      {
-        "name": "CP_INSTALLED"
-      },
-      {
-        "name": "CP_SUPPORTED"
-      }
-    ],
-    "uses": [
-      {
-        "method": "EnumSystemCodePagesA",
-        "parameter": "dwFlags"
-      },
-      {
-        "method": "EnumSystemCodePagesW",
         "parameter": "dwFlags"
       }
     ]
@@ -11625,158 +10871,6 @@
     ]
   },
   {
-    "name": "NET_SERVER_TYPE",
-    "flags": true,
-    "members": [
-      {
-        "name": "SV_TYPE_WORKSTATION",
-        "value": "1"
-      },
-      {
-        "name": "SV_TYPE_SERVER",
-        "value": "2"
-      },
-      {
-        "name": "SV_TYPE_SQLSERVER",
-        "value": "4"
-      },
-      {
-        "name": "SV_TYPE_DOMAIN_CTRL",
-        "value": "8"
-      },
-      {
-        "name": "SV_TYPE_DOMAIN_BAKCTRL",
-        "value": "16"
-      },
-      {
-        "name": "SV_TYPE_TIME_SOURCE",
-        "value": "32"
-      },
-      {
-        "name": "SV_TYPE_AFP",
-        "value": "64"
-      },
-      {
-        "name": "SV_TYPE_NOVELL",
-        "value": "128"
-      },
-      {
-        "name": "SV_TYPE_DOMAIN_MEMBER",
-        "value": "256"
-      },
-      {
-        "name": "SV_TYPE_PRINTQ_SERVER",
-        "value": "512"
-      },
-      {
-        "name": "SV_TYPE_DIALIN_SERVER",
-        "value": "1024"
-      },
-      {
-        "name": "SV_TYPE_XENIX_SERVER",
-        "value": "2048"
-      },
-      {
-        "name": "SV_TYPE_SERVER_UNIX",
-        "value": "2048"
-      },
-      {
-        "name": "SV_TYPE_NT",
-        "value": "4096"
-      },
-      {
-        "name": "SV_TYPE_WFW",
-        "value": "8192"
-      },
-      {
-        "name": "SV_TYPE_SERVER_MFPN",
-        "value": "16384"
-      },
-      {
-        "name": "SV_TYPE_SERVER_NT",
-        "value": "32768"
-      },
-      {
-        "name": "SV_TYPE_POTENTIAL_BROWSER",
-        "value": "65536"
-      },
-      {
-        "name": "SV_TYPE_BACKUP_BROWSER",
-        "value": "131072"
-      },
-      {
-        "name": "SV_TYPE_MASTER_BROWSER",
-        "value": "262144"
-      },
-      {
-        "name": "SV_TYPE_DOMAIN_MASTER",
-        "value": "524288"
-      },
-      {
-        "name": "SV_TYPE_SERVER_OSF",
-        "value": "1048576"
-      },
-      {
-        "name": "SV_TYPE_SERVER_VMS",
-        "value": "2097152"
-      },
-      {
-        "name": "SV_TYPE_WINDOWS",
-        "value": "4194304"
-      },
-      {
-        "name": "SV_TYPE_DFS",
-        "value": "8388608"
-      },
-      {
-        "name": "SV_TYPE_CLUSTER_NT",
-        "value": "16777216"
-      },
-      {
-        "name": "SV_TYPE_TERMINALSERVER",
-        "value": "33554432"
-      },
-      {
-        "name": "SV_TYPE_CLUSTER_VS_NT",
-        "value": "67108864"
-      },
-      {
-        "name": "SV_TYPE_DCE",
-        "value": "268435456"
-      },
-      {
-        "name": "SV_TYPE_ALTERNATE_XPORT",
-        "value": "536870912"
-      },
-      {
-        "name": "SV_TYPE_LOCAL_LIST_ONLY",
-        "value": "1073741824"
-      },
-      {
-        "name": "SV_TYPE_DOMAIN_ENUM",
-        "value": "2147483648"
-      },
-      {
-        "name": "SV_TYPE_ALL",
-        "value": "4294967295"
-      }
-    ],
-    "uses": [
-      {
-        "method": "NetServerEnum",
-        "parameter": "servertype"
-      },
-      {
-        "struct": "SERVER_INFO_102",
-        "field": "sv102_type"
-      },
-      {
-        "struct": "SERVER_INFO_101",
-        "field": "sv101_type"
-      }
-    ]
-  },
-  {
     "name": "OS_PRODUCT_TYPE",
     "namespace": "Windows.Win32.System.SystemInformation",
     "autoPopulate": {
@@ -11787,33 +10881,6 @@
       {
         "method": "GetProductInfo",
         "parameter": "pdwReturnedProductType"
-      }
-    ]
-  },
-  {
-    "name": "NET_USER_ENUM_FILTER_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "FILTER_TEMP_DUPLICATE_ACCOUNT"
-      },
-      {
-        "name": "FILTER_NORMAL_ACCOUNT"
-      },
-      {
-        "name": "FILTER_INTERDOMAIN_TRUST_ACCOUNT"
-      },
-      {
-        "name": "FILTER_WORKSTATION_TRUST_ACCOUNT"
-      },
-      {
-        "name": "FILTER_SERVER_TRUST_ACCOUNT"
-      }
-    ],
-    "uses": [
-      {
-        "method": "NetUserEnum",
-        "parameter": "filter"
       }
     ]
   },
@@ -11900,81 +10967,6 @@
       {
         "method": "CryptCATOpen",
         "parameter": "dwPublicVersion"
-      }
-    ]
-  },
-  {
-    "name": "DDE_CLIENT_TRANSACTION_TYPE",
-    "members": [
-      {
-        "name": "XTYP_ADVSTART",
-        "value": "4144"
-      },
-      {
-        "name": "XTYP_ADVSTOP",
-        "value": "32832"
-      },
-      {
-        "name": "XTYP_EXECUTE",
-        "value": "16464"
-      },
-      {
-        "name": "XTYP_POKE",
-        "value": "16528"
-      },
-      {
-        "name": "XTYP_REQUEST",
-        "value": "8368"
-      },
-      {
-        "name": "XTYP_ADVDATA",
-        "value": "16400"
-      },
-      {
-        "name": "XTYP_ADVREQ",
-        "value": "8226"
-      },
-      {
-        "name": "XTYP_CONNECT",
-        "value": "4194"
-      },
-      {
-        "name": "XTYP_CONNECT_CONFIRM",
-        "value": "32882"
-      },
-      {
-        "name": "XTYP_DISCONNECT",
-        "value": "32962"
-      },
-      {
-        "name": "XTYP_MONITOR",
-        "value": "33010"
-      },
-      {
-        "name": "XTYP_REGISTER",
-        "value": "32930"
-      },
-      {
-        "name": "XTYP_UNREGISTER",
-        "value": "32978"
-      },
-      {
-        "name": "XTYP_WILDCONNECT",
-        "value": "8418"
-      },
-      {
-        "name": "XTYP_XACT_COMPLETE",
-        "value": "32896"
-      }
-    ],
-    "uses": [
-      {
-        "method": "DdeClientTransaction",
-        "parameter": "wType"
-      },
-      {
-        "struct": "CONVINFO",
-        "field": "wType"
       }
     ]
   },
@@ -12584,78 +11576,6 @@
     ]
   },
   {
-    "name": "KERB_TICKET_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "KERB_TICKET_FLAGS_forwardable",
-        "value": "1073741824"
-      },
-      {
-        "name": "KERB_TICKET_FLAGS_forwarded",
-        "value": "536870912"
-      },
-      {
-        "name": "KERB_TICKET_FLAGS_hw_authent",
-        "value": "1048576"
-      },
-      {
-        "name": "KERB_TICKET_FLAGS_initial",
-        "value": "4194304"
-      },
-      {
-        "name": "KERB_TICKET_FLAGS_invalid",
-        "value": "16777216"
-      },
-      {
-        "name": "KERB_TICKET_FLAGS_may_postdate",
-        "value": "67108864"
-      },
-      {
-        "name": "KERB_TICKET_FLAGS_ok_as_delegate",
-        "value": "262144"
-      },
-      {
-        "name": "KERB_TICKET_FLAGS_postdated",
-        "value": "33554432"
-      },
-      {
-        "name": "KERB_TICKET_FLAGS_pre_authent",
-        "value": "2097152"
-      },
-      {
-        "name": "KERB_TICKET_FLAGS_proxiable",
-        "value": "268435456"
-      },
-      {
-        "name": "KERB_TICKET_FLAGS_proxy",
-        "value": "134217728"
-      },
-      {
-        "name": "KERB_TICKET_FLAGS_renewable",
-        "value": "8388608"
-      },
-      {
-        "name": "KERB_TICKET_FLAGS_reserved",
-        "value": "2147483648"
-      },
-      {
-        "name": "KERB_TICKET_FLAGS_reserved1",
-        "value": "1"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "KERB_TICKET_CACHE_INFO",
-        "field": "TicketFlags"
-      },
-      {
-        "struct": "KERB_EXTERNAL_TICKET",
-        "field": "TicketFlags"
-      }
-    ]
-  },
-  {
     "name": "IPSEC_SA_BUNDLE_FLAGS",
     "flags": true,
     "members": [
@@ -12710,60 +11630,6 @@
       {
         "struct": "IPSEC_SA_BUNDLE0",
         "field": "flags"
-      }
-    ]
-  },
-  {
-    "name": "WINTRUST_DATA_PROVIDER_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "WTD_USE_IE4_TRUST_FLAG"
-      },
-      {
-        "name": "WTD_NO_IE4_CHAIN_FLAG"
-      },
-      {
-        "name": "WTD_NO_POLICY_USAGE_FLAG"
-      },
-      {
-        "name": "WTD_REVOCATION_CHECK_NONE"
-      },
-      {
-        "name": "WTD_REVOCATION_CHECK_END_CERT"
-      },
-      {
-        "name": "WTD_REVOCATION_CHECK_CHAIN"
-      },
-      {
-        "name": "WTD_REVOCATION_CHECK_CHAIN_EXCLUDE_ROOT"
-      },
-      {
-        "name": "WTD_SAFER_FLAG"
-      },
-      {
-        "name": "WTD_HASH_ONLY_FLAG"
-      },
-      {
-        "name": "WTD_USE_DEFAULT_OSVER_CHECK"
-      },
-      {
-        "name": "WTD_LIFETIME_SIGNING_FLAG"
-      },
-      {
-        "name": "WTD_CACHE_ONLY_URL_RETRIEVAL"
-      },
-      {
-        "name": "WTD_DISABLE_MD2_MD4"
-      },
-      {
-        "name": "WTD_MOTW"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "WINTRUST_DATA",
-        "field": "dwProvFlags"
       }
     ]
   },
@@ -12862,99 +11728,6 @@
       {
         "struct": "CRYPT_IMAGE_REF",
         "field": "dwFlags"
-      }
-    ]
-  },
-  {
-    "name": "USER_ACCOUNT_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "UF_SCRIPT"
-      },
-      {
-        "name": "UF_ACCOUNTDISABLE"
-      },
-      {
-        "name": "UF_HOMEDIR_REQUIRED"
-      },
-      {
-        "name": "UF_PASSWD_NOTREQD"
-      },
-      {
-        "name": "UF_PASSWD_CANT_CHANGE"
-      },
-      {
-        "name": "UF_LOCKOUT"
-      },
-      {
-        "name": "UF_DONT_EXPIRE_PASSWD"
-      },
-      {
-        "name": "UF_ENCRYPTED_TEXT_PASSWORD_ALLOWED"
-      },
-      {
-        "name": "UF_NOT_DELEGATED"
-      },
-      {
-        "name": "UF_SMARTCARD_REQUIRED"
-      },
-      {
-        "name": "UF_USE_DES_KEY_ONLY"
-      },
-      {
-        "name": "UF_DONT_REQUIRE_PREAUTH"
-      },
-      {
-        "name": "UF_TRUSTED_FOR_DELEGATION"
-      },
-      {
-        "name": "UF_PASSWORD_EXPIRED"
-      },
-      {
-        "name": "UF_TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "USER_INFO_4",
-        "field": "usri4_flags"
-      },
-      {
-        "struct": "USER_INFO_1008",
-        "field": "usri1008_flags"
-      },
-      {
-        "struct": "USER_INFO_2",
-        "field": "usri2_flags"
-      },
-      {
-        "struct": "USER_INFO_3",
-        "field": "usri3_flags"
-      },
-      {
-        "struct": "USER_INFO_22",
-        "field": "usri22_flags"
-      },
-      {
-        "struct": "USER_INFO_20",
-        "field": "usri20_flags"
-      },
-      {
-        "struct": "USER_INFO_23",
-        "field": "usri23_flags"
-      },
-      {
-        "struct": "USER_INFO_1",
-        "field": "usri1_flags"
-      },
-      {
-        "struct": "NET_DISPLAY_USER",
-        "field": "usri1_flags"
-      },
-      {
-        "struct": "NET_DISPLAY_MACHINE",
-        "field": "usri2_flags"
       }
     ]
   },
@@ -13582,50 +12355,6 @@
     ]
   },
   {
-    "name": "AF_OP",
-    "flags": true,
-    "members": [
-      {
-        "name": "AF_OP_PRINT"
-      },
-      {
-        "name": "AF_OP_COMM"
-      },
-      {
-        "name": "AF_OP_SERVER"
-      },
-      {
-        "name": "AF_OP_ACCOUNTS"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "USER_INFO_1010",
-        "field": "usri1010_auth_flags"
-      },
-      {
-        "struct": "USER_INFO_22",
-        "field": "usri22_auth_flags"
-      },
-      {
-        "struct": "USER_INFO_3",
-        "field": "usri3_auth_flags"
-      },
-      {
-        "struct": "USER_INFO_11",
-        "field": "usri11_auth_flags"
-      },
-      {
-        "struct": "USER_INFO_4",
-        "field": "usri4_auth_flags"
-      },
-      {
-        "struct": "USER_INFO_2",
-        "field": "usri2_auth_flags"
-      }
-    ]
-  },
-  {
     "name": "SHARE_INFO_PERMISSIONS",
     "members": [
       {
@@ -13698,27 +12427,6 @@
       {
         "struct": "KERB_ADD_BINDING_CACHE_ENTRY_EX_REQUEST",
         "field": "AddressType"
-      }
-    ]
-  },
-  {
-    "name": "SERVER_INFO_SECURITY",
-    "members": [
-      {
-        "name": "SV_SHARESECURITY"
-      },
-      {
-        "name": "SV_USERSECURITY"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "SERVER_INFO_402",
-        "field": "sv402_security"
-      },
-      {
-        "struct": "SERVER_INFO_403",
-        "field": "sv403_security"
       }
     ]
   },
@@ -13941,50 +12649,6 @@
     ]
   },
   {
-    "name": "USER_PRIV",
-    "members": [
-      {
-        "name": "USER_PRIV_GUEST"
-      },
-      {
-        "name": "USER_PRIV_USER"
-      },
-      {
-        "name": "USER_PRIV_ADMIN"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "USER_INFO_1",
-        "field": "usri1_priv"
-      },
-      {
-        "struct": "USER_INFO_2",
-        "field": "usri2_priv"
-      },
-      {
-        "struct": "USER_INFO_4",
-        "field": "usri4_priv"
-      },
-      {
-        "struct": "USER_INFO_22",
-        "field": "usri22_priv"
-      },
-      {
-        "struct": "USER_INFO_1005",
-        "field": "usri1005_priv"
-      },
-      {
-        "struct": "USER_INFO_11",
-        "field": "usri11_priv"
-      },
-      {
-        "struct": "USER_INFO_3",
-        "field": "usri3_priv"
-      }
-    ]
-  },
-  {
     "name": "VDS_NF_CONTROLLER",
     "members": [
       {
@@ -14088,53 +12752,6 @@
     ]
   },
   {
-    "name": "WINTRUST_DATA_UICHOICE",
-    "members": [
-      {
-        "name": "WTD_UI_ALL",
-        "value": "1"
-      },
-      {
-        "name": "WTD_UI_NONE",
-        "value": "2"
-      },
-      {
-        "name": "WTD_UI_NOBAD",
-        "value": "3"
-      },
-      {
-        "name": "WTD_UI_NOGOOD",
-        "value": "4"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "WINTRUST_DATA",
-        "field": "dwUIChoice"
-      }
-    ]
-  },
-  {
-    "name": "WINTRUST_SIGNATURE_SETTINGS_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "WSS_VERIFY_SPECIFIC",
-        "value": "1"
-      },
-      {
-        "name": "WSS_GET_SECONDARY_SIG_COUNT",
-        "value": "2"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "WINTRUST_SIGNATURE_SETTINGS",
-        "field": "dwFlags"
-      }
-    ]
-  },
-  {
     "name": "RPC_BINDING_HANDLE_OPTIONS_FLAGS",
     "flags": true,
     "members": [
@@ -14218,93 +12835,6 @@
       {
         "struct": "PARAFORMAT2",
         "field": "wBorders"
-      }
-    ]
-  },
-  {
-    "name": "GOPHER_TYPE",
-    "members": [
-      {
-        "name": "GOPHER_TYPE_ASK"
-      },
-      {
-        "name": "GOPHER_TYPE_BINARY"
-      },
-      {
-        "name": "GOPHER_TYPE_BITMAP"
-      },
-      {
-        "name": "GOPHER_TYPE_CALENDAR"
-      },
-      {
-        "name": "GOPHER_TYPE_CSO"
-      },
-      {
-        "name": "GOPHER_TYPE_DIRECTORY"
-      },
-      {
-        "name": "GOPHER_TYPE_DOS_ARCHIVE"
-      },
-      {
-        "name": "GOPHER_TYPE_ERROR"
-      },
-      {
-        "name": "GOPHER_TYPE_GIF"
-      },
-      {
-        "name": "GOPHER_TYPE_GOPHER_PLUS"
-      },
-      {
-        "name": "GOPHER_TYPE_HTML"
-      },
-      {
-        "name": "GOPHER_TYPE_IMAGE"
-      },
-      {
-        "name": "GOPHER_TYPE_INDEX_SERVER"
-      },
-      {
-        "name": "GOPHER_TYPE_INLINE"
-      },
-      {
-        "name": "GOPHER_TYPE_MAC_BINHEX"
-      },
-      {
-        "name": "GOPHER_TYPE_MOVIE"
-      },
-      {
-        "name": "GOPHER_TYPE_PDF"
-      },
-      {
-        "name": "GOPHER_TYPE_REDUNDANT"
-      },
-      {
-        "name": "GOPHER_TYPE_SOUND"
-      },
-      {
-        "name": "GOPHER_TYPE_TELNET"
-      },
-      {
-        "name": "GOPHER_TYPE_TEXT_FILE"
-      },
-      {
-        "name": "GOPHER_TYPE_TN3270"
-      },
-      {
-        "name": "GOPHER_TYPE_UNIX_UUENCODED"
-      },
-      {
-        "name": "GOPHER_TYPE_UNKNOWN"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "GOPHER_FIND_DATAW",
-        "field": "GopherType"
-      },
-      {
-        "struct": "GOPHER_FIND_DATAA",
-        "field": "GopherType"
       }
     ]
   },
@@ -14477,67 +13007,6 @@
       {
         "method": "IDropTargetHelper::Drop",
         "parameter": "dwEffect"
-      }
-    ]
-  },
-  {
-    "name": "DOMAIN_PASSWORD_PROPERTIES",
-    "flags": true,
-    "members": [
-      {
-        "name": "DOMAIN_PASSWORD_COMPLEX"
-      },
-      {
-        "name": "DOMAIN_PASSWORD_NO_ANON_CHANGE"
-      },
-      {
-        "name": "DOMAIN_PASSWORD_NO_CLEAR_CHANGE"
-      },
-      {
-        "name": "DOMAIN_LOCKOUT_ADMINS"
-      },
-      {
-        "name": "DOMAIN_PASSWORD_STORE_CLEARTEXT"
-      },
-      {
-        "name": "DOMAIN_REFUSE_PASSWORD_CHANGE"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "DOMAIN_PASSWORD_INFORMATION",
-        "field": "PasswordProperties"
-      }
-    ]
-  },
-  {
-    "name": "WINTRUST_DATA_STATE_ACTION",
-    "members": [
-      {
-        "name": "WTD_STATEACTION_IGNORE",
-        "value": "0"
-      },
-      {
-        "name": "WTD_STATEACTION_VERIFY",
-        "value": "1"
-      },
-      {
-        "name": "WTD_STATEACTION_CLOSE",
-        "value": "2"
-      },
-      {
-        "name": "WTD_STATEACTION_AUTO_CACHE",
-        "value": "3"
-      },
-      {
-        "name": "WTD_STATEACTION_AUTO_CACHE_FLUSH",
-        "value": "4"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "WINTRUST_DATA",
-        "field": "dwStateAction"
       }
     ]
   },
@@ -14823,70 +13292,6 @@
     ]
   },
   {
-    "name": "INTERNET_PER_CONN",
-    "members": [
-      {
-        "name": "INTERNET_PER_CONN_AUTOCONFIG_URL"
-      },
-      {
-        "name": "INTERNET_PER_CONN_AUTODISCOVERY_FLAGS"
-      },
-      {
-        "name": "INTERNET_PER_CONN_FLAGS"
-      },
-      {
-        "name": "INTERNET_PER_CONN_PROXY_BYPASS"
-      },
-      {
-        "name": "INTERNET_PER_CONN_PROXY_SERVER"
-      },
-      {
-        "name": "INTERNET_PER_CONN_AUTOCONFIG_SECONDARY_URL"
-      },
-      {
-        "name": "INTERNET_PER_CONN_AUTOCONFIG_RELOAD_DELAY_MINS"
-      },
-      {
-        "name": "INTERNET_PER_CONN_AUTOCONFIG_LAST_DETECT_TIME"
-      },
-      {
-        "name": "INTERNET_PER_CONN_AUTOCONFIG_LAST_DETECT_URL"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "INTERNET_PER_CONN_OPTIONA",
-        "field": "dwOption"
-      },
-      {
-        "struct": "INTERNET_PER_CONN_OPTIONW",
-        "field": "dwOption"
-      }
-    ]
-  },
-  {
-    "name": "SERVER_INFO_HIDDEN",
-    "type": "int",
-    "members": [
-      {
-        "name": "SV_VISIBLE"
-      },
-      {
-        "name": "SV_HIDDEN"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "SERVER_INFO_1016",
-        "field": "sv1016_hidden"
-      },
-      {
-        "struct": "SERVER_INFO_102",
-        "field": "sv102_hidden"
-      }
-    ]
-  },
-  {
     "name": "TIMECODE_SAMPLE_FLAGS",
     "flags": true,
     "members": [
@@ -15023,37 +13428,6 @@
       {
         "struct": "IKEEXT_KERBEROS_AUTHENTICATION0",
         "field": "flags"
-      }
-    ]
-  },
-  {
-    "name": "WINTRUST_DATA_UNION_CHOICE",
-    "members": [
-      {
-        "name": "WTD_CHOICE_FILE",
-        "value": "1"
-      },
-      {
-        "name": "WTD_CHOICE_CATALOG",
-        "value": "2"
-      },
-      {
-        "name": "WTD_CHOICE_BLOB",
-        "value": "3"
-      },
-      {
-        "name": "WTD_CHOICE_SIGNER",
-        "value": "4"
-      },
-      {
-        "name": "WTD_CHOICE_CERT",
-        "value": "5"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "WINTRUST_DATA",
-        "field": "dwUnionChoice"
       }
     ]
   },
@@ -15224,25 +13598,6 @@
     ]
   },
   {
-    "name": "WINTRUST_DATA_REVOCATION_CHECKS",
-    "members": [
-      {
-        "name": "WTD_REVOKE_NONE",
-        "value": "0"
-      },
-      {
-        "name": "WTD_REVOKE_WHOLECHAIN",
-        "value": "1"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "WINTRUST_DATA",
-        "field": "fdwRevocationChecks"
-      }
-    ]
-  },
-  {
     "name": "PARAFORMAT_SHADING_STYLE",
     "type": "ushort",
     "members": [
@@ -15406,48 +13761,6 @@
     ]
   },
   {
-    "name": "MSV_SUBAUTH_LOGON_PARAMETER_CONTROL",
-    "flags": true,
-    "members": [
-      {
-        "name": "MSV1_0_CLEARTEXT_PASSWORD_ALLOWED"
-      },
-      {
-        "name": "MSV1_0_UPDATE_LOGON_STATISTICS"
-      },
-      {
-        "name": "MSV1_0_RETURN_USER_PARAMETERS"
-      },
-      {
-        "name": "MSV1_0_DONT_TRY_GUEST_ACCOUNT"
-      },
-      {
-        "name": "MSV1_0_ALLOW_SERVER_TRUST_ACCOUNT"
-      },
-      {
-        "name": "MSV1_0_RETURN_PASSWORD_EXPIRY"
-      },
-      {
-        "name": "MSV1_0_ALLOW_WORKSTATION_TRUST_ACCOUNT"
-      },
-      {
-        "name": "MSV1_0_TRY_GUEST_ACCOUNT_ONLY"
-      },
-      {
-        "name": "MSV1_0_RETURN_PROFILE_PATH"
-      },
-      {
-        "name": "MSV1_0_TRY_SPECIFIED_DOMAIN_ONLY"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "MSV1_0_SUBAUTH_LOGON",
-        "field": "ParameterControl"
-      }
-    ]
-  },
-  {
     "name": "MODEM_SPEAKER_VOLUME",
     "members": [
       {
@@ -15498,29 +13811,6 @@
       {
         "struct": "SP_ALTPLATFORM_INFO_V1",
         "field": "Platform"
-      }
-    ]
-  },
-  {
-    "name": "KERB_REQUEST_FLAGS",
-    "members": [
-      {
-        "name": "KERB_REQUEST_ADD_CREDENTIAL",
-        "value": "1"
-      },
-      {
-        "name": "KERB_REQUEST_REPLACE_CREDENTIAL",
-        "value": "2"
-      },
-      {
-        "name": "KERB_REQUEST_REMOVE_CREDENTIAL",
-        "value": "4"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "KERB_ADD_CREDENTIALS_REQUEST",
-        "field": "Flags"
       }
     ]
   },
@@ -15660,29 +13950,6 @@
       {
         "struct": "EVENT_TRACE_PROPERTIES_V2",
         "field": "EnableFlags"
-      }
-    ]
-  },
-  {
-    "name": "USER_MODALS_ROLES",
-    "members": [
-      {
-        "name": "UAS_ROLE_STANDALONE"
-      },
-      {
-        "name": "UAS_ROLE_MEMBER"
-      },
-      {
-        "name": "UAS_ROLE_BACKUP"
-      },
-      {
-        "name": "UAS_ROLE_PRIMARY"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "USER_MODALS_INFO_1006",
-        "field": "usrmod1006_role"
       }
     ]
   },
@@ -15832,31 +14099,6 @@
     ]
   },
   {
-    "name": "SESSION_INFO_USER_FLAGS",
-    "members": [
-      {
-        "name": "SESS_GUEST"
-      },
-      {
-        "name": "SESS_NOENCRYPTION"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "SESSION_INFO_502",
-        "field": "sesi502_user_flags"
-      },
-      {
-        "struct": "SESSION_INFO_2",
-        "field": "sesi2_user_flags"
-      },
-      {
-        "struct": "SESSION_INFO_1",
-        "field": "sesi1_user_flags"
-      }
-    ]
-  },
-  {
     "name": "DTTOPTS_iTextShadowTypeFlags",
     "members": [
       {
@@ -15992,85 +14234,6 @@
       {
         "struct": "CRYPTUI_WIZ_EXPORT_INFO",
         "field": "dwSubjectChoice"
-      }
-    ]
-  },
-  {
-    "name": "CONVINFO_CONVERSATION_STATE",
-    "members": [
-      {
-        "name": "XST_ADVACKRCVD",
-        "value": "13"
-      },
-      {
-        "name": "XST_ADVDATAACKRCVD",
-        "value": "16"
-      },
-      {
-        "name": "XST_ADVDATASENT",
-        "value": "15"
-      },
-      {
-        "name": "XST_ADVSENT",
-        "value": "11"
-      },
-      {
-        "name": "XST_CONNECTED",
-        "value": "2"
-      },
-      {
-        "name": "XST_DATARCVD",
-        "value": "6"
-      },
-      {
-        "name": "XST_EXECACKRCVD",
-        "value": "10"
-      },
-      {
-        "name": "XST_EXECSENT",
-        "value": "9"
-      },
-      {
-        "name": "XST_INCOMPLETE",
-        "value": "1"
-      },
-      {
-        "name": "XST_INIT1",
-        "value": "3"
-      },
-      {
-        "name": "XST_INIT2",
-        "value": "4"
-      },
-      {
-        "name": "XST_NULL",
-        "value": "0"
-      },
-      {
-        "name": "XST_POKEACKRCVD",
-        "value": "8"
-      },
-      {
-        "name": "XST_POKESENT",
-        "value": "7"
-      },
-      {
-        "name": "XST_REQSENT",
-        "value": "5"
-      },
-      {
-        "name": "XST_UNADVACKRCVD",
-        "value": "14"
-      },
-      {
-        "name": "XST_UNADVSENT",
-        "value": "12"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "CONVINFO",
-        "field": "wConvst"
       }
     ]
   },
@@ -16270,29 +14433,6 @@
     ]
   },
   {
-    "name": "TRUSTED_DOMAIN_TRUST_DIRECTION",
-    "members": [
-      {
-        "name": "TRUST_DIRECTION_DISABLED"
-      },
-      {
-        "name": "TRUST_DIRECTION_INBOUND"
-      },
-      {
-        "name": "TRUST_DIRECTION_OUTBOUND"
-      },
-      {
-        "name": "TRUST_DIRECTION_BIDIRECTIONAL"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "TRUSTED_DOMAIN_INFORMATION_EX",
-        "field": "TrustDirection"
-      }
-    ]
-  },
-  {
     "name": "ACTRL_ACCESS_ENTRY_ACCESS_FLAGS",
     "members": [
       {
@@ -16398,27 +14538,6 @@
       {
         "struct": "COMPAREITEMSTRUCT",
         "field": "CtlType"
-      }
-    ]
-  },
-  {
-    "name": "MSV_SUPPLEMENTAL_CREDENTIAL_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "MSV1_0_CRED_LM_PRESENT"
-      },
-      {
-        "name": "MSV1_0_CRED_NT_PRESENT"
-      },
-      {
-        "name": "MSV1_0_CRED_VERSION"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "MSV1_0_SUPPLEMENTAL_CREDENTIAL",
-        "field": "Flags"
       }
     ]
   },
@@ -16634,25 +14753,6 @@
       {
         "struct": "VDS_LUN_NOTIFICATION",
         "field": "ulEvent"
-      }
-    ]
-  },
-  {
-    "name": "WINTRUST_DATA_UICONTEXT",
-    "members": [
-      {
-        "name": "WTD_UICONTEXT_EXECUTE",
-        "value": "0"
-      },
-      {
-        "name": "WTD_UICONTEXT_INSTALL",
-        "value": "1"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "WINTRUST_DATA",
-        "field": "dwUIContext"
       }
     ]
   },
@@ -16931,42 +15031,6 @@
     ]
   },
   {
-    "name": "KERB_CRYPTO_KEY_TYPE",
-    "members": [
-      {
-        "name": "KERB_ETYPE_DES_CBC_CRC"
-      },
-      {
-        "name": "KERB_ETYPE_DES_CBC_MD4"
-      },
-      {
-        "name": "KERB_ETYPE_DES_CBC_MD5"
-      },
-      {
-        "name": "KERB_ETYPE_NULL"
-      },
-      {
-        "name": "KERB_ETYPE_RC4_HMAC_NT"
-      },
-      {
-        "name": "KERB_ETYPE_RC4_MD4"
-      },
-      {
-        "name": "_127"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "KERB_CRYPTO_KEY",
-        "field": "KeyType"
-      },
-      {
-        "struct": "KERB_RETRIEVE_TKT_REQUEST",
-        "field": "EncryptionType"
-      }
-    ]
-  },
-  {
     "name": "IKEEXT_EAP_AUTHENTICATION_FLAGS",
     "flags": true,
     "members": [
@@ -17237,98 +15301,6 @@
       {
         "struct": "BCRYPT_DH_KEY_BLOB",
         "field": "dwMagic"
-      }
-    ]
-  },
-  {
-    "name": "CONVINFO_STATUS",
-    "flags": true,
-    "members": [
-      {
-        "name": "ST_ADVISE",
-        "value": "2"
-      },
-      {
-        "name": "ST_BLOCKED",
-        "value": "8"
-      },
-      {
-        "name": "ST_BLOCKNEXT",
-        "value": "128"
-      },
-      {
-        "name": "ST_CLIENT",
-        "value": "16"
-      },
-      {
-        "name": "ST_CONNECTED",
-        "value": "1"
-      },
-      {
-        "name": "ST_INLIST",
-        "value": "64"
-      },
-      {
-        "name": "ST_ISLOCAL",
-        "value": "4"
-      },
-      {
-        "name": "ST_ISSELF",
-        "value": "256"
-      },
-      {
-        "name": "ST_TERMINATED",
-        "value": "32"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "CONVINFO",
-        "field": "wStatus"
-      }
-    ]
-  },
-  {
-    "name": "FILE_INFO_FLAGS_PERMISSIONS",
-    "flags": true,
-    "members": [
-      {
-        "name": "PERM_FILE_READ"
-      },
-      {
-        "name": "PERM_FILE_WRITE"
-      },
-      {
-        "name": "PERM_FILE_CREATE"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "FILE_INFO_3",
-        "field": "fi3_permissions"
-      }
-    ]
-  },
-  {
-    "name": "LSA_AUTH_INFORMATION_AUTH_TYPE",
-    "members": [
-      {
-        "name": "TRUST_AUTH_TYPE_NONE"
-      },
-      {
-        "name": "TRUST_AUTH_TYPE_NT4OWF"
-      },
-      {
-        "name": "TRUST_AUTH_TYPE_CLEAR"
-      },
-      {
-        "name": "TRUST_AUTH_TYPE_VERSION"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "LSA_AUTH_INFORMATION",
-        "field": "AuthType"
       }
     ]
   },
@@ -18014,21 +15986,6 @@
     ]
   },
   {
-    "name": "OS",
-    "flags": false,
-    "autoPopulate": {
-      "header": "shlwapi.h",
-      "filter": "OS_"
-    },
-    "members": [],
-    "uses": [
-      {
-        "method": "IsOS",
-        "parameter": "dwOS"
-      }
-    ]
-  },
-  {
     "name": "DEVICEFAMILYINFOENUM",
     "flags": false,
     "type": "uint",
@@ -18447,21 +16404,6 @@
     ]
   },
   {
-    "name": "SHELL_AUTOCOMPLETE_FLAGS",
-    "flags": true,
-    "autoPopulate": {
-      "filter": "SHACF_",
-      "header": "shlwapi.h"
-    },
-    "members": [],
-    "uses": [
-      {
-        "method": "SHAutoComplete",
-        "parameter": "dwFlags"
-      }
-    ]
-  },
-  {
     "name": "IME_CONVERSION_MODE",
     "flags": true,
     "autoPopulate": {
@@ -18513,76 +16455,6 @@
       },
       {
         "method": "ImmSetConversionStatus",
-        "parameter": "param1"
-      }
-    ]
-  },
-  {
-    "name": "IME_SENTENCE_MODE",
-    "flags": true,
-    "autoPopulate": {
-      "filter": "IME_SMODE_",
-      "header": "Imm.h"
-    },
-    "members": [],
-    "uses": [
-      {
-        "method": "ImmGetConversionStatus",
-        "parameter": "lpfdwSentence"
-      },
-      {
-        "method": "ImmSetConversionStatus",
-        "parameter": "param2"
-      }
-    ]
-  },
-  {
-    "name": "IME_COMPOSITION_STRING",
-    "flags": true,
-    "autoPopulate": {
-      "filter": "GCS_",
-      "header": "Imm.h"
-    },
-    "members": [],
-    "uses": [
-      {
-        "method": "ImmGetCompositionStringA",
-        "parameter": "param1"
-      },
-      {
-        "method": "ImmGetCompositionStringW",
-        "parameter": "param1"
-      }
-    ]
-  },
-  {
-    "name": "IME_ESCAPE",
-    "autoPopulate": {
-      "filter": "IME_ESC_",
-      "header": "Imm.h"
-    },
-    "members": [],
-    "uses": [
-      {
-        "method": "ImmEscapeA",
-        "parameter": "param2"
-      },
-      {
-        "method": "ImmEscapeW",
-        "parameter": "param2"
-      }
-    ]
-  },
-  {
-    "name": "IME_HOTKEY_IDENTIFIER",
-    "autoPopulate": {
-      "filter": "IME_CHOTKEY_|IME_ITHOTKEY_|IME_JHOTKEY_|IME_KHOTKEY_|IME_THOTKEY_",
-      "header": "Imm.h"
-    },
-    "members": [],
-    "uses": [
-      {
-        "method": "ImmSimulateHotKey",
         "parameter": "param1"
       }
     ]
@@ -18926,21 +16798,6 @@
     ]
   },
   {
-    "name": "ACTIVEOBJECT_FLAGS",
-    "flags": true,
-    "autoPopulate": {
-      "filter": "ACTIVEOBJECT_",
-      "header": "Oleauto.h"
-    },
-    "members": [],
-    "uses": [
-      {
-        "method": "RegisterActiveObject",
-        "parameter": "dwFlags"
-      }
-    ]
-  },
-  {
     "name": "FADF",
     "type": "ushort",
     "flags": true,
@@ -19045,25 +16902,6 @@
     ]
   },
   {
-    "name": "NUMPARSE_FLAGS",
-    "flags": true,
-    "autoPopulate": {
-      "filter": "NUMPRS_",
-      "header": "oleauto.h"
-    },
-    "members": [],
-    "uses": [
-      {
-        "struct": "NUMPARSE",
-        "field": "dwInFlags"
-      },
-      {
-        "struct": "NUMPARSE",
-        "field": "dwOutFlags"
-      }
-    ]
-  },
-  {
     "name": "PICTYPE",
     "type": "short",
     "autoPopulate": {
@@ -19110,21 +16948,6 @@
       {
         "method": "VarR4CmpR8",
         "parameter": "return"
-      }
-    ]
-  },
-  {
-    "name": "EMBDHLP_FLAGS",
-    "flags": true,
-    "autoPopulate": {
-      "filter": "EMBDHLP_",
-      "header": "ole2.h"
-    },
-    "members": [],
-    "uses": [
-      {
-        "method": "OleCreateEmbeddingHelper",
-        "parameter": "flags"
       }
     ]
   },
@@ -21822,35 +19645,6 @@
     ]
   },
   {
-    "name": "DNS_QUERY_OPTIONS",
-    "type": "uint",
-    "flags": true,
-    "autoPopulate": {
-      "header": "windns.h",
-      "filter": "DNS_QUERY_"
-    },
-    "members": [
-      {
-        "name": "DNS_QUERY_PARSE_ALL_RECORDS",
-        "value": "unchecked((uint)0x0400000000000000)"
-      }
-    ],
-    "uses": [
-      {
-        "method": "DnsQuery_A",
-        "parameter": "Options"
-      },
-      {
-        "method": "DnsQuery_W",
-        "parameter": "Options"
-      },
-      {
-        "method": "DnsQuery_UTF8",
-        "parameter": "Options"
-      }
-    ]
-  },
-  {
     "namespace": "Windows.Win32.Graphics.Dxgi",
     "type": "uint",
     "name": "DXGI_USAGE",
@@ -22630,25 +20424,6 @@
       {
         "struct": "WOW64_CONTEXT",
         "field": "ContextFlags"
-      }
-    ]
-  },
-  {
-    "name": "VAR_CHANGE_FLAGS",
-    "type": "ushort",
-    "flags": true,
-    "autoPopulate": {
-      "filter": "VARIANT_",
-      "header": "OleAuto.h"
-    },
-    "uses": [
-      {
-        "method": "VariantChangeType",
-        "parameter": "wFlags"
-      },
-      {
-        "method": "VariantChangeTypeEx",
-        "parameter": "wFlags"
       }
     ]
   },

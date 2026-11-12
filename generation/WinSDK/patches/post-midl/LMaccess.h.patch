@@ -15,7 +15,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/LMaccess.h b/generation/W
  
  //
  // Function Prototypes - User
-@@ -60,6 +62,7 @@
+@@ -60,18 +62,20 @@
          LPBYTE     buf,
      _Out_opt_ LPDWORD    parm_err OPTIONAL
      );
@@ -23,7 +23,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/LMaccess.h b/generation/W
  
  NET_API_STATUS NET_API_FUNCTION
  NetUserEnum (
-@@ -72,6 +75,7 @@
+     _In_opt_    LPCWSTR     servername OPTIONAL,
+     _In_        DWORD      level,
+-    _In_        DWORD      filter,
++    _Win32_AssociatedEnum_(NET_USER_ENUM_FILTER_FLAGS) _In_        DWORD      filter,
+     _Outptr_result_buffer_(_Inexpressible_("varies")) LPBYTE     *bufptr,
+     _In_        DWORD      prefmaxlen,
+     _Out_       LPDWORD    entriesread,
      _Out_       LPDWORD    totalentries,
      _Inout_opt_ PDWORD resume_handle OPTIONAL
      );
@@ -372,3 +378,40 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/LMaccess.h b/generation/W
  
  NTSTATUS
  NetQueryServiceAccount(
+@@ -1778,3 +1826,36 @@
+ #pragma endregion
+ 
+ #endif // _LMDOMAIN_
++
++#ifndef _WIN32METADATA_LMACCESS_NATIVE_C_64_GROUPS_
++#define _WIN32METADATA_LMACCESS_NATIVE_C_64_GROUPS_
++_Win32_FlagsEnum_(NET_USER_ENUM_FILTER_FLAGS, unsigned int, FILTER_TEMP_DUPLICATE_ACCOUNT, FILTER_NORMAL_ACCOUNT, FILTER_INTERDOMAIN_TRUST_ACCOUNT, FILTER_WORKSTATION_TRUST_ACCOUNT, FILTER_SERVER_TRUST_ACCOUNT);
++_Win32_FlagsEnum_(USER_ACCOUNT_FLAGS, unsigned int, UF_SCRIPT, UF_ACCOUNTDISABLE, UF_HOMEDIR_REQUIRED, UF_PASSWD_NOTREQD, UF_PASSWD_CANT_CHANGE, UF_LOCKOUT, UF_DONT_EXPIRE_PASSWD, UF_ENCRYPTED_TEXT_PASSWORD_ALLOWED, UF_NOT_DELEGATED, UF_SMARTCARD_REQUIRED, UF_USE_DES_KEY_ONLY, UF_DONT_REQUIRE_PREAUTH, UF_TRUSTED_FOR_DELEGATION, UF_PASSWORD_EXPIRED, UF_TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION);
++_Win32_AnnotateField_(USER_INFO_4::usri4_flags, _Win32_AssociatedEnum_(USER_ACCOUNT_FLAGS));
++_Win32_AnnotateField_(USER_INFO_1008::usri1008_flags, _Win32_AssociatedEnum_(USER_ACCOUNT_FLAGS));
++_Win32_AnnotateField_(USER_INFO_2::usri2_flags, _Win32_AssociatedEnum_(USER_ACCOUNT_FLAGS));
++_Win32_AnnotateField_(USER_INFO_3::usri3_flags, _Win32_AssociatedEnum_(USER_ACCOUNT_FLAGS));
++_Win32_AnnotateField_(USER_INFO_22::usri22_flags, _Win32_AssociatedEnum_(USER_ACCOUNT_FLAGS));
++_Win32_AnnotateField_(USER_INFO_20::usri20_flags, _Win32_AssociatedEnum_(USER_ACCOUNT_FLAGS));
++_Win32_AnnotateField_(USER_INFO_23::usri23_flags, _Win32_AssociatedEnum_(USER_ACCOUNT_FLAGS));
++_Win32_AnnotateField_(USER_INFO_1::usri1_flags, _Win32_AssociatedEnum_(USER_ACCOUNT_FLAGS));
++_Win32_AnnotateField_(NET_DISPLAY_USER::usri1_flags, _Win32_AssociatedEnum_(USER_ACCOUNT_FLAGS));
++_Win32_AnnotateField_(NET_DISPLAY_MACHINE::usri2_flags, _Win32_AssociatedEnum_(USER_ACCOUNT_FLAGS));
++_Win32_FlagsEnum_(AF_OP, unsigned int, AF_OP_PRINT, AF_OP_COMM, AF_OP_SERVER, AF_OP_ACCOUNTS);
++_Win32_AnnotateField_(USER_INFO_1010::usri1010_auth_flags, _Win32_AssociatedEnum_(AF_OP));
++_Win32_AnnotateField_(USER_INFO_22::usri22_auth_flags, _Win32_AssociatedEnum_(AF_OP));
++_Win32_AnnotateField_(USER_INFO_3::usri3_auth_flags, _Win32_AssociatedEnum_(AF_OP));
++_Win32_AnnotateField_(USER_INFO_11::usri11_auth_flags, _Win32_AssociatedEnum_(AF_OP));
++_Win32_AnnotateField_(USER_INFO_4::usri4_auth_flags, _Win32_AssociatedEnum_(AF_OP));
++_Win32_AnnotateField_(USER_INFO_2::usri2_auth_flags, _Win32_AssociatedEnum_(AF_OP));
++_Win32_Enum_(USER_PRIV, unsigned int, USER_PRIV_GUEST, USER_PRIV_USER, USER_PRIV_ADMIN);
++_Win32_AnnotateField_(USER_INFO_1::usri1_priv, _Win32_AssociatedEnum_(USER_PRIV));
++_Win32_AnnotateField_(USER_INFO_2::usri2_priv, _Win32_AssociatedEnum_(USER_PRIV));
++_Win32_AnnotateField_(USER_INFO_4::usri4_priv, _Win32_AssociatedEnum_(USER_PRIV));
++_Win32_AnnotateField_(USER_INFO_22::usri22_priv, _Win32_AssociatedEnum_(USER_PRIV));
++_Win32_AnnotateField_(USER_INFO_1005::usri1005_priv, _Win32_AssociatedEnum_(USER_PRIV));
++_Win32_AnnotateField_(USER_INFO_11::usri11_priv, _Win32_AssociatedEnum_(USER_PRIV));
++_Win32_AnnotateField_(USER_INFO_3::usri3_priv, _Win32_AssociatedEnum_(USER_PRIV));
++_Win32_Enum_(USER_MODALS_ROLES, unsigned int, UAS_ROLE_STANDALONE, UAS_ROLE_MEMBER, UAS_ROLE_BACKUP, UAS_ROLE_PRIMARY);
++_Win32_AnnotateField_(USER_MODALS_INFO_1006::usrmod1006_role, _Win32_AssociatedEnum_(USER_MODALS_ROLES));
++#endif

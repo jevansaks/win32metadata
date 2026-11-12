@@ -336,7 +336,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinNls.h b/generation/Win
  // DEPRECATED: EnumDateFormatsExEx is preferred
  WINBASEAPI
  BOOL
-@@ -2201,6 +2272,7 @@
+@@ -2201,14 +2272,17 @@
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
  
  #if(WINVER >= 0x0500)
@@ -344,9 +344,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinNls.h b/generation/Win
  DEPRECATED("The Language Group concept is obsolete and no longer supported. Set DISABLE_NLS_DEPRECATION to disable this warning.")
  WINBASEAPI
  BOOL
-@@ -2209,6 +2281,8 @@
+ WINAPI
+ IsValidLanguageGroup(
      _In_ LGRPID  LanguageGroup,
-     _In_ DWORD   dwFlags);
+-    _In_ DWORD   dwFlags);
++    _Win32_AssociatedEnum_(ENUM_SYSTEM_LANGUAGE_GROUPS_FLAGS) _In_ DWORD   dwFlags);
  #endif /* WINVER >= 0x0500 */
 +_Win32_SetLastError_
 +_Win32_SupportedOS_WindowsVista_
@@ -361,7 +363,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinNls.h b/generation/Win
  
  // DEPRECATED: IsValidLocaleName is preferred
  WINBASEAPI
-@@ -2238,6 +2313,8 @@
+@@ -2231,13 +2306,15 @@
+ WINAPI
+ IsValidLocale(
+     _In_ LCID   Locale,
+-    _In_ DWORD  dwFlags);
++    _Win32_AssociatedEnum_(IS_VALID_LOCALE_FLAGS) _In_ DWORD  dwFlags);
+ 
+ #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM) */
+ #pragma endregion
  
  #pragma region Application Family or OneCore or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
@@ -656,16 +666,26 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinNls.h b/generation/Win
  
  DEPRECATED("The Language Group concept is obsolete and no longer supported. Set DISABLE_NLS_DEPRECATION to disable this warning.")
  WINBASEAPI
-@@ -2727,6 +2859,8 @@
+@@ -2725,21 +2857,25 @@
+ WINAPI
+ EnumSystemLanguageGroupsA(
      _In_ LANGUAGEGROUP_ENUMPROCA lpLanguageGroupEnumProc,
-     _In_ DWORD                   dwFlags,
+-    _In_ DWORD                   dwFlags,
++    _Win32_AssociatedEnum_(ENUM_SYSTEM_LANGUAGE_GROUPS_FLAGS) _In_ DWORD                   dwFlags,
      _In_ LONG_PTR                lParam);
 +_Win32_SetLastError_
 +_Win32_SupportedOS_Windows2000_
  DEPRECATED("The Language Group concept is obsolete and no longer supported. Set DISABLE_NLS_DEPRECATION to disable this warning.")
  WINBASEAPI
  BOOL
-@@ -2740,6 +2874,8 @@
+ WINAPI
+ EnumSystemLanguageGroupsW(
+     _In_ LANGUAGEGROUP_ENUMPROCW lpLanguageGroupEnumProc,
+-    _In_ DWORD                   dwFlags,
++    _Win32_AssociatedEnum_(ENUM_SYSTEM_LANGUAGE_GROUPS_FLAGS) _In_ DWORD                   dwFlags,
+     _In_ LONG_PTR                lParam);
+ #ifdef UNICODE
+ #define EnumSystemLanguageGroups  EnumSystemLanguageGroupsW
  #else
  #define EnumSystemLanguageGroups  EnumSystemLanguageGroupsA
  #endif // !UNICODE
@@ -710,15 +730,25 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinNls.h b/generation/Win
  
  // Please use Unicode instead.  Use of other code pages/encodings is discouraged.
  WINBASEAPI
-@@ -2808,6 +2952,8 @@
+@@ -2807,14 +2951,16 @@
+ WINAPI
  EnumSystemCodePagesA(
      _In_ CODEPAGE_ENUMPROCA lpCodePageEnumProc,
-     _In_ DWORD              dwFlags);
+-    _In_ DWORD              dwFlags);
++    _Win32_AssociatedEnum_(ENUM_SYSTEM_CODE_PAGES_FLAGS) _In_ DWORD              dwFlags);
 +_Win32_SetLastError_
 +_Win32_SupportedOS_Windows2000_
  // Please use Unicode instead.  Use of other code pages/encodings is discouraged.
  WINBASEAPI
  BOOL
+ WINAPI
+ EnumSystemCodePagesW(
+     _In_ CODEPAGE_ENUMPROCW lpCodePageEnumProc,
+-    _In_ DWORD              dwFlags);
++    _Win32_AssociatedEnum_(ENUM_SYSTEM_CODE_PAGES_FLAGS) _In_ DWORD              dwFlags);
+ #ifdef UNICODE
+ #define EnumSystemCodePages  EnumSystemCodePagesW
+ #else
 @@ -2832,6 +2978,8 @@
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
@@ -967,3 +997,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinNls.h b/generation/Win
  
  WINBASEAPI
  int
+@@ -3212,3 +3404,10 @@
+ 
+ 
+ #endif // _WINNLS_
++
++#ifndef _WIN32METADATA_WINNLS_NATIVE_C_64_GROUPS_
++#define _WIN32METADATA_WINNLS_NATIVE_C_64_GROUPS_
++_Win32_Enum_(ENUM_SYSTEM_LANGUAGE_GROUPS_FLAGS, unsigned int, LGRPID_INSTALLED, LGRPID_SUPPORTED);
++_Win32_Enum_(IS_VALID_LOCALE_FLAGS, unsigned int, LCID_INSTALLED, LCID_SUPPORTED);
++_Win32_Enum_(ENUM_SYSTEM_CODE_PAGES_FLAGS, unsigned int, CP_INSTALLED, CP_SUPPORTED);
++#endif

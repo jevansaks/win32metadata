@@ -688,7 +688,7 @@ SaferComputeTokenFromLevel(
     _In_ SAFER_LEVEL_HANDLE LevelHandle,
     _In_opt_ HANDLE         InAccessToken,
     _Out_ PHANDLE           OutAccessToken,
-    _In_ DWORD              dwFlags,
+    _Win32_AssociatedEnum_(SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS) _In_ DWORD              dwFlags,
     _Inout_opt_ LPVOID      lpReserved
     );
 _Win32_SetLastError_
@@ -759,4 +759,9 @@ SaferiIsExecutableFileType(
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
 #pragma endregion
 
+#endif
+
+#ifndef _WIN32METADATA_WINSAFER_NATIVE_C_64_GROUPS_
+#define _WIN32METADATA_WINSAFER_NATIVE_C_64_GROUPS_
+_Win32_FlagsEnum_(SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS, unsigned int, SAFER_TOKEN_NULL_IF_EQUAL, SAFER_TOKEN_COMPARE_ONLY, SAFER_TOKEN_MAKE_INERT, SAFER_TOKEN_WANT_FLAGS);
 #endif

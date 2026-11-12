@@ -2279,7 +2279,7 @@ BOOL
 WINAPI
 IsValidLanguageGroup(
     _In_ LGRPID  LanguageGroup,
-    _In_ DWORD   dwFlags);
+    _Win32_AssociatedEnum_(ENUM_SYSTEM_LANGUAGE_GROUPS_FLAGS) _In_ DWORD   dwFlags);
 #endif /* WINVER >= 0x0500 */
 _Win32_SetLastError_
 _Win32_SupportedOS_WindowsVista_
@@ -2306,7 +2306,7 @@ BOOL
 WINAPI
 IsValidLocale(
     _In_ LCID   Locale,
-    _In_ DWORD  dwFlags);
+    _Win32_AssociatedEnum_(IS_VALID_LOCALE_FLAGS) _In_ DWORD  dwFlags);
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM) */
 #pragma endregion
@@ -2857,7 +2857,7 @@ BOOL
 WINAPI
 EnumSystemLanguageGroupsA(
     _In_ LANGUAGEGROUP_ENUMPROCA lpLanguageGroupEnumProc,
-    _In_ DWORD                   dwFlags,
+    _Win32_AssociatedEnum_(ENUM_SYSTEM_LANGUAGE_GROUPS_FLAGS) _In_ DWORD                   dwFlags,
     _In_ LONG_PTR                lParam);
 _Win32_SetLastError_
 _Win32_SupportedOS_Windows2000_
@@ -2867,7 +2867,7 @@ BOOL
 WINAPI
 EnumSystemLanguageGroupsW(
     _In_ LANGUAGEGROUP_ENUMPROCW lpLanguageGroupEnumProc,
-    _In_ DWORD                   dwFlags,
+    _Win32_AssociatedEnum_(ENUM_SYSTEM_LANGUAGE_GROUPS_FLAGS) _In_ DWORD                   dwFlags,
     _In_ LONG_PTR                lParam);
 #ifdef UNICODE
 #define EnumSystemLanguageGroups  EnumSystemLanguageGroupsW
@@ -2951,7 +2951,7 @@ BOOL
 WINAPI
 EnumSystemCodePagesA(
     _In_ CODEPAGE_ENUMPROCA lpCodePageEnumProc,
-    _In_ DWORD              dwFlags);
+    _Win32_AssociatedEnum_(ENUM_SYSTEM_CODE_PAGES_FLAGS) _In_ DWORD              dwFlags);
 _Win32_SetLastError_
 _Win32_SupportedOS_Windows2000_
 // Please use Unicode instead.  Use of other code pages/encodings is discouraged.
@@ -2960,7 +2960,7 @@ BOOL
 WINAPI
 EnumSystemCodePagesW(
     _In_ CODEPAGE_ENUMPROCW lpCodePageEnumProc,
-    _In_ DWORD              dwFlags);
+    _Win32_AssociatedEnum_(ENUM_SYSTEM_CODE_PAGES_FLAGS) _In_ DWORD              dwFlags);
 #ifdef UNICODE
 #define EnumSystemCodePages  EnumSystemCodePagesW
 #else
@@ -3404,3 +3404,10 @@ ResolveLocaleName(
 
 
 #endif // _WINNLS_
+
+#ifndef _WIN32METADATA_WINNLS_NATIVE_C_64_GROUPS_
+#define _WIN32METADATA_WINNLS_NATIVE_C_64_GROUPS_
+_Win32_Enum_(ENUM_SYSTEM_LANGUAGE_GROUPS_FLAGS, unsigned int, LGRPID_INSTALLED, LGRPID_SUPPORTED);
+_Win32_Enum_(IS_VALID_LOCALE_FLAGS, unsigned int, LCID_INSTALLED, LCID_SUPPORTED);
+_Win32_Enum_(ENUM_SYSTEM_CODE_PAGES_FLAGS, unsigned int, CP_INSTALLED, CP_SUPPORTED);
+#endif

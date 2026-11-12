@@ -1,9 +1,9 @@
 # Working-first recovery and sidecar reduction
 
-**Current accepted cohort:** [91 more native-owner groups](#fresh-full-union-91-group-checkpoint)
-above preserved `aed87853d23ec6ea84ccbbf185912aad8038e5f5`, following the
-previous 304 groups above `85444f25`.
-Its actual WinMD is `F9D4F1E7...`; the complete 35,379-type dump is
+**Current accepted cohort:** [64 more C-header groups](#network-security-and-ime-subdivision)
+above preserved `c9910f399d9b988fc9d0cf725b650dc7f3e3ed87`, following the
+previous 395 groups above `85444f25`.
+Its actual WinMD is `67F41F57...`; the complete 35,379-type dump is
 `1F4F3839...`, byte-identical to accepted structural checkpoint 6d44.
 Earlier authorized fictitious-handle/AssociatedEnum changes remain completely
 accounted for relative to the original parent; no arbitrary API loss is
@@ -13,19 +13,19 @@ historical checkpoints, not the current totals.
 | Inventory / units | Recovery | Accepted current | Net retired |
 |---|---:|---:|---:|
 | Original parameter attribute atoms | 770 | 361 | 409 |
-| All RSP value rows | 146,789 | 134,434 | 12,355 |
+| All RSP value rows | 146,789 | 134,498 | 12,291 |
 | Allowed documentation URL rows | 90,502 | 90,502 | 0 (outside backlog) |
-| Other RSP rows, mixed configuration/API units | 56,287 | 43,932 | 12,355 |
+| Other RSP rows, mixed configuration/API units | 56,287 | 43,996 | 12,291 |
 | Emitter `memberRemap` rows | 2,295 | 1,592 | 703 |
 | LastError rows | 3,362 | 468 | 2,894 |
 | Availability rows | 17,070 | 7,883 | 9,187 |
-| Enum JSON records, mixed definitions/additional uses | 1,070 | 600 | 470 |
+| Enum JSON records, mixed definitions/additional uses | 1,070 | 536 | 534 |
 | autoTypes records | 444 | 436 | 8 |
 | Function-pointer fixup records | 27 | 27 | 0 |
 
 | Remaining category | Measured accepted quantity | Examination state |
 |---|---:|---|
-| Definition-bearing enum records | 576 | 395 further whole definitions accepted across five cohorts. The actual 95-group trial retains four complete closures; the earlier POWER_REQUEST_CONTEXT_FLAGS owner boundary is now resolved. Another 72 groups are preflighted, not yet accepted. |
+| Definition-bearing enum records | 512 | 459 further whole definitions accepted across six cohorts. Six closures from the actual 70-group C-header trial remain restored. Another 13 shared-header groups and 109 security/system candidates are preflighted only, including known failures to exclude before trials. |
 | Additional-use enum records / selector rows | 23 / 55 | Exact retained FILE/REG/SNMP/process, STGM, COM/MIDL and Cloud closures; observed boundaries are in [PROBLEMS.md](PROBLEMS.md). |
 | Genuine CLR flags request | 1 record | Native enum use override already redundant/retired; flags effect still unqualified. |
 | Native type/storage/ownership inputs | 436 records | 425 legacy-storage / 11 native selections; genuine types remain. Six DiagnosticDataQuery selections/producer closures tried and restored; thirteen contextual cleanup records remain separate boundaries, not all 436 records. |
@@ -1309,3 +1309,65 @@ output/dump, unmasked comparison, replay, byte audit and resumed integrity TRX
 remain under `files\sidecar-reduction\native-{95,93,91}-*`. The next 72 native
 C-header groups (834 members / 141 listed uses) are preflighted only;
 publication is a working checkpoint, not completion of the continuing reduction.
+
+## Network, security and IME subdivision
+
+The next preflight found 72 groups; the two already-restored setup closures
+were excluded rather than re-tested. The actual new **70-group** trial was
+subdivided to **64 whole definitions, 768 members and 124 active uses**:
+
+| Owning header | Accepted groups |
+|---|---:|
+| `imm.h`, `NTSecAPI.h`, `WinTrust.h` | 9 each |
+| `WinInet.h` | 8 |
+| `ddeml.h` | 6 |
+| `LMaccess.h` | 5 |
+| `LMShare.h`, `WinNls.h`, `LMServer.h`, `OleAuto.h` | 3 each |
+| `Shlwapi.h` | 2 |
+| `vssym32.h`, `winsafer.h`, `Ole2.h`, `WinDNS.h` | 1 each |
+
+All 64 JSON records are deleted and 64 namespace routing rows are added.
+One exact old selector, `Msv1_0SubAuthenticationFilter::UserFlags`, has no
+matching method/parameter in the native owner or complete baseline dump.
+It is separately retired as inactive, not counted among the 124 active uses.
+Six IME selectors use generated `paramN` names for genuinely unnamed native
+DWORD/UINT parameters. Their zero-based ordinal, native declaration shape and
+baseline group binding are checked before adding the inline annotation;
+native signatures and emitted parameter names remain unchanged.
+
+| Restored closure | Actual observed boundary |
+|---|---|
+| `VARCMP` | Native STDAPI/HRESULT return storage conflicts with the legacy UInt32 group at OleAuto.h:831. |
+| `TRUSTED_DOMAIN_TRUST_TYPE`, `TRUSTED_DOMAIN_TRUST_ATTRIBUTES` | The parse cannot resolve native operands TRUST_TYPE_DCE and TRUST_ATTRIBUTE_FILTER_SIDS in the selected current SDK input. |
+| `INTERNET_ACCESS_TYPE`, `INTERNET_STATE` | The emitted 67-group trial adds three old access aliases and three state aliases as global constants. |
+| `SHARE_INFO_PERMISSIONS` | Native ACCESS_ALL evaluates to 127, while the legacy public group member is 32768. This value update is not silently accepted as annotation transport. |
+
+The rejected 67-group output also lost three filesystem groups and the
+AppLocker group. Refreshing their actual `Fs` and `Security.AppLocker`
+owners preserves all four groups, use-site associations and global ownership.
+No reader fix or output mask is needed. The 64-group union refreshes Identity
+as well, and preserves every earlier callback fact.
+
+The actual 16-partition scrape passes in **1m54.18s**, production emission in
+**4m51.41s**, starting from the accepted complete source cache:
+
+| Accepted artifact | Identity |
+|---|---|
+| New WinMD | `files\sidecar-reduction\native-c-64-candidate\Windows.Win32.winmd` |
+| Size / SHA-256 | 24,175,104 bytes / `67F41F57593F44264A0022CF93332CAC3E2FA457F846C1BFD12044AF74F9B7F6` |
+| Complete dump / types | `1F4F38395D602095972A5095C4A25EF6C117BE5E1D716DAB5C3108BE6AC589BA` / 35,379 |
+| Unmasked comparer / complete raw accounting | Exit **0** against c991; whole dump byte-identical, zero unmatched changes |
+
+Actual-output integrity passes **54/54**, strict production SDK patch replay
+**348/348**, and all 15 native-header byte/BOM audits pass. Exact 70/67 rejected
+inputs, diagnostics/output, the accepted output, raw dumps/comparisons,
+audits and TRX remain in `files\sidecar-reduction\native-c-{70,67,64}-*`.
+
+The six accepted cohorts since 85444 now retire **459 complete definitions,
+4,358 members and 842 active uses**, plus twelve separately inventoried
+inactive selectors. Current enum JSON is **536 records**: 512 definitions,
+23 additional-use records / 55 selectors, and one separate CLR flags request.
+RSP totals are **134,498**, including the unchanged 90,502 allowed documentation
+rows. autoTypes 436, fixups 27 and original parameter atoms 361 remain unchanged.
+Further shared-header and security/system owners remain plausible; this is
+another working checkpoint, not a minimum or a stopping boundary.

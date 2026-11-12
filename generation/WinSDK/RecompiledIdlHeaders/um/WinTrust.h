@@ -524,7 +524,7 @@ extern long WINAPI WinVerifyTrustEx(HWND hwnd, GUID *pgActionID, WINTRUST_DATA *
 //  This API call is exported from WINTRUST.DLL and is the recommended method
 //  of retrieving the DWORD representing the Policy Flags.
 //
-extern void WINAPI      WintrustGetRegPolicyFlags(DWORD *pdwPolicyFlags);
+extern void WINAPI      WintrustGetRegPolicyFlags(_Win32_AssociatedEnum_(WINTRUST_POLICY_FLAGS) DWORD *pdwPolicyFlags);
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -535,7 +535,7 @@ extern void WINAPI      WintrustGetRegPolicyFlags(DWORD *pdwPolicyFlags);
 //  WintrustGetRegPolicyFlags to get the current value and or/and the value
 //  you need then call the set the flags.
 //
-extern BOOL WINAPI      WintrustSetRegPolicyFlags(DWORD dwPolicyFlags);
+extern BOOL WINAPI      WintrustSetRegPolicyFlags(_Win32_AssociatedEnum_(WINTRUST_POLICY_FLAGS) DWORD dwPolicyFlags);
 
 
 
@@ -1171,7 +1171,7 @@ extern BOOL WINAPI              WintrustAddDefaultForUsage(_In_ const char *pszU
 //
 #define                             DWACTION_ALLOCANDFILL           1
 #define                             DWACTION_FREE                   2
-extern BOOL WINAPI              WintrustGetDefaultForUsage(_In_ DWORD dwAction,
+extern BOOL WINAPI              WintrustGetDefaultForUsage(_Win32_AssociatedEnum_(WINTRUST_GET_DEFAULT_FOR_USAGE_ACTION) _In_ DWORD dwAction,
                                                            _In_ const char *pszUsageOID,
                                                            _Inout_ CRYPT_PROVIDER_DEFUSAGE *psUsage);
 _Win32_SupportedOS_WindowsXP_
@@ -1716,3 +1716,23 @@ WintrustSetDefaultIncludePEPageHashes(
 #pragma endregion
 
 #endif // WINTRUST_H
+
+#ifndef _WIN32METADATA_WINTRUST_NATIVE_C_64_GROUPS_
+#define _WIN32METADATA_WINTRUST_NATIVE_C_64_GROUPS_
+_Win32_Enum_(WINTRUST_GET_DEFAULT_FOR_USAGE_ACTION, unsigned int, DWACTION_ALLOCANDFILL, DWACTION_FREE);
+_Win32_FlagsEnum_(WINTRUST_POLICY_FLAGS, unsigned int, WTPF_TRUSTTEST, WTPF_TESTCANBEVALID, WTPF_IGNOREEXPIRATION, WTPF_IGNOREREVOKATION, WTPF_OFFLINEOK_IND, WTPF_OFFLINEOK_COM, WTPF_OFFLINEOKNBU_IND, WTPF_OFFLINEOKNBU_COM, WTPF_VERIFY_V1_OFF, WTPF_IGNOREREVOCATIONONTS, WTPF_ALLOWONLYPERTRUST);
+_Win32_FlagsEnum_(WINTRUST_DATA_PROVIDER_FLAGS, unsigned int, WTD_USE_IE4_TRUST_FLAG, WTD_NO_IE4_CHAIN_FLAG, WTD_NO_POLICY_USAGE_FLAG, WTD_REVOCATION_CHECK_NONE, WTD_REVOCATION_CHECK_END_CERT, WTD_REVOCATION_CHECK_CHAIN, WTD_REVOCATION_CHECK_CHAIN_EXCLUDE_ROOT, WTD_SAFER_FLAG, WTD_HASH_ONLY_FLAG, WTD_USE_DEFAULT_OSVER_CHECK, WTD_LIFETIME_SIGNING_FLAG, WTD_CACHE_ONLY_URL_RETRIEVAL, WTD_DISABLE_MD2_MD4, WTD_MOTW);
+_Win32_AnnotateField_(WINTRUST_DATA::dwProvFlags, _Win32_AssociatedEnum_(WINTRUST_DATA_PROVIDER_FLAGS));
+_Win32_Enum_(WINTRUST_DATA_UICHOICE, unsigned int, WTD_UI_ALL, WTD_UI_NONE, WTD_UI_NOBAD, WTD_UI_NOGOOD);
+_Win32_AnnotateField_(WINTRUST_DATA::dwUIChoice, _Win32_AssociatedEnum_(WINTRUST_DATA_UICHOICE));
+_Win32_FlagsEnum_(WINTRUST_SIGNATURE_SETTINGS_FLAGS, unsigned int, WSS_VERIFY_SPECIFIC, WSS_GET_SECONDARY_SIG_COUNT);
+_Win32_AnnotateField_(WINTRUST_SIGNATURE_SETTINGS::dwFlags, _Win32_AssociatedEnum_(WINTRUST_SIGNATURE_SETTINGS_FLAGS));
+_Win32_Enum_(WINTRUST_DATA_STATE_ACTION, unsigned int, WTD_STATEACTION_IGNORE, WTD_STATEACTION_VERIFY, WTD_STATEACTION_CLOSE, WTD_STATEACTION_AUTO_CACHE, WTD_STATEACTION_AUTO_CACHE_FLUSH);
+_Win32_AnnotateField_(WINTRUST_DATA::dwStateAction, _Win32_AssociatedEnum_(WINTRUST_DATA_STATE_ACTION));
+_Win32_Enum_(WINTRUST_DATA_UNION_CHOICE, unsigned int, WTD_CHOICE_FILE, WTD_CHOICE_CATALOG, WTD_CHOICE_BLOB, WTD_CHOICE_SIGNER, WTD_CHOICE_CERT);
+_Win32_AnnotateField_(WINTRUST_DATA::dwUnionChoice, _Win32_AssociatedEnum_(WINTRUST_DATA_UNION_CHOICE));
+_Win32_Enum_(WINTRUST_DATA_REVOCATION_CHECKS, unsigned int, WTD_REVOKE_NONE, WTD_REVOKE_WHOLECHAIN);
+_Win32_AnnotateField_(WINTRUST_DATA::fdwRevocationChecks, _Win32_AssociatedEnum_(WINTRUST_DATA_REVOCATION_CHECKS));
+_Win32_Enum_(WINTRUST_DATA_UICONTEXT, unsigned int, WTD_UICONTEXT_EXECUTE, WTD_UICONTEXT_INSTALL);
+_Win32_AnnotateField_(WINTRUST_DATA::dwUIContext, _Win32_AssociatedEnum_(WINTRUST_DATA_UICONTEXT));
+#endif

@@ -28,3 +28,38 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/OleAuto.h b/generation/Wi
  WINOLEAUTAPI_(void) SafeArrayReleaseData(_In_ PVOID pData);
  WINOLEAUTAPI SafeArrayDestroyData(_In_ SAFEARRAY * psa);
  WINOLEAUTAPI SafeArrayAddRef(_In_ SAFEARRAY * psa, _Out_ PVOID *ppDataToRelease);
+@@ -179,10 +184,10 @@
+ WINOLEAUTAPI VariantCopyInd(_Inout_ VARIANT * pvarDest, _In_ const VARIANTARG * pvargSrc);
+ _Check_return_
+ WINOLEAUTAPI VariantChangeType(_Inout_ VARIANTARG * pvargDest,
+-               _In_ const VARIANTARG * pvarSrc, _In_ USHORT wFlags, _In_ VARTYPE vt);
++               _In_ const VARIANTARG * pvarSrc, _Win32_AssociatedEnum_(VAR_CHANGE_FLAGS) _In_ USHORT wFlags, _In_ VARTYPE vt);
+ _Check_return_
+ WINOLEAUTAPI VariantChangeTypeEx(_Inout_ VARIANTARG * pvargDest,
+-               _In_ const VARIANTARG * pvarSrc, _In_ LCID lcid, _In_ USHORT wFlags, _In_ VARTYPE vt);
++               _In_ const VARIANTARG * pvarSrc, _In_ LCID lcid, _Win32_AssociatedEnum_(VAR_CHANGE_FLAGS) _In_ USHORT wFlags, _In_ VARTYPE vt);
+ 
+ #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM) */
+ #pragma endregion
+@@ -1301,7 +1306,7 @@
+ 
+ _Check_return_
+ WINOLEAUTAPI RegisterActiveObject(IUnknown * punk, REFCLSID rclsid,
+-            DWORD dwFlags, DWORD * pdwRegister);
++            _Win32_AssociatedEnum_(ACTIVEOBJECT_FLAGS) DWORD dwFlags, DWORD * pdwRegister);
+ 
+ WINOLEAUTAPI RevokeActiveObject(DWORD dwRegister, void * pvReserved);
+ 
+@@ -1434,3 +1439,12 @@
+ #if _MSC_VER >= 1200
+ #pragma warning(pop)
+ #endif
++
++#ifndef _WIN32METADATA_OLEAUTO_NATIVE_C_64_GROUPS_
++#define _WIN32METADATA_OLEAUTO_NATIVE_C_64_GROUPS_
++_Win32_FlagsEnum_(ACTIVEOBJECT_FLAGS, unsigned int, ACTIVEOBJECT_STRONG, ACTIVEOBJECT_WEAK);
++_Win32_FlagsEnum_(NUMPARSE_FLAGS, unsigned int, NUMPRS_LEADING_WHITE, NUMPRS_TRAILING_WHITE, NUMPRS_LEADING_PLUS, NUMPRS_TRAILING_PLUS, NUMPRS_LEADING_MINUS, NUMPRS_TRAILING_MINUS, NUMPRS_HEX_OCT, NUMPRS_PARENS, NUMPRS_DECIMAL, NUMPRS_THOUSANDS, NUMPRS_CURRENCY, NUMPRS_EXPONENT, NUMPRS_USE_ALL, NUMPRS_STD, NUMPRS_NEG, NUMPRS_INEXACT);
++_Win32_AnnotateField_(NUMPARSE::dwInFlags, _Win32_AssociatedEnum_(NUMPARSE_FLAGS));
++_Win32_AnnotateField_(NUMPARSE::dwOutFlags, _Win32_AssociatedEnum_(NUMPARSE_FLAGS));
++_Win32_FlagsEnum_(VAR_CHANGE_FLAGS, unsigned short, VARIANT_NOVALUEPROP, VARIANT_ALPHABOOL, VARIANT_NOUSEROVERRIDE, VARIANT_CALENDAR_HIJRI, VARIANT_LOCALBOOL, VARIANT_CALENDAR_THAI, VARIANT_CALENDAR_GREGORIAN, VARIANT_USE_NLS);
++#endif
