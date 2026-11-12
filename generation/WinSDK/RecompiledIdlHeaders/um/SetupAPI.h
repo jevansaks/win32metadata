@@ -2173,7 +2173,7 @@ BOOL
 WINAPI
 SetupGetInfFileListA(
     _In_opt_ PCSTR DirectoryPath,
-    _In_ DWORD InfStyle,
+    _Win32_AssociatedEnum_(INF_STYLE) _In_ DWORD InfStyle,
     _Out_writes_opt_(ReturnBufferSize) PSTR ReturnBuffer,
     _In_ DWORD ReturnBufferSize,
     _Out_opt_ PDWORD RequiredSize
@@ -2186,7 +2186,7 @@ BOOL
 WINAPI
 SetupGetInfFileListW(
     _In_opt_ PCWSTR DirectoryPath,
-    _In_ DWORD InfStyle,
+    _Win32_AssociatedEnum_(INF_STYLE) _In_ DWORD InfStyle,
     _Out_writes_(ReturnBufferSize) PWSTR ReturnBuffer,
     _In_ DWORD ReturnBufferSize,
     _Out_opt_ PDWORD RequiredSize
@@ -2207,7 +2207,7 @@ WINAPI
 SetupOpenInfFileW(
     _In_ PCWSTR FileName,
     _In_opt_ PCWSTR InfClass,
-    _In_ DWORD InfStyle,
+    _Win32_AssociatedEnum_(INF_STYLE) _In_ DWORD InfStyle,
     _Out_opt_ PUINT ErrorLine
     );
 _Win32_SetLastError_
@@ -2219,7 +2219,7 @@ WINAPI
 SetupOpenInfFileA(
     _In_ PCSTR FileName,
     _In_opt_ PCSTR InfClass,
-    _In_ DWORD InfStyle,
+    _Win32_AssociatedEnum_(INF_STYLE) _In_ DWORD InfStyle,
     _Out_opt_ PUINT ErrorLine
     );
 
@@ -2563,7 +2563,7 @@ SetupGetFileCompressionInfoA(
     _Out_ PSTR *ActualSourceFileName,
     _Out_ PDWORD SourceFileSize,
     _Out_ PDWORD TargetFileSize,
-    _Out_ PUINT CompressionType
+    _Win32_AssociatedEnum_(FILE_COMPRESSION_TYPE) _Out_ PUINT CompressionType
     );
 
 WINSETUPAPI
@@ -2574,7 +2574,7 @@ SetupGetFileCompressionInfoW(
     _Out_ PWSTR *ActualSourceFileName,
     _Out_ PDWORD SourceFileSize,
     _Out_ PDWORD TargetFileSize,
-    _Out_ PUINT CompressionType
+    _Win32_AssociatedEnum_(FILE_COMPRESSION_TYPE) _Out_ PUINT CompressionType
     );
 
 #ifdef UNICODE
@@ -2604,7 +2604,7 @@ SetupGetFileCompressionInfoExA(
     _Out_opt_ PDWORD RequiredBufferLen,
     _Out_ PDWORD SourceFileSize,
     _Out_ PDWORD TargetFileSize,
-    _Out_ PUINT CompressionType
+    _Win32_AssociatedEnum_(FILE_COMPRESSION_TYPE) _Out_ PUINT CompressionType
     );
 
 WINSETUPAPI
@@ -2617,7 +2617,7 @@ SetupGetFileCompressionInfoExW(
     _Out_opt_ PDWORD RequiredBufferLen,
     _Out_ PDWORD SourceFileSize,
     _Out_ PDWORD TargetFileSize,
-    _Out_ PUINT CompressionType
+    _Win32_AssociatedEnum_(FILE_COMPRESSION_TYPE) _Out_ PUINT CompressionType
     );
 
 #ifdef UNICODE
@@ -2645,7 +2645,7 @@ WINAPI
 SetupDecompressOrCopyFileA(
     _In_ PCSTR SourceFileName,
     _In_ PCSTR TargetFileName,
-    _In_opt_ PUINT CompressionType
+    _Win32_AssociatedEnum_(FILE_COMPRESSION_TYPE) _In_opt_ PUINT CompressionType
     );
 
 WINSETUPAPI
@@ -2654,7 +2654,7 @@ WINAPI
 SetupDecompressOrCopyFileW(
     _In_ PCWSTR SourceFileName,
     _In_ PCWSTR TargetFileName,
-    _In_opt_ PUINT CompressionType
+    _Win32_AssociatedEnum_(FILE_COMPRESSION_TYPE) _In_opt_ PUINT CompressionType
     );
 
 #ifdef UNICODE
@@ -3290,7 +3290,7 @@ SetupInstallFileA(
     _In_opt_ PCSTR SourceFile,
     _In_opt_ PCSTR SourcePathRoot,
     _In_opt_ PCSTR DestinationName,
-    _In_ DWORD CopyStyle,
+    _Win32_AssociatedEnum_(SP_COPY_STYLE) _In_ DWORD CopyStyle,
     _In_opt_ PSP_FILE_CALLBACK_A CopyMsgHandler,
     _In_opt_ PVOID Context
     );
@@ -3306,7 +3306,7 @@ SetupInstallFileW(
     _In_opt_ PCWSTR SourceFile,
     _In_opt_ PCWSTR SourcePathRoot,
     _In_opt_ PCWSTR DestinationName,
-    _In_ DWORD CopyStyle,
+    _Win32_AssociatedEnum_(SP_COPY_STYLE) _In_ DWORD CopyStyle,
     _In_opt_ PSP_FILE_CALLBACK_W CopyMsgHandler,
     _In_opt_ PVOID Context
     );
@@ -3328,7 +3328,7 @@ SetupInstallFileExA(
     _In_opt_ PCSTR SourceFile,
     _In_opt_ PCSTR SourcePathRoot,
     _In_opt_ PCSTR DestinationName,
-    _In_ DWORD CopyStyle,
+    _Win32_AssociatedEnum_(SP_COPY_STYLE) _In_ DWORD CopyStyle,
     _In_opt_ PSP_FILE_CALLBACK_A CopyMsgHandler,
     _In_opt_ PVOID Context,
     _Out_ PBOOL FileWasInUse
@@ -3345,7 +3345,7 @@ SetupInstallFileExW(
     _In_opt_ PCWSTR SourceFile,
     _In_opt_ PCWSTR SourcePathRoot,
     _In_opt_ PCWSTR DestinationName,
-    _In_ DWORD CopyStyle,
+    _Win32_AssociatedEnum_(SP_COPY_STYLE) _In_ DWORD CopyStyle,
     _In_opt_ PSP_FILE_CALLBACK_W CopyMsgHandler,
     _In_opt_ PVOID Context,
     _Out_ PBOOL FileWasInUse
@@ -3794,7 +3794,7 @@ BOOL
 WINAPI
 SetupScanFileQueueA(
     _In_ HSPFILEQ FileQueue,
-    _In_ DWORD Flags,
+    _Win32_AssociatedEnum_(SETUPSCANFILEQUEUE_FLAGS) _In_ DWORD Flags,
     _In_opt_ HWND Window,
     _In_opt_ PSP_FILE_CALLBACK_A CallbackRoutine,
     _In_opt_ PVOID CallbackContext,
@@ -3808,7 +3808,7 @@ BOOL
 WINAPI
 SetupScanFileQueueW(
     _In_ HSPFILEQ FileQueue,
-    _In_ DWORD Flags,
+    _Win32_AssociatedEnum_(SETUPSCANFILEQUEUE_FLAGS) _In_ DWORD Flags,
     _In_opt_ HWND Window,
     _In_opt_ PSP_FILE_CALLBACK_W CallbackRoutine,
     _In_opt_ PVOID CallbackContext,
@@ -3939,7 +3939,7 @@ SetupCopyOEMInfA(
     _In_ PCSTR SourceInfFileName,
     _In_opt_ PCSTR OEMSourceMediaLocation,
     _In_ DWORD OEMSourceMediaType,
-    _In_ DWORD CopyStyle,
+    _Win32_AssociatedEnum_(SP_COPY_STYLE) _In_ DWORD CopyStyle,
     _Out_writes_opt_(DestinationInfFileNameSize) PSTR DestinationInfFileName,
     _In_ DWORD DestinationInfFileNameSize,
     _Out_opt_ PDWORD RequiredSize,
@@ -3955,7 +3955,7 @@ SetupCopyOEMInfW(
     _In_ PCWSTR SourceInfFileName,
     _In_opt_ PCWSTR OEMSourceMediaLocation,
     _In_ DWORD OEMSourceMediaType,
-    _In_ DWORD CopyStyle,
+    _Win32_AssociatedEnum_(SP_COPY_STYLE) _In_ DWORD CopyStyle,
     _Out_writes_opt_(DestinationInfFileNameSize) PWSTR DestinationInfFileName,
     _In_ DWORD DestinationInfFileNameSize,
     _Out_opt_ PDWORD RequiredSize,
@@ -4942,7 +4942,7 @@ WINAPI
 SetupInstallServicesFromInfSectionA(
     _In_ HINF InfHandle,
     _In_ PCSTR SectionName,
-    _In_ DWORD Flags
+    _Win32_AssociatedEnum_(SPSVCINST_FLAGS) _In_ DWORD Flags
     );
 
 WINSETUPAPI
@@ -4951,7 +4951,7 @@ WINAPI
 SetupInstallServicesFromInfSectionW(
     _In_ HINF InfHandle,
     _In_ PCWSTR SectionName,
-    _In_ DWORD Flags
+    _Win32_AssociatedEnum_(SPSVCINST_FLAGS) _In_ DWORD Flags
     );
 
 #ifdef UNICODE
@@ -4969,7 +4969,7 @@ WINAPI
 SetupInstallServicesFromInfSectionExA(
     _In_ HINF InfHandle,
     _In_ PCSTR SectionName,
-    _In_ DWORD Flags,
+    _Win32_AssociatedEnum_(SPSVCINST_FLAGS) _In_ DWORD Flags,
     _In_opt_ HDEVINFO DeviceInfoSet,
     _In_opt_ PSP_DEVINFO_DATA DeviceInfoData,
     _Reserved_ PVOID Reserved1,
@@ -4984,7 +4984,7 @@ WINAPI
 SetupInstallServicesFromInfSectionExW(
     _In_ HINF InfHandle,
     _In_ PCWSTR SectionName,
-    _In_ DWORD Flags,
+    _Win32_AssociatedEnum_(SPSVCINST_FLAGS) _In_ DWORD Flags,
     _In_opt_ HDEVINFO DeviceInfoSet,
     _In_opt_ PSP_DEVINFO_DATA DeviceInfoData,
     _Reserved_ PVOID Reserved1,
@@ -5504,7 +5504,7 @@ SetupDiCreateDeviceInfoA(
     _In_ CONST GUID *ClassGuid,
     _In_opt_ PCSTR DeviceDescription,
     _In_opt_ HWND hwndParent,
-    _In_ DWORD CreationFlags,
+    _Win32_AssociatedEnum_(SETUP_DI_DEVICE_CREATION_FLAGS) _In_ DWORD CreationFlags,
     _Inout_opt_ PSP_DEVINFO_DATA DeviceInfoData
     );
 
@@ -5517,7 +5517,7 @@ SetupDiCreateDeviceInfoW(
     _In_ CONST GUID *ClassGuid,
     _In_opt_ PCWSTR DeviceDescription,
     _In_opt_ HWND hwndParent,
-    _In_ DWORD CreationFlags,
+    _Win32_AssociatedEnum_(SETUP_DI_DEVICE_CREATION_FLAGS) _In_ DWORD CreationFlags,
     _Inout_opt_ PSP_DEVINFO_DATA DeviceInfoData
     );
 
@@ -6082,7 +6082,7 @@ SetupDiGetClassDevsA(
     _In_opt_ CONST GUID *ClassGuid,
     _In_opt_ PCSTR Enumerator,
     _In_opt_ HWND hwndParent,
-    _In_ DWORD Flags
+    _Win32_AssociatedEnum_(SETUP_DI_GET_CLASS_DEVS_FLAGS) _In_ DWORD Flags
     );
 
 _Check_return_
@@ -6093,7 +6093,7 @@ SetupDiGetClassDevsW(
     _In_opt_ CONST GUID *ClassGuid,
     _In_opt_ PCWSTR Enumerator,
     _In_opt_ HWND hwndParent,
-    _In_ DWORD Flags
+    _Win32_AssociatedEnum_(SETUP_DI_GET_CLASS_DEVS_FLAGS) _In_ DWORD Flags
     );
 
 #ifdef UNICODE
@@ -6113,7 +6113,7 @@ SetupDiGetClassDevsExA(
     _In_opt_ CONST GUID *ClassGuid,
     _In_opt_ PCSTR Enumerator,
     _In_opt_ HWND hwndParent,
-    _In_ DWORD Flags,
+    _Win32_AssociatedEnum_(SETUP_DI_GET_CLASS_DEVS_FLAGS) _In_ DWORD Flags,
     _In_opt_ HDEVINFO DeviceInfoSet,
     _In_opt_ PCSTR MachineName,
     _Reserved_ PVOID Reserved
@@ -6129,7 +6129,7 @@ SetupDiGetClassDevsExW(
     _In_opt_ CONST GUID *ClassGuid,
     _In_opt_ PCWSTR Enumerator,
     _In_opt_ HWND hwndParent,
-    _In_ DWORD Flags,
+    _Win32_AssociatedEnum_(SETUP_DI_GET_CLASS_DEVS_FLAGS) _In_ DWORD Flags,
     _In_opt_ HDEVINFO DeviceInfoSet,
     _In_opt_ PCWSTR MachineName,
     _Reserved_ PVOID Reserved
@@ -6304,7 +6304,7 @@ WINSETUPAPI
 BOOL
 WINAPI
 SetupDiCallClassInstaller(
-    _In_ DI_FUNCTION InstallFunction,
+    _Win32_AssociatedEnum_(DI_FUNCTION) _In_ DI_FUNCTION InstallFunction,
     _In_ HDEVINFO DeviceInfoSet,
     _In_opt_ PSP_DEVINFO_DATA DeviceInfoData
     );
@@ -7087,7 +7087,7 @@ WINAPI
 SetupDiGetDeviceRegistryPropertyA(
     _In_ HDEVINFO DeviceInfoSet,
     _In_ PSP_DEVINFO_DATA DeviceInfoData,
-    _In_ DWORD Property,
+    _Win32_AssociatedEnum_(SETUP_DI_REGISTRY_PROPERTY) _In_ DWORD Property,
     _Out_opt_ PDWORD PropertyRegDataType,
     _Out_writes_bytes_to_opt_(PropertyBufferSize, *RequiredSize) PBYTE PropertyBuffer,
     _In_ DWORD PropertyBufferSize,
@@ -7105,7 +7105,7 @@ WINAPI
 SetupDiGetDeviceRegistryPropertyW(
     _In_ HDEVINFO DeviceInfoSet,
     _In_ PSP_DEVINFO_DATA DeviceInfoData,
-    _In_ DWORD Property,
+    _Win32_AssociatedEnum_(SETUP_DI_REGISTRY_PROPERTY) _In_ DWORD Property,
     _Out_opt_ PDWORD PropertyRegDataType,
     _Out_writes_bytes_to_opt_(PropertyBufferSize, *RequiredSize) PBYTE PropertyBuffer,
     _In_ DWORD PropertyBufferSize,
@@ -7170,7 +7170,7 @@ WINAPI
 SetupDiSetDeviceRegistryPropertyA(
     _In_ HDEVINFO DeviceInfoSet,
     _Inout_ PSP_DEVINFO_DATA DeviceInfoData,
-    _In_ DWORD Property,
+    _Win32_AssociatedEnum_(SETUP_DI_REGISTRY_PROPERTY) _In_ DWORD Property,
     _In_reads_bytes_opt_(PropertyBufferSize) CONST BYTE *PropertyBuffer,
     _In_ DWORD PropertyBufferSize
     );
@@ -7183,7 +7183,7 @@ WINAPI
 SetupDiSetDeviceRegistryPropertyW(
     _In_ HDEVINFO DeviceInfoSet,
     _Inout_ PSP_DEVINFO_DATA DeviceInfoData,
-    _In_ DWORD Property,
+    _Win32_AssociatedEnum_(SETUP_DI_REGISTRY_PROPERTY) _In_ DWORD Property,
     _In_reads_bytes_opt_(PropertyBufferSize) CONST BYTE *PropertyBuffer,
     _In_ DWORD PropertyBufferSize
     );
@@ -8243,3 +8243,27 @@ SetupConfigureWmiFromInfSectionW(
 #pragma endregion
 
 #endif // _INC_SETUPAPI
+
+#ifndef _WIN32METADATA_SETUPAPI_GROUPS_
+#define _WIN32METADATA_SETUPAPI_GROUPS_
+_Win32_FlagsEnum_(SP_COPY_STYLE, unsigned int, SP_COPY_DELETESOURCE, SP_COPY_REPLACEONLY, SP_COPY_NEWER, SP_COPY_NEWER_OR_SAME, SP_COPY_NOOVERWRITE, SP_COPY_NODECOMP, SP_COPY_LANGUAGEAWARE, SP_COPY_SOURCE_ABSOLUTE, SP_COPY_SOURCEPATH_ABSOLUTE, SP_COPY_IN_USE_NEEDS_REBOOT, SP_COPY_FORCE_IN_USE, SP_COPY_NOSKIP, SP_COPY_FORCE_NOOVERWRITE, SP_COPY_FORCE_NEWER, SP_COPY_WARNIFSKIP, SP_COPY_NOBROWSE, SP_COPY_NEWER_ONLY, SP_COPY_RESERVED, SP_COPY_OEMINF_CATALOG_ONLY, SP_COPY_REPLACE_BOOT_FILE, SP_COPY_NOPRUNE, SP_COPY_OEM_F6_INF, SP_COPY_ALREADYDECOMP, SP_COPY_WINDOWS_SIGNED, SP_COPY_PNPLOCKED, SP_COPY_IN_USE_TRY_RENAME, SP_COPY_INBOX_INF, SP_COPY_HARDLINK);
+_Win32_FlagsEnum_(INF_STYLE, unsigned int, INF_STYLE_NONE, INF_STYLE_OLDNT, INF_STYLE_WIN4, INF_STYLE_CACHE_ENABLE, INF_STYLE_CACHE_DISABLE, INF_STYLE_CACHE_IGNORE);
+_Win32_AnnotateField_(SP_INF_INFORMATION::InfStyle, _Win32_AssociatedEnum_(INF_STYLE));
+_Win32_FlagsEnum_(SETUPSCANFILEQUEUE_FLAGS, unsigned int, SPQ_SCAN_FILE_PRESENCE, SPQ_SCAN_FILE_VALIDITY, SPQ_SCAN_USE_CALLBACK, SPQ_SCAN_USE_CALLBACKEX, SPQ_SCAN_INFORM_USER, SPQ_SCAN_PRUNE_COPY_QUEUE, SPQ_SCAN_USE_CALLBACK_SIGNERINFO, SPQ_SCAN_PRUNE_DELREN, SPQ_SCAN_FILE_PRESENCE_WITHOUT_SOURCE, SPQ_SCAN_FILE_COMPARISON, SPQ_SCAN_ACTIVATE_DRP, SPQ_SCAN_USE_OEM_CATALOGS);
+_Win32_FlagsEnum_(SPSVCINST_FLAGS, unsigned int, SPSVCINST_TAGTOFRONT, SPSVCINST_ASSOCSERVICE, SPSVCINST_DELETEEVENTLOGENTRY, SPSVCINST_NOCLOBBER_DISPLAYNAME, SPSVCINST_NOCLOBBER_STARTTYPE, SPSVCINST_NOCLOBBER_ERRORCONTROL, SPSVCINST_NOCLOBBER_LOADORDERGROUP, SPSVCINST_NOCLOBBER_DEPENDENCIES, SPSVCINST_NOCLOBBER_DESCRIPTION, SPSVCINST_STOPSERVICE, SPSVCINST_CLOBBER_SECURITY, SPSVCINST_STARTSERVICE, SPSVCINST_NOCLOBBER_REQUIREDPRIVILEGES, SPSVCINST_NOCLOBBER_TRIGGERS, SPSVCINST_NOCLOBBER_SERVICESIDTYPE, SPSVCINST_NOCLOBBER_DELAYEDAUTOSTART, SPSVCINST_UNIQUE_NAME, SPSVCINST_NOCLOBBER_FAILUREACTIONS, SPSVCINST_NOCLOBBER_BOOTFLAGS);
+_Win32_Enum_(SETUP_DI_REGISTRY_PROPERTY, unsigned int, SPDRP_DEVICEDESC, SPDRP_HARDWAREID, SPDRP_COMPATIBLEIDS, SPDRP_UNUSED0, SPDRP_SERVICE, SPDRP_UNUSED1, SPDRP_UNUSED2, SPDRP_CLASS, SPDRP_CLASSGUID, SPDRP_DRIVER, SPDRP_CONFIGFLAGS, SPDRP_MFG, SPDRP_FRIENDLYNAME, SPDRP_LOCATION_INFORMATION, SPDRP_PHYSICAL_DEVICE_OBJECT_NAME, SPDRP_CAPABILITIES, SPDRP_UI_NUMBER, SPDRP_UPPERFILTERS, SPDRP_LOWERFILTERS, SPDRP_BUSTYPEGUID, SPDRP_LEGACYBUSTYPE, SPDRP_BUSNUMBER, SPDRP_ENUMERATOR_NAME, SPDRP_SECURITY, SPDRP_SECURITY_SDS, SPDRP_DEVTYPE, SPDRP_EXCLUSIVE, SPDRP_CHARACTERISTICS, SPDRP_ADDRESS, SPDRP_UI_NUMBER_DESC_FORMAT, SPDRP_DEVICE_POWER_DATA, SPDRP_REMOVAL_POLICY, SPDRP_REMOVAL_POLICY_HW_DEFAULT, SPDRP_REMOVAL_POLICY_OVERRIDE, SPDRP_INSTALL_STATE, SPDRP_LOCATION_PATHS, SPDRP_BASE_CONTAINERID, SPDRP_MAXIMUM_PROPERTY);
+_Win32_FlagsEnum_(SETUP_DI_DEVICE_CREATION_FLAGS, unsigned int, DICD_GENERATE_ID, DICD_INHERIT_CLASSDRVS);
+_Win32_FlagsEnum_(SETUP_DI_DRIVER_INSTALL_FLAGS, unsigned int, DNF_DUPDESC, DNF_OLDDRIVER, DNF_EXCLUDEFROMLIST, DNF_NODRIVER, DNF_LEGACYINF, DNF_CLASS_DRIVER, DNF_COMPATIBLE_DRIVER, DNF_INET_DRIVER, DNF_UNUSED1, DNF_UNUSED2, DNF_OLD_INET_DRIVER, DNF_BAD_DRIVER, DNF_DUPPROVIDER, DNF_INF_IS_SIGNED, DNF_OEM_F6_INF, DNF_DUPDRIVERVER, DNF_BASIC_DRIVER, DNF_AUTHENTICODE_SIGNED, DNF_INSTALLEDDRIVER, DNF_ALWAYSEXCLUDEFROMLIST, DNF_INBOX_DRIVER, DNF_REQUESTADDITIONALSOFTWARE, DNF_UNUSED_22, DNF_UNUSED_23, DNF_UNUSED_24, DNF_UNUSED_25, DNF_UNUSED_26, DNF_UNUSED_27, DNF_UNUSED_28, DNF_UNUSED_29, DNF_UNUSED_30, DNF_UNUSED_31);
+_Win32_AnnotateField_(SP_DRVINSTALL_PARAMS::Flags, _Win32_AssociatedEnum_(SETUP_DI_DRIVER_INSTALL_FLAGS));
+_Win32_Enum_(SETUP_DI_STATE_CHANGE, unsigned int, DICS_ENABLE, DICS_DISABLE, DICS_PROPCHANGE, DICS_START, DICS_STOP);
+_Win32_AnnotateField_(SP_PROPCHANGE_PARAMS::StateChange, _Win32_AssociatedEnum_(SETUP_DI_STATE_CHANGE));
+_Win32_Enum_(SETUP_DI_PROPERTY_CHANGE_SCOPE, unsigned int, DICS_FLAG_GLOBAL, DICS_FLAG_CONFIGSPECIFIC, DICS_FLAG_CONFIGGENERAL);
+_Win32_AnnotateField_(SP_PROPCHANGE_PARAMS::Scope, _Win32_AssociatedEnum_(SETUP_DI_PROPERTY_CHANGE_SCOPE));
+_Win32_FlagsEnum_(SETUP_DI_GET_CLASS_DEVS_FLAGS, unsigned int, DIGCF_DEFAULT, DIGCF_PRESENT, DIGCF_ALLCLASSES, DIGCF_PROFILE, DIGCF_DEVICEINTERFACE, DIGCF_INTERFACEDEVICE);
+_Win32_Enum_(DI_FUNCTION, unsigned int, DIF_SELECTDEVICE, DIF_INSTALLDEVICE, DIF_ASSIGNRESOURCES, DIF_PROPERTIES, DIF_REMOVE, DIF_FIRSTTIMESETUP, DIF_FOUNDDEVICE, DIF_SELECTCLASSDRIVERS, DIF_VALIDATECLASSDRIVERS, DIF_INSTALLCLASSDRIVERS, DIF_CALCDISKSPACE, DIF_DESTROYPRIVATEDATA, DIF_VALIDATEDRIVER, DIF_DETECT, DIF_INSTALLWIZARD, DIF_DESTROYWIZARDDATA, DIF_PROPERTYCHANGE, DIF_ENABLECLASS, DIF_DETECTVERIFY, DIF_INSTALLDEVICEFILES, DIF_UNREMOVE, DIF_SELECTBESTCOMPATDRV, DIF_ALLOW_INSTALL, DIF_REGISTERDEVICE, DIF_NEWDEVICEWIZARD_PRESELECT, DIF_NEWDEVICEWIZARD_SELECT, DIF_NEWDEVICEWIZARD_PREANALYZE, DIF_NEWDEVICEWIZARD_POSTANALYZE, DIF_NEWDEVICEWIZARD_FINISHINSTALL, DIF_UNUSED1, DIF_INSTALLINTERFACES, DIF_DETECTCANCEL, DIF_REGISTER_COINSTALLERS, DIF_ADDPROPERTYPAGE_ADVANCED, DIF_ADDPROPERTYPAGE_BASIC, DIF_RESERVED1, DIF_TROUBLESHOOTER, DIF_POWERMESSAGEWAKE, DIF_ADDREMOTEPROPERTYPAGE_ADVANCED, DIF_UPDATEDRIVER_UI, DIF_FINISHINSTALL_ACTION, DIF_RESERVED2, DIF_MOVEDEVICE);
+_Win32_AnnotateField_(SP_CLASSINSTALL_HEADER::InstallFunction, _Win32_AssociatedEnum_(DI_FUNCTION));
+_Win32_FlagsEnum_(SETUP_DI_DEVICE_INSTALL_FLAGS_EX, unsigned int, DI_FLAGSEX_RESERVED2, DI_FLAGSEX_RESERVED3, DI_FLAGSEX_CI_FAILED, DI_FLAGSEX_FINISHINSTALL_ACTION, DI_FLAGSEX_DIDINFOLIST, DI_FLAGSEX_DIDCOMPATINFO, DI_FLAGSEX_FILTERCLASSES, DI_FLAGSEX_SETFAILEDINSTALL, DI_FLAGSEX_DEVICECHANGE, DI_FLAGSEX_ALWAYSWRITEIDS, DI_FLAGSEX_PROPCHANGE_PENDING, DI_FLAGSEX_ALLOWEXCLUDEDDRVS, DI_FLAGSEX_NOUIONQUERYREMOVE, DI_FLAGSEX_USECLASSFORCOMPAT, DI_FLAGSEX_RESERVED4, DI_FLAGSEX_NO_DRVREG_MODIFY, DI_FLAGSEX_IN_SYSTEM_SETUP, DI_FLAGSEX_INET_DRIVER, DI_FLAGSEX_APPENDDRIVERLIST, DI_FLAGSEX_PREINSTALLBACKUP, DI_FLAGSEX_BACKUPONREPLACE, DI_FLAGSEX_DRIVERLIST_FROM_URL, DI_FLAGSEX_RESERVED1, DI_FLAGSEX_EXCLUDE_OLD_INET_DRIVERS, DI_FLAGSEX_POWERPAGE_ADDED, DI_FLAGSEX_FILTERSIMILARDRIVERS, DI_FLAGSEX_INSTALLEDDRIVER, DI_FLAGSEX_NO_CLASSLIST_NODE_MERGE, DI_FLAGSEX_ALTPLATFORM_DRVSEARCH, DI_FLAGSEX_RESTART_DEVICE_ONLY, DI_FLAGSEX_RECURSIVESEARCH, DI_FLAGSEX_SEARCH_PUBLISHED_INFS);
+_Win32_AnnotateField_(SP_DEVINSTALL_PARAMS_A::FlagsEx, _Win32_AssociatedEnum_(SETUP_DI_DEVICE_INSTALL_FLAGS_EX));
+_Win32_AnnotateField_(SP_DEVINSTALL_PARAMS_W::FlagsEx, _Win32_AssociatedEnum_(SETUP_DI_DEVICE_INSTALL_FLAGS_EX));
+_Win32_FlagsEnum_(FILE_COMPRESSION_TYPE, unsigned int, FILE_COMPRESSION_NONE, FILE_COMPRESSION_WINLZA, FILE_COMPRESSION_MSZIP, FILE_COMPRESSION_NTCAB);
+#endif

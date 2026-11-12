@@ -115,7 +115,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -2153,6 +2178,8 @@
+@@ -2148,18 +2173,20 @@
+ WINAPI
+ SetupGetInfFileListA(
+     _In_opt_ PCSTR DirectoryPath,
+-    _In_ DWORD InfStyle,
++    _Win32_AssociatedEnum_(INF_STYLE) _In_ DWORD InfStyle,
+     _Out_writes_opt_(ReturnBufferSize) PSTR ReturnBuffer,
      _In_ DWORD ReturnBufferSize,
      _Out_opt_ PDWORD RequiredSize
      );
@@ -124,6 +130,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
+ WINAPI
+ SetupGetInfFileListW(
+     _In_opt_ PCWSTR DirectoryPath,
+-    _In_ DWORD InfStyle,
++    _Win32_AssociatedEnum_(INF_STYLE) _In_ DWORD InfStyle,
+     _Out_writes_(ReturnBufferSize) PWSTR ReturnBuffer,
+     _In_ DWORD ReturnBufferSize,
+     _Out_opt_ PDWORD RequiredSize
 @@ -2170,6 +2197,8 @@
  #else
  #define SetupGetInfFileList SetupGetInfFileListA
@@ -133,8 +147,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -2181,6 +2210,8 @@
-     _In_ DWORD InfStyle,
+@@ -2178,9 +2207,11 @@
+ SetupOpenInfFileW(
+     _In_ PCWSTR FileName,
+     _In_opt_ PCWSTR InfClass,
+-    _In_ DWORD InfStyle,
++    _Win32_AssociatedEnum_(INF_STYLE) _In_ DWORD InfStyle,
      _Out_opt_ PUINT ErrorLine
      );
 +_Win32_SetLastError_
@@ -142,6 +160,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  HINF
+@@ -2188,7 +2219,7 @@
+ SetupOpenInfFileA(
+     _In_ PCSTR FileName,
+     _In_opt_ PCSTR InfClass,
+-    _In_ DWORD InfStyle,
++    _Win32_AssociatedEnum_(INF_STYLE) _In_ DWORD InfStyle,
+     _Out_opt_ PUINT ErrorLine
+     );
+ 
 @@ -2197,6 +2228,8 @@
  #else
  #define SetupOpenInfFile SetupOpenInfFileA
@@ -348,6 +375,24 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  //
  // SetupGetFileCompressionInfo is depreciated
+@@ -2487,7 +2563,7 @@
+     _Out_ PSTR *ActualSourceFileName,
+     _Out_ PDWORD SourceFileSize,
+     _Out_ PDWORD TargetFileSize,
+-    _Out_ PUINT CompressionType
++    _Win32_AssociatedEnum_(FILE_COMPRESSION_TYPE) _Out_ PUINT CompressionType
+     );
+ 
+ WINSETUPAPI
+@@ -2498,7 +2574,7 @@
+     _Out_ PWSTR *ActualSourceFileName,
+     _Out_ PDWORD SourceFileSize,
+     _Out_ PDWORD TargetFileSize,
+-    _Out_ PUINT CompressionType
++    _Win32_AssociatedEnum_(FILE_COMPRESSION_TYPE) _Out_ PUINT CompressionType
+     );
+ 
+ #ifdef UNICODE
 @@ -2508,6 +2584,8 @@
  #endif
  
@@ -357,6 +402,24 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  //
  // SetupGetFileCompressionInfoEx is the preferred API over
+@@ -2526,7 +2604,7 @@
+     _Out_opt_ PDWORD RequiredBufferLen,
+     _Out_ PDWORD SourceFileSize,
+     _Out_ PDWORD TargetFileSize,
+-    _Out_ PUINT CompressionType
++    _Win32_AssociatedEnum_(FILE_COMPRESSION_TYPE) _Out_ PUINT CompressionType
+     );
+ 
+ WINSETUPAPI
+@@ -2539,7 +2617,7 @@
+     _Out_opt_ PDWORD RequiredBufferLen,
+     _Out_ PDWORD SourceFileSize,
+     _Out_ PDWORD TargetFileSize,
+-    _Out_ PUINT CompressionType
++    _Win32_AssociatedEnum_(FILE_COMPRESSION_TYPE) _Out_ PUINT CompressionType
+     );
+ 
+ #ifdef UNICODE
 @@ -2557,6 +2635,8 @@
  #define FILE_COMPRESSION_WINLZA     1
  #define FILE_COMPRESSION_MSZIP      2
@@ -366,6 +429,24 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
+@@ -2565,7 +2645,7 @@
+ SetupDecompressOrCopyFileA(
+     _In_ PCSTR SourceFileName,
+     _In_ PCSTR TargetFileName,
+-    _In_opt_ PUINT CompressionType
++    _Win32_AssociatedEnum_(FILE_COMPRESSION_TYPE) _In_opt_ PUINT CompressionType
+     );
+ 
+ WINSETUPAPI
+@@ -2574,7 +2654,7 @@
+ SetupDecompressOrCopyFileW(
+     _In_ PCWSTR SourceFileName,
+     _In_ PCWSTR TargetFileName,
+-    _In_opt_ PUINT CompressionType
++    _Win32_AssociatedEnum_(FILE_COMPRESSION_TYPE) _In_opt_ PUINT CompressionType
+     );
+ 
+ #ifdef UNICODE
 @@ -2582,6 +2662,8 @@
  #else
  #define SetupDecompressOrCopyFile SetupDecompressOrCopyFileA
@@ -672,7 +753,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -3146,6 +3294,8 @@
+@@ -3142,10 +3290,12 @@
+     _In_opt_ PCSTR SourceFile,
+     _In_opt_ PCSTR SourcePathRoot,
+     _In_opt_ PCSTR DestinationName,
+-    _In_ DWORD CopyStyle,
++    _Win32_AssociatedEnum_(SP_COPY_STYLE) _In_ DWORD CopyStyle,
      _In_opt_ PSP_FILE_CALLBACK_A CopyMsgHandler,
      _In_opt_ PVOID Context
      );
@@ -681,6 +767,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
+@@ -3156,7 +3306,7 @@
+     _In_opt_ PCWSTR SourceFile,
+     _In_opt_ PCWSTR SourcePathRoot,
+     _In_opt_ PCWSTR DestinationName,
+-    _In_ DWORD CopyStyle,
++    _Win32_AssociatedEnum_(SP_COPY_STYLE) _In_ DWORD CopyStyle,
+     _In_opt_ PSP_FILE_CALLBACK_W CopyMsgHandler,
+     _In_opt_ PVOID Context
+     );
 @@ -3166,6 +3316,8 @@
  #else
  #define SetupInstallFile SetupInstallFileA
@@ -690,7 +785,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -3181,6 +3333,8 @@
+@@ -3176,11 +3328,13 @@
+     _In_opt_ PCSTR SourceFile,
+     _In_opt_ PCSTR SourcePathRoot,
+     _In_opt_ PCSTR DestinationName,
+-    _In_ DWORD CopyStyle,
++    _Win32_AssociatedEnum_(SP_COPY_STYLE) _In_ DWORD CopyStyle,
+     _In_opt_ PSP_FILE_CALLBACK_A CopyMsgHandler,
      _In_opt_ PVOID Context,
      _Out_ PBOOL FileWasInUse
      );
@@ -699,6 +800,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
+@@ -3191,7 +3345,7 @@
+     _In_opt_ PCWSTR SourceFile,
+     _In_opt_ PCWSTR SourcePathRoot,
+     _In_opt_ PCWSTR DestinationName,
+-    _In_ DWORD CopyStyle,
++    _Win32_AssociatedEnum_(SP_COPY_STYLE) _In_ DWORD CopyStyle,
+     _In_opt_ PSP_FILE_CALLBACK_W CopyMsgHandler,
+     _In_opt_ PVOID Context,
+     _Out_ PBOOL FileWasInUse
 @@ -3269,6 +3423,8 @@
  
  
@@ -923,7 +1033,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -3597,6 +3800,8 @@
+@@ -3591,19 +3794,21 @@
+ WINAPI
+ SetupScanFileQueueA(
+     _In_ HSPFILEQ FileQueue,
+-    _In_ DWORD Flags,
++    _Win32_AssociatedEnum_(SETUPSCANFILEQUEUE_FLAGS) _In_ DWORD Flags,
+     _In_opt_ HWND Window,
+     _In_opt_ PSP_FILE_CALLBACK_A CallbackRoutine,
      _In_opt_ PVOID CallbackContext,
      _Out_ PDWORD Result
      );
@@ -932,6 +1049,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
+ WINAPI
+ SetupScanFileQueueW(
+     _In_ HSPFILEQ FileQueue,
+-    _In_ DWORD Flags,
++    _Win32_AssociatedEnum_(SETUPSCANFILEQUEUE_FLAGS) _In_ DWORD Flags,
+     _In_opt_ HWND Window,
+     _In_opt_ PSP_FILE_CALLBACK_W CallbackRoutine,
+     _In_opt_ PVOID CallbackContext,
 @@ -3654,6 +3859,8 @@
  #define SPQ_DELAYED_COPY                        0x00000001  // file was in use; registered for delayed copy
  
@@ -968,7 +1093,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -3732,6 +3945,8 @@
+@@ -3726,12 +3939,14 @@
+     _In_ PCSTR SourceInfFileName,
+     _In_opt_ PCSTR OEMSourceMediaLocation,
+     _In_ DWORD OEMSourceMediaType,
+-    _In_ DWORD CopyStyle,
++    _Win32_AssociatedEnum_(SP_COPY_STYLE) _In_ DWORD CopyStyle,
+     _Out_writes_opt_(DestinationInfFileNameSize) PSTR DestinationInfFileName,
+     _In_ DWORD DestinationInfFileNameSize,
      _Out_opt_ PDWORD RequiredSize,
      _Out_opt_ PSTR *DestinationInfFileNameComponent
      );
@@ -977,6 +1109,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
+@@ -3740,7 +3955,7 @@
+     _In_ PCWSTR SourceInfFileName,
+     _In_opt_ PCWSTR OEMSourceMediaLocation,
+     _In_ DWORD OEMSourceMediaType,
+-    _In_ DWORD CopyStyle,
++    _Win32_AssociatedEnum_(SP_COPY_STYLE) _In_ DWORD CopyStyle,
+     _Out_writes_opt_(DestinationInfFileNameSize) PWSTR DestinationInfFileName,
+     _In_ DWORD DestinationInfFileNameSize,
+     _Out_opt_ PDWORD RequiredSize,
 @@ -3770,6 +3985,7 @@
  
  
@@ -1325,6 +1466,24 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
+@@ -4652,7 +4942,7 @@
+ SetupInstallServicesFromInfSectionA(
+     _In_ HINF InfHandle,
+     _In_ PCSTR SectionName,
+-    _In_ DWORD Flags
++    _Win32_AssociatedEnum_(SPSVCINST_FLAGS) _In_ DWORD Flags
+     );
+ 
+ WINSETUPAPI
+@@ -4661,7 +4951,7 @@
+ SetupInstallServicesFromInfSectionW(
+     _In_ HINF InfHandle,
+     _In_ PCWSTR SectionName,
+-    _In_ DWORD Flags
++    _Win32_AssociatedEnum_(SPSVCINST_FLAGS) _In_ DWORD Flags
+     );
+ 
+ #ifdef UNICODE
 @@ -4669,6 +4959,8 @@
  #else
  #define SetupInstallServicesFromInfSection SetupInstallServicesFromInfSectionA
@@ -1334,7 +1493,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -4683,6 +4975,8 @@
+@@ -4677,12 +4969,14 @@
+ SetupInstallServicesFromInfSectionExA(
+     _In_ HINF InfHandle,
+     _In_ PCSTR SectionName,
+-    _In_ DWORD Flags,
++    _Win32_AssociatedEnum_(SPSVCINST_FLAGS) _In_ DWORD Flags,
+     _In_opt_ HDEVINFO DeviceInfoSet,
+     _In_opt_ PSP_DEVINFO_DATA DeviceInfoData,
      _Reserved_ PVOID Reserved1,
      _Reserved_ PVOID Reserved2
      );
@@ -1343,6 +1509,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
+@@ -4690,7 +4984,7 @@
+ SetupInstallServicesFromInfSectionExW(
+     _In_ HINF InfHandle,
+     _In_ PCWSTR SectionName,
+-    _In_ DWORD Flags,
++    _Win32_AssociatedEnum_(SPSVCINST_FLAGS) _In_ DWORD Flags,
+     _In_opt_ HDEVINFO DeviceInfoSet,
+     _In_opt_ PSP_DEVINFO_DATA DeviceInfoData,
+     _Reserved_ PVOID Reserved1,
 @@ -4712,6 +5006,7 @@
  //
  // wsprintf(CmdLineBuffer,TEXT("DefaultInstall 132 %s"),InfPath);
@@ -1602,20 +1777,24 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -5165,7 +5505,7 @@
+@@ -5164,8 +5504,8 @@
+     _In_ CONST GUID *ClassGuid,
      _In_opt_ PCSTR DeviceDescription,
      _In_opt_ HWND hwndParent,
-     _In_ DWORD CreationFlags,
+-    _In_ DWORD CreationFlags,
 -    _Out_opt_ PSP_DEVINFO_DATA DeviceInfoData
++    _Win32_AssociatedEnum_(SETUP_DI_DEVICE_CREATION_FLAGS) _In_ DWORD CreationFlags,
 +    _Inout_opt_ PSP_DEVINFO_DATA DeviceInfoData
      );
  
  WINSETUPAPI
-@@ -5178,7 +5518,7 @@
+@@ -5177,8 +5517,8 @@
+     _In_ CONST GUID *ClassGuid,
      _In_opt_ PCWSTR DeviceDescription,
      _In_opt_ HWND hwndParent,
-     _In_ DWORD CreationFlags,
+-    _In_ DWORD CreationFlags,
 -    _Out_opt_ PSP_DEVINFO_DATA DeviceInfoData
++    _Win32_AssociatedEnum_(SETUP_DI_DEVICE_CREATION_FLAGS) _In_ DWORD CreationFlags,
 +    _Inout_opt_ PSP_DEVINFO_DATA DeviceInfoData
      );
  
@@ -1978,6 +2157,24 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  _Check_return_
+@@ -5694,7 +6082,7 @@
+     _In_opt_ CONST GUID *ClassGuid,
+     _In_opt_ PCSTR Enumerator,
+     _In_opt_ HWND hwndParent,
+-    _In_ DWORD Flags
++    _Win32_AssociatedEnum_(SETUP_DI_GET_CLASS_DEVS_FLAGS) _In_ DWORD Flags
+     );
+ 
+ _Check_return_
+@@ -5705,7 +6093,7 @@
+     _In_opt_ CONST GUID *ClassGuid,
+     _In_opt_ PCWSTR Enumerator,
+     _In_opt_ HWND hwndParent,
+-    _In_ DWORD Flags
++    _Win32_AssociatedEnum_(SETUP_DI_GET_CLASS_DEVS_FLAGS) _In_ DWORD Flags
+     );
+ 
+ #ifdef UNICODE
 @@ -5713,6 +6101,8 @@
  #else
  #define SetupDiGetClassDevs SetupDiGetClassDevsA
@@ -1987,7 +2184,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  _Check_return_
-@@ -5728,6 +6118,8 @@
+@@ -5723,11 +6113,13 @@
+     _In_opt_ CONST GUID *ClassGuid,
+     _In_opt_ PCSTR Enumerator,
+     _In_opt_ HWND hwndParent,
+-    _In_ DWORD Flags,
++    _Win32_AssociatedEnum_(SETUP_DI_GET_CLASS_DEVS_FLAGS) _In_ DWORD Flags,
+     _In_opt_ HDEVINFO DeviceInfoSet,
      _In_opt_ PCSTR MachineName,
      _Reserved_ PVOID Reserved
      );
@@ -1996,6 +2199,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  _Check_return_
  WINSETUPAPI
+@@ -5737,7 +6129,7 @@
+     _In_opt_ CONST GUID *ClassGuid,
+     _In_opt_ PCWSTR Enumerator,
+     _In_opt_ HWND hwndParent,
+-    _In_ DWORD Flags,
++    _Win32_AssociatedEnum_(SETUP_DI_GET_CLASS_DEVS_FLAGS) _In_ DWORD Flags,
+     _In_opt_ HDEVINFO DeviceInfoSet,
+     _In_opt_ PCWSTR MachineName,
+     _Reserved_ PVOID Reserved
 @@ -5748,6 +6140,8 @@
  #else
  #define SetupDiGetClassDevsEx SetupDiGetClassDevsExA
@@ -2077,7 +2289,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -5886,6 +6296,8 @@
+@@ -5886,16 +6296,20 @@
  #else
  #define SetupDiGetClassDescriptionEx SetupDiGetClassDescriptionExA
  #endif
@@ -2086,7 +2298,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -5896,6 +6308,8 @@
+ BOOL
+ WINAPI
+ SetupDiCallClassInstaller(
+-    _In_ DI_FUNCTION InstallFunction,
++    _Win32_AssociatedEnum_(DI_FUNCTION) _In_ DI_FUNCTION InstallFunction,
      _In_ HDEVINFO DeviceInfoSet,
      _In_opt_ PSP_DEVINFO_DATA DeviceInfoData
      );
@@ -2444,7 +2660,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  _Success_(return != FALSE)
  _When_((*PropertyRegDataType == REG_SZ), _At_((PSTR) PropertyBuffer, _Post_valid_))
-@@ -6603,6 +7093,8 @@
+@@ -6597,12 +7087,14 @@
+ SetupDiGetDeviceRegistryPropertyA(
+     _In_ HDEVINFO DeviceInfoSet,
+     _In_ PSP_DEVINFO_DATA DeviceInfoData,
+-    _In_ DWORD Property,
++    _Win32_AssociatedEnum_(SETUP_DI_REGISTRY_PROPERTY) _In_ DWORD Property,
+     _Out_opt_ PDWORD PropertyRegDataType,
+     _Out_writes_bytes_to_opt_(PropertyBufferSize, *RequiredSize) PBYTE PropertyBuffer,
      _In_ DWORD PropertyBufferSize,
      _Out_opt_ PDWORD RequiredSize
      );
@@ -2453,6 +2676,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  _Success_(return != FALSE)
  _When_((*PropertyRegDataType == REG_SZ), _At_((PWSTR) PropertyBuffer, _Post_valid_))
+@@ -6613,7 +7105,7 @@
+ SetupDiGetDeviceRegistryPropertyW(
+     _In_ HDEVINFO DeviceInfoSet,
+     _In_ PSP_DEVINFO_DATA DeviceInfoData,
+-    _In_ DWORD Property,
++    _Win32_AssociatedEnum_(SETUP_DI_REGISTRY_PROPERTY) _In_ DWORD Property,
+     _Out_opt_ PDWORD PropertyRegDataType,
+     _Out_writes_bytes_to_opt_(PropertyBufferSize, *RequiredSize) PBYTE PropertyBuffer,
+     _In_ DWORD PropertyBufferSize,
 @@ -6627,6 +7119,8 @@
  #endif
  
@@ -2480,7 +2712,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -6676,6 +7174,8 @@
+@@ -6672,10 +7170,12 @@
+ SetupDiSetDeviceRegistryPropertyA(
+     _In_ HDEVINFO DeviceInfoSet,
+     _Inout_ PSP_DEVINFO_DATA DeviceInfoData,
+-    _In_ DWORD Property,
++    _Win32_AssociatedEnum_(SETUP_DI_REGISTRY_PROPERTY) _In_ DWORD Property,
      _In_reads_bytes_opt_(PropertyBufferSize) CONST BYTE *PropertyBuffer,
      _In_ DWORD PropertyBufferSize
      );
@@ -2489,6 +2726,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
+@@ -6683,7 +7183,7 @@
+ SetupDiSetDeviceRegistryPropertyW(
+     _In_ HDEVINFO DeviceInfoSet,
+     _Inout_ PSP_DEVINFO_DATA DeviceInfoData,
+-    _In_ DWORD Property,
++    _Win32_AssociatedEnum_(SETUP_DI_REGISTRY_PROPERTY) _In_ DWORD Property,
+     _In_reads_bytes_opt_(PropertyBufferSize) CONST BYTE *PropertyBuffer,
+     _In_ DWORD PropertyBufferSize
+     );
 @@ -6695,6 +7195,8 @@
  #endif
  
@@ -3006,3 +3252,31 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
+@@ -7648,3 +8243,27 @@
+ #pragma endregion
+ 
+ #endif // _INC_SETUPAPI
++
++#ifndef _WIN32METADATA_SETUPAPI_GROUPS_
++#define _WIN32METADATA_SETUPAPI_GROUPS_
++_Win32_FlagsEnum_(SP_COPY_STYLE, unsigned int, SP_COPY_DELETESOURCE, SP_COPY_REPLACEONLY, SP_COPY_NEWER, SP_COPY_NEWER_OR_SAME, SP_COPY_NOOVERWRITE, SP_COPY_NODECOMP, SP_COPY_LANGUAGEAWARE, SP_COPY_SOURCE_ABSOLUTE, SP_COPY_SOURCEPATH_ABSOLUTE, SP_COPY_IN_USE_NEEDS_REBOOT, SP_COPY_FORCE_IN_USE, SP_COPY_NOSKIP, SP_COPY_FORCE_NOOVERWRITE, SP_COPY_FORCE_NEWER, SP_COPY_WARNIFSKIP, SP_COPY_NOBROWSE, SP_COPY_NEWER_ONLY, SP_COPY_RESERVED, SP_COPY_OEMINF_CATALOG_ONLY, SP_COPY_REPLACE_BOOT_FILE, SP_COPY_NOPRUNE, SP_COPY_OEM_F6_INF, SP_COPY_ALREADYDECOMP, SP_COPY_WINDOWS_SIGNED, SP_COPY_PNPLOCKED, SP_COPY_IN_USE_TRY_RENAME, SP_COPY_INBOX_INF, SP_COPY_HARDLINK);
++_Win32_FlagsEnum_(INF_STYLE, unsigned int, INF_STYLE_NONE, INF_STYLE_OLDNT, INF_STYLE_WIN4, INF_STYLE_CACHE_ENABLE, INF_STYLE_CACHE_DISABLE, INF_STYLE_CACHE_IGNORE);
++_Win32_AnnotateField_(SP_INF_INFORMATION::InfStyle, _Win32_AssociatedEnum_(INF_STYLE));
++_Win32_FlagsEnum_(SETUPSCANFILEQUEUE_FLAGS, unsigned int, SPQ_SCAN_FILE_PRESENCE, SPQ_SCAN_FILE_VALIDITY, SPQ_SCAN_USE_CALLBACK, SPQ_SCAN_USE_CALLBACKEX, SPQ_SCAN_INFORM_USER, SPQ_SCAN_PRUNE_COPY_QUEUE, SPQ_SCAN_USE_CALLBACK_SIGNERINFO, SPQ_SCAN_PRUNE_DELREN, SPQ_SCAN_FILE_PRESENCE_WITHOUT_SOURCE, SPQ_SCAN_FILE_COMPARISON, SPQ_SCAN_ACTIVATE_DRP, SPQ_SCAN_USE_OEM_CATALOGS);
++_Win32_FlagsEnum_(SPSVCINST_FLAGS, unsigned int, SPSVCINST_TAGTOFRONT, SPSVCINST_ASSOCSERVICE, SPSVCINST_DELETEEVENTLOGENTRY, SPSVCINST_NOCLOBBER_DISPLAYNAME, SPSVCINST_NOCLOBBER_STARTTYPE, SPSVCINST_NOCLOBBER_ERRORCONTROL, SPSVCINST_NOCLOBBER_LOADORDERGROUP, SPSVCINST_NOCLOBBER_DEPENDENCIES, SPSVCINST_NOCLOBBER_DESCRIPTION, SPSVCINST_STOPSERVICE, SPSVCINST_CLOBBER_SECURITY, SPSVCINST_STARTSERVICE, SPSVCINST_NOCLOBBER_REQUIREDPRIVILEGES, SPSVCINST_NOCLOBBER_TRIGGERS, SPSVCINST_NOCLOBBER_SERVICESIDTYPE, SPSVCINST_NOCLOBBER_DELAYEDAUTOSTART, SPSVCINST_UNIQUE_NAME, SPSVCINST_NOCLOBBER_FAILUREACTIONS, SPSVCINST_NOCLOBBER_BOOTFLAGS);
++_Win32_Enum_(SETUP_DI_REGISTRY_PROPERTY, unsigned int, SPDRP_DEVICEDESC, SPDRP_HARDWAREID, SPDRP_COMPATIBLEIDS, SPDRP_UNUSED0, SPDRP_SERVICE, SPDRP_UNUSED1, SPDRP_UNUSED2, SPDRP_CLASS, SPDRP_CLASSGUID, SPDRP_DRIVER, SPDRP_CONFIGFLAGS, SPDRP_MFG, SPDRP_FRIENDLYNAME, SPDRP_LOCATION_INFORMATION, SPDRP_PHYSICAL_DEVICE_OBJECT_NAME, SPDRP_CAPABILITIES, SPDRP_UI_NUMBER, SPDRP_UPPERFILTERS, SPDRP_LOWERFILTERS, SPDRP_BUSTYPEGUID, SPDRP_LEGACYBUSTYPE, SPDRP_BUSNUMBER, SPDRP_ENUMERATOR_NAME, SPDRP_SECURITY, SPDRP_SECURITY_SDS, SPDRP_DEVTYPE, SPDRP_EXCLUSIVE, SPDRP_CHARACTERISTICS, SPDRP_ADDRESS, SPDRP_UI_NUMBER_DESC_FORMAT, SPDRP_DEVICE_POWER_DATA, SPDRP_REMOVAL_POLICY, SPDRP_REMOVAL_POLICY_HW_DEFAULT, SPDRP_REMOVAL_POLICY_OVERRIDE, SPDRP_INSTALL_STATE, SPDRP_LOCATION_PATHS, SPDRP_BASE_CONTAINERID, SPDRP_MAXIMUM_PROPERTY);
++_Win32_FlagsEnum_(SETUP_DI_DEVICE_CREATION_FLAGS, unsigned int, DICD_GENERATE_ID, DICD_INHERIT_CLASSDRVS);
++_Win32_FlagsEnum_(SETUP_DI_DRIVER_INSTALL_FLAGS, unsigned int, DNF_DUPDESC, DNF_OLDDRIVER, DNF_EXCLUDEFROMLIST, DNF_NODRIVER, DNF_LEGACYINF, DNF_CLASS_DRIVER, DNF_COMPATIBLE_DRIVER, DNF_INET_DRIVER, DNF_UNUSED1, DNF_UNUSED2, DNF_OLD_INET_DRIVER, DNF_BAD_DRIVER, DNF_DUPPROVIDER, DNF_INF_IS_SIGNED, DNF_OEM_F6_INF, DNF_DUPDRIVERVER, DNF_BASIC_DRIVER, DNF_AUTHENTICODE_SIGNED, DNF_INSTALLEDDRIVER, DNF_ALWAYSEXCLUDEFROMLIST, DNF_INBOX_DRIVER, DNF_REQUESTADDITIONALSOFTWARE, DNF_UNUSED_22, DNF_UNUSED_23, DNF_UNUSED_24, DNF_UNUSED_25, DNF_UNUSED_26, DNF_UNUSED_27, DNF_UNUSED_28, DNF_UNUSED_29, DNF_UNUSED_30, DNF_UNUSED_31);
++_Win32_AnnotateField_(SP_DRVINSTALL_PARAMS::Flags, _Win32_AssociatedEnum_(SETUP_DI_DRIVER_INSTALL_FLAGS));
++_Win32_Enum_(SETUP_DI_STATE_CHANGE, unsigned int, DICS_ENABLE, DICS_DISABLE, DICS_PROPCHANGE, DICS_START, DICS_STOP);
++_Win32_AnnotateField_(SP_PROPCHANGE_PARAMS::StateChange, _Win32_AssociatedEnum_(SETUP_DI_STATE_CHANGE));
++_Win32_Enum_(SETUP_DI_PROPERTY_CHANGE_SCOPE, unsigned int, DICS_FLAG_GLOBAL, DICS_FLAG_CONFIGSPECIFIC, DICS_FLAG_CONFIGGENERAL);
++_Win32_AnnotateField_(SP_PROPCHANGE_PARAMS::Scope, _Win32_AssociatedEnum_(SETUP_DI_PROPERTY_CHANGE_SCOPE));
++_Win32_FlagsEnum_(SETUP_DI_GET_CLASS_DEVS_FLAGS, unsigned int, DIGCF_DEFAULT, DIGCF_PRESENT, DIGCF_ALLCLASSES, DIGCF_PROFILE, DIGCF_DEVICEINTERFACE, DIGCF_INTERFACEDEVICE);
++_Win32_Enum_(DI_FUNCTION, unsigned int, DIF_SELECTDEVICE, DIF_INSTALLDEVICE, DIF_ASSIGNRESOURCES, DIF_PROPERTIES, DIF_REMOVE, DIF_FIRSTTIMESETUP, DIF_FOUNDDEVICE, DIF_SELECTCLASSDRIVERS, DIF_VALIDATECLASSDRIVERS, DIF_INSTALLCLASSDRIVERS, DIF_CALCDISKSPACE, DIF_DESTROYPRIVATEDATA, DIF_VALIDATEDRIVER, DIF_DETECT, DIF_INSTALLWIZARD, DIF_DESTROYWIZARDDATA, DIF_PROPERTYCHANGE, DIF_ENABLECLASS, DIF_DETECTVERIFY, DIF_INSTALLDEVICEFILES, DIF_UNREMOVE, DIF_SELECTBESTCOMPATDRV, DIF_ALLOW_INSTALL, DIF_REGISTERDEVICE, DIF_NEWDEVICEWIZARD_PRESELECT, DIF_NEWDEVICEWIZARD_SELECT, DIF_NEWDEVICEWIZARD_PREANALYZE, DIF_NEWDEVICEWIZARD_POSTANALYZE, DIF_NEWDEVICEWIZARD_FINISHINSTALL, DIF_UNUSED1, DIF_INSTALLINTERFACES, DIF_DETECTCANCEL, DIF_REGISTER_COINSTALLERS, DIF_ADDPROPERTYPAGE_ADVANCED, DIF_ADDPROPERTYPAGE_BASIC, DIF_RESERVED1, DIF_TROUBLESHOOTER, DIF_POWERMESSAGEWAKE, DIF_ADDREMOTEPROPERTYPAGE_ADVANCED, DIF_UPDATEDRIVER_UI, DIF_FINISHINSTALL_ACTION, DIF_RESERVED2, DIF_MOVEDEVICE);
++_Win32_AnnotateField_(SP_CLASSINSTALL_HEADER::InstallFunction, _Win32_AssociatedEnum_(DI_FUNCTION));
++_Win32_FlagsEnum_(SETUP_DI_DEVICE_INSTALL_FLAGS_EX, unsigned int, DI_FLAGSEX_RESERVED2, DI_FLAGSEX_RESERVED3, DI_FLAGSEX_CI_FAILED, DI_FLAGSEX_FINISHINSTALL_ACTION, DI_FLAGSEX_DIDINFOLIST, DI_FLAGSEX_DIDCOMPATINFO, DI_FLAGSEX_FILTERCLASSES, DI_FLAGSEX_SETFAILEDINSTALL, DI_FLAGSEX_DEVICECHANGE, DI_FLAGSEX_ALWAYSWRITEIDS, DI_FLAGSEX_PROPCHANGE_PENDING, DI_FLAGSEX_ALLOWEXCLUDEDDRVS, DI_FLAGSEX_NOUIONQUERYREMOVE, DI_FLAGSEX_USECLASSFORCOMPAT, DI_FLAGSEX_RESERVED4, DI_FLAGSEX_NO_DRVREG_MODIFY, DI_FLAGSEX_IN_SYSTEM_SETUP, DI_FLAGSEX_INET_DRIVER, DI_FLAGSEX_APPENDDRIVERLIST, DI_FLAGSEX_PREINSTALLBACKUP, DI_FLAGSEX_BACKUPONREPLACE, DI_FLAGSEX_DRIVERLIST_FROM_URL, DI_FLAGSEX_RESERVED1, DI_FLAGSEX_EXCLUDE_OLD_INET_DRIVERS, DI_FLAGSEX_POWERPAGE_ADDED, DI_FLAGSEX_FILTERSIMILARDRIVERS, DI_FLAGSEX_INSTALLEDDRIVER, DI_FLAGSEX_NO_CLASSLIST_NODE_MERGE, DI_FLAGSEX_ALTPLATFORM_DRVSEARCH, DI_FLAGSEX_RESTART_DEVICE_ONLY, DI_FLAGSEX_RECURSIVESEARCH, DI_FLAGSEX_SEARCH_PUBLISHED_INFS);
++_Win32_AnnotateField_(SP_DEVINSTALL_PARAMS_A::FlagsEx, _Win32_AssociatedEnum_(SETUP_DI_DEVICE_INSTALL_FLAGS_EX));
++_Win32_AnnotateField_(SP_DEVINSTALL_PARAMS_W::FlagsEx, _Win32_AssociatedEnum_(SETUP_DI_DEVICE_INSTALL_FLAGS_EX));
++_Win32_FlagsEnum_(FILE_COMPRESSION_TYPE, unsigned int, FILE_COMPRESSION_NONE, FILE_COMPRESSION_WINLZA, FILE_COMPRESSION_MSZIP, FILE_COMPRESSION_NTCAB);
++#endif

@@ -1767,7 +1767,7 @@ WINAPI
 CM_Enumerate_Classes(
     _In_  ULONG         ulClassIndex,
     _Out_ LPGUID        ClassGuid,
-    _In_  ULONG         ulFlags
+    _Win32_AssociatedEnum_(CM_ENUMERATE_FLAGS) _In_  ULONG         ulFlags
     );
 
 CMAPI
@@ -1776,7 +1776,7 @@ WINAPI
 CM_Enumerate_Classes_Ex(
     _In_  ULONG         ulClassIndex,
     _Out_ LPGUID        ClassGuid,
-    _In_  ULONG         ulFlags,
+    _Win32_AssociatedEnum_(CM_ENUMERATE_FLAGS) _In_  ULONG         ulFlags,
     _In_opt_ HMACHINE   hMachine
     );
 
@@ -2776,7 +2776,7 @@ CM_Get_Device_Interface_ListA(
     _In_opt_ DEVINSTID_A pDeviceID,
     _Out_writes_(BufferLen) PZZSTR Buffer,
     _In_  ULONG         BufferLen,
-    _In_  ULONG         ulFlags
+    _Win32_AssociatedEnum_(CM_GET_DEVICE_INTERFACE_LIST_FLAGS) _In_  ULONG         ulFlags
     );
 
 CMAPI
@@ -2787,7 +2787,7 @@ CM_Get_Device_Interface_ListW(
     _In_opt_ DEVINSTID_W pDeviceID,
     _Out_writes_(BufferLen) PZZWSTR Buffer,
     _In_  ULONG         BufferLen,
-    _In_  ULONG         ulFlags
+    _Win32_AssociatedEnum_(CM_GET_DEVICE_INTERFACE_LIST_FLAGS) _In_  ULONG         ulFlags
     );
 
 #ifdef UNICODE
@@ -2810,7 +2810,7 @@ CM_Get_Device_Interface_List_ExA(
     _In_opt_ DEVINSTID_A pDeviceID,
     _Out_writes_(BufferLen) PZZSTR Buffer,
     _In_  ULONG         BufferLen,
-    _In_  ULONG         ulFlags,
+    _Win32_AssociatedEnum_(CM_GET_DEVICE_INTERFACE_LIST_FLAGS) _In_  ULONG         ulFlags,
     _In_opt_ HMACHINE   hMachine
     );
 
@@ -2822,7 +2822,7 @@ CM_Get_Device_Interface_List_ExW(
     _In_opt_ DEVINSTID_W pDeviceID,
     _Out_writes_(BufferLen) PZZWSTR Buffer,
     _In_  ULONG         BufferLen,
-    _In_  ULONG         ulFlags,
+    _Win32_AssociatedEnum_(CM_GET_DEVICE_INTERFACE_LIST_FLAGS) _In_  ULONG         ulFlags,
     _In_opt_ HMACHINE   hMachine
     );
 #ifdef UNICODE
@@ -2844,7 +2844,7 @@ CM_Get_Device_Interface_List_SizeA(
     _Out_ PULONG        pulLen,
     _In_  LPGUID        InterfaceClassGuid,
     _In_opt_ DEVINSTID_A pDeviceID,
-    _In_  ULONG         ulFlags
+    _Win32_AssociatedEnum_(CM_GET_DEVICE_INTERFACE_LIST_FLAGS) _In_  ULONG         ulFlags
     );
 
 CMAPI
@@ -2854,7 +2854,7 @@ CM_Get_Device_Interface_List_SizeW(
     _Out_ PULONG        pulLen,
     _In_  LPGUID        InterfaceClassGuid,
     _In_opt_ DEVINSTID_W pDeviceID,
-    _In_  ULONG         ulFlags
+    _Win32_AssociatedEnum_(CM_GET_DEVICE_INTERFACE_LIST_FLAGS) _In_  ULONG         ulFlags
     );
 
 #ifdef UNICODE
@@ -2876,7 +2876,7 @@ CM_Get_Device_Interface_List_Size_ExA(
     _Out_ PULONG        pulLen,
     _In_  LPGUID        InterfaceClassGuid,
     _In_opt_ DEVINSTID_A pDeviceID,
-    _In_  ULONG         ulFlags,
+    _Win32_AssociatedEnum_(CM_GET_DEVICE_INTERFACE_LIST_FLAGS) _In_  ULONG         ulFlags,
     _In_opt_ HMACHINE   hMachine
     );
 
@@ -2887,7 +2887,7 @@ CM_Get_Device_Interface_List_Size_ExW(
     _Out_ PULONG        pulLen,
     _In_  LPGUID        InterfaceClassGuid,
     _In_opt_ DEVINSTID_W pDeviceID,
-    _In_  ULONG         ulFlags,
+    _Win32_AssociatedEnum_(CM_GET_DEVICE_INTERFACE_LIST_FLAGS) _In_  ULONG         ulFlags,
     _In_opt_ HMACHINE   hMachine
     );
 
@@ -3326,8 +3326,8 @@ WINAPI
 CM_Get_Next_Res_Des(
     _Out_ PRES_DES      prdResDes,
     _In_  RES_DES       rdResDes,
-    _In_  RESOURCEID    ForResource,
-    _Out_opt_ PRESOURCEID pResourceID,
+    _Win32_AssociatedEnum_(CM_RESTYPE) _In_  RESOURCEID    ForResource,
+    _Win32_AssociatedEnum_(CM_RESTYPE) _Out_opt_ PRESOURCEID pResourceID,
     _In_  ULONG         ulFlags
     );
 
@@ -3337,8 +3337,8 @@ WINAPI
 CM_Get_Next_Res_Des_Ex(
     _Out_ PRES_DES      prdResDes,
     _In_  RES_DES       rdResDes,
-    _In_  RESOURCEID    ForResource,
-    _Out_opt_ PRESOURCEID pResourceID,
+    _Win32_AssociatedEnum_(CM_RESTYPE) _In_  RESOURCEID    ForResource,
+    _Win32_AssociatedEnum_(CM_RESTYPE) _Out_opt_ PRESOURCEID pResourceID,
     _In_  ULONG         ulFlags,
     _In_opt_ HMACHINE   hMachine
     );
@@ -3786,7 +3786,7 @@ CONFIGRET
 WINAPI
 CM_Reenumerate_DevNode(
     _In_  DEVINST       dnDevInst,
-    _In_  ULONG         ulFlags
+    _Win32_AssociatedEnum_(CM_REENUMERATE_FLAGS) _In_  ULONG         ulFlags
     );
 
 CMAPI
@@ -4390,7 +4390,7 @@ WINAPI
 CM_Query_Resource_Conflict_List(
     _Out_ PCONFLICT_LIST pclConflictList,
     _In_  DEVINST       dnDevInst,
-    _In_  RESOURCEID    ResourceID,
+    _Win32_AssociatedEnum_(CM_RESTYPE) _In_  RESOURCEID    ResourceID,
     _In_reads_bytes_(ResourceLen) PCVOID ResourceData,
     _In_  ULONG         ResourceLen,
     _In_  ULONG         ulFlags,
@@ -4790,3 +4790,33 @@ _Win32_FlagsEnum_(CM_DEVCAP, unsigned int,
 
 #endif // _CFGMGR32_H_
 
+#ifndef _WIN32METADATA_CFGMGR32_GROUPS_
+#define _WIN32METADATA_CFGMGR32_GROUPS_
+_Win32_Enum_(CM_RESTYPE, unsigned int, ResType_All, ResType_None, ResType_Mem, ResType_IO, ResType_DMA, ResType_IRQ, ResType_DoNotUse, ResType_BusNumber, ResType_MemLarge, ResType_MAX, ResType_Ignored_Bit, ResType_ClassSpecific, ResType_Reserved, ResType_DevicePrivate, ResType_PcCardConfig, ResType_MfCardConfig, ResType_Connection);
+_Win32_Enum_(CM_GET_DEVICE_INTERFACE_LIST_FLAGS, unsigned int, CM_GET_DEVICE_INTERFACE_LIST_PRESENT, CM_GET_DEVICE_INTERFACE_LIST_ALL_DEVICES, CM_GET_DEVICE_INTERFACE_LIST_BITS);
+_Win32_FlagsEnum_(CM_REENUMERATE_FLAGS, unsigned int, CM_REENUMERATE_NORMAL, CM_REENUMERATE_SYNCHRONOUS, CM_REENUMERATE_RETRY_INSTALLATION, CM_REENUMERATE_ASYNCHRONOUS, CM_REENUMERATE_BITS);
+_Win32_FlagsEnum_(CM_ENUMERATE_FLAGS, unsigned int, CM_ENUMERATE_CLASSES_INSTALLER, CM_ENUMERATE_CLASSES_INTERFACE, CM_ENUMERATE_CLASSES_BITS);
+_Win32_FlagsEnum_(CM_CDMASK, unsigned int, CM_CDMASK_DEVINST, CM_CDMASK_RESDES, CM_CDMASK_FLAGS, CM_CDMASK_DESCRIPTION, CM_CDMASK_VALID);
+_Win32_AnnotateField_(CONFLICT_DETAILS_A::CD_ulMask, _Win32_AssociatedEnum_(CM_CDMASK));
+_Win32_AnnotateField_(CONFLICT_DETAILS_W::CD_ulMask, _Win32_AssociatedEnum_(CM_CDMASK));
+_Win32_FlagsEnum_(CM_CDFLAGS, unsigned int, CM_CDFLAGS_DRIVER, CM_CDFLAGS_ROOT_OWNED, CM_CDFLAGS_RESERVED);
+_Win32_AnnotateField_(CONFLICT_DETAILS_A::CD_ulFlags, _Win32_AssociatedEnum_(CM_CDFLAGS));
+_Win32_AnnotateField_(CONFLICT_DETAILS_W::CD_ulFlags, _Win32_AssociatedEnum_(CM_CDFLAGS));
+_Win32_FlagsEnum_(DD_FLAGS, unsigned int, mDD_Width, fDD_BYTE, fDD_WORD, fDD_DWORD, fDD_BYTE_AND_WORD, mDD_BusMaster, fDD_NoBusMaster, fDD_BusMaster, mDD_Type, fDD_TypeStandard, fDD_TypeA, fDD_TypeB, fDD_TypeF);
+_Win32_AnnotateField_(DMA_DES::DD_Flags, _Win32_AssociatedEnum_(DD_FLAGS));
+_Win32_AnnotateField_(DMA_RANGE::DR_Flags, _Win32_AssociatedEnum_(DD_FLAGS));
+_Win32_FlagsEnum_(IOD_DESFLAGS, unsigned int, fIOD_PortType, fIOD_Memory, fIOD_IO, fIOD_DECODE, fIOD_10_BIT_DECODE, fIOD_12_BIT_DECODE, fIOD_16_BIT_DECODE, fIOD_POSITIVE_DECODE, fIOD_PASSIVE_DECODE, fIOD_WINDOW_DECODE, fIOD_PORT_BAR);
+_Win32_AnnotateField_(IO_DES::IOD_DesFlags, _Win32_AssociatedEnum_(IOD_DESFLAGS));
+_Win32_AnnotateField_(IO_RANGE::IOR_RangeFlags, _Win32_AssociatedEnum_(IOD_DESFLAGS));
+_Win32_FlagsEnum_(IRQD_FLAGS, unsigned int, mIRQD_Share, fIRQD_Exclusive, fIRQD_Share, fIRQD_Share_Bit, fIRQD_Level_Bit, mIRQD_Edge_Level, fIRQD_Level, fIRQD_Edge);
+_Win32_AnnotateField_(IRQ_DES_64::IRQD_Flags, _Win32_AssociatedEnum_(IRQD_FLAGS));
+_Win32_AnnotateField_(IRQ_DES_32::IRQD_Flags, _Win32_AssociatedEnum_(IRQD_FLAGS));
+_Win32_AnnotateField_(IRQ_RANGE::IRQR_Flags, _Win32_AssociatedEnum_(IRQD_FLAGS));
+_Win32_FlagsEnum_(MD_FLAGS, unsigned int, mMD_MemoryType, fMD_MemoryType, fMD_ROM, fMD_RAM, mMD_32_24, fMD_32_24, fMD_24, fMD_32, mMD_Prefetchable, fMD_Prefetchable, fMD_Pref, fMD_PrefetchDisallowed, fMD_PrefetchAllowed, mMD_Readable, fMD_Readable, fMD_ReadAllowed, fMD_ReadDisallowed, mMD_CombinedWrite, fMD_CombinedWrite, fMD_CombinedWriteDisallowed, fMD_CombinedWriteAllowed, mMD_Cacheable, fMD_NonCacheable, fMD_Cacheable, fMD_WINDOW_DECODE, fMD_MEMORY_BAR);
+_Win32_AnnotateField_(MEM_DES::MD_Flags, _Win32_AssociatedEnum_(MD_FLAGS));
+_Win32_AnnotateField_(MEM_RANGE::MR_Flags, _Win32_AssociatedEnum_(MD_FLAGS));
+_Win32_FlagsEnum_(PMF_FLAGS, unsigned int, fPMF_AUDIO_ENABLE);
+_Win32_AnnotateField_(MFCARD_DES::PMF_Flags, _Win32_AssociatedEnum_(PMF_FLAGS));
+_Win32_FlagsEnum_(PCD_FLAGS, unsigned int, mPCD_IO_8_16, fPCD_IO_8, fPCD_IO_16, mPCD_MEM_8_16, fPCD_MEM_8, fPCD_MEM_16, mPCD_MEM_A_C, fPCD_MEM1_A, fPCD_MEM2_A, fPCD_IO_ZW_8, fPCD_IO_SRC_16, fPCD_IO_WS_16, mPCD_MEM_WS, fPCD_MEM_WS_ONE, fPCD_MEM_WS_TWO, fPCD_MEM_WS_THREE, fPCD_MEM_A, fPCD_ATTRIBUTES_PER_WINDOW, fPCD_IO1_16, fPCD_IO1_ZW_8, fPCD_IO1_SRC_16, fPCD_IO1_WS_16, fPCD_IO2_16, fPCD_IO2_ZW_8, fPCD_IO2_SRC_16, fPCD_IO2_WS_16, mPCD_MEM1_WS, fPCD_MEM1_WS_ONE, fPCD_MEM1_WS_TWO, fPCD_MEM1_WS_THREE, fPCD_MEM1_16, mPCD_MEM2_WS, fPCD_MEM2_WS_ONE, fPCD_MEM2_WS_TWO, fPCD_MEM2_WS_THREE, fPCD_MEM2_16);
+_Win32_AnnotateField_(PCCARD_DES::PCD_Flags, _Win32_AssociatedEnum_(PCD_FLAGS));
+#endif

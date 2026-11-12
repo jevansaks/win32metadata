@@ -1,8 +1,9 @@
 # Working-first recovery and sidecar reduction
 
-**Current accepted cohort:** the [25 direct-header groups](#continued-direct-header-definitions)
-above preserved `85444f2513e7928590e05921ce4d14806eb4f28a`.
-Its actual WinMD is `A6FA0F41...`; the complete 35,379-type dump is
+**Current accepted cohort:** [25 device/setup groups](#device-and-setup-dependency-subdivision)
+above preserved `ae0ffdf6a44da9d2b3dfcc6c8ecf1cadfab00848`, following the
+previous 25 direct-header groups above `85444f25`.
+Its actual WinMD is `6B8BD99F...`; the complete 35,379-type dump is
 `1F4F3839...`, byte-identical to accepted structural checkpoint 6d44.
 Earlier authorized fictitious-handle/AssociatedEnum changes remain completely
 accounted for relative to the original parent; no arbitrary API loss is
@@ -12,19 +13,19 @@ historical checkpoints, not the current totals.
 | Inventory / units | Recovery | Accepted current | Net retired |
 |---|---:|---:|---:|
 | Original parameter attribute atoms | 770 | 361 | 409 |
-| All RSP value rows | 146,789 | 134,065 | 12,724 |
+| All RSP value rows | 146,789 | 134,090 | 12,699 |
 | Allowed documentation URL rows | 90,502 | 90,502 | 0 (outside backlog) |
-| Other RSP rows, mixed configuration/API units | 56,287 | 43,563 | 12,724 |
+| Other RSP rows, mixed configuration/API units | 56,287 | 43,588 | 12,699 |
 | Emitter `memberRemap` rows | 2,295 | 1,592 | 703 |
 | LastError rows | 3,362 | 468 | 2,894 |
 | Availability rows | 17,070 | 7,883 | 9,187 |
-| Enum JSON records, mixed definitions/additional uses | 1,070 | 970 | 100 |
+| Enum JSON records, mixed definitions/additional uses | 1,070 | 945 | 125 |
 | autoTypes records | 444 | 436 | 8 |
 | Function-pointer fixup records | 27 | 27 | 0 |
 
 | Remaining category | Measured accepted quantity | Examination state |
 |---|---:|---|
-| Definition-bearing enum records | 946 | Twenty-five further whole definitions are accepted; the remaining inventory is not exhaustively examined. Device/setup is the next direct-header cohort. |
+| Definition-bearing enum records | 921 | Fifty further whole definitions accepted across two cohorts; three device/setup dependency closures restored. A further 71 local owner closures are prepared, not accepted or exhaustively examined. |
 | Additional-use enum records / selector rows | 23 / 55 | Exact retained FILE/REG/SNMP/process, STGM, COM/MIDL and Cloud closures; observed boundaries are in [PROBLEMS.md](PROBLEMS.md). |
 | Genuine CLR flags request | 1 record | Native enum use override already redundant/retired; flags effect still unqualified. |
 | Native type/storage/ownership inputs | 436 records | 425 legacy-storage / 11 native selections; genuine types remain. Thirteen contextual cleanup records are demonstrated boundaries, not all 436 records. |
@@ -1018,6 +1019,50 @@ production logs, dump, unmasked comparison, byte audit and TRX remain in
 The initial parse failures came from a mechanical dump-extraction error:
 sequential enum members without explicit `=` were omitted, producing three
 empty group declarations. Correcting all implicit members fixed the input;
-these are not reader failures. The next sizeable direct-header closure is
-28 cfgmgr32/SetupAPI groups (401 baseline members and 85 legacy selector rows),
-not a repeated attempt at the known STGM/SNMP/MIDL boundaries.
+these are not reader failures. The next 28 cfgmgr32/SetupAPI groups were then
+actually tried and subdivided as follows, rather than revisiting the known
+STGM/SNMP/MIDL boundaries.
+
+## Device and setup dependency subdivision
+
+The 28-group trial compiled and emitted, but its unmasked comparison reported
+seven unwanted global constants: five `CM_LOCATE_DEVINST_*` aliases and
+`NDW_INSTALLFLAG_NEEDREBOOT` / `NDW_INSTALLFLAG_NEEDRESTART`. Restoring
+`CM_LOCATE_DEVNODE_FLAGS` and `SETUP_DI_DEVICE_INSTALL_FLAGS` removed those
+additions, but the next actual 26-group output added
+`DI_REMOVEDEVICE_GLOBAL` / `DI_REMOVEDEVICE_CONFIGSPECIFIC` to the restored
+install-flags enum and failed the duplicate-member integrity assertion.
+Restoring the linked `SETUP_DI_REMOVE_DEVICE_SCOPE` closure as well produces
+the accepted **25 groups, 361 members and 71 active native uses**. All three
+failed definition/use closures remain intact in JSON; no additions are masked.
+
+Nine deleted legacy selectors are inactive configuration, not migrated API
+coverage: four lowercase `sp_file_copy_params_*` / `filepaths_*` field
+selectors, four nonexistent `CM_Get_Device_Interface_Size*` methods, and
+`CM_Reenumerate_DevNodeEx`. Their exact names are absent from both native owners
+and the complete baseline dump. In particular, no association was invented for
+the differently named, uppercase native structures.
+
+The exact DevInst traversal owner was regenerated. Final scrape/constants
+passes in **1m02.33s**, complete emission in **4m45.56s**:
+
+| Accepted artifact | Identity |
+|---|---|
+| Actual new WinMD | `files\sidecar-reduction\direct-device-25-candidate\Windows.Win32.winmd` |
+| Size / SHA-256 | 24,176,640 bytes / `6B8BD99F51ABC2431FD800A9870D855A12A674F3CE17C44B75A9CAEFA989E624` |
+| Complete dump / types | `1F4F38395D602095972A5095C4A25EF6C117BE5E1D716DAB5C3108BE6AC589BA` / 35,379 |
+| Unmasked comparer / complete raw accounting | Exit **0** against ae0ff; entire dump byte-identical, zero unmatched changes |
+
+Actual-output integrity passes **54/54**, strict patch replay **345/345**.
+Both native headers retain their original BOMs, non-ASCII bytes and non-ASCII
+lines. Twenty-five additional JSON records retire, with 25 namespace routing
+rows added; no parameter atoms or autoTypes records are counted as retired.
+The complete inputs, each rejected output and diagnostic, final unmasked
+comparison, full dump, byte audit and TRX remain in
+`files\sidecar-reduction\direct-{28,26,device-25}-*`.
+
+Two local command/cache mistakes produced incomplete or duplicated generated
+sources before the final clean-cache run. Those logs are retained separately;
+they are execution errors, not SDK reader defects or accepted outputs.
+The next prepared cohort is 71 WinUser/GDI/OLE-dialog/common-control groups;
+preflight alone is not acceptance.
