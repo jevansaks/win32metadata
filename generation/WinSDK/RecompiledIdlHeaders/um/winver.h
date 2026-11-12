@@ -33,10 +33,10 @@ _Win32_SupportedOS_Windows2000_
 
 /* ----- Function prototypes ----- */
 
-DWORD
+_Win32_AssociatedEnum_(VER_FIND_FILE_STATUS) DWORD
 APIENTRY
 VerFindFileA(
-        _In_                         DWORD uFlags,
+        _Win32_AssociatedEnum_(VER_FIND_FILE_FLAGS) _In_                         DWORD uFlags,
         _In_                         LPCSTR szFileName,
         _In_opt_                     LPCSTR szWinDir,
         _In_                         LPCSTR szAppDir,
@@ -46,10 +46,10 @@ VerFindFileA(
         _Inout_                      PUINT puDestDirLen
         );
 _Win32_SupportedOS_Windows2000_
-DWORD
+_Win32_AssociatedEnum_(VER_FIND_FILE_STATUS) DWORD
 APIENTRY
 VerFindFileW(
-        _In_                         DWORD uFlags,
+        _Win32_AssociatedEnum_(VER_FIND_FILE_FLAGS) _In_                         DWORD uFlags,
         _In_                         LPCWSTR szFileName,
         _In_opt_                     LPCWSTR szWinDir,
         _In_                         LPCWSTR szAppDir,
@@ -75,10 +75,10 @@ VerFindFileW(
 #ifndef RC_INVOKED
 _Win32_SupportedOS_Windows2000_
 
-DWORD
+_Win32_AssociatedEnum_(VER_INSTALL_FILE_STATUS) DWORD
 APIENTRY
 VerInstallFileA(
-        _In_                         DWORD uFlags,
+        _Win32_AssociatedEnum_(VER_INSTALL_FILE_FLAGS) _In_                         DWORD uFlags,
         _In_                         LPCSTR szSrcFileName,
         _In_                         LPCSTR szDestFileName,
         _In_                         LPCSTR szSrcDir,
@@ -88,10 +88,10 @@ VerInstallFileA(
         _Inout_                      PUINT puTmpFileLen
         );
 _Win32_SupportedOS_Windows2000_
-DWORD
+_Win32_AssociatedEnum_(VER_INSTALL_FILE_STATUS) DWORD
 APIENTRY
 VerInstallFileW(
-        _In_                         DWORD uFlags,
+        _Win32_AssociatedEnum_(VER_INSTALL_FILE_FLAGS) _In_                         DWORD uFlags,
         _In_                         LPCWSTR szSrcFileName,
         _In_                         LPCWSTR szDestFileName,
         _In_                         LPCWSTR szSrcDir,
@@ -168,20 +168,20 @@ GetFileVersionInfoW(
 #define GetFileVersionInfo  GetFileVersionInfoA
 #endif // !UNICODE
 
-DWORD APIENTRY GetFileVersionInfoSizeExA(_In_ DWORD dwFlags, _In_ LPCSTR lpwstrFilename, _Out_ LPDWORD lpdwHandle);
-DWORD APIENTRY GetFileVersionInfoSizeExW(_In_ DWORD dwFlags, _In_ LPCWSTR lpwstrFilename, _Out_ LPDWORD lpdwHandle);
+DWORD APIENTRY GetFileVersionInfoSizeExA(_Win32_AssociatedEnum_(GET_FILE_VERSION_INFO_FLAGS) _In_ DWORD dwFlags, _In_ LPCSTR lpwstrFilename, _Out_ LPDWORD lpdwHandle);
+DWORD APIENTRY GetFileVersionInfoSizeExW(_Win32_AssociatedEnum_(GET_FILE_VERSION_INFO_FLAGS) _In_ DWORD dwFlags, _In_ LPCWSTR lpwstrFilename, _Out_ LPDWORD lpdwHandle);
 #ifdef UNICODE
 #define GetFileVersionInfoSizeEx  GetFileVersionInfoSizeExW
 #else
 #define GetFileVersionInfoSizeEx  GetFileVersionInfoSizeExA
 #endif // !UNICODE
 
-BOOL APIENTRY GetFileVersionInfoExA(_In_ DWORD dwFlags,
+BOOL APIENTRY GetFileVersionInfoExA(_Win32_AssociatedEnum_(GET_FILE_VERSION_INFO_FLAGS) _In_ DWORD dwFlags,
                                     _In_ LPCSTR lpwstrFilename,
                                     _Reserved_ DWORD dwHandle,
                                     _In_ DWORD dwLen,
                                     _Out_writes_bytes_(dwLen) LPVOID lpData);
-BOOL APIENTRY GetFileVersionInfoExW(_In_ DWORD dwFlags,
+BOOL APIENTRY GetFileVersionInfoExW(_Win32_AssociatedEnum_(GET_FILE_VERSION_INFO_FLAGS) _In_ DWORD dwFlags,
                                     _In_ LPCWSTR lpwstrFilename,
                                     _Reserved_ DWORD dwHandle,
                                     _In_ DWORD dwLen,

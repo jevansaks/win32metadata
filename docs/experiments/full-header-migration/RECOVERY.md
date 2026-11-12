@@ -1,16 +1,36 @@
 # Working-first recovery and sidecar reduction
 
-**Current accepted state:** the working reduction below removes 407 parameter
-atoms, 2,894 LastError rows, 9,187 availability rows, and 29 enum definitions;
-eight additional genuine aliases use compiler-backed storage. The first
-[structural migration](#producer-ownership-and-enum-use-site-migration) and
-[next coherent cohorts](#http-filtering-printer-and-signed-enum-cohorts) now
-retire five fictitious handle records, 204 forced type-remap rows, and ten
-JSON enum-use bindings. Their new WinMD has exactly the intended structural
-differences, exhaustively accounted for without masks; it is not claimed
-API-equivalent. The preceding
-[equivalent union](#final-accepted-enumhandle-union) remains preserved.
-The earlier quantities below describe preserved historical checkpoints.
+**Current accepted cohort:** the [25 direct-header groups](#continued-direct-header-definitions)
+above preserved `85444f2513e7928590e05921ce4d14806eb4f28a`.
+Its actual WinMD is `A6FA0F41...`; the complete 35,379-type dump is
+`1F4F3839...`, byte-identical to accepted structural checkpoint 6d44.
+Earlier authorized fictitious-handle/AssociatedEnum changes remain completely
+accounted for relative to the original parent; no arbitrary API loss is
+accepted. The dated quantities later in this document describe preserved
+historical checkpoints, not the current totals.
+
+| Inventory / units | Recovery | Accepted current | Net retired |
+|---|---:|---:|---:|
+| Original parameter attribute atoms | 770 | 361 | 409 |
+| All RSP value rows | 146,789 | 134,065 | 12,724 |
+| Allowed documentation URL rows | 90,502 | 90,502 | 0 (outside backlog) |
+| Other RSP rows, mixed configuration/API units | 56,287 | 43,563 | 12,724 |
+| Emitter `memberRemap` rows | 2,295 | 1,592 | 703 |
+| LastError rows | 3,362 | 468 | 2,894 |
+| Availability rows | 17,070 | 7,883 | 9,187 |
+| Enum JSON records, mixed definitions/additional uses | 1,070 | 970 | 100 |
+| autoTypes records | 444 | 436 | 8 |
+| Function-pointer fixup records | 27 | 27 | 0 |
+
+| Remaining category | Measured accepted quantity | Examination state |
+|---|---:|---|
+| Definition-bearing enum records | 946 | Twenty-five further whole definitions are accepted; the remaining inventory is not exhaustively examined. Device/setup is the next direct-header cohort. |
+| Additional-use enum records / selector rows | 23 / 55 | Exact retained FILE/REG/SNMP/process, STGM, COM/MIDL and Cloud closures; observed boundaries are in [PROBLEMS.md](PROBLEMS.md). |
+| Genuine CLR flags request | 1 record | Native enum use override already redundant/retired; flags effect still unqualified. |
+| Native type/storage/ownership inputs | 436 records | 425 legacy-storage / 11 native selections; genuine types remain. Thirteen contextual cleanup records are demonstrated boundaries, not all 436 records. |
+| Parameter atoms | 361 | Individually inventoried; nine CLR selectors explicitly excepted, other unqualified/failed owner closures remain exact facts. |
+| DLL mappings | 26,376 automatic + 385 manual rows | Retained, not exempt; no new DLL migration claimed. |
+| Other RSP operational/API rows | Exact file/option TSV | Parser/global/routing configuration is separate from semantic retirement; do not remove it to inflate counts. |
 
 **Allowed external metadata:** the user explicitly permits all 90,502
 documentation URL mappings to remain in `documentationMappings.rsp` for now.
@@ -951,3 +971,53 @@ regeneration differences before retiring those owner closures, resolve
 SNMP storage intent, and isolate dependent-constant integration for the
 four restored groups. Documentation URL rows remain allowed; no such
 allowance is inferred for DLL mappings or other API metadata.
+
+## Continued direct-header definitions
+
+The renewed keep-going pass starts above preserved `85444f25`; publication is
+a recovery checkpoint, not a reason to stop the next plausible cohort.
+The first new accepted batch transports **25 complete definition/use closures,
+216 members and 44 unique native uses**:
+
+| Owning header | Groups | Native uses |
+|---|---:|---:|
+| `wincred.h` | 4 credential groups | 16 |
+| `verrsrc.h` / `winver.h` | 9 version/resource groups | 14 |
+| `Xinput.h` | 10 controller/battery groups | 10 |
+| `commdlg.h` | 2 dialog groups | 4 |
+
+All 25 JSON records are deleted, not replaced by binding-only records. Each
+parameter, return or field binding has its exact current native carrier.
+Existing implicit sequential members are included, and the old synthetic
+`XINPUT_FLAG_ALL = 0` member is now a header constant. No inactive selector
+or new inferred use is counted. Twenty-five namespace-owner bridges retain
+the public owners: consequently total RSP rows increase by 25 even as 25
+semantic JSON definitions and all their use records retire. The routing rows
+are explicitly not counted as new API annotations or a retirement failure.
+
+The actual Credentials, Fs, Xinput and DlgBox traversal owners were refreshed.
+Corrected production scrape/constants passed in **1m15.78s**, and complete
+emission passed in **4m42.56s**:
+
+| Accepted artifact | Identity |
+|---|---|
+| Actual new WinMD | `files\sidecar-reduction\direct-25-candidate\Windows.Win32.winmd` |
+| Size / SHA-256 | 24,176,640 bytes / `A6FA0F41422F4F75BDACE30F3CA93721EDC72B4DBEF4194B31EED63930CDAC3D` |
+| Complete dump / types | `1F4F38395D602095972A5095C4A25EF6C117BE5E1D716DAB5C3108BE6AC589BA` / 35,379 |
+| Unmasked comparer / complete raw accounting | Exit **0** against 85444; entire dump byte-identical, zero unmatched changes |
+
+Actual-output integrity passes **54/54**. Strict production replay passes
+**345/345** selected post-MIDL patches, including the two new Xinput/verrsrc
+patches; all five changed native owners retain non-ASCII bytes and BOMs.
+The 28 pre-MIDL selections, reader/helper/converter/CI, existing assertions,
+90,502 allowed documentation mappings and previous authorized structural
+changes are unchanged. Exact inputs, original rejected parse log, corrected
+production logs, dump, unmasked comparison, byte audit and TRX remain in
+`files\sidecar-reduction\direct-25-*`.
+
+The initial parse failures came from a mechanical dump-extraction error:
+sequential enum members without explicit `=` were omitted, producing three
+empty group declarations. Correcting all implicit members fixed the input;
+these are not reader failures. The next sizeable direct-header closure is
+28 cfgmgr32/SetupAPI groups (401 baseline members and 85 legacy selector rows),
+not a repeated attempt at the known STGM/SNMP/MIDL boundaries.

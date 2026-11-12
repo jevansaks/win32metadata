@@ -893,7 +893,7 @@ BOOL
 WINAPI
 CredReadW (
     _In_ LPCWSTR TargetName,
-    _In_ DWORD Type,
+    _Win32_AssociatedEnum_(CRED_TYPE) _In_ DWORD Type,
     _Reserved_ DWORD Flags,
     _Out_ PCREDENTIALW *Credential
     );
@@ -905,7 +905,7 @@ BOOL
 WINAPI
 CredReadA (
     _In_ LPCSTR TargetName,
-    _In_ DWORD Type,
+    _Win32_AssociatedEnum_(CRED_TYPE) _In_ DWORD Type,
     _Reserved_ DWORD Flags,
     _Out_ PCREDENTIALA *Credential
     );
@@ -1029,7 +1029,7 @@ BOOL
 WINAPI
 CredDeleteW (
     _In_ LPCWSTR TargetName,
-    _In_ DWORD Type,
+    _Win32_AssociatedEnum_(CRED_TYPE) _In_ DWORD Type,
     _Reserved_ DWORD Flags
     );
 _Win32_SetLastError_
@@ -1040,7 +1040,7 @@ BOOL
 WINAPI
 CredDeleteA (
     _In_ LPCSTR TargetName,
-    _In_ DWORD Type,
+    _Win32_AssociatedEnum_(CRED_TYPE) _In_ DWORD Type,
     _Reserved_ DWORD Flags
     );
 
@@ -1064,7 +1064,7 @@ WINAPI
 CredRenameW (
     _In_ LPCWSTR OldTargetName,
     _In_ LPCWSTR NewTargetName,
-    _In_ DWORD Type,
+    _Win32_AssociatedEnum_(CRED_TYPE) _In_ DWORD Type,
     _Reserved_ DWORD Flags
     );
 _Win32_SetLastError_
@@ -1076,7 +1076,7 @@ WINAPI
 CredRenameA (
     _In_ LPCSTR OldTargetName,
     _In_ LPCSTR NewTargetName,
-    _In_ DWORD Type,
+    _Win32_AssociatedEnum_(CRED_TYPE) _In_ DWORD Type,
     _Reserved_ DWORD Flags
     );
 
@@ -1217,7 +1217,7 @@ CREDUIAPI
 BOOL
 WINAPI
 CredUnPackAuthenticationBufferW(
-    _In_ DWORD                                      dwFlags,
+    _Win32_AssociatedEnum_(CRED_PACK_FLAGS) _In_ DWORD                                      dwFlags,
     _In_reads_bytes_(cbAuthBuffer) PVOID                 pAuthBuffer,
     _In_ DWORD                                      cbAuthBuffer,
     _Out_writes_opt_(*pcchMaxUserName) LPWSTR       pszUserName,
@@ -1234,7 +1234,7 @@ CREDUIAPI
 BOOL
 WINAPI
 CredUnPackAuthenticationBufferA(
-    _In_ DWORD                                      dwFlags,
+    _Win32_AssociatedEnum_(CRED_PACK_FLAGS) _In_ DWORD                                      dwFlags,
     _In_reads_bytes_(cbAuthBuffer) PVOID                 pAuthBuffer,
     _In_ DWORD                                      cbAuthBuffer,
     _Out_writes_opt_(*pcchlMaxUserName) LPSTR       pszUserName,
@@ -1257,7 +1257,7 @@ CREDUIAPI
 BOOL
 WINAPI
 CredPackAuthenticationBufferW(
-    _In_ DWORD                                      dwFlags,
+    _Win32_AssociatedEnum_(CRED_PACK_FLAGS) _In_ DWORD                                      dwFlags,
     _In_ LPWSTR                                     pszUserName,
     _In_ LPWSTR                                     pszPassword,
     _Out_writes_bytes_opt_(*pcbPackedCredentials) PBYTE   pPackedCredentials,
@@ -1270,7 +1270,7 @@ CREDUIAPI
 BOOL
 WINAPI
 CredPackAuthenticationBufferA(
-    _In_ DWORD                                      dwFlags,
+    _Win32_AssociatedEnum_(CRED_PACK_FLAGS) _In_ DWORD                                      dwFlags,
     _In_ LPSTR                                      pszUserName,
     _In_ LPSTR                                      pszPassword,
     _Out_writes_bytes_opt_(*pcbPackedCredentials) PBYTE   pPackedCredentials,
@@ -1688,4 +1688,16 @@ CredUIReadSSOCredW (
 
 #endif // _WINCRED_H_
 
-
+#ifndef _WIN32METADATA_WINCRED_GROUPS_
+#define _WIN32METADATA_WINCRED_GROUPS_
+_Win32_FlagsEnum_(CRED_FLAGS, unsigned long, CRED_FLAGS_PASSWORD_FOR_CERT, CRED_FLAGS_PROMPT_NOW, CRED_FLAGS_USERNAME_TARGET, CRED_FLAGS_OWF_CRED_BLOB, CRED_FLAGS_REQUIRE_CONFIRMATION, CRED_FLAGS_WILDCARD_MATCH, CRED_FLAGS_VSM_PROTECTED, CRED_FLAGS_NGC_CERT, CRED_FLAGS_VALID_FLAGS, CRED_FLAGS_VALID_INPUT_FLAGS);
+_Win32_AnnotateField_(CREDENTIALA::Flags, _Win32_AssociatedEnum_(CRED_FLAGS));
+_Win32_AnnotateField_(CREDENTIALW::Flags, _Win32_AssociatedEnum_(CRED_FLAGS));
+_Win32_Enum_(CRED_TYPE, unsigned long, CRED_TYPE_GENERIC, CRED_TYPE_DOMAIN_PASSWORD, CRED_TYPE_DOMAIN_CERTIFICATE, CRED_TYPE_DOMAIN_VISIBLE_PASSWORD, CRED_TYPE_GENERIC_CERTIFICATE, CRED_TYPE_DOMAIN_EXTENDED, CRED_TYPE_MAXIMUM, CRED_TYPE_MAXIMUM_EX);
+_Win32_AnnotateField_(CREDENTIALA::Type, _Win32_AssociatedEnum_(CRED_TYPE));
+_Win32_AnnotateField_(CREDENTIALW::Type, _Win32_AssociatedEnum_(CRED_TYPE));
+_Win32_Enum_(CRED_PERSIST, unsigned long, CRED_PERSIST_NONE, CRED_PERSIST_SESSION, CRED_PERSIST_LOCAL_MACHINE, CRED_PERSIST_ENTERPRISE);
+_Win32_AnnotateField_(CREDENTIALA::Persist, _Win32_AssociatedEnum_(CRED_PERSIST));
+_Win32_AnnotateField_(CREDENTIALW::Persist, _Win32_AssociatedEnum_(CRED_PERSIST));
+_Win32_FlagsEnum_(CRED_PACK_FLAGS, unsigned long, CRED_PACK_PROTECTED_CREDENTIALS, CRED_PACK_WOW_BUFFER, CRED_PACK_GENERIC_CREDENTIALS, CRED_PACK_ID_PROVIDER_CREDENTIALS);
+#endif

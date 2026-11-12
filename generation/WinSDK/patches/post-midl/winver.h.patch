@@ -7,7 +7,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winver.h b/generation/Win
  #include <winapifamily.h>
  
  /*****************************************************************************\
-@@ -27,6 +28,7 @@
+@@ -27,14 +28,15 @@
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
  
  #ifndef RC_INVOKED              /* RC doesn't need to see the rest of this */
@@ -15,30 +15,60 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winver.h b/generation/Win
  
  
  /* ----- Function prototypes ----- */
-@@ -43,6 +45,7 @@
+ 
+-DWORD
++_Win32_AssociatedEnum_(VER_FIND_FILE_STATUS) DWORD
+ APIENTRY
+ VerFindFileA(
+-        _In_                         DWORD uFlags,
++        _Win32_AssociatedEnum_(VER_FIND_FILE_FLAGS) _In_                         DWORD uFlags,
+         _In_                         LPCSTR szFileName,
+         _In_opt_                     LPCSTR szWinDir,
+         _In_                         LPCSTR szAppDir,
+@@ -43,10 +45,11 @@
          _Out_writes_(*puDestDirLen)  LPSTR szDestDir,
          _Inout_                      PUINT puDestDirLen
          );
+-DWORD
 +_Win32_SupportedOS_Windows2000_
- DWORD
++_Win32_AssociatedEnum_(VER_FIND_FILE_STATUS) DWORD
  APIENTRY
  VerFindFileW(
-@@ -70,6 +73,7 @@
+-        _In_                         DWORD uFlags,
++        _Win32_AssociatedEnum_(VER_FIND_FILE_FLAGS) _In_                         DWORD uFlags,
+         _In_                         LPCWSTR szFileName,
+         _In_opt_                     LPCWSTR szWinDir,
+         _In_                         LPCWSTR szAppDir,
+@@ -70,11 +73,12 @@
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
  #ifndef RC_INVOKED
+-
+-DWORD
 +_Win32_SupportedOS_Windows2000_
- 
- DWORD
++
++_Win32_AssociatedEnum_(VER_INSTALL_FILE_STATUS) DWORD
  APIENTRY
-@@ -83,6 +87,7 @@
+ VerInstallFileA(
+-        _In_                         DWORD uFlags,
++        _Win32_AssociatedEnum_(VER_INSTALL_FILE_FLAGS) _In_                         DWORD uFlags,
+         _In_                         LPCSTR szSrcFileName,
+         _In_                         LPCSTR szDestFileName,
+         _In_                         LPCSTR szSrcDir,
+@@ -83,10 +87,11 @@
          _Out_writes_(*puTmpFileLen)  LPSTR szTmpFile,
          _Inout_                      PUINT puTmpFileLen
          );
+-DWORD
 +_Win32_SupportedOS_Windows2000_
- DWORD
++_Win32_AssociatedEnum_(VER_INSTALL_FILE_STATUS) DWORD
  APIENTRY
  VerInstallFileW(
+-        _In_                         DWORD uFlags,
++        _Win32_AssociatedEnum_(VER_INSTALL_FILE_FLAGS) _In_                         DWORD uFlags,
+         _In_                         LPCWSTR szSrcFileName,
+         _In_                         LPCWSTR szDestFileName,
+         _In_                         LPCWSTR szSrcDir,
 @@ -110,6 +115,8 @@
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
  
@@ -75,6 +105,31 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winver.h b/generation/Win
  /* Read version info into buffer */
  BOOL
  APIENTRY
+@@ -155,20 +168,20 @@
+ #define GetFileVersionInfo  GetFileVersionInfoA
+ #endif // !UNICODE
+ 
+-DWORD APIENTRY GetFileVersionInfoSizeExA(_In_ DWORD dwFlags, _In_ LPCSTR lpwstrFilename, _Out_ LPDWORD lpdwHandle);
+-DWORD APIENTRY GetFileVersionInfoSizeExW(_In_ DWORD dwFlags, _In_ LPCWSTR lpwstrFilename, _Out_ LPDWORD lpdwHandle);
++DWORD APIENTRY GetFileVersionInfoSizeExA(_Win32_AssociatedEnum_(GET_FILE_VERSION_INFO_FLAGS) _In_ DWORD dwFlags, _In_ LPCSTR lpwstrFilename, _Out_ LPDWORD lpdwHandle);
++DWORD APIENTRY GetFileVersionInfoSizeExW(_Win32_AssociatedEnum_(GET_FILE_VERSION_INFO_FLAGS) _In_ DWORD dwFlags, _In_ LPCWSTR lpwstrFilename, _Out_ LPDWORD lpdwHandle);
+ #ifdef UNICODE
+ #define GetFileVersionInfoSizeEx  GetFileVersionInfoSizeExW
+ #else
+ #define GetFileVersionInfoSizeEx  GetFileVersionInfoSizeExA
+ #endif // !UNICODE
+ 
+-BOOL APIENTRY GetFileVersionInfoExA(_In_ DWORD dwFlags,
++BOOL APIENTRY GetFileVersionInfoExA(_Win32_AssociatedEnum_(GET_FILE_VERSION_INFO_FLAGS) _In_ DWORD dwFlags,
+                                     _In_ LPCSTR lpwstrFilename,
+                                     _Reserved_ DWORD dwHandle,
+                                     _In_ DWORD dwLen,
+                                     _Out_writes_bytes_(dwLen) LPVOID lpData);
+-BOOL APIENTRY GetFileVersionInfoExW(_In_ DWORD dwFlags,
++BOOL APIENTRY GetFileVersionInfoExW(_Win32_AssociatedEnum_(GET_FILE_VERSION_INFO_FLAGS) _In_ DWORD dwFlags,
+                                     _In_ LPCWSTR lpwstrFilename,
+                                     _Reserved_ DWORD dwHandle,
+                                     _In_ DWORD dwLen,
 @@ -199,6 +212,7 @@
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
  
