@@ -3938,7 +3938,7 @@ WINAPI
 SetupCopyOEMInfA(
     _In_ PCSTR SourceInfFileName,
     _In_opt_ PCSTR OEMSourceMediaLocation,
-    _In_ DWORD OEMSourceMediaType,
+    _Win32_AssociatedEnum_(OEM_SOURCE_MEDIA_TYPE) _In_ DWORD OEMSourceMediaType,
     _Win32_AssociatedEnum_(SP_COPY_STYLE) _In_ DWORD CopyStyle,
     _Out_writes_opt_(DestinationInfFileNameSize) PSTR DestinationInfFileName,
     _In_ DWORD DestinationInfFileNameSize,
@@ -3954,7 +3954,7 @@ WINAPI
 SetupCopyOEMInfW(
     _In_ PCWSTR SourceInfFileName,
     _In_opt_ PCWSTR OEMSourceMediaLocation,
-    _In_ DWORD OEMSourceMediaType,
+    _Win32_AssociatedEnum_(OEM_SOURCE_MEDIA_TYPE) _In_ DWORD OEMSourceMediaType,
     _Win32_AssociatedEnum_(SP_COPY_STYLE) _In_ DWORD CopyStyle,
     _Out_writes_opt_(DestinationInfFileNameSize) PWSTR DestinationInfFileName,
     _In_ DWORD DestinationInfFileNameSize,
@@ -4211,7 +4211,7 @@ SetupAddToDiskSpaceListA(
     _In_ HDSKSPC DiskSpace,
     _In_ PCSTR TargetFilespec,
     _In_ LONGLONG FileSize,
-    _In_ UINT Operation,
+    _Win32_AssociatedEnum_(SETUP_FILE_OPERATION) _In_ UINT Operation,
     _Reserved_ PVOID Reserved1,
     _Reserved_ UINT Reserved2
     );
@@ -4225,7 +4225,7 @@ SetupAddToDiskSpaceListW(
     _In_ HDSKSPC DiskSpace,
     _In_ PCWSTR TargetFilespec,
     _In_ LONGLONG FileSize,
-    _In_ UINT Operation,
+    _Win32_AssociatedEnum_(SETUP_FILE_OPERATION) _In_ UINT Operation,
     _Reserved_ PVOID Reserved1,
     _Reserved_ UINT Reserved2
     );
@@ -4247,7 +4247,7 @@ SetupAddSectionToDiskSpaceListA(
     _In_ HINF InfHandle,
     _In_opt_ HINF ListInfHandle,
     _In_ PCSTR SectionName,
-    _In_ UINT Operation,
+    _Win32_AssociatedEnum_(SETUP_FILE_OPERATION) _In_ UINT Operation,
     _Reserved_ PVOID Reserved1,
     _Reserved_ UINT Reserved2
     );
@@ -4262,7 +4262,7 @@ SetupAddSectionToDiskSpaceListW(
     _In_ HINF InfHandle,
     _In_opt_ HINF ListInfHandle,
     _In_ PCWSTR SectionName,
-    _In_ UINT Operation,
+    _Win32_AssociatedEnum_(SETUP_FILE_OPERATION) _In_ UINT Operation,
     _Reserved_ PVOID Reserved1,
     _Reserved_ UINT Reserved2
     );
@@ -4317,7 +4317,7 @@ WINAPI
 SetupRemoveFromDiskSpaceListA(
     _In_ HDSKSPC DiskSpace,
     _In_ PCSTR TargetFilespec,
-    _In_ UINT Operation,
+    _Win32_AssociatedEnum_(SETUP_FILE_OPERATION) _In_ UINT Operation,
     _Reserved_ PVOID Reserved1,
     _Reserved_ UINT Reserved2
     );
@@ -4330,7 +4330,7 @@ WINAPI
 SetupRemoveFromDiskSpaceListW(
     _In_ HDSKSPC DiskSpace,
     _In_ PCWSTR TargetFilespec,
-    _In_ UINT Operation,
+    _Win32_AssociatedEnum_(SETUP_FILE_OPERATION) _In_ UINT Operation,
     _Reserved_ PVOID Reserved1,
     _Reserved_ UINT Reserved2
     );
@@ -4352,7 +4352,7 @@ SetupRemoveSectionFromDiskSpaceListA(
     _In_ HINF InfHandle,
     _In_opt_ HINF ListInfHandle,
     _In_ PCSTR SectionName,
-    _In_ UINT Operation,
+    _Win32_AssociatedEnum_(SETUP_FILE_OPERATION) _In_ UINT Operation,
     _Reserved_ PVOID Reserved1,
     _Reserved_ UINT Reserved2
     );
@@ -4367,7 +4367,7 @@ SetupRemoveSectionFromDiskSpaceListW(
     _In_ HINF InfHandle,
     _In_opt_ HINF ListInfHandle,
     _In_ PCWSTR SectionName,
-    _In_ UINT Operation,
+    _Win32_AssociatedEnum_(SETUP_FILE_OPERATION) _In_ UINT Operation,
     _Reserved_ PVOID Reserved1,
     _Reserved_ UINT Reserved2
     );
@@ -5911,7 +5911,7 @@ WINAPI
 SetupDiBuildDriverInfoList(
     _In_ HDEVINFO DeviceInfoSet,
     _Inout_opt_ PSP_DEVINFO_DATA DeviceInfoData,
-    _In_ DWORD DriverType
+    _Win32_AssociatedEnum_(SETUP_DI_DRIVER_TYPE) _In_ DWORD DriverType
     );
 
 
@@ -5931,7 +5931,7 @@ WINAPI
 SetupDiEnumDriverInfoA(
     _In_ HDEVINFO DeviceInfoSet,
     _In_opt_ PSP_DEVINFO_DATA DeviceInfoData,
-    _In_ DWORD DriverType,
+    _Win32_AssociatedEnum_(SETUP_DI_DRIVER_TYPE) _In_ DWORD DriverType,
     _In_ DWORD MemberIndex,
     _Inout_ PSP_DRVINFO_DATA_A DriverInfoData
     );
@@ -5942,7 +5942,7 @@ WINAPI
 SetupDiEnumDriverInfoW(
     _In_ HDEVINFO DeviceInfoSet,
     _In_opt_ PSP_DEVINFO_DATA DeviceInfoData,
-    _In_ DWORD DriverType,
+    _Win32_AssociatedEnum_(SETUP_DI_DRIVER_TYPE) _In_ DWORD DriverType,
     _In_ DWORD MemberIndex,
     _Inout_ PSP_DRVINFO_DATA_W DriverInfoData
     );
@@ -6052,7 +6052,7 @@ WINAPI
 SetupDiDestroyDriverInfoList(
     _In_ HDEVINFO DeviceInfoSet,
     _In_opt_ PSP_DEVINFO_DATA DeviceInfoData,
-    _In_ DWORD DriverType
+    _Win32_AssociatedEnum_(SETUP_DI_DRIVER_TYPE) _In_ DWORD DriverType
     );
 
 
@@ -8266,4 +8266,11 @@ _Win32_FlagsEnum_(SETUP_DI_DEVICE_INSTALL_FLAGS_EX, unsigned int, DI_FLAGSEX_RES
 _Win32_AnnotateField_(SP_DEVINSTALL_PARAMS_A::FlagsEx, _Win32_AssociatedEnum_(SETUP_DI_DEVICE_INSTALL_FLAGS_EX));
 _Win32_AnnotateField_(SP_DEVINSTALL_PARAMS_W::FlagsEx, _Win32_AssociatedEnum_(SETUP_DI_DEVICE_INSTALL_FLAGS_EX));
 _Win32_FlagsEnum_(FILE_COMPRESSION_TYPE, unsigned int, FILE_COMPRESSION_NONE, FILE_COMPRESSION_WINLZA, FILE_COMPRESSION_MSZIP, FILE_COMPRESSION_NTCAB);
+#endif
+
+#ifndef _WIN32METADATA_SETUPAPI_EXPLICIT_183_GROUPS_
+#define _WIN32METADATA_SETUPAPI_EXPLICIT_183_GROUPS_
+_Win32_Enum_(SETUP_FILE_OPERATION, unsigned int, FILEOP_DELETE, FILEOP_COPY);
+_Win32_Enum_(OEM_SOURCE_MEDIA_TYPE, unsigned int, SPOST_NONE, SPOST_PATH, SPOST_URL);
+_Win32_Enum_(SETUP_DI_DRIVER_TYPE, unsigned int, SPDIT_CLASSDRIVER, SPDIT_COMPATDRIVER);
 #endif

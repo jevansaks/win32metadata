@@ -482,7 +482,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -1828,6 +1937,7 @@
+@@ -1828,12 +1937,13 @@
      _In_  DWORD dwSelector,
      _Out_ LPLDT_ENTRY lpSelectorEntry
      );
@@ -490,6 +490,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  EXECUTION_STATE
+ WINAPI
+ SetThreadExecutionState(
+-    _In_ EXECUTION_STATE esFlags
++    _Win32_AssociatedEnum_(EXECUTION_STATE) _In_ EXECUTION_STATE esFlags
+     );
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WIN7)
 @@ -1843,6 +1953,8 @@
  //
  
@@ -639,7 +646,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -2132,6 +2272,8 @@
+@@ -2132,15 +2272,19 @@
  ClearCommBreak(
      _In_ HANDLE hFile
      );
@@ -648,8 +655,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -2141,6 +2283,8 @@
-     _Out_opt_ LPDWORD lpErrors,
+ WINAPI
+ ClearCommError(
+     _In_      HANDLE hFile,
+-    _Out_opt_ LPDWORD lpErrors,
++    _Win32_AssociatedEnum_(CLEAR_COMM_ERROR_FLAGS) _Out_opt_ LPDWORD lpErrors,
      _Out_opt_ LPCOMSTAT lpStat
      );
 +_Win32_SetLastError_
@@ -657,7 +667,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -2150,6 +2294,8 @@
+@@ -2150,13 +2294,15 @@
      _In_ DWORD dwInQueue,
      _In_ DWORD dwOutQueue
      );
@@ -666,7 +676,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -2168,6 +2314,8 @@
+ WINAPI
+ EscapeCommFunction(
+     _In_ HANDLE hFile,
+-    _In_ DWORD dwFunc
++    _Win32_AssociatedEnum_(ESCAPE_COMM_FUNCTION) _In_ DWORD dwFunc
+     );
+ 
+ WINBASEAPI
+@@ -2168,13 +2314,15 @@
      _Out_writes_bytes_opt_(*lpdwSize) LPCOMMCONFIG lpCC,
      _Inout_   LPDWORD lpdwSize
      );
@@ -675,7 +693,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -2184,6 +2332,8 @@
+ WINAPI
+ GetCommMask(
+     _In_  HANDLE hFile,
+-    _Out_ LPDWORD lpEvtMask
++    _Win32_AssociatedEnum_(COMM_EVENT_MASK) _Out_ LPDWORD lpEvtMask
+     );
+ 
+ WINBASEAPI
+@@ -2184,13 +2332,15 @@
      _In_    HANDLE hFile,
      _Inout_ LPCOMMPROP lpCommProp
      );
@@ -684,6 +710,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  BOOL
+ WINAPI
+ GetCommModemStatus(
+     _In_  HANDLE hFile,
+-    _Out_ LPDWORD lpModemStat
++    _Win32_AssociatedEnum_(MODEM_STATUS_FLAGS) _Out_ LPDWORD lpModemStat
+     );
+ 
+ WINBASEAPI
 @@ -2200,6 +2350,8 @@
      _In_  HANDLE hFile,
      _Out_ LPDCB lpDCB
@@ -693,7 +727,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -2208,6 +2360,8 @@
+@@ -2208,13 +2360,15 @@
      _In_  HANDLE hFile,
      _Out_ LPCOMMTIMEOUTS lpCommTimeouts
      );
@@ -702,6 +736,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  BOOL
+ WINAPI
+ PurgeComm(
+     _In_ HANDLE hFile,
+-    _In_ DWORD dwFlags
++    _Win32_AssociatedEnum_(PURGE_COMM_FLAGS) _In_ DWORD dwFlags
+     );
+ 
+ WINBASEAPI
 @@ -2223,6 +2377,8 @@
  SetCommBreak(
      _In_ HANDLE hFile
@@ -711,7 +753,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -2232,6 +2388,8 @@
+@@ -2232,13 +2388,15 @@
      _In_reads_bytes_(dwSize) LPCOMMCONFIG lpCC,
      _In_ DWORD dwSize
      );
@@ -720,6 +762,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  BOOL
+ WINAPI
+ SetCommMask(
+     _In_ HANDLE hFile,
+-    _In_ DWORD dwEvtMask
++    _Win32_AssociatedEnum_(COMM_EVENT_MASK) _In_ DWORD dwEvtMask
+     );
+ 
+ WINBASEAPI
 @@ -2248,6 +2406,8 @@
      _In_ HANDLE hFile,
      _In_ LPDCB lpDCB
@@ -738,7 +788,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -2264,6 +2426,8 @@
+@@ -2264,18 +2426,21 @@
      _In_ HANDLE hFile,
      _In_ char cChar
      );
@@ -747,7 +797,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -2276,6 +2440,7 @@
+ WINAPI
+ WaitCommEvent(
+     _In_        HANDLE hFile,
+-    _Inout_     LPDWORD lpEvtMask,
++    _Win32_AssociatedEnum_(COMM_EVENT_MASK) _Inout_     LPDWORD lpEvtMask,
+     _Inout_opt_ LPOVERLAPPED lpOverlapped
+     );
  
  
  #if (NTDDI_VERSION >= NTDDI_WIN10_RS3)
@@ -763,7 +819,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  ULONG
-@@ -2306,6 +2472,7 @@
+@@ -2306,67 +2472,74 @@
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -771,7 +827,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  DWORD
-@@ -2318,6 +2485,7 @@
+ WINAPI
+ SetTapePosition(
+     _In_ HANDLE hDevice,
+-    _In_ DWORD dwPositionMethod,
++    _Win32_AssociatedEnum_(TAPE_POSITION_METHOD) _In_ DWORD dwPositionMethod,
+     _In_ DWORD dwPartition,
+     _In_ DWORD dwOffsetLow,
      _In_ DWORD dwOffsetHigh,
      _In_ BOOL bImmediate
      );
@@ -779,7 +841,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  DWORD
-@@ -2329,6 +2497,7 @@
+ WINAPI
+ GetTapePosition(
+     _In_  HANDLE hDevice,
+-    _In_  DWORD dwPositionType,
++    _Win32_AssociatedEnum_(TAPE_POSITION_TYPE) _In_  DWORD dwPositionType,
+     _Out_ LPDWORD lpdwPartition,
      _Out_ LPDWORD lpdwOffsetLow,
      _Out_ LPDWORD lpdwOffsetHigh
      );
@@ -787,23 +854,33 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  DWORD
-@@ -2338,6 +2507,7 @@
-     _In_ DWORD dwOperation,
+ WINAPI
+ PrepareTape(
+     _In_ HANDLE hDevice,
+-    _In_ DWORD dwOperation,
++    _Win32_AssociatedEnum_(PREPARE_TAPE_OPERATION) _In_ DWORD dwOperation,
      _In_ BOOL bImmediate
      );
 +_Win32_SupportedOS_WindowsXP_
  
  WINBASEAPI
  DWORD
-@@ -2347,6 +2517,7 @@
-     _In_ DWORD dwEraseType,
+ WINAPI
+ EraseTape(
+     _In_ HANDLE hDevice,
+-    _In_ DWORD dwEraseType,
++    _Win32_AssociatedEnum_(ERASE_TAPE_TYPE) _In_ DWORD dwEraseType,
      _In_ BOOL bImmediate
      );
 +_Win32_SupportedOS_WindowsXP_
  
  WINBASEAPI
  DWORD
-@@ -2357,6 +2528,7 @@
+ WINAPI
+ CreateTapePartition(
+     _In_ HANDLE hDevice,
+-    _In_ DWORD dwPartitionMethod,
++    _Win32_AssociatedEnum_(CREATE_TAPE_PARTITION_METHOD) _In_ DWORD dwPartitionMethod,
      _In_ DWORD dwCount,
      _In_ DWORD dwSize
      );
@@ -811,7 +888,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  DWORD
-@@ -2367,6 +2539,7 @@
+ WINAPI
+ WriteTapemark(
+     _In_ HANDLE hDevice,
+-    _In_ DWORD dwTapemarkType,
++    _Win32_AssociatedEnum_(TAPEMARK_TYPE) _In_ DWORD dwTapemarkType,
      _In_ DWORD dwTapemarkCount,
      _In_ BOOL bImmediate
      );
@@ -819,7 +900,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  DWORD
-@@ -2374,6 +2547,7 @@
+@@ -2374,26 +2547,28 @@
  GetTapeStatus(
      _In_ HANDLE hDevice
      );
@@ -827,7 +908,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  DWORD
-@@ -2387,6 +2561,7 @@
+ WINAPI
+ GetTapeParameters(
+     _In_    HANDLE hDevice,
+-    _In_    DWORD dwOperation,
++    _Win32_AssociatedEnum_(GET_TAPE_DRIVE_PARAMETERS_OPERATION) _In_    DWORD dwOperation,
+     _Inout_ LPDWORD lpdwSize,
+     _Out_writes_bytes_(*lpdwSize) LPVOID lpTapeInformation
+     );
  
  #define GET_TAPE_MEDIA_INFORMATION 0
  #define GET_TAPE_DRIVE_INFORMATION 1
@@ -835,6 +923,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  DWORD
+ WINAPI
+ SetTapeParameters(
+     _In_ HANDLE hDevice,
+-    _In_ DWORD dwOperation,
++    _Win32_AssociatedEnum_(TAPE_INFORMATION_TYPE) _In_ DWORD dwOperation,
+     _In_ LPVOID lpTapeInformation
+     );
+ 
 @@ -2405,6 +2580,7 @@
  
  #pragma region Application Family or OneCore Family or Games Family
@@ -878,7 +974,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -2483,6 +2666,8 @@
+@@ -2483,12 +2666,14 @@
  #define FORMAT_MESSAGE_ALLOCATE_BUFFER 0x00000100
  
  #if !defined(MIDL_PASS)
@@ -887,7 +983,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  WINBASEAPI
  _Success_(return != 0)
  DWORD
-@@ -2498,6 +2683,8 @@
+ WINAPI
+ FormatMessageA(
+-    _In_     DWORD dwFlags,
++    _Win32_AssociatedEnum_(FORMAT_MESSAGE_OPTIONS) _In_     DWORD dwFlags,
+     _In_opt_ LPCVOID lpSource,
+     _In_     DWORD dwMessageId,
+     _In_     DWORD dwLanguageId,
+@@ -2498,12 +2683,14 @@
      _In_     DWORD nSize,
      _In_opt_ va_list *Arguments
      );
@@ -896,6 +999,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  WINBASEAPI
  _Success_(return != 0)
  DWORD
+ WINAPI
+ FormatMessageW(
+-    _In_     DWORD dwFlags,
++    _Win32_AssociatedEnum_(FORMAT_MESSAGE_OPTIONS) _In_     DWORD dwFlags,
+     _In_opt_ LPCVOID lpSource,
+     _In_     DWORD dwMessageId,
+     _In_     DWORD dwLanguageId,
 @@ -2562,6 +2749,8 @@
  
  #pragma region Desktop Family
@@ -2141,6 +2251,24 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  BOOL
+@@ -6162,7 +6593,7 @@
+ MoveFileExA(
+     _In_     LPCSTR lpExistingFileName,
+     _In_opt_ LPCSTR lpNewFileName,
+-    _In_     DWORD    dwFlags
++    _Win32_AssociatedEnum_(MOVE_FILE_FLAGS) _In_     DWORD    dwFlags
+     );
+ WINBASEAPI
+ BOOL
+@@ -6170,7 +6601,7 @@
+ MoveFileExW(
+     _In_     LPCWSTR lpExistingFileName,
+     _In_opt_ LPCWSTR lpNewFileName,
+-    _In_     DWORD    dwFlags
++    _Win32_AssociatedEnum_(MOVE_FILE_FLAGS) _In_     DWORD    dwFlags
+     );
+ #ifdef UNICODE
+ #define MoveFileEx  MoveFileExW
 @@ -6185,6 +6616,8 @@
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
  
@@ -2150,6 +2278,24 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  WINBASEAPI
  BOOL
  WINAPI
+@@ -6193,7 +6626,7 @@
+     _In_opt_ LPCSTR lpNewFileName,
+     _In_opt_ LPPROGRESS_ROUTINE lpProgressRoutine,
+     _In_opt_ LPVOID lpData,
+-    _In_     DWORD dwFlags
++    _Win32_AssociatedEnum_(MOVE_FILE_FLAGS) _In_     DWORD dwFlags
+     );
+ WINBASEAPI
+ BOOL
+@@ -6203,7 +6636,7 @@
+     _In_opt_ LPCWSTR lpNewFileName,
+     _In_opt_ LPPROGRESS_ROUTINE lpProgressRoutine,
+     _In_opt_ LPVOID lpData,
+-    _In_     DWORD dwFlags
++    _Win32_AssociatedEnum_(MOVE_FILE_FLAGS) _In_     DWORD dwFlags
+     );
+ #ifdef UNICODE
+ #define MoveFileWithProgress  MoveFileWithProgressW
 @@ -6219,6 +6652,8 @@
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
@@ -2159,8 +2305,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  WINBASEAPI
  BOOL
  WINAPI
-@@ -6230,6 +6665,8 @@
-     _In_     DWORD dwFlags,
+@@ -6227,9 +6662,11 @@
+     _In_opt_ LPCSTR lpNewFileName,
+     _In_opt_ LPPROGRESS_ROUTINE lpProgressRoutine,
+     _In_opt_ LPVOID lpData,
+-    _In_     DWORD dwFlags,
++    _Win32_AssociatedEnum_(MOVE_FILE_FLAGS) _In_     DWORD dwFlags,
      _In_     HANDLE hTransaction
      );
 +_Win32_SetLastError_
@@ -2168,6 +2318,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  WINBASEAPI
  BOOL
  WINAPI
+@@ -6238,7 +6675,7 @@
+     _In_opt_ LPCWSTR lpNewFileName,
+     _In_opt_ LPPROGRESS_ROUTINE lpProgressRoutine,
+     _In_opt_ LPVOID lpData,
+-    _In_     DWORD dwFlags,
++    _Win32_AssociatedEnum_(MOVE_FILE_FLAGS) _In_     DWORD dwFlags,
+     _In_     HANDLE hTransaction
+     );
+ #ifdef UNICODE
 @@ -6277,6 +6714,8 @@
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
@@ -2177,7 +2336,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -6289,6 +6728,8 @@
+@@ -6285,10 +6724,12 @@
+     _In_       LPCSTR lpReplacedFileName,
+     _In_       LPCSTR lpReplacementFileName,
+     _In_opt_   LPCSTR lpBackupFileName,
+-    _In_       DWORD    dwReplaceFlags,
++    _Win32_AssociatedEnum_(REPLACE_FILE_FLAGS) _In_       DWORD    dwReplaceFlags,
      _Reserved_ LPVOID   lpExclude,
      _Reserved_ LPVOID  lpReserved
      );
@@ -2186,6 +2350,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  WINBASEAPI
  BOOL
  WINAPI
+@@ -6296,7 +6737,7 @@
+     _In_       LPCWSTR lpReplacedFileName,
+     _In_       LPCWSTR lpReplacementFileName,
+     _In_opt_   LPCWSTR lpBackupFileName,
+-    _In_       DWORD    dwReplaceFlags,
++    _Win32_AssociatedEnum_(REPLACE_FILE_FLAGS) _In_       DWORD    dwReplaceFlags,
+     _Reserved_ LPVOID   lpExclude,
+     _Reserved_ LPVOID  lpReserved
+     );
 @@ -6308,6 +6749,8 @@
  #endif // (_WIN32_WINNT >= 0x0500)
  
@@ -2429,7 +2602,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  _Success_(return != FALSE)
  WINADVAPI
-@@ -6801,6 +7296,8 @@
+@@ -6794,20 +7289,22 @@
+ WINAPI
+ ReadEventLogA (
+     _In_  HANDLE     hEventLog,
+-    _In_  DWORD      dwReadFlags,
++    _Win32_AssociatedEnum_(READ_EVENT_LOG_READ_FLAGS) _In_  DWORD      dwReadFlags,
+     _In_  DWORD      dwRecordOffset,
+     _Out_writes_bytes_to_(nNumberOfBytesToRead, *pnBytesRead) LPVOID     lpBuffer,
+     _In_  DWORD      nNumberOfBytesToRead,
      _Out_ DWORD      *pnBytesRead,
      _Out_ DWORD      *pnMinNumberOfBytesNeeded
      );
@@ -2438,6 +2619,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  _Success_(return != FALSE)
  WINADVAPI
  BOOL
+ WINAPI
+ ReadEventLogW (
+     _In_  HANDLE     hEventLog,
+-    _In_  DWORD      dwReadFlags,
++    _Win32_AssociatedEnum_(READ_EVENT_LOG_READ_FLAGS) _In_  DWORD      dwReadFlags,
+     _In_  DWORD      dwRecordOffset,
+     _Out_writes_bytes_to_(nNumberOfBytesToRead, *pnBytesRead) LPVOID     lpBuffer,
+     _In_  DWORD      nNumberOfBytesToRead,
 @@ -6825,6 +7322,8 @@
  
  #pragma region Application Family
@@ -2447,7 +2636,16 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  _Success_(return != FALSE)
  WINADVAPI
-@@ -6841,6 +7340,8 @@
+@@ -6832,7 +7331,7 @@
+ WINAPI
+ ReportEventA (
+     _In_     HANDLE     hEventLog,
+-    _In_     WORD       wType,
++    _Win32_AssociatedEnum_(REPORT_EVENT_TYPE) _In_     WORD       wType,
+     _In_     WORD       wCategory,
+     _In_     DWORD      dwEventID,
+     _In_opt_ PSID       lpUserSid,
+@@ -6841,13 +7340,15 @@
      _In_reads_opt_(wNumStrings) LPCSTR *lpStrings,
      _In_reads_bytes_opt_(dwDataSize) LPVOID lpRawData
      );
@@ -2456,6 +2654,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  _Success_(return != FALSE)
  WINADVAPI
  BOOL
+ WINAPI
+ ReportEventW (
+     _In_     HANDLE     hEventLog,
+-    _In_     WORD       wType,
++    _Win32_AssociatedEnum_(REPORT_EVENT_TYPE) _In_     WORD       wType,
+     _In_     WORD       wCategory,
+     _In_     DWORD      dwEventID,
+     _In_opt_ PSID       lpUserSid,
 @@ -6875,6 +7376,8 @@
      DWORD    dwFull;
  }
@@ -2909,8 +3115,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  
  
-@@ -7760,6 +8357,8 @@
-     _In_        DWORD dwLogonProvider,
+@@ -7756,10 +8353,12 @@
+     _In_        LPCSTR lpszUsername,
+     _In_opt_    LPCSTR lpszDomain,
+     _In_opt_    LPCSTR lpszPassword,
+-    _In_        DWORD dwLogonType,
+-    _In_        DWORD dwLogonProvider,
++    _Win32_AssociatedEnum_(LOGON32_LOGON) _In_        DWORD dwLogonType,
++    _Win32_AssociatedEnum_(LOGON32_PROVIDER) _In_        DWORD dwLogonProvider,
      _Outptr_ PHANDLE phToken
      );
 +_Win32_SetLastError_
@@ -2918,6 +3130,17 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  WINADVAPI
  BOOL
  WINAPI
+@@ -7767,8 +8366,8 @@
+     _In_        LPCWSTR lpszUsername,
+     _In_opt_    LPCWSTR lpszDomain,
+     _In_opt_    LPCWSTR lpszPassword,
+-    _In_        DWORD dwLogonType,
+-    _In_        DWORD dwLogonProvider,
++    _Win32_AssociatedEnum_(LOGON32_LOGON) _In_        DWORD dwLogonType,
++    _Win32_AssociatedEnum_(LOGON32_PROVIDER) _In_        DWORD dwLogonProvider,
+     _Outptr_ PHANDLE phToken
+     );
+ #ifdef UNICODE
 @@ -7776,6 +8375,8 @@
  #else
  #define LogonUser  LogonUserA
@@ -2927,7 +3150,17 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINADVAPI
  BOOL
-@@ -7792,6 +8393,8 @@
+@@ -7784,14 +8385,16 @@
+     _In_            LPCSTR lpszUsername,
+     _In_opt_        LPCSTR lpszDomain,
+     _In_opt_        LPCSTR lpszPassword,
+-    _In_            DWORD dwLogonType,
+-    _In_            DWORD dwLogonProvider,
++    _Win32_AssociatedEnum_(LOGON32_LOGON) _In_            DWORD dwLogonType,
++    _Win32_AssociatedEnum_(LOGON32_PROVIDER) _In_            DWORD dwLogonProvider,
+     _Outptr_opt_ PHANDLE phToken,
+     _Outptr_opt_ PSID  *ppLogonSid,
+     _Outptr_opt_result_bytebuffer_all_(*pdwProfileLength) PVOID *ppProfileBuffer,
      _Out_opt_       LPDWORD pdwProfileLength,
      _Out_opt_       PQUOTA_LIMITS pQuotaLimits
      );
@@ -2936,6 +3169,17 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  WINADVAPI
  BOOL
  WINAPI
+@@ -7799,8 +8402,8 @@
+     _In_            LPCWSTR lpszUsername,
+     _In_opt_        LPCWSTR lpszDomain,
+     _In_opt_        LPCWSTR lpszPassword,
+-    _In_            DWORD dwLogonType,
+-    _In_            DWORD dwLogonProvider,
++    _Win32_AssociatedEnum_(LOGON32_LOGON) _In_            DWORD dwLogonType,
++    _Win32_AssociatedEnum_(LOGON32_PROVIDER) _In_            DWORD dwLogonProvider,
+     _Outptr_opt_ PHANDLE phToken,
+     _Outptr_opt_ PSID  *ppLogonSid,
+     _Outptr_opt_result_bytebuffer_all_(*pdwProfileLength) PVOID *ppProfileBuffer,
 @@ -7832,6 +8435,8 @@
  #define LOGON_WITH_PROFILE              0x00000001
  #define LOGON_NETCREDENTIALS_ONLY       0x00000002
@@ -2945,7 +3189,16 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINADVAPI
  _Must_inspect_result_ BOOL
-@@ -7849,6 +8454,8 @@
+@@ -7840,7 +8445,7 @@
+     _In_        LPCWSTR lpUsername,
+     _In_opt_    LPCWSTR lpDomain,
+     _In_        LPCWSTR lpPassword,
+-    _In_        DWORD dwLogonFlags,
++    _Win32_AssociatedEnum_(CREATE_PROCESS_LOGON_FLAGS) _In_        DWORD dwLogonFlags,
+     _In_opt_    LPCWSTR lpApplicationName,
+     _Inout_opt_ LPWSTR lpCommandLine,
+     _In_        DWORD dwCreationFlags,
+@@ -7849,13 +8454,15 @@
      _In_        LPSTARTUPINFOW lpStartupInfo,
      _Out_       LPPROCESS_INFORMATION lpProcessInformation
        );
@@ -2954,6 +3207,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINADVAPI
  _Must_inspect_result_ BOOL
+ WINAPI
+ CreateProcessWithTokenW(
+     _In_        HANDLE hToken,
+-    _In_        DWORD dwLogonFlags,
++    _Win32_AssociatedEnum_(CREATE_PROCESS_LOGON_FLAGS) _In_        DWORD dwLogonFlags,
+     _In_opt_    LPCWSTR lpApplicationName,
+     _Inout_opt_ LPWSTR lpCommandLine,
+     _In_        DWORD dwCreationFlags,
 @@ -7884,6 +8491,8 @@
  //
  
@@ -2999,7 +3260,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  WINADVAPI
  BOOL
  WINAPI
-@@ -8185,6 +8802,8 @@
+@@ -8185,21 +8802,25 @@
  
  #pragma region Desktop Family or Gaming Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_GAMES)
@@ -3008,8 +3269,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -8194,6 +8813,8 @@
-     _In_    DWORD dwTypeMask,
+ WINAPI
+ VerifyVersionInfoA(
+     _Inout_ LPOSVERSIONINFOEXA lpVersionInformation,
+-    _In_    DWORD dwTypeMask,
++    _Win32_AssociatedEnum_(VER_FLAGS) _In_    DWORD dwTypeMask,
      _In_    DWORDLONG dwlConditionMask
      );
 +_Win32_SetLastError_
@@ -3017,6 +3281,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  WINBASEAPI
  BOOL
  WINAPI
+ VerifyVersionInfoW(
+     _Inout_ LPOSVERSIONINFOEXW lpVersionInformation,
+-    _In_    DWORD dwTypeMask,
++    _Win32_AssociatedEnum_(VER_FLAGS) _In_    DWORD dwTypeMask,
+     _In_    DWORDLONG dwlConditionMask
+     );
+ #ifdef UNICODE
 @@ -8229,6 +8850,8 @@
  #define TC_SIGNAL       3
  
@@ -3385,7 +3656,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  HRESULT
-@@ -9028,11 +9723,13 @@
+@@ -9028,18 +9723,20 @@
      _In_ DWORD dwPingInterval,
      _In_ DWORD dwFlags
      );
@@ -3399,6 +3670,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  HRESULT
+ WINAPI
+ RegisterApplicationRestart(
+     _In_opt_ PCWSTR pwzCommandline,
+-    _In_ DWORD dwFlags
++    _Win32_AssociatedEnum_(REGISTER_APPLICATION_RESTART_FLAGS) _In_ DWORD dwFlags
+     );
+ 
+ WINBASEAPI
 @@ -9067,6 +9764,7 @@
      _Out_opt_ PDWORD pdwPingInterval,
      _Out_opt_ PDWORD pdwFlags
@@ -3576,3 +3855,40 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  #endif // _WINBASE_
  
+@@ -10133,3 +10860,36 @@
+ #endif /* _NTOS_ */
+ #endif /* NOWINBASEINTERLOCK */
+ #endif /* RC_INVOKED */
++
++#ifndef _WIN32METADATA_WINBASE_EXPLICIT_183_GROUPS_
++#define _WIN32METADATA_WINBASE_EXPLICIT_183_GROUPS_
++_Win32_FlagsEnum_(MODEM_STATUS_FLAGS, unsigned int, MS_CTS_ON, MS_DSR_ON, MS_RING_ON, MS_RLSD_ON);
++_Win32_Enum_(LOGON32_PROVIDER, unsigned int, LOGON32_PROVIDER_DEFAULT, LOGON32_PROVIDER_WINNT50, LOGON32_PROVIDER_WINNT40);
++_Win32_FlagsEnum_(MOVE_FILE_FLAGS, unsigned int, MOVEFILE_COPY_ALLOWED, MOVEFILE_CREATE_HARDLINK, MOVEFILE_DELAY_UNTIL_REBOOT, MOVEFILE_REPLACE_EXISTING, MOVEFILE_WRITE_THROUGH, MOVEFILE_FAIL_IF_NOT_TRACKABLE);
++_Win32_FlagsEnum_(FORMAT_MESSAGE_OPTIONS, unsigned int, FORMAT_MESSAGE_ALLOCATE_BUFFER, FORMAT_MESSAGE_ARGUMENT_ARRAY, FORMAT_MESSAGE_FROM_HMODULE, FORMAT_MESSAGE_FROM_STRING, FORMAT_MESSAGE_FROM_SYSTEM, FORMAT_MESSAGE_IGNORE_INSERTS);
++_Win32_FlagsEnum_(CLEAR_COMM_ERROR_FLAGS, unsigned int, CE_BREAK, CE_FRAME, CE_OVERRUN, CE_RXOVER, CE_RXPARITY);
++_Win32_Enum_(LOGON32_LOGON, unsigned int, LOGON32_LOGON_BATCH, LOGON32_LOGON_INTERACTIVE, LOGON32_LOGON_NETWORK, LOGON32_LOGON_NETWORK_CLEARTEXT, LOGON32_LOGON_NEW_CREDENTIALS, LOGON32_LOGON_SERVICE, LOGON32_LOGON_UNLOCK);
++_Win32_FlagsEnum_(PURGE_COMM_FLAGS, unsigned int, PURGE_RXABORT, PURGE_RXCLEAR, PURGE_TXABORT, PURGE_TXCLEAR);
++_Win32_Enum_(CREATE_PROCESS_LOGON_FLAGS, unsigned int, LOGON_WITH_PROFILE, LOGON_NETCREDENTIALS_ONLY);
++_Win32_FlagsEnum_(REPLACE_FILE_FLAGS, unsigned int, REPLACEFILE_WRITE_THROUGH, REPLACEFILE_IGNORE_MERGE_ERRORS, REPLACEFILE_IGNORE_ACL_ERRORS);
++_Win32_FlagsEnum_(COMM_EVENT_MASK, unsigned int, EV_BREAK, EV_CTS, EV_DSR, EV_ERR, EV_EVENT1, EV_EVENT2, EV_PERR, EV_RING, EV_RLSD, EV_RX80FULL, EV_RXCHAR, EV_RXFLAG, EV_TXEMPTY);
++_Win32_Enum_(TAPE_INFORMATION_TYPE, unsigned int, SET_TAPE_DRIVE_INFORMATION, SET_TAPE_MEDIA_INFORMATION);
++_Win32_Enum_(ESCAPE_COMM_FUNCTION, unsigned int, CLRBREAK, CLRDTR, CLRRTS, SETBREAK, SETDTR, SETRTS, SETXOFF, SETXON);
++_Win32_Enum_(GET_TAPE_DRIVE_PARAMETERS_OPERATION, unsigned int, GET_TAPE_DRIVE_INFORMATION, GET_TAPE_MEDIA_INFORMATION);
++_Win32_FlagsEnum_(REGISTER_APPLICATION_RESTART_FLAGS, unsigned int, RESTART_NO_CRASH, RESTART_NO_HANG, RESTART_NO_PATCH, RESTART_NO_REBOOT);
++_Win32_FlagsEnum_(OPERATION_START_FLAGS, unsigned int, OPERATION_START_TRACE_CURRENT_THREAD);
++_Win32_AnnotateField_(OPERATION_START_PARAMETERS::Flags, _Win32_AssociatedEnum_(OPERATION_START_FLAGS));
++_Win32_FlagsEnum_(OPERATION_END_PARAMETERS_FLAGS, unsigned int, OPERATION_END_DISCARD);
++_Win32_AnnotateField_(OPERATION_END_PARAMETERS::Flags, _Win32_AssociatedEnum_(OPERATION_END_PARAMETERS_FLAGS));
++_Win32_FlagsEnum_(COMMPROP_STOP_PARITY, unsigned short, STOPBITS_10, STOPBITS_15, STOPBITS_20, PARITY_NONE, PARITY_ODD, PARITY_EVEN, PARITY_MARK, PARITY_SPACE);
++_Win32_AnnotateField_(COMMPROP::wSettableStopParity, _Win32_AssociatedEnum_(COMMPROP_STOP_PARITY));
++_Win32_FlagsEnum_(STARTUPINFOW_FLAGS, unsigned int, STARTF_FORCEONFEEDBACK, STARTF_FORCEOFFFEEDBACK, STARTF_PREVENTPINNING, STARTF_RUNFULLSCREEN, STARTF_TITLEISAPPID, STARTF_TITLEISLINKNAME, STARTF_UNTRUSTEDSOURCE, STARTF_USECOUNTCHARS, STARTF_USEFILLATTRIBUTE, STARTF_USEHOTKEY, STARTF_USEPOSITION, STARTF_USESHOWWINDOW, STARTF_USESIZE, STARTF_USESTDHANDLES);
++_Win32_AnnotateField_(STARTUPINFOW::dwFlags, _Win32_AssociatedEnum_(STARTUPINFOW_FLAGS));
++_Win32_AnnotateField_(STARTUPINFOA::dwFlags, _Win32_AssociatedEnum_(STARTUPINFOW_FLAGS));
++_Win32_Enum_(WIN_STREAM_ID, unsigned int, BACKUP_ALTERNATE_DATA, BACKUP_DATA, BACKUP_EA_DATA, BACKUP_LINK, BACKUP_OBJECT_ID, BACKUP_PROPERTY_DATA, BACKUP_REPARSE_DATA, BACKUP_SECURITY_DATA, BACKUP_SPARSE_BLOCK, BACKUP_TXFS_DATA);
++_Win32_AnnotateField_(WIN32_STREAM_ID::dwStreamId, _Win32_AssociatedEnum_(WIN_STREAM_ID));
++_Win32_Enum_(DCB_STOP_BITS, unsigned char, ONESTOPBIT, ONE5STOPBITS, TWOSTOPBITS);
++_Win32_AnnotateField_(DCB::StopBits, _Win32_AssociatedEnum_(DCB_STOP_BITS));
++_Win32_Enum_(DCB_PARITY, unsigned char, EVENPARITY, MARKPARITY, NOPARITY, ODDPARITY, SPACEPARITY);
++_Win32_AnnotateField_(DCB::Parity, _Win32_AssociatedEnum_(DCB_PARITY));
++#endif

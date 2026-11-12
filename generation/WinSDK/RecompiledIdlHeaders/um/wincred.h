@@ -930,7 +930,7 @@ BOOL
 WINAPI
 CredEnumerateW (
     _In_opt_ LPCWSTR Filter,
-    _Reserved_ DWORD Flags,
+    _Win32_AssociatedEnum_(CRED_ENUMERATE_FLAGS) _Reserved_ DWORD Flags,
     _Out_ DWORD *Count,
     _Outptr_result_buffer_(*Count) PCREDENTIALW **Credential
     );
@@ -942,7 +942,7 @@ BOOL
 WINAPI
 CredEnumerateA (
     _In_opt_ LPCSTR Filter,
-    _Reserved_ DWORD Flags,
+    _Win32_AssociatedEnum_(CRED_ENUMERATE_FLAGS) _Reserved_ DWORD Flags,
     _Out_ DWORD *Count,
     _Outptr_result_buffer_(*Count) PCREDENTIALA **Credential
     );
@@ -1490,7 +1490,7 @@ CredUIPromptForCredentialsW(
     _Inout_updates_(ulPasswordBufferSize) PWSTR pszPassword,
     _In_ ULONG ulPasswordBufferSize,
     _Inout_opt_ BOOL *save,
-    _In_ DWORD dwFlags
+    _Win32_AssociatedEnum_(CREDUI_FLAGS) _In_ DWORD dwFlags
     );
 
 CREDUIAPI
@@ -1506,7 +1506,7 @@ CredUIPromptForCredentialsA(
     _Inout_updates_(ulPasswordBufferSize) PSTR pszPassword,
     _In_ ULONG ulPasswordBufferSize,
     _Inout_opt_ BOOL *save,
-    _In_ DWORD dwFlags
+    _Win32_AssociatedEnum_(CREDUI_FLAGS) _In_ DWORD dwFlags
     );
 
 #ifdef UNICODE
@@ -1528,7 +1528,7 @@ CredUIPromptForWindowsCredentialsW(
     _Outptr_result_bytebuffer_to_(*pulOutAuthBufferSize, *pulOutAuthBufferSize) LPVOID * ppvOutAuthBuffer,
     _Out_ ULONG * pulOutAuthBufferSize,
     _Inout_opt_ BOOL *pfSave,
-    _In_ DWORD dwFlags
+    _Win32_AssociatedEnum_(CREDUIWIN_FLAGS) _In_ DWORD dwFlags
     );
 
 CREDUIAPI
@@ -1543,7 +1543,7 @@ CredUIPromptForWindowsCredentialsA(
     _Outptr_result_bytebuffer_to_(*pulOutAuthBufferSize, *pulOutAuthBufferSize) LPVOID * ppvOutAuthBuffer,
     _Out_ ULONG * pulOutAuthBufferSize,
     _Inout_opt_ BOOL *pfSave,
-    _In_ DWORD dwFlags
+    _Win32_AssociatedEnum_(CREDUIWIN_FLAGS) _In_ DWORD dwFlags
     );
 
 #ifdef UNICODE
@@ -1598,7 +1598,7 @@ CredUICmdLinePromptForCredentialsW(
     _Inout_updates_(ulPasswordBufferSize) PWSTR pszPassword,
     _In_ ULONG ulPasswordBufferSize,
     _Inout_opt_ PBOOL pfSave,
-    _In_ DWORD dwFlags
+    _Win32_AssociatedEnum_(CREDUI_FLAGS) _In_ DWORD dwFlags
     );
 
 CREDUIAPI
@@ -1613,7 +1613,7 @@ CredUICmdLinePromptForCredentialsA(
     _Inout_updates_(ulPasswordBufferSize) PSTR pszPassword,
     _In_ ULONG ulPasswordBufferSize,
     _Inout_opt_ PBOOL pfSave,
-    _In_ DWORD dwFlags
+    _Win32_AssociatedEnum_(CREDUI_FLAGS) _In_ DWORD dwFlags
     );
 
 #ifdef UNICODE
@@ -1700,4 +1700,11 @@ _Win32_Enum_(CRED_PERSIST, unsigned long, CRED_PERSIST_NONE, CRED_PERSIST_SESSIO
 _Win32_AnnotateField_(CREDENTIALA::Persist, _Win32_AssociatedEnum_(CRED_PERSIST));
 _Win32_AnnotateField_(CREDENTIALW::Persist, _Win32_AssociatedEnum_(CRED_PERSIST));
 _Win32_FlagsEnum_(CRED_PACK_FLAGS, unsigned long, CRED_PACK_PROTECTED_CREDENTIALS, CRED_PACK_WOW_BUFFER, CRED_PACK_GENERIC_CREDENTIALS, CRED_PACK_ID_PROVIDER_CREDENTIALS);
+#endif
+
+#ifndef _WIN32METADATA_WINCRED_EXPLICIT_183_GROUPS_
+#define _WIN32METADATA_WINCRED_EXPLICIT_183_GROUPS_
+_Win32_FlagsEnum_(CREDUI_FLAGS, unsigned int, CREDUI_FLAGS_ALWAYS_SHOW_UI, CREDUI_FLAGS_COMPLETE_USERNAME, CREDUI_FLAGS_DO_NOT_PERSIST, CREDUI_FLAGS_EXCLUDE_CERTIFICATES, CREDUI_FLAGS_EXPECT_CONFIRMATION, CREDUI_FLAGS_GENERIC_CREDENTIALS, CREDUI_FLAGS_INCORRECT_PASSWORD, CREDUI_FLAGS_KEEP_USERNAME, CREDUI_FLAGS_PASSWORD_ONLY_OK, CREDUI_FLAGS_PERSIST, CREDUI_FLAGS_REQUEST_ADMINISTRATOR, CREDUI_FLAGS_REQUIRE_CERTIFICATE, CREDUI_FLAGS_REQUIRE_SMARTCARD, CREDUI_FLAGS_SERVER_CREDENTIAL, CREDUI_FLAGS_SHOW_SAVE_CHECK_BOX, CREDUI_FLAGS_USERNAME_TARGET_CREDENTIALS, CREDUI_FLAGS_VALIDATE_USERNAME);
+_Win32_FlagsEnum_(CRED_ENUMERATE_FLAGS, unsigned int, CRED_ENUMERATE_ALL_CREDENTIALS);
+_Win32_FlagsEnum_(CREDUIWIN_FLAGS, unsigned int, CREDUIWIN_GENERIC, CREDUIWIN_CHECKBOX, CREDUIWIN_AUTHPACKAGE_ONLY, CREDUIWIN_IN_CRED_ONLY, CREDUIWIN_ENUMERATE_ADMINS, CREDUIWIN_ENUMERATE_CURRENT_USER, CREDUIWIN_SECURE_PROMPT, CREDUIWIN_PREPROMPTING, CREDUIWIN_PACK_32_WOW);
 #endif

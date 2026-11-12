@@ -3866,7 +3866,7 @@ _Win32_SupportedOS_Windows2000_
  WINGDIAPI BOOL  WINAPI AnimatePalette( _In_ HPALETTE hPal, _In_ UINT iStartIndex, _In_  UINT cEntries, _In_reads_(cEntries) CONST PALETTEENTRY * ppe);
 _Win32_SupportedOS_Windows2000_
  WINGDIAPI BOOL  WINAPI Arc( _In_ HDC hdc, _In_ int x1, _In_ int y1, _In_ int x2, _In_ int y2, _In_ int x3, _In_ int y3, _In_ int x4, _In_ int y4);
- WINGDIAPI BOOL  WINAPI BitBlt( _In_ HDC hdc, _In_ int x, _In_ int y, _In_ int cx, _In_ int cy, _In_opt_ HDC hdcSrc, _In_ int x1, _In_ int y1, _In_ DWORD rop);
+ WINGDIAPI BOOL  WINAPI BitBlt( _In_ HDC hdc, _In_ int x, _In_ int y, _In_ int cx, _In_ int cy, _In_opt_ HDC hdcSrc, _In_ int x1, _In_ int y1, _Win32_AssociatedEnum_(ROP_CODE) _In_ DWORD rop);
 WINGDIAPI BOOL  WINAPI CancelDC( _In_ HDC hdc);
 _Win32_SupportedOS_Windows2000_
  WINGDIAPI BOOL  WINAPI Chord( _In_ HDC hdc, _In_ int x1, _In_ int y1, _In_ int x2, _In_ int y2, _In_ int x3, _In_ int y3, _In_ int x4, _In_ int y4);
@@ -3875,6 +3875,7 @@ _Win32_SupportedOS_Windows2000_
 WINGDIAPI int   WINAPI ChoosePixelFormat( _In_ HDC hdc, _In_ CONST PIXELFORMATDESCRIPTOR *ppfd);
 _Win32_SupportedOS_Windows2000_
 WINGDIAPI HMETAFILE  WINAPI CloseMetaFile( _In_ HDC hdc);
+_Win32_AssociatedEnum_(GDI_REGION_TYPE)
 WINGDIAPI int     WINAPI CombineRgn( _In_opt_ HRGN hrgnDst, _In_opt_ HRGN hrgnSrc1, _In_opt_ HRGN hrgnSrc2, _Win32_AssociatedEnum_(RGN_COMBINE_MODE) _In_ int iMode);
 WINGDIAPI HMETAFILE WINAPI CopyMetaFileA( _In_ HMETAFILE, _In_opt_ LPCSTR);
 _Win32_SupportedOS_Windows2000_
@@ -3934,7 +3935,7 @@ WINGDIAPI HFONT   WINAPI CreateFontW( _In_ int cHeight, _In_ int cWidth, _In_ in
 #define CreateFont  CreateFontA
 #endif // !UNICODE
 
-WINGDIAPI HBRUSH  WINAPI CreateHatchBrush( _In_ int iHatch, _In_ COLORREF color);
+WINGDIAPI HBRUSH  WINAPI CreateHatchBrush( _Win32_AssociatedEnum_(HATCH_BRUSH_STYLE) _In_ int iHatch, _In_ COLORREF color);
 WINGDIAPI HDC     WINAPI CreateICA( _In_opt_ LPCSTR pszDriver, _In_opt_ LPCSTR pszDevice, _In_opt_ LPCSTR pszPort, _In_opt_ CONST DEVMODEA * pdm);
 _Win32_SupportedOS_Windows2000_
 WINGDIAPI HDC     WINAPI CreateICW( _In_opt_ LPCWSTR pszDriver, _In_opt_ LPCWSTR pszDevice, _In_opt_ LPCWSTR pszPort, _In_opt_ CONST DEVMODEW * pdm);
@@ -3960,7 +3961,7 @@ _Win32_SupportedOS_Windows2000_
 WINGDIAPI HRGN    WINAPI CreatePolyPolygonRgn(  _In_ CONST POINT *pptl,
                                                 _In_reads_(cPoly) CONST INT  *pc,
                                                 _In_ int cPoly,
-                                                _In_ int iMode);
+                                                _Win32_AssociatedEnum_(CREATE_POLYGON_RGN_MODE) _In_ int iMode);
  WINGDIAPI HBRUSH  WINAPI CreatePatternBrush( _In_ HBITMAP hbm);
 _Win32_SupportedOS_Windows2000_
 WINGDIAPI HRGN    WINAPI CreateRectRgn( _In_ int x1, _In_ int y1, _In_ int x2, _In_ int y2);
@@ -4093,7 +4094,7 @@ WINAPI
 DeviceCapabilitiesA(
     _In_                LPCSTR         pDevice,
     _In_opt_            LPCSTR         pPort,
-    _In_                WORD             fwCapability,
+    _Win32_AssociatedEnum_(PRINTER_DEVICE_CAPABILITIES) _In_                WORD             fwCapability,
     _Out_writes_opt_(_Inexpressible_(1)) LPSTR          pOutput,
     _In_opt_            CONST DEVMODEA   *pDevMode
     );
@@ -4104,7 +4105,7 @@ WINAPI
 DeviceCapabilitiesW(
     _In_                LPCWSTR         pDevice,
     _In_opt_            LPCWSTR         pPort,
-    _In_                WORD             fwCapability,
+    _Win32_AssociatedEnum_(PRINTER_DEVICE_CAPABILITIES) _In_                WORD             fwCapability,
     _Out_writes_opt_(_Inexpressible_(1)) LPWSTR          pOutput,
     _In_opt_            CONST DEVMODEW   *pDevMode
     );
@@ -4175,9 +4176,10 @@ WINGDIAPI int  WINAPI ExtEscape(    _In_ HDC hdc,
                                     _In_reads_bytes_opt_(cjInput) LPCSTR lpInData,
                                     _In_ int cjOutput,
                                     _Out_writes_bytes_opt_(cjOutput) LPSTR lpOutData);
+_Win32_AssociatedEnum_(GDI_REGION_TYPE)
  WINGDIAPI int  WINAPI ExcludeClipRect( _In_ HDC hdc, _In_ int left, _In_ int top, _In_ int right, _In_ int bottom);
  WINGDIAPI HRGN WINAPI ExtCreateRegion( _In_opt_ CONST XFORM * lpx, _In_ DWORD nCount, _In_reads_bytes_(nCount) CONST RGNDATA * lpData);
- WINGDIAPI BOOL WINAPI ExtFloodFill( _In_ HDC hdc, _In_ int x, _In_ int y, _In_ COLORREF color, _In_ UINT type);
+ WINGDIAPI BOOL WINAPI ExtFloodFill( _In_ HDC hdc, _In_ int x, _In_ int y, _In_ COLORREF color, _Win32_AssociatedEnum_(EXT_FLOOD_FILL_TYPE) _In_ UINT type);
  WINGDIAPI BOOL WINAPI FillRgn( _In_ HDC hdc, _In_ HRGN hrgn, _In_ HBRUSH hbr);
 _Win32_SupportedOS_Windows2000_
  WINGDIAPI BOOL WINAPI FloodFill( _In_ HDC hdc, _In_ int x, _In_ int y, _In_ COLORREF color);
@@ -4274,6 +4276,7 @@ WINGDIAPI BOOL  APIENTRY GetCharABCWidthsFloatW( _In_ HDC hdc, _In_ UINT iFirst,
 #else
 #define GetCharABCWidthsFloat  GetCharABCWidthsFloatA
 #endif // !UNICODE
+_Win32_AssociatedEnum_(GDI_REGION_TYPE)
 WINGDIAPI int   WINAPI GetClipBox( _In_ HDC hdc,  _Out_ LPRECT lprect);
 WINGDIAPI int   WINAPI GetClipRgn( _In_ HDC hdc, _In_ HRGN hrgn);
 _Win32_SupportedOS_Windows2000_
@@ -4299,7 +4302,7 @@ _Win32_SupportedOS_Windows2000_
 
 WINGDIAPI DWORD WINAPI GetGlyphOutlineA(    _In_ HDC hdc,
                                             _In_ UINT uChar,
-                                            _In_ UINT fuFormat,
+                                            _Win32_AssociatedEnum_(GET_GLYPH_OUTLINE_FORMAT) _In_ UINT fuFormat,
                                             _Out_ LPGLYPHMETRICS lpgm,
                                             _In_ DWORD cjBuffer,
                                             _Out_writes_bytes_opt_(cjBuffer) LPVOID pvBuffer,
@@ -4308,7 +4311,7 @@ WINGDIAPI DWORD WINAPI GetGlyphOutlineA(    _In_ HDC hdc,
 _Win32_SupportedOS_Windows2000_
 WINGDIAPI DWORD WINAPI GetGlyphOutlineW(    _In_ HDC hdc,
                                             _In_ UINT uChar,
-                                            _In_ UINT fuFormat,
+                                            _Win32_AssociatedEnum_(GET_GLYPH_OUTLINE_FORMAT) _In_ UINT fuFormat,
                                             _Out_ LPGLYPHMETRICS lpgm,
                                             _In_ DWORD cjBuffer,
                                             _Out_writes_bytes_opt_(cjBuffer) LPVOID pvBuffer,
@@ -4380,8 +4383,9 @@ _Win32_SupportedOS_Windows2000_
 WINGDIAPI DWORD WINAPI GetRegionData(   _In_ HRGN hrgn,
                                         _In_ DWORD nCount,
                                         _Out_writes_bytes_to_opt_(nCount, return) LPRGNDATA lpRgnData);
+_Win32_AssociatedEnum_(GDI_REGION_TYPE)
 WINGDIAPI int   WINAPI GetRgnBox( _In_ HRGN hrgn,  _Out_ LPRECT lprc);
-WINGDIAPI HGDIOBJ WINAPI GetStockObject( _In_ int i);
+WINGDIAPI HGDIOBJ WINAPI GetStockObject( _Win32_AssociatedEnum_(GET_STOCK_OBJECT_FLAGS) _In_ int i);
 WINGDIAPI int   WINAPI GetStretchBltMode(_In_ HDC hdc);
 _Win32_SupportedOS_Windows2000_
 WINGDIAPI
@@ -4398,6 +4402,7 @@ _Win32_SupportedOS_Windows2000_
 WINGDIAPI UINT  WINAPI GetSystemPaletteUse(_In_ HDC hdc);
 _Win32_SupportedOS_Windows2000_
 WINGDIAPI int   WINAPI GetTextCharacterExtra(_In_ HDC hdc);
+_Win32_AssociatedEnum_(TEXT_ALIGN_OPTIONS)
 WINGDIAPI UINT  WINAPI GetTextAlign(_In_ HDC hdc);
 WINGDIAPI COLORREF WINAPI GetTextColor(_In_ HDC hdc);
 _Win32_SupportedOS_Windows2000_
@@ -4490,10 +4495,10 @@ _Win32_SupportedOS_Windows2000_
 WINGDIAPI int WINAPI GetTextCharset( _In_ HDC hdc);
 _Win32_SupportedOS_Windows2000_
 WINGDIAPI int WINAPI GetTextCharsetInfo( _In_ HDC hdc, _Out_opt_ LPFONTSIGNATURE lpSig, _In_ DWORD dwFlags);
-WINGDIAPI BOOL WINAPI TranslateCharsetInfo( _Inout_ DWORD FAR *lpSrc,  _Out_ LPCHARSETINFO lpCs, _In_ DWORD dwFlags);
+WINGDIAPI BOOL WINAPI TranslateCharsetInfo( _Inout_ DWORD FAR *lpSrc,  _Out_ LPCHARSETINFO lpCs, _Win32_AssociatedEnum_(TRANSLATE_CHARSET_INFO_FLAGS) _In_ DWORD dwFlags);
 WINGDIAPI DWORD WINAPI GetFontLanguageInfo( _In_ HDC hdc);
-WINGDIAPI DWORD WINAPI GetCharacterPlacementA(  _In_ HDC hdc, _In_reads_(nCount) LPCSTR lpString, _In_ int nCount, _In_ int nMexExtent, _Inout_ LPGCP_RESULTSA lpResults, _In_ DWORD dwFlags);
-WINGDIAPI DWORD WINAPI GetCharacterPlacementW(  _In_ HDC hdc, _In_reads_(nCount) LPCWSTR lpString, _In_ int nCount, _In_ int nMexExtent, _Inout_ LPGCP_RESULTSW lpResults, _In_ DWORD dwFlags);
+WINGDIAPI DWORD WINAPI GetCharacterPlacementA(  _In_ HDC hdc, _In_reads_(nCount) LPCSTR lpString, _In_ int nCount, _In_ int nMexExtent, _Inout_ LPGCP_RESULTSA lpResults, _Win32_AssociatedEnum_(GET_CHARACTER_PLACEMENT_FLAGS) _In_ DWORD dwFlags);
+WINGDIAPI DWORD WINAPI GetCharacterPlacementW(  _In_ HDC hdc, _In_reads_(nCount) LPCWSTR lpString, _In_ int nCount, _In_ int nMexExtent, _Inout_ LPGCP_RESULTSW lpResults, _Win32_AssociatedEnum_(GET_CHARACTER_PLACEMENT_FLAGS) _In_ DWORD dwFlags);
 #ifdef UNICODE
 #define GetCharacterPlacement  GetCharacterPlacementW
 #else
@@ -4588,8 +4593,8 @@ typedef struct tagDESIGNVECTOR
     LONG   dvValues[MM_MAX_NUMAXES];
 } DESIGNVECTOR, *PDESIGNVECTOR, FAR *LPDESIGNVECTOR;
 
-WINGDIAPI int  WINAPI AddFontResourceExA( _In_ LPCSTR name, _In_ DWORD fl, _Reserved_ PVOID res);
-WINGDIAPI int  WINAPI AddFontResourceExW( _In_ LPCWSTR name, _In_ DWORD fl, _Reserved_ PVOID res);
+WINGDIAPI int  WINAPI AddFontResourceExA( _In_ LPCSTR name, _Win32_AssociatedEnum_(FONT_RESOURCE_CHARACTERISTICS) _In_ DWORD fl, _Reserved_ PVOID res);
+WINGDIAPI int  WINAPI AddFontResourceExW( _In_ LPCWSTR name, _Win32_AssociatedEnum_(FONT_RESOURCE_CHARACTERISTICS) _In_ DWORD fl, _Reserved_ PVOID res);
 #ifdef UNICODE
 #define AddFontResourceEx  AddFontResourceExW
 #else
@@ -4738,6 +4743,7 @@ WINGDIAPI BOOL  WINAPI GetWindowExtEx( _In_ HDC hdc, _Out_ LPSIZE lpsize);
 _Win32_SupportedOS_Windows2000_
 WINGDIAPI BOOL  WINAPI GetWindowOrgEx( _In_ HDC hdc, _Out_ LPPOINT lppoint);
 
+_Win32_AssociatedEnum_(GDI_REGION_TYPE)
  WINGDIAPI int  WINAPI IntersectClipRect( _In_ HDC hdc, _In_ int left, _In_ int top, _In_ int right, _In_ int bottom);
  WINGDIAPI BOOL WINAPI InvertRgn( _In_ HDC hdc, _In_ HRGN hrgn);
 _Win32_SupportedOS_Windows2000_
@@ -4751,9 +4757,11 @@ _Win32_SupportedOS_Windows2000_
 WINGDIAPI BOOL WINAPI PlgBlt( _In_ HDC hdcDest, _In_reads_(3) CONST POINT * lpPoint, _In_ HDC hdcSrc, _In_ int xSrc, _In_ int ySrc, _In_ int width,
                      _In_ int height, _In_opt_ HBITMAP hbmMask, _In_ int xMask, _In_ int yMask);
 
+_Win32_AssociatedEnum_(GDI_REGION_TYPE)
  WINGDIAPI int  WINAPI OffsetClipRgn(_In_ HDC hdc, _In_ int x, _In_ int y);
+_Win32_AssociatedEnum_(GDI_REGION_TYPE)
 WINGDIAPI int  WINAPI OffsetRgn(_In_ HRGN hrgn, _In_ int x, _In_ int y);
- WINGDIAPI BOOL WINAPI PatBlt(_In_ HDC hdc, _In_ int x, _In_ int y, _In_ int w, _In_ int h, _In_ DWORD rop);
+ WINGDIAPI BOOL WINAPI PatBlt(_In_ HDC hdc, _In_ int x, _In_ int y, _In_ int w, _In_ int h, _Win32_AssociatedEnum_(ROP_CODE) _In_ DWORD rop);
  WINGDIAPI BOOL WINAPI Pie(_In_ HDC hdc, _In_ int left, _In_ int top, _In_ int right, _In_ int bottom, _In_ int xr1, _In_ int yr1, _In_ int xr2, _In_ int yr2);
 _Win32_SupportedOS_Windows2000_
 WINGDIAPI BOOL WINAPI PlayMetaFile(_In_ HDC hdc, _In_ HMETAFILE hmf);
@@ -4800,8 +4808,11 @@ _Win32_SupportedOS_Windows2000_
 _Win32_SupportedOS_Windows2000_
 
  WINGDIAPI int  WINAPI SaveDC(_In_ HDC hdc);
+_Win32_AssociatedEnum_(GDI_REGION_TYPE)
  WINGDIAPI int  WINAPI SelectClipRgn(_In_ HDC hdc, _In_opt_ HRGN hrgn);
+_Win32_AssociatedEnum_(GDI_REGION_TYPE)
 WINGDIAPI int  WINAPI ExtSelectClipRgn(_In_ HDC hdc, _In_opt_ HRGN hrgn, _Win32_AssociatedEnum_(RGN_COMBINE_MODE) _In_ int mode);
+_Win32_AssociatedEnum_(GDI_REGION_TYPE)
 WINGDIAPI int  WINAPI SetMetaRgn(_In_ HDC hdc);
  WINGDIAPI HGDIOBJ WINAPI SelectObject(_In_ HDC hdc, _In_ HGDIOBJ h);
 _Win32_SupportedOS_Windows2000_
@@ -4832,11 +4843,11 @@ WINGDIAPI int   WINAPI SetDIBits(_In_opt_ HDC hdc, _In_ HBITMAP hbm, _In_ UINT s
  WINGDIAPI int   WINAPI SetDIBitsToDevice(_In_ HDC hdc, _In_ int xDest, _In_ int yDest, _In_ DWORD w, _In_ DWORD h, _In_ int xSrc,
         _In_ int ySrc, _In_ UINT StartScan, _In_ UINT cLines, _In_ CONST VOID * lpvBits, _In_ CONST BITMAPINFO * lpbmi, _Win32_AssociatedEnum_(DIB_USAGE) _In_ UINT ColorUse);
  WINGDIAPI DWORD WINAPI SetMapperFlags(_In_ HDC hdc, _In_ DWORD flags);
-WINGDIAPI int   WINAPI SetGraphicsMode(_In_ HDC hdc, _In_ int iMode);
+WINGDIAPI int   WINAPI SetGraphicsMode(_In_ HDC hdc, _Win32_AssociatedEnum_(GRAPHICS_MODE) _In_ int iMode);
  WINGDIAPI int   WINAPI SetMapMode(_In_ HDC hdc, _In_ int iMode);
 
 #if(WINVER >= 0x0500)
- WINGDIAPI DWORD WINAPI SetLayout(_In_ HDC hdc, _In_ DWORD l);
+ WINGDIAPI DWORD WINAPI SetLayout(_In_ HDC hdc, _Win32_AssociatedEnum_(DC_LAYOUT) _In_ DWORD l);
 WINGDIAPI DWORD WINAPI GetLayout(_In_ HDC hdc);
 #endif /* WINVER >= 0x0500 */
 _Win32_SupportedOS_Windows2000_
@@ -4854,19 +4865,19 @@ WINGDIAPI BOOL   WINAPI SetPixelV(_In_ HDC hdc, _In_ int x, _In_ int y, _In_ COL
 _Win32_SetLastError_
 _Win32_SupportedOS_Windows2000_
 WINGDIAPI BOOL  WINAPI SetPixelFormat(_In_ HDC hdc, _In_ int format, _In_ CONST PIXELFORMATDESCRIPTOR * ppfd);
- WINGDIAPI int   WINAPI SetPolyFillMode(_In_ HDC hdc, _In_ int mode);
- WINGDIAPI BOOL  WINAPI StretchBlt(_In_ HDC hdcDest, _In_ int xDest, _In_ int yDest, _In_ int wDest, _In_ int hDest, _In_opt_ HDC hdcSrc, _In_ int xSrc, _In_ int ySrc, _In_ int wSrc, _In_ int hSrc, _In_ DWORD rop);
+ WINGDIAPI int   WINAPI SetPolyFillMode(_In_ HDC hdc, _Win32_AssociatedEnum_(CREATE_POLYGON_RGN_MODE) _In_ int mode);
+ WINGDIAPI BOOL  WINAPI StretchBlt(_In_ HDC hdcDest, _In_ int xDest, _In_ int yDest, _In_ int wDest, _In_ int hDest, _In_opt_ HDC hdcSrc, _In_ int xSrc, _In_ int ySrc, _In_ int wSrc, _In_ int hSrc, _Win32_AssociatedEnum_(ROP_CODE) _In_ DWORD rop);
 WINGDIAPI BOOL   WINAPI SetRectRgn(_In_ HRGN hrgn, _In_ int left, _In_ int top, _In_ int right, _In_ int bottom);
 _Win32_SupportedOS_Windows2000_
  WINGDIAPI int   WINAPI StretchDIBits(_In_ HDC hdc, _In_ int xDest, _In_ int yDest, _In_ int DestWidth, _In_ int DestHeight, _In_ int xSrc, _In_ int ySrc, _In_ int SrcWidth, _In_ int SrcHeight,
-        _In_opt_ CONST VOID * lpBits, _In_ CONST BITMAPINFO * lpbmi, _Win32_AssociatedEnum_(DIB_USAGE) _In_ UINT iUsage, _In_ DWORD rop);
+        _In_opt_ CONST VOID * lpBits, _In_ CONST BITMAPINFO * lpbmi, _Win32_AssociatedEnum_(DIB_USAGE) _In_ UINT iUsage, _Win32_AssociatedEnum_(ROP_CODE) _In_ DWORD rop);
  WINGDIAPI int   WINAPI SetROP2(_In_ HDC hdc, _In_ int rop2);
- WINGDIAPI int   WINAPI SetStretchBltMode(_In_ HDC hdc, _In_ int mode);
-WINGDIAPI UINT  WINAPI SetSystemPaletteUse(_In_ HDC hdc, _In_ UINT use);
+ WINGDIAPI int   WINAPI SetStretchBltMode(_In_ HDC hdc, _Win32_AssociatedEnum_(STRETCH_BLT_MODE) _In_ int mode);
+WINGDIAPI UINT  WINAPI SetSystemPaletteUse(_In_ HDC hdc, _Win32_AssociatedEnum_(SYSTEM_PALETTE_USE) _In_ UINT use);
  WINGDIAPI int   WINAPI SetTextCharacterExtra(_In_ HDC hdc, _In_ int extra);
 _Win32_SupportedOS_Windows2000_
  WINGDIAPI COLORREF WINAPI SetTextColor(_In_ HDC hdc, _In_ COLORREF color);
- WINGDIAPI UINT  WINAPI SetTextAlign(_In_ HDC hdc, _In_ UINT align);
+ WINGDIAPI UINT  WINAPI SetTextAlign(_In_ HDC hdc, _Win32_AssociatedEnum_(TEXT_ALIGN_OPTIONS) _In_ UINT align);
  WINGDIAPI BOOL  WINAPI SetTextJustification(_In_ HDC hdc, _In_ int extra, _In_ int count);
 _Win32_SupportedOS_Windows2000_
 WINGDIAPI BOOL  WINAPI UpdateColors(_In_ HDC hdc);
@@ -5032,7 +5043,7 @@ GradientFill(
     _In_ ULONG nVertex,
     _In_ PVOID pMesh,
     _In_ ULONG nMesh,
-    _In_ ULONG ulMode
+    _Win32_AssociatedEnum_(GRADIENT_FILL) _In_ ULONG ulMode
     );
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
@@ -5059,7 +5070,7 @@ WINGDIAPI BOOL  WINAPI GdiGradientFill( _In_ HDC hdc,
                                         _In_ ULONG nVertex,
                                         _In_ PVOID pMesh,
                                         _In_ ULONG nCount,
-                                        _In_ ULONG ulMode);
+                                        _Win32_AssociatedEnum_(GRADIENT_FILL) _In_ ULONG ulMode);
 
 #endif
 
@@ -5393,7 +5404,7 @@ WINGDIAPI HRGN WINAPI PathToRegion(_In_ HDC hdc);
 _Win32_SupportedOS_Windows2000_
 WINGDIAPI BOOL WINAPI PolyDraw(_In_ HDC hdc, _In_reads_(cpt) CONST POINT * apt, _In_reads_(cpt) CONST BYTE * aj, _In_ int cpt);
 WINGDIAPI BOOL WINAPI SelectClipPath(_In_ HDC hdc, _Win32_AssociatedEnum_(RGN_COMBINE_MODE) _In_ int mode);
-WINGDIAPI int  WINAPI SetArcDirection(_In_ HDC hdc, _In_ int dir);
+WINGDIAPI int  WINAPI SetArcDirection(_In_ HDC hdc, _Win32_AssociatedEnum_(ARC_DIRECTION) _In_ int dir);
 WINGDIAPI BOOL WINAPI SetMiterLimit(_In_ HDC hdc, _In_ FLOAT limit, _Out_opt_ PFLOAT old);
 _Win32_SupportedOS_Windows2000_
 WINGDIAPI BOOL WINAPI StrokeAndFillPath(_In_ HDC hdc);
@@ -5473,7 +5484,7 @@ _Win32_SupportedOS_Windows2000_
 
 WINGDIAPI HRGN  WINAPI CreatePolygonRgn(    _In_reads_(cPoint) CONST POINT *pptl,
                                             _In_ int cPoint,
-                                            _In_ int iMode);
+                                            _Win32_AssociatedEnum_(CREATE_POLYGON_RGN_MODE) _In_ int iMode);
 WINGDIAPI BOOL  WINAPI DPtoLP( _In_ HDC hdc, _Inout_updates_(c) LPPOINT lppt, _In_ int c);
 _Win32_SupportedOS_Windows2000_
 WINGDIAPI BOOL  WINAPI LPtoDP( _In_ HDC hdc, _Inout_updates_(c) LPPOINT lppt, _In_ int c);
@@ -5572,7 +5583,7 @@ typedef int (CALLBACK* ICMENUMPROCW)(LPWSTR, LPARAM);
 #define ICMENUMPROC  ICMENUMPROCA
 #endif // !UNICODE
 
-WINGDIAPI int         WINAPI SetICMMode( _In_ HDC hdc, _In_ int mode);
+WINGDIAPI int         WINAPI SetICMMode( _In_ HDC hdc, _Win32_AssociatedEnum_(ICM_MODE) _In_ int mode);
 WINGDIAPI BOOL        WINAPI CheckColorsInGamut(    _In_ HDC hdc,
                                                     _In_reads_(nCount) LPRGBTRIPLE lpRGBTriple,
                                                     _Out_writes_bytes_(nCount) LPVOID dlpBuffer,
@@ -5634,7 +5645,7 @@ _Win32_SupportedOS_Windows2000_
 WINGDIAPI BOOL        WINAPI GetDeviceGammaRamp( _In_ HDC hdc, _Out_writes_bytes_(3*256*2) LPVOID lpRamp);
 _Win32_SupportedOS_Windows2000_
 WINGDIAPI BOOL        WINAPI SetDeviceGammaRamp( _In_ HDC hdc, _In_reads_bytes_(3*256*2)  LPVOID lpRamp);
-WINGDIAPI BOOL        WINAPI ColorMatchToTarget( _In_ HDC hdc, _In_ HDC hdcTarget, _In_ DWORD action);
+WINGDIAPI BOOL        WINAPI ColorMatchToTarget( _In_ HDC hdc, _In_ HDC hdcTarget, _Win32_AssociatedEnum_(COLOR_MATCH_TO_TARGET_ACTION) _In_ DWORD action);
 WINGDIAPI int         WINAPI EnumICMProfilesA( _In_ HDC hdc, _In_ ICMENUMPROCA proc, _In_opt_ LPARAM param);
 _Win32_SupportedOS_Windows2000_
 WINGDIAPI int         WINAPI EnumICMProfilesW( _In_ HDC hdc, _In_ ICMENUMPROCW proc, _In_opt_ LPARAM param);
@@ -5644,9 +5655,9 @@ WINGDIAPI int         WINAPI EnumICMProfilesW( _In_ HDC hdc, _In_ ICMENUMPROCW p
 #define EnumICMProfiles  EnumICMProfilesA
 #endif // !UNICODE
 // The Win95 update API UpdateICMRegKeyA is deprecated to set last error to ERROR_NOT_SUPPORTED and return FALSE
-WINGDIAPI BOOL        WINAPI UpdateICMRegKeyA( _Reserved_ DWORD reserved, _In_ LPSTR lpszCMID, _In_ LPSTR lpszFileName, _In_ UINT command);
+WINGDIAPI BOOL        WINAPI UpdateICMRegKeyA( _Reserved_ DWORD reserved, _In_ LPSTR lpszCMID, _In_ LPSTR lpszFileName, _Win32_AssociatedEnum_(ICM_COMMAND) _In_ UINT command);
 // The Win95 update API UpdateICMRegKeyW is deprecated to set last error to ERROR_NOT_SUPPORTED and return FALSE
-WINGDIAPI BOOL        WINAPI UpdateICMRegKeyW( _Reserved_ DWORD reserved, _In_ LPWSTR lpszCMID, _In_ LPWSTR lpszFileName, _In_ UINT command);
+WINGDIAPI BOOL        WINAPI UpdateICMRegKeyW( _Reserved_ DWORD reserved, _In_ LPWSTR lpszCMID, _In_ LPWSTR lpszFileName, _Win32_AssociatedEnum_(ICM_COMMAND) _In_ UINT command);
 #ifdef UNICODE
 #define UpdateICMRegKey  UpdateICMRegKeyW
 #else
@@ -6856,4 +6867,46 @@ _Win32_FlagsEnum_(QUERY_DISPLAY_CONFIG_FLAGS, unsigned int, QDC_ALL_PATHS, QDC_O
 _Win32_FlagsEnum_(DISPLAY_DEVICE_STATE_FLAGS, unsigned int, DISPLAY_DEVICE_ATTACHED_TO_DESKTOP, DISPLAY_DEVICE_MULTI_DRIVER, DISPLAY_DEVICE_PRIMARY_DEVICE, DISPLAY_DEVICE_MIRRORING_DRIVER, DISPLAY_DEVICE_VGA_COMPATIBLE, DISPLAY_DEVICE_REMOVABLE, DISPLAY_DEVICE_ACC_DRIVER, DISPLAY_DEVICE_MODESPRUNED, DISPLAY_DEVICE_RDPUDD, DISPLAY_DEVICE_REMOTE, DISPLAY_DEVICE_DISCONNECT, DISPLAY_DEVICE_TS_COMPATIBLE, DISPLAY_DEVICE_UNSAFE_MODES_ON, DISPLAY_DEVICE_ACTIVE, DISPLAY_DEVICE_ATTACHED);
 _Win32_AnnotateField_(DISPLAY_DEVICEA::StateFlags, _Win32_AssociatedEnum_(DISPLAY_DEVICE_STATE_FLAGS));
 _Win32_AnnotateField_(DISPLAY_DEVICEW::StateFlags, _Win32_AssociatedEnum_(DISPLAY_DEVICE_STATE_FLAGS));
+#endif
+
+#ifndef _WIN32METADATA_WINGDI_EXPLICIT_183_GROUPS_
+#define _WIN32METADATA_WINGDI_EXPLICIT_183_GROUPS_
+_Win32_FlagsEnum_(TEXT_ALIGN_OPTIONS, unsigned int, TA_NOUPDATECP, TA_UPDATECP, TA_LEFT, TA_RIGHT, TA_CENTER, TA_TOP, TA_BOTTOM, TA_BASELINE, TA_RTLREADING, TA_MASK, VTA_BASELINE, VTA_LEFT, VTA_RIGHT, VTA_CENTER, VTA_BOTTOM, VTA_TOP);
+_Win32_Enum_(GET_GLYPH_OUTLINE_FORMAT, unsigned int, GGO_BEZIER, GGO_BITMAP, GGO_GLYPH_INDEX, GGO_GRAY2_BITMAP, GGO_GRAY4_BITMAP, GGO_GRAY8_BITMAP, GGO_METRICS, GGO_NATIVE, GGO_UNHINTED);
+_Win32_Enum_(GET_STOCK_OBJECT_FLAGS, int, BLACK_BRUSH, DKGRAY_BRUSH, DC_BRUSH, GRAY_BRUSH, HOLLOW_BRUSH, LTGRAY_BRUSH, NULL_BRUSH, WHITE_BRUSH, BLACK_PEN, DC_PEN, NULL_PEN, WHITE_PEN, ANSI_FIXED_FONT, ANSI_VAR_FONT, DEVICE_DEFAULT_FONT, DEFAULT_GUI_FONT, OEM_FIXED_FONT, SYSTEM_FONT, SYSTEM_FIXED_FONT, DEFAULT_PALETTE);
+_Win32_Enum_(CREATE_POLYGON_RGN_MODE, int, ALTERNATE, WINDING);
+_Win32_Enum_(TRANSLATE_CHARSET_INFO_FLAGS, unsigned int, TCI_SRCCHARSET, TCI_SRCCODEPAGE, TCI_SRCFONTSIG, TCI_SRCLOCALE);
+_Win32_Enum_(ICM_COMMAND, unsigned int, ICM_ADDPROFILE, ICM_DELETEPROFILE, ICM_QUERYPROFILE, ICM_SETDEFAULTPROFILE, ICM_REGISTERICMATCHER, ICM_UNREGISTERICMATCHER, ICM_QUERYMATCH);
+_Win32_Enum_(ICM_MODE, int, ICM_OFF, ICM_ON, ICM_QUERY, ICM_DONE_OUTSIDEDC);
+_Win32_Enum_(FONT_RESOURCE_CHARACTERISTICS, unsigned int, FR_PRIVATE, FR_NOT_ENUM);
+_Win32_Enum_(COLOR_MATCH_TO_TARGET_ACTION, unsigned int, CS_ENABLE, CS_DISABLE, CS_DELETE_TRANSFORM);
+_Win32_FlagsEnum_(DC_LAYOUT, unsigned int, LAYOUT_BITMAPORIENTATIONPRESERVED, LAYOUT_RTL);
+_Win32_Enum_(GET_DEVICE_CAPS_INDEX, unsigned int, DRIVERVERSION, TECHNOLOGY, HORZSIZE, VERTSIZE, HORZRES, VERTRES, BITSPIXEL, PLANES, NUMBRUSHES, NUMPENS, NUMMARKERS, NUMFONTS, NUMCOLORS, PDEVICESIZE, CURVECAPS, LINECAPS, POLYGONALCAPS, TEXTCAPS, CLIPCAPS, RASTERCAPS, ASPECTX, ASPECTY, ASPECTXY, LOGPIXELSX, LOGPIXELSY, SIZEPALETTE, NUMRESERVED, COLORRES, PHYSICALWIDTH, PHYSICALHEIGHT, PHYSICALOFFSETX, PHYSICALOFFSETY, SCALINGFACTORX, SCALINGFACTORY, VREFRESH, DESKTOPVERTRES, DESKTOPHORZRES, BLTALIGNMENT, SHADEBLENDCAPS, COLORMGMTCAPS);
+_Win32_Enum_(FONT_OUTPUT_PRECISION, unsigned char, OUT_DEFAULT_PRECIS, OUT_STRING_PRECIS, OUT_CHARACTER_PRECIS, OUT_STROKE_PRECIS, OUT_TT_PRECIS, OUT_DEVICE_PRECIS, OUT_RASTER_PRECIS, OUT_TT_ONLY_PRECIS, OUT_OUTLINE_PRECIS, OUT_SCREEN_OUTLINE_PRECIS, OUT_PS_ONLY_PRECIS);
+_Win32_AnnotateField_(LOGFONTW::lfOutPrecision, _Win32_AssociatedEnum_(FONT_OUTPUT_PRECISION));
+_Win32_AnnotateField_(LOGFONTA::lfOutPrecision, _Win32_AssociatedEnum_(FONT_OUTPUT_PRECISION));
+_Win32_Enum_(ARC_DIRECTION, int, AD_COUNTERCLOCKWISE, AD_CLOCKWISE);
+_Win32_Enum_(STRETCH_BLT_MODE, int, BLACKONWHITE, COLORONCOLOR, HALFTONE, STRETCH_ANDSCANS, STRETCH_DELETESCANS, STRETCH_HALFTONE, STRETCH_ORSCANS, WHITEONBLACK);
+_Win32_Enum_(FONT_QUALITY, unsigned char, DEFAULT_QUALITY, DRAFT_QUALITY, PROOF_QUALITY, NONANTIALIASED_QUALITY, ANTIALIASED_QUALITY, CLEARTYPE_QUALITY);
+_Win32_AnnotateField_(LOGFONTW::lfQuality, _Win32_AssociatedEnum_(FONT_QUALITY));
+_Win32_AnnotateField_(LOGFONTA::lfQuality, _Win32_AssociatedEnum_(FONT_QUALITY));
+_Win32_Enum_(BACKGROUND_MODE, unsigned int, OPAQUE, TRANSPARENT);
+_Win32_FlagsEnum_(GET_CHARACTER_PLACEMENT_FLAGS, unsigned int, GCP_CLASSIN, GCP_DIACRITIC, GCP_DISPLAYZWG, GCP_GLYPHSHAPE, GCP_JUSTIFY, GCP_KASHIDA, GCP_LIGATE, GCP_MAXEXTENT, GCP_NEUTRALOVERRIDE, GCP_NUMERICOVERRIDE, GCP_NUMERICSLATIN, GCP_NUMERICSLOCAL, GCP_REORDER, GCP_SYMSWAPOFF, GCP_USEKERNING);
+_Win32_Enum_(GRADIENT_FILL, unsigned int, GRADIENT_FILL_RECT_H, GRADIENT_FILL_RECT_V, GRADIENT_FILL_TRIANGLE);
+_Win32_AnnotateField_(EMRGRADIENTFILL::ulMode, _Win32_AssociatedEnum_(GRADIENT_FILL));
+_Win32_Enum_(EXT_FLOOD_FILL_TYPE, unsigned int, FLOODFILLBORDER, FLOODFILLSURFACE);
+_Win32_Enum_(HATCH_BRUSH_STYLE, int, HS_BDIAGONAL, HS_CROSS, HS_DIAGCROSS, HS_FDIAGONAL, HS_HORIZONTAL, HS_VERTICAL);
+_Win32_Enum_(SYSTEM_PALETTE_USE, unsigned int, SYSPAL_NOSTATIC, SYSPAL_NOSTATIC256, SYSPAL_STATIC);
+_Win32_Enum_(GRAPHICS_MODE, int, GM_COMPATIBLE, GM_ADVANCED);
+_Win32_Enum_(FONT_PITCH, unsigned char, DEFAULT_PITCH, FIXED_PITCH, VARIABLE_PITCH);
+_Win32_Enum_(FONT_FAMILY, unsigned char, FF_DECORATIVE, FF_DONTCARE, FF_MODERN, FF_ROMAN, FF_SCRIPT, FF_SWISS);
+_Win32_FlagsEnum_(ROP_CODE, unsigned int, BLACKNESS, NOTSRCERASE, NOTSRCCOPY, SRCERASE, DSTINVERT, PATINVERT, SRCINVERT, SRCAND, MERGEPAINT, MERGECOPY, SRCCOPY, SRCPAINT, PATCOPY, PATPAINT, WHITENESS, CAPTUREBLT, NOMIRRORBITMAP);
+_Win32_Enum_(PRINTER_DEVICE_CAPABILITIES, unsigned short, DC_BINNAMES, DC_BINS, DC_COLLATE, DC_COLORDEVICE, DC_COPIES, DC_DRIVER, DC_DUPLEX, DC_ENUMRESOLUTIONS, DC_EXTRA, DC_FIELDS, DC_FILEDEPENDENCIES, DC_MAXEXTENT, DC_MEDIAREADY, DC_MEDIATYPENAMES, DC_MEDIATYPES, DC_MINEXTENT, DC_ORIENTATION, DC_NUP, DC_PAPERNAMES, DC_PAPERS, DC_PAPERSIZE, DC_PERSONALITY, DC_PRINTERMEM, DC_PRINTRATE, DC_PRINTRATEPPM, DC_PRINTRATEUNIT, DC_SIZE, DC_STAPLE, DC_TRUETYPE, DC_VERSION);
+_Win32_Enum_(PFD_PIXEL_TYPE, unsigned char, PFD_TYPE_RGBA, PFD_TYPE_COLORINDEX);
+_Win32_AnnotateField_(PIXELFORMATDESCRIPTOR::iPixelType, _Win32_AssociatedEnum_(PFD_PIXEL_TYPE));
+_Win32_Enum_(PFD_LAYER_TYPE, signed char, PFD_UNDERLAY_PLANE, PFD_MAIN_PLANE, PFD_OVERLAY_PLANE);
+_Win32_FlagsEnum_(PFD_FLAGS, unsigned int, PFD_DOUBLEBUFFER, PFD_STEREO, PFD_DRAW_TO_WINDOW, PFD_DRAW_TO_BITMAP, PFD_SUPPORT_GDI, PFD_SUPPORT_OPENGL, PFD_GENERIC_FORMAT, PFD_NEED_PALETTE, PFD_NEED_SYSTEM_PALETTE, PFD_SWAP_EXCHANGE, PFD_SWAP_COPY, PFD_SWAP_LAYER_BUFFERS, PFD_GENERIC_ACCELERATED, PFD_SUPPORT_DIRECTDRAW, PFD_DIRECT3D_ACCELERATED, PFD_SUPPORT_COMPOSITION, PFD_DEPTH_DONTCARE, PFD_DOUBLEBUFFER_DONTCARE, PFD_STEREO_DONTCARE);
+_Win32_AnnotateField_(PIXELFORMATDESCRIPTOR::dwFlags, _Win32_AssociatedEnum_(PFD_FLAGS));
+_Win32_Enum_(GDI_REGION_TYPE, int, RGN_ERROR, NULLREGION, SIMPLEREGION, COMPLEXREGION);
+_Win32_Enum_(LCSCSTYPE, LONG, LCS_CALIBRATED_RGB, LCS_sRGB, LCS_WINDOWS_COLOR_SPACE);
 #endif

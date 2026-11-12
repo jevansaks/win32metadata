@@ -1,9 +1,9 @@
 # Working-first recovery and sidecar reduction
 
-**Current accepted cohort:** [71 UI/GDI/OLE/control groups](#ui-gdi-ole-and-common-control-continuation)
-above preserved `45a3e988d6d0d31d20e3fb9233493c98301d41b9`, following the
-previous two 25-group cohorts above `85444f25`.
-Its actual WinMD is `243E725B...`; the complete 35,379-type dump is
+**Current accepted cohort:** [183 explicit-member groups](#explicit-member-native-owner-subdivision)
+above preserved `1b4bb3a20c93a66beb91f940fd8800a62d68f507`, following the
+previous 121 groups above `85444f25`.
+Its actual WinMD is `F12B23AA...`; the complete 35,379-type dump is
 `1F4F3839...`, byte-identical to accepted structural checkpoint 6d44.
 Earlier authorized fictitious-handle/AssociatedEnum changes remain completely
 accounted for relative to the original parent; no arbitrary API loss is
@@ -13,19 +13,19 @@ historical checkpoints, not the current totals.
 | Inventory / units | Recovery | Accepted current | Net retired |
 |---|---:|---:|---:|
 | Original parameter attribute atoms | 770 | 361 | 409 |
-| All RSP value rows | 146,789 | 134,161 | 12,628 |
+| All RSP value rows | 146,789 | 134,343 | 12,446 |
 | Allowed documentation URL rows | 90,502 | 90,502 | 0 (outside backlog) |
-| Other RSP rows, mixed configuration/API units | 56,287 | 43,659 | 12,628 |
+| Other RSP rows, mixed configuration/API units | 56,287 | 43,841 | 12,446 |
 | Emitter `memberRemap` rows | 2,295 | 1,592 | 703 |
 | LastError rows | 3,362 | 468 | 2,894 |
 | Availability rows | 17,070 | 7,883 | 9,187 |
-| Enum JSON records, mixed definitions/additional uses | 1,070 | 874 | 196 |
+| Enum JSON records, mixed definitions/additional uses | 1,070 | 691 | 379 |
 | autoTypes records | 444 | 436 | 8 |
 | Function-pointer fixup records | 27 | 27 | 0 |
 
 | Remaining category | Measured accepted quantity | Examination state |
 |---|---:|---|
-| Definition-bearing enum records | 850 | 121 further whole definitions accepted across three cohorts; three device/setup dependency closures restored. A further 195 explicit-member local owner closures are preflighted, not accepted or exhaustively examined. |
+| Definition-bearing enum records | 667 | 304 further whole definitions accepted across four cohorts. Twelve closures from the actual 195-group trial remain restored, alongside the earlier device/setup boundaries; 94 more shipped-header groups are preflighted, not yet accepted. |
 | Additional-use enum records / selector rows | 23 / 55 | Exact retained FILE/REG/SNMP/process, STGM, COM/MIDL and Cloud closures; observed boundaries are in [PROBLEMS.md](PROBLEMS.md). |
 | Genuine CLR flags request | 1 record | Native enum use override already redundant/retired; flags effect still unqualified. |
 | Native type/storage/ownership inputs | 436 records | 425 legacy-storage / 11 native selections; genuine types remain. Six DiagnosticDataQuery selections/producer closures tried and restored; thirteen contextual cleanup records remain separate boundaries, not all 436 records. |
@@ -1162,3 +1162,72 @@ response-file accounting remain under
 `files\sidecar-reduction\diagnostic-native-{six,control}-*`.
 The next 195 explicit-member enum groups remain available for independent
 subdivision rather than stopping on this boundary.
+
+## Explicit-member native-owner subdivision
+
+The next 195-group trial was actually applied, parsed, subdivided and emitted;
+it was not accepted from preflight or compilation alone. The accepted subset
+retires **183 complete definition/use records, 1,328 members and 317 active
+native uses**, with no inactive selectors counted in this cohort:
+
+| Owning header | Definition groups |
+|---|---:|
+| `WinUser.h` | 64 |
+| `CommCtrl.h` | 31 |
+| `wingdi.h` | 31 |
+| `winnt.h` | 24 |
+| `WinBase.h` | 21 |
+| `commdlg.h` | 5 |
+| `SetupAPI.h` | 3 |
+| `wincred.h` | 3 |
+| `cfgmgr32.h` | 1 |
+
+Two straightforward authoring corrections preserve genuine native canonical
+aliases: `LCSCSTYPE` uses its declared `LONG` backing and `EXECUTION_STATE`
+uses `DWORD`. Primitive `int` / `unsigned int` spellings conflicted with those
+existing typedef declarations; the actual corrected three-target parse passes.
+No native declaration or reader policy changes.
+
+Twelve complete definition/use closures remain restored:
+
+| Restored closure | Actual boundary |
+|---|---|
+| `GET_CLASS_LONG_INDEX`, `WINDOW_LONG_PTR_INDEX`, `RTL_VIRTUAL_UNWIND_HANDLER_TYPE` | Listed operands are not available on every architecture (`GCL_HBRBACKGROUND`, `GWL_HINSTANCE`, `UNW_FLAG_CHAININFO`). |
+| `GET_GUI_RESOURCES_FLAGS` | Historical `GR_GLOBAL` is a pointer-valued HANDLE sentinel, not an ordinary integer enum operand. |
+| `IS_TEXT_UNICODE_RESULT` | Legacy UInt32 group conflicts with native `IsTextUnicode`'s `LPINT` result storage. |
+| `MENU_ITEM_STATE`, `SET_BOUNDS_RECT_FLAGS`, `MODIFY_WORLD_TRANSFORM_MODE`, `HDC_MAP_MODE` | The emitted 190-group trial adds fourteen dependent global aliases: eight `IMFS_*`, `DCB_DIRTY`, two `MWT_*`, and three `MM_*`. |
+| `QUEUE_STATUS_FLAGS`, `PEEK_MESSAGE_REMOVE_TYPE` | SDK-evaluated `QS_INPUT`, `QS_ALLINPUT`, `QS_ALLEVENTS` and dependent `PM_QS_INPUT` differ from legacy JSON values. Those value changes are not silently accepted as association migration. |
+| `POWER_REQUEST_CONTEXT_FLAGS` | The 184-group output loses the association on `REASON_CONTEXT.Flags`; a carrier in WinBase reaches an alias/use, not the actual definition in `minwinbase.h`. The precise owner correction is queued, not classified as an unsupported reader. |
+
+Refreshing only the initial eight partitions also lost associations on
+`VerSetConditionMask` and both `STARTUPINFO*.dwFlags` fields. Refreshing their
+actual SystemInformation/Threading consumers restores all three facts.
+Only `REASON_CONTEXT.Flags` remains unmatched in the rejected 184-group output;
+restoring its exact closure yields complete equality. Neither cached consumer
+loss nor unwanted globals are accepted or masked.
+
+The final ten-owner scrape passes in **1m51.70s**, production emission in
+**4m43.46s**:
+
+| Accepted artifact | Identity |
+|---|---|
+| Actual new WinMD | `files\sidecar-reduction\explicit-183-candidate\Windows.Win32.winmd` |
+| Size / SHA-256 | 24,175,616 bytes / `F12B23AA08FE7ED00EC414F307B1C2C4DB1AF76E4C4839423D1ED875026BCAC3` |
+| Complete dump / types | `1F4F38395D602095972A5095C4A25EF6C117BE5E1D716DAB5C3108BE6AC589BA` / 35,379 |
+| Unmasked comparer / complete raw accounting | Exit **0** against 491b; entire dump byte-identical, zero unmatched changes |
+
+Actual-output integrity passes **54/54**, strict production patch replay
+**345/345**, and all nine native byte/BOM audits pass. A patch filename-casing
+authoring error was caught and corrected by strict replay, not bypassed.
+The 182 new namespace routing rows are included in the RSP total: 134,343,
+of which 90,502 allowed documentation rows remain separate. Parameter atoms
+remain 409 retired / 361 retained; autoTypes and fixups are unchanged.
+
+Since 85444, the four accepted cohorts retire **304 complete definitions,
+2,926 members and 588 active native uses**, plus eleven separately inventoried
+inactive selectors from earlier cohorts. Exact rejected inputs/diagnostics,
+two emitted rejected candidates, accepted output, raw dumps/comparisons,
+byte audit, patch replay and integrity TRX remain in
+`files\sidecar-reduction\explicit-{195,191,190,184,183}-*`.
+The next 94 shipped-header groups (718 members / 134 listed uses) are
+preflighted; they are not yet migrated coverage.

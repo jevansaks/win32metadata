@@ -2574,7 +2574,7 @@ WINAPI
 CM_Get_First_Log_Conf(
     _Out_opt_ PLOG_CONF plcLogConf,
     _In_  DEVINST       dnDevInst,
-    _In_  ULONG         ulFlags
+    _Win32_AssociatedEnum_(CM_LOG_CONF) _In_  ULONG         ulFlags
     );
 
 CMAPI
@@ -2583,7 +2583,7 @@ WINAPI
 CM_Get_First_Log_Conf_Ex(
     _Out_opt_ PLOG_CONF plcLogConf,
     _In_  DEVINST       dnDevInst,
-    _In_  ULONG         ulFlags,
+    _Win32_AssociatedEnum_(CM_LOG_CONF) _In_  ULONG         ulFlags,
     _In_opt_ HMACHINE   hMachine
     );
 
@@ -4819,4 +4819,9 @@ _Win32_FlagsEnum_(PMF_FLAGS, unsigned int, fPMF_AUDIO_ENABLE);
 _Win32_AnnotateField_(MFCARD_DES::PMF_Flags, _Win32_AssociatedEnum_(PMF_FLAGS));
 _Win32_FlagsEnum_(PCD_FLAGS, unsigned int, mPCD_IO_8_16, fPCD_IO_8, fPCD_IO_16, mPCD_MEM_8_16, fPCD_MEM_8, fPCD_MEM_16, mPCD_MEM_A_C, fPCD_MEM1_A, fPCD_MEM2_A, fPCD_IO_ZW_8, fPCD_IO_SRC_16, fPCD_IO_WS_16, mPCD_MEM_WS, fPCD_MEM_WS_ONE, fPCD_MEM_WS_TWO, fPCD_MEM_WS_THREE, fPCD_MEM_A, fPCD_ATTRIBUTES_PER_WINDOW, fPCD_IO1_16, fPCD_IO1_ZW_8, fPCD_IO1_SRC_16, fPCD_IO1_WS_16, fPCD_IO2_16, fPCD_IO2_ZW_8, fPCD_IO2_SRC_16, fPCD_IO2_WS_16, mPCD_MEM1_WS, fPCD_MEM1_WS_ONE, fPCD_MEM1_WS_TWO, fPCD_MEM1_WS_THREE, fPCD_MEM1_16, mPCD_MEM2_WS, fPCD_MEM2_WS_ONE, fPCD_MEM2_WS_TWO, fPCD_MEM2_WS_THREE, fPCD_MEM2_16);
 _Win32_AnnotateField_(PCCARD_DES::PCD_Flags, _Win32_AssociatedEnum_(PCD_FLAGS));
+#endif
+
+#ifndef _WIN32METADATA_CFGMGR32_EXPLICIT_183_GROUPS_
+#define _WIN32METADATA_CFGMGR32_EXPLICIT_183_GROUPS_
+_Win32_Enum_(CM_LOG_CONF, unsigned int, BASIC_LOG_CONF, FILTERED_LOG_CONF, ALLOC_LOG_CONF, BOOT_LOG_CONF, FORCED_LOG_CONF, OVERRIDE_LOG_CONF, NUM_LOG_CONF);
 #endif

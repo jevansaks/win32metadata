@@ -1943,7 +1943,7 @@ WINBASEAPI
 EXECUTION_STATE
 WINAPI
 SetThreadExecutionState(
-    _In_ EXECUTION_STATE esFlags
+    _Win32_AssociatedEnum_(EXECUTION_STATE) _In_ EXECUTION_STATE esFlags
     );
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WIN7)
@@ -2280,7 +2280,7 @@ BOOL
 WINAPI
 ClearCommError(
     _In_      HANDLE hFile,
-    _Out_opt_ LPDWORD lpErrors,
+    _Win32_AssociatedEnum_(CLEAR_COMM_ERROR_FLAGS) _Out_opt_ LPDWORD lpErrors,
     _Out_opt_ LPCOMSTAT lpStat
     );
 _Win32_SetLastError_
@@ -2302,7 +2302,7 @@ BOOL
 WINAPI
 EscapeCommFunction(
     _In_ HANDLE hFile,
-    _In_ DWORD dwFunc
+    _Win32_AssociatedEnum_(ESCAPE_COMM_FUNCTION) _In_ DWORD dwFunc
     );
 
 WINBASEAPI
@@ -2322,7 +2322,7 @@ BOOL
 WINAPI
 GetCommMask(
     _In_  HANDLE hFile,
-    _Out_ LPDWORD lpEvtMask
+    _Win32_AssociatedEnum_(COMM_EVENT_MASK) _Out_ LPDWORD lpEvtMask
     );
 
 WINBASEAPI
@@ -2340,7 +2340,7 @@ BOOL
 WINAPI
 GetCommModemStatus(
     _In_  HANDLE hFile,
-    _Out_ LPDWORD lpModemStat
+    _Win32_AssociatedEnum_(MODEM_STATUS_FLAGS) _Out_ LPDWORD lpModemStat
     );
 
 WINBASEAPI
@@ -2368,7 +2368,7 @@ BOOL
 WINAPI
 PurgeComm(
     _In_ HANDLE hFile,
-    _In_ DWORD dwFlags
+    _Win32_AssociatedEnum_(PURGE_COMM_FLAGS) _In_ DWORD dwFlags
     );
 
 WINBASEAPI
@@ -2396,7 +2396,7 @@ BOOL
 WINAPI
 SetCommMask(
     _In_ HANDLE hFile,
-    _In_ DWORD dwEvtMask
+    _Win32_AssociatedEnum_(COMM_EVENT_MASK) _In_ DWORD dwEvtMask
     );
 
 WINBASEAPI
@@ -2434,7 +2434,7 @@ BOOL
 WINAPI
 WaitCommEvent(
     _In_        HANDLE hFile,
-    _Inout_     LPDWORD lpEvtMask,
+    _Win32_AssociatedEnum_(COMM_EVENT_MASK) _Inout_     LPDWORD lpEvtMask,
     _Inout_opt_ LPOVERLAPPED lpOverlapped
     );
 
@@ -2479,7 +2479,7 @@ DWORD
 WINAPI
 SetTapePosition(
     _In_ HANDLE hDevice,
-    _In_ DWORD dwPositionMethod,
+    _Win32_AssociatedEnum_(TAPE_POSITION_METHOD) _In_ DWORD dwPositionMethod,
     _In_ DWORD dwPartition,
     _In_ DWORD dwOffsetLow,
     _In_ DWORD dwOffsetHigh,
@@ -2492,7 +2492,7 @@ DWORD
 WINAPI
 GetTapePosition(
     _In_  HANDLE hDevice,
-    _In_  DWORD dwPositionType,
+    _Win32_AssociatedEnum_(TAPE_POSITION_TYPE) _In_  DWORD dwPositionType,
     _Out_ LPDWORD lpdwPartition,
     _Out_ LPDWORD lpdwOffsetLow,
     _Out_ LPDWORD lpdwOffsetHigh
@@ -2504,7 +2504,7 @@ DWORD
 WINAPI
 PrepareTape(
     _In_ HANDLE hDevice,
-    _In_ DWORD dwOperation,
+    _Win32_AssociatedEnum_(PREPARE_TAPE_OPERATION) _In_ DWORD dwOperation,
     _In_ BOOL bImmediate
     );
 _Win32_SupportedOS_WindowsXP_
@@ -2514,7 +2514,7 @@ DWORD
 WINAPI
 EraseTape(
     _In_ HANDLE hDevice,
-    _In_ DWORD dwEraseType,
+    _Win32_AssociatedEnum_(ERASE_TAPE_TYPE) _In_ DWORD dwEraseType,
     _In_ BOOL bImmediate
     );
 _Win32_SupportedOS_WindowsXP_
@@ -2524,7 +2524,7 @@ DWORD
 WINAPI
 CreateTapePartition(
     _In_ HANDLE hDevice,
-    _In_ DWORD dwPartitionMethod,
+    _Win32_AssociatedEnum_(CREATE_TAPE_PARTITION_METHOD) _In_ DWORD dwPartitionMethod,
     _In_ DWORD dwCount,
     _In_ DWORD dwSize
     );
@@ -2535,7 +2535,7 @@ DWORD
 WINAPI
 WriteTapemark(
     _In_ HANDLE hDevice,
-    _In_ DWORD dwTapemarkType,
+    _Win32_AssociatedEnum_(TAPEMARK_TYPE) _In_ DWORD dwTapemarkType,
     _In_ DWORD dwTapemarkCount,
     _In_ BOOL bImmediate
     );
@@ -2554,7 +2554,7 @@ DWORD
 WINAPI
 GetTapeParameters(
     _In_    HANDLE hDevice,
-    _In_    DWORD dwOperation,
+    _Win32_AssociatedEnum_(GET_TAPE_DRIVE_PARAMETERS_OPERATION) _In_    DWORD dwOperation,
     _Inout_ LPDWORD lpdwSize,
     _Out_writes_bytes_(*lpdwSize) LPVOID lpTapeInformation
     );
@@ -2568,7 +2568,7 @@ DWORD
 WINAPI
 SetTapeParameters(
     _In_ HANDLE hDevice,
-    _In_ DWORD dwOperation,
+    _Win32_AssociatedEnum_(TAPE_INFORMATION_TYPE) _In_ DWORD dwOperation,
     _In_ LPVOID lpTapeInformation
     );
 
@@ -2673,7 +2673,7 @@ _Success_(return != 0)
 DWORD
 WINAPI
 FormatMessageA(
-    _In_     DWORD dwFlags,
+    _Win32_AssociatedEnum_(FORMAT_MESSAGE_OPTIONS) _In_     DWORD dwFlags,
     _In_opt_ LPCVOID lpSource,
     _In_     DWORD dwMessageId,
     _In_     DWORD dwLanguageId,
@@ -2690,7 +2690,7 @@ _Success_(return != 0)
 DWORD
 WINAPI
 FormatMessageW(
-    _In_     DWORD dwFlags,
+    _Win32_AssociatedEnum_(FORMAT_MESSAGE_OPTIONS) _In_     DWORD dwFlags,
     _In_opt_ LPCVOID lpSource,
     _In_     DWORD dwMessageId,
     _In_     DWORD dwLanguageId,
@@ -6593,7 +6593,7 @@ WINAPI
 MoveFileExA(
     _In_     LPCSTR lpExistingFileName,
     _In_opt_ LPCSTR lpNewFileName,
-    _In_     DWORD    dwFlags
+    _Win32_AssociatedEnum_(MOVE_FILE_FLAGS) _In_     DWORD    dwFlags
     );
 WINBASEAPI
 BOOL
@@ -6601,7 +6601,7 @@ WINAPI
 MoveFileExW(
     _In_     LPCWSTR lpExistingFileName,
     _In_opt_ LPCWSTR lpNewFileName,
-    _In_     DWORD    dwFlags
+    _Win32_AssociatedEnum_(MOVE_FILE_FLAGS) _In_     DWORD    dwFlags
     );
 #ifdef UNICODE
 #define MoveFileEx  MoveFileExW
@@ -6626,7 +6626,7 @@ MoveFileWithProgressA(
     _In_opt_ LPCSTR lpNewFileName,
     _In_opt_ LPPROGRESS_ROUTINE lpProgressRoutine,
     _In_opt_ LPVOID lpData,
-    _In_     DWORD dwFlags
+    _Win32_AssociatedEnum_(MOVE_FILE_FLAGS) _In_     DWORD dwFlags
     );
 WINBASEAPI
 BOOL
@@ -6636,7 +6636,7 @@ MoveFileWithProgressW(
     _In_opt_ LPCWSTR lpNewFileName,
     _In_opt_ LPPROGRESS_ROUTINE lpProgressRoutine,
     _In_opt_ LPVOID lpData,
-    _In_     DWORD dwFlags
+    _Win32_AssociatedEnum_(MOVE_FILE_FLAGS) _In_     DWORD dwFlags
     );
 #ifdef UNICODE
 #define MoveFileWithProgress  MoveFileWithProgressW
@@ -6662,7 +6662,7 @@ MoveFileTransactedA(
     _In_opt_ LPCSTR lpNewFileName,
     _In_opt_ LPPROGRESS_ROUTINE lpProgressRoutine,
     _In_opt_ LPVOID lpData,
-    _In_     DWORD dwFlags,
+    _Win32_AssociatedEnum_(MOVE_FILE_FLAGS) _In_     DWORD dwFlags,
     _In_     HANDLE hTransaction
     );
 _Win32_SetLastError_
@@ -6675,7 +6675,7 @@ MoveFileTransactedW(
     _In_opt_ LPCWSTR lpNewFileName,
     _In_opt_ LPPROGRESS_ROUTINE lpProgressRoutine,
     _In_opt_ LPVOID lpData,
-    _In_     DWORD dwFlags,
+    _Win32_AssociatedEnum_(MOVE_FILE_FLAGS) _In_     DWORD dwFlags,
     _In_     HANDLE hTransaction
     );
 #ifdef UNICODE
@@ -6724,7 +6724,7 @@ ReplaceFileA(
     _In_       LPCSTR lpReplacedFileName,
     _In_       LPCSTR lpReplacementFileName,
     _In_opt_   LPCSTR lpBackupFileName,
-    _In_       DWORD    dwReplaceFlags,
+    _Win32_AssociatedEnum_(REPLACE_FILE_FLAGS) _In_       DWORD    dwReplaceFlags,
     _Reserved_ LPVOID   lpExclude,
     _Reserved_ LPVOID  lpReserved
     );
@@ -6737,7 +6737,7 @@ ReplaceFileW(
     _In_       LPCWSTR lpReplacedFileName,
     _In_       LPCWSTR lpReplacementFileName,
     _In_opt_   LPCWSTR lpBackupFileName,
-    _In_       DWORD    dwReplaceFlags,
+    _Win32_AssociatedEnum_(REPLACE_FILE_FLAGS) _In_       DWORD    dwReplaceFlags,
     _Reserved_ LPVOID   lpExclude,
     _Reserved_ LPVOID  lpReserved
     );
@@ -7289,7 +7289,7 @@ BOOL
 WINAPI
 ReadEventLogA (
     _In_  HANDLE     hEventLog,
-    _In_  DWORD      dwReadFlags,
+    _Win32_AssociatedEnum_(READ_EVENT_LOG_READ_FLAGS) _In_  DWORD      dwReadFlags,
     _In_  DWORD      dwRecordOffset,
     _Out_writes_bytes_to_(nNumberOfBytesToRead, *pnBytesRead) LPVOID     lpBuffer,
     _In_  DWORD      nNumberOfBytesToRead,
@@ -7304,7 +7304,7 @@ BOOL
 WINAPI
 ReadEventLogW (
     _In_  HANDLE     hEventLog,
-    _In_  DWORD      dwReadFlags,
+    _Win32_AssociatedEnum_(READ_EVENT_LOG_READ_FLAGS) _In_  DWORD      dwReadFlags,
     _In_  DWORD      dwRecordOffset,
     _Out_writes_bytes_to_(nNumberOfBytesToRead, *pnBytesRead) LPVOID     lpBuffer,
     _In_  DWORD      nNumberOfBytesToRead,
@@ -7331,7 +7331,7 @@ BOOL
 WINAPI
 ReportEventA (
     _In_     HANDLE     hEventLog,
-    _In_     WORD       wType,
+    _Win32_AssociatedEnum_(REPORT_EVENT_TYPE) _In_     WORD       wType,
     _In_     WORD       wCategory,
     _In_     DWORD      dwEventID,
     _In_opt_ PSID       lpUserSid,
@@ -7348,7 +7348,7 @@ BOOL
 WINAPI
 ReportEventW (
     _In_     HANDLE     hEventLog,
-    _In_     WORD       wType,
+    _Win32_AssociatedEnum_(REPORT_EVENT_TYPE) _In_     WORD       wType,
     _In_     WORD       wCategory,
     _In_     DWORD      dwEventID,
     _In_opt_ PSID       lpUserSid,
@@ -8353,8 +8353,8 @@ LogonUserA (
     _In_        LPCSTR lpszUsername,
     _In_opt_    LPCSTR lpszDomain,
     _In_opt_    LPCSTR lpszPassword,
-    _In_        DWORD dwLogonType,
-    _In_        DWORD dwLogonProvider,
+    _Win32_AssociatedEnum_(LOGON32_LOGON) _In_        DWORD dwLogonType,
+    _Win32_AssociatedEnum_(LOGON32_PROVIDER) _In_        DWORD dwLogonProvider,
     _Outptr_ PHANDLE phToken
     );
 _Win32_SetLastError_
@@ -8366,8 +8366,8 @@ LogonUserW (
     _In_        LPCWSTR lpszUsername,
     _In_opt_    LPCWSTR lpszDomain,
     _In_opt_    LPCWSTR lpszPassword,
-    _In_        DWORD dwLogonType,
-    _In_        DWORD dwLogonProvider,
+    _Win32_AssociatedEnum_(LOGON32_LOGON) _In_        DWORD dwLogonType,
+    _Win32_AssociatedEnum_(LOGON32_PROVIDER) _In_        DWORD dwLogonProvider,
     _Outptr_ PHANDLE phToken
     );
 #ifdef UNICODE
@@ -8385,8 +8385,8 @@ LogonUserExA (
     _In_            LPCSTR lpszUsername,
     _In_opt_        LPCSTR lpszDomain,
     _In_opt_        LPCSTR lpszPassword,
-    _In_            DWORD dwLogonType,
-    _In_            DWORD dwLogonProvider,
+    _Win32_AssociatedEnum_(LOGON32_LOGON) _In_            DWORD dwLogonType,
+    _Win32_AssociatedEnum_(LOGON32_PROVIDER) _In_            DWORD dwLogonProvider,
     _Outptr_opt_ PHANDLE phToken,
     _Outptr_opt_ PSID  *ppLogonSid,
     _Outptr_opt_result_bytebuffer_all_(*pdwProfileLength) PVOID *ppProfileBuffer,
@@ -8402,8 +8402,8 @@ LogonUserExW (
     _In_            LPCWSTR lpszUsername,
     _In_opt_        LPCWSTR lpszDomain,
     _In_opt_        LPCWSTR lpszPassword,
-    _In_            DWORD dwLogonType,
-    _In_            DWORD dwLogonProvider,
+    _Win32_AssociatedEnum_(LOGON32_LOGON) _In_            DWORD dwLogonType,
+    _Win32_AssociatedEnum_(LOGON32_PROVIDER) _In_            DWORD dwLogonProvider,
     _Outptr_opt_ PHANDLE phToken,
     _Outptr_opt_ PSID  *ppLogonSid,
     _Outptr_opt_result_bytebuffer_all_(*pdwProfileLength) PVOID *ppProfileBuffer,
@@ -8445,7 +8445,7 @@ CreateProcessWithLogonW(
     _In_        LPCWSTR lpUsername,
     _In_opt_    LPCWSTR lpDomain,
     _In_        LPCWSTR lpPassword,
-    _In_        DWORD dwLogonFlags,
+    _Win32_AssociatedEnum_(CREATE_PROCESS_LOGON_FLAGS) _In_        DWORD dwLogonFlags,
     _In_opt_    LPCWSTR lpApplicationName,
     _Inout_opt_ LPWSTR lpCommandLine,
     _In_        DWORD dwCreationFlags,
@@ -8462,7 +8462,7 @@ _Must_inspect_result_ BOOL
 WINAPI
 CreateProcessWithTokenW(
     _In_        HANDLE hToken,
-    _In_        DWORD dwLogonFlags,
+    _Win32_AssociatedEnum_(CREATE_PROCESS_LOGON_FLAGS) _In_        DWORD dwLogonFlags,
     _In_opt_    LPCWSTR lpApplicationName,
     _Inout_opt_ LPWSTR lpCommandLine,
     _In_        DWORD dwCreationFlags,
@@ -8810,7 +8810,7 @@ BOOL
 WINAPI
 VerifyVersionInfoA(
     _Inout_ LPOSVERSIONINFOEXA lpVersionInformation,
-    _In_    DWORD dwTypeMask,
+    _Win32_AssociatedEnum_(VER_FLAGS) _In_    DWORD dwTypeMask,
     _In_    DWORDLONG dwlConditionMask
     );
 _Win32_SetLastError_
@@ -8820,7 +8820,7 @@ BOOL
 WINAPI
 VerifyVersionInfoW(
     _Inout_ LPOSVERSIONINFOEXW lpVersionInformation,
-    _In_    DWORD dwTypeMask,
+    _Win32_AssociatedEnum_(VER_FLAGS) _In_    DWORD dwTypeMask,
     _In_    DWORDLONG dwlConditionMask
     );
 #ifdef UNICODE
@@ -9736,7 +9736,7 @@ HRESULT
 WINAPI
 RegisterApplicationRestart(
     _In_opt_ PCWSTR pwzCommandline,
-    _In_ DWORD dwFlags
+    _Win32_AssociatedEnum_(REGISTER_APPLICATION_RESTART_FLAGS) _In_ DWORD dwFlags
     );
 
 WINBASEAPI
@@ -10860,3 +10860,36 @@ InterlockedXor(
 #endif /* _NTOS_ */
 #endif /* NOWINBASEINTERLOCK */
 #endif /* RC_INVOKED */
+
+#ifndef _WIN32METADATA_WINBASE_EXPLICIT_183_GROUPS_
+#define _WIN32METADATA_WINBASE_EXPLICIT_183_GROUPS_
+_Win32_FlagsEnum_(MODEM_STATUS_FLAGS, unsigned int, MS_CTS_ON, MS_DSR_ON, MS_RING_ON, MS_RLSD_ON);
+_Win32_Enum_(LOGON32_PROVIDER, unsigned int, LOGON32_PROVIDER_DEFAULT, LOGON32_PROVIDER_WINNT50, LOGON32_PROVIDER_WINNT40);
+_Win32_FlagsEnum_(MOVE_FILE_FLAGS, unsigned int, MOVEFILE_COPY_ALLOWED, MOVEFILE_CREATE_HARDLINK, MOVEFILE_DELAY_UNTIL_REBOOT, MOVEFILE_REPLACE_EXISTING, MOVEFILE_WRITE_THROUGH, MOVEFILE_FAIL_IF_NOT_TRACKABLE);
+_Win32_FlagsEnum_(FORMAT_MESSAGE_OPTIONS, unsigned int, FORMAT_MESSAGE_ALLOCATE_BUFFER, FORMAT_MESSAGE_ARGUMENT_ARRAY, FORMAT_MESSAGE_FROM_HMODULE, FORMAT_MESSAGE_FROM_STRING, FORMAT_MESSAGE_FROM_SYSTEM, FORMAT_MESSAGE_IGNORE_INSERTS);
+_Win32_FlagsEnum_(CLEAR_COMM_ERROR_FLAGS, unsigned int, CE_BREAK, CE_FRAME, CE_OVERRUN, CE_RXOVER, CE_RXPARITY);
+_Win32_Enum_(LOGON32_LOGON, unsigned int, LOGON32_LOGON_BATCH, LOGON32_LOGON_INTERACTIVE, LOGON32_LOGON_NETWORK, LOGON32_LOGON_NETWORK_CLEARTEXT, LOGON32_LOGON_NEW_CREDENTIALS, LOGON32_LOGON_SERVICE, LOGON32_LOGON_UNLOCK);
+_Win32_FlagsEnum_(PURGE_COMM_FLAGS, unsigned int, PURGE_RXABORT, PURGE_RXCLEAR, PURGE_TXABORT, PURGE_TXCLEAR);
+_Win32_Enum_(CREATE_PROCESS_LOGON_FLAGS, unsigned int, LOGON_WITH_PROFILE, LOGON_NETCREDENTIALS_ONLY);
+_Win32_FlagsEnum_(REPLACE_FILE_FLAGS, unsigned int, REPLACEFILE_WRITE_THROUGH, REPLACEFILE_IGNORE_MERGE_ERRORS, REPLACEFILE_IGNORE_ACL_ERRORS);
+_Win32_FlagsEnum_(COMM_EVENT_MASK, unsigned int, EV_BREAK, EV_CTS, EV_DSR, EV_ERR, EV_EVENT1, EV_EVENT2, EV_PERR, EV_RING, EV_RLSD, EV_RX80FULL, EV_RXCHAR, EV_RXFLAG, EV_TXEMPTY);
+_Win32_Enum_(TAPE_INFORMATION_TYPE, unsigned int, SET_TAPE_DRIVE_INFORMATION, SET_TAPE_MEDIA_INFORMATION);
+_Win32_Enum_(ESCAPE_COMM_FUNCTION, unsigned int, CLRBREAK, CLRDTR, CLRRTS, SETBREAK, SETDTR, SETRTS, SETXOFF, SETXON);
+_Win32_Enum_(GET_TAPE_DRIVE_PARAMETERS_OPERATION, unsigned int, GET_TAPE_DRIVE_INFORMATION, GET_TAPE_MEDIA_INFORMATION);
+_Win32_FlagsEnum_(REGISTER_APPLICATION_RESTART_FLAGS, unsigned int, RESTART_NO_CRASH, RESTART_NO_HANG, RESTART_NO_PATCH, RESTART_NO_REBOOT);
+_Win32_FlagsEnum_(OPERATION_START_FLAGS, unsigned int, OPERATION_START_TRACE_CURRENT_THREAD);
+_Win32_AnnotateField_(OPERATION_START_PARAMETERS::Flags, _Win32_AssociatedEnum_(OPERATION_START_FLAGS));
+_Win32_FlagsEnum_(OPERATION_END_PARAMETERS_FLAGS, unsigned int, OPERATION_END_DISCARD);
+_Win32_AnnotateField_(OPERATION_END_PARAMETERS::Flags, _Win32_AssociatedEnum_(OPERATION_END_PARAMETERS_FLAGS));
+_Win32_FlagsEnum_(COMMPROP_STOP_PARITY, unsigned short, STOPBITS_10, STOPBITS_15, STOPBITS_20, PARITY_NONE, PARITY_ODD, PARITY_EVEN, PARITY_MARK, PARITY_SPACE);
+_Win32_AnnotateField_(COMMPROP::wSettableStopParity, _Win32_AssociatedEnum_(COMMPROP_STOP_PARITY));
+_Win32_FlagsEnum_(STARTUPINFOW_FLAGS, unsigned int, STARTF_FORCEONFEEDBACK, STARTF_FORCEOFFFEEDBACK, STARTF_PREVENTPINNING, STARTF_RUNFULLSCREEN, STARTF_TITLEISAPPID, STARTF_TITLEISLINKNAME, STARTF_UNTRUSTEDSOURCE, STARTF_USECOUNTCHARS, STARTF_USEFILLATTRIBUTE, STARTF_USEHOTKEY, STARTF_USEPOSITION, STARTF_USESHOWWINDOW, STARTF_USESIZE, STARTF_USESTDHANDLES);
+_Win32_AnnotateField_(STARTUPINFOW::dwFlags, _Win32_AssociatedEnum_(STARTUPINFOW_FLAGS));
+_Win32_AnnotateField_(STARTUPINFOA::dwFlags, _Win32_AssociatedEnum_(STARTUPINFOW_FLAGS));
+_Win32_Enum_(WIN_STREAM_ID, unsigned int, BACKUP_ALTERNATE_DATA, BACKUP_DATA, BACKUP_EA_DATA, BACKUP_LINK, BACKUP_OBJECT_ID, BACKUP_PROPERTY_DATA, BACKUP_REPARSE_DATA, BACKUP_SECURITY_DATA, BACKUP_SPARSE_BLOCK, BACKUP_TXFS_DATA);
+_Win32_AnnotateField_(WIN32_STREAM_ID::dwStreamId, _Win32_AssociatedEnum_(WIN_STREAM_ID));
+_Win32_Enum_(DCB_STOP_BITS, unsigned char, ONESTOPBIT, ONE5STOPBITS, TWOSTOPBITS);
+_Win32_AnnotateField_(DCB::StopBits, _Win32_AssociatedEnum_(DCB_STOP_BITS));
+_Win32_Enum_(DCB_PARITY, unsigned char, EVENPARITY, MARKPARITY, NOPARITY, ODDPARITY, SPACEPARITY);
+_Win32_AnnotateField_(DCB::Parity, _Win32_AssociatedEnum_(DCB_PARITY));
+#endif

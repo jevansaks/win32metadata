@@ -1093,11 +1093,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -3726,12 +3939,14 @@
+@@ -3725,13 +3938,15 @@
+ SetupCopyOEMInfA(
      _In_ PCSTR SourceInfFileName,
      _In_opt_ PCSTR OEMSourceMediaLocation,
-     _In_ DWORD OEMSourceMediaType,
+-    _In_ DWORD OEMSourceMediaType,
 -    _In_ DWORD CopyStyle,
++    _Win32_AssociatedEnum_(OEM_SOURCE_MEDIA_TYPE) _In_ DWORD OEMSourceMediaType,
 +    _Win32_AssociatedEnum_(SP_COPY_STYLE) _In_ DWORD CopyStyle,
      _Out_writes_opt_(DestinationInfFileNameSize) PSTR DestinationInfFileName,
      _In_ DWORD DestinationInfFileNameSize,
@@ -1109,11 +1111,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -3740,7 +3955,7 @@
+@@ -3739,8 +3954,8 @@
+ SetupCopyOEMInfW(
      _In_ PCWSTR SourceInfFileName,
      _In_opt_ PCWSTR OEMSourceMediaLocation,
-     _In_ DWORD OEMSourceMediaType,
+-    _In_ DWORD OEMSourceMediaType,
 -    _In_ DWORD CopyStyle,
++    _Win32_AssociatedEnum_(OEM_SOURCE_MEDIA_TYPE) _In_ DWORD OEMSourceMediaType,
 +    _Win32_AssociatedEnum_(SP_COPY_STYLE) _In_ DWORD CopyStyle,
      _Out_writes_opt_(DestinationInfFileNameSize) PWSTR DestinationInfFileName,
      _In_ DWORD DestinationInfFileNameSize,
@@ -1251,7 +1255,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -3972,6 +4215,8 @@
+@@ -3968,10 +4211,12 @@
+     _In_ HDSKSPC DiskSpace,
+     _In_ PCSTR TargetFilespec,
+     _In_ LONGLONG FileSize,
+-    _In_ UINT Operation,
++    _Win32_AssociatedEnum_(SETUP_FILE_OPERATION) _In_ UINT Operation,
      _Reserved_ PVOID Reserved1,
      _Reserved_ UINT Reserved2
      );
@@ -1260,6 +1269,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
+@@ -3980,7 +4225,7 @@
+     _In_ HDSKSPC DiskSpace,
+     _In_ PCWSTR TargetFilespec,
+     _In_ LONGLONG FileSize,
+-    _In_ UINT Operation,
++    _Win32_AssociatedEnum_(SETUP_FILE_OPERATION) _In_ UINT Operation,
+     _Reserved_ PVOID Reserved1,
+     _Reserved_ UINT Reserved2
+     );
 @@ -3990,6 +4235,8 @@
  #else
  #define SetupAddToDiskSpaceList SetupAddToDiskSpaceListA
@@ -1269,7 +1287,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -4004,6 +4251,8 @@
+@@ -4000,10 +4247,12 @@
+     _In_ HINF InfHandle,
+     _In_opt_ HINF ListInfHandle,
+     _In_ PCSTR SectionName,
+-    _In_ UINT Operation,
++    _Win32_AssociatedEnum_(SETUP_FILE_OPERATION) _In_ UINT Operation,
      _Reserved_ PVOID Reserved1,
      _Reserved_ UINT Reserved2
      );
@@ -1278,6 +1301,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
+@@ -4013,7 +4262,7 @@
+     _In_ HINF InfHandle,
+     _In_opt_ HINF ListInfHandle,
+     _In_ PCWSTR SectionName,
+-    _In_ UINT Operation,
++    _Win32_AssociatedEnum_(SETUP_FILE_OPERATION) _In_ UINT Operation,
+     _Reserved_ PVOID Reserved1,
+     _Reserved_ UINT Reserved2
+     );
 @@ -4023,6 +4272,8 @@
  #else
  #define SetupAddSectionToDiskSpaceList SetupAddSectionToDiskSpaceListA
@@ -1305,7 +1337,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -4066,6 +4321,8 @@
+@@ -4062,10 +4317,12 @@
+ SetupRemoveFromDiskSpaceListA(
+     _In_ HDSKSPC DiskSpace,
+     _In_ PCSTR TargetFilespec,
+-    _In_ UINT Operation,
++    _Win32_AssociatedEnum_(SETUP_FILE_OPERATION) _In_ UINT Operation,
      _Reserved_ PVOID Reserved1,
      _Reserved_ UINT Reserved2
      );
@@ -1314,6 +1351,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
+@@ -4073,7 +4330,7 @@
+ SetupRemoveFromDiskSpaceListW(
+     _In_ HDSKSPC DiskSpace,
+     _In_ PCWSTR TargetFilespec,
+-    _In_ UINT Operation,
++    _Win32_AssociatedEnum_(SETUP_FILE_OPERATION) _In_ UINT Operation,
+     _Reserved_ PVOID Reserved1,
+     _Reserved_ UINT Reserved2
+     );
 @@ -4083,6 +4340,8 @@
  #else
  #define SetupRemoveFromDiskSpaceList SetupRemoveFromDiskSpaceListA
@@ -1323,7 +1369,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -4097,6 +4356,8 @@
+@@ -4093,10 +4352,12 @@
+     _In_ HINF InfHandle,
+     _In_opt_ HINF ListInfHandle,
+     _In_ PCSTR SectionName,
+-    _In_ UINT Operation,
++    _Win32_AssociatedEnum_(SETUP_FILE_OPERATION) _In_ UINT Operation,
      _Reserved_ PVOID Reserved1,
      _Reserved_ UINT Reserved2
      );
@@ -1332,6 +1383,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
+@@ -4106,7 +4367,7 @@
+     _In_ HINF InfHandle,
+     _In_opt_ HINF ListInfHandle,
+     _In_ PCWSTR SectionName,
+-    _In_ UINT Operation,
++    _Win32_AssociatedEnum_(SETUP_FILE_OPERATION) _In_ UINT Operation,
+     _Reserved_ PVOID Reserved1,
+     _Reserved_ UINT Reserved2
+     );
 @@ -4116,6 +4377,8 @@
  #else
  #define SetupRemoveSectionFromDiskSpaceList SetupRemoveSectionFromDiskSpaceListA
@@ -2049,6 +2109,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
+@@ -5539,7 +5911,7 @@
+ SetupDiBuildDriverInfoList(
+     _In_ HDEVINFO DeviceInfoSet,
+     _Inout_opt_ PSP_DEVINFO_DATA DeviceInfoData,
+-    _In_ DWORD DriverType
++    _Win32_AssociatedEnum_(SETUP_DI_DRIVER_TYPE) _In_ DWORD DriverType
+     );
+ 
+ 
 @@ -5549,6 +5921,8 @@
  SetupDiCancelDriverInfoSearch(
      _In_ HDEVINFO DeviceInfoSet
@@ -2058,18 +2127,24 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -5559,7 +5933,7 @@
+@@ -5557,9 +5931,9 @@
+ SetupDiEnumDriverInfoA(
+     _In_ HDEVINFO DeviceInfoSet,
      _In_opt_ PSP_DEVINFO_DATA DeviceInfoData,
-     _In_ DWORD DriverType,
+-    _In_ DWORD DriverType,
++    _Win32_AssociatedEnum_(SETUP_DI_DRIVER_TYPE) _In_ DWORD DriverType,
      _In_ DWORD MemberIndex,
 -    _Out_ PSP_DRVINFO_DATA_A DriverInfoData
 +    _Inout_ PSP_DRVINFO_DATA_A DriverInfoData
      );
  
  WINSETUPAPI
-@@ -5570,7 +5944,7 @@
+@@ -5568,9 +5942,9 @@
+ SetupDiEnumDriverInfoW(
+     _In_ HDEVINFO DeviceInfoSet,
      _In_opt_ PSP_DEVINFO_DATA DeviceInfoData,
-     _In_ DWORD DriverType,
+-    _In_ DWORD DriverType,
++    _Win32_AssociatedEnum_(SETUP_DI_DRIVER_TYPE) _In_ DWORD DriverType,
      _In_ DWORD MemberIndex,
 -    _Out_ PSP_DRVINFO_DATA_W DriverInfoData
 +    _Inout_ PSP_DRVINFO_DATA_W DriverInfoData
@@ -2148,6 +2223,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
+@@ -5666,7 +6052,7 @@
+ SetupDiDestroyDriverInfoList(
+     _In_ HDEVINFO DeviceInfoSet,
+     _In_opt_ PSP_DEVINFO_DATA DeviceInfoData,
+-    _In_ DWORD DriverType
++    _Win32_AssociatedEnum_(SETUP_DI_DRIVER_TYPE) _In_ DWORD DriverType
+     );
+ 
+ 
 @@ -5684,6 +6070,8 @@
  // Backward compatibility--do not use.
  //
@@ -3252,7 +3336,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -7648,3 +8243,27 @@
+@@ -7648,3 +8243,34 @@
  #pragma endregion
  
  #endif // _INC_SETUPAPI
@@ -3279,4 +3363,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
 +_Win32_AnnotateField_(SP_DEVINSTALL_PARAMS_A::FlagsEx, _Win32_AssociatedEnum_(SETUP_DI_DEVICE_INSTALL_FLAGS_EX));
 +_Win32_AnnotateField_(SP_DEVINSTALL_PARAMS_W::FlagsEx, _Win32_AssociatedEnum_(SETUP_DI_DEVICE_INSTALL_FLAGS_EX));
 +_Win32_FlagsEnum_(FILE_COMPRESSION_TYPE, unsigned int, FILE_COMPRESSION_NONE, FILE_COMPRESSION_WINLZA, FILE_COMPRESSION_MSZIP, FILE_COMPRESSION_NTCAB);
++#endif
++
++#ifndef _WIN32METADATA_SETUPAPI_EXPLICIT_183_GROUPS_
++#define _WIN32METADATA_SETUPAPI_EXPLICIT_183_GROUPS_
++_Win32_Enum_(SETUP_FILE_OPERATION, unsigned int, FILEOP_DELETE, FILEOP_COPY);
++_Win32_Enum_(OEM_SOURCE_MEDIA_TYPE, unsigned int, SPOST_NONE, SPOST_PATH, SPOST_URL);
++_Win32_Enum_(SETUP_DI_DRIVER_TYPE, unsigned int, SPDIT_CLASSDRIVER, SPDIT_COMPATDRIVER);
 +#endif

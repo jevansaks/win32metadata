@@ -1250,13 +1250,13 @@ HKL
 WINAPI
 LoadKeyboardLayoutA(
     _In_ LPCSTR pwszKLID,
-    _In_ UINT Flags);
+    _Win32_AssociatedEnum_(ACTIVATE_KEYBOARD_LAYOUT_FLAGS) _In_ UINT Flags);
 WINUSERAPI
 HKL
 WINAPI
 LoadKeyboardLayoutW(
     _In_ LPCWSTR pwszKLID,
-    _In_ UINT Flags);
+    _Win32_AssociatedEnum_(ACTIVATE_KEYBOARD_LAYOUT_FLAGS) _In_ UINT Flags);
 #ifdef UNICODE
 #define LoadKeyboardLayout  LoadKeyboardLayoutW
 #else
@@ -1272,14 +1272,14 @@ HKL
 WINAPI
 ActivateKeyboardLayout(
     _In_ HKL hkl,
-    _In_ UINT Flags);
+    _Win32_AssociatedEnum_(ACTIVATE_KEYBOARD_LAYOUT_FLAGS) _In_ UINT Flags);
 #else
 WINUSERAPI
 BOOL
 WINAPI
 ActivateKeyboardLayout(
     _In_ HKL hkl,
-    _In_ UINT Flags);
+    _Win32_AssociatedEnum_(ACTIVATE_KEYBOARD_LAYOUT_FLAGS) _In_ UINT Flags);
 #endif /* WINVER >= 0x0400 */
 
 #if(WINVER >= 0x0400)
@@ -1382,7 +1382,7 @@ GetMouseMovePointsEx(
     _In_ LPMOUSEMOVEPOINT lppt,
     _Out_writes_(nBufPoints) LPMOUSEMOVEPOINT lpptBuf,
     _In_ int nBufPoints,
-    _In_ DWORD resolution);
+    _Win32_AssociatedEnum_(GET_MOUSE_MOVE_POINTS_EX_RESOLUTION) _In_ DWORD resolution);
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
 #pragma endregion
@@ -1785,7 +1785,7 @@ BOOL
 WINAPI
 GetUserObjectInformationA(
     _In_ HANDLE hObj,
-    _In_ int nIndex,
+    _Win32_AssociatedEnum_(USER_OBJECT_INFORMATION_INDEX) _In_ int nIndex,
     _Out_writes_bytes_opt_(nLength) PVOID pvInfo,
     _In_ DWORD nLength,
     _Out_opt_ LPDWORD lpnLengthNeeded);
@@ -1796,7 +1796,7 @@ BOOL
 WINAPI
 GetUserObjectInformationW(
     _In_ HANDLE hObj,
-    _In_ int nIndex,
+    _Win32_AssociatedEnum_(USER_OBJECT_INFORMATION_INDEX) _In_ int nIndex,
     _Out_writes_bytes_opt_(nLength) PVOID pvInfo,
     _In_ DWORD nLength,
     _Out_opt_ LPDWORD lpnLengthNeeded);
@@ -3174,7 +3174,7 @@ DrawCaption(
     _In_ HWND hwnd,
     _In_ HDC hdc,
     _In_ CONST RECT * lprect,
-    _In_ UINT flags);
+    _Win32_AssociatedEnum_(DRAW_CAPTION_FLAGS) _In_ UINT flags);
 
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
@@ -3663,7 +3663,7 @@ WINAPI
 RegisterHotKey(
     _In_opt_ HWND hWnd,
     _In_ int id,
-    _In_ UINT fsModifiers,
+    _Win32_AssociatedEnum_(HOT_KEY_MODIFIERS) _In_ UINT fsModifiers,
     _In_ UINT vk);
 _Win32_SetLastError_
 _Win32_SupportedOS_Windows2000_
@@ -3871,7 +3871,7 @@ SendMessageTimeoutA(
     _In_ UINT Msg,
     _In_ WPARAM wParam,
     _In_ LPARAM lParam,
-    _In_ UINT fuFlags,
+    _Win32_AssociatedEnum_(SEND_MESSAGE_TIMEOUT_FLAGS) _In_ UINT fuFlags,
     _In_ UINT uTimeout,
     _Out_opt_ PDWORD_PTR lpdwResult);
 WINUSERAPI
@@ -3882,7 +3882,7 @@ SendMessageTimeoutW(
     _In_ UINT Msg,
     _In_ WPARAM wParam,
     _In_ LPARAM lParam,
-    _In_ UINT fuFlags,
+    _Win32_AssociatedEnum_(SEND_MESSAGE_TIMEOUT_FLAGS) _In_ UINT fuFlags,
     _In_ UINT uTimeout,
     _Out_opt_ PDWORD_PTR lpdwResult);
 #ifdef UNICODE
@@ -3961,8 +3961,8 @@ WINUSERAPI
 long
 WINAPI
 BroadcastSystemMessageExA(
-    _In_ DWORD flags,
-    _Inout_opt_ LPDWORD lpInfo,
+    _Win32_AssociatedEnum_(BROADCAST_SYSTEM_MESSAGE_FLAGS) _In_ DWORD flags,
+    _Win32_AssociatedEnum_(BROADCAST_SYSTEM_MESSAGE_INFO) _Inout_opt_ LPDWORD lpInfo,
     _In_ UINT Msg,
     _In_ WPARAM wParam,
     _In_ LPARAM lParam,
@@ -3973,8 +3973,8 @@ WINUSERAPI
 long
 WINAPI
 BroadcastSystemMessageExW(
-    _In_ DWORD flags,
-    _Inout_opt_ LPDWORD lpInfo,
+    _Win32_AssociatedEnum_(BROADCAST_SYSTEM_MESSAGE_FLAGS) _In_ DWORD flags,
+    _Win32_AssociatedEnum_(BROADCAST_SYSTEM_MESSAGE_INFO) _Inout_opt_ LPDWORD lpInfo,
     _In_ UINT Msg,
     _In_ WPARAM wParam,
     _In_ LPARAM lParam,
@@ -4010,8 +4010,8 @@ WINUSERAPI
 long
 WINAPI
 BroadcastSystemMessageW(
-    _In_ DWORD flags,
-    _Inout_opt_ LPDWORD lpInfo,
+    _Win32_AssociatedEnum_(BROADCAST_SYSTEM_MESSAGE_FLAGS) _In_ DWORD flags,
+    _Win32_AssociatedEnum_(BROADCAST_SYSTEM_MESSAGE_INFO) _Inout_opt_ LPDWORD lpInfo,
     _In_ UINT Msg,
     _In_ WPARAM wParam,
     _In_ LPARAM lParam);
@@ -4730,7 +4730,7 @@ WINAPI
 AnimateWindow(
     _In_ HWND hWnd,
     _In_ DWORD dwTime,
-    _In_ DWORD dwFlags);
+    _Win32_AssociatedEnum_(ANIMATE_WINDOW_FLAGS) _In_ DWORD dwFlags);
 #endif /* WINVER >= 0x0500 */
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
@@ -4756,7 +4756,7 @@ UpdateLayeredWindow(
     _In_opt_ POINT* pptSrc,
     _In_ COLORREF crKey,
     _In_opt_ BLENDFUNCTION* pblend,
-    _In_ DWORD dwFlags);
+    _Win32_AssociatedEnum_(UPDATE_LAYERED_WINDOW_FLAGS) _In_ DWORD dwFlags);
 
 /*
  * Layered Window Update information
@@ -4805,7 +4805,7 @@ GetLayeredWindowAttributes(
     _In_ HWND hwnd,
     _Out_opt_ COLORREF* pcrKey,
     _Out_opt_ BYTE* pbAlpha,
-    _Out_opt_ DWORD* pdwFlags);
+    _Win32_AssociatedEnum_(LAYERED_WINDOW_ATTRIBUTES_FLAGS) _Out_opt_ DWORD* pdwFlags);
 
 #define PW_CLIENTONLY           0x00000001
 
@@ -4821,7 +4821,7 @@ WINAPI
 PrintWindow(
     _In_ HWND hwnd,
     _In_ HDC hdcBlt,
-    _In_ UINT nFlags);
+    _Win32_AssociatedEnum_(PRINT_WINDOW_FLAGS) _In_ UINT nFlags);
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
 #pragma endregion
@@ -4840,7 +4840,7 @@ SetLayeredWindowAttributes(
     _In_ HWND hwnd,
     _In_ COLORREF crKey,
     _In_ BYTE bAlpha,
-    _In_ DWORD dwFlags);
+    _Win32_AssociatedEnum_(LAYERED_WINDOW_ATTRIBUTES_FLAGS) _In_ DWORD dwFlags);
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
 #pragma endregion
@@ -4973,7 +4973,7 @@ SetWindowPos(
     _In_ int Y,
     _In_ int cx,
     _In_ int cy,
-    _In_ UINT uFlags);
+    _Win32_AssociatedEnum_(SET_WINDOW_POS_FLAGS) _In_ UINT uFlags);
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_GAMES) */
 #pragma endregion
@@ -5019,7 +5019,7 @@ BOOL
 WINAPI
 SetWindowDisplayAffinity(
     _In_ HWND hWnd,
-    _In_ DWORD dwAffinity);
+    _Win32_AssociatedEnum_(WINDOW_DISPLAY_AFFINITY) _In_ DWORD dwAffinity);
 
 #endif /* _WIN32_WINNT >= 0x0601 */
 
@@ -5052,7 +5052,7 @@ DeferWindowPos(
     _In_ int y,
     _In_ int cx,
     _In_ int cy,
-    _In_ UINT uFlags);
+    _Win32_AssociatedEnum_(SET_WINDOW_POS_FLAGS) _In_ UINT uFlags);
 
 
 WINUSERAPI
@@ -5492,7 +5492,7 @@ WINAPI
 CheckDlgButton(
     _In_ HWND hDlg,
     _In_ int nIDButton,
-    _In_ UINT uCheck);
+    _Win32_AssociatedEnum_(DLG_BUTTON_CHECK_STATE) _In_ UINT uCheck);
 
 WINUSERAPI
 BOOL
@@ -6478,7 +6478,7 @@ WINAPI
 keybd_event(
     _In_ BYTE bVk,
     _In_ BYTE bScan,
-    _In_ DWORD dwFlags,
+    _Win32_AssociatedEnum_(KEYBD_EVENT_FLAGS) _In_ DWORD dwFlags,
     _In_ ULONG_PTR dwExtraInfo);
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
@@ -6511,7 +6511,7 @@ WINUSERAPI
 VOID
 WINAPI
 mouse_event(
-    _In_ DWORD dwFlags,
+    _Win32_AssociatedEnum_(MOUSE_EVENT_FLAGS) _In_ DWORD dwFlags,
     _In_ DWORD dx,
     _In_ DWORD dy,
     _In_ DWORD dwData,
@@ -6687,7 +6687,7 @@ BOOL
 WINAPI
 RegisterTouchWindow(
     _In_ HWND hwnd,
-    _In_ ULONG ulFlags);
+    _Win32_AssociatedEnum_(REGISTER_TOUCH_WINDOW_FLAGS) _In_ ULONG ulFlags);
 
 WINUSERAPI
 BOOL
@@ -8018,7 +8018,7 @@ WINUSERAPI
 int
 WINAPI
 GetSystemMetrics(
-    _In_ int nIndex);
+    _Win32_AssociatedEnum_(SYSTEM_METRICS_INDEX) _In_ int nIndex);
 
 
 #if(WINVER >= 0x0605)
@@ -8028,7 +8028,7 @@ WINUSERAPI
 int
 WINAPI
 GetSystemMetricsForDpi(
-    _In_ int nIndex,
+    _Win32_AssociatedEnum_(SYSTEM_METRICS_INDEX) _In_ int nIndex,
     _In_ UINT dpi);
 
 #endif /* WINVER >= 0x0605 */
@@ -8709,7 +8709,7 @@ WINAPI
 GetMenuDefaultItem(
     _In_ HMENU hMenu,
     _In_ UINT fByPos,
-    _In_ UINT gmdiFlags);
+    _Win32_AssociatedEnum_(GET_MENU_DEFAULT_ITEM_FLAGS) _In_ UINT gmdiFlags);
 
 WINUSERAPI
 BOOL
@@ -9250,7 +9250,7 @@ WINUSERAPI
 BOOL
 WINAPI
 LockSetForegroundWindow(
-    _In_ UINT uLockCode);
+    _Win32_AssociatedEnum_(FOREGROUND_WINDOW_LOCK_CODE) _In_ UINT uLockCode);
 
 #define LSFW_LOCK       1
 #define LSFW_UNLOCK     2
@@ -9278,7 +9278,7 @@ WINAPI
 GetDCEx(
     _In_opt_ HWND hWnd,
     _In_opt_ HRGN hrgnClip,
-    _In_ DWORD flags);
+    _Win32_AssociatedEnum_(GET_DCX_FLAGS) _In_ DWORD flags);
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
 #pragma endregion
@@ -9343,6 +9343,7 @@ GetUpdateRect(
     _Out_opt_ LPRECT lpRect,
     _In_ BOOL bErase);
 
+_Win32_AssociatedEnum_(GDI_REGION_TYPE)
 WINUSERAPI
 int
 WINAPI
@@ -9367,6 +9368,7 @@ SetWindowRgn(
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 
+_Win32_AssociatedEnum_(GDI_REGION_TYPE)
 WINUSERAPI
 int
 WINAPI
@@ -9376,6 +9378,7 @@ GetWindowRgn(
 
 #if(_WIN32_WINNT >= 0x0501)
 
+_Win32_AssociatedEnum_(GDI_REGION_TYPE)
 WINUSERAPI
 int
 WINAPI
@@ -9591,7 +9594,7 @@ WINAPI
 EnableScrollBar(
     _In_ HWND hWnd,
     _In_ UINT wSBflags,
-    _In_ UINT wArrows);
+    _Win32_AssociatedEnum_(ENABLE_SCROLL_BAR_ARROWS) _In_ UINT wArrows);
 
 
 /*
@@ -11213,7 +11216,7 @@ HWND
 WINAPI
 GetWindow(
     _In_ HWND hWnd,
-    _In_ UINT uCmd);
+    _Win32_AssociatedEnum_(GET_WINDOW_CMD) _In_ UINT uCmd);
 
 
 #ifndef NOWH
@@ -11273,7 +11276,7 @@ WINUSERAPI
 HHOOK
 WINAPI
 SetWindowsHookExA(
-    _In_ int idHook,
+    _Win32_AssociatedEnum_(WINDOWS_HOOK_ID) _In_ int idHook,
     _In_ HOOKPROC lpfn,
     _In_opt_ HINSTANCE hmod,
     _In_ DWORD dwThreadId);
@@ -11283,7 +11286,7 @@ WINUSERAPI
 HHOOK
 WINAPI
 SetWindowsHookExW(
-    _In_ int idHook,
+    _Win32_AssociatedEnum_(WINDOWS_HOOK_ID) _In_ int idHook,
     _In_ HOOKPROC lpfn,
     _In_opt_ HINSTANCE hmod,
     _In_ DWORD dwThreadId);
@@ -11757,7 +11760,7 @@ LookupIconIdFromDirectoryEx(
     _In_ BOOL fIcon,
     _In_ int cxDesired,
     _In_ int cyDesired,
-    _In_ UINT Flags);
+    _Win32_AssociatedEnum_(IMAGE_FLAGS) _In_ UINT Flags);
 #endif /* WINVER >= 0x0400 */
 _Win32_SetLastError_
 _Win32_SupportedOS_Windows2000_
@@ -11784,7 +11787,7 @@ CreateIconFromResourceEx(
     _In_ DWORD dwVer,
     _In_ int cxDesired,
     _In_ int cyDesired,
-    _In_ UINT Flags);
+    _Win32_AssociatedEnum_(IMAGE_FLAGS) _In_ UINT Flags);
 
 /* Icon/Cursor header */
 typedef struct tagCURSORSHAPE
@@ -11848,20 +11851,20 @@ WINAPI
 LoadImageA(
     _In_opt_ HINSTANCE hInst,
     _In_ LPCSTR name,
-    _In_ UINT type,
+    _Win32_AssociatedEnum_(GDI_IMAGE_TYPE) _In_ UINT type,
     _In_ int cx,
     _In_ int cy,
-    _In_ UINT fuLoad);
+    _Win32_AssociatedEnum_(IMAGE_FLAGS) _In_ UINT fuLoad);
 WINUSERAPI
 HANDLE
 WINAPI
 LoadImageW(
     _In_opt_ HINSTANCE hInst,
     _In_ LPCWSTR name,
-    _In_ UINT type,
+    _Win32_AssociatedEnum_(GDI_IMAGE_TYPE) _In_ UINT type,
     _In_ int cx,
     _In_ int cy,
-    _In_ UINT fuLoad);
+    _Win32_AssociatedEnum_(IMAGE_FLAGS) _In_ UINT fuLoad);
 #ifdef UNICODE
 #define LoadImage  LoadImageW
 #else
@@ -11875,10 +11878,10 @@ HANDLE
 WINAPI
 CopyImage(
     _In_ HANDLE h,
-    _In_ UINT type,
+    _Win32_AssociatedEnum_(GDI_IMAGE_TYPE) _In_ UINT type,
     _In_ int cx,
     _In_ int cy,
-    _In_ UINT flags);
+    _Win32_AssociatedEnum_(IMAGE_FLAGS) _In_ UINT flags);
 
 #define DI_MASK         0x0001
 #define DI_IMAGE        0x0002
@@ -12541,7 +12544,7 @@ DlgDirListA(
     _Inout_ LPSTR lpPathSpec,
     _In_ int nIDListBox,
     _In_ int nIDStaticPath,
-    _In_ UINT uFileType);
+    _Win32_AssociatedEnum_(DLG_DIR_LIST_FILE_TYPE) _In_ UINT uFileType);
 WINUSERAPI
 int
 WINAPI
@@ -12550,7 +12553,7 @@ DlgDirListW(
     _Inout_ LPWSTR lpPathSpec,
     _In_ int nIDListBox,
     _In_ int nIDStaticPath,
-    _In_ UINT uFileType);
+    _Win32_AssociatedEnum_(DLG_DIR_LIST_FILE_TYPE) _In_ UINT uFileType);
 #ifdef UNICODE
 #define DlgDirList  DlgDirListW
 #else
@@ -12613,7 +12616,7 @@ DlgDirListComboBoxA(
     _Inout_ LPSTR lpPathSpec,
     _In_ int nIDComboBox,
     _In_ int nIDStaticPath,
-    _In_ UINT uFiletype);
+    _Win32_AssociatedEnum_(DLG_DIR_LIST_FILE_TYPE) _In_ UINT uFiletype);
 WINUSERAPI
 int
 WINAPI
@@ -12622,7 +12625,7 @@ DlgDirListComboBoxW(
     _Inout_ LPWSTR lpPathSpec,
     _In_ int nIDComboBox,
     _In_ int nIDStaticPath,
-    _In_ UINT uFiletype);
+    _Win32_AssociatedEnum_(DLG_DIR_LIST_FILE_TYPE) _In_ UINT uFiletype);
 #ifdef UNICODE
 #define DlgDirListComboBox  DlgDirListComboBoxW
 #else
@@ -13224,7 +13227,7 @@ WORD
 WINAPI
 TileWindows(
     _In_opt_ HWND hwndParent,
-    _In_ UINT wHow,
+    _Win32_AssociatedEnum_(TILE_WINDOWS_HOW) _In_ UINT wHow,
     _In_opt_ CONST RECT * lpRect,
     _In_ UINT cKids,
     _In_reads_opt_(cKids) const HWND FAR * lpKids);
@@ -13235,7 +13238,7 @@ WINUSERAPI
 WORD
 WINAPI CascadeWindows(
     _In_opt_ HWND hwndParent,
-    _In_ UINT wHow,
+    _Win32_AssociatedEnum_(CASCADE_WINDOWS_HOW) _In_ UINT wHow,
     _In_opt_ CONST RECT * lpRect,
     _In_ UINT cKids,
     _In_reads_opt_(cKids) const HWND FAR * lpKids);
@@ -14126,7 +14129,7 @@ BOOL
 WINAPI
 EnumDisplaySettingsA(
     _In_opt_ LPCSTR lpszDeviceName,
-    _In_ DWORD iModeNum,
+    _Win32_AssociatedEnum_(ENUM_DISPLAY_SETTINGS_MODE) _In_ DWORD iModeNum,
     _Inout_ DEVMODEA* lpDevMode);
 _Win32_SupportedOS_Windows2000_
 WINUSERAPI
@@ -14134,7 +14137,7 @@ BOOL
 WINAPI
 EnumDisplaySettingsW(
     _In_opt_ LPCWSTR lpszDeviceName,
-    _In_ DWORD iModeNum,
+    _Win32_AssociatedEnum_(ENUM_DISPLAY_SETTINGS_MODE) _In_ DWORD iModeNum,
     _Inout_ DEVMODEW* lpDevMode);
 #ifdef UNICODE
 #define EnumDisplaySettings  EnumDisplaySettingsW
@@ -14150,7 +14153,7 @@ BOOL
 WINAPI
 EnumDisplaySettingsExA(
     _In_opt_ LPCSTR lpszDeviceName,
-    _In_ DWORD iModeNum,
+    _Win32_AssociatedEnum_(ENUM_DISPLAY_SETTINGS_MODE) _In_ DWORD iModeNum,
     _Inout_ DEVMODEA* lpDevMode,
     _Win32_AssociatedEnum_(ENUM_DISPLAY_SETTINGS_FLAGS) _In_ DWORD dwFlags);
 WINUSERAPI
@@ -14158,7 +14161,7 @@ BOOL
 WINAPI
 EnumDisplaySettingsExW(
     _In_opt_ LPCWSTR lpszDeviceName,
-    _In_ DWORD iModeNum,
+    _Win32_AssociatedEnum_(ENUM_DISPLAY_SETTINGS_MODE) _In_ DWORD iModeNum,
     _Inout_ DEVMODEW* lpDevMode,
     _Win32_AssociatedEnum_(ENUM_DISPLAY_SETTINGS_FLAGS) _In_ DWORD dwFlags);
 #ifdef UNICODE
@@ -14265,7 +14268,7 @@ SystemParametersInfoA(
     _Win32_AssociatedEnum_(SYSTEM_PARAMETERS_INFO_ACTION) _In_ UINT uiAction,
     _In_ UINT uiParam,
     _Pre_maybenull_ _Post_valid_ PVOID pvParam,
-    _In_ UINT fWinIni);
+    _Win32_AssociatedEnum_(SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS) _In_ UINT fWinIni);
 WINUSERAPI
 _Success_(return != FALSE)
 BOOL
@@ -14274,7 +14277,7 @@ SystemParametersInfoW(
     _Win32_AssociatedEnum_(SYSTEM_PARAMETERS_INFO_ACTION) _In_ UINT uiAction,
     _In_ UINT uiParam,
     _Pre_maybenull_ _Post_valid_ PVOID pvParam,
-    _In_ UINT fWinIni);
+    _Win32_AssociatedEnum_(SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS) _In_ UINT fWinIni);
 #ifdef UNICODE
 #define SystemParametersInfo  SystemParametersInfoW
 #else
@@ -14627,21 +14630,21 @@ HMONITOR
 WINAPI
 MonitorFromPoint(
     _In_ POINT pt,
-    _In_ DWORD dwFlags);
+    _Win32_AssociatedEnum_(MONITOR_FROM_FLAGS) _In_ DWORD dwFlags);
 
 WINUSERAPI
 HMONITOR
 WINAPI
 MonitorFromRect(
     _In_ LPCRECT lprc,
-    _In_ DWORD dwFlags);
+    _Win32_AssociatedEnum_(MONITOR_FROM_FLAGS) _In_ DWORD dwFlags);
 
 WINUSERAPI
 HMONITOR
 WINAPI
 MonitorFromWindow(
     _In_ HWND hwnd,
-    _In_ DWORD dwFlags);
+    _Win32_AssociatedEnum_(MONITOR_FROM_FLAGS) _In_ DWORD dwFlags);
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
 #pragma endregion
@@ -15797,7 +15800,7 @@ BOOL
 WINAPI
 GetMenuBarInfo(
     _In_ HWND hwnd,
-    _In_ LONG idObject,
+    _Win32_AssociatedEnum_(OBJECT_IDENTIFIER) _In_ LONG idObject,
     _In_ LONG idItem,
     _Inout_ PMENUBARINFO pmbi);
 
@@ -15822,7 +15825,7 @@ BOOL
 WINAPI
 GetScrollBarInfo(
     _In_ HWND hwnd,
-    _In_ LONG idObject,
+    _Win32_AssociatedEnum_(OBJECT_IDENTIFIER) _In_ LONG idObject,
     _Inout_ PSCROLLBARINFO psbi);
 
 /*
@@ -15867,7 +15870,7 @@ HWND
 WINAPI
 GetAncestor(
     _In_ HWND hwnd,
-    _In_ UINT gaFlags);
+    _Win32_AssociatedEnum_(GET_ANCESTOR_FLAGS) _In_ UINT gaFlags);
 _Win32_SupportedOS_Windows2000_
 
 
@@ -16281,7 +16284,7 @@ UINT
 WINAPI
 GetRawInputData(
     _In_ HRAWINPUT hRawInput,
-    _In_ UINT uiCommand,
+    _Win32_AssociatedEnum_(RAW_INPUT_DATA_COMMAND_FLAGS) _In_ UINT uiCommand,
     _Out_writes_bytes_to_opt_(*pcbSize, return) LPVOID pData,
     _Inout_ PUINT pcbSize,
     _In_ UINT cbSizeHeader);
@@ -16344,7 +16347,7 @@ UINT
 WINAPI
 GetRawInputDeviceInfoA(
     _In_opt_ HANDLE hDevice,
-    _In_ UINT uiCommand,
+    _Win32_AssociatedEnum_(RAW_INPUT_DEVICE_INFO_COMMAND) _In_ UINT uiCommand,
     _Inout_updates_bytes_to_opt_(*pcbSize, *pcbSize) LPVOID pData,
     _Inout_ PUINT pcbSize);
 _Win32_SetLastError_
@@ -16354,7 +16357,7 @@ UINT
 WINAPI
 GetRawInputDeviceInfoW(
     _In_opt_ HANDLE hDevice,
-    _In_ UINT uiCommand,
+    _Win32_AssociatedEnum_(RAW_INPUT_DEVICE_INFO_COMMAND) _In_ UINT uiCommand,
     _Inout_updates_bytes_to_opt_(*pcbSize, *pcbSize) LPVOID pData,
     _Inout_ PUINT pcbSize);
 #ifdef UNICODE
@@ -16752,7 +16755,7 @@ BOOL
 WINAPI
 ChangeWindowMessageFilter(
     _In_ UINT message,
-    _In_ DWORD dwFlag);
+    _Win32_AssociatedEnum_(CHANGE_WINDOW_MESSAGE_FILTER_FLAGS) _In_ DWORD dwFlag);
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
 #pragma endregion
@@ -16797,7 +16800,7 @@ BOOL
 WINAPI
 ChangeWindowMessageFilterEx(
     _In_ HWND hwnd,                                         // Window
-    _In_ UINT message,                                      // WM_ message
+    _In_ UINT message,                                      _Win32_AssociatedEnum_(WINDOW_MESSAGE_FILTER_ACTION) // WM_ message
     _In_ DWORD action,                                      // Message filter action value
     _Inout_opt_ PCHANGEFILTERSTRUCT pChangeFilterStruct);   // Optional
 
@@ -17798,4 +17801,107 @@ _Win32_AnnotateField_(HELPINFO::iContextType, _Win32_AssociatedEnum_(HELP_INFO_T
 _Win32_Enum_(DESKTOP_CONTROL_FLAGS, unsigned int, DF_ALLOWOTHERACCOUNTHOOK);
 _Win32_Enum_(MAP_VIRTUAL_KEY_TYPE, unsigned int, MAPVK_VK_TO_VSC, MAPVK_VSC_TO_VK, MAPVK_VK_TO_CHAR, MAPVK_VSC_TO_VK_EX, MAPVK_VK_TO_VSC_EX);
 _Win32_FlagsEnum_(ENUM_DISPLAY_SETTINGS_FLAGS, unsigned int, EDS_RAWMODE, EDS_ROTATEDMODE);
+#endif
+
+#ifndef _WIN32METADATA_WINUSER_EXPLICIT_183_GROUPS_
+#define _WIN32METADATA_WINUSER_EXPLICIT_183_GROUPS_
+_Win32_Enum_(SHOW_WINDOW_STATUS, unsigned int, SW_PARENTCLOSING, SW_OTHERZOOM, SW_PARENTOPENING, SW_OTHERUNZOOM);
+_Win32_Enum_(OBJECT_IDENTIFIER, int, OBJID_WINDOW, OBJID_SYSMENU, OBJID_TITLEBAR, OBJID_MENU, OBJID_CLIENT, OBJID_VSCROLL, OBJID_HSCROLL, OBJID_SIZEGRIP, OBJID_CARET, OBJID_CURSOR, OBJID_ALERT, OBJID_SOUND, OBJID_QUERYCLASSNAMEIDX, OBJID_NATIVEOM);
+_Win32_Enum_(ENUM_DISPLAY_SETTINGS_MODE, unsigned int, ENUM_CURRENT_SETTINGS, ENUM_REGISTRY_SETTINGS);
+_Win32_FlagsEnum_(MENU_ITEM_TYPE, unsigned int, MFT_BITMAP, MFT_MENUBARBREAK, MFT_MENUBREAK, MFT_OWNERDRAW, MFT_RADIOCHECK, MFT_RIGHTJUSTIFY, MFT_RIGHTORDER, MFT_SEPARATOR, MFT_STRING);
+_Win32_AnnotateField_(MENUITEMINFOW::fType, _Win32_AssociatedEnum_(MENU_ITEM_TYPE));
+_Win32_AnnotateField_(MENUITEMINFOA::fType, _Win32_AssociatedEnum_(MENU_ITEM_TYPE));
+_Win32_Enum_(RAW_INPUT_DATA_COMMAND_FLAGS, unsigned int, RID_HEADER, RID_INPUT);
+_Win32_FlagsEnum_(BROADCAST_SYSTEM_MESSAGE_FLAGS, unsigned int, BSF_ALLOWSFW, BSF_FLUSHDISK, BSF_FORCEIFHUNG, BSF_IGNORECURRENTTASK, BSF_NOHANG, BSF_NOTIMEOUTIFNOTHUNG, BSF_POSTMESSAGE, BSF_QUERY, BSF_SENDNOTIFYMESSAGE, BSF_LUID, BSF_RETURNHDESK);
+_Win32_FlagsEnum_(GET_DCX_FLAGS, unsigned int, DCX_WINDOW, DCX_CACHE, DCX_PARENTCLIP, DCX_CLIPSIBLINGS, DCX_CLIPCHILDREN, DCX_NORESETATTRS, DCX_LOCKWINDOWUPDATE, DCX_EXCLUDERGN, DCX_INTERSECTRGN, DCX_INTERSECTUPDATE, DCX_VALIDATE);
+_Win32_FlagsEnum_(HOT_KEY_MODIFIERS, unsigned int, MOD_ALT, MOD_CONTROL, MOD_NOREPEAT, MOD_SHIFT, MOD_WIN);
+_Win32_Enum_(RAW_INPUT_DEVICE_INFO_COMMAND, unsigned int, RIDI_PREPARSEDDATA, RIDI_DEVICENAME, RIDI_DEVICEINFO);
+_Win32_Enum_(UPDATE_LAYERED_WINDOW_FLAGS, unsigned int, ULW_ALPHA, ULW_COLORKEY, ULW_OPAQUE, ULW_EX_NORESIZE);
+_Win32_AnnotateField_(UPDATELAYEREDWINDOWINFO::dwFlags, _Win32_AssociatedEnum_(UPDATE_LAYERED_WINDOW_FLAGS));
+_Win32_FlagsEnum_(ANIMATE_WINDOW_FLAGS, unsigned int, AW_ACTIVATE, AW_BLEND, AW_CENTER, AW_HIDE, AW_HOR_POSITIVE, AW_HOR_NEGATIVE, AW_SLIDE, AW_VER_POSITIVE, AW_VER_NEGATIVE);
+_Win32_Enum_(CHANGE_WINDOW_MESSAGE_FILTER_FLAGS, unsigned int, MSGFLT_ADD, MSGFLT_REMOVE);
+_Win32_Enum_(GDI_IMAGE_TYPE, unsigned int, IMAGE_BITMAP, IMAGE_CURSOR, IMAGE_ICON);
+_Win32_Enum_(WINDOWS_HOOK_ID, int, WH_CALLWNDPROC, WH_CALLWNDPROCRET, WH_CBT, WH_DEBUG, WH_FOREGROUNDIDLE, WH_GETMESSAGE, WH_JOURNALPLAYBACK, WH_JOURNALRECORD, WH_KEYBOARD, WH_KEYBOARD_LL, WH_MOUSE, WH_MOUSE_LL, WH_MSGFILTER, WH_SHELL, WH_SYSMSGFILTER);
+_Win32_Enum_(REGISTER_TOUCH_WINDOW_FLAGS, unsigned int, TWF_FINETOUCH, TWF_WANTPALM);
+_Win32_FlagsEnum_(IMAGE_FLAGS, unsigned int, LR_CREATEDIBSECTION, LR_DEFAULTCOLOR, LR_DEFAULTSIZE, LR_LOADFROMFILE, LR_LOADMAP3DCOLORS, LR_LOADTRANSPARENT, LR_MONOCHROME, LR_SHARED, LR_VGACOLOR, LR_COPYDELETEORG, LR_COPYFROMRESOURCE, LR_COPYRETURNORG);
+_Win32_FlagsEnum_(BROADCAST_SYSTEM_MESSAGE_INFO, unsigned int, BSM_ALLCOMPONENTS, BSM_ALLDESKTOPS, BSM_APPLICATIONS);
+_Win32_FlagsEnum_(SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS, unsigned int, SPIF_UPDATEINIFILE, SPIF_SENDCHANGE, SPIF_SENDWININICHANGE);
+_Win32_Enum_(MONITOR_FROM_FLAGS, unsigned int, MONITOR_DEFAULTTONEAREST, MONITOR_DEFAULTTONULL, MONITOR_DEFAULTTOPRIMARY);
+_Win32_Enum_(PRINT_WINDOW_FLAGS, unsigned int, PW_CLIENTONLY);
+_Win32_FlagsEnum_(SET_WINDOW_POS_FLAGS, unsigned int, SWP_ASYNCWINDOWPOS, SWP_DEFERERASE, SWP_DRAWFRAME, SWP_FRAMECHANGED, SWP_HIDEWINDOW, SWP_NOACTIVATE, SWP_NOCOPYBITS, SWP_NOMOVE, SWP_NOOWNERZORDER, SWP_NOREDRAW, SWP_NOREPOSITION, SWP_NOSENDCHANGING, SWP_NOSIZE, SWP_NOZORDER, SWP_SHOWWINDOW);
+_Win32_AnnotateField_(WINDOWPOS::flags, _Win32_AssociatedEnum_(SET_WINDOW_POS_FLAGS));
+_Win32_FlagsEnum_(DLG_DIR_LIST_FILE_TYPE, unsigned int, DDL_ARCHIVE, DDL_DIRECTORY, DDL_DRIVES, DDL_EXCLUSIVE, DDL_HIDDEN, DDL_READONLY, DDL_READWRITE, DDL_SYSTEM, DDL_POSTMSGS);
+_Win32_Enum_(USER_OBJECT_INFORMATION_INDEX, int, UOI_FLAGS, UOI_HEAPSIZE, UOI_IO, UOI_NAME, UOI_TYPE, UOI_USER_SID);
+_Win32_Enum_(ACTIVATE_KEYBOARD_LAYOUT_FLAGS, unsigned int, KLF_REORDER, KLF_RESET, KLF_SETFORPROCESS, KLF_SHIFTLOCK, KLF_ACTIVATE, KLF_NOTELLSHELL, KLF_REPLACELANG, KLF_SUBSTITUTE_OK);
+_Win32_Enum_(ENABLE_SCROLL_BAR_ARROWS, unsigned int, ESB_DISABLE_BOTH, ESB_DISABLE_DOWN, ESB_DISABLE_LEFT, ESB_DISABLE_LTUP, ESB_DISABLE_RIGHT, ESB_DISABLE_RTDN, ESB_DISABLE_UP, ESB_ENABLE_BOTH);
+_Win32_FlagsEnum_(LAYERED_WINDOW_ATTRIBUTES_FLAGS, unsigned int, LWA_ALPHA, LWA_COLORKEY);
+_Win32_FlagsEnum_(SEND_MESSAGE_TIMEOUT_FLAGS, unsigned int, SMTO_ABORTIFHUNG, SMTO_BLOCK, SMTO_NORMAL, SMTO_NOTIMEOUTIFNOTHUNG, SMTO_ERRORONEXIT);
+_Win32_Enum_(GET_WINDOW_CMD, unsigned int, GW_CHILD, GW_ENABLEDPOPUP, GW_HWNDFIRST, GW_HWNDLAST, GW_HWNDNEXT, GW_HWNDPREV, GW_OWNER);
+_Win32_Enum_(SYSTEM_METRICS_INDEX, int, SM_ARRANGE, SM_CLEANBOOT, SM_CMONITORS, SM_CMOUSEBUTTONS, SM_CONVERTIBLESLATEMODE, SM_CXBORDER, SM_CXCURSOR, SM_CXDLGFRAME, SM_CXDOUBLECLK, SM_CXDRAG, SM_CXEDGE, SM_CXFIXEDFRAME, SM_CXFOCUSBORDER, SM_CXFRAME, SM_CXFULLSCREEN, SM_CXHSCROLL, SM_CXHTHUMB, SM_CXICON, SM_CXICONSPACING, SM_CXMAXIMIZED, SM_CXMAXTRACK, SM_CXMENUCHECK, SM_CXMENUSIZE, SM_CXMIN, SM_CXMINIMIZED, SM_CXMINSPACING, SM_CXMINTRACK, SM_CXPADDEDBORDER, SM_CXSCREEN, SM_CXSIZE, SM_CXSIZEFRAME, SM_CXSMICON, SM_CXSMSIZE, SM_CXVIRTUALSCREEN, SM_CXVSCROLL, SM_CYBORDER, SM_CYCAPTION, SM_CYCURSOR, SM_CYDLGFRAME, SM_CYDOUBLECLK, SM_CYDRAG, SM_CYEDGE, SM_CYFIXEDFRAME, SM_CYFOCUSBORDER, SM_CYFRAME, SM_CYFULLSCREEN, SM_CYHSCROLL, SM_CYICON, SM_CYICONSPACING, SM_CYKANJIWINDOW, SM_CYMAXIMIZED, SM_CYMAXTRACK, SM_CYMENU, SM_CYMENUCHECK, SM_CYMENUSIZE, SM_CYMIN, SM_CYMINIMIZED, SM_CYMINSPACING, SM_CYMINTRACK, SM_CYSCREEN, SM_CYSIZE, SM_CYSIZEFRAME, SM_CYSMCAPTION, SM_CYSMICON, SM_CYSMSIZE, SM_CYVIRTUALSCREEN, SM_CYVSCROLL, SM_CYVTHUMB, SM_DBCSENABLED, SM_DEBUG, SM_DIGITIZER, SM_IMMENABLED, SM_MAXIMUMTOUCHES, SM_MEDIACENTER, SM_MENUDROPALIGNMENT, SM_MIDEASTENABLED, SM_MOUSEPRESENT, SM_MOUSEHORIZONTALWHEELPRESENT, SM_MOUSEWHEELPRESENT, SM_NETWORK, SM_PENWINDOWS, SM_REMOTECONTROL, SM_REMOTESESSION, SM_SAMEDISPLAYFORMAT, SM_SECURE, SM_SERVERR2, SM_SHOWSOUNDS, SM_SHUTTINGDOWN, SM_SLOWMACHINE, SM_STARTER, SM_SWAPBUTTON, SM_SYSTEMDOCKED, SM_TABLETPC, SM_XVIRTUALSCREEN, SM_YVIRTUALSCREEN);
+_Win32_Enum_(GET_MOUSE_MOVE_POINTS_EX_RESOLUTION, unsigned int, GMMP_USE_DISPLAY_POINTS, GMMP_USE_HIGH_RESOLUTION_POINTS);
+_Win32_Enum_(DLG_BUTTON_CHECK_STATE, unsigned int, BST_CHECKED, BST_INDETERMINATE, BST_UNCHECKED);
+_Win32_FlagsEnum_(KEYBD_EVENT_FLAGS, unsigned int, KEYEVENTF_EXTENDEDKEY, KEYEVENTF_KEYUP, KEYEVENTF_SCANCODE, KEYEVENTF_UNICODE);
+_Win32_AnnotateField_(KEYBDINPUT::dwFlags, _Win32_AssociatedEnum_(KEYBD_EVENT_FLAGS));
+_Win32_Enum_(GET_ANCESTOR_FLAGS, unsigned int, GA_PARENT, GA_ROOT, GA_ROOTOWNER);
+_Win32_FlagsEnum_(DRAW_CAPTION_FLAGS, unsigned int, DC_ACTIVE, DC_BUTTONS, DC_GRADIENT, DC_ICON, DC_INBUTTON, DC_SMALLCAP, DC_TEXT);
+_Win32_Enum_(TILE_WINDOWS_HOW, unsigned int, MDITILE_HORIZONTAL, MDITILE_VERTICAL);
+_Win32_Enum_(WINDOW_DISPLAY_AFFINITY, unsigned int, WDA_NONE, WDA_MONITOR, WDA_EXCLUDEFROMCAPTURE);
+_Win32_Enum_(FOREGROUND_WINDOW_LOCK_CODE, unsigned int, LSFW_LOCK, LSFW_UNLOCK);
+_Win32_Enum_(MOUSE_EVENT_FLAGS, unsigned int, MOUSEEVENTF_ABSOLUTE, MOUSEEVENTF_LEFTDOWN, MOUSEEVENTF_LEFTUP, MOUSEEVENTF_MIDDLEDOWN, MOUSEEVENTF_MIDDLEUP, MOUSEEVENTF_MOVE, MOUSEEVENTF_RIGHTDOWN, MOUSEEVENTF_RIGHTUP, MOUSEEVENTF_WHEEL, MOUSEEVENTF_XDOWN, MOUSEEVENTF_XUP, MOUSEEVENTF_HWHEEL, MOUSEEVENTF_MOVE_NOCOALESCE, MOUSEEVENTF_VIRTUALDESK);
+_Win32_AnnotateField_(MOUSEINPUT::dwFlags, _Win32_AssociatedEnum_(MOUSE_EVENT_FLAGS));
+_Win32_FlagsEnum_(CASCADE_WINDOWS_HOW, unsigned int, MDITILE_SKIPDISABLED, MDITILE_ZORDER);
+_Win32_Enum_(WINDOW_MESSAGE_FILTER_ACTION, unsigned int, MSGFLT_ALLOW, MSGFLT_DISALLOW, MSGFLT_RESET);
+_Win32_FlagsEnum_(GET_MENU_DEFAULT_ITEM_FLAGS, unsigned int, GMDI_GOINTOPOPUPS, GMDI_USEDISABLED);
+_Win32_Enum_(SOUND_SENTRY_GRAPHICS_EFFECT, unsigned int, SSGF_DISPLAY, SSGF_NONE);
+_Win32_AnnotateField_(SOUNDSENTRYW::iFSGrafEffect, _Win32_AssociatedEnum_(SOUND_SENTRY_GRAPHICS_EFFECT));
+_Win32_AnnotateField_(SOUNDSENTRYA::iFSGrafEffect, _Win32_AssociatedEnum_(SOUND_SENTRY_GRAPHICS_EFFECT));
+_Win32_Enum_(RID_DEVICE_INFO_TYPE, unsigned int, RIM_TYPEMOUSE, RIM_TYPEKEYBOARD, RIM_TYPEHID);
+_Win32_AnnotateField_(RID_DEVICE_INFO::dwType, _Win32_AssociatedEnum_(RID_DEVICE_INFO_TYPE));
+_Win32_AnnotateField_(RAWINPUTDEVICELIST::dwType, _Win32_AssociatedEnum_(RID_DEVICE_INFO_TYPE));
+_Win32_Enum_(MSGFLTINFO_STATUS, unsigned int, MSGFLTINFO_NONE, MSGFLTINFO_ALLOWED_HIGHER, MSGFLTINFO_ALREADYALLOWED_FORWND, MSGFLTINFO_ALREADYDISALLOWED_FORWND);
+_Win32_AnnotateField_(CHANGEFILTERSTRUCT::ExtStatus, _Win32_AssociatedEnum_(MSGFLTINFO_STATUS));
+_Win32_FlagsEnum_(SERIALKEYS_FLAGS, unsigned int, SERKF_AVAILABLE, SERKF_INDICATOR, SERKF_SERIALKEYSON);
+_Win32_AnnotateField_(SERIALKEYSW::dwFlags, _Win32_AssociatedEnum_(SERIALKEYS_FLAGS));
+_Win32_AnnotateField_(SERIALKEYSA::dwFlags, _Win32_AssociatedEnum_(SERIALKEYS_FLAGS));
+_Win32_FlagsEnum_(HIGHCONTRASTW_FLAGS, unsigned int, HCF_HIGHCONTRASTON, HCF_AVAILABLE, HCF_HOTKEYACTIVE, HCF_CONFIRMHOTKEY, HCF_HOTKEYSOUND, HCF_INDICATOR, HCF_HOTKEYAVAILABLE, HCF_OPTION_NOTHEMECHANGE);
+_Win32_AnnotateField_(HIGHCONTRASTW::dwFlags, _Win32_AssociatedEnum_(HIGHCONTRASTW_FLAGS));
+_Win32_AnnotateField_(HIGHCONTRASTA::dwFlags, _Win32_AssociatedEnum_(HIGHCONTRASTW_FLAGS));
+_Win32_Enum_(SOUNDSENTRY_TEXT_EFFECT, unsigned int, SSTF_BORDER, SSTF_CHARS, SSTF_DISPLAY, SSTF_NONE);
+_Win32_AnnotateField_(SOUNDSENTRYA::iFSTextEffect, _Win32_AssociatedEnum_(SOUNDSENTRY_TEXT_EFFECT));
+_Win32_AnnotateField_(SOUNDSENTRYW::iFSTextEffect, _Win32_AssociatedEnum_(SOUNDSENTRY_TEXT_EFFECT));
+_Win32_Enum_(COMBOBOXINFO_BUTTON_STATE, unsigned int, STATE_SYSTEM_INVISIBLE, STATE_SYSTEM_PRESSED, STATE_SYSTEM_FOCUSABLE, STATE_SYSTEM_OFFSCREEN, STATE_SYSTEM_UNAVAILABLE);
+_Win32_AnnotateField_(COMBOBOXINFO::stateButton, _Win32_AssociatedEnum_(COMBOBOXINFO_BUTTON_STATE));
+_Win32_FlagsEnum_(MENU_ITEM_MASK, unsigned int, MIIM_BITMAP, MIIM_CHECKMARKS, MIIM_DATA, MIIM_FTYPE, MIIM_ID, MIIM_STATE, MIIM_STRING, MIIM_SUBMENU, MIIM_TYPE);
+_Win32_AnnotateField_(MENUITEMINFOA::fMask, _Win32_AssociatedEnum_(MENU_ITEM_MASK));
+_Win32_AnnotateField_(MENUITEMINFOW::fMask, _Win32_AssociatedEnum_(MENU_ITEM_MASK));
+_Win32_FlagsEnum_(FLASHWINFO_FLAGS, unsigned int, FLASHW_ALL, FLASHW_CAPTION, FLASHW_STOP, FLASHW_TIMER, FLASHW_TIMERNOFG, FLASHW_TRAY);
+_Win32_AnnotateField_(FLASHWINFO::dwFlags, _Win32_AssociatedEnum_(FLASHWINFO_FLAGS));
+_Win32_Enum_(CURSORINFO_FLAGS, unsigned int, CURSOR_SHOWING, CURSOR_SUPPRESSED);
+_Win32_AnnotateField_(CURSORINFO::flags, _Win32_AssociatedEnum_(CURSORINFO_FLAGS));
+_Win32_FlagsEnum_(RAWINPUTDEVICE_FLAGS, unsigned int, RIDEV_REMOVE, RIDEV_EXCLUDE, RIDEV_PAGEONLY, RIDEV_NOLEGACY, RIDEV_INPUTSINK, RIDEV_CAPTUREMOUSE, RIDEV_NOHOTKEYS, RIDEV_APPKEYS, RIDEV_EXINPUTSINK, RIDEV_DEVNOTIFY);
+_Win32_AnnotateField_(RAWINPUTDEVICE::dwFlags, _Win32_AssociatedEnum_(RAWINPUTDEVICE_FLAGS));
+_Win32_Enum_(INPUT_TYPE, unsigned int, INPUT_MOUSE, INPUT_KEYBOARD, INPUT_HARDWARE);
+_Win32_AnnotateField_(INPUT::type, _Win32_AssociatedEnum_(INPUT_TYPE));
+_Win32_FlagsEnum_(MENUINFO_STYLE, unsigned int, MNS_AUTODISMISS, MNS_CHECKORBMP, MNS_DRAGDROP, MNS_MODELESS, MNS_NOCHECK, MNS_NOTIFYBYPOS);
+_Win32_AnnotateField_(MENUINFO::dwStyle, _Win32_AssociatedEnum_(MENUINFO_STYLE));
+_Win32_FlagsEnum_(WINDOWPLACEMENT_FLAGS, unsigned int, WPF_ASYNCWINDOWPLACEMENT, WPF_RESTORETOMAXIMIZED, WPF_SETMINPOSITION);
+_Win32_AnnotateField_(WINDOWPLACEMENT::flags, _Win32_AssociatedEnum_(WINDOWPLACEMENT_FLAGS));
+_Win32_FlagsEnum_(MENUINFO_MASK, unsigned int, MIM_APPLYTOSUBMENUS, MIM_BACKGROUND, MIM_HELPID, MIM_MAXHEIGHT, MIM_MENUDATA, MIM_STYLE);
+_Win32_AnnotateField_(MENUINFO::fMask, _Win32_AssociatedEnum_(MENUINFO_MASK));
+_Win32_Enum_(SOUNDSENTRY_WINDOWS_EFFECT, unsigned int, SSWF_CUSTOM, SSWF_DISPLAY, SSWF_NONE, SSWF_TITLE, SSWF_WINDOW);
+_Win32_AnnotateField_(SOUNDSENTRYA::iWindowsEffect, _Win32_AssociatedEnum_(SOUNDSENTRY_WINDOWS_EFFECT));
+_Win32_AnnotateField_(SOUNDSENTRYW::iWindowsEffect, _Win32_AssociatedEnum_(SOUNDSENTRY_WINDOWS_EFFECT));
+_Win32_Enum_(MINIMIZEDMETRICS_ARRANGE, int, ARW_BOTTOMLEFT, ARW_BOTTOMRIGHT, ARW_TOPLEFT, ARW_TOPRIGHT);
+_Win32_AnnotateField_(MINIMIZEDMETRICS::iArrange, _Win32_AssociatedEnum_(MINIMIZEDMETRICS_ARRANGE));
+_Win32_FlagsEnum_(SCROLLINFO_MASK, unsigned int, SIF_ALL, SIF_DISABLENOSCROLL, SIF_PAGE, SIF_POS, SIF_RANGE, SIF_TRACKPOS);
+_Win32_AnnotateField_(SCROLLINFO::fMask, _Win32_AssociatedEnum_(SCROLLINFO_MASK));
+_Win32_Enum_(MENUGETOBJECTINFO_FLAGS, unsigned int, MNGOF_BOTTOMGAP, MNGOF_TOPGAP);
+_Win32_AnnotateField_(MENUGETOBJECTINFO::dwFlags, _Win32_AssociatedEnum_(MENUGETOBJECTINFO_FLAGS));
+_Win32_FlagsEnum_(GUITHREADINFO_FLAGS, unsigned int, GUI_CARETBLINKING, GUI_INMENUMODE, GUI_INMOVESIZE, GUI_POPUPMENUMODE, GUI_SYSTEMMENUMODE);
+_Win32_AnnotateField_(GUITHREADINFO::flags, _Win32_AssociatedEnum_(GUITHREADINFO_FLAGS));
+_Win32_FlagsEnum_(ACCEL_VIRT_FLAGS, unsigned char, FVIRTKEY, FNOINVERT, FSHIFT, FCONTROL, FALT);
+_Win32_AnnotateField_(ACCEL::fVirt, _Win32_AssociatedEnum_(ACCEL_VIRT_FLAGS));
+_Win32_Enum_(SCROLLBAR_COMMAND, int, SB_LINEUP, SB_LINELEFT, SB_LINEDOWN, SB_LINERIGHT, SB_PAGEUP, SB_PAGELEFT, SB_PAGEDOWN, SB_PAGERIGHT, SB_THUMBPOSITION, SB_THUMBTRACK, SB_TOP, SB_LEFT, SB_RIGHT, SB_BOTTOM, SB_ENDSCROLL);
+_Win32_Enum_(MOUSE_STATE, unsigned short, MOUSE_MOVE_RELATIVE, MOUSE_MOVE_ABSOLUTE, MOUSE_VIRTUAL_DESKTOP, MOUSE_ATTRIBUTES_CHANGED, MOUSE_MOVE_NOCOALESCE);
+_Win32_AnnotateField_(RAWMOUSE::usFlags, _Win32_AssociatedEnum_(MOUSE_STATE));
 #endif

@@ -46,7 +46,16 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/CommCtrl.h b/generation/W
  WINCOMMCTRLAPI BOOL        WINAPI ImageList_SetOverlayImage(_In_ HIMAGELIST himl, _In_ int iImage, _In_ int iOverlay);
  
  #define     ImageList_AddIcon(himl, hicon) ImageList_ReplaceIcon(himl, -1, hicon)
-@@ -601,12 +611,15 @@
+@@ -593,7 +603,7 @@
+ #define ILGT_ASYNC              0x00000001
+ #endif
+ 
+-WINCOMMCTRLAPI BOOL WINAPI ImageList_Draw(_In_ HIMAGELIST himl, _In_ int i, _In_ HDC hdcDst, _In_ int x, _In_ int y, _In_ UINT fStyle);
++WINCOMMCTRLAPI BOOL WINAPI ImageList_Draw(_In_ HIMAGELIST himl, _In_ int i, _In_ HDC hdcDst, _In_ int x, _In_ int y, _Win32_AssociatedEnum_(IMAGE_LIST_DRAW_STYLE) _In_ UINT fStyle);
+ 
+ 
+ #ifdef _WIN32
+@@ -601,16 +611,19 @@
  #if (NTDDI_VERSION >= NTDDI_VISTA)
  #define HBITMAP_CALLBACK               ((HBITMAP)-1)       // only for SparseImageList
  #endif
@@ -56,14 +65,26 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/CommCtrl.h b/generation/W
 +_Win32_SupportedOS_WindowsVista_
  
  WINCOMMCTRLAPI int         WINAPI ImageList_AddMasked(_In_ HIMAGELIST himl, _In_ HBITMAP hbmImage, _In_ COLORREF crMask);
- WINCOMMCTRLAPI BOOL        WINAPI ImageList_DrawEx(_In_ HIMAGELIST himl, _In_ int i, _In_ HDC hdcDst, _In_ int x, _In_ int y, _In_ int dx, _In_ int dy, _In_ COLORREF rgbBk, _In_ COLORREF rgbFg, _In_ UINT fStyle);
+-WINCOMMCTRLAPI BOOL        WINAPI ImageList_DrawEx(_In_ HIMAGELIST himl, _In_ int i, _In_ HDC hdcDst, _In_ int x, _In_ int y, _In_ int dx, _In_ int dy, _In_ COLORREF rgbBk, _In_ COLORREF rgbFg, _In_ UINT fStyle);
++WINCOMMCTRLAPI BOOL        WINAPI ImageList_DrawEx(_In_ HIMAGELIST himl, _In_ int i, _In_ HDC hdcDst, _In_ int x, _In_ int y, _In_ int dx, _In_ int dy, _In_ COLORREF rgbBk, _In_ COLORREF rgbFg, _Win32_AssociatedEnum_(IMAGE_LIST_DRAW_STYLE) _In_ UINT fStyle);
  WINCOMMCTRLAPI BOOL        WINAPI ImageList_DrawIndirect(_In_ IMAGELISTDRAWPARAMS* pimldp);
 +_Win32_SupportedOS_WindowsVista_
  WINCOMMCTRLAPI BOOL        WINAPI ImageList_Remove(_In_ HIMAGELIST himl, _In_ int i);
- WINCOMMCTRLAPI HICON       WINAPI ImageList_GetIcon(_In_ HIMAGELIST himl, _In_ int i, _In_ UINT flags);
- WINCOMMCTRLAPI HIMAGELIST  WINAPI ImageList_LoadImageA(HINSTANCE hi, LPCSTR lpbmp, int cx, int cGrow, COLORREF crMask, UINT uType, UINT uFlags);
-@@ -623,13 +636,20 @@
- WINCOMMCTRLAPI BOOL        WINAPI ImageList_Copy(_In_ HIMAGELIST himlDst, _In_ int iDst, _In_ HIMAGELIST himlSrc, _In_ int iSrc, _In_ UINT uFlags);
+-WINCOMMCTRLAPI HICON       WINAPI ImageList_GetIcon(_In_ HIMAGELIST himl, _In_ int i, _In_ UINT flags);
+-WINCOMMCTRLAPI HIMAGELIST  WINAPI ImageList_LoadImageA(HINSTANCE hi, LPCSTR lpbmp, int cx, int cGrow, COLORREF crMask, UINT uType, UINT uFlags);
+-WINCOMMCTRLAPI HIMAGELIST  WINAPI ImageList_LoadImageW(HINSTANCE hi, LPCWSTR lpbmp, int cx, int cGrow, COLORREF crMask, UINT uType, UINT uFlags);
++WINCOMMCTRLAPI HICON       WINAPI ImageList_GetIcon(_In_ HIMAGELIST himl, _In_ int i, _Win32_AssociatedEnum_(IMAGE_LIST_DRAW_STYLE) _In_ UINT flags);
++WINCOMMCTRLAPI HIMAGELIST  WINAPI ImageList_LoadImageA(HINSTANCE hi, LPCSTR lpbmp, int cx, int cGrow, COLORREF crMask, UINT uType, _Win32_AssociatedEnum_(IMAGE_FLAGS) UINT uFlags);
++WINCOMMCTRLAPI HIMAGELIST  WINAPI ImageList_LoadImageW(HINSTANCE hi, LPCWSTR lpbmp, int cx, int cGrow, COLORREF crMask, UINT uType, _Win32_AssociatedEnum_(IMAGE_FLAGS) UINT uFlags);
+ 
+ #ifdef UNICODE
+ #define ImageList_LoadImage     ImageList_LoadImageW
+@@ -620,16 +633,23 @@
+ 
+ #define ILCF_MOVE   (0x00000000)
+ #define ILCF_SWAP   (0x00000001)
+-WINCOMMCTRLAPI BOOL        WINAPI ImageList_Copy(_In_ HIMAGELIST himlDst, _In_ int iDst, _In_ HIMAGELIST himlSrc, _In_ int iSrc, _In_ UINT uFlags);
++WINCOMMCTRLAPI BOOL        WINAPI ImageList_Copy(_In_ HIMAGELIST himlDst, _In_ int iDst, _In_ HIMAGELIST himlSrc, _In_ int iSrc, _Win32_AssociatedEnum_(IMAGE_LIST_COPY_FLAGS) _In_ UINT uFlags);
  
  WINCOMMCTRLAPI BOOL        WINAPI ImageList_BeginDrag(_In_ HIMAGELIST himlTrack, _In_ int iTrack, _In_ int dxHotspot, _In_ int dyHotspot);
 +_Win32_SupportedOS_WindowsVista_
@@ -238,6 +259,18 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/CommCtrl.h b/generation/W
  
  WINCOMMCTRLAPI BOOL WINAPI FlatSB_EnableScrollBar(HWND, int, UINT);
  WINCOMMCTRLAPI BOOL WINAPI FlatSB_ShowScrollBar(HWND, int code, BOOL);
+@@ -7873,9 +7923,9 @@
+ WINCOMMCTRLAPI int WINAPI FlatSB_GetScrollPos(HWND, int code);
+ 
+ 
+-WINCOMMCTRLAPI BOOL WINAPI FlatSB_GetScrollProp(HWND, int propIndex, LPINT);
++WINCOMMCTRLAPI BOOL WINAPI FlatSB_GetScrollProp(HWND, _Win32_AssociatedEnum_(WSB_PROP) int propIndex, LPINT);
+ #ifdef _WIN64
+-WINCOMMCTRLAPI BOOL WINAPI FlatSB_GetScrollPropPtr(HWND, int propIndex, PINT_PTR);
++WINCOMMCTRLAPI BOOL WINAPI FlatSB_GetScrollPropPtr(HWND, _Win32_AssociatedEnum_(WSB_PROP) int propIndex, PINT_PTR);
+ #else
+ #define FlatSB_GetScrollPropPtr  FlatSB_GetScrollProp
+ #endif
 @@ -7889,8 +7939,10 @@
  WINCOMMCTRLAPI int WINAPI FlatSB_SetScrollRange(HWND, int code, int min, int max, BOOL fRedraw);
  WINCOMMCTRLAPI BOOL WINAPI FlatSB_SetScrollProp(HWND, UINT index, INT_PTR newValue, BOOL);
@@ -283,7 +316,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/CommCtrl.h b/generation/W
  
  int WINAPI DrawShadowText(_In_ HDC hdc, _In_reads_(cch) LPCWSTR pszText, _In_ UINT cch, _In_ RECT* prc, _In_ DWORD dwFlags, _In_ COLORREF crText, _In_ COLORREF crShadow,
      _In_ int ixOffset, _In_ int iyOffset);
-@@ -7960,5 +8017,84 @@
+@@ -7960,5 +8017,161 @@
  #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
  #pragma endregion
  
@@ -367,4 +400,81 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/CommCtrl.h b/generation/W
 +_Win32_AnnotateField_(NMLISTVIEW::uChanged, _Win32_AssociatedEnum_(LIST_VIEW_ITEM_FLAGS));
 +_Win32_AnnotateField_(LVITEMW::mask, _Win32_AssociatedEnum_(LIST_VIEW_ITEM_FLAGS));
 +_Win32_AnnotateField_(LVITEMA::mask, _Win32_AssociatedEnum_(LIST_VIEW_ITEM_FLAGS));
++#endif
++
++#ifndef _WIN32METADATA_COMMCTRL_EXPLICIT_183_GROUPS_
++#define _WIN32METADATA_COMMCTRL_EXPLICIT_183_GROUPS_
++_Win32_Enum_(DRAGLISTINFO_NOTIFICATION_FLAGS, unsigned int, DL_BEGINDRAG, DL_CANCELDRAG, DL_DRAGGING, DL_DROPPED);
++_Win32_AnnotateField_(DRAGLISTINFO::uNotification, _Win32_AssociatedEnum_(DRAGLISTINFO_NOTIFICATION_FLAGS));
++_Win32_FlagsEnum_(IMAGE_LIST_DRAW_STYLE, unsigned int, ILD_NORMAL, ILD_TRANSPARENT, ILD_BLEND25, ILD_FOCUS, ILD_BLEND50, ILD_SELECTED, ILD_BLEND, ILD_MASK, ILD_IMAGE, ILD_ROP, ILD_OVERLAYMASK, ILD_PRESERVEALPHA, ILD_SCALE, ILD_DPISCALE, ILD_ASYNC);
++_Win32_Enum_(WSB_PROP, int, WSB_PROP_CXHSCROLL, WSB_PROP_CXHTHUMB, WSB_PROP_CXVSCROLL, WSB_PROP_CYHSCROLL, WSB_PROP_CYVSCROLL, WSB_PROP_CYVTHUMB, WSB_PROP_HBKGCOLOR, WSB_PROP_HSTYLE, WSB_PROP_PALETTE, WSB_PROP_VBKGCOLOR, WSB_PROP_VSTYLE, WSB_PROP_WINSTYLE);
++_Win32_Enum_(IMAGE_LIST_COPY_FLAGS, unsigned int, ILCF_MOVE, ILCF_SWAP);
++_Win32_FlagsEnum_(NMREBAR_MASK_FLAGS, unsigned int, RBNM_ID, RBNM_LPARAM, RBNM_STYLE);
++_Win32_AnnotateField_(NMREBAR::dwMask, _Win32_AssociatedEnum_(NMREBAR_MASK_FLAGS));
++_Win32_Enum_(EDITBALLOONTIP_ICON, int, TTI_ERROR, TTI_INFO, TTI_NONE, TTI_WARNING, TTI_INFO_LARGE, TTI_WARNING_LARGE, TTI_ERROR_LARGE);
++_Win32_AnnotateField_(EDITBALLOONTIP::ttiIcon, _Win32_AssociatedEnum_(EDITBALLOONTIP_ICON));
++_Win32_FlagsEnum_(LVCOLUMNW_FORMAT, int, LVCFMT_LEFT, LVCFMT_RIGHT, LVCFMT_CENTER, LVCFMT_JUSTIFYMASK, LVCFMT_IMAGE, LVCFMT_BITMAP_ON_RIGHT, LVCFMT_COL_HAS_IMAGES, LVCFMT_FIXED_WIDTH, LVCFMT_NO_DPI_SCALE, LVCFMT_FIXED_RATIO, LVCFMT_SPLITBUTTON);
++_Win32_AnnotateField_(LVCOLUMNW::fmt, _Win32_AssociatedEnum_(LVCOLUMNW_FORMAT));
++_Win32_AnnotateField_(LVCOLUMNA::fmt, _Win32_AssociatedEnum_(LVCOLUMNW_FORMAT));
++_Win32_FlagsEnum_(COMBOBOX_EX_ITEM_FLAGS, unsigned int, CBEIF_DI_SETITEM, CBEIF_IMAGE, CBEIF_INDENT, CBEIF_LPARAM, CBEIF_OVERLAY, CBEIF_SELECTEDIMAGE, CBEIF_TEXT);
++_Win32_AnnotateField_(COMBOBOXEXITEMW::mask, _Win32_AssociatedEnum_(COMBOBOX_EX_ITEM_FLAGS));
++_Win32_AnnotateField_(COMBOBOXEXITEMA::mask, _Win32_AssociatedEnum_(COMBOBOX_EX_ITEM_FLAGS));
++_Win32_FlagsEnum_(TVITEM_MASK, unsigned int, TVIF_CHILDREN, TVIF_DI_SETITEM, TVIF_HANDLE, TVIF_IMAGE, TVIF_PARAM, TVIF_SELECTEDIMAGE, TVIF_STATE, TVIF_TEXT, TVIF_EXPANDEDIMAGE, TVIF_INTEGRAL, TVIF_STATEEX);
++_Win32_AnnotateField_(TVITEMA::mask, _Win32_AssociatedEnum_(TVITEM_MASK));
++_Win32_AnnotateField_(TVITEMW::mask, _Win32_AssociatedEnum_(TVITEM_MASK));
++_Win32_AnnotateField_(TVITEMEXW::mask, _Win32_AssociatedEnum_(TVITEM_MASK));
++_Win32_AnnotateField_(TVITEMEXA::mask, _Win32_AssociatedEnum_(TVITEM_MASK));
++_Win32_FlagsEnum_(TCITEMHEADERA_MASK, unsigned int, TCIF_IMAGE, TCIF_RTLREADING, TCIF_TEXT, TCIF_PARAM, TCIF_STATE);
++_Win32_AnnotateField_(TCITEMHEADERA::mask, _Win32_AssociatedEnum_(TCITEMHEADERA_MASK));
++_Win32_AnnotateField_(TCITEMHEADERW::mask, _Win32_AssociatedEnum_(TCITEMHEADERA_MASK));
++_Win32_AnnotateField_(TCITEMW::mask, _Win32_AssociatedEnum_(TCITEMHEADERA_MASK));
++_Win32_AnnotateField_(TCITEMA::mask, _Win32_AssociatedEnum_(TCITEMHEADERA_MASK));
++_Win32_Enum_(TCHITTESTINFO_FLAGS, unsigned int, TCHT_NOWHERE, TCHT_ONITEM, TCHT_ONITEMICON, TCHT_ONITEMLABEL);
++_Win32_AnnotateField_(TCHITTESTINFO::flags, _Win32_AssociatedEnum_(TCHITTESTINFO_FLAGS));
++_Win32_Enum_(NMCUSTOMDRAW_DRAW_STAGE, unsigned int, CDDS_POSTPAINT, CDDS_PREERASE, CDDS_PREPAINT, CDDS_ITEMPOSTERASE, CDDS_ITEMPOSTPAINT, CDDS_ITEMPREERASE, CDDS_ITEMPREPAINT, CDDS_SUBITEM);
++_Win32_AnnotateField_(NMCUSTOMDRAW::dwDrawStage, _Win32_AssociatedEnum_(NMCUSTOMDRAW_DRAW_STAGE));
++_Win32_Enum_(MCGRIDINFO_PART, unsigned int, MCGIP_CALENDARCONTROL, MCGIP_NEXT, MCGIP_PREV, MCGIP_FOOTER, MCGIP_CALENDAR, MCGIP_CALENDARHEADER, MCGIP_CALENDARBODY, MCGIP_CALENDARROW, MCGIP_CALENDARCELL);
++_Win32_AnnotateField_(MCGRIDINFO::dwPart, _Win32_AssociatedEnum_(MCGRIDINFO_PART));
++_Win32_FlagsEnum_(NMTBHOTITEM_FLAGS, unsigned int, HICF_ACCELERATOR, HICF_ARROWKEYS, HICF_DUPACCEL, HICF_ENTERING, HICF_LEAVING, HICF_LMOUSE, HICF_MOUSE, HICF_OTHER, HICF_RESELECT, HICF_TOGGLEDROPDOWN);
++_Win32_AnnotateField_(NMTBHOTITEM::dwFlags, _Win32_AssociatedEnum_(NMTBHOTITEM_FLAGS));
++_Win32_AnnotateField_(NMBCHOTITEM::dwFlags, _Win32_AssociatedEnum_(NMTBHOTITEM_FLAGS));
++_Win32_FlagsEnum_(LVTILEVIEWINFO_FLAGS, unsigned int, LVTVIF_AUTOSIZE, LVTVIF_FIXEDWIDTH, LVTVIF_FIXEDHEIGHT, LVTVIF_FIXEDSIZE);
++_Win32_AnnotateField_(LVTILEVIEWINFO::dwFlags, _Win32_AssociatedEnum_(LVTILEVIEWINFO_FLAGS));
++_Win32_Enum_(NMPGSCROLL_DIR, int, PGF_SCROLLDOWN, PGF_SCROLLLEFT, PGF_SCROLLRIGHT, PGF_SCROLLUP);
++_Win32_AnnotateField_(NMPGSCROLL::iDir, _Win32_AssociatedEnum_(NMPGSCROLL_DIR));
++_Win32_FlagsEnum_(LVCOLUMNW_MASK, unsigned int, LVCF_FMT, LVCF_WIDTH, LVCF_TEXT, LVCF_SUBITEM, LVCF_IMAGE, LVCF_ORDER, LVCF_MINWIDTH, LVCF_DEFAULTWIDTH, LVCF_IDEALWIDTH);
++_Win32_AnnotateField_(LVCOLUMNW::mask, _Win32_AssociatedEnum_(LVCOLUMNW_MASK));
++_Win32_AnnotateField_(LVCOLUMNA::mask, _Win32_AssociatedEnum_(LVCOLUMNW_MASK));
++_Win32_FlagsEnum_(LVFINDINFOW_FLAGS, unsigned int, LVFI_PARAM, LVFI_PARTIAL, LVFI_STRING, LVFI_SUBSTRING, LVFI_WRAP, LVFI_NEARESTXY);
++_Win32_AnnotateField_(LVFINDINFOW::flags, _Win32_AssociatedEnum_(LVFINDINFOW_FLAGS));
++_Win32_AnnotateField_(LVFINDINFOA::flags, _Win32_AssociatedEnum_(LVFINDINFOW_FLAGS));
++_Win32_Enum_(BUTTON_IMAGELIST_ALIGN, unsigned int, BUTTON_IMAGELIST_ALIGN_LEFT, BUTTON_IMAGELIST_ALIGN_RIGHT, BUTTON_IMAGELIST_ALIGN_TOP, BUTTON_IMAGELIST_ALIGN_BOTTOM, BUTTON_IMAGELIST_ALIGN_CENTER);
++_Win32_AnnotateField_(BUTTON_IMAGELIST::uAlign, _Win32_AssociatedEnum_(BUTTON_IMAGELIST_ALIGN));
++_Win32_FlagsEnum_(TBBUTTONINFOW_MASK, unsigned int, TBIF_BYINDEX, TBIF_COMMAND, TBIF_IMAGE, TBIF_LPARAM, TBIF_SIZE, TBIF_STATE, TBIF_STYLE, TBIF_TEXT);
++_Win32_AnnotateField_(TBBUTTONINFOW::dwMask, _Win32_AssociatedEnum_(TBBUTTONINFOW_MASK));
++_Win32_AnnotateField_(TBBUTTONINFOA::dwMask, _Win32_AssociatedEnum_(TBBUTTONINFOW_MASK));
++_Win32_FlagsEnum_(TVHITTESTINFO_FLAGS, unsigned int, TVHT_ABOVE, TVHT_BELOW, TVHT_NOWHERE, TVHT_ONITEM, TVHT_ONITEMBUTTON, TVHT_ONITEMICON, TVHT_ONITEMINDENT, TVHT_ONITEMLABEL, TVHT_ONITEMRIGHT, TVHT_ONITEMSTATEICON, TVHT_TOLEFT, TVHT_TORIGHT);
++_Win32_AnnotateField_(TVHITTESTINFO::flags, _Win32_AssociatedEnum_(TVHITTESTINFO_FLAGS));
++_Win32_Enum_(NMPGCALCSIZE_FLAGS, unsigned int, PGF_CALCHEIGHT, PGF_CALCWIDTH);
++_Win32_AnnotateField_(NMPGCALCSIZE::dwFlag, _Win32_AssociatedEnum_(NMPGCALCSIZE_FLAGS));
++_Win32_FlagsEnum_(MCGRIDINFO_FLAGS, unsigned int, MCGIF_DATE, MCGIF_RECT, MCGIF_NAME);
++_Win32_AnnotateField_(MCGRIDINFO::dwFlags, _Win32_AssociatedEnum_(MCGRIDINFO_FLAGS));
++_Win32_FlagsEnum_(LVHITTESTINFO_FLAGS, unsigned int, LVHT_ABOVE, LVHT_BELOW, LVHT_NOWHERE, LVHT_ONITEMICON, LVHT_ONITEMLABEL, LVHT_ONITEMSTATEICON, LVHT_TOLEFT, LVHT_TORIGHT, LVHT_EX_GROUP_HEADER, LVHT_EX_GROUP_FOOTER, LVHT_EX_GROUP_COLLAPSE, LVHT_EX_GROUP_BACKGROUND, LVHT_EX_GROUP_STATEICON, LVHT_EX_GROUP_SUBSETLINK, LVHT_EX_GROUP, LVHT_EX_ONCONTENTS, LVHT_EX_FOOTER);
++_Win32_AnnotateField_(LVHITTESTINFO::flags, _Win32_AssociatedEnum_(LVHITTESTINFO_FLAGS));
++_Win32_FlagsEnum_(INITCOMMONCONTROLSEX_ICC, unsigned int, ICC_ANIMATE_CLASS, ICC_BAR_CLASSES, ICC_COOL_CLASSES, ICC_DATE_CLASSES, ICC_HOTKEY_CLASS, ICC_INTERNET_CLASSES, ICC_LINK_CLASS, ICC_LISTVIEW_CLASSES, ICC_NATIVEFNTCTL_CLASS, ICC_PAGESCROLLER_CLASS, ICC_PROGRESS_CLASS, ICC_STANDARD_CLASSES, ICC_TAB_CLASSES, ICC_TREEVIEW_CLASSES, ICC_UPDOWN_CLASS, ICC_USEREX_CLASSES, ICC_WIN95_CLASSES);
++_Win32_AnnotateField_(INITCOMMONCONTROLSEX::dwICC, _Win32_AssociatedEnum_(INITCOMMONCONTROLSEX_ICC));
++_Win32_Enum_(NMLVCUSTOMDRAW_ITEM_TYPE, unsigned int, LVCDI_ITEM, LVCDI_GROUP, LVCDI_ITEMSLIST);
++_Win32_AnnotateField_(NMLVCUSTOMDRAW::dwItemType, _Win32_AssociatedEnum_(NMLVCUSTOMDRAW_ITEM_TYPE));
++_Win32_FlagsEnum_(NMTBDISPINFOW_MASK, unsigned int, TBNF_IMAGE, TBNF_TEXT, TBNF_DI_SETITEM);
++_Win32_AnnotateField_(NMTBDISPINFOW::dwMask, _Win32_AssociatedEnum_(NMTBDISPINFOW_MASK));
++_Win32_AnnotateField_(NMTBDISPINFOA::dwMask, _Win32_AssociatedEnum_(NMTBDISPINFOW_MASK));
++_Win32_Enum_(NMLVEMPTYMARKUP_FLAGS, unsigned int, EMF_CENTERED);
++_Win32_AnnotateField_(NMLVEMPTYMARKUP::dwFlags, _Win32_AssociatedEnum_(NMLVEMPTYMARKUP_FLAGS));
++_Win32_Enum_(LVFOOTERITEM_MASK, unsigned int, LVFIF_TEXT, LVFIF_STATE);
++_Win32_AnnotateField_(LVFOOTERITEM::mask, _Win32_AssociatedEnum_(LVFOOTERITEM_MASK));
++_Win32_FlagsEnum_(LIST_VIEW_ITEM_COLUMN_FORMAT_FLAGS, int, LVCFMT_LINE_BREAK, LVCFMT_FILL, LVCFMT_WRAP, LVCFMT_NO_TITLE, LVCFMT_TILE_PLACEMENTMASK);
++_Win32_AnnotateField_(LVITEMW::piColFmt, _Win32_AssociatedEnum_(LIST_VIEW_ITEM_COLUMN_FORMAT_FLAGS));
++_Win32_AnnotateField_(LVITEMA::piColFmt, _Win32_AssociatedEnum_(LIST_VIEW_ITEM_COLUMN_FORMAT_FLAGS));
++_Win32_Enum_(NMDATETIMECHANGE_FLAGS, unsigned int, GDT_NONE, GDT_VALID);
++_Win32_AnnotateField_(NMDATETIMECHANGE::dwFlags, _Win32_AssociatedEnum_(NMDATETIMECHANGE_FLAGS));
 +#endif
