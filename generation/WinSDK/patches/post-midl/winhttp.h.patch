@@ -438,3 +438,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h b/generation/Wi
  WINHTTPAPI
  DWORD
  WINAPI
+@@ -2526,3 +2606,9 @@
+ 
+ #endif // !defined(_WINHTTPX_)
+ 
++#ifndef _WIN32METADATA_WINHTTP_NATIVE_91_GROUPS_
++#define _WIN32METADATA_WINHTTP_NATIVE_91_GROUPS_
++_Win32_Enum_(WINHTTP_CREDS_AUTHSCHEME, unsigned int, WINHTTP_AUTH_SCHEME_BASIC, WINHTTP_AUTH_SCHEME_NTLM, WINHTTP_AUTH_SCHEME_NEGOTIATE);
++_Win32_AnnotateField_(WINHTTP_CREDS::dwAuthScheme, _Win32_AssociatedEnum_(WINHTTP_CREDS_AUTHSCHEME));
++_Win32_AnnotateField_(WINHTTP_CREDS_EX::dwAuthScheme, _Win32_AssociatedEnum_(WINHTTP_CREDS_AUTHSCHEME));
++#endif

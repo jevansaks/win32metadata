@@ -46,7 +46,7 @@ UpdateDriverForPlugAndPlayDevicesA(
     _In_opt_  HWND hwndParent,
     _In_      LPCSTR HardwareId,
     _In_      LPCSTR FullInfPath,
-    _In_      DWORD InstallFlags,
+    _Win32_AssociatedEnum_(UPDATEDRIVERFORPLUGANDPLAYDEVICES_FLAGS) _In_      DWORD InstallFlags,
     _Out_opt_ PBOOL bRebootRequired
     );
 _Win32_SetLastError_
@@ -58,7 +58,7 @@ UpdateDriverForPlugAndPlayDevicesW(
     _In_opt_  HWND hwndParent,
     _In_      LPCWSTR HardwareId,
     _In_      LPCWSTR FullInfPath,
-    _In_      DWORD InstallFlags,
+    _Win32_AssociatedEnum_(UPDATEDRIVERFORPLUGANDPLAYDEVICES_FLAGS) _In_      DWORD InstallFlags,
     _Out_opt_ PBOOL bRebootRequired
     );
 
@@ -88,7 +88,7 @@ DiInstallDevice(
     _In_      HDEVINFO DeviceInfoSet,
     _In_      PSP_DEVINFO_DATA DeviceInfoData,
     _In_opt_  PSP_DRVINFO_DATA DriverInfoData,
-    _In_      DWORD Flags,
+    _Win32_AssociatedEnum_(DIINSTALLDEVICE_FLAGS) _In_      DWORD Flags,
     _Out_opt_ PBOOL NeedReboot
     );
 
@@ -139,7 +139,7 @@ WINAPI
 DiInstallDriverW(
     _In_opt_  HWND hwndParent,
     _In_      LPCWSTR InfPath,
-    _In_      DWORD Flags,
+    _Win32_AssociatedEnum_(DIINSTALLDRIVER_FLAGS) _In_      DWORD Flags,
     _Out_opt_ PBOOL NeedReboot
     );
 
@@ -148,7 +148,7 @@ WINAPI
 DiInstallDriverA(
     _In_opt_  HWND hwndParent,
     _In_      LPCSTR InfPath,
-    _In_      DWORD Flags,
+    _Win32_AssociatedEnum_(DIINSTALLDRIVER_FLAGS) _In_      DWORD Flags,
     _Out_opt_ PBOOL NeedReboot
     );
 
@@ -194,7 +194,7 @@ WINAPI
 DiUninstallDriverW(
     _In_opt_  HWND hwndParent,
     _In_      LPCWSTR InfPath,
-    _In_      DWORD Flags,
+    _Win32_AssociatedEnum_(DIUNINSTALLDRIVER_FLAGS) _In_      DWORD Flags,
     _Out_opt_ PBOOL NeedReboot
     );
 
@@ -203,7 +203,7 @@ WINAPI
 DiUninstallDriverA(
     _In_opt_  HWND hwndParent,
     _In_      LPCSTR InfPath,
-    _In_      DWORD Flags,
+    _Win32_AssociatedEnum_(DIUNINSTALLDRIVER_FLAGS) _In_      DWORD Flags,
     _Out_opt_ PBOOL NeedReboot
     );
 
@@ -242,7 +242,7 @@ DiRollbackDriver(
     _In_      HDEVINFO DeviceInfoSet,
     _In_      PSP_DEVINFO_DATA DeviceInfoData,
     _In_opt_  HWND hwndParent,
-    _In_      DWORD Flags,
+    _Win32_AssociatedEnum_(DIROLLBACKDRIVER_FLAGS) _In_      DWORD Flags,
     _Out_opt_ PBOOL NeedReboot
     );
 #endif // (WINVER >= _WIN32_WINNT_LONGHORN)
@@ -270,3 +270,11 @@ DiShowUpdateDriver(
 
 #endif // _INC_NEWDEV
 
+#ifndef _WIN32METADATA_NEWDEV_NATIVE_91_GROUPS_
+#define _WIN32METADATA_NEWDEV_NATIVE_91_GROUPS_
+_Win32_FlagsEnum_(DIINSTALLDEVICE_FLAGS, unsigned int, DIIDFLAG_SHOWSEARCHUI, DIIDFLAG_NOFINISHINSTALLUI, DIIDFLAG_INSTALLNULLDRIVER, DIIDFLAG_INSTALLCOPYINFDRIVERS, DIIDFLAG_BITS);
+_Win32_FlagsEnum_(DIINSTALLDRIVER_FLAGS, unsigned int, DIIRFLAG_BITS, DIIRFLAG_SYSTEM_BITS, DIIRFLAG_INF_ALREADY_COPIED, DIIRFLAG_FORCE_INF, DIIRFLAG_HW_USING_THE_INF, DIIRFLAG_HOTPATCH, DIIRFLAG_NOBACKUP, DIIRFLAG_PRE_CONFIGURE_INF, DIIRFLAG_INSTALL_AS_SET);
+_Win32_FlagsEnum_(DIUNINSTALLDRIVER_FLAGS, unsigned int, DIURFLAG_VALID, DIURFLAG_NO_REMOVE_INF, DIURFLAG_RESERVED);
+_Win32_FlagsEnum_(DIROLLBACKDRIVER_FLAGS, unsigned int, ROLLBACK_FLAG_NO_UI, ROLLBACK_BITS);
+_Win32_FlagsEnum_(UPDATEDRIVERFORPLUGANDPLAYDEVICES_FLAGS, unsigned int, INSTALLFLAG_FORCE, INSTALLFLAG_READONLY, INSTALLFLAG_NONINTERACTIVE, INSTALLFLAG_BITS);
+#endif

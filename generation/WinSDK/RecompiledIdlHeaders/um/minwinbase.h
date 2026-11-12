@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /************************************************************************
 *                                                                       *
 *   minwinbase.h -- This module defines the 32-Bit Windows Base APIs    *
@@ -272,7 +273,7 @@ typedef struct _PROCESS_HEAP_ENTRY {
 
 typedef struct _REASON_CONTEXT {
     ULONG Version;
-    DWORD Flags;
+    _Win32_AssociatedEnum_(POWER_REQUEST_CONTEXT_FLAGS) DWORD Flags;
     union {
         struct {
             HMODULE LocalizedReasonModule;

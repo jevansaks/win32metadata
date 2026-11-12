@@ -1286,7 +1286,7 @@ RegGetValueA(
     _In_ HKEY hkey,
     _In_opt_ LPCSTR lpSubKey,
     _In_opt_ LPCSTR lpValue,
-    _In_ DWORD dwFlags,
+    _Win32_AssociatedEnum_(REG_ROUTINE_FLAGS) _In_ DWORD dwFlags,
     _Out_opt_ LPDWORD pdwType,
     _When_((dwFlags & 0x7F) == RRF_RT_REG_SZ ||
                (dwFlags & 0x7F) == RRF_RT_REG_EXPAND_SZ ||
@@ -1306,7 +1306,7 @@ RegGetValueW(
     _In_ HKEY hkey,
     _In_opt_ LPCWSTR lpSubKey,
     _In_opt_ LPCWSTR lpValue,
-    _In_ DWORD dwFlags,
+    _Win32_AssociatedEnum_(REG_ROUTINE_FLAGS) _In_ DWORD dwFlags,
     _Out_opt_ LPDWORD pdwType,
     _When_((dwFlags & 0x7F) == RRF_RT_REG_SZ ||
                (dwFlags & 0x7F) == RRF_RT_REG_EXPAND_SZ ||
@@ -1558,7 +1558,7 @@ InitiateShutdownA(
     _In_opt_ LPSTR lpMachineName,
     _In_opt_ LPSTR lpMessage,
     _In_     DWORD dwGracePeriod,
-    _In_     DWORD dwShutdownFlags,
+    _Win32_AssociatedEnum_(SHUTDOWN_FLAGS) _In_     DWORD dwShutdownFlags,
     _In_     DWORD dwReason
     );
 WINADVAPI
@@ -1568,7 +1568,7 @@ InitiateShutdownW(
     _In_opt_ LPWSTR lpMachineName,
     _In_opt_ LPWSTR lpMessage,
     _In_     DWORD dwGracePeriod,
-    _In_     DWORD dwShutdownFlags,
+    _Win32_AssociatedEnum_(SHUTDOWN_FLAGS) _In_     DWORD dwShutdownFlags,
     _In_     DWORD dwReason
     );
 #ifdef UNICODE
@@ -1633,3 +1633,8 @@ _Win32_FlagsEnum_(REG_SAM_FLAGS, unsigned long, KEY_QUERY_VALUE, KEY_SET_VALUE, 
 
 #endif // _WINREG_
 
+#ifndef _WIN32METADATA_WINREG_NATIVE_91_GROUPS_
+#define _WIN32METADATA_WINREG_NATIVE_91_GROUPS_
+_Win32_FlagsEnum_(SHUTDOWN_FLAGS, unsigned int, SHUTDOWN_FORCE_OTHERS, SHUTDOWN_FORCE_SELF, SHUTDOWN_RESTART, SHUTDOWN_POWEROFF, SHUTDOWN_NOREBOOT, SHUTDOWN_GRACE_OVERRIDE, SHUTDOWN_INSTALL_UPDATES, SHUTDOWN_RESTARTAPPS, SHUTDOWN_SKIP_SVC_PRESHUTDOWN, SHUTDOWN_HYBRID, SHUTDOWN_RESTART_BOOTOPTIONS, SHUTDOWN_SOFT_REBOOT, SHUTDOWN_MOBILE_UI, SHUTDOWN_ARSO, SHUTDOWN_CHECK_SAFE_FOR_SERVER, SHUTDOWN_VAIL_CONTAINER, SHUTDOWN_SYSTEM_INITIATED, SHUTDOWN_UPDATE_POWEROFF);
+_Win32_FlagsEnum_(REG_ROUTINE_FLAGS, unsigned int, RRF_RT_DWORD, RRF_RT_QWORD, RRF_RT_REG_NONE, RRF_RT_REG_SZ, RRF_RT_REG_EXPAND_SZ, RRF_RT_REG_BINARY, RRF_RT_REG_DWORD, RRF_RT_REG_MULTI_SZ, RRF_RT_REG_QWORD, RRF_RT_ANY, RRF_SUBKEY_WOW6464KEY, RRF_SUBKEY_WOW6432KEY, RRF_WOW64_MASK, RRF_NOEXPAND, RRF_ZEROONFAILURE);
+#endif

@@ -217,6 +217,17 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/shellapi.h b/generation/W
  #endif
  
  
+@@ -1189,8 +1234,8 @@
+ } NOTIFYICONIDENTIFIER, *PNOTIFYICONIDENTIFIER;
+ 
+ 
+-SHSTDAPI_(BOOL) Shell_NotifyIconA(DWORD dwMessage, _In_ PNOTIFYICONDATAA lpData);
+-SHSTDAPI_(BOOL) Shell_NotifyIconW(DWORD dwMessage, _In_ PNOTIFYICONDATAW lpData);
++SHSTDAPI_(BOOL) Shell_NotifyIconA(_Win32_AssociatedEnum_(NOTIFY_ICON_MESSAGE) DWORD dwMessage, _In_ PNOTIFYICONDATAA lpData);
++SHSTDAPI_(BOOL) Shell_NotifyIconW(_Win32_AssociatedEnum_(NOTIFY_ICON_MESSAGE) DWORD dwMessage, _In_ PNOTIFYICONDATAW lpData);
+ #ifdef UNICODE
+ #define Shell_NotifyIcon  Shell_NotifyIconW
+ #else
 @@ -1198,6 +1243,7 @@
  #endif // !UNICODE
  
@@ -225,7 +236,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/shellapi.h b/generation/W
  SHSTDAPI Shell_NotifyIconGetRect(_In_ const NOTIFYICONIDENTIFIER* identifier, _Out_ RECT* iconLocation);
  #endif // (NTDDI_VERSION >= NTDDI_WIN7)
  
-@@ -1418,9 +1464,11 @@
+@@ -1411,16 +1457,18 @@
+ 
+ #define SIID_INVALID ((SHSTOCKICONID)-1)
+ 
+-SHSTDAPI SHGetStockIconInfo(SHSTOCKICONID siid, UINT uFlags, _Inout_ SHSTOCKICONINFO *psii);
++SHSTDAPI SHGetStockIconInfo(SHSTOCKICONID siid, _Win32_AssociatedEnum_(SHGSI_FLAGS) UINT uFlags, _Inout_ SHSTOCKICONINFO *psii);
+ 
+ #endif // (NTDDI_VERSION >= NTDDI_VISTA)
+ 
  
  #if (NTDDI_VERSION >= NTDDI_WIN2K)
  #define SHGetDiskFreeSpace SHGetDiskFreeSpaceEx
@@ -363,3 +382,24 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/shellapi.h b/generation/W
  // Returns the type of media (CD, DVD, Blank, etc) that is in the drive.
  // dwMediaContent is set to a combination of ARCONTENT flags.
  STDAPI SHGetDriveMedia(_In_ PCWSTR pszDrive, _Out_ DWORD *pdwMediaContent);
+@@ -1753,3 +1819,20 @@
+ #if defined(_MSC_VER) && (_MSC_VER >= 1200)
+ #pragma warning(pop)
+ #endif
++
++#ifndef _WIN32METADATA_SHELLAPI_NATIVE_91_GROUPS_
++#define _WIN32METADATA_SHELLAPI_NATIVE_91_GROUPS_
++_Win32_Enum_(NOTIFY_ICON_MESSAGE, unsigned int, NIM_ADD, NIM_MODIFY, NIM_DELETE, NIM_SETFOCUS, NIM_SETVERSION);
++_Win32_FlagsEnum_(NOTIFY_ICON_DATA_FLAGS, unsigned int, NIF_MESSAGE, NIF_ICON, NIF_TIP, NIF_STATE, NIF_INFO, NIF_GUID, NIF_REALTIME, NIF_SHOWTIP);
++_Win32_AnnotateField_(NOTIFYICONDATAA::uFlags, _Win32_AssociatedEnum_(NOTIFY_ICON_DATA_FLAGS));
++_Win32_AnnotateField_(NOTIFYICONDATAW::uFlags, _Win32_AssociatedEnum_(NOTIFY_ICON_DATA_FLAGS));
++_Win32_FlagsEnum_(NOTIFY_ICON_INFOTIP_FLAGS, unsigned int, NIIF_NONE, NIIF_INFO, NIIF_WARNING, NIIF_ERROR, NIIF_USER, NIIF_ICON_MASK, NIIF_NOSOUND, NIIF_LARGE_ICON, NIIF_RESPECT_QUIET_TIME);
++_Win32_AnnotateField_(NOTIFYICONDATAW::dwInfoFlags, _Win32_AssociatedEnum_(NOTIFY_ICON_INFOTIP_FLAGS));
++_Win32_AnnotateField_(NOTIFYICONDATAA::dwInfoFlags, _Win32_AssociatedEnum_(NOTIFY_ICON_INFOTIP_FLAGS));
++_Win32_FlagsEnum_(NOTIFY_ICON_STATE, unsigned int, NIS_HIDDEN, NIS_SHAREDICON);
++_Win32_AnnotateField_(NOTIFYICONDATAW::dwState, _Win32_AssociatedEnum_(NOTIFY_ICON_STATE));
++_Win32_AnnotateField_(NOTIFYICONDATAW::dwStateMask, _Win32_AssociatedEnum_(NOTIFY_ICON_STATE));
++_Win32_AnnotateField_(NOTIFYICONDATAA::dwState, _Win32_AssociatedEnum_(NOTIFY_ICON_STATE));
++_Win32_AnnotateField_(NOTIFYICONDATAA::dwStateMask, _Win32_AssociatedEnum_(NOTIFY_ICON_STATE));
++_Win32_FlagsEnum_(SHGSI_FLAGS, unsigned int, SHGSI_ICONLOCATION, SHGSI_ICON, SHGSI_SYSICONINDEX, SHGSI_LINKOVERLAY, SHGSI_SELECTED, SHGSI_LARGEICON, SHGSI_SMALLICON, SHGSI_SHELLICONSIZE);
++#endif

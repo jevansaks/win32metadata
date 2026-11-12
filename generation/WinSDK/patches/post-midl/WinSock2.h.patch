@@ -111,6 +111,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinSock2.h b/generation/W
  WINSOCK_API_LINKAGE
  int
  WSAAPI
+@@ -2011,7 +2025,7 @@
+     _In_ SOCKET s,
+     _Out_writes_bytes_to_(len, return) __out_data_source(NETWORK) char FAR * buf,
+     _In_ int len,
+-    _In_ int flags
++    _Win32_AssociatedEnum_(SEND_RECV_FLAGS) _In_ int flags
+     );
+ #endif /* INCL_WINSOCK_API_PROTOTYPES */
+ 
 @@ -2027,6 +2041,7 @@
  #endif /* INCL_WINSOCK_API_TYPEDEFS */
  
@@ -135,6 +144,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinSock2.h b/generation/W
  WINSOCK_API_LINKAGE
  int
  WSAAPI
+@@ -2086,7 +2103,7 @@
+     _In_ SOCKET s,
+     _In_reads_bytes_(len) const char FAR * buf,
+     _In_ int len,
+-    _In_ int flags
++    _Win32_AssociatedEnum_(SEND_RECV_FLAGS) _In_ int flags
+     );
+ #endif /* INCL_WINSOCK_API_PROTOTYPES */
+ 
 @@ -2129,6 +2146,7 @@
  #endif /* INCL_WINSOCK_API_TYPEDEFS */
  
@@ -143,7 +161,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinSock2.h b/generation/W
  WINSOCK_API_LINKAGE
  int
  WSAAPI
-@@ -2154,6 +2172,7 @@
+@@ -2154,12 +2172,13 @@
  #endif /* INCL_WINSOCK_API_TYPEDEFS */
  
  #if INCL_WINSOCK_API_PROTOTYPES
@@ -151,6 +169,22 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinSock2.h b/generation/W
  WINSOCK_API_LINKAGE
  int
  WSAAPI
+ shutdown(
+     _In_ SOCKET s,
+-    _In_ int how
++    _Win32_AssociatedEnum_(WINSOCK_SHUTDOWN_HOW) _In_ int how
+     );
+ #endif /* INCL_WINSOCK_API_PROTOTYPES */
+ 
+@@ -2179,7 +2198,7 @@
+ WSAAPI
+ socket(
+     _In_ int af,
+-    _In_ int type,
++    _Win32_AssociatedEnum_(WINSOCK_SOCKET_TYPE) _In_ int type,
+     _In_ int protocol
+     );
+ #endif /* INCL_WINSOCK_API_PROTOTYPES */
 @@ -2238,6 +2257,7 @@
  #endif /* INCL_WINSOCK_API_TYPEDEFS */
  
@@ -612,3 +646,16 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinSock2.h b/generation/W
  WINSOCK_API_LINKAGE
  int
  WSAAPI
+@@ -4332,3 +4404,12 @@
+ 
+ #endif  /* _WINSOCK2API_ */
+ 
++#ifndef _WIN32METADATA_WINSOCK2_NATIVE_91_GROUPS_
++#define _WIN32METADATA_WINSOCK2_NATIVE_91_GROUPS_
++_Win32_FlagsEnum_(SEND_RECV_FLAGS, int, MSG_OOB, MSG_PEEK, MSG_DONTROUTE, MSG_WAITALL, MSG_PUSH_IMMEDIATE);
++_Win32_FlagsEnum_(WSAPOLL_EVENT_FLAGS, short, POLLRDNORM, POLLRDBAND, POLLIN, POLLPRI, POLLWRNORM, POLLOUT, POLLWRBAND, POLLERR, POLLHUP, POLLNVAL);
++_Win32_AnnotateField_(WSAPOLLFD::events, _Win32_AssociatedEnum_(WSAPOLL_EVENT_FLAGS));
++_Win32_AnnotateField_(WSAPOLLFD::revents, _Win32_AssociatedEnum_(WSAPOLL_EVENT_FLAGS));
++_Win32_Enum_(WINSOCK_SHUTDOWN_HOW, int, SD_RECEIVE, SD_SEND, SD_BOTH);
++_Win32_Enum_(WINSOCK_SOCKET_TYPE, int, SOCK_STREAM, SOCK_DGRAM, SOCK_RAW, SOCK_RDM, SOCK_SEQPACKET);
++#endif

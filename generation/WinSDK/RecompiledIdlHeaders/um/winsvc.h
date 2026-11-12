@@ -1069,7 +1069,7 @@ BOOL
 WINAPI
 ChangeServiceConfig2A(
     _In_        SC_HANDLE    hService,
-    _In_        DWORD        dwInfoLevel,
+    _Win32_AssociatedEnum_(SERVICE_CONFIG) _In_        DWORD        dwInfoLevel,
     _In_opt_    LPVOID       lpInfo
     );
 _Win32_SetLastError_
@@ -1079,7 +1079,7 @@ BOOL
 WINAPI
 ChangeServiceConfig2W(
     _In_        SC_HANDLE    hService,
-    _In_        DWORD        dwInfoLevel,
+    _Win32_AssociatedEnum_(SERVICE_CONFIG) _In_        DWORD        dwInfoLevel,
     _In_opt_    LPVOID       lpInfo
     );
 #ifdef UNICODE
@@ -1173,7 +1173,7 @@ BOOL
 WINAPI
 EnumDependentServicesA(
     _In_            SC_HANDLE               hService,
-    _In_            DWORD                   dwServiceState,
+    _Win32_AssociatedEnum_(ENUM_SERVICE_STATE) _In_            DWORD                   dwServiceState,
     _Win32_ContainsInteriorPointers_ _Out_writes_bytes_opt_(cbBufSize)
                     LPENUM_SERVICE_STATUSA  lpServices,
     _In_            DWORD                   cbBufSize,
@@ -1188,7 +1188,7 @@ BOOL
 WINAPI
 EnumDependentServicesW(
     _In_            SC_HANDLE               hService,
-    _In_            DWORD                   dwServiceState,
+    _Win32_AssociatedEnum_(ENUM_SERVICE_STATE) _In_            DWORD                   dwServiceState,
     _Win32_ContainsInteriorPointers_ _Out_writes_bytes_opt_(cbBufSize)
                     LPENUM_SERVICE_STATUSW  lpServices,
     _In_            DWORD                   cbBufSize,
@@ -1216,7 +1216,7 @@ WINAPI
 EnumServicesStatusA(
     _In_            SC_HANDLE               hSCManager,
     _In_            DWORD                   dwServiceType,
-    _In_            DWORD                   dwServiceState,
+    _Win32_AssociatedEnum_(ENUM_SERVICE_STATE) _In_            DWORD                   dwServiceState,
     _Win32_ContainsInteriorPointers_ _Out_writes_bytes_opt_(cbBufSize)
                     LPENUM_SERVICE_STATUSA  lpServices,
     _In_            DWORD                   cbBufSize,
@@ -1233,7 +1233,7 @@ WINAPI
 EnumServicesStatusW(
     _In_            SC_HANDLE               hSCManager,
     _In_            DWORD                   dwServiceType,
-    _In_            DWORD                   dwServiceState,
+    _Win32_AssociatedEnum_(ENUM_SERVICE_STATE) _In_            DWORD                   dwServiceState,
     _Win32_ContainsInteriorPointers_ _Out_writes_bytes_opt_(cbBufSize)
                     LPENUM_SERVICE_STATUSW  lpServices,
     _In_            DWORD                   cbBufSize,
@@ -1263,7 +1263,7 @@ EnumServicesStatusExA(
     _In_            SC_HANDLE               hSCManager,
     _In_            SC_ENUM_TYPE            InfoLevel,
     _In_            DWORD                   dwServiceType,
-    _In_            DWORD                   dwServiceState,
+    _Win32_AssociatedEnum_(ENUM_SERVICE_STATE) _In_            DWORD                   dwServiceState,
     _Win32_ContainsInteriorPointers_ _Out_writes_bytes_opt_(cbBufSize)
                     LPBYTE                  lpServices,
     _In_            DWORD                   cbBufSize,
@@ -1282,7 +1282,7 @@ EnumServicesStatusExW(
     _In_            SC_HANDLE               hSCManager,
     _In_            SC_ENUM_TYPE            InfoLevel,
     _In_            DWORD                   dwServiceType,
-    _In_            DWORD                   dwServiceState,
+    _Win32_AssociatedEnum_(ENUM_SERVICE_STATE) _In_            DWORD                   dwServiceState,
     _Win32_ContainsInteriorPointers_ _Out_writes_bytes_opt_(cbBufSize)
                     LPBYTE                  lpServices,
     _In_            DWORD                   cbBufSize,
@@ -1494,7 +1494,7 @@ BOOL
 WINAPI
 QueryServiceConfig2A(
     _In_            SC_HANDLE               hService,
-    _In_            DWORD                   dwInfoLevel,
+    _Win32_AssociatedEnum_(SERVICE_CONFIG) _In_            DWORD                   dwInfoLevel,
     _Win32_ContainsInteriorPointers_ _Out_writes_bytes_opt_(cbBufSize)
                     LPBYTE                  lpBuffer,
     _In_            DWORD                   cbBufSize,
@@ -1515,7 +1515,7 @@ BOOL
 WINAPI
 QueryServiceConfig2W(
     _In_            SC_HANDLE               hService,
-    _In_            DWORD                   dwInfoLevel,
+    _Win32_AssociatedEnum_(SERVICE_CONFIG) _In_            DWORD                   dwInfoLevel,
     _Win32_ContainsInteriorPointers_ _Out_writes_bytes_opt_(cbBufSize)
                     LPBYTE                  lpBuffer,
     _In_            DWORD                   cbBufSize,
@@ -1975,3 +1975,17 @@ GetSharedServiceDirectory(
 
 #endif // _WINSVC_
 
+#ifndef _WIN32METADATA_WINSVC_NATIVE_91_GROUPS_
+#define _WIN32METADATA_WINSVC_NATIVE_91_GROUPS_
+_Win32_Enum_(ENUM_SERVICE_STATE, unsigned int, SERVICE_ACTIVE, SERVICE_INACTIVE, SERVICE_STATE_ALL);
+_Win32_Enum_(SERVICE_CONFIG, unsigned int, SERVICE_CONFIG_DELAYED_AUTO_START_INFO, SERVICE_CONFIG_DESCRIPTION, SERVICE_CONFIG_FAILURE_ACTIONS, SERVICE_CONFIG_FAILURE_ACTIONS_FLAG, SERVICE_CONFIG_PREFERRED_NODE, SERVICE_CONFIG_PRESHUTDOWN_INFO, SERVICE_CONFIG_REQUIRED_PRIVILEGES_INFO, SERVICE_CONFIG_SERVICE_SID_INFO, SERVICE_CONFIG_TRIGGER_INFO, SERVICE_CONFIG_LAUNCH_PROTECTED);
+_Win32_Enum_(SERVICE_TRIGGER_ACTION, unsigned int, SERVICE_TRIGGER_ACTION_SERVICE_START, SERVICE_TRIGGER_ACTION_SERVICE_STOP);
+_Win32_AnnotateField_(SERVICE_TRIGGER::dwAction, _Win32_AssociatedEnum_(SERVICE_TRIGGER_ACTION));
+_Win32_Enum_(SERVICE_TRIGGER_TYPE, unsigned int, SERVICE_TRIGGER_TYPE_CUSTOM, SERVICE_TRIGGER_TYPE_DEVICE_INTERFACE_ARRIVAL, SERVICE_TRIGGER_TYPE_DOMAIN_JOIN, SERVICE_TRIGGER_TYPE_FIREWALL_PORT_EVENT, SERVICE_TRIGGER_TYPE_GROUP_POLICY, SERVICE_TRIGGER_TYPE_IP_ADDRESS_AVAILABILITY, SERVICE_TRIGGER_TYPE_NETWORK_ENDPOINT);
+_Win32_AnnotateField_(SERVICE_TRIGGER::dwTriggerType, _Win32_AssociatedEnum_(SERVICE_TRIGGER_TYPE));
+_Win32_Enum_(SERVICE_TRIGGER_SPECIFIC_DATA_ITEM_DATA_TYPE, unsigned int, SERVICE_TRIGGER_DATA_TYPE_BINARY, SERVICE_TRIGGER_DATA_TYPE_STRING, SERVICE_TRIGGER_DATA_TYPE_LEVEL, SERVICE_TRIGGER_DATA_TYPE_KEYWORD_ANY, SERVICE_TRIGGER_DATA_TYPE_KEYWORD_ALL);
+_Win32_AnnotateField_(SERVICE_TRIGGER_SPECIFIC_DATA_ITEM::dwDataType, _Win32_AssociatedEnum_(SERVICE_TRIGGER_SPECIFIC_DATA_ITEM_DATA_TYPE));
+_Win32_Enum_(SERVICE_STATUS_CURRENT_STATE, unsigned int, SERVICE_CONTINUE_PENDING, SERVICE_PAUSE_PENDING, SERVICE_PAUSED, SERVICE_RUNNING, SERVICE_START_PENDING, SERVICE_STOP_PENDING, SERVICE_STOPPED);
+_Win32_AnnotateField_(SERVICE_STATUS_PROCESS::dwCurrentState, _Win32_AssociatedEnum_(SERVICE_STATUS_CURRENT_STATE));
+_Win32_AnnotateField_(SERVICE_STATUS::dwCurrentState, _Win32_AssociatedEnum_(SERVICE_STATUS_CURRENT_STATE));
+#endif

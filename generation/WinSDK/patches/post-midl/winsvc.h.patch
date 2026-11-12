@@ -25,7 +25,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winsvc.h b/generation/Win
  WINADVAPI
  BOOL
  WINAPI
-@@ -1056,6 +1061,8 @@
+@@ -1056,21 +1061,25 @@
  #else
  #define ChangeServiceConfig  ChangeServiceConfigA
  #endif // !UNICODE
@@ -34,8 +34,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winsvc.h b/generation/Win
  
  WINADVAPI
  BOOL
-@@ -1065,6 +1072,8 @@
-     _In_        DWORD        dwInfoLevel,
+ WINAPI
+ ChangeServiceConfig2A(
+     _In_        SC_HANDLE    hService,
+-    _In_        DWORD        dwInfoLevel,
++    _Win32_AssociatedEnum_(SERVICE_CONFIG) _In_        DWORD        dwInfoLevel,
      _In_opt_    LPVOID       lpInfo
      );
 +_Win32_SetLastError_
@@ -43,6 +46,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winsvc.h b/generation/Win
  WINADVAPI
  BOOL
  WINAPI
+ ChangeServiceConfig2W(
+     _In_        SC_HANDLE    hService,
+-    _In_        DWORD        dwInfoLevel,
++    _Win32_AssociatedEnum_(SERVICE_CONFIG) _In_        DWORD        dwInfoLevel,
+     _In_opt_    LPVOID       lpInfo
+     );
+ #ifdef UNICODE
 @@ -1078,6 +1087,8 @@
  #else
  #define ChangeServiceConfig2  ChangeServiceConfig2A
@@ -97,11 +107,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winsvc.h b/generation/Win
  
  _Must_inspect_result_
  WINADVAPI
-@@ -1153,12 +1174,14 @@
+@@ -1152,21 +1173,23 @@
+ WINAPI
  EnumDependentServicesA(
      _In_            SC_HANDLE               hService,
-     _In_            DWORD                   dwServiceState,
+-    _In_            DWORD                   dwServiceState,
 -    _Out_writes_bytes_opt_(cbBufSize)
++    _Win32_AssociatedEnum_(ENUM_SERVICE_STATE) _In_            DWORD                   dwServiceState,
 +    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_opt_(cbBufSize)
                      LPENUM_SERVICE_STATUSA  lpServices,
      _In_            DWORD                   cbBufSize,
@@ -113,11 +125,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winsvc.h b/generation/Win
  _Must_inspect_result_
  WINADVAPI
  BOOL
-@@ -1166,7 +1189,7 @@
+ WINAPI
  EnumDependentServicesW(
      _In_            SC_HANDLE               hService,
-     _In_            DWORD                   dwServiceState,
+-    _In_            DWORD                   dwServiceState,
 -    _Out_writes_bytes_opt_(cbBufSize)
++    _Win32_AssociatedEnum_(ENUM_SERVICE_STATE) _In_            DWORD                   dwServiceState,
 +    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_opt_(cbBufSize)
                      LPENUM_SERVICE_STATUSW  lpServices,
      _In_            DWORD                   cbBufSize,
@@ -131,11 +144,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winsvc.h b/generation/Win
  
  _Must_inspect_result_
  WINADVAPI
-@@ -1192,13 +1217,15 @@
+@@ -1191,14 +1216,16 @@
+ EnumServicesStatusA(
      _In_            SC_HANDLE               hSCManager,
      _In_            DWORD                   dwServiceType,
-     _In_            DWORD                   dwServiceState,
+-    _In_            DWORD                   dwServiceState,
 -    _Out_writes_bytes_opt_(cbBufSize)
++    _Win32_AssociatedEnum_(ENUM_SERVICE_STATE) _In_            DWORD                   dwServiceState,
 +    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_opt_(cbBufSize)
                      LPENUM_SERVICE_STATUSA  lpServices,
      _In_            DWORD                   cbBufSize,
@@ -148,11 +163,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winsvc.h b/generation/Win
  _Must_inspect_result_
  WINADVAPI
  BOOL
-@@ -1207,7 +1234,7 @@
+@@ -1206,8 +1233,8 @@
+ EnumServicesStatusW(
      _In_            SC_HANDLE               hSCManager,
      _In_            DWORD                   dwServiceType,
-     _In_            DWORD                   dwServiceState,
+-    _In_            DWORD                   dwServiceState,
 -    _Out_writes_bytes_opt_(cbBufSize)
++    _Win32_AssociatedEnum_(ENUM_SERVICE_STATE) _In_            DWORD                   dwServiceState,
 +    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_opt_(cbBufSize)
                      LPENUM_SERVICE_STATUSW  lpServices,
      _In_            DWORD                   cbBufSize,
@@ -166,11 +183,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winsvc.h b/generation/Win
  
  _Must_inspect_result_
  WINADVAPI
-@@ -1235,7 +1264,7 @@
+@@ -1234,8 +1263,8 @@
+     _In_            SC_HANDLE               hSCManager,
      _In_            SC_ENUM_TYPE            InfoLevel,
      _In_            DWORD                   dwServiceType,
-     _In_            DWORD                   dwServiceState,
+-    _In_            DWORD                   dwServiceState,
 -    _Out_writes_bytes_opt_(cbBufSize)
++    _Win32_AssociatedEnum_(ENUM_SERVICE_STATE) _In_            DWORD                   dwServiceState,
 +    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_opt_(cbBufSize)
                      LPBYTE                  lpServices,
      _In_            DWORD                   cbBufSize,
@@ -184,11 +203,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winsvc.h b/generation/Win
  _Must_inspect_result_
  WINADVAPI
  BOOL
-@@ -1252,7 +1283,7 @@
+@@ -1251,8 +1282,8 @@
+     _In_            SC_HANDLE               hSCManager,
      _In_            SC_ENUM_TYPE            InfoLevel,
      _In_            DWORD                   dwServiceType,
-     _In_            DWORD                   dwServiceState,
+-    _In_            DWORD                   dwServiceState,
 -    _Out_writes_bytes_opt_(cbBufSize)
++    _Win32_AssociatedEnum_(ENUM_SERVICE_STATE) _In_            DWORD                   dwServiceState,
 +    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_opt_(cbBufSize)
                      LPBYTE                  lpServices,
      _In_            DWORD                   cbBufSize,
@@ -324,11 +345,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winsvc.h b/generation/Win
  
  _When_(dwInfoLevel == SERVICE_CONFIG_DESCRIPTION,
         _At_(cbBufSize, _In_range_(>=, sizeof(LPSERVICE_DESCRIPTIONA))))
-@@ -1438,11 +1495,13 @@
+@@ -1437,12 +1494,14 @@
+ WINAPI
  QueryServiceConfig2A(
      _In_            SC_HANDLE               hService,
-     _In_            DWORD                   dwInfoLevel,
+-    _In_            DWORD                   dwInfoLevel,
 -    _Out_writes_bytes_opt_(cbBufSize)
++    _Win32_AssociatedEnum_(SERVICE_CONFIG) _In_            DWORD                   dwInfoLevel,
 +    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_opt_(cbBufSize)
                      LPBYTE                  lpBuffer,
      _In_            DWORD                   cbBufSize,
@@ -339,11 +362,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winsvc.h b/generation/Win
  _When_(dwInfoLevel == SERVICE_CONFIG_DESCRIPTION,
         _At_(cbBufSize, _In_range_(>=, sizeof(LPSERVICE_DESCRIPTIONW))))
  _When_(dwInfoLevel == SERVICE_CONFIG_FAILURE_ACTIONS,
-@@ -1457,7 +1516,7 @@
+@@ -1456,8 +1515,8 @@
+ WINAPI
  QueryServiceConfig2W(
      _In_            SC_HANDLE               hService,
-     _In_            DWORD                   dwInfoLevel,
+-    _In_            DWORD                   dwInfoLevel,
 -    _Out_writes_bytes_opt_(cbBufSize)
++    _Win32_AssociatedEnum_(SERVICE_CONFIG) _In_            DWORD                   dwInfoLevel,
 +    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_opt_(cbBufSize)
                      LPBYTE                  lpBuffer,
      _In_            DWORD                   cbBufSize,
@@ -576,3 +601,21 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winsvc.h b/generation/Win
  
  _Must_inspect_result_
  DWORD
+@@ -1874,3 +1975,17 @@
+ 
+ #endif // _WINSVC_
+ 
++#ifndef _WIN32METADATA_WINSVC_NATIVE_91_GROUPS_
++#define _WIN32METADATA_WINSVC_NATIVE_91_GROUPS_
++_Win32_Enum_(ENUM_SERVICE_STATE, unsigned int, SERVICE_ACTIVE, SERVICE_INACTIVE, SERVICE_STATE_ALL);
++_Win32_Enum_(SERVICE_CONFIG, unsigned int, SERVICE_CONFIG_DELAYED_AUTO_START_INFO, SERVICE_CONFIG_DESCRIPTION, SERVICE_CONFIG_FAILURE_ACTIONS, SERVICE_CONFIG_FAILURE_ACTIONS_FLAG, SERVICE_CONFIG_PREFERRED_NODE, SERVICE_CONFIG_PRESHUTDOWN_INFO, SERVICE_CONFIG_REQUIRED_PRIVILEGES_INFO, SERVICE_CONFIG_SERVICE_SID_INFO, SERVICE_CONFIG_TRIGGER_INFO, SERVICE_CONFIG_LAUNCH_PROTECTED);
++_Win32_Enum_(SERVICE_TRIGGER_ACTION, unsigned int, SERVICE_TRIGGER_ACTION_SERVICE_START, SERVICE_TRIGGER_ACTION_SERVICE_STOP);
++_Win32_AnnotateField_(SERVICE_TRIGGER::dwAction, _Win32_AssociatedEnum_(SERVICE_TRIGGER_ACTION));
++_Win32_Enum_(SERVICE_TRIGGER_TYPE, unsigned int, SERVICE_TRIGGER_TYPE_CUSTOM, SERVICE_TRIGGER_TYPE_DEVICE_INTERFACE_ARRIVAL, SERVICE_TRIGGER_TYPE_DOMAIN_JOIN, SERVICE_TRIGGER_TYPE_FIREWALL_PORT_EVENT, SERVICE_TRIGGER_TYPE_GROUP_POLICY, SERVICE_TRIGGER_TYPE_IP_ADDRESS_AVAILABILITY, SERVICE_TRIGGER_TYPE_NETWORK_ENDPOINT);
++_Win32_AnnotateField_(SERVICE_TRIGGER::dwTriggerType, _Win32_AssociatedEnum_(SERVICE_TRIGGER_TYPE));
++_Win32_Enum_(SERVICE_TRIGGER_SPECIFIC_DATA_ITEM_DATA_TYPE, unsigned int, SERVICE_TRIGGER_DATA_TYPE_BINARY, SERVICE_TRIGGER_DATA_TYPE_STRING, SERVICE_TRIGGER_DATA_TYPE_LEVEL, SERVICE_TRIGGER_DATA_TYPE_KEYWORD_ANY, SERVICE_TRIGGER_DATA_TYPE_KEYWORD_ALL);
++_Win32_AnnotateField_(SERVICE_TRIGGER_SPECIFIC_DATA_ITEM::dwDataType, _Win32_AssociatedEnum_(SERVICE_TRIGGER_SPECIFIC_DATA_ITEM_DATA_TYPE));
++_Win32_Enum_(SERVICE_STATUS_CURRENT_STATE, unsigned int, SERVICE_CONTINUE_PENDING, SERVICE_PAUSE_PENDING, SERVICE_PAUSED, SERVICE_RUNNING, SERVICE_START_PENDING, SERVICE_STOP_PENDING, SERVICE_STOPPED);
++_Win32_AnnotateField_(SERVICE_STATUS_PROCESS::dwCurrentState, _Win32_AssociatedEnum_(SERVICE_STATUS_CURRENT_STATE));
++_Win32_AnnotateField_(SERVICE_STATUS::dwCurrentState, _Win32_AssociatedEnum_(SERVICE_STATUS_CURRENT_STATE));
++#endif
