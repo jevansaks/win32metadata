@@ -1,9 +1,9 @@
 # Working-first recovery and sidecar reduction
 
-**Current accepted cohort:** [25 device/setup groups](#device-and-setup-dependency-subdivision)
-above preserved `ae0ffdf6a44da9d2b3dfcc6c8ecf1cadfab00848`, following the
-previous 25 direct-header groups above `85444f25`.
-Its actual WinMD is `6B8BD99F...`; the complete 35,379-type dump is
+**Current accepted cohort:** [71 UI/GDI/OLE/control groups](#ui-gdi-ole-and-common-control-continuation)
+above preserved `45a3e988d6d0d31d20e3fb9233493c98301d41b9`, following the
+previous two 25-group cohorts above `85444f25`.
+Its actual WinMD is `243E725B...`; the complete 35,379-type dump is
 `1F4F3839...`, byte-identical to accepted structural checkpoint 6d44.
 Earlier authorized fictitious-handle/AssociatedEnum changes remain completely
 accounted for relative to the original parent; no arbitrary API loss is
@@ -13,19 +13,19 @@ historical checkpoints, not the current totals.
 | Inventory / units | Recovery | Accepted current | Net retired |
 |---|---:|---:|---:|
 | Original parameter attribute atoms | 770 | 361 | 409 |
-| All RSP value rows | 146,789 | 134,090 | 12,699 |
+| All RSP value rows | 146,789 | 134,161 | 12,628 |
 | Allowed documentation URL rows | 90,502 | 90,502 | 0 (outside backlog) |
-| Other RSP rows, mixed configuration/API units | 56,287 | 43,588 | 12,699 |
+| Other RSP rows, mixed configuration/API units | 56,287 | 43,659 | 12,628 |
 | Emitter `memberRemap` rows | 2,295 | 1,592 | 703 |
 | LastError rows | 3,362 | 468 | 2,894 |
 | Availability rows | 17,070 | 7,883 | 9,187 |
-| Enum JSON records, mixed definitions/additional uses | 1,070 | 945 | 125 |
+| Enum JSON records, mixed definitions/additional uses | 1,070 | 874 | 196 |
 | autoTypes records | 444 | 436 | 8 |
 | Function-pointer fixup records | 27 | 27 | 0 |
 
 | Remaining category | Measured accepted quantity | Examination state |
 |---|---:|---|
-| Definition-bearing enum records | 921 | Fifty further whole definitions accepted across two cohorts; three device/setup dependency closures restored. A further 71 local owner closures are prepared, not accepted or exhaustively examined. |
+| Definition-bearing enum records | 850 | 121 further whole definitions accepted across three cohorts; three device/setup dependency closures restored. A further 195 explicit-member local owner closures are preflighted, not accepted or exhaustively examined. |
 | Additional-use enum records / selector rows | 23 / 55 | Exact retained FILE/REG/SNMP/process, STGM, COM/MIDL and Cloud closures; observed boundaries are in [PROBLEMS.md](PROBLEMS.md). |
 | Genuine CLR flags request | 1 record | Native enum use override already redundant/retired; flags effect still unqualified. |
 | Native type/storage/ownership inputs | 436 records | 425 legacy-storage / 11 native selections; genuine types remain. Thirteen contextual cleanup records are demonstrated boundaries, not all 436 records. |
@@ -1064,5 +1064,58 @@ comparison, full dump, byte audit and TRX remain in
 Two local command/cache mistakes produced incomplete or duplicated generated
 sources before the final clean-cache run. Those logs are retained separately;
 they are execution errors, not SDK reader defects or accepted outputs.
-The next prepared cohort is 71 WinUser/GDI/OLE-dialog/common-control groups;
-preflight alone is not acceptance.
+The next 71 WinUser/GDI/OLE-dialog/common-control groups were then evaluated,
+not counted as accepted from preflight alone.
+
+## UI, GDI, OLE and common-control continuation
+
+The next accepted union retires **71 complete JSON definition/use records,
+1,021 members and 156 active native bindings**:
+
+| Owning header | Definition groups |
+|---|---:|
+| `WinUser.h` | 27 |
+| `wingdi.h` | 13 |
+| `OleDlg.h` | 9 |
+| `CommCtrl.h` | 22 |
+
+Two other old bindings, `DrawFrameControl::param2` and `::param3`, are
+inactive selectors: actual native and baseline parameter names are `uType`
+and `uState`, without those associations. They are deleted as inactive
+configuration; no new association is silently added to the actual parameters.
+Display-configuration bindings cross from wingdi constants to their actual
+WinUser declaration owner within this same tested closure.
+
+An initial authoring error placed four return carriers after `WINUSERAPI`.
+The existing reader correctly rejected them with `must precede the native
+declaration type`; moving the carriers before the complete declarations fixed
+the input without a reader change. Macro-continuation calls and stale selectors
+are distinguished from declarations in the session-only input authoring step.
+These are not new unsupported-contract claims.
+
+All four actual MenuRc/Gdi/ComOle/Controls owners scrape successfully in
+**1m15.30s**; complete production emission passes in **4m29.13s**:
+
+| Accepted artifact | Identity |
+|---|---|
+| Actual new WinMD | `files\sidecar-reduction\direct-ui-71-candidate\Windows.Win32.winmd` |
+| Size / SHA-256 | 24,176,640 bytes / `243E725BE3D7D77D4447271B4B28154F37CE220B7F3E1F537B724A62637B0E5E` |
+| Complete dump / types | `1F4F38395D602095972A5095C4A25EF6C117BE5E1D716DAB5C3108BE6AC589BA` / 35,379 |
+| Unmasked comparer / complete raw accounting | Exit **0** against 45a3; entire dump byte-identical, zero unmatched changes |
+
+Actual-output integrity passes **54/54**, strict patch replay **345/345**.
+All four native owners preserve their BOMs, non-ASCII bytes and non-ASCII
+lines. Seventy-one namespace bridges preserve existing public owners and are
+counted as routing additions, not hidden from RSP totals. Original parameter
+atoms, autoTypes, fixups, DLL mappings and allowed documentation remain
+unchanged in this cohort. Exact source facts, rejected/corrected diagnostics,
+full raw accounting and TRX remain in `files\sidecar-reduction\direct-ui-71-*`.
+
+The renewed pass has now retired 121 complete groups across three accepted
+cohorts: 1,598 members and 271 active native uses, plus 11 explicitly inactive
+legacy selectors. There are still 850 definition-bearing records, not a
+blanket unsupported/minimum boundary. Preflight found another 195
+explicit-member groups with native macro operands and local owner closures;
+their 1,428 members / 349 listed selectors are preparation, not accepted
+coverage. A six-genuine-handle DiagnosticDataQuery producer/storage cohort is
+also prepared; all 436 current autoTypes records remain until it is evaluated.
