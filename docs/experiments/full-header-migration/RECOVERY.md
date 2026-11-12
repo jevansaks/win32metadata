@@ -1,9 +1,10 @@
 # Working-first recovery and sidecar reduction
 
-**Current accepted cohort:** [64 more C-header groups](#network-security-and-ime-subdivision)
-above preserved `c9910f399d9b988fc9d0cf725b650dc7f3e3ed87`, following the
+**Current accepted cohort:** [two native primitive storage selections](#native-primitive-storage-subdivision)
+above preserved `81fa52a2182b0ba62f4f4a50f3649417e88e12b2`, following
+[64 more C-header groups](#network-security-and-ime-subdivision) and the
 previous 395 groups above `85444f25`.
-Its actual WinMD is `67F41F57...`; the complete 35,379-type dump is
+Its actual WinMD is `CE201717...`; the complete 35,379-type dump is
 `1F4F3839...`, byte-identical to accepted structural checkpoint 6d44.
 Earlier authorized fictitious-handle/AssociatedEnum changes remain completely
 accounted for relative to the original parent; no arbitrary API loss is
@@ -28,7 +29,7 @@ historical checkpoints, not the current totals.
 | Definition-bearing enum records | 512 | 459 further whole definitions accepted across six cohorts. Six closures from the actual 70-group C-header trial remain restored. Another 13 shared-header groups and 109 security/system candidates are preflighted only, including known failures to exclude before trials. |
 | Additional-use enum records / selector rows | 23 / 55 | Exact retained FILE/REG/SNMP/process, STGM, COM/MIDL and Cloud closures; observed boundaries are in [PROBLEMS.md](PROBLEMS.md). |
 | Genuine CLR flags request | 1 record | Native enum use override already redundant/retired; flags effect still unqualified. |
-| Native type/storage/ownership inputs | 436 records | 425 legacy-storage / 11 native selections; genuine types remain. Six DiagnosticDataQuery selections/producer closures tried and restored; thirteen contextual cleanup records remain separate boundaries, not all 436 records. |
+| Native type/storage/ownership inputs | 436 records | 423 legacy-storage / 13 native selections; genuine types remain. BOOL/COLORREF storage and two redundant NativeTypedef flags are retired, not their records. BOOLEAN and six DiagnosticDataQuery selections/producer closures remain restored; thirteen contextual cleanup records are separate boundaries, not all 436 records. |
 | Parameter atoms | 361 | Individually inventoried; nine CLR selectors explicitly excepted, other unqualified/failed owner closures remain exact facts. |
 | DLL mappings | 26,376 automatic + 385 manual rows | Retained, not exempt; no new DLL migration claimed. |
 | Other RSP operational/API rows | Exact file/option TSV | Parser/global/routing configuration is separate from semantic retirement; do not remove it to inflate counts. |
@@ -49,6 +50,27 @@ rewriting history, or changing lower stack layers. This conservative batch keeps
 only the already-qualified parent header pilots. **No additional broad-migration
 header coverage is claimed.** All 737 broad patches and their sidecar retirements
 are deferred until they can be enabled in small batches that each emit.
+
+## Native primitive storage subdivision
+
+The three-selection BOOL/BOOLEAN/COLORREF trial emitted, but its complete
+unmasked comparison changed two genuine callback types from `Byte*` to
+`BOOLEAN*`: `CrediUnmarshalandDecodeStringFn.Invoke::IsFailureFatal` and
+`PKSEC_DEREFERENCE_LIST_ENTRY.Invoke::Delete`. This is direct native-alias
+propagation, not evidence that BOOLEAN is fictitious, nor the earlier global
+callback aggregation failure. BOOLEAN's original byte storage and
+`NativeTypedef: true` remain restored.
+
+The retained two-selection union replaces BOOL's `int` and COLORREF's
+`uint` storage with `native`, removing only their redundant `NativeTypedef`
+flags. Actual native declarations still produce both genuine types. No
+autoTypes record, parameter atom or RSP row is removed by this cohort.
+Production emission and its unmasked parent comparison preserve the entire
+35,379-type declaration dump byte-for-byte (`1F4F3839...`); the actual new
+WinMD is `CE20171725434A9B37CBDE44A3982860CCFA2D9A26F66965E065860459F9D56C`.
+Integrity passes 54/54. All 23 native SDK controls pass after binding the
+eleven-selection control to its preserved fc60 input; its assertions remain
+unchanged. The earlier failed control runs are retained, not counted as passes.
 
 ## Retained sidecars
 

@@ -83,7 +83,10 @@ namespace ClangSharpSourceToWinmdTests
             try
             {
                 string output = Path.Combine(directory, "settings.rsp");
-                string text = PrepareSettings(output);
+                string autoTypes = Path.Combine(directory, "autoTypes.json");
+                File.WriteAllBytes(autoTypes, PropertyComOutputHeaderTests.ReadOriginalBytes(
+                    "autoTypes.json", "fc60db128ac08f4009737debc40cd4515e4a837a"));
+                string text = PrepareSettings(output, autoTypes);
                 string[] aliases =
                 {
                     "HRESULT", "BCRYPT_HANDLE", "BCRYPT_ALG_HANDLE", "BCRYPT_KEY_HANDLE",
@@ -545,11 +548,11 @@ typedef char CallbackWidth[(sizeof(*((LPResultCallback)0)) == sizeof(void*)) ? 1
             return matches[0].Value;
         }
 
-        private static string PrepareSettings(string output)
+        private static string PrepareSettings(string output, string? autoTypes = null)
         {
             var task = new MetadataTasks.PrepSettingsForAutoTypes
             {
-                AutoTypes = new[] { new TaskItem(Sdk("autoTypes.json")) },
+                AutoTypes = new[] { new TaskItem(autoTypes ?? Sdk("autoTypes.json")) },
                 ScraperAutoTypesRsp = output,
             };
             Assert.IsTrue(task.Execute());

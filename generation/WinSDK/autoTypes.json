@@ -2,8 +2,7 @@
   {
     "Namespace": "Windows.Win32.Foundation",
     "Name": "BOOL",
-    "ValueType": "int",
-    "NativeTypedef": true
+    "ValueType": "native"
   },
   {
     "Namespace": "Windows.Win32.Foundation",
@@ -105,8 +104,7 @@
   {
     "Namespace": "Windows.Win32.Foundation",
     "Name": "COLORREF",
-    "ValueType": "uint",
-    "NativeTypedef": true
+    "ValueType": "native"
   },
   {
     "Namespace": "Windows.Win32.System.DataExchange",
