@@ -28,7 +28,7 @@ historical checkpoints, not the current totals.
 | Definition-bearing enum records | 850 | 121 further whole definitions accepted across three cohorts; three device/setup dependency closures restored. A further 195 explicit-member local owner closures are preflighted, not accepted or exhaustively examined. |
 | Additional-use enum records / selector rows | 23 / 55 | Exact retained FILE/REG/SNMP/process, STGM, COM/MIDL and Cloud closures; observed boundaries are in [PROBLEMS.md](PROBLEMS.md). |
 | Genuine CLR flags request | 1 record | Native enum use override already redundant/retired; flags effect still unqualified. |
-| Native type/storage/ownership inputs | 436 records | 425 legacy-storage / 11 native selections; genuine types remain. Thirteen contextual cleanup records are demonstrated boundaries, not all 436 records. |
+| Native type/storage/ownership inputs | 436 records | 425 legacy-storage / 11 native selections; genuine types remain. Six DiagnosticDataQuery selections/producer closures tried and restored; thirteen contextual cleanup records remain separate boundaries, not all 436 records. |
 | Parameter atoms | 361 | Individually inventoried; nine CLR selectors explicitly excepted, other unqualified/failed owner closures remain exact facts. |
 | DLL mappings | 26,376 automatic + 385 manual rows | Retained, not exempt; no new DLL migration claimed. |
 | Other RSP operational/API rows | Exact file/option TSV | Parser/global/routing configuration is separate from semantic retirement; do not remove it to inflate counts. |
@@ -1117,5 +1117,48 @@ legacy selectors. There are still 850 definition-bearing records, not a
 blanket unsupported/minimum boundary. Preflight found another 195
 explicit-member groups with native macro operands and local owner closures;
 their 1,428 members / 349 listed selectors are preparation, not accepted
-coverage. A six-genuine-handle DiagnosticDataQuery producer/storage cohort is
-also prepared; all 436 current autoTypes records remain until it is evaluated.
+coverage. The six-genuine-handle DiagnosticDataQuery producer/storage cohort
+was then actually evaluated and restored as below; all 436 autoTypes records
+remain.
+
+## Diagnostic native-handle subdivision
+
+The six `HDIAGNOSTIC_*` aliases are genuine native `DECLARE_HANDLE`
+declarations, not projection-only handle types. Selecting native storage and
+moving their six exact cleanup/sentinel groups to producing output parameters
+first fails on the actual native alias shape: DiagnosticDataQuery.h:8 reports
+`Unsupported native typedef pointer shape; expected void or an incomplete
+opaque record`. The SDK macro supplies a complete dummy record pointer.
+All six storage/NativeTypedef selections were restored before the independent
+producer-only retry; no reader or native declaration was weakened.
+
+The producer-only retry scrapes in **59.80s**, emits in **4m35.54s**, and its
+actual output passes integrity **54/54** and patch replay **345/345**.
+Nevertheless it is **not accepted**: the unmasked comparison contains the
+six intended type-to-producer cleanup/invalid-value moves plus eight unrelated
+callback direction/pointer-depth changes in two Identity callback types.
+Those are outside the allowed ownership transformation.
+
+| Rejected artifact | Identity |
+|---|---|
+| WinMD / bytes | `D6F06CB05FD675EAD8AE380C7F34BEBEAF5C9D5A3CFC8041108F0717849C43D2` / 24,176,640 |
+| Complete dump / types | `275AF494981D68042367BE0FAFFE6A91BBBBBF84FB6BE8623C53A5D3F50A3693` / 35,379 |
+| Unmasked comparer | Exit -1; no filters or known-difference file |
+
+After restoring the complete closure, an untouched-header production scrape
+passes in **1m12.04s** and produces the exact same changed
+`emitter.autoFnPtr.crossarch.generated.rsp` as the ownership retry. Its SHA-256
+is `5E92BA3DBECCAE39E3F2052F45F3370E5D25EBC87472BEDB4C7DF55DAB6FE93F`;
+the accepted prior response file was `B5196056...`. This isolates an
+intermediate global function-pointer-reduction aggregation dependency during
+filtered refresh, not a proved producer-reader defect. No full control
+emission or speculative aggregation repair was performed.
+
+All three trial inputs are restored, workspace output is again accepted
+`243E725B...`, and no JSON field, parameter fact or native type retirement is
+counted from this trial. Exact native-selection diagnostics, both attempted
+input sets, rejected output/dump, unmasked comparison and untouched control
+response-file accounting remain under
+`files\sidecar-reduction\diagnostic-native-{six,control}-*`.
+The next 195 explicit-member enum groups remain available for independent
+subdivision rather than stopping on this boundary.
