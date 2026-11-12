@@ -1312,7 +1312,7 @@ AcquireCredentialsHandleW(
     _In_      PSECURITY_STRING pPackage,
 #else
     _In_opt_  LPWSTR pszPrincipal,                // Name of principal
-    _In_      LPWSTR pszPackage,                  // Name of package
+    _In_      LPWSTR pszPackage,                  _Win32_AssociatedEnum_(SECPKG_CRED) // Name of package
 #endif
     _In_      unsigned long fCredentialUse,       // Flags indicating use
     _In_opt_  void * pvLogonId,                   // Pointer to logon ID
@@ -1346,7 +1346,7 @@ _Win32_SupportedOS_WindowsVista_
 SECURITY_STATUS SEC_ENTRY
 AcquireCredentialsHandleA(
     _In_opt_  LPSTR pszPrincipal,                 // Name of principal
-    _In_      LPSTR pszPackage,                   // Name of package
+    _In_      LPSTR pszPackage,                   _Win32_AssociatedEnum_(SECPKG_CRED) // Name of package
     _In_      unsigned long fCredentialUse,       // Flags indicating use
     _In_opt_  void * pvLogonId,                   // Pointer to logon ID
     _In_opt_  void * pAuthData,                   // Package specific data
@@ -1717,7 +1717,7 @@ InitializeSecurityContextW(
 #if ISSP_MODE == 0
     _In_opt_ PSECURITY_STRING pTargetName,
 #else
-    _In_opt_ SEC_WCHAR * pszTargetName,         // Name of target
+    _In_opt_ SEC_WCHAR * pszTargetName,         _Win32_AssociatedEnum_(ISC_REQ_FLAGS) // Name of target
 #endif
     _In_        unsigned long fContextReq,              // Context Requirements
     _In_        unsigned long Reserved1,                // Reserved, MBZ
@@ -1755,7 +1755,7 @@ SECURITY_STATUS SEC_ENTRY
 InitializeSecurityContextA(
     _In_opt_    PCredHandle phCredential,               // Cred to base context
     _In_opt_    PCtxtHandle phContext,                  // Existing context (OPT)
-    _In_opt_    SEC_CHAR * pszTargetName,       // Name of target
+    _In_opt_    SEC_CHAR * pszTargetName,       _Win32_AssociatedEnum_(ISC_REQ_FLAGS) // Name of target
     _In_        unsigned long fContextReq,              // Context Requirements
     _In_        unsigned long Reserved1,                // Reserved, MBZ
     _In_        unsigned long TargetDataRep,            // Data rep of target
@@ -1798,7 +1798,7 @@ SECURITY_STATUS SEC_ENTRY
 AcceptSecurityContext(
     _In_opt_    PCredHandle phCredential,               // Cred to base context
     _In_opt_    PCtxtHandle phContext,                  // Existing context (OPT)
-    _In_opt_    PSecBufferDesc pInput,                  // Input buffer
+    _In_opt_    PSecBufferDesc pInput,                  _Win32_AssociatedEnum_(ASC_REQ_FLAGS) // Input buffer
     _In_        unsigned long fContextReq,              // Context Requirements
     _In_        unsigned long TargetDataRep,            // Target Data Rep
     _Inout_opt_ PCtxtHandle phNewContext,               // (out) New context handle
@@ -2396,7 +2396,7 @@ _Win32_SupportedOS_WindowsXP_
 KSECDDDECLSPEC
 SECURITY_STATUS SEC_ENTRY
 ExportSecurityContext(
-    _In_  PCtxtHandle          phContext,             // (in) context to export
+    _In_  PCtxtHandle          phContext,             _Win32_AssociatedEnum_(EXPORT_SECURITY_CONTEXT_FLAGS) // (in) context to export
     _In_  ULONG                fFlags,                // (in) option flags
     _Out_ PSecBuffer           pPackedContext,        // (out) marshalled context
     _Out_ void * * pToken             // (out, optional) token handle for impersonation
@@ -2839,7 +2839,7 @@ SEC_ENTRY
 SaslInitializeSecurityContextW(
     _In_opt_    PCredHandle                 phCredential,       // Cred to base context
     _In_opt_    PCtxtHandle                 phContext,          // Existing context (OPT)
-    _In_opt_    LPWSTR                      pszTargetName,      // Name of target
+    _In_opt_    LPWSTR                      pszTargetName,      _Win32_AssociatedEnum_(ISC_REQ_FLAGS) // Name of target
     _In_        unsigned long               fContextReq,        // Context Requirements
     _In_        unsigned long               Reserved1,          // Reserved, MBZ
     _In_        unsigned long               TargetDataRep,      // Data rep of target
@@ -2857,7 +2857,7 @@ SEC_ENTRY
 SaslInitializeSecurityContextA(
     _In_opt_    PCredHandle                 phCredential,       // Cred to base context
     _In_opt_    PCtxtHandle                 phContext,          // Existing context (OPT)
-    _In_opt_    LPSTR                       pszTargetName,      // Name of target
+    _In_opt_    LPSTR                       pszTargetName,      _Win32_AssociatedEnum_(ISC_REQ_FLAGS) // Name of target
     _In_        unsigned long               fContextReq,        // Context Requirements
     _In_        unsigned long               Reserved1,          // Reserved, MBZ
     _In_        unsigned long               TargetDataRep,      // Data rep of target
@@ -2882,7 +2882,7 @@ SEC_ENTRY
 SaslAcceptSecurityContext(
     _In_opt_    PCredHandle                 phCredential,       // Cred to base context
     _In_opt_    PCtxtHandle                 phContext,          // Existing context (OPT)
-    _In_opt_    PSecBufferDesc              pInput,             // Input buffer
+    _In_opt_    PSecBufferDesc              pInput,             _Win32_AssociatedEnum_(ASC_REQ_FLAGS) // Input buffer
     _In_        unsigned long               fContextReq,        // Context Requirements
     _In_        unsigned long               TargetDataRep,      // Target Data Rep
     _Inout_opt_ PCtxtHandle                 phNewContext,       // (out) New context handle
@@ -3822,3 +3822,15 @@ DeleteSecurityPackageW(
 // begin_ntifs
 #endif // __SSPI_H__
 // end_ntifs
+
+#ifndef _WIN32METADATA_SSPI_SHARED_RPC_12_GROUPS_
+#define _WIN32METADATA_SSPI_SHARED_RPC_12_GROUPS_
+_Win32_Enum_(SECPKG_CRED, unsigned int, SECPKG_CRED_INBOUND, SECPKG_CRED_OUTBOUND);
+_Win32_FlagsEnum_(EXPORT_SECURITY_CONTEXT_FLAGS, unsigned int, SECPKG_CONTEXT_EXPORT_RESET_NEW, SECPKG_CONTEXT_EXPORT_DELETE_OLD, SECPKG_CONTEXT_EXPORT_TO_KERNEL);
+_Win32_Enum_(SECURITY_PACKAGE_OPTIONS_TYPE, unsigned int, SECPKG_OPTIONS_TYPE_UNKNOWN, SECPKG_OPTIONS_TYPE_LSA, SECPKG_OPTIONS_TYPE_SSPI);
+_Win32_AnnotateField_(SECURITY_PACKAGE_OPTIONS::Type, _Win32_AssociatedEnum_(SECURITY_PACKAGE_OPTIONS_TYPE));
+_Win32_FlagsEnum_(ISC_REQ_HIGH_FLAGS, unsigned long long, ISC_REQ_MESSAGES, ISC_REQ_DEFERRED_CRED_VALIDATION, ISC_REQ_NO_POST_HANDSHAKE_AUTH, ISC_REQ_REUSE_SESSION_TICKETS, ISC_REQ_EXPLICIT_SESSION);
+_Win32_FlagsEnum_(ISC_REQ_FLAGS, unsigned int, ISC_REQ_DELEGATE, ISC_REQ_MUTUAL_AUTH, ISC_REQ_REPLAY_DETECT, ISC_REQ_SEQUENCE_DETECT, ISC_REQ_CONFIDENTIALITY, ISC_REQ_USE_SESSION_KEY, ISC_REQ_PROMPT_FOR_CREDS, ISC_REQ_USE_SUPPLIED_CREDS, ISC_REQ_ALLOCATE_MEMORY, ISC_REQ_USE_DCE_STYLE, ISC_REQ_DATAGRAM, ISC_REQ_CONNECTION, ISC_REQ_CALL_LEVEL, ISC_REQ_FRAGMENT_SUPPLIED, ISC_REQ_EXTENDED_ERROR, ISC_REQ_STREAM, ISC_REQ_INTEGRITY, ISC_REQ_IDENTIFY, ISC_REQ_NULL_SESSION, ISC_REQ_MANUAL_CRED_VALIDATION, ISC_REQ_RESERVED1, ISC_REQ_FRAGMENT_TO_FIT, ISC_REQ_FORWARD_CREDENTIALS, ISC_REQ_NO_INTEGRITY, ISC_REQ_USE_HTTP_STYLE, ISC_REQ_UNVERIFIED_TARGET_NAME, ISC_REQ_CONFIDENTIALITY_ONLY);
+_Win32_FlagsEnum_(ASC_REQ_HIGH_FLAGS, unsigned long long, ASC_REQ_MESSAGES, ASC_REQ_EXPLICIT_SESSION);
+_Win32_FlagsEnum_(ASC_REQ_FLAGS, unsigned int, ASC_REQ_DELEGATE, ASC_REQ_MUTUAL_AUTH, ASC_REQ_REPLAY_DETECT, ASC_REQ_SEQUENCE_DETECT, ASC_REQ_CONFIDENTIALITY, ASC_REQ_USE_SESSION_KEY, ASC_REQ_SESSION_TICKET, ASC_REQ_ALLOCATE_MEMORY, ASC_REQ_USE_DCE_STYLE, ASC_REQ_DATAGRAM, ASC_REQ_CONNECTION, ASC_REQ_CALL_LEVEL, ASC_REQ_FRAGMENT_SUPPLIED, ASC_REQ_EXTENDED_ERROR, ASC_REQ_STREAM, ASC_REQ_INTEGRITY, ASC_REQ_LICENSING, ASC_REQ_IDENTIFY, ASC_REQ_ALLOW_NULL_SESSION, ASC_REQ_ALLOW_NON_USER_LOGONS, ASC_REQ_ALLOW_CONTEXT_REPLAY, ASC_REQ_FRAGMENT_TO_FIT, ASC_REQ_NO_TOKEN, ASC_REQ_PROXY_BINDINGS, ASC_REQ_ALLOW_MISSING_BINDINGS);
+#endif

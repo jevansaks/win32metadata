@@ -1,10 +1,10 @@
 # Working-first recovery and sidecar reduction
 
-**Current accepted cohort:** [two native primitive storage selections](#native-primitive-storage-subdivision)
-above preserved `81fa52a2182b0ba62f4f4a50f3649417e88e12b2`, following
-[64 more C-header groups](#network-security-and-ime-subdivision) and the
-previous 395 groups above `85444f25`.
-Its actual WinMD is `CE201717...`; the complete 35,379-type dump is
+**Current accepted cohort:** [twelve shared RPC/security groups](#shared-rpc-and-security-subdivision)
+above preserved `de614703eec248d5783d6ae9c1d3a5a0db725b15`, following
+[two native primitive storage selections](#native-primitive-storage-subdivision)
+and the previous 459 groups above `85444f25`.
+Its actual WinMD is `FF717275...`; the complete 35,379-type dump is
 `1F4F3839...`, byte-identical to accepted structural checkpoint 6d44.
 Earlier authorized fictitious-handle/AssociatedEnum changes remain completely
 accounted for relative to the original parent; no arbitrary API loss is
@@ -14,19 +14,19 @@ historical checkpoints, not the current totals.
 | Inventory / units | Recovery | Accepted current | Net retired |
 |---|---:|---:|---:|
 | Original parameter attribute atoms | 770 | 361 | 409 |
-| All RSP value rows | 146,789 | 134,498 | 12,291 |
+| All RSP value rows | 146,789 | 134,510 | 12,279 |
 | Allowed documentation URL rows | 90,502 | 90,502 | 0 (outside backlog) |
-| Other RSP rows, mixed configuration/API units | 56,287 | 43,996 | 12,291 |
+| Other RSP rows, mixed configuration/API units | 56,287 | 44,008 | 12,279 |
 | Emitter `memberRemap` rows | 2,295 | 1,592 | 703 |
 | LastError rows | 3,362 | 468 | 2,894 |
 | Availability rows | 17,070 | 7,883 | 9,187 |
-| Enum JSON records, mixed definitions/additional uses | 1,070 | 536 | 534 |
+| Enum JSON records, mixed definitions/additional uses | 1,070 | 524 | 546 |
 | autoTypes records | 444 | 436 | 8 |
 | Function-pointer fixup records | 27 | 27 | 0 |
 
 | Remaining category | Measured accepted quantity | Examination state |
 |---|---:|---|
-| Definition-bearing enum records | 512 | 459 further whole definitions accepted across six cohorts. Six closures from the actual 70-group C-header trial remain restored. Another 13 shared-header groups and 109 security/system candidates are preflighted only, including known failures to exclude before trials. |
+| Definition-bearing enum records | 500 | 471 further whole definitions accepted across seven cohorts. The shared-header trial retains twelve groups and restores FACILITY_CODE; the earlier six C-header closures remain restored. Another 102 new security/system candidates are preflighted only, excluding seven already-examined closures. |
 | Additional-use enum records / selector rows | 23 / 55 | Exact retained FILE/REG/SNMP/process, STGM, COM/MIDL and Cloud closures; observed boundaries are in [PROBLEMS.md](PROBLEMS.md). |
 | Genuine CLR flags request | 1 record | Native enum use override already redundant/retired; flags effect still unqualified. |
 | Native type/storage/ownership inputs | 436 records | 423 legacy-storage / 13 native selections; genuine types remain. BOOL/COLORREF storage and two redundant NativeTypedef flags are retired, not their records. BOOLEAN and six DiagnosticDataQuery selections/producer closures remain restored; thirteen contextual cleanup records are separate boundaries, not all 436 records. |
@@ -50,6 +50,33 @@ rewriting history, or changing lower stack layers. This conservative batch keeps
 only the already-qualified parent header pilots. **No additional broad-migration
 header coverage is claimed.** All 737 broad patches and their sidecar retirements
 are deferred until they can be enabled in small batches that each emit.
+
+## Shared RPC and security subdivision
+
+The actual 13-group shared-header trial parsed, but could not emit:
+FACILITY_CODE retirement exposed CS0229/CS0119 ambiguity/type-expression
+errors for FACILITY_OPC and other FACILITY_* references in dependent HRESULT
+constants. The failed source and compiler log remain preserved; no WinMD or
+equivalence is claimed for that union. The full FACILITY_CODE closure,
+157 members, and its original winerror.h/recipe state are restored.
+
+The other twelve groups now own 84 members and 41 active associations in
+shared/rpcdce.h and shared/sspi.h: RPC QoS capabilities/identity, HTTP
+flags/authentication target, binding-handle options, security credentials,
+export-context/package options, and ISC/ASC request/high flags. All twelve
+JSON records are deleted, with twelve namespace routing rows added; routing
+rows are not retired annotations. There are no inactive selectors in this
+cohort. Cumulative additional definition retirement above 85444 is now
+471 groups / 4,442 members / 883 active uses, with twelve earlier inactive
+selectors still counted separately.
+
+Production scraping/emission, the unmasked parent comparison and the entire
+35,379-type raw dump preserve all API facts. The actual candidate is
+`FF7172753D5A07B6BEC7CA6C6695F0B4B17C12A0BC7CAEB0350E3146808D5F24`;
+integrity passes 54/54. All 348 selected post-MIDL patches replay to the
+exact consumed headers; both changed owners preserve their original BOM
+and non-ASCII lines. No production tooling changes or generated-RSP edits
+are used.
 
 ## Native primitive storage subdivision
 

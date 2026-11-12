@@ -1867,108 +1867,6 @@
   },
   {
     "type": "uint",
-    "name": "RPC_C_QOS_CAPABILITIES",
-    "flags": true,
-    "autoPopulate": {
-      "filter": "RPC_C_QOS_CAPABILITIES_",
-      "header": "rpcdce.h"
-    },
-    "members": [],
-    "uses": [
-      {
-        "struct": "RPC_SECURITY_QOS",
-        "field": "Capabilities"
-      },
-      {
-        "struct": "RPC_SECURITY_QOS_V2_A",
-        "field": "Capabilities"
-      },
-      {
-        "struct": "RPC_SECURITY_QOS_V2_W",
-        "field": "Capabilities"
-      },
-      {
-        "struct": "RPC_SECURITY_QOS_V3_A",
-        "field": "Capabilities"
-      },
-      {
-        "struct": "RPC_SECURITY_QOS_V3_W",
-        "field": "Capabilities"
-      },
-      {
-        "struct": "RPC_SECURITY_QOS_V4_A",
-        "field": "Capabilities"
-      },
-      {
-        "struct": "RPC_SECURITY_QOS_V4_W",
-        "field": "Capabilities"
-      },
-      {
-        "struct": "RPC_SECURITY_QOS_V5_A",
-        "field": "Capabilities"
-      },
-      {
-        "struct": "RPC_SECURITY_QOS_V5_W",
-        "field": "Capabilities"
-      }
-    ]
-  },
-  {
-    "type": "uint",
-    "name": "RPC_C_QOS_IDENTITY",
-    "autoPopulate": {
-      "filter": "RPC_C_QOS_IDENTITY_",
-      "header": "rpcdce.h"
-    },
-    "members": [
-      {
-        "name": "RPC_C_QOS_IDENTITY_STATIC"
-      },
-      {
-        "name": "RPC_C_QOS_IDENTITY_DYNAMIC"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "RPC_SECURITY_QOS",
-        "field": "IdentityTracking"
-      },
-      {
-        "struct": "RPC_SECURITY_QOS_V2_A",
-        "field": "IdentityTracking"
-      },
-      {
-        "struct": "RPC_SECURITY_QOS_V2_W",
-        "field": "IdentityTracking"
-      },
-      {
-        "struct": "RPC_SECURITY_QOS_V3_A",
-        "field": "IdentityTracking"
-      },
-      {
-        "struct": "RPC_SECURITY_QOS_V3_W",
-        "field": "IdentityTracking"
-      },
-      {
-        "struct": "RPC_SECURITY_QOS_V4_A",
-        "field": "IdentityTracking"
-      },
-      {
-        "struct": "RPC_SECURITY_QOS_V4_W",
-        "field": "IdentityTracking"
-      },
-      {
-        "struct": "RPC_SECURITY_QOS_V5_A",
-        "field": "IdentityTracking"
-      },
-      {
-        "struct": "RPC_SECURITY_QOS_V5_W",
-        "field": "IdentityTracking"
-      }
-    ]
-  },
-  {
-    "type": "uint",
     "name": "RPC_C_AUTHN_INFO_TYPE",
     "autoPopulate": {
       "filter": "RPC_C_AUTHN_INFO_TYPE_",
@@ -2012,85 +1910,6 @@
       {
         "struct": "RPC_SECURITY_QOS_V5_W",
         "field": "AdditionalSecurityInfoType"
-      }
-    ]
-  },
-  {
-    "type": "uint",
-    "name": "RPC_C_HTTP_FLAGS",
-    "flags": true,
-    "autoPopulate": {
-      "filter": "RPC_C_HTTP_FLAG_",
-      "header": "rpcdce.h"
-    },
-    "members": [],
-    "uses": [
-      {
-        "struct": "RPC_HTTP_TRANSPORT_CREDENTIALS_A",
-        "field": "Flags"
-      },
-      {
-        "struct": "RPC_HTTP_TRANSPORT_CREDENTIALS_W",
-        "field": "Flags"
-      },
-      {
-        "struct": "RPC_HTTP_TRANSPORT_CREDENTIALS_V2_A",
-        "field": "Flags"
-      },
-      {
-        "struct": "RPC_HTTP_TRANSPORT_CREDENTIALS_V2_W",
-        "field": "Flags"
-      },
-      {
-        "struct": "RPC_HTTP_TRANSPORT_CREDENTIALS_V3_A",
-        "field": "Flags"
-      },
-      {
-        "struct": "RPC_HTTP_TRANSPORT_CREDENTIALS_V3_W",
-        "field": "Flags"
-      }
-    ]
-  },
-  {
-    "type": "uint",
-    "name": "RPC_C_HTTP_AUTHN_TARGET",
-    "flags": true,
-    "autoPopulate": {
-      "filter": "RPC_C_HTTP_AUTHN_TARGET_",
-      "header": "rpcdce.h"
-    },
-    "members": [
-      {
-        "name": "RPC_C_HTTP_AUTHN_TARGET_SERVER"
-      },
-      {
-        "name": "RPC_C_HTTP_AUTHN_TARGET_PROXY"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "RPC_HTTP_TRANSPORT_CREDENTIALS_A",
-        "field": "AuthenticationTarget"
-      },
-      {
-        "struct": "RPC_HTTP_TRANSPORT_CREDENTIALS_W",
-        "field": "AuthenticationTarget"
-      },
-      {
-        "struct": "RPC_HTTP_TRANSPORT_CREDENTIALS_V2_A",
-        "field": "AuthenticationTarget"
-      },
-      {
-        "struct": "RPC_HTTP_TRANSPORT_CREDENTIALS_V2_W",
-        "field": "AuthenticationTarget"
-      },
-      {
-        "struct": "RPC_HTTP_TRANSPORT_CREDENTIALS_V3_A",
-        "field": "AuthenticationTarget"
-      },
-      {
-        "struct": "RPC_HTTP_TRANSPORT_CREDENTIALS_V3_W",
-        "field": "AuthenticationTarget"
       }
     ]
   },
@@ -7324,29 +7143,6 @@
     ]
   },
   {
-    "name": "SECPKG_CRED",
-    "members": [
-      {
-        "name": "SECPKG_CRED_INBOUND",
-        "value": "1"
-      },
-      {
-        "name": "SECPKG_CRED_OUTBOUND",
-        "value": "2"
-      }
-    ],
-    "uses": [
-      {
-        "method": "AcquireCredentialsHandleA",
-        "parameter": "fCredentialUse"
-      },
-      {
-        "method": "AcquireCredentialsHandleW",
-        "parameter": "fCredentialUse"
-      }
-    ]
-  },
-  {
     "name": "POWER_PLATFORM_ROLE_VERSION",
     "members": [
       {
@@ -9741,27 +9537,6 @@
       {
         "method": "HttpReceiveHttpRequest",
         "parameter": "Flags"
-      }
-    ]
-  },
-  {
-    "name": "EXPORT_SECURITY_CONTEXT_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "SECPKG_CONTEXT_EXPORT_RESET_NEW"
-      },
-      {
-        "name": "SECPKG_CONTEXT_EXPORT_DELETE_OLD"
-      },
-      {
-        "name": "SECPKG_CONTEXT_EXPORT_TO_KERNEL"
-      }
-    ],
-    "uses": [
-      {
-        "method": "ExportSecurityContext",
-        "parameter": "fFlags"
       }
     ]
   },
@@ -12752,24 +12527,6 @@
     ]
   },
   {
-    "name": "RPC_BINDING_HANDLE_OPTIONS_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "RPC_BHO_NONCAUSAL"
-      },
-      {
-        "name": "RPC_BHO_DONTLINGER"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "RPC_BINDING_HANDLE_OPTIONS_V1",
-        "field": "Flags"
-      }
-    ]
-  },
-  {
     "type": "uint",
     "name": "MPR_ET",
     "members": [
@@ -14820,29 +14577,6 @@
     ]
   },
   {
-    "name": "SECURITY_PACKAGE_OPTIONS_TYPE",
-    "members": [
-      {
-        "name": "SECPKG_OPTIONS_TYPE_UNKNOWN",
-        "value": "0"
-      },
-      {
-        "name": "SECPKG_OPTIONS_TYPE_LSA",
-        "value": "1"
-      },
-      {
-        "name": "SECPKG_OPTIONS_TYPE_SSPI",
-        "value": "2"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "SECURITY_PACKAGE_OPTIONS",
-        "field": "Type"
-      }
-    ]
-  },
-  {
     "name": "BCRYPT_RSAKEY_BLOB_MAGIC",
     "members": [
       {
@@ -16202,96 +15936,6 @@
         "interface": "IRunningObjectTable",
         "method": "Register",
         "parameter": "grfFlags"
-      }
-    ]
-  },
-  {
-    "name": "ISC_REQ_HIGH_FLAGS",
-    "namespace": "Windows.Win32.Security.Authentication.Identity",
-    "flags": true,
-    "type": "ulong",
-    "members": [
-      {
-        "name": "ISC_REQ_MESSAGES",
-        "value": "0x0000000100000000"
-      },
-      {
-        "name": "ISC_REQ_DEFERRED_CRED_VALIDATION",
-        "value": "0x0000000200000000"
-      },
-      {
-        "name": "ISC_REQ_NO_POST_HANDSHAKE_AUTH",
-        "value": "0x0000000400000000"
-      },
-      {
-        "name": "ISC_REQ_REUSE_SESSION_TICKETS",
-        "value": "0x0000000800000000"
-      },
-      {
-        "name": "ISC_REQ_EXPLICIT_SESSION",
-        "value": "0x0000001000000000"
-      }
-    ]
-  },
-  {
-    "name": "ISC_REQ_FLAGS",
-    "flags": true,
-    "autoPopulate": {
-      "filter": "ISC_REQ_(?!MESSAGES|DEFERRED_CRED_VALIDATION|NO_POST_HANDSHAKE_AUTH|REUSE_SESSION_TICKETS|EXPLICIT_SESSION)",
-      "header": "sspi.h"
-    },
-    "members": [],
-    "uses": [
-      {
-        "method": "InitializeSecurityContextA",
-        "parameter": "fContextReq"
-      },
-      {
-        "method": "InitializeSecurityContextW",
-        "parameter": "fContextReq"
-      },
-      {
-        "method": "SaslInitializeSecurityContextA",
-        "parameter": "fContextReq"
-      },
-      {
-        "method": "SaslInitializeSecurityContextW",
-        "parameter": "fContextReq"
-      }
-    ]
-  },
-  {
-    "name": "ASC_REQ_HIGH_FLAGS",
-    "namespace": "Windows.Win32.Security.Authentication.Identity",
-    "flags": true,
-    "type": "ulong",
-    "members": [
-      {
-        "name": "ASC_REQ_MESSAGES",
-        "value": "0x0000000100000000"
-      },
-      {
-        "name": "ASC_REQ_EXPLICIT_SESSION",
-        "value": "0x0000001000000000"
-      }
-    ]
-  },
-  {
-    "name": "ASC_REQ_FLAGS",
-    "flags": true,
-    "autoPopulate": {
-      "filter": "ASC_REQ_(?!MESSAGES|EXPLICIT_SESSION)",
-      "header": "sspi.h"
-    },
-    "members": [],
-    "uses": [
-      {
-        "method": "AcceptSecurityContext",
-        "parameter": "fContextReq"
-      },
-      {
-        "method": "SaslAcceptSecurityContext",
-        "parameter": "fContextReq"
       }
     ]
   },

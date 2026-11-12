@@ -3165,3 +3165,16 @@ NUMPARSE_FLAGS=Windows.Win32.System.Ole
 EMBDHLP_FLAGS=Windows.Win32.System.Ole
 DNS_QUERY_OPTIONS=Windows.Win32.NetworkManagement.Dns
 VAR_CHANGE_FLAGS=Windows.Win32.System.Variant
+# Direct-header constant-group namespace owners
+RPC_C_QOS_CAPABILITIES=Windows.Win32.System.Rpc
+RPC_C_QOS_IDENTITY=Windows.Win32.System.Rpc
+RPC_C_HTTP_FLAGS=Windows.Win32.System.Rpc
+RPC_C_HTTP_AUTHN_TARGET=Windows.Win32.System.Rpc
+SECPKG_CRED=Windows.Win32.Security.Authentication.Identity
+EXPORT_SECURITY_CONTEXT_FLAGS=Windows.Win32.Security.Authentication.Identity
+RPC_BINDING_HANDLE_OPTIONS_FLAGS=Windows.Win32.System.Rpc
+SECURITY_PACKAGE_OPTIONS_TYPE=Windows.Win32.Security.Authentication.Identity
+ISC_REQ_HIGH_FLAGS=Windows.Win32.Security.Authentication.Identity
+ISC_REQ_FLAGS=Windows.Win32.Security.Authentication.Identity
+ASC_REQ_HIGH_FLAGS=Windows.Win32.Security.Authentication.Identity
+ASC_REQ_FLAGS=Windows.Win32.Security.Authentication.Identity
