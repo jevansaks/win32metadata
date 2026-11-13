@@ -125,7 +125,7 @@ typedef struct _USE_INFO_1 {
     LMSTR   ui1_remote;
     LMSTR   ui1_password;
     DWORD   ui1_status;
-    DWORD   ui1_asg_type;
+    _Win32_AssociatedEnum_(USE_INFO_ASG_TYPE) DWORD   ui1_asg_type;
     DWORD   ui1_refcount;
     DWORD   ui1_usecount;
 }USE_INFO_1, *PUSE_INFO_1, *LPUSE_INFO_1;
@@ -135,7 +135,7 @@ typedef struct _USE_INFO_2 {
     LMSTR    ui2_remote;
     LMSTR    ui2_password;
     DWORD    ui2_status;
-    DWORD    ui2_asg_type;
+    _Win32_AssociatedEnum_(USE_INFO_ASG_TYPE) DWORD    ui2_asg_type;
     DWORD    ui2_refcount;
     DWORD    ui2_usecount;
     LMSTR    ui2_username;
@@ -345,3 +345,8 @@ typedef struct _USE_OPTION_PROPERTIES {
 #pragma endregion
 
 #endif // _LMUSE_
+
+#ifndef _WIN32METADATA_LMUSE_MANUAL_28_GROUPS_
+#define _WIN32METADATA_LMUSE_MANUAL_28_GROUPS_
+_Win32_Enum_(USE_INFO_ASG_TYPE, unsigned int, USE_WILDCARD, USE_DISKDEV, USE_SPOOLDEV, USE_IPC);
+#endif

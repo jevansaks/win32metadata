@@ -587,7 +587,7 @@ SymFindFileInPath(
     _In_opt_ PVOID id,
     _In_ DWORD two,
     _In_ DWORD three,
-    _In_ DWORD flags,
+    _Win32_AssociatedEnum_(SYM_FIND_ID_OPTION) _In_ DWORD flags,
     _Out_writes_(MAX_PATH + 1) PSTR FoundFile,
     _In_opt_ PFINDFILEINPATHCALLBACK callback,
     _In_opt_ PVOID context
@@ -608,7 +608,7 @@ SymFindFileInPathW(
     _In_opt_ PVOID id,
     _In_ DWORD two,
     _In_ DWORD three,
-    _In_ DWORD flags,
+    _Win32_AssociatedEnum_(SYM_FIND_ID_OPTION) _In_ DWORD flags,
     _Out_writes_(MAX_PATH + 1) PWSTR FoundFile,
     _In_opt_ PFINDFILEINPATHCALLBACKW callback,
     _In_opt_ PVOID context
@@ -903,7 +903,7 @@ UnDecorateSymbolNameW(
 
 typedef struct _MODLOAD_DATA {
     DWORD   ssize;                  // size of this struct
-    DWORD   ssig;                   // signature identifying the passed data
+    _Win32_AssociatedEnum_(MODLOAD_DATA_TYPE) DWORD   ssig;                   // signature identifying the passed data
     PVOID   data;                   // pointer to passed data
     DWORD   size;                   // size of passed data
     DWORD   flags;                  // options
@@ -3221,7 +3221,7 @@ typedef struct _SYMBOL_INFO {
     ULONG       Index;
     ULONG       Size;
     ULONG64     ModBase;          // Base Address of module comtaining this symbol
-    ULONG       Flags;
+    _Win32_AssociatedEnum_(SYMBOL_INFO_FLAGS) ULONG       Flags;
     ULONG64     Value;            // Value of symbol, ValuePresent should be 1
     ULONG64     Address;          // Address of symbol including base address of module
     ULONG       Register;         // register holding value or pointer to value
@@ -3244,7 +3244,7 @@ typedef struct _SYMBOL_INFOW {
     ULONG       Index;
     ULONG       Size;
     ULONG64     ModBase;          // Base Address of module comtaining this symbol
-    ULONG       Flags;
+    _Win32_AssociatedEnum_(SYMBOL_INFO_FLAGS) ULONG       Flags;
     ULONG64     Value;            // Value of symbol, ValuePresent should be 1
     ULONG64     Address;          // Address of symbol including base address of module
     ULONG       Register;         // register holding value or pointer to value
@@ -3666,7 +3666,7 @@ SymGetTypeInfo(
 
 typedef struct _IMAGEHLP_GET_TYPE_INFO_PARAMS {
     IN  ULONG    SizeOfStruct;
-    IN  ULONG    Flags;
+    _Win32_AssociatedEnum_(IMAGEHLP_GET_TYPE_INFO_FLAGS) IN  ULONG    Flags;
     IN  ULONG    NumIds;
     IN  PULONG   TypeIds;
     IN  ULONG64  TagFilter;
@@ -4005,7 +4005,7 @@ SymSrvStoreFile(
     _In_ HANDLE hProcess,
     _In_opt_ PCSTR SrvPath,
     _In_ PCSTR File,
-    _In_ DWORD Flags
+    _Win32_AssociatedEnum_(SYM_SRV_STORE_FILE_FLAGS) _In_ DWORD Flags
     );
 
 #endif /* WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS) */
@@ -4020,7 +4020,7 @@ SymSrvStoreFileW(
     _In_ HANDLE hProcess,
     _In_opt_ PCWSTR SrvPath,
     _In_ PCWSTR File,
-    _In_ DWORD Flags
+    _Win32_AssociatedEnum_(SYM_SRV_STORE_FILE_FLAGS) _In_ DWORD Flags
     );
 
 #endif /* WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS | WINAPI_PARTITION_GAMES) */
@@ -4756,3 +4756,12 @@ RangeMapWrite(
 #pragma endregion
 
 #endif // _IMAGEHLP_
+
+#ifndef _WIN32METADATA_IMAGEHLP_MANUAL_28_GROUPS_
+#define _WIN32METADATA_IMAGEHLP_MANUAL_28_GROUPS_
+_Win32_Enum_(SYM_SRV_STORE_FILE_FLAGS, unsigned int, SYMSTOREOPT_COMPRESS, SYMSTOREOPT_OVERWRITE, SYMSTOREOPT_PASS_IF_EXISTS, SYMSTOREOPT_POINTER, SYMSTOREOPT_RETURNINDEX);
+_Win32_Enum_(SYM_FIND_ID_OPTION, unsigned int, SSRVOPT_DWORD, SSRVOPT_DWORDPTR, SSRVOPT_GUIDPTR);
+_Win32_FlagsEnum_(SYMBOL_INFO_FLAGS, unsigned int, SYMFLAG_CLR_TOKEN, SYMFLAG_CONSTANT, SYMFLAG_EXPORT, SYMFLAG_FORWARDER, SYMFLAG_FRAMEREL, SYMFLAG_FUNCTION, SYMFLAG_ILREL, SYMFLAG_LOCAL, SYMFLAG_METADATA, SYMFLAG_PARAMETER, SYMFLAG_REGISTER, SYMFLAG_REGREL, SYMFLAG_SLOT, SYMFLAG_THUNK, SYMFLAG_TLSREL, SYMFLAG_VALUEPRESENT, SYMFLAG_VIRTUAL);
+_Win32_Enum_(IMAGEHLP_GET_TYPE_INFO_FLAGS, unsigned int, IMAGEHLP_GET_TYPE_INFO_CHILDREN, IMAGEHLP_GET_TYPE_INFO_UNCACHED);
+_Win32_Enum_(MODLOAD_DATA_TYPE, unsigned int, DBHHEADER_DEBUGDIRS, DBHHEADER_CVMISC);
+#endif

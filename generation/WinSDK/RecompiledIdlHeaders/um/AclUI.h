@@ -76,7 +76,7 @@ extern "C" {
 
 typedef struct _SI_OBJECT_INFO
 {
-    DWORD       dwFlags;
+    _Win32_AssociatedEnum_(SI_OBJECT_INFO_FLAGS) DWORD       dwFlags;
     HINSTANCE   hInstance;          // resources (e.g. strings) reside here
     LPWSTR      pszServerName;      // must be present
     LPWSTR      pszObjectName;      // must be present
@@ -450,4 +450,9 @@ HRESULT ACLUIAPI EditSecurityAdvanced(_In_ HWND hwndOwner,
 #else
 #pragma warning(default:4001)
 #endif
+#endif
+
+#ifndef _WIN32METADATA_ACLUI_MANUAL_28_GROUPS_
+#define _WIN32METADATA_ACLUI_MANUAL_28_GROUPS_
+_Win32_FlagsEnum_(SI_OBJECT_INFO_FLAGS, unsigned int, SI_AUDITS_ELEVATION_REQUIRED, SI_DISABLE_DENY_ACE, SI_EDIT_EFFECTIVE, SI_ENABLE_CENTRAL_POLICY, SI_ENABLE_EDIT_ATTRIBUTE_CONDITION, SI_MAY_WRITE, SI_NO_ADDITIONAL_PERMISSION, SI_OWNER_ELEVATION_REQUIRED, SI_PERMS_ELEVATION_REQUIRED, SI_RESET_DACL, SI_RESET_OWNER, SI_RESET_SACL, SI_SCOPE_ELEVATION_REQUIRED, SI_VIEW_ONLY);
 #endif

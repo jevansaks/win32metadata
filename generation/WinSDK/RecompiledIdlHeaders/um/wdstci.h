@@ -167,7 +167,7 @@ typedef struct _WDS_TRANSPORTCLIENT_REQUEST
     //
     // The level of authentication to send to the server.
     //
-    ULONG ulAuthLevel;
+    _Win32_AssociatedEnum_(WDS_TRANSPORTCLIENT_REQUEST_AUTH_LEVEL) ULONG ulAuthLevel;
 
     //
     // Server name.
@@ -338,4 +338,9 @@ WdsTransportClientNegotiateRequiredDataRange (
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
 #pragma endregion
 
+#endif
+
+#ifndef _WIN32METADATA_WDSTCI_MANUAL_28_GROUPS_
+#define _WIN32METADATA_WDSTCI_MANUAL_28_GROUPS_
+_Win32_Enum_(WDS_TRANSPORTCLIENT_REQUEST_AUTH_LEVEL, unsigned int, WDS_TRANSPORTCLIENT_AUTH, WDS_TRANSPORTCLIENT_NO_AUTH);
 #endif

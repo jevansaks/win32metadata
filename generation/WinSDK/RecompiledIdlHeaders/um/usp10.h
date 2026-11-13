@@ -1791,7 +1791,7 @@ _Check_return_ HRESULT WINAPI ScriptStringOut(
 _Check_return_ HRESULT WINAPI ScriptIsComplex(
     _In_reads_(cInChars) const WCHAR   *pwcInChars,    //In  String to be tested
     int                                 cInChars,       //In  Length in characters
-    DWORD                               dwFlags);       //In  Flags (see above)
+    _Win32_AssociatedEnum_(SCRIPT_IS_COMPLEX_FLAGS) DWORD                               dwFlags);       //In  Flags (see above)
 
 
 
@@ -2260,4 +2260,9 @@ _Check_return_ HRESULT WINAPI ScriptPositionSingleGlyph(
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
 #pragma endregion
 
+#endif
+
+#ifndef _WIN32METADATA_USP10_MANUAL_28_GROUPS_
+#define _WIN32METADATA_USP10_MANUAL_28_GROUPS_
+_Win32_Enum_(SCRIPT_IS_COMPLEX_FLAGS, unsigned int, SIC_ASCIIDIGIT, SIC_COMPLEX, SIC_NEUTRAL);
 #endif

@@ -1,0 +1,27 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/RichOle.h b/generation/WinSDK/RecompiledIdlHeaders/um/RichOle.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/RichOle.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/RichOle.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ #ifndef _RICHOLE_
+ #define _RICHOLE_
+ 
+@@ -25,7 +26,7 @@
+ 	LPOLECLIENTSITE	polesite;			// Associated client site interface
+ 	SIZEL			sizel;				// Size of object (may be 0,0)
+ 	DWORD			dvaspect;			// Display aspect to use
+-	DWORD			dwFlags;			// Object status flags
++	_Win32_AssociatedEnum_(REOBJECT_FLAGS) DWORD			dwFlags;			// Object status flags
+ 	DWORD			dwUser;				// Dword for user's use
+ } REOBJECT;
+ 
+@@ -169,3 +170,8 @@
+ #endif // !MAC
+ 
+ #endif // _RICHOLE_
++
++#ifndef _WIN32METADATA_RICHOLE_MANUAL_28_GROUPS_
++#define _WIN32METADATA_RICHOLE_MANUAL_28_GROUPS_
++_Win32_FlagsEnum_(REOBJECT_FLAGS, unsigned int, REO_ALIGNTORIGHT, REO_BELOWBASELINE, REO_BLANK, REO_CANROTATE, REO_DONTNEEDPALETTE, REO_DYNAMICSIZE, REO_GETMETAFILE, REO_HILITED, REO_INPLACEACTIVE, REO_INVERTEDSELECT, REO_LINK, REO_LINKAVAILABLE, REO_OPEN, REO_OWNERDRAWSELECT, REO_RESIZABLE, REO_SELECTED, REO_STATIC, REO_USEASBACKGROUND, REO_WRAPTEXTAROUND);
++#endif

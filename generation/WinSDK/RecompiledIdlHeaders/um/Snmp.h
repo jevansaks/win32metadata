@@ -562,7 +562,7 @@ _Win32_SupportedOS_Windows2000_
 VOID
 SNMP_FUNC_TYPE
 SnmpSvcSetLogLevel(
-    INT nLogLevel
+    _Win32_AssociatedEnum_(SNMP_LOG) INT nLogLevel
     );
 
 VOID
@@ -599,7 +599,7 @@ _Win32_SupportedOS_Windows2000_
 VOID
 SNMP_FUNC_TYPE
 SnmpUtilDbgPrint(
-    IN INT nLogLevel,   // see log levels above...
+    _Win32_AssociatedEnum_(SNMP_LOG) IN INT nLogLevel,   // see log levels above...
     _In_ _Printf_format_string_ LPSTR szFormat,
     IN ...
     );
@@ -710,3 +710,9 @@ SnmpUtilDbgPrint(
 #pragma endregion
 
 #endif // _INC_SNMP
+
+#ifndef _WIN32METADATA_SNMP_MANUAL_28_GROUPS_
+#define _WIN32METADATA_SNMP_MANUAL_28_GROUPS_
+_Win32_Enum_(SNMP_OUTPUT_LOG_TYPE, unsigned int, SNMP_OUTPUT_TO_CONSOLE, SNMP_OUTPUT_TO_LOGFILE, SNMP_OUTPUT_TO_DEBUGGER);
+_Win32_Enum_(SNMP_LOG, int, SNMP_LOG_SILENT, SNMP_LOG_FATAL, SNMP_LOG_ERROR, SNMP_LOG_WARNING, SNMP_LOG_TRACE, SNMP_LOG_VERBOSE);
+#endif

@@ -224,6 +224,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/usp10.h b/generation/WinS
      UINT                                    uOptions,       //In  ExtTextOut options
      _In_reads_opt_(1) const RECT           *prc,           //In  Clipping rectangle (iff ETO_CLIPPED)
      int                                     iMinSel,        //In  Logical selection. Set iMinSel>=iMaxSel for no selection
+@@ -1764,7 +1791,7 @@
+ _Check_return_ HRESULT WINAPI ScriptIsComplex(
+     _In_reads_(cInChars) const WCHAR   *pwcInChars,    //In  String to be tested
+     int                                 cInChars,       //In  Length in characters
+-    DWORD                               dwFlags);       //In  Flags (see above)
++    _Win32_AssociatedEnum_(SCRIPT_IS_COMPLEX_FLAGS) DWORD                               dwFlags);       //In  Flags (see above)
+ 
+ 
+ 
 @@ -1783,6 +1810,7 @@
      DWORD  DigitSubstitute          :8;    // Substitution type
      DWORD  dwReserved;                     // Reserved
@@ -248,3 +257,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/usp10.h b/generation/WinS
  
  //
  // ScriptItemizeOpenType
+@@ -2231,3 +2261,8 @@
+ #pragma endregion
+ 
+ #endif
++
++#ifndef _WIN32METADATA_USP10_MANUAL_28_GROUPS_
++#define _WIN32METADATA_USP10_MANUAL_28_GROUPS_
++_Win32_Enum_(SCRIPT_IS_COMPLEX_FLAGS, unsigned int, SIC_ASCIIDIGIT, SIC_COMPLEX, SIC_NEUTRAL);
++#endif

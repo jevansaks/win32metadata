@@ -122,6 +122,24 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/libloaderapi.h b/generati
  
  WINBASEAPI
  _Ret_maybenull_
+@@ -339,7 +364,7 @@
+ LoadLibraryExA(
+     _In_ LPCSTR lpLibFileName,
+     _Reserved_ HANDLE hFile,
+-    _In_ DWORD dwFlags
++    _Win32_AssociatedEnum_(LOAD_LIBRARY_FLAGS) _In_ DWORD dwFlags
+     );
+ 
+ WINBASEAPI
+@@ -349,7 +374,7 @@
+ LoadLibraryExW(
+     _In_ LPCWSTR lpLibFileName,
+     _Reserved_ HANDLE hFile,
+-    _In_ DWORD dwFlags
++    _Win32_AssociatedEnum_(LOAD_LIBRARY_FLAGS) _In_ DWORD dwFlags
+     );
+ 
+ #ifdef UNICODE
 @@ -394,6 +419,8 @@
  #define LOAD_LIBRARY_OS_INTEGRITY_CONTINUITY   0x00008000
  
@@ -166,7 +184,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/libloaderapi.h b/generati
  
  WINBASEAPI
  BOOL
-@@ -466,6 +500,8 @@
+@@ -466,12 +500,14 @@
  RemoveDllDirectory(
      _In_ DLL_DIRECTORY_COOKIE Cookie
      );
@@ -175,6 +193,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/libloaderapi.h b/generati
  
  WINBASEAPI
  BOOL
+ WINAPI
+ SetDefaultDllDirectories(
+-    _In_ DWORD DirectoryFlags
++    _Win32_AssociatedEnum_(LOAD_LIBRARY_FLAGS) _In_ DWORD DirectoryFlags
+     );
+ 
+ #endif // WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
 @@ -481,6 +517,8 @@
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
  
@@ -247,3 +272,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/libloaderapi.h b/generati
  
  WINBASEAPI
  _Ret_maybenull_
+@@ -657,3 +709,8 @@
+ 
+ #endif // _APISETLIBLOADER_
+ 
++
++#ifndef _WIN32METADATA_LIBLOADERAPI_MANUAL_28_GROUPS_
++#define _WIN32METADATA_LIBLOADERAPI_MANUAL_28_GROUPS_
++_Win32_FlagsEnum_(LOAD_LIBRARY_FLAGS, unsigned int, DONT_RESOLVE_DLL_REFERENCES, LOAD_LIBRARY_AS_DATAFILE, LOAD_WITH_ALTERED_SEARCH_PATH, LOAD_IGNORE_CODE_AUTHZ_LEVEL, LOAD_LIBRARY_AS_IMAGE_RESOURCE, LOAD_LIBRARY_AS_DATAFILE_EXCLUSIVE, LOAD_LIBRARY_REQUIRE_SIGNED_TARGET, LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR, LOAD_LIBRARY_SEARCH_APPLICATION_DIR, LOAD_LIBRARY_SEARCH_USER_DIRS, LOAD_LIBRARY_SEARCH_SYSTEM32, LOAD_LIBRARY_SEARCH_DEFAULT_DIRS, LOAD_LIBRARY_SAFE_CURRENT_DIRS, LOAD_LIBRARY_SEARCH_SYSTEM32_NO_FORWARDER);
++#endif

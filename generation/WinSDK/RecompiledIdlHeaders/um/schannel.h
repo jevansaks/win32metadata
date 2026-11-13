@@ -696,7 +696,7 @@ typedef struct _SCHANNEL_CERT_HASH_STORE
 typedef struct _SCHANNEL_ALERT_TOKEN
 {
     DWORD   dwTokenType;            // SCHANNEL_ALERT
-    DWORD   dwAlertType;
+    _Win32_AssociatedEnum_(SCHANNEL_ALERT_TOKEN_ALERT_TYPE) DWORD   dwAlertType;
     DWORD   dwAlertNumber;
 } SCHANNEL_ALERT_TOKEN;
 
@@ -1165,3 +1165,8 @@ SslDeserializeCertificateStore(
 #pragma endregion
 
 #endif //__SCHANNEL_H__
+
+#ifndef _WIN32METADATA_SCHANNEL_MANUAL_28_GROUPS_
+#define _WIN32METADATA_SCHANNEL_MANUAL_28_GROUPS_
+_Win32_Enum_(SCHANNEL_ALERT_TOKEN_ALERT_TYPE, unsigned int, TLS1_ALERT_WARNING, TLS1_ALERT_FATAL);
+#endif

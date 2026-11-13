@@ -291,16 +291,25 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinNls.h b/generation/Win
  
  // DEPRECATED: EnumTimeFormatsEx is preferred
  WINBASEAPI
-@@ -2134,6 +2195,8 @@
+@@ -2133,7 +2194,9 @@
+ EnumTimeFormatsA(
      _In_ TIMEFMT_ENUMPROCA lpTimeFmtEnumProc,
      _In_ LCID              Locale,
-     _In_ DWORD             dwFlags);
+-    _In_ DWORD             dwFlags);
++    _Win32_AssociatedEnum_(TIME_FORMAT_FLAGS) _In_ DWORD             dwFlags);
 +_Win32_SetLastError_
 +_Win32_SupportedOS_Windows2000_
  // DEPRECATED: EnumTimeFormatsEx is preferred
  WINBASEAPI
  BOOL
-@@ -2147,6 +2210,8 @@
+@@ -2141,12 +2204,14 @@
+ EnumTimeFormatsW(
+     _In_ TIMEFMT_ENUMPROCW lpTimeFmtEnumProc,
+     _In_ LCID              Locale,
+-    _In_ DWORD             dwFlags);
++    _Win32_AssociatedEnum_(TIME_FORMAT_FLAGS) _In_ DWORD             dwFlags);
+ #ifdef UNICODE
+ #define EnumTimeFormats  EnumTimeFormatsW
  #else
  #define EnumTimeFormats  EnumTimeFormatsA
  #endif // !UNICODE
@@ -630,7 +639,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinNls.h b/generation/Win
  
  
  //
-@@ -2667,6 +2791,8 @@
+@@ -2667,12 +2791,14 @@
      _In_reads_(cchSrc) LPCSTR   lpSrcStr,
      _In_ int      cchSrc,
      _Out_ LPWORD  lpCharType);
@@ -639,6 +648,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinNls.h b/generation/Win
  
  WINBASEAPI
  int
+ WINAPI
+ FoldStringA(
+-    _In_ DWORD    dwMapFlags,
++    _Win32_AssociatedEnum_(FOLD_STRING_MAP_FLAGS) _In_ DWORD    dwMapFlags,
+     _In_reads_(cchSrc) LPCSTR  lpSrcStr,
+     _In_ int      cchSrc,
+     _Out_writes_opt_(cchDest) LPSTR  lpDestStr,
 @@ -2688,6 +2814,8 @@
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
@@ -961,7 +977,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinNls.h b/generation/Win
  
  WINBASEAPI
  BOOL
-@@ -3136,6 +3322,8 @@
+@@ -3131,11 +3317,13 @@
+ EnumDateFormatsExEx(
+     _In_ DATEFMT_ENUMPROCEXEX lpDateFmtEnumProcExEx,
+     _In_opt_ LPCWSTR lpLocaleName,
+-    _In_ DWORD dwFlags,
++    _Win32_AssociatedEnum_(ENUM_DATE_FORMATS_FLAGS) _In_ DWORD dwFlags,
+     _In_ LPARAM lParam
  );
  
  typedef BOOL (CALLBACK* TIMEFMT_ENUMPROCEX)(LPWSTR, LPARAM);
@@ -997,7 +1019,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinNls.h b/generation/Win
  
  WINBASEAPI
  int
-@@ -3212,3 +3404,10 @@
+@@ -3212,3 +3404,19 @@
  
  
  #endif // _WINNLS_
@@ -1007,4 +1029,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinNls.h b/generation/Win
 +_Win32_Enum_(ENUM_SYSTEM_LANGUAGE_GROUPS_FLAGS, unsigned int, LGRPID_INSTALLED, LGRPID_SUPPORTED);
 +_Win32_Enum_(IS_VALID_LOCALE_FLAGS, unsigned int, LCID_INSTALLED, LCID_SUPPORTED);
 +_Win32_Enum_(ENUM_SYSTEM_CODE_PAGES_FLAGS, unsigned int, CP_INSTALLED, CP_SUPPORTED);
++#endif
++
++#ifndef _WIN32METADATA_WINNLS_MANUAL_28_GROUPS_
++#define _WIN32METADATA_WINNLS_MANUAL_28_GROUPS_
++_Win32_FlagsEnum_(FOLD_STRING_MAP_FLAGS, unsigned int, MAP_COMPOSITE, MAP_EXPAND_LIGATURES, MAP_FOLDCZONE, MAP_FOLDDIGITS, MAP_PRECOMPOSED);
++_Win32_Enum_(ENUM_DATE_FORMATS_FLAGS, unsigned int, DATE_SHORTDATE, DATE_LONGDATE, DATE_YEARMONTH, DATE_MONTHDAY, DATE_AUTOLAYOUT, DATE_LTRREADING, DATE_RTLREADING, DATE_USE_ALT_CALENDAR);
++_Win32_FlagsEnum_(TIME_FORMAT_FLAGS, unsigned int, TIME_NOMINUTESORSECONDS, TIME_NOSECONDS, TIME_NOTIMEMARKER, TIME_FORCE24HOURFORMAT);
++_Win32_FlagsEnum_(MULTI_BYTE_TO_WIDE_CHAR_FLAGS, unsigned int, MB_COMPOSITE, MB_ERR_INVALID_CHARS, MB_PRECOMPOSED, MB_USEGLYPHCHARS);
++_Win32_FlagsEnum_(COMPARE_STRING_FLAGS, unsigned int, LINGUISTIC_IGNORECASE, LINGUISTIC_IGNOREDIACRITIC, NORM_IGNORECASE, NORM_IGNOREKANATYPE, NORM_IGNORENONSPACE, NORM_IGNORESYMBOLS, NORM_IGNOREWIDTH, NORM_LINGUISTIC_CASING, SORT_DIGITSASNUMBERS, SORT_STRINGSORT);
 +#endif

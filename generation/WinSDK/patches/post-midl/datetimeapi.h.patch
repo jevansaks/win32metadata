@@ -43,7 +43,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/datetimeapi.h b/generatio
  
  WINBASEAPI
  int
-@@ -92,6 +101,8 @@
+@@ -92,25 +101,29 @@
  
  #pragma region Application Family or OneCore or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
@@ -52,7 +52,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/datetimeapi.h b/generatio
  
  WINBASEAPI
  int
-@@ -104,6 +115,8 @@
+ WINAPI
+ GetTimeFormatEx(
+     _In_opt_ LPCWSTR lpLocaleName,
+-    _In_ DWORD dwFlags,
++    _Win32_AssociatedEnum_(TIME_FORMAT_FLAGS) _In_ DWORD dwFlags,
+     _In_opt_ CONST SYSTEMTIME* lpTime,
+     _In_opt_ LPCWSTR lpFormat,
      _Out_writes_opt_(cchTime) LPWSTR lpTimeStr,
      _In_ int cchTime
      );
@@ -61,3 +67,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/datetimeapi.h b/generatio
  
  WINBASEAPI
  int
+ WINAPI
+ GetDateFormatEx(
+     _In_opt_ LPCWSTR lpLocaleName,
+-    _In_ DWORD dwFlags,
++    _Win32_AssociatedEnum_(ENUM_DATE_FORMATS_FLAGS) _In_ DWORD dwFlags,
+     _In_opt_ CONST SYSTEMTIME* lpDate,
+     _In_opt_ LPCWSTR lpFormat,
+     _Out_writes_opt_(cchDate) LPWSTR lpDateStr,

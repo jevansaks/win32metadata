@@ -96,7 +96,7 @@ typedef struct _TXF_LOG_RECORD_BASE {
     //  Type of record, defined above.
     //
 
-    USHORT RecordType;
+    _Win32_AssociatedEnum_(TXF_LOG_RECORD_TYPE) USHORT RecordType;
 
     //
     //  Length of this record in bytes.
@@ -613,3 +613,8 @@ TxfGetThreadMiniVersionForCreate (
 #endif
 
 
+
+#ifndef _WIN32METADATA_TXFW32_MANUAL_28_GROUPS_
+#define _WIN32METADATA_TXFW32_MANUAL_28_GROUPS_
+_Win32_Enum_(TXF_LOG_RECORD_TYPE, unsigned short, TXF_LOG_RECORD_TYPE_AFFECTED_FILE, TXF_LOG_RECORD_TYPE_TRUNCATE, TXF_LOG_RECORD_TYPE_WRITE);
+#endif

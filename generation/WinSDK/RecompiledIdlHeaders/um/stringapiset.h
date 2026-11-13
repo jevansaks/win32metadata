@@ -34,7 +34,7 @@ int
 WINAPI
 CompareStringEx(
     _In_opt_ LPCWSTR lpLocaleName,
-    _In_ DWORD dwCmpFlags,
+    _Win32_AssociatedEnum_(COMPARE_STRING_FLAGS) _In_ DWORD dwCmpFlags,
     _In_NLS_string_(cchCount1) LPCWCH lpString1,
     _In_ int cchCount1,
     _In_NLS_string_(cchCount2) LPCWCH lpString2,
@@ -80,7 +80,7 @@ WINBASEAPI
 int
 WINAPI
 FoldStringW(
-    _In_ DWORD dwMapFlags,
+    _Win32_AssociatedEnum_(FOLD_STRING_MAP_FLAGS) _In_ DWORD dwMapFlags,
     _In_NLS_string_(cchSrc) LPCWCH lpSrcStr,
     _In_ int cchSrc,
     _Out_writes_opt_(cchDest) LPWSTR lpDestStr,
@@ -133,7 +133,7 @@ int
 WINAPI
 MultiByteToWideChar(
     _In_ UINT CodePage,
-    _In_ DWORD dwFlags,
+    _Win32_AssociatedEnum_(MULTI_BYTE_TO_WIDE_CHAR_FLAGS) _In_ DWORD dwFlags,
     _In_NLS_string_(cbMultiByte) LPCCH lpMultiByteStr,
     _In_ int cbMultiByte,
     _Out_writes_to_opt_(cchWideChar,return) LPWSTR lpWideCharStr,

@@ -71,7 +71,7 @@ _Win32_SupportedOS_Windows2000_
 NET_API_STATUS NET_API_FUNCTION
 NetRemoteComputerSupports(
     IN LPCWSTR UncServerName OPTIONAL,   // Must start with "\\".
-    IN DWORD OptionsWanted,             // Set SUPPORTS_ bits wanted.
+    _Win32_AssociatedEnum_(NET_REMOTE_COMPUTER_SUPPORTS_OPTIONS) IN DWORD OptionsWanted,             // Set SUPPORTS_ bits wanted.
     OUT LPDWORD OptionsSupported        // Supported features, masked.
     );
 
@@ -154,3 +154,8 @@ typedef struct _TIME_OF_DAY_INFO {
 #pragma endregion
 
 #endif //_LMREMUTL_
+
+#ifndef _WIN32METADATA_LMREMUTL_MANUAL_28_GROUPS_
+#define _WIN32METADATA_LMREMUTL_MANUAL_28_GROUPS_
+_Win32_Enum_(NET_REMOTE_COMPUTER_SUPPORTS_OPTIONS, unsigned int, SUPPORTS_REMOTE_ADMIN_PROTOCOL, SUPPORTS_RPC, SUPPORTS_SAM_PROTOCOL, SUPPORTS_UNICODE, SUPPORTS_LOCAL);
+#endif

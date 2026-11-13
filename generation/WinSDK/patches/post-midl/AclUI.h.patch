@@ -7,6 +7,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/AclUI.h b/generation/WinS
  /*+--------------------------------------------------------------------------
  
   Microsoft Windows
+@@ -75,7 +76,7 @@
+ 
+ typedef struct _SI_OBJECT_INFO
+ {
+-    DWORD       dwFlags;
++    _Win32_AssociatedEnum_(SI_OBJECT_INFO_FLAGS) DWORD       dwFlags;
+     HINSTANCE   hInstance;          // resources (e.g. strings) reside here
+     LPWSTR      pszServerName;      // must be present
+     LPWSTR      pszObjectName;      // must be present
 @@ -418,12 +419,17 @@
  // {941FABCA-DD47-4FCA-90BB-B0E10255F20D}
  EXTERN_GUID(IID_IEffectivePermission2, 0x941fabca, 0xdd47, 0x4fca, 0x90, 0xbb, 0xb0, 0xe1, 0x2, 0x55, 0xf2, 0xd);
@@ -25,3 +34,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/AclUI.h b/generation/WinS
  HRESULT ACLUIAPI EditSecurityAdvanced(_In_ HWND hwndOwner,
                                        _In_ LPSECURITYINFO psi,
                                        _In_ SI_PAGE_TYPE   uSIPage );
+@@ -445,3 +451,8 @@
+ #pragma warning(default:4001)
+ #endif
+ #endif
++
++#ifndef _WIN32METADATA_ACLUI_MANUAL_28_GROUPS_
++#define _WIN32METADATA_ACLUI_MANUAL_28_GROUPS_
++_Win32_FlagsEnum_(SI_OBJECT_INFO_FLAGS, unsigned int, SI_AUDITS_ELEVATION_REQUIRED, SI_DISABLE_DENY_ACE, SI_EDIT_EFFECTIVE, SI_ENABLE_CENTRAL_POLICY, SI_ENABLE_EDIT_ATTRIBUTE_CONDITION, SI_MAY_WRITE, SI_NO_ADDITIONAL_PERMISSION, SI_OWNER_ELEVATION_REQUIRED, SI_PERMS_ELEVATION_REQUIRED, SI_RESET_DACL, SI_RESET_OWNER, SI_RESET_SACL, SI_SCOPE_ELEVATION_REQUIRED, SI_VIEW_ONLY);
++#endif

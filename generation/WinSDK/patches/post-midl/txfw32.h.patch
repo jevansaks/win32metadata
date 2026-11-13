@@ -7,6 +7,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/txfw32.h b/generation/Win
  /*=============================================================================
  
      Copyright (c) 2002  Microsoft Corporation
+@@ -95,7 +96,7 @@
+     //  Type of record, defined above.
+     //
+ 
+-    USHORT RecordType;
++    _Win32_AssociatedEnum_(TXF_LOG_RECORD_TYPE) USHORT RecordType;
+ 
+     //
+     //  Length of this record in bytes.
 @@ -303,6 +304,8 @@
  #ifdef __cplusplus
  extern "C" {
@@ -34,3 +43,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/txfw32.h b/generation/Win
  /*
  
    Description:
+@@ -606,3 +613,8 @@
+ #endif
+ 
+ 
++
++#ifndef _WIN32METADATA_TXFW32_MANUAL_28_GROUPS_
++#define _WIN32METADATA_TXFW32_MANUAL_28_GROUPS_
++_Win32_Enum_(TXF_LOG_RECORD_TYPE, unsigned short, TXF_LOG_RECORD_TYPE_AFFECTED_FILE, TXF_LOG_RECORD_TYPE_TRUNCATE, TXF_LOG_RECORD_TYPE_WRITE);
++#endif

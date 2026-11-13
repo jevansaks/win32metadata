@@ -109,7 +109,7 @@ int
 WINAPI
 GetTimeFormatEx(
     _In_opt_ LPCWSTR lpLocaleName,
-    _In_ DWORD dwFlags,
+    _Win32_AssociatedEnum_(TIME_FORMAT_FLAGS) _In_ DWORD dwFlags,
     _In_opt_ CONST SYSTEMTIME* lpTime,
     _In_opt_ LPCWSTR lpFormat,
     _Out_writes_opt_(cchTime) LPWSTR lpTimeStr,
@@ -123,7 +123,7 @@ int
 WINAPI
 GetDateFormatEx(
     _In_opt_ LPCWSTR lpLocaleName,
-    _In_ DWORD dwFlags,
+    _Win32_AssociatedEnum_(ENUM_DATE_FORMATS_FLAGS) _In_ DWORD dwFlags,
     _In_opt_ CONST SYSTEMTIME* lpDate,
     _In_opt_ LPCWSTR lpFormat,
     _Out_writes_opt_(cchDate) LPWSTR lpDateStr,

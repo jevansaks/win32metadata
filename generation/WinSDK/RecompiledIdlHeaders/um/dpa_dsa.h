@@ -244,8 +244,8 @@ WINCOMMCTRLAPI HRESULT WINAPI DPA_SaveStream(_In_ HDPA hdpa, _In_ PFNDPASTREAM p
 // the pointer of the merged item.  It's okay to simply use pvDest
 // as the returned pointer.
 //
-typedef void* (CALLBACK *PFNDPAMERGE)(_In_ UINT uMsg, _In_ void *pvDest, _In_ void *pvSrc, _In_ LPARAM lParam);
-typedef const void* (CALLBACK *PFNDPAMERGECONST)(_In_ UINT uMsg, _In_ const void *pvDest, _In_ const void *pvSrc, _In_ LPARAM lParam);
+typedef void* (CALLBACK *PFNDPAMERGE)(_Win32_AssociatedEnum_(DPAMM_MESSAGE) _In_ UINT uMsg, _In_ void *pvDest, _In_ void *pvSrc, _In_ LPARAM lParam);
+typedef const void* (CALLBACK *PFNDPAMERGECONST)(_Win32_AssociatedEnum_(DPAMM_MESSAGE) _In_ UINT uMsg, _In_ const void *pvDest, _In_ const void *pvSrc, _In_ LPARAM lParam);
 
 // Messages for merge callback
 #define DPAMM_MERGE     1
@@ -327,3 +327,8 @@ WINCOMMCTRLAPI BOOL WINAPI Str_SetPtrW(_Inout_ LPWSTR * ppsz, _In_opt_ LPCWSTR p
 
 #endif  /* _INC_DPADSA */
 
+
+#ifndef _WIN32METADATA_DPA_DSA_MANUAL_28_GROUPS_
+#define _WIN32METADATA_DPA_DSA_MANUAL_28_GROUPS_
+_Win32_Enum_(DPAMM_MESSAGE, unsigned int, DPAMM_MERGE, DPAMM_DELETE, DPAMM_INSERT);
+#endif

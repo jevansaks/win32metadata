@@ -7,6 +7,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/RassHost.h b/generation/W
  /*++
  
  Copyright (c) Microsoft Corporation. All rights reserved.
+@@ -31,7 +32,7 @@
+ 
+ typedef struct _SECURITY_MESSAGE
+ {
+-    DWORD dwMsgId;
++    _Win32_AssociatedEnum_(SECURITY_MESSAGE_MSG_ID) DWORD dwMsgId;
+ 
+     HPORT hPort;
+ 
 @@ -72,6 +73,7 @@
  }RAS_SECURITY_INFO,*PRAS_SECURITY_INFO;
  
@@ -57,3 +66,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/RassHost.h b/generation/W
  
  //
  // Called to get Information about port.
+@@ -164,3 +173,8 @@
+ #pragma endregion
+ 
+ #endif
++
++#ifndef _WIN32METADATA_RASSHOST_MANUAL_28_GROUPS_
++#define _WIN32METADATA_RASSHOST_MANUAL_28_GROUPS_
++_Win32_Enum_(SECURITY_MESSAGE_MSG_ID, unsigned int, SECURITYMSG_SUCCESS, SECURITYMSG_FAILURE, SECURITYMSG_ERROR);
++#endif
