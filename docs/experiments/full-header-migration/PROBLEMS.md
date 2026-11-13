@@ -72,11 +72,41 @@ RECOVERY.md. A rejected trial is not migrated coverage.
 | Test ownership / validation cost | Corpus-snapshot tests read files or projection structure the migration intentionally retires. Original broad SDK patch validation exceeded the existing job budget without producing an assertion report. | Selected repros use owned baseline/control inputs. Obsolete shape-only assertions may be updated or removed; native ABI, genuine metadata validity and unrelated API preservation remain required. No timeout change. | Preserve useful replacement semantic contracts rather than obsolete projections; measure broad validation cost before changing budgets. |
 | Full-generation cost qualification | Retained recovery all-arch generation is 12m32.63s; later fresh full91 scrape/emission totals 19m32.01s, an observed +6m59.38s/+55.7%. Filtered refresh timings measure different work. | Original commands, concurrency/cache context and logs retained; no duplicate reference build, timeout or concurrency adjustment. | Compare like-for-like stages on the next genuinely needed full generation. These unmatched observations do not attribute the increase solely to annotations. |
 
+## Preserved documented biometric enum rejection
+
+WINBIO_SETTING_SOURCE and WINBIO_POOL pass native discovery, complete values,
+UInt32 storage and all five generated native associations. Whole emission
+instead fails with four CS0246 diagnostics at SecBitomet.headerEnums.modified.cs
+lines 122/127: the unchanged Documentation mappings require
+Windows.Win32.Foundation.Metadata, absent from the header-enum writer's
+`using System;` header. The cleaner transfers those attributes without the
+import; legacy JSON enum output receives ConstantsScraper's metadata import.
+This extends the demonstrated managed source/import boundary above, not a
+native typedef/value/storage rejection or two unrelated reader defects.
+
+No biometric candidate exists. Its original frozen 792+151 reports remain
+separate; both complete header/patch/JSON/use/namespace closures were restored
+to c7f540 with all prior WinBio annotations intact. The hypothetical two-row
+Documentation RSP workaround was never attempted and is withdrawn; dotted
+attribute parsing is not established by SyntaxFactory.ParseName alone.
+documentationMappings.rsp is unchanged. Preserve the real repro for a
+separately authorized minimal import fix with regression coverage; no reader,
+fixture or RSP workaround is introduced by the verifier continuation.
+
+The independently locally qualified VERIFIER_ENUM_RESOURCE_FLAGS closure
+does not have a Documentation remap and does not fix that defect. Its two real
+members retain UInt32/Flags and one complete public signature in actual 5EA5,
+with complete raw output equality and genuinely new 943+54. Its owning
+ApplicationVerifier traversal emits the group; FileHistory inclusion alone
+does not. Initial private raw/prepared ownership and cross-stage producer
+prefix assumptions are preserved as checker corrections, not reader failures.
+
 ## Backlog, not established retention exceptions
 
-The locally qualified NCRYPT_OPERATION continuation has 315 remaining
-definition-bearing enum records; the preceding hosted0ce410 checkpoint has
-316. Additional-use records and a separate CLR flag request remain distinct.
+The locally qualified verifier continuation has 314 remaining
+definition-bearing enum records; hosted c7f540 has 315 and the preceding
+hosted0ce410 checkpoint has 316. Additional-use records and a separate CLR
+flag request remain distinct.
 That inventory mixes demonstrated restored closures above with unqualified
 or unattempted groups; no complete attempted/unattempted split is asserted.
 The DEVPROPTYPE clean-CI fallback restores one of those definition records.

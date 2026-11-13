@@ -3369,3 +3369,5 @@ DEBUG_EVENT_CODE=Windows.Win32.System.Diagnostics.Debug
 SCHANNEL_SESSION_TOKEN_FLAGS=Windows.Win32.Security.Authentication.Identity
 # Current native SDK constant-group namespace owners
 NCRYPT_OPERATION=Windows.Win32.Security.Cryptography
+# Current native SDK constant-group namespace owners
+VERIFIER_ENUM_RESOURCE_FLAGS=Windows.Win32.System.ApplicationVerifier

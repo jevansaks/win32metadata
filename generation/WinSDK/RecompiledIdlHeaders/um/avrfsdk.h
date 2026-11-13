@@ -144,7 +144,7 @@ typedef ULONG
 ULONG NTAPI
 VerifierEnumerateResource(
     HANDLE Process,
-    ULONG  Flags,    
+    _Win32_AssociatedEnum_(VERIFIER_ENUM_RESOURCE_FLAGS) ULONG  Flags,    
     ULONG  ResourceType,
     AVRF_RESOURCE_ENUMERATE_CALLBACK ResourceCallback,
     PVOID  EnumerationContext
@@ -169,3 +169,8 @@ VerifierIsPerUserSettingsEnabled(
 #pragma endregion
 
 #endif /*AVRFSDK*/
+
+#ifndef _WIN32METADATA_AVRFSDK_VERIFIER_1_GROUPS_
+#define _WIN32METADATA_AVRFSDK_VERIFIER_1_GROUPS_
+_Win32_FlagsEnum_(VERIFIER_ENUM_RESOURCE_FLAGS, unsigned int, AVRF_ENUM_RESOURCES_FLAGS_DONT_RESOLVE_TRACES, AVRF_ENUM_RESOURCES_FLAGS_SUSPEND);
+#endif
