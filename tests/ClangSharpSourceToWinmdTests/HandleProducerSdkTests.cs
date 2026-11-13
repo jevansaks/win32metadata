@@ -69,7 +69,8 @@ HANDLE (WINAPI *verifyAdd)(LPCWSTR, DWORD, LPBYTE) = &AddPrinterW;
         [DataRow("aarch64-pc-windows-msvc")]
         public void MappedViewCleanup_ConstPointeeRequiresAnExplicitContractDecision(string target)
         {
-            string text = File.ReadAllText(Sdk("RecompiledIdlHeaders/um/memoryapi.h"));
+            string text = File.ReadAllText(Path.Combine(LastErrorHeaderTests.SdkPackagePath(),
+                "c", "include", "10.0.28000.0", "um", "memoryapi.h"));
             string cleanup = Regex.Match(text, @"BOOL\s+WINAPI\s+UnmapViewOfFile\([^;]+;").Value;
             string producer = Regex.Match(text, @"LPVOID\s+WINAPI\s+MapViewOfFile\([^;]+;").Value;
             Assert.IsFalse(string.IsNullOrEmpty(cleanup));

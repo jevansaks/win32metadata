@@ -1,6 +1,6 @@
 # Working-first recovery and sidecar reduction
 
-**Current accepted cohort:** [27 DRT DLL overrides](#drt-import-overrides)
+**Latest published local checkpoint:** [27 DRT DLL overrides](#drt-import-overrides)
 above preserved `4f645a80c85fa1e69c3a11c703b5c0384ee4dec0`, following
 the 23 file/memory/PE groups and the previous 562 groups above `85444f25`.
 The broader qualification also restores BOOL's legacy storage after exposing
@@ -12,22 +12,34 @@ accounted for relative to the original parent; no arbitrary API loss is
 accepted. The dated quantities later in this document describe preserved
 historical checkpoints, not the current totals.
 
-| Inventory / units | Recovery | Accepted current | Net retired |
+**Clean CI is not green at `350e73c0`.** Run 43338802835 passed all three
+architecture scrapes but failed production emission, tooling tests and SDK
+controls. Its build job produced no WinMD. The preserved local `6751041E...`
+candidate and raw-dump equality do not qualify that clean hosted generation.
+Further reduction/publication is paused for [CI repair](#clean-ci-repair).
+The repair restores one complete DEVPROPTYPE definition, not an entire JSON
+corpus. Its fresh complete local WinMD is `5148224F...`, with the same full
+`1F4F3839...` dump, unmasked comparison zero and 54/54 integrity. The following
+tables describe these qualified local repair inputs; exact-head hosted CI is
+still required before migration resumes. Remaining inputs are not blanket
+claims of failed migration.
+
+| Inventory / units | Recovery | Current repair | Net retired |
 |---|---:|---:|---:|
 | Original parameter attribute atoms | 770 | 361 | 409 |
-| All RSP value rows | 146,789 | 134,597 | 12,192 |
+| All RSP value rows | 146,789 | 134,596 | 12,193 |
 | Allowed documentation URL rows | 90,502 | 90,502 | 0 (outside backlog) |
-| Other RSP rows, mixed configuration/API units | 56,287 | 44,095 | 12,192 |
+| Other RSP rows, mixed configuration/API units | 56,287 | 44,094 | 12,193 |
 | Emitter `memberRemap` rows | 2,295 | 1,592 | 703 |
 | LastError rows | 3,362 | 468 | 2,894 |
 | Availability rows | 17,070 | 7,883 | 9,187 |
-| Enum JSON records, mixed definitions/additional uses | 1,070 | 410 | 660 |
+| Enum JSON records, mixed definitions/additional uses | 1,070 | 411 | 659 |
 | autoTypes records | 444 | 436 | 8 |
 | Function-pointer fixup records | 27 | 27 | 0 |
 
-| Remaining category | Measured accepted quantity | Examination state |
+| Remaining category | Measured local quantity | Examination state |
 |---|---:|---|
-| Definition-bearing enum records | 386 | 585 further whole definitions accepted across nine cohorts. The new 24-group file/memory/PE trial retains 23, restoring IMAGE_OPTIONAL_HEADER_MAGIC; the actual WinInet definition dependency is qualified rather than deferred. Earlier restored closures remain explicit. |
+| Definition-bearing enum records | 387 | 584 further whole definitions / 5,230 members remain migrated after the complete DEVPROPTYPE restoration. The 1,146 listed active uses are unchanged. Earlier restored closures remain explicit; the preserved provisional 39-group retry is not counted. |
 | Additional-use enum records / selector rows | 23 / 55 | Exact retained FILE/REG/SNMP/process, STGM, COM/MIDL and Cloud closures; observed boundaries are in [PROBLEMS.md](PROBLEMS.md). |
 | Genuine CLR flags request | 1 record | Native enum use override already redundant/retired; flags effect still unqualified. |
 | Native type/storage/ownership inputs | 436 records | 424 legacy-storage / 12 native selections; genuine types remain. COLORREF storage and its redundant NativeTypedef flag are retired, not its record. BOOL/BOOLEAN and six DiagnosticDataQuery selections/producer closures remain restored; thirteen contextual cleanup records are separate boundaries, not all 436 records. |
@@ -40,10 +52,10 @@ documentation URL mappings to remain in `documentationMappings.rsp` for now.
 They are separate from the annotation-retirement backlog and are not migrated
 or removed here. No such exemption was granted to DLL mappings or other API
 metadata; their unchanged state in these bounded cohorts is not an allowance.
-The 44,095 non-documentation rows are not 44,095 semantic annotations:
+The 44,094 non-documentation rows are not 44,094 semantic annotations:
 26,376 are the checked-in scan-derived library table, 1,950 are parser/reference
-configuration, and 15,769 are mixed API/policy/parser-review rows, including
-3,081 namespace rows. The last category is neither distinct facts nor disjoint
+configuration, and 15,768 are mixed API/policy/parser-review rows, including
+3,080 namespace rows. The last category is neither distinct facts nor disjoint
 from the parameter-atom inventory. The specification makes import scanning
 the default; scan-derived rows are not 26,376 per-function header overrides.
 
@@ -57,6 +69,75 @@ rewriting history, or changing lower stack layers. This conservative batch keeps
 only the already-qualified parent header pilots. **No additional broad-migration
 header coverage is claimed.** All 737 broad patches and their sidecar retirements
 are deferred until they can be enabled in small batches that each emit.
+
+## Clean CI repair
+
+The exact hosted generated artifacts are retained separately for x64, x86
+and ARM64 and merged in the workflow's actual x64/x86/ARM64 order. Unchanged
+production emission reproduces the hosted `Unknown or malformed owned
+annotation 'Win32Metadata.Enum(DEVPROP_TYPEMOD_ARRAY, ...)'` failure.
+The clean sources contain one leaked definition annotation, on
+`DeviceQuery.cs`'s `DEVPROPERTY.Type` field. The `DEVPROPTYPE` header group
+redeclares the genuine native typedef; its definition metadata reaches a
+transitive consumer rather than remaining a definition-only fact.
+
+The complete 30-member definition is restored to its original JSON record;
+its listed-use array is empty, not proof of no implicit native consumers.
+The native header is restored byte-for-byte to the pinned SDK, its now-empty
+patch is removed, and its added namespace bridge is retired. No generated
+C#/RSP, owned-annotation parser or production reader is changed. Fresh
+empty-cache complete traversal/emission succeeds. The actual `5148224F...`
+candidate preserves every declaration in the complete `1F4F3839...` dump,
+passes unmasked comparison against the real `350e` local candidate and
+passes 54/54 integrity tests. All 351 remaining native patches replay to
+the exact checked-in header bytes. This establishes local qualification,
+not hosted green.
+
+The required all-architecture scrape/constants stage takes 15m48.61s and
+emission 4m55.20s, totaling 20m43.81s. This is 1m11.80s (+6.1%) above the
+earlier fresh-full91 observation; focused test/compile work ran concurrently.
+That is an upward observed cost to monitor, not a matched-run annotation-only
+attribution. No extra benchmark generation or timeout change was introduced.
+
+The six tooling failures are incomplete sliced SDK fixtures, not a reason to
+retain obsolete projection structure. The COM fixture now includes the real
+EMBDHLP definition dependency and checks the twelve COM contracts on both
+legacy and current inputs. Its cross-era whole-WinMD comparison is removed:
+the independently migrated enum metadata is intentional. Current header-only
+versus matching legacy COM overrides still has exact byte equality.
+The mapped-view negative control uses the pinned native SDK declaration so
+an unrelated FILE_MAP association does not obscure the const-pointee cleanup
+decision. Core COM MIDL replay now receives the canonical helper included by
+its actual patched IDL.
+
+The first corrected targeted run is 25/31: those six tooling cases, Core COM
+MIDL and all twelve Media Foundation native cases pass locally. Six DirectX
+C++ raw-object checks still fail. Their retained objects have equal actual
+section payloads, flags, relocations and symbol bindings, but differing physical
+section/table order. A same-input triple compile is byte-identical.
+The replacement test-only assertion checks code/data/linkage equivalence:
+all payload bytes, flags, sizes, symbol bindings, resolved relocations,
+COMDAT selection/association and contribution order for initialization/TLS,
+non-COMDAT and unknown section kinds. Both 32-bit auxiliary checksums and
+every section-indexed 64-bit `.chks64` entry remain exact after index resolution;
+no checksum or native difference is discarded. Unknown auxiliary records fail.
+Actual non-associative COMDAT key bindings and first section-definition records
+are preserved; valid symbol-bundle permutation is not arbitrary alias/key
+reordering. Mutation cases guard real changes, selection keys and ordered
+initializers.
+
+Complete local validation passes 941/941 (766 tooling and all 175 SDK cases).
+After the final COMDAT-key review, the revised 18 comparer controls and all
+24 affected native architecture/language/include-order cases pass 42/42 against
+an unchanged source snapshot. These are separate recorded runs, not a claim
+that a 943-case combined run was performed. Exact repaired-head hosted CI
+and its emitted WinMD remain the gate before further migration batches.
+
+The separate 44/43/42/41/39-group reduction trials and rejected sources are
+preserved outside the checkout. The checkout has returned to the published
+checkpoint before CI repair. None of those provisional retirements is counted.
+Their pointer-valued operand, typedef redeclaration, anonymous-field carrier
+and owning-definition visibility findings are in [PROBLEMS.md](PROBLEMS.md).
 
 ## DRT import overrides
 

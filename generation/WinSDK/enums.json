@@ -16045,6 +16045,15 @@
     ]
   },
   {
+    "namespace": "Windows.Win32.Devices.Properties",
+    "name": "DEVPROPTYPE",
+    "autoPopulate": {
+      "filter": "DEVPROP_TYPE_|DEVPROP_TYPEMOD_",
+      "header": "devpropdef.h"
+    },
+    "uses": []
+  },
+  {
     "addUsesTo": "CF_HYDRATION_POLICY_PRIMARY",
     "members": [],
     "uses": [

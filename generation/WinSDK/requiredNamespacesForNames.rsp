@@ -3266,7 +3266,6 @@ DTTOPTS_FLAGS=Windows.Win32.UI.Controls
 MW_FILTERMODE=Windows.Win32.UI.Magnification
 HIT_TEST_BACKGROUND_OPTIONS=Windows.Win32.UI.Controls
 HTML_HELP_COMMAND=Windows.Win32.Data.HtmlHelp
-DEVPROPTYPE=Windows.Win32.Devices.Properties
 BCRYPTGENRANDOM_FLAGS=Windows.Win32.Security.Cryptography
 WLAN_NOTIFICATION_SOURCES=Windows.Win32.NetworkManagement.WiFi
 CRYPTCATATTRIBUTE_FLAGS=Windows.Win32.Security.Cryptography.Catalog
