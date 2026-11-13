@@ -1,14 +1,23 @@
 # Working-first recovery and sidecar reduction
 
 **Latest locally qualified migration checkpoint:**
-[26 further shipped SDK groups](#further-shipped-sdk-groups), above `fbd7a530`.
-The actual local WinMD is `5FB6EA33...`; the fresh complete dump remains
+[13 native-owner SDK groups](#native-owner-sdk-groups), above `728bf2c3`.
+The actual local WinMD is `ACB37EF4...`; the fresh complete dump remains
 `1F4F3839...`, with zero unmasked differences against the actual hosted parent.
-All 943 final tooling/SDK cases and 54 integrity cases pass. The original
-failed shared-results-directory invocation remains preserved separately.
+All 943 final tooling/SDK cases pass against the maintained fixture/new test
+DLL, and the original actual-candidate 54 integrity cases remain qualified.
+The original three fixture failures and targeted diagnostic remain separate.
 This continuation still requires its own ordinary exact-head hosted gate.
 
 **Latest hosted-qualified migration checkpoint:**
+[26 further shipped SDK groups](#further-shipped-sdk-groups),
+`728bf2c3a40ebb2f6de5511f7be82b9950656027`, above `fbd7a530`.
+Its actual local WinMD is `5FB6EA33...` and hosted WinMD is `F1553FC9...`.
+Ordinary [run 43413701369](https://github.com/jevansaks/win32metadata/actions/runs/43413701369)
+passes all ten jobs; original reports, checkout trees and both actual hosted
+binaries are independently inspected. Full raw output remains `1F4F3839...`.
+
+**Prior hosted-qualified migration checkpoint:**
 [32 core SDK groups](#core-sdk-groups), `fbd7a53064adde9f80ae39e7bf3e75abbb159b5b`,
 above the unchanged clean CI repair. Its actual local WinMD is `8DA7BE1C...`
 and hosted WinMD is `A5099083...`. The fresh complete dump remains
@@ -16,7 +25,7 @@ and hosted WinMD is `A5099083...`. The fresh complete dump remains
 [run 43385556841](https://github.com/jevansaks/win32metadata/actions/runs/43385556841)
 passes all ten jobs; original reports and both actual binaries are inspected.
 
-**Prior hosted-qualified checkpoint:** [clean CI repair](#clean-ci-repair)
+**Earlier hosted-qualified checkpoint:** [clean CI repair](#clean-ci-repair)
 `d3a0f2beaa189529b61c76808efd55eb7ac21a7a`, following
 the [27 DRT DLL overrides](#drt-import-overrides), 23 file/memory/PE groups
 and previous 562 groups above `85444f25`.
@@ -39,7 +48,7 @@ all ten jobs succeed and the actual hosted WinMD is downloaded and inspected.
 The repair restores one complete DEVPROPTYPE definition, not an entire JSON
 corpus. Its fresh complete local WinMD is `5148224F...`, with the same full
 `1F4F3839...` dump, unmasked comparison zero and 54/54 integrity. The following
-tables describe the locally qualified 26-group continuation inputs. The
+tables describe the locally qualified 13-group continuation inputs. The
 continuation does not inherit hosted qualification from its parent: its own
 ordinary run independently produces and qualifies the actual WinMD. Remaining inputs
 are not blanket claims of failed migration.
@@ -47,19 +56,19 @@ are not blanket claims of failed migration.
 | Inventory / units | Recovery | Current local | Net retired |
 |---|---:|---:|---:|
 | Original parameter attribute atoms | 770 | 361 | 409 |
-| All RSP value rows | 146,789 | 134,654 | 12,135 |
+| All RSP value rows | 146,789 | 134,667 | 12,122 |
 | Allowed documentation URL rows | 90,502 | 90,502 | 0 (outside backlog) |
-| Other RSP rows, mixed configuration/API units | 56,287 | 44,152 | 12,135 |
+| Other RSP rows, mixed configuration/API units | 56,287 | 44,165 | 12,122 |
 | Emitter `memberRemap` rows | 2,295 | 1,592 | 703 |
 | LastError rows | 3,362 | 468 | 2,894 |
 | Availability rows | 17,070 | 7,883 | 9,187 |
-| Enum JSON records, mixed definitions/additional uses | 1,070 | 353 | 717 |
+| Enum JSON records, mixed definitions/additional uses | 1,070 | 340 | 730 |
 | autoTypes records | 444 | 436 | 8 |
 | Function-pointer fixup records | 27 | 27 | 0 |
 
 | Remaining category | Measured local quantity | Examination state |
 |---|---:|---|
-| Definition-bearing enum records | 329 | 642 further whole definitions / 5,890 emitted members / 1,342 listed active uses remain migrated after the complete restorations. Thirteen inactive use selectors and 19 non-emitting legacy member selectors remain separate. Rejected outputs and complete restored closures are not counted as coverage. |
+| Definition-bearing enum records | 316 | 655 whole definitions / 5,946 emitted members / 1,373 listed SDK-native use sites remain migrated after complete restorations. This cohort's 31 native sites comprise 25 public associations and six unchanged non-emitting native entrypoints. Previously recorded 13 inactive use selectors and 19 non-emitting legacy member selectors remain separate. Rejected outputs and restored closures are not coverage. |
 | Additional-use enum records / selector rows | 23 / 55 | Exact retained FILE/REG/SNMP/process, STGM, COM/MIDL and Cloud closures; observed boundaries are in [PROBLEMS.md](PROBLEMS.md). |
 | Genuine CLR flags request | 1 record | Native enum use override already redundant/retired; flags effect still unqualified. |
 | Native type/storage/ownership inputs | 436 records | 424 legacy-storage / 12 native selections; genuine types remain. COLORREF storage and its redundant NativeTypedef flag are retired, not its record. BOOL/BOOLEAN and six DiagnosticDataQuery selections/producer closures remain restored; thirteen contextual cleanup records are separate boundaries, not all 436 records. |
@@ -72,10 +81,10 @@ documentation URL mappings to remain in `documentationMappings.rsp` for now.
 They are separate from the annotation-retirement backlog and are not migrated
 or removed here. No such exemption was granted to DLL mappings or other API
 metadata; their unchanged state in these bounded cohorts is not an allowance.
-The 44,152 non-documentation rows are not 44,152 semantic annotations:
+The 44,165 non-documentation rows are not 44,165 semantic annotations:
 26,376 are the checked-in scan-derived library table, 1,950 are parser/reference
-configuration, and 15,826 are mixed API/policy/parser-review rows, including
-3,138 namespace rows. The last category is neither distinct facts nor disjoint
+configuration, and 15,839 are mixed API/policy/parser-review rows, including
+3,151 namespace rows. The last category is neither distinct facts nor disjoint
 from the parameter-atom inventory. The specification makes import scanning
 the default; scan-derived rows are not 26,376 per-function header overrides.
 
@@ -90,6 +99,80 @@ only the already-qualified parent header pilots. **No additional broad-migration
 header coverage is claimed.** All 737 broad patches and their sidecar retirements
 are deferred until they can be enabled in small batches that each emit.
 
+## Native-owner SDK groups
+
+The continuation retires **13 complete definitions / 56 emitted members /
+31 listed SDK-native use sites**, with 31 physical native association carriers.
+Twelve shipped headers and their twelve authoritative post-MIDL patches
+change. All 22 actual owner main/settings routes remain parent-exact. The
+only RSP delta is 13 namespace bridges, not retired annotation facts. The
+340 remaining enum records are 316 definitions, 23 additional-use records
+and one CLR flags request; native type/storage, parameter and DLL inputs
+remain unchanged.
+
+The original 16-group traversal exposes two boundaries for TXFS_MINIVERSION:
+the real Fs consumer has native `PUSHORT` versus the legacy UInt32 group,
+and other consumer translation units cannot see the definition in txfw32.h.
+Restoring that complete definition/use/routing closure exposes
+SNMP_ERROR_STATUS's native signed `AsnInteger32*`/`AsnInteger*` versus legacy
+UInt32 storage. Restoring it then exposes SNMP_GENERICTRAP's signed-pointer
+conflict in an independent Snmp traversal. All three complete closures are
+restored; MgmtAPI.h and txfw32.h plus their patches equal the parent exactly.
+Original 16/15/14 source freezes and diagnostics remain preserved. These
+extend existing storage/visibility classes, not three unrelated reader bugs
+or a claim that the remaining SNMP group is unsupported.
+
+The final 13-group focused and full traversals contain all 56 exact emitted
+members/storage sets and all 31 native associations on each target: 93 target
+checks, not 93 different native declarations. All twelve raw byte/BOM chains,
+twelve complete native-source inverse chains and 353 actual SDK patch replays
+pass. No native parameter storage, reader, helper, converter or CI change is
+made.
+
+Only **25 of the 31 native sites are public WinMD associations**. The other
+six are SnmpExtensionQueryEx, NPFMXGetPermHelp, NPFMXEditPerm, NPPropertyDialog,
+NPGetPropertyText and NPDirectoryNotify. All six have actual generated
+empty-module imports; the unchanged cleaner drops them before enum handling.
+They are absent in both complete parent/candidate dumps, not lost APIs.
+The first analysis checker incorrectly assumed every native selector emitted;
+it is preserved, and corrected accounting requires exact full-output equality
+while explicitly recording the six unchanged absences.
+
+Fresh headers/constants and production emission produce the actual
+24,174,592-byte candidate
+`ACB37EF494348B2BC19714A51F74A8B108D7285CFAB956D3D90BEEE47889FB71`.
+Its fresh complete 35,379-type dump is exactly `1F4F3839...`; comparison against
+actual hosted parent `F1553FC9...` reports zero unknown differences with no
+known-difference masks. Original integrity passes 54/54 against this actual
+candidate; the binary remains unchanged through fixture maintenance.
+
+The first complete tooling invocation ends **789 passed / three failed**:
+all three HandleProducer SDK replay cases slice the newly annotated LocalAlloc
+prototype without its real LOCAL_ALLOC_FLAGS dependency in minwinbase.h.
+The fixture now replays and byte-compares that actual header, supplies its
+actual LMEM operands/group declaration, and asserts the exact enum type handle
+with UInt32 storage instead of the obsolete bare-primitive expectation.
+Every ownership, native-byte, raw ABI and paired legacy byte-equality assertion
+remains. This is a fixture dependency correction, not a production/API fix.
+
+The new compiled test DLL `04DCFDA3...` passes the original three cases first,
+then complete **792/792 plus fresh 151/151** in distinct results/deployment
+roots. Their disjoint identities exactly equal the original 943-case scope,
+including 18 comparer, 24 native code/data/linkage and three SERVICE controls.
+All three repaired producer cases and six producer native-ABI cases pass.
+The original failed 792, original `F163F39D...` assembly/151 and targeted three
+remain separate; no 789-plus-three stitching or old-DLL 151 substitution.
+The closed freeze has 218 entries / 196 physical files: all original 217
+inputs remain exact, with the formerly unlisted fixture source added.
+
+Raw generation is **16m28.62s headers/constants + 5m06.00s emission =
+21m34.62s** at eight workers. These are required-run observations, not matched
+benchmarks. The preceding hosted parent's emission increase remains flagged
+below; this continuation needs its own ordinary exact-head hosted output gate.
+The six earlier complete fallbacks, DEVPROPTYPE, KERB and both font-subset
+boundaries remain intact. None of the 316 remaining definitions is labeled
+unsupported merely because it has not yet been qualified.
+
 ## Further shipped SDK groups
 
 The next continuation retires **26 complete definitions / 153 emitted members /
@@ -97,7 +180,7 @@ The next continuation retires **26 complete definitions / 153 emitted members /
 Eighteen actual shipped headers and their authoritative post-MIDL patches
 change; RichOle.h gains a patch selected by the unchanged recipe wildcard.
 The only RSP delta is 26 namespace-routing bridges, not retired annotation
-facts. The current 353 enum records are 329 definitions, 23 additional-use
+facts. That checkpoint's 353 enum records are 329 definitions, 23 additional-use
 records and one CLR flags request. Native type/storage, parameter-atom and
 DLL inventories are unchanged. Nineteen non-emitting legacy member selectors
 are removed separately, not counted as emitted-member migration coverage.
@@ -157,6 +240,20 @@ preceding hosted x86/emission increases visible on the next required run.
 The six earlier complete fallbacks, DEVPROPTYPE and KERB boundaries remain
 intact. This local qualification does not replace the new exact-head hosted
 CI and actual-output gate.
+
+Ordinary exact-`728bf` run 43413701369 subsequently succeeds in all ten jobs.
+Both original 24,174,592-byte hosted binaries hash to
+`F1553FC94373B426F52A2D04707B0051D95D18D686451A41B14323C8200476F4`.
+Fresh complete output equals `1F4F3839...`; actual hosted/local comparison is
+unmasked zero. Original 768/175/54/17/52 reports pass and match the exact
+local 943 identities, retaining all 18 comparer, 24 native and three SERVICE
+controls. Checkout trees, frozen source/base and actual binaries are
+independently qualified before starting the next cohort.
+
+Required hosted x86 generation is **26m53.29s**, and emission **5m13.83s**.
+Emission remains **46.40s (+17.35%) above the clean repair's 4m27.43s**.
+Keep that observed increase visible on subsequent required runs without
+extra benchmarks, timeout/concurrency changes or causal attribution.
 
 ## Core SDK groups
 

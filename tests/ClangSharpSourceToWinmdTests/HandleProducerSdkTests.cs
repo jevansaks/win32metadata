@@ -363,14 +363,14 @@ typedef struct { unsigned long a; unsigned short b, c; unsigned char d[8]; } GUI
             string include = Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0");
             try
             {
-                foreach (string owner in new[] { "WinBase.h", "winspool.h", "heapapi.h" })
+                foreach (string owner in new[] { "WinBase.h", "winspool.h", "heapapi.h", "minwinbase.h" })
                     File.Copy(Path.Combine(include, "um", owner), Path.Combine(directory, "um", owner));
                 var apply = LastErrorHeaderTests.Run("pwsh", "-NoProfile", "-NonInteractive", "-Command",
                     "& " + Quote(Path.Combine(LastErrorHeaderTests.RepositoryRoot(), "scripts", "ApplySDKPatches.ps1")) +
                     " -Phase post-midl -HeaderRoot " + Quote(directory) + " -MidlInputRoot " + Quote(include) +
-                    " -SdkVersion '10.0.28000.2705' -SelectedPatches @('post-midl/WinBase.h.patch','post-midl/winspool.h.patch','post-midl/heapapi.h.patch')");
+                    " -SdkVersion '10.0.28000.2705' -SelectedPatches @('post-midl/WinBase.h.patch','post-midl/winspool.h.patch','post-midl/heapapi.h.patch','post-midl/minwinbase.h.patch')");
                 Assert.AreEqual(0, apply.ExitCode, apply.Output);
-                foreach (string owner in new[] { "WinBase.h", "winspool.h", "heapapi.h" })
+                foreach (string owner in new[] { "WinBase.h", "winspool.h", "heapapi.h", "minwinbase.h" })
                     CollectionAssert.AreEqual(File.ReadAllBytes(Sdk("RecompiledIdlHeaders/um/" + owner)),
                         File.ReadAllBytes(Path.Combine(directory, "um", owner)), owner + ": complete native bytes, including EOF and CRLF");
 
@@ -470,6 +470,16 @@ HANDLE WINAPI Noop(void);
             string printer = File.ReadAllText(Path.Combine(include, "um", "winspool.h"));
             string memory = File.ReadAllText(Path.Combine(include, "um", "WinBase.h"));
             string heap = File.ReadAllText(Path.Combine(include, "um", "heapapi.h"));
+            string localFlags = string.Empty;
+            if (memory.Contains("_Win32_AssociatedEnum_(LOCAL_ALLOC_FLAGS)", StringComparison.Ordinal))
+            {
+                string header = File.ReadAllText(Path.Combine(include, "um", "minwinbase.h"));
+                var groups = Regex.Matches(header, @"(?m)^_Win32_FlagsEnum_\(LOCAL_ALLOC_FLAGS,[^\r\n]*\);");
+                Assert.AreEqual(1, groups.Count, "The sliced LocalAlloc declaration requires its actual SDK enum dependency.");
+                localFlags = string.Join("\n", Regex.Matches(header,
+                    @"(?m)^#define (?:LMEM_[A-Z_]+|LHND|LPTR|NONZEROLHND|NONZEROLPTR)\b[^\r\n]*")
+                    .Select(match => match.Value)) + "\n" + groups[0].Value + "\n";
+            }
             return @"
 #include <specstrings.h>
 #define WINAPI __stdcall
@@ -485,7 +495,7 @@ typedef unsigned int UINT;
 typedef __SIZE_TYPE__ SIZE_T;
 typedef void VOID;
 typedef struct _PRINTER_DEFAULTSW* LPPRINTER_DEFAULTSW;
-" + Declaration(printer, "ClosePrinter", "BOOL") + "\n" +
+" + localFlags + Declaration(printer, "ClosePrinter", "BOOL") + "\n" +
                 Declaration(printer, "OpenPrinterW", "BOOL") + "\n" +
                 Declaration(memory, "LocalFree", "WINBASEAPI") + "\n" +
                 Declaration(memory, "LocalAlloc", "WINBASEAPI") + "\n" +
@@ -517,7 +527,6 @@ typedef struct _PRINTER_DEFAULTSW* LPPRINTER_DEFAULTSW;
                 ["ClosePrinter"] = new[] { SignatureTypeCode.Int32, SignatureTypeCode.Pointer, SignatureTypeCode.Void },
                 ["LocalFree"] = new[] { SignatureTypeCode.Pointer, SignatureTypeCode.Void, SignatureTypeCode.Pointer, SignatureTypeCode.Void },
                 ["GetProcessHeap"] = new[] { SignatureTypeCode.Pointer, SignatureTypeCode.Void },
-                ["LocalAlloc"] = new[] { SignatureTypeCode.Pointer, SignatureTypeCode.Void, SignatureTypeCode.UInt32, SignatureTypeCode.UIntPtr },
             };
             foreach (var fact in signatures)
             {
@@ -525,10 +534,29 @@ typedef struct _PRINTER_DEFAULTSW* LPPRINTER_DEFAULTSW;
                     .Single(method => reader.GetString(method.Name) == fact.Key);
                 var signature = reader.GetBlobReader(method.Signature);
                 signature.ReadSignatureHeader();
-                Assert.AreEqual(fact.Key == "LocalAlloc" ? 2 : fact.Key == "GetProcessHeap" ? 0 : 1, signature.ReadCompressedInteger());
+                Assert.AreEqual(fact.Key == "GetProcessHeap" ? 0 : 1, signature.ReadCompressedInteger());
                 foreach (var code in fact.Value) Assert.AreEqual(code, signature.ReadSignatureTypeCode(), fact.Key);
                 Assert.AreEqual(0, signature.RemainingBytes);
             }
+            var localAlloc = reader.MethodDefinitions.Select(reader.GetMethodDefinition)
+                .Single(method => reader.GetString(method.Name) == "LocalAlloc");
+            var localSignature = reader.GetBlobReader(localAlloc.Signature);
+            localSignature.ReadSignatureHeader();
+            Assert.AreEqual(2, localSignature.ReadCompressedInteger());
+            Assert.AreEqual(SignatureTypeCode.Pointer, localSignature.ReadSignatureTypeCode());
+            Assert.AreEqual(SignatureTypeCode.Void, localSignature.ReadSignatureTypeCode());
+            Assert.AreEqual(SignatureTypeCode.TypeHandle, localSignature.ReadSignatureTypeCode());
+            Assert.AreEqual("LOCAL_ALLOC_FLAGS", EnumHeaderTests.TypeName(reader, localSignature.ReadTypeHandle()));
+            Assert.AreEqual(SignatureTypeCode.UIntPtr, localSignature.ReadSignatureTypeCode());
+            Assert.AreEqual(0, localSignature.RemainingBytes);
+            var localFlags = reader.TypeDefinitions.Select(reader.GetTypeDefinition)
+                .Single(type => reader.GetString(type.Name) == "LOCAL_ALLOC_FLAGS");
+            var value = reader.GetFieldDefinition(localFlags.GetFields()
+                .Single(handle => reader.GetString(reader.GetFieldDefinition(handle).Name) == "value__"));
+            var storage = reader.GetBlobReader(value.Signature);
+            storage.ReadSignatureHeader();
+            Assert.AreEqual(SignatureTypeCode.UInt32, storage.ReadSignatureTypeCode());
+            Assert.AreEqual(0, storage.RemainingBytes);
             var open = reader.MethodDefinitions.Select(reader.GetMethodDefinition)
                 .Single(method => reader.GetString(method.Name) == "OpenPrinterW");
             var openSignature = reader.GetBlobReader(open.Signature);

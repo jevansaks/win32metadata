@@ -314,39 +314,6 @@
     ]
   },
   {
-    "name": "SCROLL_WINDOW_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "SW_SCROLLCHILDREN",
-        "value": "1"
-      },
-      {
-        "name": "SW_INVALIDATE",
-        "value": "2"
-      },
-      {
-        "name": "SW_ERASE",
-        "value": "4"
-      },
-      {
-        "name": "SW_SMOOTHSCROLL",
-        "value": "16"
-      }
-    ],
-    "uses": [
-      {
-        "method": "ScrollWindowEx",
-        "parameter": "flags"
-      },
-      {
-        "interface": "ITextHost",
-        "method": "TxScrollWindowEx",
-        "parameter": "fuScroll"
-      }
-    ]
-  },
-  {
     "finished": true,
     "name": "WINBIO_SETTING_SOURCE",
     "members": [
@@ -460,42 +427,6 @@
       {
         "method": "SnmpCreatePdu",
         "parameter": "PDU_type"
-      }
-    ]
-  },
-  {
-    "finished": true,
-    "name": "SNMP_EXTENSION_REQUEST_TYPE",
-    "members": [
-      {
-        "name": "SNMP_EXTENSION_GET",
-        "value": "SNMP_PDU_TYPE.SNMP_PDU_GET"
-      },
-      {
-        "name": "SNMP_EXTENSION_GET_NEXT",
-        "value": "SNMP_PDU_TYPE.SNMP_PDU_GETNEXT"
-      },
-      {
-        "name": "SNMP_EXTENSION_SET_TEST",
-        "value": "(ASN_PRIVATE | ASN_CONSTRUCTOR | 0x0)"
-      },
-      {
-        "name": "SNMP_EXTENSION_SET_COMMIT",
-        "value": "SNMP_PDU_TYPE.SNMP_PDU_SET"
-      },
-      {
-        "name": "SNMP_EXTENSION_SET_UNDO",
-        "value": "(ASN_PRIVATE | ASN_CONSTRUCTOR | 0x1)"
-      },
-      {
-        "name": "SNMP_EXTENSION_SET_CLEANUP",
-        "value": "(ASN_PRIVATE | ASN_CONSTRUCTOR | 0x2)"
-      }
-    ],
-    "uses": [
-      {
-        "method": "SnmpExtensionQueryEx",
-        "parameter": "nRequestType"
       }
     ]
   },
@@ -2052,89 +1983,6 @@
     ]
   },
   {
-    "name": "SCROLLBAR_CONSTANTS",
-    "type": "int",
-    "namespace": "Windows.Win32.UI.WindowsAndMessaging",
-    "flags": true,
-    "members": [
-      {
-        "name": "SB_CTL"
-      },
-      {
-        "name": "SB_HORZ"
-      },
-      {
-        "name": "SB_VERT"
-      },
-      {
-        "name": "SB_BOTH"
-      }
-    ],
-    "uses": [
-      {
-        "method": "SetScrollRange",
-        "parameter": "nBar"
-      },
-      {
-        "method": "SetScrollInfo",
-        "parameter": "nBar"
-      },
-      {
-        "method": "SetScrollPos",
-        "parameter": "nBar"
-      },
-      {
-        "method": "GetScrollPos",
-        "parameter": "nBar"
-      },
-      {
-        "method": "GetScrollRange",
-        "parameter": "nBar"
-      },
-      {
-        "method": "GetScrollInfo",
-        "parameter": "nBar"
-      },
-      {
-        "method": "ShowScrollBar",
-        "parameter": "wBar"
-      },
-      {
-        "method": "FlatSB_ShowScrollBar",
-        "parameter": "code"
-      },
-      {
-        "interface": "ITextHost",
-        "method": "TxEnableScrollBar",
-        "parameter": "fuSBFlags"
-      },
-      {
-        "method": "FlatSB_GetScrollRange",
-        "parameter": "code"
-      },
-      {
-        "method": "FlatSB_GetScrollPos",
-        "parameter": "code"
-      },
-      {
-        "method": "FlatSB_SetScrollPos",
-        "parameter": "code"
-      },
-      {
-        "method": "FlatSB_SetScrollInfo",
-        "parameter": "code"
-      },
-      {
-        "method": "FlatSB_SetScrollRange",
-        "parameter": "code"
-      },
-      {
-        "method": "FlatSB_GetScrollInfo",
-        "parameter": "code"
-      }
-    ]
-  },
-  {
     "name": "CERT_RDN_ATTR_VALUE_TYPE",
     "type": "int",
     "namespace": "Windows.Win32.Security.Cryptography",
@@ -3236,30 +3084,6 @@
     ]
   },
   {
-    "name": "WNPERM_DLG",
-    "members": [
-      {
-        "name": "WNPERM_DLG_PERM"
-      },
-      {
-        "name": "WNPERM_DLG_AUDIT"
-      },
-      {
-        "name": "WNPERM_DLG_OWNER"
-      }
-    ],
-    "uses": [
-      {
-        "method": "NPFMXGetPermHelp",
-        "parameter": "nDialogType"
-      },
-      {
-        "method": "NPFMXEditPerm",
-        "parameter": "nDialogType"
-      }
-    ]
-  },
-  {
     "addUsesTo": "COMAdminApplicationInstallOptions",
     "members": [],
     "uses": [
@@ -3845,36 +3669,6 @@
       {
         "method": "RtlVirtualUnwind",
         "parameter": "HandlerType"
-      }
-    ]
-  },
-  {
-    "name": "SET_SERVICE_OPERATION",
-    "members": [
-      {
-        "name": "SERVICE_REGISTER"
-      },
-      {
-        "name": "SERVICE_DEREGISTER"
-      },
-      {
-        "name": "SERVICE_FLUSH"
-      },
-      {
-        "name": "SERVICE_ADD_TYPE"
-      },
-      {
-        "name": "SERVICE_DELETE_TYPE"
-      }
-    ],
-    "uses": [
-      {
-        "method": "SetServiceA",
-        "parameter": "dwOperation"
-      },
-      {
-        "method": "SetServiceW",
-        "parameter": "dwOperation"
       }
     ]
   },
@@ -4923,28 +4717,6 @@
     ]
   },
   {
-    "name": "SECURITY_INFO_PAGE_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "SI_ADVANCED"
-      },
-      {
-        "name": "SI_EDIT_AUDITS"
-      },
-      {
-        "name": "SI_EDIT_PROPERTIES"
-      }
-    ],
-    "uses": [
-      {
-        "interface": "ISecurityInformation",
-        "method": "GetAccessRights",
-        "parameter": "dwFlags"
-      }
-    ]
-  },
-  {
     "name": "QUEUE_STATUS_FLAGS",
     "flags": true,
     "members": [
@@ -5375,50 +5147,6 @@
       {
         "method": "SetSystemCursor",
         "parameter": "id"
-      }
-    ]
-  },
-  {
-    "name": "NP_PROPERTY_DIALOG_SELECTION",
-    "members": [
-      {
-        "name": "WNPS_FILE"
-      },
-      {
-        "name": "WNPS_DIR"
-      },
-      {
-        "name": "WNPS_MULT"
-      }
-    ],
-    "uses": [
-      {
-        "method": "NPPropertyDialog",
-        "parameter": "nPropSel"
-      },
-      {
-        "method": "NPGetPropertyText",
-        "parameter": "nPropSel"
-      }
-    ]
-  },
-  {
-    "name": "NPDIRECTORY_NOTIFY_OPERATION",
-    "members": [
-      {
-        "name": "WNDN_MKDIR"
-      },
-      {
-        "name": "WNDN_RMDIR"
-      },
-      {
-        "name": "WNDN_MVDIR"
-      }
-    ],
-    "uses": [
-      {
-        "method": "NPDirectoryNotify",
-        "parameter": "dwOper"
       }
     ]
   },
@@ -6993,44 +6721,6 @@
     ]
   },
   {
-    "name": "LOCAL_ALLOC_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "LHND",
-        "value": "66"
-      },
-      {
-        "name": "LMEM_FIXED",
-        "value": "0"
-      },
-      {
-        "name": "LMEM_MOVEABLE",
-        "value": "2"
-      },
-      {
-        "name": "LMEM_ZEROINIT",
-        "value": "64"
-      },
-      {
-        "name": "LPTR",
-        "value": "64"
-      },
-      {
-        "name": "NONZEROLHND"
-      },
-      {
-        "name": "NONZEROLPTR"
-      }
-    ],
-    "uses": [
-      {
-        "method": "LocalAlloc",
-        "parameter": "uFlags"
-      }
-    ]
-  },
-  {
     "name": "WLX_SHUTDOWN_TYPE",
     "members": [
       {
@@ -7074,26 +6764,6 @@
       {
         "interface": "IProvideMultipleClassInfo",
         "method": "GetInfoOfIndex",
-        "parameter": "dwFlags"
-      }
-    ]
-  },
-  {
-    "name": "LOCK_FILE_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "LOCKFILE_EXCLUSIVE_LOCK",
-        "value": "2"
-      },
-      {
-        "name": "LOCKFILE_FAIL_IMMEDIATELY",
-        "value": "1"
-      }
-    ],
-    "uses": [
-      {
-        "method": "LockFileEx",
         "parameter": "dwFlags"
       }
     ]
@@ -7300,34 +6970,6 @@
       {
         "interface": "IImageList",
         "method": "GetItemFlags",
-        "parameter": "dwFlags"
-      }
-    ]
-  },
-  {
-    "name": "RICH_EDIT_GET_OBJECT_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "REO_GETOBJ_POLEOBJ"
-      },
-      {
-        "name": "REO_GETOBJ_PSTG"
-      },
-      {
-        "name": "REO_GETOBJ_POLESITE"
-      },
-      {
-        "name": "REO_GETOBJ_NO_INTERFACES"
-      },
-      {
-        "name": "REO_GETOBJ_ALL_INTERFACES"
-      }
-    ],
-    "uses": [
-      {
-        "interface": "IRichEditOle",
-        "method": "GetObject",
         "parameter": "dwFlags"
       }
     ]
@@ -9184,53 +8826,6 @@
     ]
   },
   {
-    "name": "DEBUG_EVENT_CODE",
-    "members": [
-      {
-        "name": "CREATE_PROCESS_DEBUG_EVENT",
-        "value": "3"
-      },
-      {
-        "name": "CREATE_THREAD_DEBUG_EVENT",
-        "value": "2"
-      },
-      {
-        "name": "EXCEPTION_DEBUG_EVENT",
-        "value": "1"
-      },
-      {
-        "name": "EXIT_PROCESS_DEBUG_EVENT",
-        "value": "5"
-      },
-      {
-        "name": "EXIT_THREAD_DEBUG_EVENT",
-        "value": "4"
-      },
-      {
-        "name": "LOAD_DLL_DEBUG_EVENT",
-        "value": "6"
-      },
-      {
-        "name": "OUTPUT_DEBUG_STRING_EVENT",
-        "value": "8"
-      },
-      {
-        "name": "RIP_EVENT",
-        "value": "9"
-      },
-      {
-        "name": "UNLOAD_DLL_DEBUG_EVENT",
-        "value": "7"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "DEBUG_EVENT",
-        "field": "dwDebugEventCode"
-      }
-    ]
-  },
-  {
     "name": "INTERNET_STATE",
     "members": [
       {
@@ -9330,25 +8925,6 @@
       {
         "struct": "VDS_DISK_NOTIFICATION",
         "field": "ulEvent"
-      }
-    ]
-  },
-  {
-    "name": "SCHANNEL_SESSION_TOKEN_FLAGS",
-    "members": [
-      {
-        "name": "SSL_SESSION_ENABLE_RECONNECTS",
-        "value": "1"
-      },
-      {
-        "name": "SSL_SESSION_DISABLE_RECONNECTS",
-        "value": "2"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "SCHANNEL_SESSION_TOKEN",
-        "field": "dwFlags"
       }
     ]
   },

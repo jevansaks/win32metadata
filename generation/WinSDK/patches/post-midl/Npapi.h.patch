@@ -167,7 +167,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Npapi.h b/generation/WinS
      _In_    DWORD    dwAveCharPerLine
      );
  
-@@ -430,6 +448,7 @@
+@@ -430,11 +448,12 @@
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -175,7 +175,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Npapi.h b/generation/WinS
  
  DWORD APIENTRY
  NPGetPropertyText(
-@@ -449,6 +468,7 @@
+     _In_ DWORD  iButton,
+-    _In_ DWORD  nPropSel,
++    _Win32_AssociatedEnum_(NP_PROPERTY_DIALOG_SELECTION) _In_ DWORD  nPropSel,
+     _In_ LPWSTR lpName,
+     _Out_writes_(nButtonNameLen) LPWSTR lpButtonName,
+     _In_ DWORD  nButtonNameLen,
+@@ -449,12 +468,13 @@
      _In_ DWORD  nButtonNameLen,
      _In_ DWORD  nType
      );
@@ -183,6 +189,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Npapi.h b/generation/WinS
  
  DWORD APIENTRY
  NPPropertyDialog(
+     _In_ HWND   hwndParent,
+     _In_ DWORD  iButtonDlg,
+-    _In_ DWORD  nPropSel,
++    _Win32_AssociatedEnum_(NP_PROPERTY_DIALOG_SELECTION) _In_ DWORD  nPropSel,
+     _In_ LPWSTR lpFileName,
+     _In_ DWORD  nType
+     );
 @@ -478,6 +498,7 @@
  #define WNDN_MKDIR    1
  #define WNDN_RMDIR    2
@@ -191,7 +204,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Npapi.h b/generation/WinS
  
  DWORD APIENTRY
  NPGetDirectoryType (
-@@ -491,6 +512,7 @@
+@@ -491,12 +512,13 @@
      _In_ LPINT   lpType,
      _In_ BOOL    bFlushCache
      );
@@ -199,6 +212,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Npapi.h b/generation/WinS
  
  DWORD APIENTRY
  NPDirectoryNotify (
+     _In_ HWND    hwnd,
+     _In_ LPWSTR  lpDir,
+-    _In_ DWORD   dwOper
++    _Win32_AssociatedEnum_(NPDIRECTORY_NOTIFY_OPERATION) _In_ DWORD   dwOper
+     );
+ 
+ typedef DWORD (APIENTRY *PF_NPDirectoryNotify) (
 @@ -510,6 +532,7 @@
  
  #pragma region Desktop Family or OneCore Family
@@ -247,7 +267,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Npapi.h b/generation/WinS
  
  DWORD APIENTRY
  NPFMXGetPermCaps (
-@@ -674,6 +702,7 @@
+@@ -674,12 +702,13 @@
  #define WNPERM_DLG_PERM   0
  #define WNPERM_DLG_AUDIT  1
  #define WNPERM_DLG_OWNER  2
@@ -255,7 +275,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Npapi.h b/generation/WinS
  
  DWORD APIENTRY
  NPFMXEditPerm (
-@@ -687,6 +716,7 @@
+     _In_ LPWSTR lpDriveName,
+     _In_ HWND   hwndFMX,
+-    _In_ DWORD  nDialogType
++    _Win32_AssociatedEnum_(WNPERM_DLG) _In_ DWORD  nDialogType
+     );
+ 
+ typedef DWORD (APIENTRY *PF_NPFMXEditPerm) (
+@@ -687,11 +716,12 @@
      _In_ HWND   hwndFMX,
      _In_ DWORD  nDialogType
      );
@@ -263,7 +290,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Npapi.h b/generation/WinS
  
  DWORD APIENTRY
  NPFMXGetPermHelp (
-@@ -721,3 +751,8 @@
+     _In_    LPWSTR  lpDriveName,
+-    _In_    DWORD   nDialogType,
++    _Win32_AssociatedEnum_(WNPERM_DLG) _In_    DWORD   nDialogType,
+     _In_    BOOL    fDirectory,
+     _Out_writes_(*lpBufferSize) LPVOID lpFileNameBuffer,
+     _Inout_ LPDWORD lpBufferSize,
+@@ -721,3 +751,15 @@
  #pragma endregion
  
  #endif  // _NPAPI_INCLUDED
@@ -271,4 +304,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Npapi.h b/generation/WinS
 +#ifndef _WIN32METADATA_NPAPI_FRESH_DIRECT_38_GROUPS_
 +#define _WIN32METADATA_NPAPI_FRESH_DIRECT_38_GROUPS_
 +_Win32_AnnotateField_(NOTIFYADD::dwAddFlags, _Win32_AssociatedEnum_(NET_CONNECT_FLAGS));
++#endif
++
++#ifndef _WIN32METADATA_NPAPI_NATIVE_OWNER_16_GROUPS_
++#define _WIN32METADATA_NPAPI_NATIVE_OWNER_16_GROUPS_
++_Win32_Enum_(WNPERM_DLG, unsigned int, WNPERM_DLG_PERM, WNPERM_DLG_AUDIT, WNPERM_DLG_OWNER);
++_Win32_Enum_(NP_PROPERTY_DIALOG_SELECTION, unsigned int, WNPS_FILE, WNPS_DIR, WNPS_MULT);
++_Win32_Enum_(NPDIRECTORY_NOTIFY_OPERATION, unsigned int, WNDN_MKDIR, WNDN_RMDIR, WNDN_MVDIR);
 +#endif

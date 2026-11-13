@@ -79,7 +79,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/NspAPI.h b/generation/Win
  INT
  APIENTRY
  GetNameByTypeW (
-@@ -631,6 +648,8 @@
+@@ -631,22 +648,26 @@
  #else
  #define GetNameByType  GetNameByTypeA
  #endif // !UNICODE
@@ -88,7 +88,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/NspAPI.h b/generation/Win
  
  INT
  APIENTRY
-@@ -642,6 +661,8 @@
+ SetServiceA (
+     _In_     DWORD                dwNameSpace,
+-    _In_     DWORD                dwOperation,
++    _Win32_AssociatedEnum_(SET_SERVICE_OPERATION) _In_     DWORD                dwOperation,
+     _In_     DWORD                dwFlags,
+     _In_     LPSERVICE_INFOA      lpServiceInfo,
      _In_opt_ LPSERVICE_ASYNC_INFO lpServiceAsyncInfo,
      _Out_    LPDWORD              lpdwStatusFlags
      );
@@ -97,6 +102,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/NspAPI.h b/generation/Win
  INT
  APIENTRY
  SetServiceW (
+     _In_     DWORD                dwNameSpace,
+-    _In_     DWORD                dwOperation,
++    _Win32_AssociatedEnum_(SET_SERVICE_OPERATION) _In_     DWORD                dwOperation,
+     _In_     DWORD                dwFlags,
+     _In_     LPSERVICE_INFOW      lpServiceInfo,
+     _In_opt_ LPSERVICE_ASYNC_INFO lpServiceAsyncInfo,
 @@ -657,6 +678,8 @@
  #else
  #define SetService  SetServiceA
@@ -115,7 +126,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/NspAPI.h b/generation/Win
  INT
  APIENTRY
  GetServiceW (
-@@ -695,4 +720,8 @@
+@@ -695,4 +720,13 @@
  
  #endif  // _NSPAPI_INCLUDED
  
@@ -124,4 +135,9 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/NspAPI.h b/generation/Win
 +#define _WIN32METADATA_NSPAPI_FRESH_DIRECT_38_GROUPS_
 +_Win32_AnnotateField_(SERVICE_INFOA::dwDisplayHint, _Win32_AssociatedEnum_(RESOURCE_DISPLAY_TYPE));
 +_Win32_AnnotateField_(SERVICE_INFOW::dwDisplayHint, _Win32_AssociatedEnum_(RESOURCE_DISPLAY_TYPE));
++#endif
++
++#ifndef _WIN32METADATA_NSPAPI_NATIVE_OWNER_16_GROUPS_
++#define _WIN32METADATA_NSPAPI_NATIVE_OWNER_16_GROUPS_
++_Win32_Enum_(SET_SERVICE_OPERATION, unsigned int, SERVICE_REGISTER, SERVICE_DEREGISTER, SERVICE_FLUSH, SERVICE_ADD_TYPE, SERVICE_DELETE_TYPE);
 +#endif

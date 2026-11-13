@@ -128,8 +128,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  WINBASEAPI
  _Success_(return != NULL)
  _Post_writable_byte_size_(uBytes)
-@@ -1242,6 +1275,8 @@
-     _In_ UINT uFlags,
+@@ -1239,9 +1272,11 @@
+ HLOCAL
+ WINAPI
+ LocalAlloc(
+-    _In_ UINT uFlags,
++    _Win32_AssociatedEnum_(LOCAL_ALLOC_FLAGS) _In_ UINT uFlags,
      _In_ SIZE_T uBytes
      );
 +_Win32_SetLastError_

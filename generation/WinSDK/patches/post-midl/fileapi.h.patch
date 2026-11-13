@@ -484,7 +484,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -948,6 +1037,8 @@
+@@ -948,13 +1037,15 @@
      _In_ DWORD nNumberOfBytesToLockLow,
      _In_ DWORD nNumberOfBytesToLockHigh
      );
@@ -493,6 +493,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  BOOL
+ WINAPI
+ LockFileEx(
+     _In_ HANDLE hFile,
+-    _In_ DWORD dwFlags,
++    _Win32_AssociatedEnum_(LOCK_FILE_FLAGS) _In_ DWORD dwFlags,
+     _Reserved_ DWORD dwReserved,
+     _In_ DWORD nNumberOfBytesToLockLow,
+     _In_ DWORD nNumberOfBytesToLockHigh,
 @@ -966,6 +1057,7 @@
  
  #pragma region Desktop Family or OneCore Family

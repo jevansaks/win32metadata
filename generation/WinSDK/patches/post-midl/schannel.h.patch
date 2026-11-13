@@ -18,6 +18,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/schannel.h b/generation/W
      DWORD   dwAlertNumber;
  } SCHANNEL_ALERT_TOKEN;
  
+@@ -739,7 +740,7 @@
+ typedef struct _SCHANNEL_SESSION_TOKEN
+ {
+     DWORD   dwTokenType;        // SCHANNEL_SESSION
+-    DWORD   dwFlags;
++    _Win32_AssociatedEnum_(SCHANNEL_SESSION_TOKEN_FLAGS) DWORD   dwFlags;
+ } SCHANNEL_SESSION_TOKEN;
+ 
+ 
 @@ -886,6 +887,7 @@
  (WINAPI * SSL_EMPTY_CACHE_FN_A)(
      LPSTR  pszTargetName,
@@ -58,7 +67,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/schannel.h b/generation/W
  
  EXTERN_C
  SECURITY_STATUS
-@@ -1159,3 +1165,8 @@
+@@ -1159,3 +1165,13 @@
  #pragma endregion
  
  #endif //__SCHANNEL_H__
@@ -66,4 +75,9 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/schannel.h b/generation/W
 +#ifndef _WIN32METADATA_SCHANNEL_MANUAL_28_GROUPS_
 +#define _WIN32METADATA_SCHANNEL_MANUAL_28_GROUPS_
 +_Win32_Enum_(SCHANNEL_ALERT_TOKEN_ALERT_TYPE, unsigned int, TLS1_ALERT_WARNING, TLS1_ALERT_FATAL);
++#endif
++
++#ifndef _WIN32METADATA_SCHANNEL_NATIVE_OWNER_16_GROUPS_
++#define _WIN32METADATA_SCHANNEL_NATIVE_OWNER_16_GROUPS_
++_Win32_Enum_(SCHANNEL_SESSION_TOKEN_FLAGS, unsigned int, SSL_SESSION_ENABLE_RECONNECTS, SSL_SESSION_DISABLE_RECONNECTS);
 +#endif

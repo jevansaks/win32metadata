@@ -37,7 +37,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Snmp.h b/generation/WinSD
  
  BOOL
  SNMP_FUNC_TYPE
-@@ -295,6 +300,7 @@
+@@ -295,17 +300,19 @@
      AsnInteger32 *    pErrorStatus,
      AsnInteger32 *    pErrorIndex
      );
@@ -45,7 +45,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Snmp.h b/generation/WinSD
  
  BOOL
  SNMP_FUNC_TYPE
-@@ -306,6 +312,7 @@
+ SnmpExtensionQueryEx(
+-    UINT              nRequestType,
++    _Win32_AssociatedEnum_(SNMP_EXTENSION_REQUEST_TYPE) UINT              nRequestType,
+     UINT              nTransactionId,
+     SnmpVarBindList * pVarBindList,
+     AsnOctetString *  pContextInfo,
      AsnInteger32 *    pErrorStatus,
      AsnInteger32 *    pErrorIndex
      );
@@ -265,7 +270,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Snmp.h b/generation/WinSD
      _In_ _Printf_format_string_ LPSTR szFormat,
      IN ...
      );
-@@ -676,3 +710,9 @@
+@@ -676,3 +710,14 @@
  #pragma endregion
  
  #endif // _INC_SNMP
@@ -274,4 +279,9 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Snmp.h b/generation/WinSD
 +#define _WIN32METADATA_SNMP_MANUAL_28_GROUPS_
 +_Win32_Enum_(SNMP_OUTPUT_LOG_TYPE, unsigned int, SNMP_OUTPUT_TO_CONSOLE, SNMP_OUTPUT_TO_LOGFILE, SNMP_OUTPUT_TO_DEBUGGER);
 +_Win32_Enum_(SNMP_LOG, int, SNMP_LOG_SILENT, SNMP_LOG_FATAL, SNMP_LOG_ERROR, SNMP_LOG_WARNING, SNMP_LOG_TRACE, SNMP_LOG_VERBOSE);
++#endif
++
++#ifndef _WIN32METADATA_SNMP_NATIVE_OWNER_16_GROUPS_
++#define _WIN32METADATA_SNMP_NATIVE_OWNER_16_GROUPS_
++_Win32_Enum_(SNMP_EXTENSION_REQUEST_TYPE, unsigned int, SNMP_EXTENSION_GET, SNMP_EXTENSION_GET_NEXT, SNMP_EXTENSION_SET_TEST, SNMP_EXTENSION_SET_COMMIT, SNMP_EXTENSION_SET_UNDO, SNMP_EXTENSION_SET_CLEANUP);
 +#endif

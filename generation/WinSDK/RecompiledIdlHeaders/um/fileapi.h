@@ -1045,7 +1045,7 @@ BOOL
 WINAPI
 LockFileEx(
     _In_ HANDLE hFile,
-    _In_ DWORD dwFlags,
+    _Win32_AssociatedEnum_(LOCK_FILE_FLAGS) _In_ DWORD dwFlags,
     _Reserved_ DWORD dwReserved,
     _In_ DWORD nNumberOfBytesToLockLow,
     _In_ DWORD nNumberOfBytesToLockHigh,

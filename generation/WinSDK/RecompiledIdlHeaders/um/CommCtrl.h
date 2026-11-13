@@ -7915,12 +7915,12 @@ _TrackMouseEvent(
 _Win32_SupportedOS_WindowsVista_
 
 WINCOMMCTRLAPI BOOL WINAPI FlatSB_EnableScrollBar(HWND, int, UINT);
-WINCOMMCTRLAPI BOOL WINAPI FlatSB_ShowScrollBar(HWND, int code, BOOL);
+WINCOMMCTRLAPI BOOL WINAPI FlatSB_ShowScrollBar(HWND, _Win32_AssociatedEnum_(SCROLLBAR_CONSTANTS) int code, BOOL);
 
-WINCOMMCTRLAPI BOOL WINAPI FlatSB_GetScrollRange(HWND, int code, LPINT, LPINT);
-WINCOMMCTRLAPI BOOL WINAPI FlatSB_GetScrollInfo(HWND, int code, LPSCROLLINFO);
+WINCOMMCTRLAPI BOOL WINAPI FlatSB_GetScrollRange(HWND, _Win32_AssociatedEnum_(SCROLLBAR_CONSTANTS) int code, LPINT, LPINT);
+WINCOMMCTRLAPI BOOL WINAPI FlatSB_GetScrollInfo(HWND, _Win32_AssociatedEnum_(SCROLLBAR_CONSTANTS) int code, LPSCROLLINFO);
 
-WINCOMMCTRLAPI int WINAPI FlatSB_GetScrollPos(HWND, int code);
+WINCOMMCTRLAPI int WINAPI FlatSB_GetScrollPos(HWND, _Win32_AssociatedEnum_(SCROLLBAR_CONSTANTS) int code);
 
 
 WINCOMMCTRLAPI BOOL WINAPI FlatSB_GetScrollProp(HWND, _Win32_AssociatedEnum_(WSB_PROP) int propIndex, LPINT);
@@ -7931,12 +7931,12 @@ WINCOMMCTRLAPI BOOL WINAPI FlatSB_GetScrollPropPtr(HWND, _Win32_AssociatedEnum_(
 #endif
 
 
-WINCOMMCTRLAPI int WINAPI FlatSB_SetScrollPos(HWND, int code, int pos, BOOL fRedraw);
+WINCOMMCTRLAPI int WINAPI FlatSB_SetScrollPos(HWND, _Win32_AssociatedEnum_(SCROLLBAR_CONSTANTS) int code, int pos, BOOL fRedraw);
 
-WINCOMMCTRLAPI int WINAPI FlatSB_SetScrollInfo(HWND, int code, LPSCROLLINFO psi, BOOL fRedraw);
+WINCOMMCTRLAPI int WINAPI FlatSB_SetScrollInfo(HWND, _Win32_AssociatedEnum_(SCROLLBAR_CONSTANTS) int code, LPSCROLLINFO psi, BOOL fRedraw);
 
 
-WINCOMMCTRLAPI int WINAPI FlatSB_SetScrollRange(HWND, int code, int min, int max, BOOL fRedraw);
+WINCOMMCTRLAPI int WINAPI FlatSB_SetScrollRange(HWND, _Win32_AssociatedEnum_(SCROLLBAR_CONSTANTS) int code, int min, int max, BOOL fRedraw);
 WINCOMMCTRLAPI BOOL WINAPI FlatSB_SetScrollProp(HWND, UINT index, INT_PTR newValue, BOOL);
 #define FlatSB_SetScrollPropPtr FlatSB_SetScrollProp
 _Win32_SupportedOS_WindowsVista_

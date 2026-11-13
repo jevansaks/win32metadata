@@ -1272,7 +1272,7 @@ DECLSPEC_ALLOCATOR
 HLOCAL
 WINAPI
 LocalAlloc(
-    _In_ UINT uFlags,
+    _Win32_AssociatedEnum_(LOCAL_ALLOC_FLAGS) _In_ UINT uFlags,
     _In_ SIZE_T uBytes
     );
 _Win32_SetLastError_

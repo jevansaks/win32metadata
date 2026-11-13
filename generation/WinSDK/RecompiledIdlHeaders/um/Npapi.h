@@ -453,7 +453,7 @@ _Win32_SupportedOS_WindowsXP_
 DWORD APIENTRY
 NPGetPropertyText(
     _In_ DWORD  iButton,
-    _In_ DWORD  nPropSel,
+    _Win32_AssociatedEnum_(NP_PROPERTY_DIALOG_SELECTION) _In_ DWORD  nPropSel,
     _In_ LPWSTR lpName,
     _Out_writes_(nButtonNameLen) LPWSTR lpButtonName,
     _In_ DWORD  nButtonNameLen,
@@ -474,7 +474,7 @@ DWORD APIENTRY
 NPPropertyDialog(
     _In_ HWND   hwndParent,
     _In_ DWORD  iButtonDlg,
-    _In_ DWORD  nPropSel,
+    _Win32_AssociatedEnum_(NP_PROPERTY_DIALOG_SELECTION) _In_ DWORD  nPropSel,
     _In_ LPWSTR lpFileName,
     _In_ DWORD  nType
     );
@@ -518,7 +518,7 @@ DWORD APIENTRY
 NPDirectoryNotify (
     _In_ HWND    hwnd,
     _In_ LPWSTR  lpDir,
-    _In_ DWORD   dwOper
+    _Win32_AssociatedEnum_(NPDIRECTORY_NOTIFY_OPERATION) _In_ DWORD   dwOper
     );
 
 typedef DWORD (APIENTRY *PF_NPDirectoryNotify) (
@@ -708,7 +708,7 @@ DWORD APIENTRY
 NPFMXEditPerm (
     _In_ LPWSTR lpDriveName,
     _In_ HWND   hwndFMX,
-    _In_ DWORD  nDialogType
+    _Win32_AssociatedEnum_(WNPERM_DLG) _In_ DWORD  nDialogType
     );
 
 typedef DWORD (APIENTRY *PF_NPFMXEditPerm) (
@@ -721,7 +721,7 @@ _Win32_SupportedOS_WindowsXP_
 DWORD APIENTRY
 NPFMXGetPermHelp (
     _In_    LPWSTR  lpDriveName,
-    _In_    DWORD   nDialogType,
+    _Win32_AssociatedEnum_(WNPERM_DLG) _In_    DWORD   nDialogType,
     _In_    BOOL    fDirectory,
     _Out_writes_(*lpBufferSize) LPVOID lpFileNameBuffer,
     _Inout_ LPDWORD lpBufferSize,
@@ -755,4 +755,11 @@ typedef DWORD (APIENTRY *PF_NPFMXGetPermHelp) (
 #ifndef _WIN32METADATA_NPAPI_FRESH_DIRECT_38_GROUPS_
 #define _WIN32METADATA_NPAPI_FRESH_DIRECT_38_GROUPS_
 _Win32_AnnotateField_(NOTIFYADD::dwAddFlags, _Win32_AssociatedEnum_(NET_CONNECT_FLAGS));
+#endif
+
+#ifndef _WIN32METADATA_NPAPI_NATIVE_OWNER_16_GROUPS_
+#define _WIN32METADATA_NPAPI_NATIVE_OWNER_16_GROUPS_
+_Win32_Enum_(WNPERM_DLG, unsigned int, WNPERM_DLG_PERM, WNPERM_DLG_AUDIT, WNPERM_DLG_OWNER);
+_Win32_Enum_(NP_PROPERTY_DIALOG_SELECTION, unsigned int, WNPS_FILE, WNPS_DIR, WNPS_MULT);
+_Win32_Enum_(NPDIRECTORY_NOTIFY_OPERATION, unsigned int, WNDN_MKDIR, WNDN_RMDIR, WNDN_MVDIR);
 #endif

@@ -3353,3 +3353,17 @@ SECURITY_MESSAGE_MSG_ID=Windows.Win32.NetworkManagement.Rras
 MINIDUMP_MISC_INFO_FLAGS=Windows.Win32.System.Diagnostics.Debug
 REOBJECT_FLAGS=Windows.Win32.UI.Controls.RichEdit
 MODLOAD_DATA_TYPE=Windows.Win32.System.Diagnostics.Debug
+# Current native SDK constant-group namespace owners
+SCROLL_WINDOW_FLAGS=Windows.Win32.UI.WindowsAndMessaging
+SNMP_EXTENSION_REQUEST_TYPE=Windows.Win32.NetworkManagement.Snmp
+SCROLLBAR_CONSTANTS=Windows.Win32.UI.WindowsAndMessaging
+WNPERM_DLG=Windows.Win32.NetworkManagement.WNet
+SET_SERVICE_OPERATION=Windows.Win32.Networking.WinSock
+SECURITY_INFO_PAGE_FLAGS=Windows.Win32.Security.Authorization.UI
+NP_PROPERTY_DIALOG_SELECTION=Windows.Win32.NetworkManagement.WNet
+NPDIRECTORY_NOTIFY_OPERATION=Windows.Win32.NetworkManagement.WNet
+LOCAL_ALLOC_FLAGS=Windows.Win32.System.Memory
+LOCK_FILE_FLAGS=Windows.Win32.Storage.FileSystem
+RICH_EDIT_GET_OBJECT_FLAGS=Windows.Win32.UI.Controls.RichEdit
+DEBUG_EVENT_CODE=Windows.Win32.System.Diagnostics.Debug
+SCHANNEL_SESSION_TOKEN_FLAGS=Windows.Win32.Security.Authentication.Identity

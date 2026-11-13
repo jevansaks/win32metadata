@@ -655,7 +655,7 @@ INT
 APIENTRY
 SetServiceA (
     _In_     DWORD                dwNameSpace,
-    _In_     DWORD                dwOperation,
+    _Win32_AssociatedEnum_(SET_SERVICE_OPERATION) _In_     DWORD                dwOperation,
     _In_     DWORD                dwFlags,
     _In_     LPSERVICE_INFOA      lpServiceInfo,
     _In_opt_ LPSERVICE_ASYNC_INFO lpServiceAsyncInfo,
@@ -667,7 +667,7 @@ INT
 APIENTRY
 SetServiceW (
     _In_     DWORD                dwNameSpace,
-    _In_     DWORD                dwOperation,
+    _Win32_AssociatedEnum_(SET_SERVICE_OPERATION) _In_     DWORD                dwOperation,
     _In_     DWORD                dwFlags,
     _In_     LPSERVICE_INFOW      lpServiceInfo,
     _In_opt_ LPSERVICE_ASYNC_INFO lpServiceAsyncInfo,
@@ -724,4 +724,9 @@ GetServiceW (
 #define _WIN32METADATA_NSPAPI_FRESH_DIRECT_38_GROUPS_
 _Win32_AnnotateField_(SERVICE_INFOA::dwDisplayHint, _Win32_AssociatedEnum_(RESOURCE_DISPLAY_TYPE));
 _Win32_AnnotateField_(SERVICE_INFOW::dwDisplayHint, _Win32_AssociatedEnum_(RESOURCE_DISPLAY_TYPE));
+#endif
+
+#ifndef _WIN32METADATA_NSPAPI_NATIVE_OWNER_16_GROUPS_
+#define _WIN32METADATA_NSPAPI_NATIVE_OWNER_16_GROUPS_
+_Win32_Enum_(SET_SERVICE_OPERATION, unsigned int, SERVICE_REGISTER, SERVICE_DEREGISTER, SERVICE_FLUSH, SERVICE_ADD_TYPE, SERVICE_DELETE_TYPE);
 #endif

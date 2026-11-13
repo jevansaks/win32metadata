@@ -9518,7 +9518,7 @@ ScrollWindowEx(
     _In_opt_ CONST RECT *prcClip,
     _In_opt_ HRGN hrgnUpdate,
     _Out_opt_ LPRECT prcUpdate,
-    _In_ UINT flags);
+    _Win32_AssociatedEnum_(SCROLL_WINDOW_FLAGS) _In_ UINT flags);
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
 #pragma endregion
@@ -9542,7 +9542,7 @@ int
 WINAPI
 SetScrollPos(
     _In_ HWND hWnd,
-    _In_ int nBar,
+    _Win32_AssociatedEnum_(SCROLLBAR_CONSTANTS) _In_ int nBar,
     _In_ int nPos,
     _In_ BOOL bRedraw);
 _Win32_SetLastError_
@@ -9553,14 +9553,14 @@ int
 WINAPI
 GetScrollPos(
     _In_ HWND hWnd,
-    _In_ int nBar);
+    _Win32_AssociatedEnum_(SCROLLBAR_CONSTANTS) _In_ int nBar);
 
 WINUSERAPI
 BOOL
 WINAPI
 SetScrollRange(
     _In_ HWND hWnd,
-    _In_ int nBar,
+    _Win32_AssociatedEnum_(SCROLLBAR_CONSTANTS) _In_ int nBar,
     _In_ int nMinPos,
     _In_ int nMaxPos,
     _In_ BOOL bRedraw);
@@ -9572,7 +9572,7 @@ BOOL
 WINAPI
 GetScrollRange(
     _In_ HWND hWnd,
-    _In_ int nBar,
+    _Win32_AssociatedEnum_(SCROLLBAR_CONSTANTS) _In_ int nBar,
     _Out_ LPINT lpMinPos,
     _Out_ LPINT lpMaxPos);
 _Win32_SetLastError_
@@ -9583,7 +9583,7 @@ BOOL
 WINAPI
 ShowScrollBar(
     _In_ HWND hWnd,
-    _In_ int wBar,
+    _Win32_AssociatedEnum_(SCROLLBAR_CONSTANTS) _In_ int wBar,
     _In_ BOOL bShow);
 _Win32_SetLastError_
 _Win32_SupportedOS_WindowsVista_
@@ -13024,7 +13024,7 @@ int
 WINAPI
 SetScrollInfo(
     _In_ HWND hwnd,
-    _In_ int nBar,
+    _Win32_AssociatedEnum_(SCROLLBAR_CONSTANTS) _In_ int nBar,
     _In_ LPCSCROLLINFO lpsi,
     _In_ BOOL redraw);
 _Win32_SetLastError_
@@ -13035,7 +13035,7 @@ BOOL
 WINAPI
 GetScrollInfo(
     _In_ HWND hwnd,
-    _In_ int nBar,
+    _Win32_AssociatedEnum_(SCROLLBAR_CONSTANTS) _In_ int nBar,
     _Inout_ LPSCROLLINFO lpsi);
 
 
@@ -17922,4 +17922,10 @@ _Win32_FlagsEnum_(MESSAGEBOX_STYLE, unsigned int, MB_ABORTRETRYIGNORE, MB_CANCEL
 _Win32_AnnotateField_(MSGBOXPARAMSA::dwStyle, _Win32_AssociatedEnum_(MESSAGEBOX_STYLE));
 _Win32_AnnotateField_(MSGBOXPARAMSW::dwStyle, _Win32_AssociatedEnum_(MESSAGEBOX_STYLE));
 _Win32_Enum_(RIP_INFO_TYPE, unsigned int, SLE_ERROR, SLE_MINORERROR, SLE_WARNING);
+#endif
+
+#ifndef _WIN32METADATA_WINUSER_NATIVE_OWNER_16_GROUPS_
+#define _WIN32METADATA_WINUSER_NATIVE_OWNER_16_GROUPS_
+_Win32_FlagsEnum_(SCROLL_WINDOW_FLAGS, unsigned int, SW_SCROLLCHILDREN, SW_INVALIDATE, SW_ERASE, SW_SMOOTHSCROLL);
+_Win32_FlagsEnum_(SCROLLBAR_CONSTANTS, int, SB_CTL, SB_HORZ, SB_VERT, SB_BOTH);
 #endif
