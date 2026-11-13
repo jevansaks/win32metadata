@@ -427,6 +427,7 @@ _Win32_SupportedOS_Windows7_
 //////////////////////////////////////////////////////////////////////////////
 // DRT Default Module Management APIs
 
+_Win32_ImportLibrary_("drtprov.dll")
 HRESULT WINAPI DrtCreatePnrpBootstrapResolver(
     _In_        BOOL   fPublish,
     _In_        PCWSTR pwzPeerName,
@@ -435,10 +436,12 @@ HRESULT WINAPI DrtCreatePnrpBootstrapResolver(
     _Out_       DRT_BOOTSTRAP_PROVIDER** ppResolver);
 _Win32_SupportedOS_Windows7_
 
+_Win32_ImportLibrary_("drtprov.dll")
 void WINAPI DrtDeletePnrpBootstrapResolver(
     _In_        DRT_BOOTSTRAP_PROVIDER* pResolver);
 _Win32_SupportedOS_Windows7_
 
+_Win32_ImportLibrary_("drtprov.dll")
 HRESULT WINAPI DrtCreateDnsBootstrapResolver(
     _In_ USHORT port,
     _In_ PCWSTR pwszAddress,
@@ -446,11 +449,13 @@ HRESULT WINAPI DrtCreateDnsBootstrapResolver(
     );
 _Win32_SupportedOS_Windows7_
 
+_Win32_ImportLibrary_("drtprov.dll")
 void WINAPI DrtDeleteDnsBootstrapResolver(
     _In_ DRT_BOOTSTRAP_PROVIDER* pResolver
     );
 _Win32_SupportedOS_Windows7_
 
+_Win32_ImportLibrary_("drttransport.dll")
 HRESULT WINAPI DrtCreateIpv6UdpTransport(
                 DRT_SCOPE scope,
                 ULONG dwScopeId,
@@ -459,29 +464,35 @@ HRESULT WINAPI DrtCreateIpv6UdpTransport(
     _Out_       HDRT_TRANSPORT *phTransport);
 _Win32_SupportedOS_Windows7_
 
+_Win32_ImportLibrary_("drttransport.dll")
 HRESULT WINAPI DrtDeleteIpv6UdpTransport(
     _In_        HDRT_TRANSPORT hTransport);
 _Win32_SupportedOS_Windows7_
 
+_Win32_ImportLibrary_("drtprov.dll")
 HRESULT WINAPI DrtCreateDerivedKeySecurityProvider(
     _In_        PCCERT_CONTEXT pRootCert,
     _In_opt_    PCCERT_CONTEXT pLocalCert,
     _Out_       DRT_SECURITY_PROVIDER** ppSecurityProvider);
 _Win32_SupportedOS_Windows7_
 
+_Win32_ImportLibrary_("drtprov.dll")
 HRESULT WINAPI DrtCreateDerivedKey(
     _In_        PCCERT_CONTEXT pLocalCert,
     _Out_       DRT_DATA* pKey);
 _Win32_SupportedOS_Windows7_
 
+_Win32_ImportLibrary_("drtprov.dll")
 void WINAPI DrtDeleteDerivedKeySecurityProvider(
     _In_        DRT_SECURITY_PROVIDER* pSecurityProvider);
 _Win32_SupportedOS_Windows7_
 
+_Win32_ImportLibrary_("drtprov.dll")
 HRESULT WINAPI DrtCreateNullSecurityProvider(
     _Out_ DRT_SECURITY_PROVIDER** ppSecurityProvider);
 _Win32_SupportedOS_Windows7_
 
+_Win32_ImportLibrary_("drtprov.dll")
 void WINAPI DrtDeleteNullSecurityProvider(
     _In_ DRT_SECURITY_PROVIDER* pSecurityProvider);
 _Win32_SupportedOS_Windows7_
@@ -489,6 +500,7 @@ _Win32_SupportedOS_Windows7_
 //////////////////////////////////////////////////////////////////////////////
 // DRT Lifetime Management APIs
 
+_Win32_ImportLibrary_("drt.dll")
 HRESULT WINAPI DrtOpen(
     _In_        const DRT_SETTINGS* pSettings,
     _In_opt_    HANDLE hEvent,
@@ -496,15 +508,18 @@ HRESULT WINAPI DrtOpen(
     _Out_       HDRT *phDrt);
 _Win32_SupportedOS_Windows7_
 
+_Win32_ImportLibrary_("drt.dll")
 VOID WINAPI DrtClose(
     _In_        HDRT hDrt);
 _Win32_SupportedOS_Windows7_
 
+_Win32_ImportLibrary_("drt.dll")
 HRESULT WINAPI DrtGetEventDataSize(
     _In_        HDRT hDrt,
     _Out_       ULONG          *pulEventDataLen);
 _Win32_SupportedOS_Windows7_
     
+_Win32_ImportLibrary_("drt.dll")
 HRESULT WINAPI DrtGetEventData(
     _In_        HDRT hDrt,
     _In_        ULONG          ulEventDataLen,
@@ -514,6 +529,7 @@ _Win32_SupportedOS_Windows7_
 //////////////////////////////////////////////////////////////////////////////
 // DRT Key Registration APIs
 
+_Win32_ImportLibrary_("drt.dll")
 HRESULT WINAPI DrtRegisterKey(
     _In_        HDRT hDrt,
     _In_        DRT_REGISTRATION *pRegistration,
@@ -521,12 +537,14 @@ HRESULT WINAPI DrtRegisterKey(
     _Out_       HDRT_REGISTRATION_CONTEXT *phKeyRegistration);
 _Win32_SupportedOS_Windows7_
 
+_Win32_ImportLibrary_("drt.dll")
 HRESULT WINAPI DrtUpdateKey(
     _In_        HDRT_REGISTRATION_CONTEXT hKeyRegistration,
     _In_        DRT_DATA *pAppData
     );
 _Win32_SupportedOS_Windows7_
 
+_Win32_ImportLibrary_("drt.dll")
 VOID WINAPI DrtUnregisterKey(
     _In_        HDRT_REGISTRATION_CONTEXT hKeyRegistration);
 _Win32_SupportedOS_Windows7_
@@ -534,6 +552,7 @@ _Win32_SupportedOS_Windows7_
 //////////////////////////////////////////////////////////////////////////////
 // DRT Search APIs
 
+_Win32_ImportLibrary_("drt.dll")
 HRESULT WINAPI DrtStartSearch(
     _In_        HDRT hDrt,
     _In_        DRT_DATA *pKey,
@@ -544,32 +563,38 @@ HRESULT WINAPI DrtStartSearch(
     _Out_       HDRT_SEARCH_CONTEXT* hSearchContext);
 _Win32_SupportedOS_Windows7_
 
+_Win32_ImportLibrary_("drt.dll")
 HRESULT WINAPI DrtContinueSearch(
     _In_        HDRT_SEARCH_CONTEXT hSearchContext);
 _Win32_SupportedOS_Windows7_
 
+_Win32_ImportLibrary_("drt.dll")
 HRESULT WINAPI DrtGetSearchResultSize(
     _In_        HDRT_SEARCH_CONTEXT hSearchContext,
     _Out_       ULONG               *pulSearchResultSize);
 _Win32_SupportedOS_Windows7_
 
+_Win32_ImportLibrary_("drt.dll")
 HRESULT WINAPI DrtGetSearchResult(
     _In_        HDRT_SEARCH_CONTEXT hSearchContext,
     _Inout_     ULONG               ulSearchResultSize, 
     _Out_writes_bytes_all_(ulSearchResultSize) DRT_SEARCH_RESULT   *pSearchResult);
 _Win32_SupportedOS_Windows7_
 
+_Win32_ImportLibrary_("drt.dll")
 HRESULT WINAPI DrtGetSearchPathSize(
     _In_        HDRT_SEARCH_CONTEXT hSearchContext,
     _Out_       ULONG               *pulSearchPathSize);
 _Win32_SupportedOS_Windows7_
 
+_Win32_ImportLibrary_("drt.dll")
 HRESULT WINAPI DrtGetSearchPath(
     _In_        HDRT_SEARCH_CONTEXT hSearchContext,
     _Inout_     ULONG               ulSearchPathSize, 
     _Out_writes_bytes_all_(ulSearchPathSize) DRT_ADDRESS_LIST   *pSearchPath);
 _Win32_SupportedOS_Windows7_
 
+_Win32_ImportLibrary_("drt.dll")
 HRESULT WINAPI DrtEndSearch(
     _In_        HDRT_SEARCH_CONTEXT hSearchContext);
 _Win32_SupportedOS_Windows7_
@@ -577,12 +602,14 @@ _Win32_SupportedOS_Windows7_
 //////////////////////////////////////////////////////////////////////////////
 // DRT Instance name related APIs
 
+_Win32_ImportLibrary_("drt.dll")
 HRESULT WINAPI DrtGetInstanceName(
     _In_        HDRT    hDrt,
     _In_        ULONG   ulcbInstanceNameSize,
     _Out_writes_bytes_all_(ulcbInstanceNameSize) PWSTR  pwzDrtInstanceName);
 _Win32_SupportedOS_Windows7_
 
+_Win32_ImportLibrary_("drt.dll")
 HRESULT WINAPI DrtGetInstanceNameSize(
     _In_        HDRT    hDrt,
     _Out_       ULONG*  pulcbInstanceNameSize);

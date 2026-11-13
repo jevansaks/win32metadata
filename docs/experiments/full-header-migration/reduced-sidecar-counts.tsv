@@ -865,7 +865,7 @@ generation/WinSDK/emitter.settings.rsp	--reducePointerLevel	106	106	0
 generation/WinSDK/emitter.settings.rsp	--requiredNamespaceForName	0	0	0
 generation/WinSDK/emitter.settings.rsp	--typeImport	11	11	0
 generation/WinSDK/libMappings.rsp	--with-librarypath	26376	26376	0
-generation/WinSDK/libMappingsManual.rsp	--with-librarypath	385	385	0
+generation/WinSDK/libMappingsManual.rsp	--with-librarypath	385	358	27
 generation/WinSDK/requiredNamespacesForNames.rsp	--requiredNamespaceForName	2462	3081	-619
 generation/WinSDK/scraper.settings.rsp	--additional	1	1	0
 generation/WinSDK/scraper.settings.rsp	--config	1	1	0

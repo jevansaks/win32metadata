@@ -1,8 +1,8 @@
 # Working-first recovery and sidecar reduction
 
-**Current accepted cohort:** [23 file/memory/PE groups](#file-memory-and-pe-subdivision)
-above preserved `b48265c361ce532673d071143318545db21e378c`, following
-the 91 security/system groups and the previous 471 groups above `85444f25`.
+**Current accepted cohort:** [27 DRT DLL overrides](#drt-import-overrides)
+above preserved `4f645a80c85fa1e69c3a11c703b5c0384ee4dec0`, following
+the 23 file/memory/PE groups and the previous 562 groups above `85444f25`.
 The broader qualification also restores BOOL's legacy storage after exposing
 bitfield backing-type changes; COLORREF's native selection remains.
 Its actual WinMD is `6751041E...`; the complete 35,379-type dump is
@@ -15,9 +15,9 @@ historical checkpoints, not the current totals.
 | Inventory / units | Recovery | Accepted current | Net retired |
 |---|---:|---:|---:|
 | Original parameter attribute atoms | 770 | 361 | 409 |
-| All RSP value rows | 146,789 | 134,624 | 12,165 |
+| All RSP value rows | 146,789 | 134,597 | 12,192 |
 | Allowed documentation URL rows | 90,502 | 90,502 | 0 (outside backlog) |
-| Other RSP rows, mixed configuration/API units | 56,287 | 44,122 | 12,165 |
+| Other RSP rows, mixed configuration/API units | 56,287 | 44,095 | 12,192 |
 | Emitter `memberRemap` rows | 2,295 | 1,592 | 703 |
 | LastError rows | 3,362 | 468 | 2,894 |
 | Availability rows | 17,070 | 7,883 | 9,187 |
@@ -32,7 +32,7 @@ historical checkpoints, not the current totals.
 | Genuine CLR flags request | 1 record | Native enum use override already redundant/retired; flags effect still unqualified. |
 | Native type/storage/ownership inputs | 436 records | 424 legacy-storage / 12 native selections; genuine types remain. COLORREF storage and its redundant NativeTypedef flag are retired, not its record. BOOL/BOOLEAN and six DiagnosticDataQuery selections/producer closures remain restored; thirteen contextual cleanup records are separate boundaries, not all 436 records. |
 | Parameter atoms | 361 | Individually inventoried; nine CLR selectors explicitly excepted. Two actual font/theme association controls isolate storage-policy conflicts on all three targets; this does not establish failure of all related selectors. |
-| DLL mappings | 26,376 scan-derived rows; 400 explicit overrides | The explicit rows are 385 manual + 14 partition + 1 global. Another 172 actual peer/DRT manual mappings are preflighted only, not retired here. Import scanning remains the specified default. |
+| DLL mappings | 26,376 scan-derived rows; 373 explicit overrides | The explicit rows are 358 manual + 14 partition + 1 global. Twenty-seven shipped-DRT overrides moved into headers; all 145 peer mappings remain pending retained-header ownership qualification. Import scanning remains the specified default. |
 | Other RSP operational/API rows | Exact file/option TSV | Parser/global/routing configuration is separate from semantic retirement; do not remove it to inflate counts. |
 
 **Allowed external metadata:** the user explicitly permits all 90,502
@@ -40,9 +40,9 @@ documentation URL mappings to remain in `documentationMappings.rsp` for now.
 They are separate from the annotation-retirement backlog and are not migrated
 or removed here. No such exemption was granted to DLL mappings or other API
 metadata; their unchanged state in these bounded cohorts is not an allowance.
-The 44,122 non-documentation rows are not 44,122 semantic annotations:
+The 44,095 non-documentation rows are not 44,095 semantic annotations:
 26,376 are the checked-in scan-derived library table, 1,950 are parser/reference
-configuration, and 15,796 are mixed API/policy/parser-review rows, including
+configuration, and 15,769 are mixed API/policy/parser-review rows, including
 3,081 namespace rows. The last category is neither distinct facts nor disjoint
 from the parameter-atom inventory. The specification makes import scanning
 the default; scan-derived rows are not 26,376 per-function header overrides.
@@ -57,6 +57,34 @@ rewriting history, or changing lower stack layers. This conservative batch keeps
 only the already-qualified parent header pilots. **No additional broad-migration
 header coverage is claimed.** All 737 broad patches and their sidecar retirements
 are deferred until they can be enabled in small batches that each emit.
+
+## DRT import overrides
+
+The 172-row peer/DRT preflight finds no scanned-library fallback for any
+selected function. The accepted subset moves **27 exact mappings** into
+the actual shipped drt.h declarations: sixteen drt.dll, nine drtprov.dll
+and two drttransport.dll. All prototypes, existing SAL/availability facts
+and DLL spellings remain unchanged; the production scraper carries each
+native ImportLibrary annotation. libMappingsManual.rsp drops exactly those
+27 rows, from 385 to 358. The 26,376 scan-derived rows remain untouched.
+
+The other **145 P2P/P2PGRAPH mappings are retained**, not declared unsupported
+by the reader. p2p.h is absent from the pinned SDK and has no current IDL or
+AdditionalHeaders owner. SDK preparation explicitly restores this deprecated
+header from origin/main after resetting the generated-header directory;
+editing only this branch's regenerated header would therefore lose the
+annotations. The authoring attempt stopped before any writes when its SDK
+origin was missing. No fake 28000 patch, older-SDK copy or preparation-tool
+change was introduced. A separately qualified compatibility-header source
+and provenance decision is needed before claiming that retirement.
+
+The required two-owner P2p/Identity refresh takes 1m06.06s and emission
+4m47.96s. The actual candidate is byte-identical to the accepted file/PE
+candidate (`6751041E...`), not just comparer-equivalent: the unmasked parent
+comparison is zero and complete raw output remains `1F4F3839...`.
+Integrity passes 54/54 and import controls 38/38; all 352 SDK patches replay
+exactly and the changed native header preserves its parent byte chain.
+Enum, autoTypes, fixup and original parameter-atom counts do not change.
 
 ## File, memory and PE subdivision
 
@@ -180,6 +208,7 @@ change is used to conceal it.
 | Security/system92 subdivision | 65 owner/consumer partitions, existing raw cache | 5m12.93s | 4m53.90s | 10m06.83s |
 | Accepted security/system91 | 3 dependent partitions, qualified 92 raw cache | 1m06.55s | 4m43.83s | 5m50.38s |
 | Accepted file/memory/PE23 | 17 owner/consumer partitions, accepted security/system91 raw cache | 2m25.07s | 4m55.34s | 7m20.41s |
+| Accepted DRT27 import overrides | P2p/Identity, accepted file/PE23 raw cache | 1m06.06s | 4m47.96s | 5m54.02s |
 
 These are retained required evaluations, not a separate benchmark loop.
 Future accepted checkpoints retain both stage times and scope/cache context;
