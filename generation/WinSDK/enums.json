@@ -669,50 +669,6 @@
     ]
   },
   {
-    "name": "FILE_MAP",
-    "flags": true,
-    "autoPopulate": {
-      "filter": "FILE_MAP_",
-      "header": "memoryapi.h"
-    },
-    "members": [
-      {
-        "name": "FILE_MAP_WRITE",
-        "value": "SECTION_FLAGS.SECTION_MAP_WRITE"
-      },
-      {
-        "name": "FILE_MAP_READ",
-        "value": "SECTION_FLAGS.SECTION_MAP_READ"
-      },
-      {
-        "name": "FILE_MAP_ALL_ACCESS",
-        "value": "SECTION_FLAGS.SECTION_ALL_ACCESS"
-      },
-      {
-        "name": "FILE_MAP_EXECUTE",
-        "value": "SECTION_FLAGS.SECTION_MAP_EXECUTE_EXPLICIT"
-      }
-    ],
-    "uses": [
-      {
-        "method": "MapViewOfFile",
-        "parameter": "dwDesiredAccess"
-      },
-      {
-        "method": "MapViewOfFileEx",
-        "parameter": "dwDesiredAccess"
-      },
-      {
-        "method": "MapViewOfFileFromApp",
-        "parameter": "DesiredAccess"
-      },
-      {
-        "method": "MapViewOfFileExNuma",
-        "parameter": "dwDesiredAccess"
-      }
-    ]
-  },
-  {
     "name": "UPDFCACHE_FLAGS",
     "flags": true,
     "autoPopulate": {
@@ -850,57 +806,6 @@
       {
         "struct": "PEERDIST_STATUS_INFO",
         "field": "dwMinVer"
-      }
-    ]
-  },
-  {
-    "name": "FILE_CREATION_DISPOSITION",
-    "members": [
-      {
-        "name": "CREATE_NEW",
-        "value": "1"
-      },
-      {
-        "name": "CREATE_ALWAYS",
-        "value": "2"
-      },
-      {
-        "name": "OPEN_EXISTING",
-        "value": "3"
-      },
-      {
-        "name": "OPEN_ALWAYS",
-        "value": "4"
-      },
-      {
-        "name": "TRUNCATE_EXISTING",
-        "value": "5"
-      }
-    ],
-    "uses": [
-      {
-        "method": "CreateFileA",
-        "parameter": "dwCreationDisposition"
-      },
-      {
-        "method": "CreateFileW",
-        "parameter": "dwCreationDisposition"
-      },
-      {
-        "method": "CreateFile2",
-        "parameter": "dwCreationDisposition"
-      },
-      {
-        "method": "CreateLogFile",
-        "parameter": "fCreateDisposition"
-      },
-      {
-        "method": "CreateFileTransactedW",
-        "parameter": "dwCreationDisposition"
-      },
-      {
-        "method": "CreateFileTransactedA",
-        "parameter": "dwCreationDisposition"
       }
     ]
   },
@@ -1843,22 +1748,6 @@
     ]
   },
   {
-    "type": "uint",
-    "name": "IMAGE_SECTION_CHARACTERISTICS",
-    "flags": true,
-    "autoPopulate": {
-      "filter": "IMAGE_SCN_",
-      "header": "winnt.h"
-    },
-    "members": [],
-    "uses": [
-      {
-        "struct": "IMAGE_SECTION_HEADER",
-        "field": "Characteristics"
-      }
-    ]
-  },
-  {
     "type": "ushort",
     "name": "IMAGE_FILE_MACHINE",
     "autoPopulate": {
@@ -1911,45 +1800,6 @@
       {
         "struct": "IMAGE_FILE_HEADER",
         "field": "Machine"
-      }
-    ]
-  },
-  {
-    "name": "IMAGE_SUBSYSTEM",
-    "type": "ushort",
-    "autoPopulate": {
-      "filter": "IMAGE_SUBSYSTEM_",
-      "header": "winnt.h"
-    },
-    "members": [],
-    "uses": [
-      {
-        "struct": "IMAGE_OPTIONAL_HEADER32",
-        "field": "Subsystem"
-      },
-      {
-        "struct": "IMAGE_OPTIONAL_HEADER64",
-        "field": "Subsystem"
-      }
-    ]
-  },
-  {
-    "name": "IMAGE_DLL_CHARACTERISTICS",
-    "type": "ushort",
-    "flags": true,
-    "autoPopulate": {
-      "filter": "IMAGE_DLLCHARACTERISTICS_",
-      "header": "winnt.h"
-    },
-    "members": [],
-    "uses": [
-      {
-        "struct": "IMAGE_OPTIONAL_HEADER32",
-        "field": "DllCharacteristics"
-      },
-      {
-        "struct": "IMAGE_OPTIONAL_HEADER64",
-        "field": "DllCharacteristics"
       }
     ]
   },
@@ -2593,243 +2443,6 @@
       {
         "method": "WSAGetLastError",
         "parameter": "return"
-      }
-    ]
-  },
-  {
-    "type": "uint",
-    "name": "PAGE_PROTECTION_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "PAGE_NOACCESS",
-        "value": "0x01"
-      },
-      {
-        "name": "PAGE_READONLY",
-        "value": "0x02"
-      },
-      {
-        "name": "PAGE_READWRITE",
-        "value": "0x04"
-      },
-      {
-        "name": "PAGE_WRITECOPY",
-        "value": "0x08"
-      },
-      {
-        "name": "PAGE_EXECUTE",
-        "value": "0x10"
-      },
-      {
-        "name": "PAGE_EXECUTE_READ",
-        "value": "0x20"
-      },
-      {
-        "name": "PAGE_EXECUTE_READWRITE",
-        "value": "0x40"
-      },
-      {
-        "name": "PAGE_EXECUTE_WRITECOPY",
-        "value": "0x80"
-      },
-      {
-        "name": "PAGE_GUARD",
-        "value": "0x100"
-      },
-      {
-        "name": "PAGE_NOCACHE",
-        "value": "0x200"
-      },
-      {
-        "name": "PAGE_WRITECOMBINE",
-        "value": "0x400"
-      },
-      {
-        "name": "PAGE_GRAPHICS_NOACCESS",
-        "value": "0x0800"
-      },
-      {
-        "name": "PAGE_GRAPHICS_READONLY",
-        "value": "0x1000"
-      },
-      {
-        "name": "PAGE_GRAPHICS_READWRITE",
-        "value": "0x2000"
-      },
-      {
-        "name": "PAGE_GRAPHICS_EXECUTE",
-        "value": "0x4000"
-      },
-      {
-        "name": "PAGE_GRAPHICS_EXECUTE_READ",
-        "value": "0x8000"
-      },
-      {
-        "name": "PAGE_GRAPHICS_EXECUTE_READWRITE",
-        "value": "0x10000"
-      },
-      {
-        "name": "PAGE_GRAPHICS_COHERENT",
-        "value": "0x20000"
-      },
-      {
-        "name": "PAGE_GRAPHICS_NOCACHE",
-        "value": "0x40000"
-      },
-      {
-        "name": "PAGE_ENCLAVE_THREAD_CONTROL",
-        "value": "0x80000000"
-      },
-      {
-        "name": "PAGE_REVERT_TO_FILE_MAP",
-        "value": "0x80000000"
-      },
-      {
-        "name": "PAGE_TARGETS_NO_UPDATE",
-        "value": "0x40000000"
-      },
-      {
-        "name": "PAGE_TARGETS_INVALID",
-        "value": "0x40000000"
-      },
-      {
-        "name": "PAGE_ENCLAVE_UNVALIDATED",
-        "value": "0x20000000"
-      },
-      {
-        "name": "PAGE_ENCLAVE_MASK",
-        "value": "0x10000000"
-      },
-      {
-        "name": "PAGE_ENCLAVE_DECOMMIT",
-        "value": "(PAGE_ENCLAVE_MASK | 0)"
-      },
-      {
-        "name": "PAGE_ENCLAVE_SS_FIRST",
-        "value": "(PAGE_ENCLAVE_MASK | 1)"
-      },
-      {
-        "name": "PAGE_ENCLAVE_SS_REST",
-        "value": "(PAGE_ENCLAVE_MASK | 2)"
-      },
-      {
-        "name": "SEC_PARTITION_OWNER_HANDLE",
-        "value": "0x00040000"
-      },
-      {
-        "name": "SEC_64K_PAGES",
-        "value": "0x00080000"
-      },
-      {
-        "name": "SEC_FILE",
-        "value": "0x00800000"
-      },
-      {
-        "name": "SEC_IMAGE",
-        "value": "0x01000000"
-      },
-      {
-        "name": "SEC_PROTECTED_IMAGE",
-        "value": "0x02000000"
-      },
-      {
-        "name": "SEC_RESERVE",
-        "value": "0x04000000"
-      },
-      {
-        "name": "SEC_COMMIT",
-        "value": "0x08000000"
-      },
-      {
-        "name": "SEC_NOCACHE",
-        "value": "0x10000000"
-      },
-      {
-        "name": "SEC_WRITECOMBINE",
-        "value": "0x40000000"
-      },
-      {
-        "name": "SEC_LARGE_PAGES",
-        "value": "0x80000000"
-      },
-      {
-        "name": "SEC_IMAGE_NO_EXECUTE",
-        "value": "(SEC_IMAGE | SEC_NOCACHE)"
-      }
-    ],
-    "uses": [
-      {
-        "method": "CreateFileMappingA",
-        "parameter": "flProtect"
-      },
-      {
-        "method": "CreateFileMappingW",
-        "parameter": "flProtect"
-      },
-      {
-        "method": "CreateFileMappingNumaA",
-        "parameter": "flProtect"
-      },
-      {
-        "method": "CreateFileMappingNumaW",
-        "parameter": "flProtect"
-      },
-      {
-        "method": "VirtualAlloc",
-        "parameter": "flProtect"
-      },
-      {
-        "method": "VirtualAllocEx",
-        "parameter": "flProtect"
-      },
-      {
-        "method": "VirtualProtect",
-        "parameter": "flNewProtect"
-      },
-      {
-        "method": "VirtualProtect",
-        "parameter": "lpflOldProtect"
-      },
-      {
-        "method": "VirtualProtectEx",
-        "parameter": "flNewProtect"
-      },
-      {
-        "method": "VirtualProtectEx",
-        "parameter": "lpflOldProtect"
-      },
-      {
-        "method": "CreateFileMapping2",
-        "parameter": "PageProtection"
-      },
-      {
-        "method": "CreateFileMappingFromApp",
-        "parameter": "PageProtection"
-      },
-      {
-        "struct": "MEMORY_BASIC_INFORMATION",
-        "field": "AllocationProtect"
-      },
-      {
-        "struct": "MEMORY_BASIC_INFORMATION",
-        "field": "Protect"
-      },
-      {
-        "struct": "MEMORY_BASIC_INFORMATION32",
-        "field": "AllocationProtect"
-      },
-      {
-        "struct": "MEMORY_BASIC_INFORMATION32",
-        "field": "Protect"
-      },
-      {
-        "struct": "MEMORY_BASIC_INFORMATION64",
-        "field": "AllocationProtect"
-      },
-      {
-        "struct": "MEMORY_BASIC_INFORMATION64",
-        "field": "Protect"
       }
     ]
   },
@@ -3569,82 +3182,6 @@
     ]
   },
   {
-    "name": "NAMED_PIPE_MODE",
-    "flags": true,
-    "members": [
-      {
-        "name": "PIPE_WAIT",
-        "value": "0"
-      },
-      {
-        "name": "PIPE_NOWAIT",
-        "value": "1"
-      },
-      {
-        "name": "PIPE_READMODE_BYTE",
-        "value": "0"
-      },
-      {
-        "name": "PIPE_READMODE_MESSAGE",
-        "value": "2"
-      },
-      {
-        "name": "PIPE_CLIENT_END",
-        "value": "0"
-      },
-      {
-        "name": "PIPE_SERVER_END",
-        "value": "1"
-      },
-      {
-        "name": "PIPE_TYPE_BYTE",
-        "value": "0"
-      },
-      {
-        "name": "PIPE_TYPE_MESSAGE",
-        "value": "4"
-      },
-      {
-        "name": "PIPE_ACCEPT_REMOTE_CLIENTS",
-        "value": "0"
-      },
-      {
-        "name": "PIPE_REJECT_REMOTE_CLIENTS",
-        "value": "8"
-      }
-    ],
-    "uses": [
-      {
-        "method": "GetNamedPipeHandleStateA",
-        "parameter": "lpState"
-      },
-      {
-        "method": "GetNamedPipeHandleStateW",
-        "parameter": "lpState"
-      },
-      {
-        "method": "SetNamedPipeHandleState",
-        "parameter": "lpMode"
-      },
-      {
-        "method": "GetNamedPipeInfo",
-        "parameter": "lpFlags"
-      },
-      {
-        "method": "SetNamedPipeHandleState",
-        "parameter": "dwPipeMode"
-      },
-      {
-        "method": "CreateNamedPipeA",
-        "parameter": "dwPipeMode"
-      },
-      {
-        "method": "CreateNamedPipeW",
-        "parameter": "dwPipeMode"
-      }
-    ]
-  },
-  {
     "name": "VERIFIER_ENUM_RESOURCE_FLAGS",
     "flags": true,
     "members": [
@@ -3806,33 +3343,6 @@
       {
         "method": "CreateTimerQueueTimer",
         "parameter": "Flags"
-      }
-    ]
-  },
-  {
-    "name": "SET_FILE_POINTER_MOVE_METHOD",
-    "members": [
-      {
-        "name": "FILE_BEGIN",
-        "value": "0"
-      },
-      {
-        "name": "FILE_CURRENT",
-        "value": "1"
-      },
-      {
-        "name": "FILE_END",
-        "value": "2"
-      }
-    ],
-    "uses": [
-      {
-        "method": "SetFilePointerEx",
-        "parameter": "dwMoveMethod"
-      },
-      {
-        "method": "SetFilePointer",
-        "parameter": "dwMoveMethod"
       }
     ]
   },
@@ -4171,23 +3681,6 @@
       {
         "method": "UnmapViewOfFile2",
         "parameter": "UnmapFlags"
-      }
-    ]
-  },
-  {
-    "name": "GETFINALPATHNAMEBYHANDLE_FLAGS",
-    "autoPopulate": {
-      "header": "winbase.h",
-      "filter": "FILE_NAME|VOLUME_NAME"
-    },
-    "uses": [
-      {
-        "method": "GetFinalPathNameByHandleA",
-        "parameter": "dwFlags"
-      },
-      {
-        "method": "GetFinalPathNameByHandleW",
-        "parameter": "dwFlags"
       }
     ]
   },
@@ -5696,62 +5189,6 @@
     ]
   },
   {
-    "name": "FILE_NOTIFY_CHANGE",
-    "flags": true,
-    "members": [
-      {
-        "name": "FILE_NOTIFY_CHANGE_FILE_NAME",
-        "value": "1"
-      },
-      {
-        "name": "FILE_NOTIFY_CHANGE_DIR_NAME",
-        "value": "2"
-      },
-      {
-        "name": "FILE_NOTIFY_CHANGE_ATTRIBUTES",
-        "value": "4"
-      },
-      {
-        "name": "FILE_NOTIFY_CHANGE_SIZE",
-        "value": "8"
-      },
-      {
-        "name": "FILE_NOTIFY_CHANGE_LAST_WRITE",
-        "value": "16"
-      },
-      {
-        "name": "FILE_NOTIFY_CHANGE_LAST_ACCESS",
-        "value": "32"
-      },
-      {
-        "name": "FILE_NOTIFY_CHANGE_CREATION",
-        "value": "64"
-      },
-      {
-        "name": "FILE_NOTIFY_CHANGE_SECURITY",
-        "value": "256"
-      }
-    ],
-    "uses": [
-      {
-        "method": "ReadDirectoryChangesW",
-        "parameter": "dwNotifyFilter"
-      },
-      {
-        "method": "ReadDirectoryChangesExW",
-        "parameter": "dwNotifyFilter"
-      },
-      {
-        "method": "FindFirstChangeNotificationA",
-        "parameter": "dwNotifyFilter"
-      },
-      {
-        "method": "FindFirstChangeNotificationW",
-        "parameter": "dwNotifyFilter"
-      }
-    ]
-  },
-  {
     "addUsesTo": "SNMP_PDU_TYPE",
     "uses": [
       {
@@ -6346,34 +5783,6 @@
       {
         "method": "PowerDeterminePlatformRoleEx",
         "parameter": "Version"
-      }
-    ]
-  },
-  {
-    "name": "WIN_HTTP_CREATE_URL_FLAGS",
-    "members": [
-      {
-        "name": "ICU_ESCAPE"
-      },
-      {
-        "name": "ICU_REJECT_USERPWD"
-      },
-      {
-        "name": "ICU_DECODE"
-      }
-    ],
-    "uses": [
-      {
-        "method": "WinHttpCreateUrl",
-        "parameter": "dwFlags"
-      },
-      {
-        "method": "InternetCrackUrlA",
-        "parameter": "dwFlags"
-      },
-      {
-        "method": "InternetCrackUrlW",
-        "parameter": "dwFlags"
       }
     ]
   },
@@ -7593,29 +7002,6 @@
     ]
   },
   {
-    "name": "MSIASSEMBLYINFO",
-    "members": [
-      {
-        "name": "MSIASSEMBLYINFO_NETASSEMBLY",
-        "value": "0"
-      },
-      {
-        "name": "MSIASSEMBLYINFO_WIN32ASSEMBLY",
-        "value": "1"
-      }
-    ],
-    "uses": [
-      {
-        "method": "MsiProvideAssemblyA",
-        "parameter": "dwAssemblyInfo"
-      },
-      {
-        "method": "MsiProvideAssemblyW",
-        "parameter": "dwAssemblyInfo"
-      }
-    ]
-  },
-  {
     "name": "ENUM_CONTROLS_WHICH_FLAGS",
     "members": [
       {
@@ -7995,147 +7381,6 @@
         "interface": "ITextStoreACPSink",
         "method": "OnLockGranted",
         "parameter": "dwLockFlags"
-      }
-    ]
-  },
-  {
-    "name": "CRYPT_KEY_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "CRYPT_EXPORTABLE",
-        "value": "1"
-      },
-      {
-        "name": "CRYPT_USER_PROTECTED",
-        "value": "2"
-      },
-      {
-        "name": "CRYPT_ARCHIVABLE"
-      },
-      {
-        "name": "CRYPT_CREATE_IV"
-      },
-      {
-        "name": "CRYPT_CREATE_SALT"
-      },
-      {
-        "name": "CRYPT_DATA_KEY"
-      },
-      {
-        "name": "CRYPT_FORCE_KEY_PROTECTION_HIGH"
-      },
-      {
-        "name": "CRYPT_KEK"
-      },
-      {
-        "name": "CRYPT_INITIATOR"
-      },
-      {
-        "name": "CRYPT_NO_SALT"
-      },
-      {
-        "name": "CRYPT_ONLINE"
-      },
-      {
-        "name": "CRYPT_PREGEN"
-      },
-      {
-        "name": "CRYPT_RECIPIENT"
-      },
-      {
-        "name": "CRYPT_SF"
-      },
-      {
-        "name": "CRYPT_SGCKEY"
-      },
-      {
-        "name": "CRYPT_VOLATILE"
-      },
-      {
-        "name": "CRYPT_MACHINE_KEYSET",
-        "value": "32"
-      },
-      {
-        "name": "CRYPT_USER_KEYSET",
-        "value": "4096"
-      },
-      {
-        "name": "PKCS12_PREFER_CNG_KSP",
-        "value": "256"
-      },
-      {
-        "name": "PKCS12_ALWAYS_CNG_KSP"
-      },
-      {
-        "name": "PKCS12_ALLOW_OVERWRITE_KEY"
-      },
-      {
-        "name": "PKCS12_NO_PERSIST_KEY",
-        "value": "32768"
-      },
-      {
-        "name": "PKCS12_INCLUDE_EXTENDED_PROPERTIES",
-        "value": "16"
-      },
-      {
-        "name": "CRYPT_OAEP",
-        "value": "64"
-      },
-      {
-        "name": "CRYPT_BLOB_VER3",
-        "value": "128"
-      },
-      {
-        "name": "CRYPT_DESTROYKEY",
-        "value": "4"
-      },
-      {
-        "name": "CRYPT_SSL2_FALLBACK",
-        "value": "2"
-      },
-      {
-        "name": "CRYPT_Y_ONLY",
-        "value": "1"
-      },
-      {
-        "name": "CRYPT_IPSEC_HMAC_KEY"
-      },
-      {
-        "name": "CERT_SET_KEY_PROV_HANDLE_PROP_ID"
-      },
-      {
-        "name": "CERT_SET_KEY_CONTEXT_PROP_ID"
-      }
-    ],
-    "uses": [
-      {
-        "method": "CryptImportPKCS8",
-        "parameter": "dwFlags"
-      },
-      {
-        "method": "CryptGenKey",
-        "parameter": "dwFlags"
-      },
-      {
-        "method": "PFXImportCertStore",
-        "parameter": "dwFlags"
-      },
-      {
-        "method": "CryptExportKey",
-        "parameter": "dwFlags"
-      },
-      {
-        "method": "CryptImportKey",
-        "parameter": "dwFlags"
-      },
-      {
-        "struct": "CRYPTUI_WIZ_IMPORT_SRC_INFO",
-        "field": "dwFlags"
-      },
-      {
-        "struct": "CRYPT_KEY_PROV_INFO",
-        "field": "dwFlags"
       }
     ]
   },
@@ -9885,62 +9130,6 @@
       {
         "struct": "IPSEC_SA_BUNDLE0",
         "field": "flags"
-      }
-    ]
-  },
-  {
-    "name": "SYSTEM_AUDIT_OBJECT_ACE_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "ACE_OBJECT_TYPE_PRESENT",
-        "value": "1"
-      },
-      {
-        "name": "ACE_INHERITED_OBJECT_TYPE_PRESENT",
-        "value": "2"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "SYSTEM_AUDIT_OBJECT_ACE",
-        "field": "Flags"
-      },
-      {
-        "struct": "SYSTEM_AUDIT_CALLBACK_OBJECT_ACE",
-        "field": "Flags"
-      },
-      {
-        "struct": "SYSTEM_ALARM_CALLBACK_OBJECT_ACE",
-        "field": "Flags"
-      },
-      {
-        "struct": "OBJECTS_AND_NAME_W",
-        "field": "ObjectsPresent"
-      },
-      {
-        "struct": "OBJECTS_AND_SID",
-        "field": "ObjectsPresent"
-      },
-      {
-        "struct": "OBJECTS_AND_NAME_A",
-        "field": "ObjectsPresent"
-      },
-      {
-        "struct": "ACCESS_ALLOWED_OBJECT_ACE",
-        "field": "Flags"
-      },
-      {
-        "struct": "ACCESS_DENIED_OBJECT_ACE",
-        "field": "Flags"
-      },
-      {
-        "struct": "ACCESS_DENIED_CALLBACK_OBJECT_ACE",
-        "field": "Flags"
-      },
-      {
-        "struct": "ACCESS_ALLOWED_CALLBACK_OBJECT_ACE",
-        "field": "Flags"
       }
     ]
   },
@@ -12791,32 +11980,6 @@
     ]
   },
   {
-    "name": "SYMBOLIC_LINK_FLAGS",
-    "flags": true,
-    "autoPopulate": {
-      "filter": "SYMBOLIC_LINK_FLAG_",
-      "header": "winbase.h"
-    },
-    "uses": [
-      {
-        "method": "CreateSymbolicLinkA",
-        "parameter": "dwFlags"
-      },
-      {
-        "method": "CreateSymbolicLinkW",
-        "parameter": "dwFlags"
-      },
-      {
-        "method": "CreateSymbolicLinkTransactedA",
-        "parameter": "dwFlags"
-      },
-      {
-        "method": "CreateSymbolicLinkTransactedW",
-        "parameter": "dwFlags"
-      }
-    ]
-  },
-  {
     "name": "ENUM_PROCESS_MODULES_EX_FLAGS",
     "flags": false,
     "autoPopulate": {
@@ -13186,38 +12349,6 @@
         "interface": "IImageList2",
         "method": "Initialize",
         "parameter": "flags"
-      }
-    ]
-  },
-  {
-    "name": "DEVICEFAMILYINFOENUM",
-    "flags": false,
-    "type": "uint",
-    "autoPopulate": {
-      "header": "winnt.h",
-      "filter": "DEVICEFAMILYINFOENUM_"
-    },
-    "members": [],
-    "uses": [
-      {
-        "method": "RtlGetDeviceFamilyInfoEnum",
-        "parameter": "pulDeviceFamily"
-      }
-    ]
-  },
-  {
-    "name": "DEVICEFAMILYDEVICEFORM",
-    "flags": false,
-    "type": "uint",
-    "autoPopulate": {
-      "header": "winnt.h",
-      "filter": "DEVICEFAMILYDEVICEFORM_"
-    },
-    "members": [],
-    "uses": [
-      {
-        "method": "RtlGetDeviceFamilyInfoEnum",
-        "parameter": "pulDeviceForm"
       }
     ]
   },
@@ -16792,33 +15923,6 @@
     ]
   },
   {
-    "name": "COMPRESSION_FORMAT",
-    "type": "ushort",
-    "autoPopulate": {
-      "filter": "COMPRESSION_FORMAT_",
-      "header": "winnt.h"
-    },
-    "uses": [
-      {
-        "struct": "FILE_COMPRESSION_INFO",
-        "field": "CompressionFormat"
-      }
-    ]
-  },
-  {
-    "name": "FILE_TYPE",
-    "autoPopulate": {
-      "filter": "FILE_TYPE_",
-      "header": "WinBase.h"
-    },
-    "uses": [
-      {
-        "method": "GetFileType",
-        "parameter": "return"
-      }
-    ]
-  },
-  {
     "namespace": "Windows.Win32.System.RemoteDesktop",
     "name": "WTS_SECURITY_FLAGS",
     "flags": true,
@@ -17025,19 +16129,6 @@
       {
         "method": "CompareStringOrdinal",
         "parameter": "return"
-      }
-    ]
-  },
-  {
-    "name": "FILE_DISPOSITION_INFO_EX_FLAGS",
-    "autoPopulate": {
-      "header": "winbase.h",
-      "filter": "FILE_DISPOSITION_FLAG_"
-    },
-    "uses": [
-      {
-        "struct": "FILE_DISPOSITION_INFO_EX",
-        "field": "Flags"
       }
     ]
   },
@@ -17481,21 +16572,6 @@
       {
         "method": "CM_Locate_DevNodeW",
         "parameter": "ulFlags"
-      }
-    ]
-  },
-  {
-    "name": "SETPROCESSWORKINGSETSIZEEX_FLAGS",
-    "flags": true,
-    "autoPopulate": {
-      "filter": "QUOTA_LIMITS_HARDWS_",
-      "header": "winnt.h"
-    },
-    "members": [],
-    "uses": [
-      {
-        "method": "SetProcessWorkingSetSizeEx",
-        "parameter": "Flags"
       }
     ]
   },
@@ -17998,46 +17074,6 @@
       "header": "powrprof.h;winnt.h"
     },
     "uses": []
-  },
-  {
-    "name": "COPYFILE_FLAGS",
-    "flags": true,
-    "autoPopulate": {
-      "filter": "COPY_FILE_",
-      "header": "winbase.h"
-    },
-    "uses": [
-      {
-        "method": "CopyFileExA",
-        "parameter": "dwCopyFlags"
-      },
-      {
-        "method": "CopyFileExW",
-        "parameter": "dwCopyFlags"
-      },
-      {
-        "struct": "COPYFILE2_EXTENDED_PARAMETERS",
-        "field": "dwCopyFlags"
-      },
-      {
-        "struct": "COPYFILE2_EXTENDED_PARAMETERS_V2",
-        "field": "dwCopyFlags"
-      }
-    ]
-  },
-  {
-    "name": "COPYFILE2_V2_FLAGS",
-    "flags": true,
-    "autoPopulate": {
-      "filter": "COPY_FILE2_V2_",
-      "header": "winbase.h"
-    },
-    "uses": [
-      {
-        "struct": "COPYFILE2_EXTENDED_PARAMETERS_V2",
-        "field": "dwCopyFlagsV2"
-      }
-    ]
   },
   {
     "name": "COPYPROGRESSROUTINE_PROGRESS",

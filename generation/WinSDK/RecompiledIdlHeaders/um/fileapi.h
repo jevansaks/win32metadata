@@ -90,7 +90,7 @@ CreateFileA(
     _In_ DWORD dwDesiredAccess,
     _In_ DWORD dwShareMode,
     _In_opt_ LPSECURITY_ATTRIBUTES lpSecurityAttributes,
-    _In_ DWORD dwCreationDisposition,
+    _Win32_AssociatedEnum_(FILE_CREATION_DISPOSITION) _In_ DWORD dwCreationDisposition,
     _In_ DWORD dwFlagsAndAttributes,
     _In_opt_ HANDLE hTemplateFile
     );
@@ -105,7 +105,7 @@ CreateFileW(
     _In_ DWORD dwDesiredAccess,
     _In_ DWORD dwShareMode,
     _In_opt_ LPSECURITY_ATTRIBUTES lpSecurityAttributes,
-    _In_ DWORD dwCreationDisposition,
+    _Win32_AssociatedEnum_(FILE_CREATION_DISPOSITION) _In_ DWORD dwCreationDisposition,
     _In_ DWORD dwFlagsAndAttributes,
     _In_opt_ HANDLE hTemplateFile
     );
@@ -238,7 +238,7 @@ WINAPI
 FindFirstChangeNotificationA(
     _In_ LPCSTR lpPathName,
     _In_ BOOL bWatchSubtree,
-    _In_ DWORD dwNotifyFilter
+    _Win32_AssociatedEnum_(FILE_NOTIFY_CHANGE) _In_ DWORD dwNotifyFilter
     );
 
 WINBASEAPI
@@ -247,7 +247,7 @@ WINAPI
 FindFirstChangeNotificationW(
     _In_ LPCWSTR lpPathName,
     _In_ BOOL bWatchSubtree,
-    _In_ DWORD dwNotifyFilter
+    _Win32_AssociatedEnum_(FILE_NOTIFY_CHANGE) _In_ DWORD dwNotifyFilter
     );
 
 #ifdef UNICODE
@@ -745,6 +745,7 @@ GetFileSizeEx(
     _Out_ PLARGE_INTEGER lpFileSize
     );
 
+_Win32_AssociatedEnum_(FILE_TYPE)
 WINBASEAPI
 DWORD
 WINAPI
@@ -763,7 +764,7 @@ GetFinalPathNameByHandleA(
     _In_ HANDLE hFile,
     _Out_writes_(cchFilePath) LPSTR lpszFilePath,
     _In_ DWORD cchFilePath,
-    _In_ DWORD dwFlags
+    _Win32_AssociatedEnum_(GETFINALPATHNAMEBYHANDLE_FLAGS) _In_ DWORD dwFlags
     );
 
 WINBASEAPI
@@ -773,7 +774,7 @@ GetFinalPathNameByHandleW(
     _In_ HANDLE hFile,
     _Out_writes_(cchFilePath) LPWSTR lpszFilePath,
     _In_ DWORD cchFilePath,
-    _In_ DWORD dwFlags
+    _Win32_AssociatedEnum_(GETFINALPATHNAMEBYHANDLE_FLAGS) _In_ DWORD dwFlags
     );
 
 #ifdef UNICODE
@@ -1201,7 +1202,7 @@ SetFilePointer(
     _In_ HANDLE hFile,
     _In_ LONG lDistanceToMove,
     _Inout_opt_ PLONG lpDistanceToMoveHigh,
-    _In_ DWORD dwMoveMethod
+    _Win32_AssociatedEnum_(SET_FILE_POINTER_MOVE_METHOD) _In_ DWORD dwMoveMethod
     );
 
 WINBASEAPI
@@ -1211,7 +1212,7 @@ SetFilePointerEx(
     _In_ HANDLE hFile,
     _In_ LARGE_INTEGER liDistanceToMove,
     _Out_opt_ PLARGE_INTEGER lpNewFilePointer,
-    _In_ DWORD dwMoveMethod
+    _Win32_AssociatedEnum_(SET_FILE_POINTER_MOVE_METHOD) _In_ DWORD dwMoveMethod
     );
 
 WINBASEAPI
@@ -1390,7 +1391,7 @@ CreateFile2(
     _In_ LPCWSTR lpFileName,
     _In_ DWORD dwDesiredAccess,
     _In_ DWORD dwShareMode,
-    _In_ DWORD dwCreationDisposition,
+    _Win32_AssociatedEnum_(FILE_CREATION_DISPOSITION) _In_ DWORD dwCreationDisposition,
     _In_opt_ LPCREATEFILE2_EXTENDED_PARAMETERS pCreateExParams
     );
 
@@ -1771,3 +1772,8 @@ DeleteFile2W(
 #endif
 
 #endif // _APISETFILE_
+
+#ifndef _WIN32METADATA_FILEAPI_FILE_PE_23_GROUPS_
+#define _WIN32METADATA_FILEAPI_FILE_PE_23_GROUPS_
+_Win32_Enum_(FILE_CREATION_DISPOSITION, unsigned int, CREATE_NEW, CREATE_ALWAYS, OPEN_EXISTING, OPEN_ALWAYS, TRUNCATE_EXISTING);
+#endif

@@ -58,7 +58,7 @@ VirtualAlloc(
     _In_opt_ LPVOID lpAddress,
     _In_ SIZE_T dwSize,
     _In_ DWORD flAllocationType,
-    _In_ DWORD flProtect
+    _Win32_AssociatedEnum_(PAGE_PROTECTION_FLAGS) _In_ DWORD flProtect
     );
 
 WINBASEAPI
@@ -68,8 +68,8 @@ WINAPI
 VirtualProtect(
     _In_ LPVOID lpAddress,
     _In_ SIZE_T dwSize,
-    _In_ DWORD flNewProtect,
-    _Out_ PDWORD lpflOldProtect
+    _Win32_AssociatedEnum_(PAGE_PROTECTION_FLAGS) _In_ DWORD flNewProtect,
+    _Win32_AssociatedEnum_(PAGE_PROTECTION_FLAGS) _Out_ PDWORD lpflOldProtect
     );
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES) */
@@ -119,7 +119,7 @@ VirtualAllocEx(
     _In_opt_ LPVOID lpAddress,
     _In_ SIZE_T dwSize,
     _In_ DWORD flAllocationType,
-    _In_ DWORD flProtect
+    _Win32_AssociatedEnum_(PAGE_PROTECTION_FLAGS) _In_ DWORD flProtect
     );
 
 WINBASEAPI
@@ -130,8 +130,8 @@ VirtualProtectEx(
     _In_ HANDLE hProcess,
     _In_ LPVOID lpAddress,
     _In_ SIZE_T dwSize,
-    _In_ DWORD flNewProtect,
-    _Out_ PDWORD lpflOldProtect
+    _Win32_AssociatedEnum_(PAGE_PROTECTION_FLAGS) _In_ DWORD flNewProtect,
+    _Win32_AssociatedEnum_(PAGE_PROTECTION_FLAGS) _Out_ PDWORD lpflOldProtect
     );
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES) */
@@ -189,7 +189,7 @@ WINAPI
 CreateFileMappingW(
     _In_ HANDLE hFile,
     _In_opt_ LPSECURITY_ATTRIBUTES lpFileMappingAttributes,
-    _In_ DWORD flProtect,
+    _Win32_AssociatedEnum_(PAGE_PROTECTION_FLAGS) _In_ DWORD flProtect,
     _In_ DWORD dwMaximumSizeHigh,
     _In_ DWORD dwMaximumSizeLow,
     _In_opt_ LPCWSTR lpName
@@ -223,7 +223,7 @@ LPVOID
 WINAPI
 MapViewOfFile(
     _In_ HANDLE hFileMappingObject,
-    _In_ DWORD dwDesiredAccess,
+    _Win32_AssociatedEnum_(FILE_MAP) _In_ DWORD dwDesiredAccess,
     _In_ DWORD dwFileOffsetHigh,
     _In_ DWORD dwFileOffsetLow,
     _In_ SIZE_T dwNumberOfBytesToMap
@@ -237,7 +237,7 @@ LPVOID
 WINAPI
 MapViewOfFileEx(
     _In_ HANDLE hFileMappingObject,
-    _In_ DWORD dwDesiredAccess,
+    _Win32_AssociatedEnum_(FILE_MAP) _In_ DWORD dwDesiredAccess,
     _In_ DWORD dwFileOffsetHigh,
     _In_ DWORD dwFileOffsetLow,
     _In_ SIZE_T dwNumberOfBytesToMap,
@@ -360,7 +360,7 @@ SetProcessWorkingSetSizeEx(
     _In_ HANDLE hProcess,
     _In_ SIZE_T dwMinimumWorkingSetSize,
     _In_ SIZE_T dwMaximumWorkingSetSize,
-    _In_ DWORD Flags
+    _Win32_AssociatedEnum_(SETPROCESSWORKINGSETSIZEEX_FLAGS) _In_ DWORD Flags
     );
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM) */
@@ -510,7 +510,7 @@ WINAPI
 CreateFileMappingNumaW(
     _In_ HANDLE hFile,
     _In_opt_ LPSECURITY_ATTRIBUTES lpFileMappingAttributes,
-    _In_ DWORD flProtect,
+    _Win32_AssociatedEnum_(PAGE_PROTECTION_FLAGS) _In_ DWORD flProtect,
     _In_ DWORD dwMaximumSizeHigh,
     _In_ DWORD dwMaximumSizeLow,
     _In_opt_ LPCWSTR lpName,
@@ -561,7 +561,7 @@ WINAPI
 CreateFileMappingFromApp(
     _In_ HANDLE hFile,
     _In_opt_ PSECURITY_ATTRIBUTES SecurityAttributes,
-    _In_ ULONG PageProtection,
+    _Win32_AssociatedEnum_(PAGE_PROTECTION_FLAGS) _In_ ULONG PageProtection,
     _In_ ULONG64 MaximumSize,
     _In_opt_ PCWSTR Name
     );
@@ -574,7 +574,7 @@ PVOID
 WINAPI
 MapViewOfFileFromApp(
     _In_ HANDLE hFileMappingObject,
-    _In_ ULONG DesiredAccess,
+    _Win32_AssociatedEnum_(FILE_MAP) _In_ ULONG DesiredAccess,
     _In_ ULONG64 FileOffset,
     _In_ SIZE_T NumberOfBytesToMap
     );
@@ -852,7 +852,7 @@ WINAPI
 CreateFileMappingW(
     _In_     HANDLE hFile,
     _In_opt_ LPSECURITY_ATTRIBUTES lpFileMappingAttributes,
-    _In_     DWORD flProtect,
+    _Win32_AssociatedEnum_(PAGE_PROTECTION_FLAGS) _In_     DWORD flProtect,
     _In_     DWORD dwMaximumSizeHigh,
     _In_     DWORD dwMaximumSizeLow,
     _In_opt_ LPCWSTR lpName
@@ -871,7 +871,7 @@ LPVOID
 WINAPI
 MapViewOfFile(
     _In_ HANDLE hFileMappingObject,
-    _In_ DWORD dwDesiredAccess,
+    _Win32_AssociatedEnum_(FILE_MAP) _In_ DWORD dwDesiredAccess,
     _In_ DWORD dwFileOffsetHigh,
     _In_ DWORD dwFileOffsetLow,
     _In_ SIZE_T dwNumberOfBytesToMap
@@ -895,7 +895,7 @@ VirtualAlloc(
     _In_opt_ LPVOID lpAddress,
     _In_     SIZE_T dwSize,
     _In_     DWORD flAllocationType,
-    _In_     DWORD flProtect
+    _Win32_AssociatedEnum_(PAGE_PROTECTION_FLAGS) _In_     DWORD flProtect
     )
 {
     return VirtualAllocFromApp (lpAddress, dwSize, flAllocationType, flProtect);
@@ -908,8 +908,8 @@ WINAPI
 VirtualProtect(
     _In_  LPVOID lpAddress,
     _In_  SIZE_T dwSize,
-    _In_  DWORD flNewProtect,
-    _Out_ PDWORD lpflOldProtect
+    _Win32_AssociatedEnum_(PAGE_PROTECTION_FLAGS) _In_  DWORD flNewProtect,
+    _Win32_AssociatedEnum_(PAGE_PROTECTION_FLAGS) _Out_ PDWORD lpflOldProtect
     )
 {
     return VirtualProtectFromApp (lpAddress, dwSize, flNewProtect, lpflOldProtect);
@@ -1170,7 +1170,7 @@ CreateFileMapping2(
     _In_ HANDLE File,
     _In_opt_ SECURITY_ATTRIBUTES* SecurityAttributes,
     _In_ ULONG DesiredAccess,
-    _In_ ULONG PageProtection,
+    _Win32_AssociatedEnum_(PAGE_PROTECTION_FLAGS) _In_ ULONG PageProtection,
     _In_ ULONG AllocationAttributes,
     _In_ ULONG64 MaximumSize,
     _In_opt_ PCWSTR Name,
@@ -1360,3 +1360,8 @@ GetNumaNodeMemoryWriteBandwidth(
 #endif
 
 #endif // _MEMORYAPI_H_
+
+#ifndef _WIN32METADATA_MEMORYAPI_FILE_PE_23_GROUPS_
+#define _WIN32METADATA_MEMORYAPI_FILE_PE_23_GROUPS_
+_Win32_FlagsEnum_(FILE_MAP, unsigned int, FILE_MAP_WRITE, FILE_MAP_READ, FILE_MAP_ALL_ACCESS, FILE_MAP_EXECUTE, FILE_MAP_COPY, FILE_MAP_RESERVE, FILE_MAP_TARGETS_INVALID, FILE_MAP_LARGE_PAGES);
+#endif

@@ -663,7 +663,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Msi.h b/generation/WinSDK
  
  // Return full component path for an assembly installed via the WI, performing any necessary installation. 
  // Prompts for source if necessary and increments the usage count for the feature.
-@@ -1359,6 +1441,7 @@
+@@ -1355,14 +1437,15 @@
+ UINT WINAPI MsiProvideAssemblyA(
+ 	_In_ LPCSTR    szAssemblyName,                       // stringized assembly name
+ 	_In_opt_ LPCSTR    szAppContext,                     // specifies the full path to the parent asm's .cfg file, null for global assemblies
+-	_In_ DWORD       dwInstallMode,                        // either of type INSTALLMODE or a combination of the REINSTALLMODE flags
++	_In_ DWORD       dwInstallMode,                        _Win32_AssociatedEnum_(MSIASSEMBLYINFO) // either of type INSTALLMODE or a combination of the REINSTALLMODE flags
  	_In_ DWORD       dwAssemblyInfo,                       // assembly info, including assembly type
  	_Out_writes_opt_(*pcchPathBuf)  LPSTR  lpPathBuf,    // returned path, NULL if not desired
  	_Inout_opt_                     LPDWORD  pcchPathBuf); // in/out buffer character count
@@ -671,6 +676,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Msi.h b/generation/WinSDK
  UINT WINAPI MsiProvideAssemblyW(
  	_In_ LPCWSTR    szAssemblyName,                       // stringized assembly name
  	_In_opt_ LPCWSTR    szAppContext,                     // specifies the full path to the parent asm's .cfg file, null for global assemblies
+-	_In_ DWORD       dwInstallMode,                        // either of type INSTALLMODE or a combination of the REINSTALLMODE flags
++	_In_ DWORD       dwInstallMode,                        _Win32_AssociatedEnum_(MSIASSEMBLYINFO) // either of type INSTALLMODE or a combination of the REINSTALLMODE flags
+ 	_In_ DWORD       dwAssemblyInfo,                       // assembly info, including assembly type
+ 	_Out_writes_opt_(*pcchPathBuf)  LPWSTR  lpPathBuf,    // returned path, NULL if not desired
+ 	_Inout_opt_                     LPDWORD  pcchPathBuf); // in/out buffer character count
 @@ -1375,6 +1458,7 @@
  #endif //(_WIN32_MSI >=  150)
  
@@ -1317,3 +1327,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Msi.h b/generation/WinSDK
  
  // Join an already created multi package transaction
  UINT WINAPI MsiJoinTransaction(
+@@ -2446,3 +2611,7 @@
+ 
+ #endif // _MSI_H_
+ 
++#ifndef _WIN32METADATA_MSI_FILE_PE_23_GROUPS_
++#define _WIN32METADATA_MSI_FILE_PE_23_GROUPS_
++_Win32_Enum_(MSIASSEMBLYINFO, unsigned int, MSIASSEMBLYINFO_NETASSEMBLY, MSIASSEMBLYINFO_WIN32ASSEMBLY);
++#endif

@@ -60,7 +60,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinInet.h b/generation/Wi
  BOOLAPI InternetTimeToSystemTime(
      _In_ LPCSTR lpszTime,          // NULL terminated string
      _Out_ SYSTEMTIME *pst,         // output in GMT time
-@@ -791,6 +804,8 @@
+@@ -791,20 +804,24 @@
      );
  #endif // _WINX32_
  #endif // !UNICODE
@@ -69,8 +69,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinInet.h b/generation/Wi
  
  
  BOOLAPI
-@@ -800,6 +815,8 @@
-     _In_ DWORD dwFlags,
+ InternetCrackUrlA(
+     _In_reads_(dwUrlLength) LPCSTR lpszUrl,
+     _In_ DWORD dwUrlLength,
+-    _In_ DWORD dwFlags,
++    _Win32_AssociatedEnum_(WIN_HTTP_CREATE_URL_FLAGS) _In_ DWORD dwFlags,
      _Inout_ LPURL_COMPONENTSA lpUrlComponents
      );
 +_Win32_SetLastError_
@@ -78,6 +81,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinInet.h b/generation/Wi
  BOOLAPI
  InternetCrackUrlW(
      _In_reads_(dwUrlLength) LPCWSTR lpszUrl,
+     _In_ DWORD dwUrlLength,
+-    _In_ DWORD dwFlags,
++    _Win32_AssociatedEnum_(WIN_HTTP_CREATE_URL_FLAGS) _In_ DWORD dwFlags,
+     _Inout_ LPURL_COMPONENTSW lpUrlComponents
+     );
+ #ifdef UNICODE
 @@ -812,6 +829,8 @@
  #else
  #define InternetCrackUrl  InternetCrackUrlA
@@ -1550,10 +1559,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinInet.h b/generation/Wi
  
  INTERNETAPI_(DWORD)
  PrivacyGetZonePreferenceW(
-@@ -4140,3 +4444,18 @@
+@@ -4140,3 +4444,22 @@
  #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP) */
  #pragma endregion
  
++#if defined(WIN32METADATA) && defined(__clang__)
++#include <winhttp.h>
++#endif
++
 +#ifndef _WIN32METADATA_WININET_NATIVE_C_64_GROUPS_
 +#define _WIN32METADATA_WININET_NATIVE_C_64_GROUPS_
 +_Win32_Enum_(FTP_FLAGS, unsigned int, FTP_TRANSFER_TYPE_ASCII, FTP_TRANSFER_TYPE_BINARY, FTP_TRANSFER_TYPE_UNKNOWN, INTERNET_FLAG_TRANSFER_ASCII, INTERNET_FLAG_TRANSFER_BINARY);

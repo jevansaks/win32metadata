@@ -63,7 +63,7 @@ BOOL
 WINAPI
 SetNamedPipeHandleState(
     _In_ HANDLE hNamedPipe,
-    _In_opt_ LPDWORD lpMode,
+    _Win32_AssociatedEnum_(NAMED_PIPE_MODE) _In_opt_ LPDWORD lpMode,
     _In_opt_ LPDWORD lpMaxCollectionCount,
     _In_opt_ LPDWORD lpCollectDataTimeout
     );
@@ -111,7 +111,7 @@ WINAPI
 CreateNamedPipeW(
     _In_ LPCWSTR lpName,
     _In_ DWORD dwOpenMode,
-    _In_ DWORD dwPipeMode,
+    _Win32_AssociatedEnum_(NAMED_PIPE_MODE) _In_ DWORD dwPipeMode,
     _In_ DWORD nMaxInstances,
     _In_ DWORD nOutBufferSize,
     _In_ DWORD nInBufferSize,
@@ -178,7 +178,7 @@ BOOL
 WINAPI
 GetNamedPipeInfo(
     _In_ HANDLE hNamedPipe,
-    _Out_opt_ LPDWORD lpFlags,
+    _Win32_AssociatedEnum_(NAMED_PIPE_MODE) _Out_opt_ LPDWORD lpFlags,
     _Out_opt_ LPDWORD lpOutBufferSize,
     _Out_opt_ LPDWORD lpInBufferSize,
     _Out_opt_ LPDWORD lpMaxInstances
@@ -189,7 +189,7 @@ BOOL
 WINAPI
 GetNamedPipeHandleStateW(
     _In_ HANDLE hNamedPipe,
-    _Out_opt_ LPDWORD lpState,
+    _Win32_AssociatedEnum_(NAMED_PIPE_MODE) _Out_opt_ LPDWORD lpState,
     _Out_opt_ LPDWORD lpCurInstances,
     _Out_opt_ LPDWORD lpMaxCollectionCount,
     _Out_opt_ LPDWORD lpCollectDataTimeout,

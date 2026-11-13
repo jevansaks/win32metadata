@@ -1327,6 +1327,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  _Ret_maybenull_
+@@ -3325,7 +3567,7 @@
+ CreateFileMappingA(
+     _In_     HANDLE hFile,
+     _In_opt_ LPSECURITY_ATTRIBUTES lpFileMappingAttributes,
+-    _In_     DWORD flProtect,
++    _Win32_AssociatedEnum_(PAGE_PROTECTION_FLAGS) _In_     DWORD flProtect,
+     _In_     DWORD dwMaximumSizeHigh,
+     _In_     DWORD dwMaximumSizeLow,
+     _In_opt_ LPCSTR lpName
 @@ -3341,6 +3583,8 @@
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
@@ -1336,6 +1345,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  _Ret_maybenull_
+@@ -3349,7 +3593,7 @@
+ CreateFileMappingNumaA(
+     _In_     HANDLE hFile,
+     _In_opt_ LPSECURITY_ATTRIBUTES lpFileMappingAttributes,
+-    _In_     DWORD flProtect,
++    _Win32_AssociatedEnum_(PAGE_PROTECTION_FLAGS) _In_     DWORD flProtect,
+     _In_     DWORD dwMaximumSizeHigh,
+     _In_     DWORD dwMaximumSizeLow,
+     _In_opt_ LPCSTR lpName,
 @@ -3367,6 +3611,8 @@
  
  #pragma region Desktop Family or Games Family
@@ -2063,7 +2081,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  HANDLE
-@@ -5441,6 +5831,8 @@
+@@ -5434,13 +5824,15 @@
+     _In_       DWORD dwDesiredAccess,
+     _In_       DWORD dwShareMode,
+     _In_opt_   LPSECURITY_ATTRIBUTES lpSecurityAttributes,
+-    _In_       DWORD dwCreationDisposition,
++    _Win32_AssociatedEnum_(FILE_CREATION_DISPOSITION) _In_       DWORD dwCreationDisposition,
+     _In_       DWORD dwFlagsAndAttributes,
+     _In_opt_   HANDLE hTemplateFile,
+     _In_       HANDLE hTransaction,
      _In_opt_   PUSHORT pusMiniVersion,
      _Reserved_ PVOID  lpExtendedParameter
      );
@@ -2072,6 +2098,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  WINBASEAPI
  HANDLE
  WINAPI
+@@ -5449,7 +5841,7 @@
+     _In_       DWORD dwDesiredAccess,
+     _In_       DWORD dwShareMode,
+     _In_opt_   LPSECURITY_ATTRIBUTES lpSecurityAttributes,
+-    _In_       DWORD dwCreationDisposition,
++    _Win32_AssociatedEnum_(FILE_CREATION_DISPOSITION) _In_       DWORD dwCreationDisposition,
+     _In_       DWORD dwFlagsAndAttributes,
+     _In_opt_   HANDLE hTemplateFile,
+     _In_       HANDLE hTransaction,
 @@ -5471,6 +5863,8 @@
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
  
@@ -2198,6 +2233,24 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  BOOL
+@@ -5770,7 +6190,7 @@
+     _In_opt_    LPVOID lpData,
+     _When_(pbCancel != NULL, _Pre_satisfies_(*pbCancel == FALSE))
+     _Inout_opt_ LPBOOL pbCancel,
+-    _In_        DWORD dwCopyFlags
++    _Win32_AssociatedEnum_(COPYFILE_FLAGS) _In_        DWORD dwCopyFlags
+     );
+ WINBASEAPI
+ BOOL
+@@ -5782,7 +6202,7 @@
+     _In_opt_    LPVOID lpData,
+     _When_(pbCancel != NULL, _Pre_satisfies_(*pbCancel == FALSE))
+     _Inout_opt_ LPBOOL pbCancel,
+-    _In_        DWORD dwCopyFlags
++    _Win32_AssociatedEnum_(COPYFILE_FLAGS) _In_        DWORD dwCopyFlags
+     );
+ #ifdef UNICODE
+ #define CopyFileEx  CopyFileExW
 @@ -5797,6 +6217,8 @@
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
@@ -2404,7 +2457,16 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  HANDLE
-@@ -6427,6 +6878,8 @@
+@@ -6411,7 +6862,7 @@
+ CreateNamedPipeA(
+     _In_     LPCSTR lpName,
+     _In_     DWORD dwOpenMode,
+-    _In_     DWORD dwPipeMode,
++    _Win32_AssociatedEnum_(NAMED_PIPE_MODE) _In_     DWORD dwPipeMode,
+     _In_     DWORD nMaxInstances,
+     _In_     DWORD nOutBufferSize,
+     _In_     DWORD nInBufferSize,
+@@ -6427,13 +6878,15 @@
  
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
@@ -2413,6 +2475,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  BOOL
+ WINAPI
+ GetNamedPipeHandleStateA(
+     _In_      HANDLE hNamedPipe,
+-    _Out_opt_ LPDWORD lpState,
++    _Win32_AssociatedEnum_(NAMED_PIPE_MODE) _Out_opt_ LPDWORD lpState,
+     _Out_opt_ LPDWORD lpCurInstances,
+     _Out_opt_ LPDWORD lpMaxCollectionCount,
+     _Out_opt_ LPDWORD lpCollectDataTimeout,
 @@ -6443,6 +6896,8 @@
  #ifndef UNICODE
  #define GetNamedPipeHandleState  GetNamedPipeHandleStateA
@@ -2804,7 +2874,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  WINBASEAPI
  BOOL
  WINAPI
-@@ -7186,6 +7717,8 @@
+@@ -7179,13 +7710,15 @@
+     _Out_writes_bytes_to_(nBufferLength, *lpBytesReturned) LPVOID lpBuffer,
+     _In_        DWORD nBufferLength,
+     _In_        BOOL bWatchSubtree,
+-    _In_        DWORD dwNotifyFilter,
++    _Win32_AssociatedEnum_(FILE_NOTIFY_CHANGE) _In_        DWORD dwNotifyFilter,
+     _Out_opt_   LPDWORD lpBytesReturned,
+     _Inout_opt_ LPOVERLAPPED lpOverlapped,
+     _In_opt_    LPOVERLAPPED_COMPLETION_ROUTINE lpCompletionRoutine
      );
  
  #if (NTDDI_VERSION >= NTDDI_WIN10_RS3)
@@ -2813,6 +2891,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  WINBASEAPI
  BOOL
  WINAPI
+@@ -7194,7 +7727,7 @@
+     _Out_writes_bytes_to_(nBufferLength, *lpBytesReturned) LPVOID lpBuffer,
+     _In_        DWORD nBufferLength,
+     _In_        BOOL bWatchSubtree,
+-    _In_        DWORD dwNotifyFilter,
++    _Win32_AssociatedEnum_(FILE_NOTIFY_CHANGE) _In_        DWORD dwNotifyFilter,
+     _Out_opt_   LPDWORD lpBytesReturned,
+     _Inout_opt_ LPOVERLAPPED lpOverlapped,
+     _In_opt_    LPOVERLAPPED_COMPLETION_ROUTINE lpCompletionRoutine,
 @@ -7210,6 +7743,8 @@
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
@@ -2822,6 +2909,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  _Ret_maybenull_ __out_data_source(FILE)
+@@ -7217,7 +7752,7 @@
+ WINAPI
+ MapViewOfFileExNuma(
+     _In_     HANDLE hFileMappingObject,
+-    _In_     DWORD dwDesiredAccess,
++    _Win32_AssociatedEnum_(FILE_MAP) _In_     DWORD dwDesiredAccess,
+     _In_     DWORD dwFileOffsetHigh,
+     _In_     DWORD dwFileOffsetLow,
+     _In_     SIZE_T dwNumberOfBytesToMap,
 @@ -7226,6 +7761,7 @@
      );
  
@@ -3720,6 +3816,24 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  HANDLE
+@@ -9512,7 +10216,7 @@
+ CreateSymbolicLinkA (
+     _In_ LPCSTR lpSymlinkFileName,
+     _In_ LPCSTR lpTargetFileName,
+-    _In_ DWORD dwFlags
++    _Win32_AssociatedEnum_(SYMBOLIC_LINK_FLAGS) _In_ DWORD dwFlags
+     );
+ WINBASEAPI
+ BOOLEAN
+@@ -9520,7 +10224,7 @@
+ CreateSymbolicLinkW (
+     _In_ LPCWSTR lpSymlinkFileName,
+     _In_ LPCWSTR lpTargetFileName,
+-    _In_ DWORD dwFlags
++    _Win32_AssociatedEnum_(SYMBOLIC_LINK_FLAGS) _In_ DWORD dwFlags
+     );
+ #ifdef UNICODE
+ #define CreateSymbolicLink  CreateSymbolicLinkW
 @@ -9531,6 +10235,8 @@
  #endif // (_WIN32_WINNT >= 0x0600)
  
@@ -3738,8 +3852,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  WINBASEAPI
  BOOLEAN
-@@ -9564,6 +10272,8 @@
-     _In_     DWORD dwFlags,
+@@ -9561,16 +10269,18 @@
+ CreateSymbolicLinkTransactedA (
+     _In_     LPCSTR lpSymlinkFileName,
+     _In_     LPCSTR lpTargetFileName,
+-    _In_     DWORD dwFlags,
++    _Win32_AssociatedEnum_(SYMBOLIC_LINK_FLAGS) _In_     DWORD dwFlags,
      _In_     HANDLE hTransaction
      );
 +_Win32_SetLastError_
@@ -3747,6 +3865,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  WINBASEAPI
  BOOLEAN
  APIENTRY
+ CreateSymbolicLinkTransactedW (
+     _In_     LPCWSTR lpSymlinkFileName,
+     _In_     LPCWSTR lpTargetFileName,
+-    _In_     DWORD dwFlags,
++    _Win32_AssociatedEnum_(SYMBOLIC_LINK_FLAGS) _In_     DWORD dwFlags,
+     _In_     HANDLE hTransaction
+     );
+ #ifdef UNICODE
 @@ -9603,6 +10313,7 @@
  AddSecureMemoryCacheCallback(
      _In_ __callback PSECURE_MEMORY_CACHE_CALLBACK pfnCallBack
@@ -3855,7 +3981,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
  
  #endif // _WINBASE_
  
-@@ -10133,3 +10860,36 @@
+@@ -10133,3 +10860,53 @@
  #endif /* _NTOS_ */
  #endif /* NOWINBASEINTERLOCK */
  #endif /* RC_INVOKED */
@@ -3891,4 +4017,21 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinBase.h b/generation/Wi
 +_Win32_AnnotateField_(DCB::StopBits, _Win32_AssociatedEnum_(DCB_STOP_BITS));
 +_Win32_Enum_(DCB_PARITY, unsigned char, EVENPARITY, MARKPARITY, NOPARITY, ODDPARITY, SPACEPARITY);
 +_Win32_AnnotateField_(DCB::Parity, _Win32_AssociatedEnum_(DCB_PARITY));
++#endif
++
++#ifndef _WIN32METADATA_WINBASE_FILE_PE_23_GROUPS_
++#define _WIN32METADATA_WINBASE_FILE_PE_23_GROUPS_
++_Win32_FlagsEnum_(NAMED_PIPE_MODE, unsigned int, PIPE_WAIT, PIPE_NOWAIT, PIPE_READMODE_BYTE, PIPE_READMODE_MESSAGE, PIPE_CLIENT_END, PIPE_SERVER_END, PIPE_TYPE_BYTE, PIPE_TYPE_MESSAGE, PIPE_ACCEPT_REMOTE_CLIENTS, PIPE_REJECT_REMOTE_CLIENTS);
++_Win32_Enum_(SET_FILE_POINTER_MOVE_METHOD, unsigned int, FILE_BEGIN, FILE_CURRENT, FILE_END);
++_Win32_Enum_(GETFINALPATHNAMEBYHANDLE_FLAGS, unsigned int, VOLUME_NAME_DOS, VOLUME_NAME_GUID, VOLUME_NAME_NT, VOLUME_NAME_NONE, FILE_NAME_NORMALIZED, FILE_NAME_OPENED);
++_Win32_FlagsEnum_(SYMBOLIC_LINK_FLAGS, unsigned int, SYMBOLIC_LINK_FLAG_DIRECTORY, SYMBOLIC_LINK_FLAG_ALLOW_UNPRIVILEGED_CREATE);
++_Win32_AnnotateField_(FILE_COMPRESSION_INFO::CompressionFormat, _Win32_AssociatedEnum_(COMPRESSION_FORMAT));
++_Win32_Enum_(FILE_TYPE, unsigned int, FILE_TYPE_UNKNOWN, FILE_TYPE_DISK, FILE_TYPE_CHAR, FILE_TYPE_PIPE, FILE_TYPE_REMOTE);
++_Win32_Enum_(FILE_DISPOSITION_INFO_EX_FLAGS, unsigned int, FILE_DISPOSITION_FLAG_DO_NOT_DELETE, FILE_DISPOSITION_FLAG_DELETE, FILE_DISPOSITION_FLAG_POSIX_SEMANTICS, FILE_DISPOSITION_FLAG_FORCE_IMAGE_SECTION_CHECK, FILE_DISPOSITION_FLAG_ON_CLOSE, FILE_DISPOSITION_FLAG_IGNORE_READONLY_ATTRIBUTE);
++_Win32_AnnotateField_(FILE_DISPOSITION_INFO_EX::Flags, _Win32_AssociatedEnum_(FILE_DISPOSITION_INFO_EX_FLAGS));
++_Win32_FlagsEnum_(COPYFILE_FLAGS, unsigned int, COPY_FILE_FAIL_IF_EXISTS, COPY_FILE_RESTARTABLE, COPY_FILE_OPEN_SOURCE_FOR_WRITE, COPY_FILE_ALLOW_DECRYPTED_DESTINATION, COPY_FILE_COPY_SYMLINK, COPY_FILE_NO_BUFFERING, COPY_FILE_REQUEST_SECURITY_PRIVILEGES, COPY_FILE_RESUME_FROM_PAUSE, COPY_FILE_NO_OFFLOAD, COPY_FILE_IGNORE_EDP_BLOCK, COPY_FILE_IGNORE_SOURCE_ENCRYPTION, COPY_FILE_DONT_REQUEST_DEST_WRITE_DAC, COPY_FILE_REQUEST_COMPRESSED_TRAFFIC, COPY_FILE_OPEN_AND_COPY_REPARSE_POINT, COPY_FILE_DIRECTORY, COPY_FILE_SKIP_ALTERNATE_STREAMS, COPY_FILE_DISABLE_PRE_ALLOCATION, COPY_FILE_ENABLE_LOW_FREE_SPACE_MODE, COPY_FILE_ENABLE_SPARSE_COPY, COPY_FILE_DISABLE_SPARSE_COPY);
++_Win32_AnnotateField_(COPYFILE2_EXTENDED_PARAMETERS::dwCopyFlags, _Win32_AssociatedEnum_(COPYFILE_FLAGS));
++_Win32_AnnotateField_(COPYFILE2_EXTENDED_PARAMETERS_V2::dwCopyFlags, _Win32_AssociatedEnum_(COPYFILE_FLAGS));
++_Win32_FlagsEnum_(COPYFILE2_V2_FLAGS, unsigned int, COPY_FILE2_V2_DONT_COPY_JUNCTIONS, COPY_FILE2_V2_DISABLE_BLOCK_CLONING, COPY_FILE2_V2_VALID_FLAGS);
++_Win32_AnnotateField_(COPYFILE2_EXTENDED_PARAMETERS_V2::dwCopyFlagsV2, _Win32_AssociatedEnum_(COPYFILE2_V2_FLAGS));
 +#endif

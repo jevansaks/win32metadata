@@ -812,7 +812,7 @@ BOOLAPI
 InternetCrackUrlA(
     _In_reads_(dwUrlLength) LPCSTR lpszUrl,
     _In_ DWORD dwUrlLength,
-    _In_ DWORD dwFlags,
+    _Win32_AssociatedEnum_(WIN_HTTP_CREATE_URL_FLAGS) _In_ DWORD dwFlags,
     _Inout_ LPURL_COMPONENTSA lpUrlComponents
     );
 _Win32_SetLastError_
@@ -821,7 +821,7 @@ BOOLAPI
 InternetCrackUrlW(
     _In_reads_(dwUrlLength) LPCWSTR lpszUrl,
     _In_ DWORD dwUrlLength,
-    _In_ DWORD dwFlags,
+    _Win32_AssociatedEnum_(WIN_HTTP_CREATE_URL_FLAGS) _In_ DWORD dwFlags,
     _Inout_ LPURL_COMPONENTSW lpUrlComponents
     );
 #ifdef UNICODE
@@ -4443,6 +4443,10 @@ HttpIsHostHstsEnabled(
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP) */
 #pragma endregion
+
+#if defined(WIN32METADATA) && defined(__clang__)
+#include <winhttp.h>
+#endif
 
 #ifndef _WIN32METADATA_WININET_NATIVE_C_64_GROUPS_
 #define _WIN32METADATA_WININET_NATIVE_C_64_GROUPS_

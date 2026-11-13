@@ -1142,7 +1142,7 @@ WINAPI
 CryptGenKey(
     _In_    HCRYPTPROV  hProv,
     _In_    ALG_ID      Algid,
-    _In_    DWORD       dwFlags,
+    _Win32_AssociatedEnum_(CRYPT_KEY_FLAGS) _In_    DWORD       dwFlags,
     _Out_   HCRYPTKEY   *phKey
     );
 _Win32_SetLastError_
@@ -1274,7 +1274,7 @@ CryptExportKey(
     _In_                                            HCRYPTKEY   hKey,
     _In_                                            HCRYPTKEY   hExpKey,
     _In_                                            DWORD   dwBlobType,
-    _In_                                            DWORD   dwFlags,
+    _Win32_AssociatedEnum_(CRYPT_KEY_FLAGS) _In_                                            DWORD   dwFlags,
     _Out_writes_bytes_to_opt_(*pdwDataLen, *pdwDataLen) BYTE    *pbData,
     _Inout_                                         DWORD   *pdwDataLen
     );
@@ -1289,7 +1289,7 @@ CryptImportKey(
     _In_reads_bytes_(dwDataLen)  CONST BYTE  *pbData,
     _In_                    DWORD       dwDataLen,
     _In_                    HCRYPTKEY   hPubKey,
-    _In_                    DWORD       dwFlags,
+    _Win32_AssociatedEnum_(CRYPT_KEY_FLAGS) _In_                    DWORD       dwFlags,
     _Out_                   HCRYPTKEY   *phKey
     );
 _Win32_SetLastError_
@@ -15811,7 +15811,7 @@ WINCRYPT32API
 BOOL
 WINAPI
 CryptImportPKCS8(
-    _In_ CRYPT_PKCS8_IMPORT_PARAMS sPrivateKeyAndParams,    // in
+    _In_ CRYPT_PKCS8_IMPORT_PARAMS sPrivateKeyAndParams,    _Win32_AssociatedEnum_(CRYPT_KEY_FLAGS) // in
     _In_ DWORD dwFlags,                                     // in
     _Out_opt_ HCRYPTPROV *phCryptProv,                      // out, optional
     _In_opt_ void* pvAuxInfo                                // in, optional
@@ -21492,7 +21492,7 @@ WINAPI
 PFXImportCertStore(
     _In_ CRYPT_DATA_BLOB* pPFX,
     _In_ LPCWSTR szPassword,
-    _In_ DWORD   dwFlags);
+    _Win32_AssociatedEnum_(CRYPT_KEY_FLAGS) _In_ DWORD   dwFlags);
 
 // dwFlags definitions for PFXImportCertStore
 //#define CRYPT_EXPORTABLE          0x00000001  // CryptImportKey dwFlags
@@ -22718,4 +22718,10 @@ _Win32_Enum_(HTTPSPOLICY_CALLBACK_DATA_AUTH_TYPE, unsigned int, AUTHTYPE_CLIENT,
 _Win32_AnnotateField_(HTTPSPolicyCallbackData::dwAuthType, _Win32_AssociatedEnum_(HTTPSPOLICY_CALLBACK_DATA_AUTH_TYPE));
 _Win32_Enum_(CRYPT_TIMESTAMP_RESPONSE_STATUS, unsigned int, TIMESTAMP_STATUS_GRANTED, TIMESTAMP_STATUS_GRANTED_WITH_MODS, TIMESTAMP_STATUS_REJECTED, TIMESTAMP_STATUS_WAITING, TIMESTAMP_STATUS_REVOCATION_WARNING, TIMESTAMP_STATUS_REVOKED);
 _Win32_AnnotateField_(CRYPT_TIMESTAMP_RESPONSE::dwStatus, _Win32_AssociatedEnum_(CRYPT_TIMESTAMP_RESPONSE_STATUS));
+#endif
+
+#ifndef _WIN32METADATA_WINCRYPT_FILE_PE_23_GROUPS_
+#define _WIN32METADATA_WINCRYPT_FILE_PE_23_GROUPS_
+_Win32_FlagsEnum_(CRYPT_KEY_FLAGS, unsigned int, CRYPT_EXPORTABLE, CRYPT_USER_PROTECTED, CRYPT_ARCHIVABLE, CRYPT_CREATE_IV, CRYPT_CREATE_SALT, CRYPT_DATA_KEY, CRYPT_FORCE_KEY_PROTECTION_HIGH, CRYPT_KEK, CRYPT_INITIATOR, CRYPT_NO_SALT, CRYPT_ONLINE, CRYPT_PREGEN, CRYPT_RECIPIENT, CRYPT_SF, CRYPT_SGCKEY, CRYPT_VOLATILE, CRYPT_MACHINE_KEYSET, CRYPT_USER_KEYSET, PKCS12_PREFER_CNG_KSP, PKCS12_ALWAYS_CNG_KSP, PKCS12_ALLOW_OVERWRITE_KEY, PKCS12_NO_PERSIST_KEY, PKCS12_INCLUDE_EXTENDED_PROPERTIES, CRYPT_OAEP, CRYPT_BLOB_VER3, CRYPT_DESTROYKEY, CRYPT_SSL2_FALLBACK, CRYPT_Y_ONLY, CRYPT_IPSEC_HMAC_KEY, CERT_SET_KEY_PROV_HANDLE_PROP_ID, CERT_SET_KEY_CONTEXT_PROP_ID);
+_Win32_AnnotateField_(CRYPT_KEY_PROV_INFO::dwFlags, _Win32_AssociatedEnum_(CRYPT_KEY_FLAGS));
 #endif

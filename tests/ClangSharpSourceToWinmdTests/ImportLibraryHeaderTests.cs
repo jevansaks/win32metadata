@@ -130,7 +130,8 @@ namespace ClangSharpSourceToWinmdTests
             foreach (var owner in new[] { ("webauthnplugin.h", 27), ("HtmlHelp.h", 2) })
             {
                 string path = "generation/WinSDK/RecompiledIdlHeaders/um/" + owner.Item1;
-                string header = File.ReadAllText(Path.Combine(root, path)).Replace("\r\n", "\n");
+                string header = FullHeaderMigrationExperimentTests.ReadRecoveryText(
+                    "RecompiledIdlHeaders/um/" + owner.Item1).Replace("\r\n", "\n");
                 var original = LastErrorHeaderTests.Run("git", "-C", root, "show", Predecessor + ":" + path);
                 Assert.AreEqual(0, original.ExitCode, original.Output);
                 string stripped = Regex.Replace(header, @"_Win32_ImportLibrary_\(""[^""]+""\)(?:\n| )", "")
@@ -149,7 +150,7 @@ namespace ClangSharpSourceToWinmdTests
                 !line.StartsWith("# webauthnplugin.h APIs", StringComparison.Ordinal) &&
                 !line.StartsWith("# The documentation lists WebAuthnPlugin", StringComparison.Ordinal) &&
                 !line.StartsWith("# or in Windows; LoadLibrary", StringComparison.Ordinal)));
-            Assert.AreEqual(expected, File.ReadAllText(Path.Combine(root, "generation", "WinSDK", "libMappingsManual.rsp"))
+            Assert.AreEqual(expected, FullHeaderMigrationExperimentTests.ReadRecoveryText("libMappingsManual.rsp")
                 .Replace("\r\n", "\n"));
             string inferred = File.ReadAllText(Path.Combine(root, "generation", "WinSDK", "libMappings.rsp"));
             foreach (string name in retired.Keys)

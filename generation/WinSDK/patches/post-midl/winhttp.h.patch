@@ -97,7 +97,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h b/generation/Wi
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1623,8 +1647,10 @@
+@@ -1623,15 +1647,17 @@
      _In_ DWORD dwFlags,
      _Inout_ LPURL_COMPONENTS lpUrlComponents
  );
@@ -108,6 +108,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h b/generation/Wi
  WINHTTPAPI
  BOOL
  WINAPI
+ WinHttpCreateUrl
+ (
+     _In_ LPURL_COMPONENTS lpUrlComponents,
+-    _In_ DWORD dwFlags,
++    _Win32_AssociatedEnum_(WIN_HTTP_CREATE_URL_FLAGS) _In_ DWORD dwFlags,
+     _Out_writes_to_opt_(*pdwUrlLength, *pdwUrlLength) LPWSTR pwszUrl,
+     _Inout_ LPDWORD pdwUrlLength
+ );
 @@ -1641,10 +1667,16 @@
  
  #pragma region Application Family or OneCore Family
@@ -438,7 +446,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h b/generation/Wi
  WINHTTPAPI
  DWORD
  WINAPI
-@@ -2526,3 +2606,9 @@
+@@ -2526,3 +2606,14 @@
  
  #endif // !defined(_WINHTTPX_)
  
@@ -447,4 +455,9 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h b/generation/Wi
 +_Win32_Enum_(WINHTTP_CREDS_AUTHSCHEME, unsigned int, WINHTTP_AUTH_SCHEME_BASIC, WINHTTP_AUTH_SCHEME_NTLM, WINHTTP_AUTH_SCHEME_NEGOTIATE);
 +_Win32_AnnotateField_(WINHTTP_CREDS::dwAuthScheme, _Win32_AssociatedEnum_(WINHTTP_CREDS_AUTHSCHEME));
 +_Win32_AnnotateField_(WINHTTP_CREDS_EX::dwAuthScheme, _Win32_AssociatedEnum_(WINHTTP_CREDS_AUTHSCHEME));
++#endif
++
++#ifndef _WIN32METADATA_WINHTTP_FILE_PE_23_GROUPS_
++#define _WIN32METADATA_WINHTTP_FILE_PE_23_GROUPS_
++_Win32_Enum_(WIN_HTTP_CREATE_URL_FLAGS, unsigned int, ICU_ESCAPE, ICU_REJECT_USERPWD, ICU_DECODE);
 +#endif

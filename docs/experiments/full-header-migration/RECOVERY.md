@@ -1,11 +1,11 @@
 # Working-first recovery and sidecar reduction
 
-**Current accepted cohort:** [91 security/system groups](#security-and-system-subdivision)
-above preserved `2f09979cfcc58c27b81e01134d2c6702571beead`, following
-the twelve shared RPC/security groups and the previous 459 groups above `85444f25`.
+**Current accepted cohort:** [23 file/memory/PE groups](#file-memory-and-pe-subdivision)
+above preserved `b48265c361ce532673d071143318545db21e378c`, following
+the 91 security/system groups and the previous 471 groups above `85444f25`.
 The broader qualification also restores BOOL's legacy storage after exposing
 bitfield backing-type changes; COLORREF's native selection remains.
-Its actual WinMD is `4E3243C8...`; the complete 35,379-type dump is
+Its actual WinMD is `6751041E...`; the complete 35,379-type dump is
 `1F4F3839...`, byte-identical to accepted structural checkpoint 6d44.
 Earlier authorized fictitious-handle/AssociatedEnum changes remain completely
 accounted for relative to the original parent; no arbitrary API loss is
@@ -15,24 +15,24 @@ historical checkpoints, not the current totals.
 | Inventory / units | Recovery | Accepted current | Net retired |
 |---|---:|---:|---:|
 | Original parameter attribute atoms | 770 | 361 | 409 |
-| All RSP value rows | 146,789 | 134,601 | 12,188 |
+| All RSP value rows | 146,789 | 134,624 | 12,165 |
 | Allowed documentation URL rows | 90,502 | 90,502 | 0 (outside backlog) |
-| Other RSP rows, mixed configuration/API units | 56,287 | 44,099 | 12,188 |
+| Other RSP rows, mixed configuration/API units | 56,287 | 44,122 | 12,165 |
 | Emitter `memberRemap` rows | 2,295 | 1,592 | 703 |
 | LastError rows | 3,362 | 468 | 2,894 |
 | Availability rows | 17,070 | 7,883 | 9,187 |
-| Enum JSON records, mixed definitions/additional uses | 1,070 | 433 | 637 |
+| Enum JSON records, mixed definitions/additional uses | 1,070 | 410 | 660 |
 | autoTypes records | 444 | 436 | 8 |
 | Function-pointer fixup records | 27 | 27 | 0 |
 
 | Remaining category | Measured accepted quantity | Examination state |
 |---|---:|---|
-| Definition-bearing enum records | 409 | 562 further whole definitions accepted across eight cohorts. The new 102-group preflight retains 91 and restores eleven complete closures; actual parse/emission/API failures and one IDL-owner deferral are itemized below. Another 24 file/memory/PE groups are preflighted only, not accepted coverage. |
+| Definition-bearing enum records | 386 | 585 further whole definitions accepted across nine cohorts. The new 24-group file/memory/PE trial retains 23, restoring IMAGE_OPTIONAL_HEADER_MAGIC; the actual WinInet definition dependency is qualified rather than deferred. Earlier restored closures remain explicit. |
 | Additional-use enum records / selector rows | 23 / 55 | Exact retained FILE/REG/SNMP/process, STGM, COM/MIDL and Cloud closures; observed boundaries are in [PROBLEMS.md](PROBLEMS.md). |
 | Genuine CLR flags request | 1 record | Native enum use override already redundant/retired; flags effect still unqualified. |
 | Native type/storage/ownership inputs | 436 records | 424 legacy-storage / 12 native selections; genuine types remain. COLORREF storage and its redundant NativeTypedef flag are retired, not its record. BOOL/BOOLEAN and six DiagnosticDataQuery selections/producer closures remain restored; thirteen contextual cleanup records are separate boundaries, not all 436 records. |
 | Parameter atoms | 361 | Individually inventoried; nine CLR selectors explicitly excepted. Two actual font/theme association controls isolate storage-policy conflicts on all three targets; this does not establish failure of all related selectors. |
-| DLL mappings | 26,376 automatic + 385 manual rows | Retained, not exempt; no new DLL migration claimed. |
+| DLL mappings | 26,376 scan-derived rows; 400 explicit overrides | The explicit rows are 385 manual + 14 partition + 1 global. Another 172 actual peer/DRT manual mappings are preflighted only, not retired here. Import scanning remains the specified default. |
 | Other RSP operational/API rows | Exact file/option TSV | Parser/global/routing configuration is separate from semantic retirement; do not remove it to inflate counts. |
 
 **Allowed external metadata:** the user explicitly permits all 90,502
@@ -40,6 +40,12 @@ documentation URL mappings to remain in `documentationMappings.rsp` for now.
 They are separate from the annotation-retirement backlog and are not migrated
 or removed here. No such exemption was granted to DLL mappings or other API
 metadata; their unchanged state in these bounded cohorts is not an allowance.
+The 44,122 non-documentation rows are not 44,122 semantic annotations:
+26,376 are the checked-in scan-derived library table, 1,950 are parser/reference
+configuration, and 15,796 are mixed API/policy/parser-review rows, including
+3,081 namespace rows. The last category is neither distinct facts nor disjoint
+from the parameter-atom inventory. The specification makes import scanning
+the default; scan-derived rows are not 26,376 per-function header overrides.
 
 The user redirected this experiment from broad sidecar retirement to a working
 generation anchor. The diagnostic experiment remains in commit
@@ -51,6 +57,51 @@ rewriting history, or changing lower stack layers. This conservative batch keeps
 only the already-qualified parent header pilots. **No additional broad-migration
 header coverage is claimed.** All 737 broad patches and their sidecar retirements
 are deferred until they can be enabled in small batches that each emit.
+
+## File, memory and PE subdivision
+
+The 24-group trial first exposed a real definition dependency:
+WinInet/WinProg see the InternetCrackUrl association, but not its
+WIN_HTTP_CREATE_URL_FLAGS definition in winhttp.h. A metadata-Clang-only
+include of the actual owning winhttp.h at WinInet's declaration boundary
+resolves the parse on all targets without copied constants or new helper
+syntax. Ordinary SDK compilation does not gain that include. The resulting
+whole-union output, not merely that successful parse, qualifies the dependency.
+
+The next emission exposed a distinct problem: relocating architecture-split
+IMAGE_OPTIONAL_HEADER_MAGIC into Backup.headerEnums.modified.cs leaves
+SupportedArchitecture without its metadata namespace import (CS0246).
+The native IMAGE_NT_OPTIONAL_HDR_MAGIC operand is 267 on x86 and 523 on
+x64/ARM64; the complete definition/use closure remains restored. Neither
+the missing import nor architecture-specific output is hidden or patched
+in generated files.
+
+The accepted **23 groups / 307 members / 84 active selectors** remove
+23 JSON records and add 23 namespace routing rows. Five selectors have
+alternate native declarations/inline forms, so the exact source contains
+**89 association carriers**, not 89 distinct API uses. Each alternate
+prototype is checked against its unchanged parent after removing only the
+new association annotations. The old SetNamedPipeHandleState::dwPipeMode
+selector is absent from both native declaration and baseline argument;
+its removal is one inactive selector, not migrated API coverage.
+Cumulative retirement above 85444 is **585 definitions / 5,260 members /
+1,146 active uses**, with thirteen inactive selectors separate.
+
+The actual WinMD is
+`6751041E87BE494E6FBD84962368F185A8EAB27490A2AA3A7E272E6C46DA2A86`
+(24,174,592 bytes). The unmasked comparison against actual b482 is zero;
+the complete 35,379-type dump remains exact `1F4F3839...`. Integrity passes
+54/54, all 352 SDK patches replay exactly, and all 78 loaded native owners
+preserve BOMs/non-ASCII byte chains.
+
+Import-library controls initially report 37 pass / 1 failure: the historical
+whole-header delta assertion observes unrelated accepted HtmlHelp enum
+annotations. Only that historical control's header and manual-RSP inputs
+now use the preserved recovery fixture; all assertions and the separate
+current-header complete-owner emission controls remain. The corrected
+suite passes 38/38. A concurrent test-build copy-lock failure is separately
+retained; the successful run builds only the changed test project after
+integrity exits, without rebuilding unchanged dependencies.
 
 ## Security and system subdivision
 
@@ -128,6 +179,7 @@ change is used to conceal it.
 | Earlier fresh full91 | Complete all-architecture, empty output | 14m46.57s | 4m45.44s | 19m32.01s |
 | Security/system92 subdivision | 65 owner/consumer partitions, existing raw cache | 5m12.93s | 4m53.90s | 10m06.83s |
 | Accepted security/system91 | 3 dependent partitions, qualified 92 raw cache | 1m06.55s | 4m43.83s | 5m50.38s |
+| Accepted file/memory/PE23 | 17 owner/consumer partitions, accepted security/system91 raw cache | 2m25.07s | 4m55.34s | 7m20.41s |
 
 These are retained required evaluations, not a separate benchmark loop.
 Future accepted checkpoints retain both stage times and scope/cache context;

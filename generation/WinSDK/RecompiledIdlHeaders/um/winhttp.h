@@ -1657,7 +1657,7 @@ WINAPI
 WinHttpCreateUrl
 (
     _In_ LPURL_COMPONENTS lpUrlComponents,
-    _In_ DWORD dwFlags,
+    _Win32_AssociatedEnum_(WIN_HTTP_CREATE_URL_FLAGS) _In_ DWORD dwFlags,
     _Out_writes_to_opt_(*pdwUrlLength, *pdwUrlLength) LPWSTR pwszUrl,
     _Inout_ LPDWORD pdwUrlLength
 );
@@ -2611,4 +2611,9 @@ typedef struct _WINHTTP_FAST_FORWARDING_STATUS
 _Win32_Enum_(WINHTTP_CREDS_AUTHSCHEME, unsigned int, WINHTTP_AUTH_SCHEME_BASIC, WINHTTP_AUTH_SCHEME_NTLM, WINHTTP_AUTH_SCHEME_NEGOTIATE);
 _Win32_AnnotateField_(WINHTTP_CREDS::dwAuthScheme, _Win32_AssociatedEnum_(WINHTTP_CREDS_AUTHSCHEME));
 _Win32_AnnotateField_(WINHTTP_CREDS_EX::dwAuthScheme, _Win32_AssociatedEnum_(WINHTTP_CREDS_AUTHSCHEME));
+#endif
+
+#ifndef _WIN32METADATA_WINHTTP_FILE_PE_23_GROUPS_
+#define _WIN32METADATA_WINHTTP_FILE_PE_23_GROUPS_
+_Win32_Enum_(WIN_HTTP_CREATE_URL_FLAGS, unsigned int, ICU_ESCAPE, ICU_REJECT_USERPWD, ICU_DECODE);
 #endif

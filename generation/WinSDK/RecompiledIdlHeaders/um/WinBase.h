@@ -3567,7 +3567,7 @@ WINAPI
 CreateFileMappingA(
     _In_     HANDLE hFile,
     _In_opt_ LPSECURITY_ATTRIBUTES lpFileMappingAttributes,
-    _In_     DWORD flProtect,
+    _Win32_AssociatedEnum_(PAGE_PROTECTION_FLAGS) _In_     DWORD flProtect,
     _In_     DWORD dwMaximumSizeHigh,
     _In_     DWORD dwMaximumSizeLow,
     _In_opt_ LPCSTR lpName
@@ -3593,7 +3593,7 @@ WINAPI
 CreateFileMappingNumaA(
     _In_     HANDLE hFile,
     _In_opt_ LPSECURITY_ATTRIBUTES lpFileMappingAttributes,
-    _In_     DWORD flProtect,
+    _Win32_AssociatedEnum_(PAGE_PROTECTION_FLAGS) _In_     DWORD flProtect,
     _In_     DWORD dwMaximumSizeHigh,
     _In_     DWORD dwMaximumSizeLow,
     _In_opt_ LPCSTR lpName,
@@ -5824,7 +5824,7 @@ CreateFileTransactedA(
     _In_       DWORD dwDesiredAccess,
     _In_       DWORD dwShareMode,
     _In_opt_   LPSECURITY_ATTRIBUTES lpSecurityAttributes,
-    _In_       DWORD dwCreationDisposition,
+    _Win32_AssociatedEnum_(FILE_CREATION_DISPOSITION) _In_       DWORD dwCreationDisposition,
     _In_       DWORD dwFlagsAndAttributes,
     _In_opt_   HANDLE hTemplateFile,
     _In_       HANDLE hTransaction,
@@ -5841,7 +5841,7 @@ CreateFileTransactedW(
     _In_       DWORD dwDesiredAccess,
     _In_       DWORD dwShareMode,
     _In_opt_   LPSECURITY_ATTRIBUTES lpSecurityAttributes,
-    _In_       DWORD dwCreationDisposition,
+    _Win32_AssociatedEnum_(FILE_CREATION_DISPOSITION) _In_       DWORD dwCreationDisposition,
     _In_       DWORD dwFlagsAndAttributes,
     _In_opt_   HANDLE hTemplateFile,
     _In_       HANDLE hTransaction,
@@ -6190,7 +6190,7 @@ CopyFileExA(
     _In_opt_    LPVOID lpData,
     _When_(pbCancel != NULL, _Pre_satisfies_(*pbCancel == FALSE))
     _Inout_opt_ LPBOOL pbCancel,
-    _In_        DWORD dwCopyFlags
+    _Win32_AssociatedEnum_(COPYFILE_FLAGS) _In_        DWORD dwCopyFlags
     );
 WINBASEAPI
 BOOL
@@ -6202,7 +6202,7 @@ CopyFileExW(
     _In_opt_    LPVOID lpData,
     _When_(pbCancel != NULL, _Pre_satisfies_(*pbCancel == FALSE))
     _Inout_opt_ LPBOOL pbCancel,
-    _In_        DWORD dwCopyFlags
+    _Win32_AssociatedEnum_(COPYFILE_FLAGS) _In_        DWORD dwCopyFlags
     );
 #ifdef UNICODE
 #define CopyFileEx  CopyFileExW
@@ -6862,7 +6862,7 @@ WINAPI
 CreateNamedPipeA(
     _In_     LPCSTR lpName,
     _In_     DWORD dwOpenMode,
-    _In_     DWORD dwPipeMode,
+    _Win32_AssociatedEnum_(NAMED_PIPE_MODE) _In_     DWORD dwPipeMode,
     _In_     DWORD nMaxInstances,
     _In_     DWORD nOutBufferSize,
     _In_     DWORD nInBufferSize,
@@ -6886,7 +6886,7 @@ BOOL
 WINAPI
 GetNamedPipeHandleStateA(
     _In_      HANDLE hNamedPipe,
-    _Out_opt_ LPDWORD lpState,
+    _Win32_AssociatedEnum_(NAMED_PIPE_MODE) _Out_opt_ LPDWORD lpState,
     _Out_opt_ LPDWORD lpCurInstances,
     _Out_opt_ LPDWORD lpMaxCollectionCount,
     _Out_opt_ LPDWORD lpCollectDataTimeout,
@@ -7710,7 +7710,7 @@ ReadDirectoryChangesW(
     _Out_writes_bytes_to_(nBufferLength, *lpBytesReturned) LPVOID lpBuffer,
     _In_        DWORD nBufferLength,
     _In_        BOOL bWatchSubtree,
-    _In_        DWORD dwNotifyFilter,
+    _Win32_AssociatedEnum_(FILE_NOTIFY_CHANGE) _In_        DWORD dwNotifyFilter,
     _Out_opt_   LPDWORD lpBytesReturned,
     _Inout_opt_ LPOVERLAPPED lpOverlapped,
     _In_opt_    LPOVERLAPPED_COMPLETION_ROUTINE lpCompletionRoutine
@@ -7727,7 +7727,7 @@ ReadDirectoryChangesExW(
     _Out_writes_bytes_to_(nBufferLength, *lpBytesReturned) LPVOID lpBuffer,
     _In_        DWORD nBufferLength,
     _In_        BOOL bWatchSubtree,
-    _In_        DWORD dwNotifyFilter,
+    _Win32_AssociatedEnum_(FILE_NOTIFY_CHANGE) _In_        DWORD dwNotifyFilter,
     _Out_opt_   LPDWORD lpBytesReturned,
     _Inout_opt_ LPOVERLAPPED lpOverlapped,
     _In_opt_    LPOVERLAPPED_COMPLETION_ROUTINE lpCompletionRoutine,
@@ -7752,7 +7752,7 @@ LPVOID
 WINAPI
 MapViewOfFileExNuma(
     _In_     HANDLE hFileMappingObject,
-    _In_     DWORD dwDesiredAccess,
+    _Win32_AssociatedEnum_(FILE_MAP) _In_     DWORD dwDesiredAccess,
     _In_     DWORD dwFileOffsetHigh,
     _In_     DWORD dwFileOffsetLow,
     _In_     SIZE_T dwNumberOfBytesToMap,
@@ -10216,7 +10216,7 @@ APIENTRY
 CreateSymbolicLinkA (
     _In_ LPCSTR lpSymlinkFileName,
     _In_ LPCSTR lpTargetFileName,
-    _In_ DWORD dwFlags
+    _Win32_AssociatedEnum_(SYMBOLIC_LINK_FLAGS) _In_ DWORD dwFlags
     );
 WINBASEAPI
 BOOLEAN
@@ -10224,7 +10224,7 @@ APIENTRY
 CreateSymbolicLinkW (
     _In_ LPCWSTR lpSymlinkFileName,
     _In_ LPCWSTR lpTargetFileName,
-    _In_ DWORD dwFlags
+    _Win32_AssociatedEnum_(SYMBOLIC_LINK_FLAGS) _In_ DWORD dwFlags
     );
 #ifdef UNICODE
 #define CreateSymbolicLink  CreateSymbolicLinkW
@@ -10269,7 +10269,7 @@ APIENTRY
 CreateSymbolicLinkTransactedA (
     _In_     LPCSTR lpSymlinkFileName,
     _In_     LPCSTR lpTargetFileName,
-    _In_     DWORD dwFlags,
+    _Win32_AssociatedEnum_(SYMBOLIC_LINK_FLAGS) _In_     DWORD dwFlags,
     _In_     HANDLE hTransaction
     );
 _Win32_SetLastError_
@@ -10280,7 +10280,7 @@ APIENTRY
 CreateSymbolicLinkTransactedW (
     _In_     LPCWSTR lpSymlinkFileName,
     _In_     LPCWSTR lpTargetFileName,
-    _In_     DWORD dwFlags,
+    _Win32_AssociatedEnum_(SYMBOLIC_LINK_FLAGS) _In_     DWORD dwFlags,
     _In_     HANDLE hTransaction
     );
 #ifdef UNICODE
@@ -10892,4 +10892,21 @@ _Win32_Enum_(DCB_STOP_BITS, unsigned char, ONESTOPBIT, ONE5STOPBITS, TWOSTOPBITS
 _Win32_AnnotateField_(DCB::StopBits, _Win32_AssociatedEnum_(DCB_STOP_BITS));
 _Win32_Enum_(DCB_PARITY, unsigned char, EVENPARITY, MARKPARITY, NOPARITY, ODDPARITY, SPACEPARITY);
 _Win32_AnnotateField_(DCB::Parity, _Win32_AssociatedEnum_(DCB_PARITY));
+#endif
+
+#ifndef _WIN32METADATA_WINBASE_FILE_PE_23_GROUPS_
+#define _WIN32METADATA_WINBASE_FILE_PE_23_GROUPS_
+_Win32_FlagsEnum_(NAMED_PIPE_MODE, unsigned int, PIPE_WAIT, PIPE_NOWAIT, PIPE_READMODE_BYTE, PIPE_READMODE_MESSAGE, PIPE_CLIENT_END, PIPE_SERVER_END, PIPE_TYPE_BYTE, PIPE_TYPE_MESSAGE, PIPE_ACCEPT_REMOTE_CLIENTS, PIPE_REJECT_REMOTE_CLIENTS);
+_Win32_Enum_(SET_FILE_POINTER_MOVE_METHOD, unsigned int, FILE_BEGIN, FILE_CURRENT, FILE_END);
+_Win32_Enum_(GETFINALPATHNAMEBYHANDLE_FLAGS, unsigned int, VOLUME_NAME_DOS, VOLUME_NAME_GUID, VOLUME_NAME_NT, VOLUME_NAME_NONE, FILE_NAME_NORMALIZED, FILE_NAME_OPENED);
+_Win32_FlagsEnum_(SYMBOLIC_LINK_FLAGS, unsigned int, SYMBOLIC_LINK_FLAG_DIRECTORY, SYMBOLIC_LINK_FLAG_ALLOW_UNPRIVILEGED_CREATE);
+_Win32_AnnotateField_(FILE_COMPRESSION_INFO::CompressionFormat, _Win32_AssociatedEnum_(COMPRESSION_FORMAT));
+_Win32_Enum_(FILE_TYPE, unsigned int, FILE_TYPE_UNKNOWN, FILE_TYPE_DISK, FILE_TYPE_CHAR, FILE_TYPE_PIPE, FILE_TYPE_REMOTE);
+_Win32_Enum_(FILE_DISPOSITION_INFO_EX_FLAGS, unsigned int, FILE_DISPOSITION_FLAG_DO_NOT_DELETE, FILE_DISPOSITION_FLAG_DELETE, FILE_DISPOSITION_FLAG_POSIX_SEMANTICS, FILE_DISPOSITION_FLAG_FORCE_IMAGE_SECTION_CHECK, FILE_DISPOSITION_FLAG_ON_CLOSE, FILE_DISPOSITION_FLAG_IGNORE_READONLY_ATTRIBUTE);
+_Win32_AnnotateField_(FILE_DISPOSITION_INFO_EX::Flags, _Win32_AssociatedEnum_(FILE_DISPOSITION_INFO_EX_FLAGS));
+_Win32_FlagsEnum_(COPYFILE_FLAGS, unsigned int, COPY_FILE_FAIL_IF_EXISTS, COPY_FILE_RESTARTABLE, COPY_FILE_OPEN_SOURCE_FOR_WRITE, COPY_FILE_ALLOW_DECRYPTED_DESTINATION, COPY_FILE_COPY_SYMLINK, COPY_FILE_NO_BUFFERING, COPY_FILE_REQUEST_SECURITY_PRIVILEGES, COPY_FILE_RESUME_FROM_PAUSE, COPY_FILE_NO_OFFLOAD, COPY_FILE_IGNORE_EDP_BLOCK, COPY_FILE_IGNORE_SOURCE_ENCRYPTION, COPY_FILE_DONT_REQUEST_DEST_WRITE_DAC, COPY_FILE_REQUEST_COMPRESSED_TRAFFIC, COPY_FILE_OPEN_AND_COPY_REPARSE_POINT, COPY_FILE_DIRECTORY, COPY_FILE_SKIP_ALTERNATE_STREAMS, COPY_FILE_DISABLE_PRE_ALLOCATION, COPY_FILE_ENABLE_LOW_FREE_SPACE_MODE, COPY_FILE_ENABLE_SPARSE_COPY, COPY_FILE_DISABLE_SPARSE_COPY);
+_Win32_AnnotateField_(COPYFILE2_EXTENDED_PARAMETERS::dwCopyFlags, _Win32_AssociatedEnum_(COPYFILE_FLAGS));
+_Win32_AnnotateField_(COPYFILE2_EXTENDED_PARAMETERS_V2::dwCopyFlags, _Win32_AssociatedEnum_(COPYFILE_FLAGS));
+_Win32_FlagsEnum_(COPYFILE2_V2_FLAGS, unsigned int, COPY_FILE2_V2_DONT_COPY_JUNCTIONS, COPY_FILE2_V2_DISABLE_BLOCK_CLONING, COPY_FILE2_V2_VALID_FLAGS);
+_Win32_AnnotateField_(COPYFILE2_EXTENDED_PARAMETERS_V2::dwCopyFlagsV2, _Win32_AssociatedEnum_(COPYFILE2_V2_FLAGS));
 #endif

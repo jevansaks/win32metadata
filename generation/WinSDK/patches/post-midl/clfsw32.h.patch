@@ -16,7 +16,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/clfsw32.h b/generation/Wi
  //------------------------------------------------------------------------------
  // CreateLogFile
  //
-@@ -173,6 +176,8 @@
+@@ -167,12 +170,14 @@
+                     IN ACCESS_MASK fDesiredAccess,
+                     IN DWORD dwShareMode,
+                     IN LPSECURITY_ATTRIBUTES psaLogFile OPTIONAL,
+-                    IN ULONG fCreateDisposition,
++                    _Win32_AssociatedEnum_(FILE_CREATION_DISPOSITION) IN ULONG fCreateDisposition,
+                     IN ULONG fFlagsAndAttributes
+                     );
  #endif /* _WIN32_WINNT */
  
  #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)

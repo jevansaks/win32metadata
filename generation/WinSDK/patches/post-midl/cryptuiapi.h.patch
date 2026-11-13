@@ -91,7 +91,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/cryptuiapi.h b/generation
  
  //-----------------------------------------------------------------------
  //
-@@ -1019,3 +1034,20 @@
+@@ -1019,3 +1034,25 @@
  #pragma endregion
  
  #endif // _CRYPTUIAPI_H_
@@ -111,4 +111,9 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/cryptuiapi.h b/generation
 +_Win32_AnnotateField_(CRYPTUI_WIZ_DIGITAL_SIGN_CERT_PVK_INFO::dwPvkChoice, _Win32_AssociatedEnum_(CRYPTUI_WIZ_DIGITAL_SIGN_PVK_OPTION));
 +_Win32_Enum_(CRYPTUI_WIZ_EXPORT_FORMAT, unsigned int, CRYPTUI_WIZ_EXPORT_FORMAT_DER, CRYPTUI_WIZ_EXPORT_FORMAT_PFX, CRYPTUI_WIZ_EXPORT_FORMAT_PKCS7, CRYPTUI_WIZ_EXPORT_FORMAT_BASE64, CRYPTUI_WIZ_EXPORT_FORMAT_CRL, CRYPTUI_WIZ_EXPORT_FORMAT_CTL);
 +_Win32_AnnotateField_(CRYPTUI_WIZ_EXPORT_CERTCONTEXT_INFO::dwExportFormat, _Win32_AssociatedEnum_(CRYPTUI_WIZ_EXPORT_FORMAT));
++#endif
++
++#ifndef _WIN32METADATA_CRYPTUIAPI_FILE_PE_23_GROUPS_
++#define _WIN32METADATA_CRYPTUIAPI_FILE_PE_23_GROUPS_
++_Win32_AnnotateField_(CRYPTUI_WIZ_IMPORT_SRC_INFO::dwFlags, _Win32_AssociatedEnum_(CRYPT_KEY_FLAGS));
 +#endif

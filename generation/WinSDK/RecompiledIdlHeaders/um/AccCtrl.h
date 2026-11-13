@@ -822,3 +822,10 @@ _Win32_Enum_(ACTRL_ACCESS_ENTRY_ACCESS_FLAGS, unsigned int, ACTRL_ACCESS_ALLOWED
 _Win32_AnnotateField_(ACTRL_ACCESS_ENTRYA::fAccessFlags, _Win32_AssociatedEnum_(ACTRL_ACCESS_ENTRY_ACCESS_FLAGS));
 _Win32_AnnotateField_(ACTRL_ACCESS_ENTRYW::fAccessFlags, _Win32_AssociatedEnum_(ACTRL_ACCESS_ENTRY_ACCESS_FLAGS));
 #endif
+
+#ifndef _WIN32METADATA_ACCCTRL_FILE_PE_23_GROUPS_
+#define _WIN32METADATA_ACCCTRL_FILE_PE_23_GROUPS_
+_Win32_AnnotateField_(OBJECTS_AND_NAME_W::ObjectsPresent, _Win32_AssociatedEnum_(SYSTEM_AUDIT_OBJECT_ACE_FLAGS));
+_Win32_AnnotateField_(OBJECTS_AND_SID::ObjectsPresent, _Win32_AssociatedEnum_(SYSTEM_AUDIT_OBJECT_ACE_FLAGS));
+_Win32_AnnotateField_(OBJECTS_AND_NAME_A::ObjectsPresent, _Win32_AssociatedEnum_(SYSTEM_AUDIT_OBJECT_ACE_FLAGS));
+#endif

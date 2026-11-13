@@ -170,7 +170,7 @@ CLFSUSER_API HANDLE WINAPI CreateLogFile (
                     IN ACCESS_MASK fDesiredAccess,
                     IN DWORD dwShareMode,
                     IN LPSECURITY_ATTRIBUTES psaLogFile OPTIONAL,
-                    IN ULONG fCreateDisposition,
+                    _Win32_AssociatedEnum_(FILE_CREATION_DISPOSITION) IN ULONG fCreateDisposition,
                     IN ULONG fFlagsAndAttributes
                     );
 #endif /* _WIN32_WINNT */
