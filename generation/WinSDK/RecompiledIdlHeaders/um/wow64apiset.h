@@ -148,8 +148,8 @@ BOOL
 WINAPI
 IsWow64Process2(
     _In_ HANDLE hProcess,
-    _Out_ USHORT* pProcessMachine,
-    _Out_opt_ USHORT* pNativeMachine
+    _Win32_AssociatedEnum_(IMAGE_FILE_MACHINE) _Out_ USHORT* pProcessMachine,
+    _Win32_AssociatedEnum_(IMAGE_FILE_MACHINE) _Out_opt_ USHORT* pNativeMachine
     );
 
 #endif // _WIN32_WINNT >= 0x0A00
@@ -172,7 +172,7 @@ WINAPI
 GetSystemWow64Directory2A(
     _Out_writes_to_opt_(uSize,return + 1) LPSTR lpBuffer,
     _In_ UINT uSize,
-    _In_ WORD ImageFileMachineType
+    _Win32_AssociatedEnum_(IMAGE_FILE_MACHINE) _In_ WORD ImageFileMachineType
     );
 _Win32_SetLastError_
 _Win32_SupportedOS_10586_
@@ -185,7 +185,7 @@ WINAPI
 GetSystemWow64Directory2W(
     _Out_writes_to_opt_(uSize,return + 1) LPWSTR lpBuffer,
     _In_ UINT uSize,
-    _In_ WORD ImageFileMachineType
+    _Win32_AssociatedEnum_(IMAGE_FILE_MACHINE) _In_ WORD ImageFileMachineType
     );
 
 #ifdef UNICODE
@@ -205,7 +205,7 @@ _Must_inspect_result_
 HRESULT
 WINAPI
 IsWow64GuestMachineSupported(
-    _In_ USHORT WowGuestMachine,
+    _Win32_AssociatedEnum_(IMAGE_FILE_MACHINE) _In_ USHORT WowGuestMachine,
     _Out_ BOOL* MachineIsSupported
     );
 

@@ -1650,13 +1650,13 @@ LWSTDAPIV_(int) ShellMessageBoxA(
     _In_opt_ HWND hWnd,
     _In_ LPCSTR lpcText,
     _In_opt_ LPCSTR lpcTitle,
-    _In_ UINT fuStyle, ...);
+    _Win32_AssociatedEnum_(MESSAGEBOX_STYLE) _In_ UINT fuStyle, ...);
 LWSTDAPIV_(int) ShellMessageBoxW(
     _In_opt_ HINSTANCE hAppInst,
     _In_opt_ HWND hWnd,
     _In_ LPCWSTR lpcText,
     _In_opt_ LPCWSTR lpcTitle,
-    _In_ UINT fuStyle, ...);
+    _Win32_AssociatedEnum_(MESSAGEBOX_STYLE) _In_ UINT fuStyle, ...);
 #ifdef UNICODE
 #define ShellMessageBox  ShellMessageBoxW
 #else

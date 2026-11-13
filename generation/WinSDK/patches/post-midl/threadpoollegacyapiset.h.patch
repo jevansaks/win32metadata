@@ -16,9 +16,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/threadpoollegacyapiset.h 
  
  WINBASEAPI
  BOOL
-@@ -37,6 +40,8 @@
+@@ -35,8 +38,10 @@
+ QueueUserWorkItem(
+     _In_ LPTHREAD_START_ROUTINE Function,
      _In_opt_ PVOID Context,
-     _In_ ULONG Flags
+-    _In_ ULONG Flags
++    _Win32_AssociatedEnum_(WORKER_THREAD_FLAGS) _In_ ULONG Flags
      );
 +_Win32_SetLastError_
 +_Win32_SupportedOS_WindowsXP_
@@ -43,9 +46,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/threadpoollegacyapiset.h 
  
  WINBASEAPI
  BOOL
-@@ -73,6 +82,8 @@
+@@ -71,8 +80,10 @@
+     _In_opt_ PVOID Parameter,
+     _In_ DWORD DueTime,
      _In_ DWORD Period,
-     _In_ ULONG Flags
+-    _In_ ULONG Flags
++    _Win32_AssociatedEnum_(WORKER_THREAD_FLAGS) _In_ ULONG Flags
      );
 +_Win32_SetLastError_
 +_Win32_SupportedOS_WindowsXP_

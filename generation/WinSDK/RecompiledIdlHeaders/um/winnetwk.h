@@ -189,7 +189,7 @@ WNetAddConnection2A(
     _In_     LPNETRESOURCEA lpNetResource,
     _In_opt_ LPCSTR       lpPassword,
     _In_opt_ LPCSTR       lpUserName,
-    _In_     DWORD          dwFlags
+    _Win32_AssociatedEnum_(NET_CONNECT_FLAGS) _In_     DWORD          dwFlags
     );
 _Check_return_
 DWORD APIENTRY
@@ -197,7 +197,7 @@ WNetAddConnection2W(
     _In_     LPNETRESOURCEW lpNetResource,
     _In_opt_ LPCWSTR       lpPassword,
     _In_opt_ LPCWSTR       lpUserName,
-    _In_     DWORD          dwFlags
+    _Win32_AssociatedEnum_(NET_CONNECT_FLAGS) _In_     DWORD          dwFlags
     );
 #ifdef UNICODE
 #define WNetAddConnection2  WNetAddConnection2W
@@ -212,7 +212,7 @@ WNetAddConnection3A(
     _In_     LPNETRESOURCEA lpNetResource,
     _In_opt_ LPCSTR       lpPassword,
     _In_opt_ LPCSTR       lpUserName,
-    _In_     DWORD          dwFlags
+    _Win32_AssociatedEnum_(NET_CONNECT_FLAGS) _In_     DWORD          dwFlags
     );
 _Check_return_
 DWORD APIENTRY
@@ -221,7 +221,7 @@ WNetAddConnection3W(
     _In_     LPNETRESOURCEW lpNetResource,
     _In_opt_ LPCWSTR       lpPassword,
     _In_opt_ LPCWSTR       lpUserName,
-    _In_     DWORD          dwFlags
+    _Win32_AssociatedEnum_(NET_CONNECT_FLAGS) _In_     DWORD          dwFlags
     );
 #ifdef UNICODE
 #define WNetAddConnection3  WNetAddConnection3W
@@ -237,7 +237,7 @@ WNetAddConnection4A(
     _In_     LPNETRESOURCEA lpNetResource,
     _In_reads_bytes_(cbAuthBuffer) PVOID  pAuthBuffer,
     _In_     DWORD          cbAuthBuffer,
-    _In_     DWORD          dwFlags,
+    _Win32_AssociatedEnum_(NET_CONNECT_FLAGS) _In_     DWORD          dwFlags,
     _In_reads_bytes_(cbUseOptions)     PBYTE          lpUseOptions,
     _In_     DWORD          cbUseOptions
     );
@@ -248,7 +248,7 @@ WNetAddConnection4W(
     _In_     LPNETRESOURCEW lpNetResource,
     _In_reads_bytes_(cbAuthBuffer) PVOID  pAuthBuffer,
     _In_     DWORD          cbAuthBuffer,
-    _In_     DWORD          dwFlags,
+    _Win32_AssociatedEnum_(NET_CONNECT_FLAGS) _In_     DWORD          dwFlags,
     _In_reads_bytes_(cbUseOptions)     PBYTE          lpUseOptions,
     _In_     DWORD          cbUseOptions
     );
@@ -281,14 +281,14 @@ _Check_return_
 DWORD APIENTRY
 WNetCancelConnection2A(
     _In_ LPCSTR lpName,
-    _In_ DWORD    dwFlags,
+    _Win32_AssociatedEnum_(NET_CONNECT_FLAGS) _In_ DWORD    dwFlags,
     _In_ BOOL     fForce
     );
 _Check_return_
 DWORD APIENTRY
 WNetCancelConnection2W(
     _In_ LPCWSTR lpName,
-    _In_ DWORD    dwFlags,
+    _Win32_AssociatedEnum_(NET_CONNECT_FLAGS) _In_ DWORD    dwFlags,
     _In_ BOOL     fForce
     );
 #ifdef UNICODE
@@ -358,7 +358,7 @@ WNetUseConnectionA(
     _In_     LPNETRESOURCEA  lpNetResource,
     _In_opt_ LPCSTR        lpPassword,
     _In_opt_ LPCSTR        lpUserId,
-    _In_     DWORD           dwFlags,
+    _Win32_AssociatedEnum_(NET_CONNECT_FLAGS) _In_     DWORD           dwFlags,
     _Out_writes_opt_(*lpBufferSize) LPSTR lpAccessName,
     _Inout_opt_ LPDWORD lpBufferSize,
     _Out_opt_ LPDWORD   lpResult
@@ -370,7 +370,7 @@ WNetUseConnectionW(
     _In_     LPNETRESOURCEW  lpNetResource,
     _In_opt_ LPCWSTR        lpPassword,
     _In_opt_ LPCWSTR        lpUserId,
-    _In_     DWORD           dwFlags,
+    _Win32_AssociatedEnum_(NET_CONNECT_FLAGS) _In_     DWORD           dwFlags,
     _Out_writes_opt_(*lpBufferSize) LPWSTR lpAccessName,
     _Inout_opt_ LPDWORD lpBufferSize,
     _Out_opt_ LPDWORD   lpResult
@@ -674,7 +674,7 @@ _Check_return_
 DWORD APIENTRY
 WNetGetUniversalNameA(
     _In_ LPCSTR lpLocalPath,
-    _In_ DWORD    dwInfoLevel,
+    _Win32_AssociatedEnum_(UNC_INFO_LEVEL) _In_ DWORD    dwInfoLevel,
     _Win32_ContainsInteriorPointers_ _Out_writes_bytes_(*lpBufferSize) LPVOID lpBuffer,
     _Inout_ LPDWORD lpBufferSize
     );
@@ -682,7 +682,7 @@ _Check_return_
 DWORD APIENTRY
 WNetGetUniversalNameW(
     _In_ LPCWSTR lpLocalPath,
-    _In_ DWORD    dwInfoLevel,
+    _Win32_AssociatedEnum_(UNC_INFO_LEVEL) _In_ DWORD    dwInfoLevel,
     _Win32_ContainsInteriorPointers_ _Out_writes_bytes_(*lpBufferSize) LPVOID lpBuffer,
     _Inout_ LPDWORD lpBufferSize
     );
@@ -951,4 +951,12 @@ _Win32_AnnotateField_(CONNECTDLGSTRUCTA::dwFlags, _Win32_AssociatedEnum_(CONNECT
 _Win32_FlagsEnum_(DISCDLGSTRUCT_FLAGS, unsigned int, DISC_UPDATE_PROFILE, DISC_NO_FORCE);
 _Win32_AnnotateField_(DISCDLGSTRUCTA::dwFlags, _Win32_AssociatedEnum_(DISCDLGSTRUCT_FLAGS));
 _Win32_AnnotateField_(DISCDLGSTRUCTW::dwFlags, _Win32_AssociatedEnum_(DISCDLGSTRUCT_FLAGS));
+#endif
+
+#ifndef _WIN32METADATA_WINNETWK_FRESH_DIRECT_38_GROUPS_
+#define _WIN32METADATA_WINNETWK_FRESH_DIRECT_38_GROUPS_
+_Win32_Enum_(UNC_INFO_LEVEL, unsigned int, UNIVERSAL_NAME_INFO_LEVEL, REMOTE_NAME_INFO_LEVEL);
+_Win32_FlagsEnum_(NET_CONNECT_FLAGS, unsigned int, CONNECT_UPDATE_PROFILE, CONNECT_UPDATE_RECENT, CONNECT_TEMPORARY, CONNECT_INTERACTIVE, CONNECT_PROMPT, CONNECT_NEED_DRIVE, CONNECT_REFCOUNT, CONNECT_REDIRECT, CONNECT_LOCALDRIVE, CONNECT_CURRENT_MEDIA, CONNECT_DEFERRED, CONNECT_RESERVED, CONNECT_COMMANDLINE, CONNECT_CMD_SAVECRED, CONNECT_CRED_RESET, CONNECT_REQUIRE_INTEGRITY, CONNECT_REQUIRE_PRIVACY, CONNECT_WRITE_THROUGH_SEMANTICS, CONNECT_GLOBAL_MAPPING);
+_Win32_Enum_(NETWORK_NAME_FORMAT_FLAGS, unsigned int, WNFMT_MULTILINE, WNFMT_ABBREVIATED);
+_Win32_Enum_(RESOURCE_DISPLAY_TYPE, unsigned int, RESOURCEDISPLAYTYPE_DOMAIN, RESOURCEDISPLAYTYPE_FILE, RESOURCEDISPLAYTYPE_GENERIC, RESOURCEDISPLAYTYPE_GROUP, RESOURCEDISPLAYTYPE_SERVER, RESOURCEDISPLAYTYPE_SHARE, RESOURCEDISPLAYTYPE_TREE);
 #endif

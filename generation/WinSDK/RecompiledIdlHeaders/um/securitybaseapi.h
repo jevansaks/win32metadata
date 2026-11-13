@@ -198,7 +198,7 @@ BOOL
 WINAPI
 AddAccessAllowedAce(
     _Inout_ PACL pAcl,
-    _In_ DWORD dwAceRevision,
+    _Win32_AssociatedEnum_(ACE_REVISION) _In_ DWORD dwAceRevision,
     _In_ DWORD AccessMask,
     _In_ PSID pSid
     );
@@ -210,7 +210,7 @@ BOOL
 WINAPI
 AddAccessAllowedAceEx(
     _Inout_ PACL pAcl,
-    _In_ DWORD dwAceRevision,
+    _Win32_AssociatedEnum_(ACE_REVISION) _In_ DWORD dwAceRevision,
     _In_ DWORD AceFlags,
     _In_ DWORD AccessMask,
     _In_ PSID pSid
@@ -229,7 +229,7 @@ BOOL
 WINAPI
 AddAccessAllowedObjectAce(
     _Inout_ PACL pAcl,
-    _In_ DWORD dwAceRevision,
+    _Win32_AssociatedEnum_(ACE_REVISION) _In_ DWORD dwAceRevision,
     _In_ DWORD AceFlags,
     _In_ DWORD AccessMask,
     _In_opt_ GUID* ObjectTypeGuid,
@@ -244,7 +244,7 @@ BOOL
 WINAPI
 AddAccessDeniedAce(
     _Inout_ PACL pAcl,
-    _In_ DWORD dwAceRevision,
+    _Win32_AssociatedEnum_(ACE_REVISION) _In_ DWORD dwAceRevision,
     _In_ DWORD AccessMask,
     _In_ PSID pSid
     );
@@ -256,7 +256,7 @@ BOOL
 WINAPI
 AddAccessDeniedAceEx(
     _Inout_ PACL pAcl,
-    _In_ DWORD dwAceRevision,
+    _Win32_AssociatedEnum_(ACE_REVISION) _In_ DWORD dwAceRevision,
     _In_ DWORD AceFlags,
     _In_ DWORD AccessMask,
     _In_ PSID pSid
@@ -269,7 +269,7 @@ BOOL
 WINAPI
 AddAccessDeniedObjectAce(
     _Inout_ PACL pAcl,
-    _In_ DWORD dwAceRevision,
+    _Win32_AssociatedEnum_(ACE_REVISION) _In_ DWORD dwAceRevision,
     _In_ DWORD AceFlags,
     _In_ DWORD AccessMask,
     _In_opt_ GUID* ObjectTypeGuid,
@@ -290,7 +290,7 @@ BOOL
 WINAPI
 AddAce(
     _Inout_ PACL pAcl,
-    _In_ DWORD dwAceRevision,
+    _Win32_AssociatedEnum_(ACE_REVISION) _In_ DWORD dwAceRevision,
     _In_ DWORD dwStartingAceIndex,
     _In_reads_bytes_(nAceListLength) LPVOID pAceList,
     _In_ DWORD nAceListLength
@@ -309,7 +309,7 @@ BOOL
 WINAPI
 AddAuditAccessAce(
     _Inout_ PACL pAcl,
-    _In_ DWORD dwAceRevision,
+    _Win32_AssociatedEnum_(ACE_REVISION) _In_ DWORD dwAceRevision,
     _In_ DWORD dwAccessMask,
     _In_ PSID pSid,
     _In_ BOOL bAuditSuccess,
@@ -323,7 +323,7 @@ BOOL
 WINAPI
 AddAuditAccessAceEx(
     _Inout_ PACL pAcl,
-    _In_ DWORD dwAceRevision,
+    _Win32_AssociatedEnum_(ACE_REVISION) _In_ DWORD dwAceRevision,
     _In_ DWORD AceFlags,
     _In_ DWORD dwAccessMask,
     _In_ PSID pSid,
@@ -338,7 +338,7 @@ BOOL
 WINAPI
 AddAuditAccessObjectAce(
     _Inout_ PACL pAcl,
-    _In_ DWORD dwAceRevision,
+    _Win32_AssociatedEnum_(ACE_REVISION) _In_ DWORD dwAceRevision,
     _In_ DWORD AceFlags,
     _In_ DWORD AccessMask,
     _In_opt_ GUID* ObjectTypeGuid,
@@ -363,7 +363,7 @@ BOOL
 WINAPI
 AddMandatoryAce(
     _Inout_ PACL pAcl,
-    _In_ DWORD dwAceRevision,
+    _Win32_AssociatedEnum_(ACE_REVISION) _In_ DWORD dwAceRevision,
     _In_ DWORD AceFlags,
     _In_ DWORD MandatoryPolicy,
     _In_ PSID pLabelSid
@@ -386,7 +386,7 @@ BOOL
 WINAPI
 AddResourceAttributeAce(
     _Inout_ PACL pAcl,
-    _In_ DWORD dwAceRevision,
+    _Win32_AssociatedEnum_(ACE_REVISION) _In_ DWORD dwAceRevision,
     _In_ DWORD AceFlags,
     _In_ DWORD AccessMask,
     _In_ PSID pSid,
@@ -401,7 +401,7 @@ BOOL
 WINAPI
 AddScopedPolicyIDAce(
     _Inout_ PACL pAcl,
-    _In_ DWORD dwAceRevision,
+    _Win32_AssociatedEnum_(ACE_REVISION) _In_ DWORD dwAceRevision,
     _In_ DWORD AceFlags,
     _In_ DWORD AccessMask,
     _In_ PSID pSid
@@ -641,7 +641,7 @@ CreatePrivateObjectSecurityEx(
     _Outptr_ PSECURITY_DESCRIPTOR* NewDescriptor,
     _In_opt_ GUID* ObjectType,
     _In_ BOOL IsContainerObject,
-    _In_ ULONG AutoInheritFlags,
+    _Win32_AssociatedEnum_(SECURITY_AUTO_INHERIT_FLAGS) _In_ ULONG AutoInheritFlags,
     _In_opt_ HANDLE Token,
     _In_ PGENERIC_MAPPING GenericMapping
     );
@@ -658,7 +658,7 @@ CreatePrivateObjectSecurityWithMultipleInheritance(
     _In_reads_opt_(GuidCount) GUID** ObjectTypes,
     _In_ ULONG GuidCount,
     _In_ BOOL IsContainerObject,
-    _In_ ULONG AutoInheritFlags,
+    _Win32_AssociatedEnum_(SECURITY_AUTO_INHERIT_FLAGS) _In_ ULONG AutoInheritFlags,
     _In_opt_ HANDLE Token,
     _In_ PGENERIC_MAPPING GenericMapping
     );
@@ -670,7 +670,7 @@ BOOL
 APIENTRY
 CreateRestrictedToken(
     _In_ HANDLE ExistingTokenHandle,
-    _In_ DWORD Flags,
+    _Win32_AssociatedEnum_(CREATE_RESTRICTED_TOKEN_FLAGS) _In_ DWORD Flags,
     _In_ DWORD DisableSidCount,
     _In_reads_opt_(DisableSidCount) PSID_AND_ATTRIBUTES SidsToDisable,
     _In_ DWORD DeletePrivilegeCount,
@@ -1107,7 +1107,7 @@ WINAPI
 InitializeAcl(
     _Out_writes_bytes_(nAclLength) PACL pAcl,
     _In_ DWORD nAclLength,
-    _In_ DWORD dwAclRevision
+    _Win32_AssociatedEnum_(ACE_REVISION) _In_ DWORD dwAclRevision
     );
 
 WINADVAPI
@@ -1415,7 +1415,7 @@ SetPrivateObjectSecurityEx(
     _In_ SECURITY_INFORMATION SecurityInformation,
     _In_ PSECURITY_DESCRIPTOR ModificationDescriptor,
     _Inout_ PSECURITY_DESCRIPTOR* ObjectsSecurityDescriptor,
-    _In_ ULONG AutoInheritFlags,
+    _Win32_AssociatedEnum_(SECURITY_AUTO_INHERIT_FLAGS) _In_ ULONG AutoInheritFlags,
     _In_ PGENERIC_MAPPING GenericMapping,
     _In_opt_ HANDLE Token
     );

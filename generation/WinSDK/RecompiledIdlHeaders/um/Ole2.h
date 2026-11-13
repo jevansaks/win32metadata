@@ -262,8 +262,8 @@ WINOLEAPI              OleTranslateAccelerator (IN LPOLEINPLACEFRAME lpFrame,
 
 /* Helper APIs */
 
-WINOLEAPI_(HANDLE) OleDuplicateData (IN HANDLE hSrc, IN CLIPFORMAT cfFormat,
-                        IN UINT uiFlags);
+WINOLEAPI_(HANDLE) OleDuplicateData (IN HANDLE hSrc, _Win32_AssociatedEnum_(CLIPBOARD_FORMAT) IN CLIPFORMAT cfFormat,
+                        _Win32_AssociatedEnum_(GLOBAL_ALLOC_FLAGS) IN UINT uiFlags);
 
 
 

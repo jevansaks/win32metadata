@@ -280,7 +280,7 @@ _Win32_SupportedOS_WindowsXP_
 //
 extern BOOL WINAPI CryptSIPGetSignedDataMsg(
                                 IN      SIP_SUBJECTINFO *pSubjectInfo,
-                                OUT     DWORD           *pdwEncodingType,
+                                _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) OUT     DWORD           *pdwEncodingType,
                                 IN      DWORD           dwIndex,
                                 IN OUT  DWORD           *pcbSignedDataMsg,
                                 OUT     BYTE            *pbSignedDataMsg);
@@ -328,7 +328,7 @@ _Win32_SupportedOS_WindowsXP_
 //
 extern BOOL WINAPI CryptSIPPutSignedDataMsg(
                                 IN      SIP_SUBJECTINFO *pSubjectInfo,
-                                IN      DWORD           dwEncodingType,
+                                _Win32_AssociatedEnum_(CERT_QUERY_ENCODING_TYPE) IN      DWORD           dwEncodingType,
                                 OUT     DWORD           *pdwIndex,
                                 IN      DWORD           cbSignedDataMsg,
                                 IN      BYTE            *pbSignedDataMsg);

@@ -38,7 +38,7 @@ WINAPI
 QueueUserWorkItem(
     _In_ LPTHREAD_START_ROUTINE Function,
     _In_opt_ PVOID Context,
-    _In_ ULONG Flags
+    _Win32_AssociatedEnum_(WORKER_THREAD_FLAGS) _In_ ULONG Flags
     );
 _Win32_SetLastError_
 _Win32_SupportedOS_WindowsXP_
@@ -80,7 +80,7 @@ CreateTimerQueueTimer(
     _In_opt_ PVOID Parameter,
     _In_ DWORD DueTime,
     _In_ DWORD Period,
-    _In_ ULONG Flags
+    _Win32_AssociatedEnum_(WORKER_THREAD_FLAGS) _In_ ULONG Flags
     );
 _Win32_SetLastError_
 _Win32_SupportedOS_WindowsXP_

@@ -57,7 +57,7 @@ WINAPI
 VirtualAlloc(
     _In_opt_ LPVOID lpAddress,
     _In_ SIZE_T dwSize,
-    _In_ DWORD flAllocationType,
+    _Win32_AssociatedEnum_(VIRTUAL_ALLOCATION_TYPE) _In_ DWORD flAllocationType,
     _Win32_AssociatedEnum_(PAGE_PROTECTION_FLAGS) _In_ DWORD flProtect
     );
 
@@ -95,7 +95,7 @@ WINAPI
 VirtualFree(
     _Pre_notnull_ _When_(dwFreeType == MEM_DECOMMIT,_Post_invalid_) _When_(dwFreeType == MEM_RELEASE,_Post_ptr_invalid_) LPVOID lpAddress,
     _In_ SIZE_T dwSize,
-    _In_ DWORD dwFreeType
+    _Win32_AssociatedEnum_(VIRTUAL_FREE_TYPE) _In_ DWORD dwFreeType
     );
 
 WINBASEAPI
@@ -118,7 +118,7 @@ VirtualAllocEx(
     _In_ HANDLE hProcess,
     _In_opt_ LPVOID lpAddress,
     _In_ SIZE_T dwSize,
-    _In_ DWORD flAllocationType,
+    _Win32_AssociatedEnum_(VIRTUAL_ALLOCATION_TYPE) _In_ DWORD flAllocationType,
     _Win32_AssociatedEnum_(PAGE_PROTECTION_FLAGS) _In_ DWORD flProtect
     );
 
@@ -269,7 +269,7 @@ VirtualFreeEx(
     _In_ HANDLE hProcess,
     _Pre_notnull_ _When_(dwFreeType == MEM_DECOMMIT,_Post_invalid_) _When_(dwFreeType == MEM_RELEASE,_Post_ptr_invalid_) LPVOID lpAddress,
     _In_ SIZE_T dwSize,
-    _In_ DWORD dwFreeType
+    _Win32_AssociatedEnum_(VIRTUAL_FREE_TYPE) _In_ DWORD dwFreeType
     );
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES) */
@@ -662,7 +662,7 @@ VirtualAllocExNuma(
     _In_ HANDLE hProcess,
     _In_opt_ LPVOID lpAddress,
     _In_ SIZE_T dwSize,
-    _In_ DWORD flAllocationType,
+    _Win32_AssociatedEnum_(VIRTUAL_ALLOCATION_TYPE) _In_ DWORD flAllocationType,
     _In_ DWORD flProtect,
     _In_ DWORD nndPreferred
     );
@@ -804,7 +804,7 @@ WINAPI
 VirtualAllocFromApp(
     _In_opt_ PVOID BaseAddress,
     _In_ SIZE_T Size,
-    _In_ ULONG AllocationType,
+    _Win32_AssociatedEnum_(VIRTUAL_ALLOCATION_TYPE) _In_ ULONG AllocationType,
     _In_ ULONG Protection
     );
 _Win32_SetLastError_
@@ -894,7 +894,7 @@ WINAPI
 VirtualAlloc(
     _In_opt_ LPVOID lpAddress,
     _In_     SIZE_T dwSize,
-    _In_     DWORD flAllocationType,
+    _Win32_AssociatedEnum_(VIRTUAL_ALLOCATION_TYPE) _In_     DWORD flAllocationType,
     _Win32_AssociatedEnum_(PAGE_PROTECTION_FLAGS) _In_     DWORD flProtect
     )
 {
@@ -1086,7 +1086,7 @@ VirtualAlloc2(
     _In_opt_ HANDLE Process,
     _In_opt_ PVOID BaseAddress,
     _In_ SIZE_T Size,
-    _In_ ULONG AllocationType,
+    _Win32_AssociatedEnum_(VIRTUAL_ALLOCATION_TYPE) _In_ ULONG AllocationType,
     _In_ ULONG PageProtection,
     _Inout_updates_opt_(ParameterCount) MEM_EXTENDED_PARAMETER* ExtendedParameters,
     _In_ ULONG ParameterCount
@@ -1104,7 +1104,7 @@ MapViewOfFile3(
     _In_opt_ PVOID BaseAddress,
     _In_ ULONG64 Offset,
     _In_ SIZE_T ViewSize,
-    _In_ ULONG AllocationType,
+    _Win32_AssociatedEnum_(VIRTUAL_ALLOCATION_TYPE) _In_ ULONG AllocationType,
     _In_ ULONG PageProtection,
     _Inout_updates_opt_(ParameterCount) MEM_EXTENDED_PARAMETER* ExtendedParameters,
     _In_ ULONG ParameterCount
@@ -1127,7 +1127,7 @@ VirtualAlloc2FromApp(
     _In_opt_ HANDLE Process,
     _In_opt_ PVOID BaseAddress,
     _In_ SIZE_T Size,
-    _In_ ULONG AllocationType,
+    _Win32_AssociatedEnum_(VIRTUAL_ALLOCATION_TYPE) _In_ ULONG AllocationType,
     _In_ ULONG PageProtection,
     _Inout_updates_opt_(ParameterCount) MEM_EXTENDED_PARAMETER* ExtendedParameters,
     _In_ ULONG ParameterCount
@@ -1145,7 +1145,7 @@ MapViewOfFile3FromApp(
     _In_opt_ PVOID BaseAddress,
     _In_ ULONG64 Offset,
     _In_ SIZE_T ViewSize,
-    _In_ ULONG AllocationType,
+    _Win32_AssociatedEnum_(VIRTUAL_ALLOCATION_TYPE) _In_ ULONG AllocationType,
     _In_ ULONG PageProtection,
     _Inout_updates_opt_(ParameterCount) MEM_EXTENDED_PARAMETER* ExtendedParameters,
     _In_ ULONG ParameterCount

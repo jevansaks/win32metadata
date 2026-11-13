@@ -234,3 +234,21 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ImageHlp.h b/generation/W
  
  PIMAGE_NT_HEADERS
  IMAGEAPI
+@@ -640,7 +688,7 @@
+ ImageDirectoryEntryToDataEx (
+     _In_ PVOID Base,
+     _In_ BOOLEAN MappedAsImage,
+-    _In_ USHORT DirectoryEntry,
++    _Win32_AssociatedEnum_(IMAGE_DIRECTORY_ENTRY) _In_ USHORT DirectoryEntry,
+     _Out_ PULONG Size,
+     _Out_opt_ PIMAGE_SECTION_HEADER *FoundHeader
+     );
+@@ -650,7 +698,7 @@
+ ImageDirectoryEntryToData (
+     _In_ PVOID Base,
+     _In_ BOOLEAN MappedAsImage,
+-    _In_ USHORT DirectoryEntry,
++    _Win32_AssociatedEnum_(IMAGE_DIRECTORY_ENTRY) _In_ USHORT DirectoryEntry,
+     _Out_ PULONG Size
+     );
+ 

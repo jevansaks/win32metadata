@@ -66,7 +66,7 @@ NPAddConnection3 (
     _In_     LPNETRESOURCEW lpNetResource,
     _In_opt_ LPWSTR         lpPassword,
     _In_opt_ LPWSTR         lpUserName,
-    _In_     DWORD          dwFlags
+    _Win32_AssociatedEnum_(NET_CONNECT_FLAGS) _In_     DWORD          dwFlags
     );
 
 typedef DWORD (APIENTRY *PF_NPAddConnection3) (
@@ -162,7 +162,7 @@ _Win32_SupportedOS_WindowsXP_
 DWORD APIENTRY
 NPGetUniversalName (
     _In_ LPCWSTR    lpLocalPath,
-    _In_ DWORD      dwInfoLevel,
+    _Win32_AssociatedEnum_(UNC_INFO_LEVEL) _In_ DWORD      dwInfoLevel,
     _Out_writes_bytes_(*lpBufferSize) LPVOID lpBuffer,
     _Inout_ LPDWORD lpBufferSize
     );
@@ -431,7 +431,7 @@ NPFormatNetworkName(
     _In_    LPWSTR   lpRemoteName,
     _Out_writes_(*lpnLength) LPWSTR lpFormattedName,
     _Inout_ LPDWORD  lpnLength,
-    _In_    DWORD    dwFlags,
+    _Win32_AssociatedEnum_(NETWORK_NAME_FORMAT_FLAGS) _In_    DWORD    dwFlags,
     _In_    DWORD    dwAveCharPerLine
     );
 
@@ -751,3 +751,8 @@ typedef DWORD (APIENTRY *PF_NPFMXGetPermHelp) (
 #pragma endregion
 
 #endif  // _NPAPI_INCLUDED
+
+#ifndef _WIN32METADATA_NPAPI_FRESH_DIRECT_38_GROUPS_
+#define _WIN32METADATA_NPAPI_FRESH_DIRECT_38_GROUPS_
+_Win32_AnnotateField_(NOTIFYADD::dwAddFlags, _Win32_AssociatedEnum_(NET_CONNECT_FLAGS));
+#endif

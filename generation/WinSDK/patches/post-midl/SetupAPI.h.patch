@@ -3336,7 +3336,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -7648,3 +8243,34 @@
+@@ -7648,3 +8243,40 @@
  #pragma endregion
  
  #endif // _INC_SETUPAPI
@@ -3370,4 +3370,10 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
 +_Win32_Enum_(SETUP_FILE_OPERATION, unsigned int, FILEOP_DELETE, FILEOP_COPY);
 +_Win32_Enum_(OEM_SOURCE_MEDIA_TYPE, unsigned int, SPOST_NONE, SPOST_PATH, SPOST_URL);
 +_Win32_Enum_(SETUP_DI_DRIVER_TYPE, unsigned int, SPDIT_CLASSDRIVER, SPDIT_COMPATDRIVER);
++#endif
++
++#ifndef _WIN32METADATA_SETUPAPI_FRESH_DIRECT_38_GROUPS_
++#define _WIN32METADATA_SETUPAPI_FRESH_DIRECT_38_GROUPS_
++_Win32_AnnotateField_(SP_ALTPLATFORM_INFO_V2::Platform, _Win32_AssociatedEnum_(VER_PLATFORM));
++_Win32_AnnotateField_(SP_ALTPLATFORM_INFO_V1::Platform, _Win32_AssociatedEnum_(VER_PLATFORM));
 +#endif

@@ -1549,3 +1549,9 @@ MiniDumpReadDumpStream(
 #endif /* _MINIDUMP_H */
 
 // HEXTRACT: end_dbghelp hide-line end_imagehlp
+
+#ifndef _WIN32METADATA_MINIDUMPAPISET_FRESH_DIRECT_38_GROUPS_
+#define _WIN32METADATA_MINIDUMPAPISET_FRESH_DIRECT_38_GROUPS_
+_Win32_AnnotateField_(MINIDUMP_MEMORY_INFO::State, _Win32_AssociatedEnum_(VIRTUAL_ALLOCATION_TYPE));
+_Win32_AnnotateField_(MINIDUMP_SYSTEM_INFO::PlatformId, _Win32_AssociatedEnum_(VER_PLATFORM));
+#endif

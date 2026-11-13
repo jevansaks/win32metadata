@@ -720,4 +720,8 @@ GetServiceW (
 
 #endif  // _NSPAPI_INCLUDED
 
-
+#ifndef _WIN32METADATA_NSPAPI_FRESH_DIRECT_38_GROUPS_
+#define _WIN32METADATA_NSPAPI_FRESH_DIRECT_38_GROUPS_
+_Win32_AnnotateField_(SERVICE_INFOA::dwDisplayHint, _Win32_AssociatedEnum_(RESOURCE_DISPLAY_TYPE));
+_Win32_AnnotateField_(SERVICE_INFOW::dwDisplayHint, _Win32_AssociatedEnum_(RESOURCE_DISPLAY_TYPE));
+#endif

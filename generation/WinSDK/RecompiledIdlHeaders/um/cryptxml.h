@@ -1667,7 +1667,7 @@ WINAPI
 CryptXmlSign(
     _In_            HCRYPTXML           hSignature,
     _In_opt_        HCRYPTPROV_OR_NCRYPT_KEY_HANDLE hKey,
-                    DWORD               dwKeySpec,
+                    _Win32_AssociatedEnum_(CERT_KEY_SPEC) DWORD               dwKeySpec,
                     _Win32_AssociatedEnum_(CRYPT_XML_FLAGS) DWORD               dwFlags,
                     CRYPT_XML_KEYINFO_SPEC dwKeyInfoSpec,
     _In_opt_        const void          *pvKeyInfoSpec,

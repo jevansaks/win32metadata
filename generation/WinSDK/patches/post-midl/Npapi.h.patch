@@ -23,6 +23,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Npapi.h b/generation/WinS
  
  
  DWORD APIENTRY
+@@ -63,7 +66,7 @@
+     _In_     LPNETRESOURCEW lpNetResource,
+     _In_opt_ LPWSTR         lpPassword,
+     _In_opt_ LPWSTR         lpUserName,
+-    _In_     DWORD          dwFlags
++    _Win32_AssociatedEnum_(NET_CONNECT_FLAGS) _In_     DWORD          dwFlags
+     );
+ 
+ typedef DWORD (APIENTRY *PF_NPAddConnection3) (
 @@ -94,6 +97,7 @@
      _In_reads_bytes_opt_(cbUseOptions) PBYTE lpUseOptions,
      _In_     DWORD          cbUseOptions
@@ -47,7 +56,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Npapi.h b/generation/WinS
  
  DWORD APIENTRY
  NPGetConnection3 (
-@@ -150,6 +156,7 @@
+@@ -150,12 +156,13 @@
      _Out_writes_bytes_(*lpBufferSize) LPVOID lpBuffer,
      _Inout_ LPDWORD lpBufferSize
      );
@@ -55,6 +64,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Npapi.h b/generation/WinS
  
  
  DWORD APIENTRY
+ NPGetUniversalName (
+     _In_ LPCWSTR    lpLocalPath,
+-    _In_ DWORD      dwInfoLevel,
++    _Win32_AssociatedEnum_(UNC_INFO_LEVEL) _In_ DWORD      dwInfoLevel,
+     _Out_writes_bytes_(*lpBufferSize) LPVOID lpBuffer,
+     _Inout_ LPDWORD lpBufferSize
+     );
 @@ -166,6 +173,7 @@
      _Out_writes_bytes_(*lpnBufferSize) LPVOID lpBuffer,
      _Inout_ LPDWORD lpnBufferSize
@@ -135,7 +151,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Npapi.h b/generation/WinS
  
  DWORD APIENTRY NPGetResourceInformation(
      _In_ LPNETRESOURCEW lpNetResource,
-@@ -407,6 +424,7 @@
+@@ -407,13 +424,14 @@
      _Inout_ LPDWORD lpBufferSize,
      _Outptr_ LPWSTR *lplpSystem
      );
@@ -143,6 +159,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Npapi.h b/generation/WinS
  
  DWORD APIENTRY
  NPFormatNetworkName(
+     _In_    LPWSTR   lpRemoteName,
+     _Out_writes_(*lpnLength) LPWSTR lpFormattedName,
+     _Inout_ LPDWORD  lpnLength,
+-    _In_    DWORD    dwFlags,
++    _Win32_AssociatedEnum_(NETWORK_NAME_FORMAT_FLAGS) _In_    DWORD    dwFlags,
+     _In_    DWORD    dwAveCharPerLine
+     );
+ 
 @@ -430,6 +448,7 @@
  
  #pragma region Desktop Family
@@ -239,3 +263,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Npapi.h b/generation/WinS
  
  DWORD APIENTRY
  NPFMXGetPermHelp (
+@@ -721,3 +751,8 @@
+ #pragma endregion
+ 
+ #endif  // _NPAPI_INCLUDED
++
++#ifndef _WIN32METADATA_NPAPI_FRESH_DIRECT_38_GROUPS_
++#define _WIN32METADATA_NPAPI_FRESH_DIRECT_38_GROUPS_
++_Win32_AnnotateField_(NOTIFYADD::dwAddFlags, _Win32_AssociatedEnum_(NET_CONNECT_FLAGS));
++#endif

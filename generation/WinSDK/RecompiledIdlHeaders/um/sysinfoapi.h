@@ -520,7 +520,7 @@ GetProductInfo(
     _In_ DWORD dwOSMinorVersion,
     _In_ DWORD dwSpMajorVersion,
     _In_ DWORD dwSpMinorVersion,
-    _Out_ PDWORD pdwReturnedProductType
+    _Win32_AssociatedEnum_(OS_PRODUCT_TYPE) _Out_ PDWORD pdwReturnedProductType
     );
 
 #endif // (_WIN32_WINNT >= _WIN32_WINNT_VISTA)

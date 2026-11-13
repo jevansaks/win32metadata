@@ -1149,7 +1149,7 @@ WTSSendMessageW(
     IN DWORD TitleLength,
     _In_reads_bytes_(MessageLength) LPWSTR pMessage,
     IN DWORD MessageLength,
-    IN DWORD Style,
+    _Win32_AssociatedEnum_(MESSAGEBOX_STYLE) IN DWORD Style,
     IN DWORD Timeout,
     _Out_ DWORD * pResponse,
     IN BOOL bWait
@@ -1166,7 +1166,7 @@ WTSSendMessageA(
     IN DWORD TitleLength,
     _In_reads_bytes_(MessageLength) LPSTR pMessage,
     IN DWORD MessageLength,
-    IN DWORD Style,
+    _Win32_AssociatedEnum_(MESSAGEBOX_STYLE) IN DWORD Style,
     IN DWORD Timeout,
     _Out_ DWORD * pResponse,
     IN BOOL bWait

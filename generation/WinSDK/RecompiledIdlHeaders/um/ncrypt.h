@@ -845,7 +845,7 @@ NCryptOpenKey(
     _In_    NCRYPT_PROV_HANDLE hProvider,
     _Out_   NCRYPT_KEY_HANDLE *phKey,
     _In_    LPCWSTR pszKeyName,
-    _In_opt_ DWORD  dwLegacyKeySpec,
+    _Win32_AssociatedEnum_(CERT_KEY_SPEC) _In_opt_ DWORD  dwLegacyKeySpec,
     _In_    DWORD   dwFlags);
 
 
@@ -863,7 +863,7 @@ NCryptCreatePersistedKey(
     _Out_   NCRYPT_KEY_HANDLE *phKey,
     _In_    LPCWSTR pszAlgId,
     _In_opt_ LPCWSTR pszKeyName,
-    _In_    DWORD   dwLegacyKeySpec,
+    _Win32_AssociatedEnum_(CERT_KEY_SPEC) _In_    DWORD   dwLegacyKeySpec,
     _In_    DWORD   dwFlags);
 
 
@@ -1558,7 +1558,7 @@ NCryptTranslateHandle(
     _Out_   NCRYPT_KEY_HANDLE *phKey,
     _In_    HCRYPTPROV hLegacyProv,
     _In_opt_ HCRYPTKEY hLegacyKey,
-    _In_opt_ DWORD  dwLegacyKeySpec,
+    _Win32_AssociatedEnum_(CERT_KEY_SPEC) _In_opt_ DWORD  dwLegacyKeySpec,
     _In_    DWORD   dwFlags);
 
 #endif // WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
@@ -1688,4 +1688,9 @@ NCryptVerifyClaim(
 #define _WIN32METADATA_NCRYPT_SECURITY_SYSTEM_91_GROUPS_
 _Win32_Enum_(NCRYPT_ALGORITHM_NAME_CLASS, unsigned int, NCRYPT_ASYMMETRIC_ENCRYPTION_INTERFACE, NCRYPT_SECRET_AGREEMENT_INTERFACE, NCRYPT_SIGNATURE_INTERFACE);
 _Win32_AnnotateField_(NCryptAlgorithmName::dwClass, _Win32_AssociatedEnum_(NCRYPT_ALGORITHM_NAME_CLASS));
+#endif
+
+#ifndef _WIN32METADATA_NCRYPT_FRESH_DIRECT_38_GROUPS_
+#define _WIN32METADATA_NCRYPT_FRESH_DIRECT_38_GROUPS_
+_Win32_AnnotateField_(NCryptKeyName::dwLegacyKeySpec, _Win32_AssociatedEnum_(CERT_KEY_SPEC));
 #endif

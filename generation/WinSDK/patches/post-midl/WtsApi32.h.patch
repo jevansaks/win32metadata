@@ -243,7 +243,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  /*------------------------------------------------*/
  
-@@ -1106,6 +1154,8 @@
+@@ -1101,11 +1149,13 @@
+     IN DWORD TitleLength,
+     _In_reads_bytes_(MessageLength) LPWSTR pMessage,
+     IN DWORD MessageLength,
+-    IN DWORD Style,
++    _Win32_AssociatedEnum_(MESSAGEBOX_STYLE) IN DWORD Style,
+     IN DWORD Timeout,
      _Out_ DWORD * pResponse,
      IN BOOL bWait
      );
@@ -252,6 +258,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  BOOL
  WINAPI
+@@ -1116,7 +1166,7 @@
+     IN DWORD TitleLength,
+     _In_reads_bytes_(MessageLength) LPSTR pMessage,
+     IN DWORD MessageLength,
+-    IN DWORD Style,
++    _Win32_AssociatedEnum_(MESSAGEBOX_STYLE) IN DWORD Style,
+     IN DWORD Timeout,
+     _Out_ DWORD * pResponse,
+     IN BOOL bWait
 @@ -1127,6 +1177,8 @@
  #else
  #define WTSSendMessage WTSSendMessageA

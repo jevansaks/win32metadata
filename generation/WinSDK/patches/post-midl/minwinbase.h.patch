@@ -16,3 +16,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/minwinbase.h b/generation
      union {
          struct {
              HMODULE LocalizedReasonModule;
+@@ -471,3 +472,7 @@
+ 
+ #endif // _MINWINBASE_
+ 
++#ifndef _WIN32METADATA_MINWINBASE_FRESH_DIRECT_38_GROUPS_
++#define _WIN32METADATA_MINWINBASE_FRESH_DIRECT_38_GROUPS_
++_Win32_AnnotateField_(RIP_INFO::dwType, _Win32_AssociatedEnum_(RIP_INFO_TYPE));
++#endif

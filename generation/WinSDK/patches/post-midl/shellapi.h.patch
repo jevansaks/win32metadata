@@ -314,7 +314,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/shellapi.h b/generation/W
  //  gets the string resource for the specified path
  SHSTDAPI SHGetLocalizedName(_In_ PCWSTR pszPath, _Out_writes_(cch) PWSTR pszResModule, UINT cch, _Out_ int *pidsRes);
  #endif // (NTDDI_VERSION >= NTDDI_VISTA)
-@@ -1585,6 +1642,8 @@
+@@ -1585,19 +1642,21 @@
  #else
  #define LWSTDAPIV_(type)  STDAPIV_(type)
  #endif
@@ -323,6 +323,21 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/shellapi.h b/generation/W
  
  LWSTDAPIV_(int) ShellMessageBoxA(
      _In_opt_ HINSTANCE hAppInst,
+     _In_opt_ HWND hWnd,
+     _In_ LPCSTR lpcText,
+     _In_opt_ LPCSTR lpcTitle,
+-    _In_ UINT fuStyle, ...);
++    _Win32_AssociatedEnum_(MESSAGEBOX_STYLE) _In_ UINT fuStyle, ...);
+ LWSTDAPIV_(int) ShellMessageBoxW(
+     _In_opt_ HINSTANCE hAppInst,
+     _In_opt_ HWND hWnd,
+     _In_ LPCWSTR lpcText,
+     _In_opt_ LPCWSTR lpcTitle,
+-    _In_ UINT fuStyle, ...);
++    _Win32_AssociatedEnum_(MESSAGEBOX_STYLE) _In_ UINT fuStyle, ...);
+ #ifdef UNICODE
+ #define ShellMessageBox  ShellMessageBoxW
+ #else
 @@ -1616,8 +1675,10 @@
  
  

@@ -34,7 +34,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/securitybaseapi.h b/gener
  
  WINADVAPI
  BOOL
-@@ -183,6 +190,8 @@
+@@ -183,23 +190,27 @@
  
  #pragma region Application Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
@@ -43,7 +43,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/securitybaseapi.h b/gener
  
  WINADVAPI
  BOOL
-@@ -193,6 +202,8 @@
+ WINAPI
+ AddAccessAllowedAce(
+     _Inout_ PACL pAcl,
+-    _In_ DWORD dwAceRevision,
++    _Win32_AssociatedEnum_(ACE_REVISION) _In_ DWORD dwAceRevision,
      _In_ DWORD AccessMask,
      _In_ PSID pSid
      );
@@ -52,7 +56,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/securitybaseapi.h b/gener
  
  WINADVAPI
  BOOL
-@@ -210,6 +221,8 @@
+ WINAPI
+ AddAccessAllowedAceEx(
+     _Inout_ PACL pAcl,
+-    _In_ DWORD dwAceRevision,
++    _Win32_AssociatedEnum_(ACE_REVISION) _In_ DWORD dwAceRevision,
+     _In_ DWORD AceFlags,
+     _In_ DWORD AccessMask,
+     _In_ PSID pSid
+@@ -210,47 +221,55 @@
  
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
@@ -61,7 +73,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/securitybaseapi.h b/gener
  
  WINADVAPI
  BOOL
-@@ -223,6 +236,8 @@
+ WINAPI
+ AddAccessAllowedObjectAce(
+     _Inout_ PACL pAcl,
+-    _In_ DWORD dwAceRevision,
++    _Win32_AssociatedEnum_(ACE_REVISION) _In_ DWORD dwAceRevision,
+     _In_ DWORD AceFlags,
+     _In_ DWORD AccessMask,
+     _In_opt_ GUID* ObjectTypeGuid,
      _In_opt_ GUID* InheritedObjectTypeGuid,
      _In_ PSID pSid
      );
@@ -70,7 +89,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/securitybaseapi.h b/gener
  
  WINADVAPI
  BOOL
-@@ -233,6 +248,8 @@
+ WINAPI
+ AddAccessDeniedAce(
+     _Inout_ PACL pAcl,
+-    _In_ DWORD dwAceRevision,
++    _Win32_AssociatedEnum_(ACE_REVISION) _In_ DWORD dwAceRevision,
      _In_ DWORD AccessMask,
      _In_ PSID pSid
      );
@@ -79,7 +102,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/securitybaseapi.h b/gener
  
  WINADVAPI
  BOOL
-@@ -244,6 +261,8 @@
+ WINAPI
+ AddAccessDeniedAceEx(
+     _Inout_ PACL pAcl,
+-    _In_ DWORD dwAceRevision,
++    _Win32_AssociatedEnum_(ACE_REVISION) _In_ DWORD dwAceRevision,
+     _In_ DWORD AceFlags,
      _In_ DWORD AccessMask,
      _In_ PSID pSid
      );
@@ -88,7 +116,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/securitybaseapi.h b/gener
  
  WINADVAPI
  BOOL
-@@ -263,6 +282,8 @@
+ WINAPI
+ AddAccessDeniedObjectAce(
+     _Inout_ PACL pAcl,
+-    _In_ DWORD dwAceRevision,
++    _Win32_AssociatedEnum_(ACE_REVISION) _In_ DWORD dwAceRevision,
+     _In_ DWORD AceFlags,
+     _In_ DWORD AccessMask,
+     _In_opt_ GUID* ObjectTypeGuid,
+@@ -263,13 +282,15 @@
  
  #pragma region Application Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
@@ -97,7 +133,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/securitybaseapi.h b/gener
  
  WINADVAPI
  BOOL
-@@ -280,6 +301,8 @@
+ WINAPI
+ AddAce(
+     _Inout_ PACL pAcl,
+-    _In_ DWORD dwAceRevision,
++    _Win32_AssociatedEnum_(ACE_REVISION) _In_ DWORD dwAceRevision,
+     _In_ DWORD dwStartingAceIndex,
+     _In_reads_bytes_(nAceListLength) LPVOID pAceList,
+     _In_ DWORD nAceListLength
+@@ -280,38 +301,44 @@
  
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
@@ -106,7 +150,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/securitybaseapi.h b/gener
  
  WINADVAPI
  BOOL
-@@ -292,6 +315,8 @@
+ WINAPI
+ AddAuditAccessAce(
+     _Inout_ PACL pAcl,
+-    _In_ DWORD dwAceRevision,
++    _Win32_AssociatedEnum_(ACE_REVISION) _In_ DWORD dwAceRevision,
+     _In_ DWORD dwAccessMask,
+     _In_ PSID pSid,
      _In_ BOOL bAuditSuccess,
      _In_ BOOL bAuditFailure
      );
@@ -115,7 +165,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/securitybaseapi.h b/gener
  
  WINADVAPI
  BOOL
-@@ -305,6 +330,8 @@
+ WINAPI
+ AddAuditAccessAceEx(
+     _Inout_ PACL pAcl,
+-    _In_ DWORD dwAceRevision,
++    _Win32_AssociatedEnum_(ACE_REVISION) _In_ DWORD dwAceRevision,
+     _In_ DWORD AceFlags,
+     _In_ DWORD dwAccessMask,
+     _In_ PSID pSid,
      _In_ BOOL bAuditSuccess,
      _In_ BOOL bAuditFailure
      );
@@ -124,7 +181,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/securitybaseapi.h b/gener
  
  WINADVAPI
  BOOL
-@@ -328,6 +355,8 @@
+ WINAPI
+ AddAuditAccessObjectAce(
+     _Inout_ PACL pAcl,
+-    _In_ DWORD dwAceRevision,
++    _Win32_AssociatedEnum_(ACE_REVISION) _In_ DWORD dwAceRevision,
+     _In_ DWORD AceFlags,
+     _In_ DWORD AccessMask,
+     _In_opt_ GUID* ObjectTypeGuid,
+@@ -328,13 +355,15 @@
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
  
  #if (_WIN32_WINNT >= 0x0600)
@@ -133,7 +198,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/securitybaseapi.h b/gener
  
  WINADVAPI
  BOOL
-@@ -349,6 +378,8 @@
+ WINAPI
+ AddMandatoryAce(
+     _Inout_ PACL pAcl,
+-    _In_ DWORD dwAceRevision,
++    _Win32_AssociatedEnum_(ACE_REVISION) _In_ DWORD dwAceRevision,
+     _In_ DWORD AceFlags,
+     _In_ DWORD MandatoryPolicy,
+     _In_ PSID pLabelSid
+@@ -349,26 +378,30 @@
  
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
@@ -142,7 +215,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/securitybaseapi.h b/gener
  
  WINADVAPI
  BOOL
-@@ -362,6 +393,8 @@
+ WINAPI
+ AddResourceAttributeAce(
+     _Inout_ PACL pAcl,
+-    _In_ DWORD dwAceRevision,
++    _Win32_AssociatedEnum_(ACE_REVISION) _In_ DWORD dwAceRevision,
+     _In_ DWORD AceFlags,
+     _In_ DWORD AccessMask,
+     _In_ PSID pSid,
      _In_ PCLAIM_SECURITY_ATTRIBUTES_INFORMATION pAttributeInfo,
      _Out_ PDWORD pReturnLength
      );
@@ -151,6 +231,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/securitybaseapi.h b/gener
  
  WINADVAPI
  BOOL
+ WINAPI
+ AddScopedPolicyIDAce(
+     _Inout_ PACL pAcl,
+-    _In_ DWORD dwAceRevision,
++    _Win32_AssociatedEnum_(ACE_REVISION) _In_ DWORD dwAceRevision,
+     _In_ DWORD AceFlags,
+     _In_ DWORD AccessMask,
+     _In_ PSID pSid
 @@ -381,6 +414,8 @@
  
  #pragma region Application Family or OneCore Family
@@ -266,7 +354,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/securitybaseapi.h b/gener
  
  WINADVAPI
  BOOL
-@@ -588,6 +645,8 @@
+@@ -584,10 +641,12 @@
+     _Outptr_ PSECURITY_DESCRIPTOR* NewDescriptor,
+     _In_opt_ GUID* ObjectType,
+     _In_ BOOL IsContainerObject,
+-    _In_ ULONG AutoInheritFlags,
++    _Win32_AssociatedEnum_(SECURITY_AUTO_INHERIT_FLAGS) _In_ ULONG AutoInheritFlags,
      _In_opt_ HANDLE Token,
      _In_ PGENERIC_MAPPING GenericMapping
      );
@@ -275,7 +368,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/securitybaseapi.h b/gener
  
  WINADVAPI
  BOOL
-@@ -603,6 +662,8 @@
+@@ -599,17 +658,19 @@
+     _In_reads_opt_(GuidCount) GUID** ObjectTypes,
+     _In_ ULONG GuidCount,
+     _In_ BOOL IsContainerObject,
+-    _In_ ULONG AutoInheritFlags,
++    _Win32_AssociatedEnum_(SECURITY_AUTO_INHERIT_FLAGS) _In_ ULONG AutoInheritFlags,
      _In_opt_ HANDLE Token,
      _In_ PGENERIC_MAPPING GenericMapping
      );
@@ -284,6 +382,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/securitybaseapi.h b/gener
  
  WINADVAPI
  BOOL
+ APIENTRY
+ CreateRestrictedToken(
+     _In_ HANDLE ExistingTokenHandle,
+-    _In_ DWORD Flags,
++    _Win32_AssociatedEnum_(CREATE_RESTRICTED_TOKEN_FLAGS) _In_ DWORD Flags,
+     _In_ DWORD DisableSidCount,
+     _In_reads_opt_(DisableSidCount) PSID_AND_ATTRIBUTES SidsToDisable,
+     _In_ DWORD DeletePrivilegeCount,
 @@ -626,6 +687,8 @@
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
  
@@ -566,6 +672,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/securitybaseapi.h b/gener
  
  WINADVAPI
  BOOL
+@@ -988,7 +1107,7 @@
+ InitializeAcl(
+     _Out_writes_bytes_(nAclLength) PACL pAcl,
+     _In_ DWORD nAclLength,
+-    _In_ DWORD dwAclRevision
++    _Win32_AssociatedEnum_(ACE_REVISION) _In_ DWORD dwAclRevision
+     );
+ 
+ WINADVAPI
 @@ -998,6 +1117,7 @@
      _Out_ PSECURITY_DESCRIPTOR pSecurityDescriptor,
      _In_ DWORD dwRevision
@@ -703,7 +818,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/securitybaseapi.h b/gener
  
  WINADVAPI
  BOOL
-@@ -1277,6 +1421,7 @@
+@@ -1271,12 +1415,13 @@
+     _In_ SECURITY_INFORMATION SecurityInformation,
+     _In_ PSECURITY_DESCRIPTOR ModificationDescriptor,
+     _Inout_ PSECURITY_DESCRIPTOR* ObjectsSecurityDescriptor,
+-    _In_ ULONG AutoInheritFlags,
++    _Win32_AssociatedEnum_(SECURITY_AUTO_INHERIT_FLAGS) _In_ ULONG AutoInheritFlags,
+     _In_ PGENERIC_MAPPING GenericMapping,
+     _In_opt_ HANDLE Token
      );
  
  #if (_WIN32_WINNT >= 0x0600)

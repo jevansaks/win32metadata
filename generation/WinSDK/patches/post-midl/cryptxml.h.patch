@@ -89,11 +89,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/cryptxml.h b/generation/W
  
  /****************************************************************************
   CryptXmlSign
-@@ -1659,7 +1668,7 @@
+@@ -1658,8 +1667,8 @@
+ CryptXmlSign(
      _In_            HCRYPTXML           hSignature,
      _In_opt_        HCRYPTPROV_OR_NCRYPT_KEY_HANDLE hKey,
-                     DWORD               dwKeySpec,
+-                    DWORD               dwKeySpec,
 -                    DWORD               dwFlags,
++                    _Win32_AssociatedEnum_(CERT_KEY_SPEC) DWORD               dwKeySpec,
 +                    _Win32_AssociatedEnum_(CRYPT_XML_FLAGS) DWORD               dwFlags,
                      CRYPT_XML_KEYINFO_SPEC dwKeyInfoSpec,
      _In_opt_        const void          *pvKeyInfoSpec,

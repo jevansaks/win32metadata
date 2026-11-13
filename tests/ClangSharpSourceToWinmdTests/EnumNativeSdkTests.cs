@@ -5,7 +5,6 @@ using System.Linq;
 using System.Reflection;
 using System.Reflection.Metadata;
 using System.Reflection.PortableExecutable;
-using System.Text.Json;
 using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -248,13 +247,6 @@ typedef const unsigned short* PCWSTR;
             string constants = ServiceConstants();
             string root = LastErrorHeaderTests.RepositoryRoot();
             string[] names = { "SERVICE_START_TYPE", "SERVICE_ERROR" };
-            using var json = JsonDocument.Parse(File.ReadAllText(Path.Combine(root, "generation", "WinSDK", "enums.json")));
-            foreach (string name in names)
-            {
-                var legacy = json.RootElement.GetProperty("items").EnumerateArray()
-                    .Single(item => item.TryGetProperty("name", out var candidate) && candidate.GetString() == name);
-                Assert.AreEqual(name == "SERVICE_START_TYPE" ? 5 : 4, legacy.GetProperty("members").GetArrayLength());
-            }
             string sidecar = File.ReadAllText(Path.Combine(root, "generation", "WinSDK", "emitter.settings.rsp"));
             var remaps = names.ToDictionary(name => name, name =>
                 Slice(sidecar, @"(?m)^" + name + @"=(?<value>[^\r\n]+)").Split('=', 2)[1]);

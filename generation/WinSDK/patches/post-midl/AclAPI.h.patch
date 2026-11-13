@@ -7,6 +7,24 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/AclAPI.h b/generation/Win
  /*++ BUILD Version: 0001    // Increment this if a change has global effects
  
  Copyright (c) Microsoft Corporation. All rights reserved.
+@@ -347,7 +348,7 @@
+     _In_opt_ PSID                 pGroup,
+     _In_opt_ PACL                 pDacl,
+     _In_opt_ PACL                 pSacl,
+-    _In_     DWORD                dwAction,
++    _Win32_AssociatedEnum_(TREE_SEC_INFO) _In_     DWORD                dwAction,
+     _In_opt_ FN_PROGRESS          fnProgress,
+     _In_     PROG_INVOKE_SETTING  ProgressInvokeSetting,
+     _In_opt_ PVOID                Args
+@@ -363,7 +364,7 @@
+     _In_opt_ PSID                 pGroup,
+     _In_opt_ PACL                 pDacl,
+     _In_opt_ PACL                 pSacl,
+-    _In_     DWORD                dwAction,
++    _Win32_AssociatedEnum_(TREE_SEC_INFO) _In_     DWORD                dwAction,
+     _In_opt_ FN_PROGRESS          fnProgress,
+     _In_     PROG_INVOKE_SETTING  ProgressInvokeSetting,
+     _In_opt_ PVOID                Args
 @@ -444,6 +445,7 @@
  #else
  #define LookupSecurityDescriptorParts  LookupSecurityDescriptorPartsA

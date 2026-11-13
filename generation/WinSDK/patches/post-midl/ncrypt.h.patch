@@ -74,6 +74,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h b/generation/Win
  
  _Check_return_
  SECURITY_STATUS
+@@ -835,7 +845,7 @@
+     _In_    NCRYPT_PROV_HANDLE hProvider,
+     _Out_   NCRYPT_KEY_HANDLE *phKey,
+     _In_    LPCWSTR pszKeyName,
+-    _In_opt_ DWORD  dwLegacyKeySpec,
++    _Win32_AssociatedEnum_(CERT_KEY_SPEC) _In_opt_ DWORD  dwLegacyKeySpec,
+     _In_    DWORD   dwFlags);
+ 
+ 
 @@ -843,6 +853,7 @@
  // NCryptCreatePersistedKey flags
  #define NCRYPT_MACHINE_KEY_FLAG         0x00000020
@@ -82,6 +91,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h b/generation/Win
  
  _Check_return_
  SECURITY_STATUS
+@@ -852,7 +863,7 @@
+     _Out_   NCRYPT_KEY_HANDLE *phKey,
+     _In_    LPCWSTR pszAlgId,
+     _In_opt_ LPCWSTR pszKeyName,
+-    _In_    DWORD   dwLegacyKeySpec,
++    _Win32_AssociatedEnum_(CERT_KEY_SPEC) _In_    DWORD   dwLegacyKeySpec,
+     _In_    DWORD   dwFlags);
+ 
+ 
 @@ -1268,6 +1279,7 @@
  
  // NCryptGetProperty flags
@@ -135,6 +153,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h b/generation/Win
  
  _Check_return_
  SECURITY_STATUS
+@@ -1540,7 +1558,7 @@
+     _Out_   NCRYPT_KEY_HANDLE *phKey,
+     _In_    HCRYPTPROV hLegacyProv,
+     _In_opt_ HCRYPTKEY hLegacyKey,
+-    _In_opt_ DWORD  dwLegacyKeySpec,
++    _Win32_AssociatedEnum_(CERT_KEY_SPEC) _In_opt_ DWORD  dwLegacyKeySpec,
+     _In_    DWORD   dwFlags);
+ 
+ #endif // WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 @@ -1554,6 +1572,7 @@
  
  #pragma region Desktop Family or OneCore Family
@@ -175,7 +202,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h b/generation/Win
  
  _Check_return_
  SECURITY_STATUS
-@@ -1661,3 +1684,8 @@
+@@ -1661,3 +1684,13 @@
  
  #endif // __NCRYPT_H__
  
@@ -183,4 +210,9 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h b/generation/Win
 +#define _WIN32METADATA_NCRYPT_SECURITY_SYSTEM_91_GROUPS_
 +_Win32_Enum_(NCRYPT_ALGORITHM_NAME_CLASS, unsigned int, NCRYPT_ASYMMETRIC_ENCRYPTION_INTERFACE, NCRYPT_SECRET_AGREEMENT_INTERFACE, NCRYPT_SIGNATURE_INTERFACE);
 +_Win32_AnnotateField_(NCryptAlgorithmName::dwClass, _Win32_AssociatedEnum_(NCRYPT_ALGORITHM_NAME_CLASS));
++#endif
++
++#ifndef _WIN32METADATA_NCRYPT_FRESH_DIRECT_38_GROUPS_
++#define _WIN32METADATA_NCRYPT_FRESH_DIRECT_38_GROUPS_
++_Win32_AnnotateField_(NCryptKeyName::dwLegacyKeySpec, _Win32_AssociatedEnum_(CERT_KEY_SPEC));
 +#endif

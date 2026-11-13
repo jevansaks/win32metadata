@@ -348,7 +348,7 @@ TreeSetNamedSecurityInfoA(
     _In_opt_ PSID                 pGroup,
     _In_opt_ PACL                 pDacl,
     _In_opt_ PACL                 pSacl,
-    _In_     DWORD                dwAction,
+    _Win32_AssociatedEnum_(TREE_SEC_INFO) _In_     DWORD                dwAction,
     _In_opt_ FN_PROGRESS          fnProgress,
     _In_     PROG_INVOKE_SETTING  ProgressInvokeSetting,
     _In_opt_ PVOID                Args
@@ -364,7 +364,7 @@ TreeSetNamedSecurityInfoW(
     _In_opt_ PSID                 pGroup,
     _In_opt_ PACL                 pDacl,
     _In_opt_ PACL                 pSacl,
-    _In_     DWORD                dwAction,
+    _Win32_AssociatedEnum_(TREE_SEC_INFO) _In_     DWORD                dwAction,
     _In_opt_ FN_PROGRESS          fnProgress,
     _In_     PROG_INVOKE_SETTING  ProgressInvokeSetting,
     _In_opt_ PVOID                Args

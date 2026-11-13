@@ -1096,7 +1096,7 @@ DECLSPEC_ALLOCATOR
 HGLOBAL
 WINAPI
 GlobalAlloc(
-    _In_ UINT uFlags,
+    _Win32_AssociatedEnum_(GLOBAL_ALLOC_FLAGS) _In_ UINT uFlags,
     _In_ SIZE_T dwBytes
     );
 
@@ -6172,7 +6172,7 @@ DWORD
     _In_     LARGE_INTEGER StreamSize,
     _In_     LARGE_INTEGER StreamBytesTransferred,
     _In_     DWORD dwStreamNumber,
-    _In_     DWORD dwCallbackReason,
+    _Win32_AssociatedEnum_(LPPROGRESS_ROUTINE_CALLBACK_REASON) _In_     DWORD dwCallbackReason,
     _In_     HANDLE hSourceFile,
     _In_     HANDLE hDestinationFile,
     _In_opt_ LPVOID lpData
@@ -7647,7 +7647,7 @@ BOOL
 WINAPI
 AddConditionalAce (
     _Inout_ PACL pAcl,
-    _In_    DWORD dwAceRevision,
+    _Win32_AssociatedEnum_(ACE_REVISION) _In_    DWORD dwAceRevision,
     _In_    DWORD AceFlags,
     _In_    UCHAR AceType,
     _In_    DWORD AccessMask,
@@ -8503,7 +8503,7 @@ RegisterWaitForSingleObject(
     _In_        WAITORTIMERCALLBACK Callback,
     _In_opt_    PVOID Context,
     _In_        ULONG dwMilliseconds,
-    _In_        ULONG dwFlags
+    _Win32_AssociatedEnum_(WORKER_THREAD_FLAGS) _In_        ULONG dwFlags
     );
 
 WINBASEAPI
@@ -10909,4 +10909,12 @@ _Win32_AnnotateField_(COPYFILE2_EXTENDED_PARAMETERS::dwCopyFlags, _Win32_Associa
 _Win32_AnnotateField_(COPYFILE2_EXTENDED_PARAMETERS_V2::dwCopyFlags, _Win32_AssociatedEnum_(COPYFILE_FLAGS));
 _Win32_FlagsEnum_(COPYFILE2_V2_FLAGS, unsigned int, COPY_FILE2_V2_DONT_COPY_JUNCTIONS, COPY_FILE2_V2_DISABLE_BLOCK_CLONING, COPY_FILE2_V2_VALID_FLAGS);
 _Win32_AnnotateField_(COPYFILE2_EXTENDED_PARAMETERS_V2::dwCopyFlagsV2, _Win32_AssociatedEnum_(COPYFILE2_V2_FLAGS));
+#endif
+
+#ifndef _WIN32METADATA_WINBASE_FRESH_DIRECT_38_GROUPS_
+#define _WIN32METADATA_WINBASE_FRESH_DIRECT_38_GROUPS_
+_Win32_FlagsEnum_(HANDLE_FLAGS, unsigned int, HANDLE_FLAG_INHERIT, HANDLE_FLAG_PROTECT_FROM_CLOSE);
+_Win32_Enum_(LPPROGRESS_ROUTINE_CALLBACK_REASON, unsigned int, CALLBACK_CHUNK_FINISHED, CALLBACK_STREAM_SWITCH);
+_Win32_FlagsEnum_(GLOBAL_ALLOC_FLAGS, unsigned int, GHND, GMEM_FIXED, GMEM_MOVEABLE, GMEM_ZEROINIT, GPTR);
+_Win32_Enum_(PROCESS_PROTECTION_LEVEL, unsigned int, PROTECTION_LEVEL_WINTCB_LIGHT, PROTECTION_LEVEL_WINDOWS, PROTECTION_LEVEL_WINDOWS_LIGHT, PROTECTION_LEVEL_ANTIMALWARE_LIGHT, PROTECTION_LEVEL_LSA_LIGHT, PROTECTION_LEVEL_WINTCB, PROTECTION_LEVEL_CODEGEN_LIGHT, PROTECTION_LEVEL_AUTHENTICODE, PROTECTION_LEVEL_PPL_APP, PROTECTION_LEVEL_NONE);
 #endif

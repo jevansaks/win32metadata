@@ -156,6 +156,17 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Ole2.h b/generation/WinSD
  
  WINOLEAPI              OleTranslateAccelerator (IN LPOLEINPLACEFRAME lpFrame,
                              IN LPOLEINPLACEFRAMEINFO lpFrameInfo, IN LPMSG lpmsg);
+@@ -235,8 +262,8 @@
+ 
+ /* Helper APIs */
+ 
+-WINOLEAPI_(HANDLE) OleDuplicateData (IN HANDLE hSrc, IN CLIPFORMAT cfFormat,
+-                        IN UINT uiFlags);
++WINOLEAPI_(HANDLE) OleDuplicateData (IN HANDLE hSrc, _Win32_AssociatedEnum_(CLIPBOARD_FORMAT) IN CLIPFORMAT cfFormat,
++                        _Win32_AssociatedEnum_(GLOBAL_ALLOC_FLAGS) IN UINT uiFlags);
+ 
+ 
+ 
 @@ -245,27 +272,37 @@
  
  _Check_return_ WINOLEAPI          OleRun(IN LPUNKNOWN pUnknown);

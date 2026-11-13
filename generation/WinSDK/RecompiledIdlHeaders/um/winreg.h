@@ -1598,7 +1598,7 @@ RegSaveKeyExA(
     _In_ HKEY hKey,
     _In_ LPCSTR lpFile,
     _In_opt_ CONST LPSECURITY_ATTRIBUTES lpSecurityAttributes,
-    _In_ DWORD Flags
+    _Win32_AssociatedEnum_(REG_SAVE_FORMAT) _In_ DWORD Flags
     );
 
 WINADVAPI
@@ -1608,7 +1608,7 @@ RegSaveKeyExW(
     _In_ HKEY hKey,
     _In_ LPCWSTR lpFile,
     _In_opt_ CONST LPSECURITY_ATTRIBUTES lpSecurityAttributes,
-    _In_ DWORD Flags
+    _Win32_AssociatedEnum_(REG_SAVE_FORMAT) _In_ DWORD Flags
     );
 
 #ifdef UNICODE

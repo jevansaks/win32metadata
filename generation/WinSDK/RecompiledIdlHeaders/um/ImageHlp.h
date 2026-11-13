@@ -688,7 +688,7 @@ IMAGEAPI
 ImageDirectoryEntryToDataEx (
     _In_ PVOID Base,
     _In_ BOOLEAN MappedAsImage,
-    _In_ USHORT DirectoryEntry,
+    _Win32_AssociatedEnum_(IMAGE_DIRECTORY_ENTRY) _In_ USHORT DirectoryEntry,
     _Out_ PULONG Size,
     _Out_opt_ PIMAGE_SECTION_HEADER *FoundHeader
     );
@@ -698,7 +698,7 @@ IMAGEAPI
 ImageDirectoryEntryToData (
     _In_ PVOID Base,
     _In_ BOOLEAN MappedAsImage,
-    _In_ USHORT DirectoryEntry,
+    _Win32_AssociatedEnum_(IMAGE_DIRECTORY_ENTRY) _In_ USHORT DirectoryEntry,
     _Out_ PULONG Size
     );
 

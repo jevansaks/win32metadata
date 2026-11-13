@@ -7,11 +7,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/memoryapi.h b/generation/
  /********************************************************************************
  *                                                                               *
  * memoryapi.h -- ApiSet Contract for api-ms-win-core-memory-l1-1-0              *
-@@ -57,7 +58,7 @@
+@@ -56,8 +57,8 @@
+ VirtualAlloc(
      _In_opt_ LPVOID lpAddress,
      _In_ SIZE_T dwSize,
-     _In_ DWORD flAllocationType,
+-    _In_ DWORD flAllocationType,
 -    _In_ DWORD flProtect
++    _Win32_AssociatedEnum_(VIRTUAL_ALLOCATION_TYPE) _In_ DWORD flAllocationType,
 +    _Win32_AssociatedEnum_(PAGE_PROTECTION_FLAGS) _In_ DWORD flProtect
      );
  
@@ -36,6 +38,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/memoryapi.h b/generation/
  
  _When_(((dwFreeType&(MEM_RELEASE|MEM_DECOMMIT)))==(MEM_RELEASE|MEM_DECOMMIT),
      __drv_reportError("Passing both MEM_RELEASE and MEM_DECOMMIT to VirtualFree is not allowed. This results in the failure of this call"))
+@@ -92,7 +95,7 @@
+ VirtualFree(
+     _Pre_notnull_ _When_(dwFreeType == MEM_DECOMMIT,_Post_invalid_) _When_(dwFreeType == MEM_RELEASE,_Post_ptr_invalid_) LPVOID lpAddress,
+     _In_ SIZE_T dwSize,
+-    _In_ DWORD dwFreeType
++    _Win32_AssociatedEnum_(VIRTUAL_FREE_TYPE) _In_ DWORD dwFreeType
+     );
+ 
+ WINBASEAPI
 @@ -103,6 +106,8 @@
      _Out_writes_bytes_to_(dwLength,return) PMEMORY_BASIC_INFORMATION lpBuffer,
      _In_ SIZE_T dwLength
@@ -45,11 +56,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/memoryapi.h b/generation/
  
  WINBASEAPI
  _Ret_maybenull_
-@@ -114,7 +119,7 @@
+@@ -113,8 +118,8 @@
+     _In_ HANDLE hProcess,
      _In_opt_ LPVOID lpAddress,
      _In_ SIZE_T dwSize,
-     _In_ DWORD flAllocationType,
+-    _In_ DWORD flAllocationType,
 -    _In_ DWORD flProtect
++    _Win32_AssociatedEnum_(VIRTUAL_ALLOCATION_TYPE) _In_ DWORD flAllocationType,
 +    _Win32_AssociatedEnum_(PAGE_PROTECTION_FLAGS) _In_ DWORD flProtect
      );
  
@@ -152,6 +165,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/memoryapi.h b/generation/
      _In_ DWORD dwFileOffsetHigh,
      _In_ DWORD dwFileOffsetLow,
      _In_ SIZE_T dwNumberOfBytesToMap,
+@@ -250,7 +269,7 @@
+     _In_ HANDLE hProcess,
+     _Pre_notnull_ _When_(dwFreeType == MEM_DECOMMIT,_Post_invalid_) _When_(dwFreeType == MEM_RELEASE,_Post_ptr_invalid_) LPVOID lpAddress,
+     _In_ SIZE_T dwSize,
+-    _In_ DWORD dwFreeType
++    _Win32_AssociatedEnum_(VIRTUAL_FREE_TYPE) _In_ DWORD dwFreeType
+     );
+ 
+ #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES) */
 @@ -258,6 +277,8 @@
  
  #pragma region Application Family or OneCore Family
@@ -401,6 +423,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/memoryapi.h b/generation/
  
  WINBASEAPI
  _Post_writable_byte_size_(dwSize)
+@@ -597,7 +662,7 @@
+     _In_ HANDLE hProcess,
+     _In_opt_ LPVOID lpAddress,
+     _In_ SIZE_T dwSize,
+-    _In_ DWORD flAllocationType,
++    _Win32_AssociatedEnum_(VIRTUAL_ALLOCATION_TYPE) _In_ DWORD flAllocationType,
+     _In_ DWORD flProtect,
+     _In_ DWORD nndPreferred
+     );
 @@ -607,6 +672,8 @@
  #if (_WIN32_WINNT >= _WIN32_WINNT_WIN8)
  
@@ -469,8 +500,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/memoryapi.h b/generation/
  
  WINBASEAPI
  _Ret_maybenull_
-@@ -730,6 +807,8 @@
-     _In_ ULONG AllocationType,
+@@ -727,9 +804,11 @@
+ VirtualAllocFromApp(
+     _In_opt_ PVOID BaseAddress,
+     _In_ SIZE_T Size,
+-    _In_ ULONG AllocationType,
++    _Win32_AssociatedEnum_(VIRTUAL_ALLOCATION_TYPE) _In_ ULONG AllocationType,
      _In_ ULONG Protection
      );
 +_Win32_SetLastError_
@@ -505,11 +540,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/memoryapi.h b/generation/
      _In_ DWORD dwFileOffsetHigh,
      _In_ DWORD dwFileOffsetLow,
      _In_ SIZE_T dwNumberOfBytesToMap
-@@ -814,7 +895,7 @@
+@@ -813,8 +894,8 @@
+ VirtualAlloc(
      _In_opt_ LPVOID lpAddress,
      _In_     SIZE_T dwSize,
-     _In_     DWORD flAllocationType,
+-    _In_     DWORD flAllocationType,
 -    _In_     DWORD flProtect
++    _Win32_AssociatedEnum_(VIRTUAL_ALLOCATION_TYPE) _In_     DWORD flAllocationType,
 +    _Win32_AssociatedEnum_(PAGE_PROTECTION_FLAGS) _In_     DWORD flProtect
      )
  {
@@ -561,7 +598,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/memoryapi.h b/generation/
  
  WINBASEAPI
  _Ret_maybenull_
-@@ -1002,6 +1091,8 @@
+@@ -997,11 +1086,13 @@
+     _In_opt_ HANDLE Process,
+     _In_opt_ PVOID BaseAddress,
+     _In_ SIZE_T Size,
+-    _In_ ULONG AllocationType,
++    _Win32_AssociatedEnum_(VIRTUAL_ALLOCATION_TYPE) _In_ ULONG AllocationType,
+     _In_ ULONG PageProtection,
      _Inout_updates_opt_(ParameterCount) MEM_EXTENDED_PARAMETER* ExtendedParameters,
      _In_ ULONG ParameterCount
      );
@@ -570,6 +613,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/memoryapi.h b/generation/
  
  WINBASEAPI
  _Ret_maybenull_  __out_data_source(FILE)
+@@ -1013,7 +1104,7 @@
+     _In_opt_ PVOID BaseAddress,
+     _In_ ULONG64 Offset,
+     _In_ SIZE_T ViewSize,
+-    _In_ ULONG AllocationType,
++    _Win32_AssociatedEnum_(VIRTUAL_ALLOCATION_TYPE) _In_ ULONG AllocationType,
+     _In_ ULONG PageProtection,
+     _Inout_updates_opt_(ParameterCount) MEM_EXTENDED_PARAMETER* ExtendedParameters,
+     _In_ ULONG ParameterCount
 @@ -1024,6 +1115,8 @@
  
  #pragma region Application Family or OneCore Family
@@ -579,7 +631,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/memoryapi.h b/generation/
  
  WINBASEAPI
  _Ret_maybenull_
-@@ -1039,6 +1132,8 @@
+@@ -1034,11 +1127,13 @@
+     _In_opt_ HANDLE Process,
+     _In_opt_ PVOID BaseAddress,
+     _In_ SIZE_T Size,
+-    _In_ ULONG AllocationType,
++    _Win32_AssociatedEnum_(VIRTUAL_ALLOCATION_TYPE) _In_ ULONG AllocationType,
+     _In_ ULONG PageProtection,
      _Inout_updates_opt_(ParameterCount) MEM_EXTENDED_PARAMETER* ExtendedParameters,
      _In_ ULONG ParameterCount
      );
@@ -588,6 +646,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/memoryapi.h b/generation/
  
  WINBASEAPI
  _Ret_maybenull_  __out_data_source(FILE)
+@@ -1050,7 +1145,7 @@
+     _In_opt_ PVOID BaseAddress,
+     _In_ ULONG64 Offset,
+     _In_ SIZE_T ViewSize,
+-    _In_ ULONG AllocationType,
++    _Win32_AssociatedEnum_(VIRTUAL_ALLOCATION_TYPE) _In_ ULONG AllocationType,
+     _In_ ULONG PageProtection,
+     _Inout_updates_opt_(ParameterCount) MEM_EXTENDED_PARAMETER* ExtendedParameters,
+     _In_ ULONG ParameterCount
 @@ -1065,6 +1160,7 @@
  
  #pragma region Desktop Family or OneCore Family

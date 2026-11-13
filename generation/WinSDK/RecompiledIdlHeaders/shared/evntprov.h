@@ -514,7 +514,7 @@ typedef
 VOID
 (NTAPI *PENABLECALLBACK) (
     _In_ LPCGUID SourceId,
-    _In_ ULONG IsEnabled,
+    _Win32_AssociatedEnum_(ENABLECALLBACK_ENABLED_STATE) _In_ ULONG IsEnabled,
     _In_ UCHAR Level,
     _In_ ULONGLONG MatchAnyKeyword,
     _In_ ULONGLONG MatchAllKeyword,
@@ -1044,5 +1044,9 @@ EventDescOrKeyword(
 #pragma warning(pop)
 #endif
 
+#endif
+
+#if defined(WIN32METADATA) && defined(__clang__)
+#include <evntrace.h>
 #endif
 
