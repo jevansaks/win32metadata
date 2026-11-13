@@ -26,15 +26,24 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h b/generation/Win
  
  _Check_return_
  SECURITY_STATUS
-@@ -742,6 +746,7 @@
-     DWORD   dwAlgOperations;    // the types of operations supported by this algorithm
+@@ -739,9 +743,10 @@
+ {
+     LPWSTR  pszName;
+     DWORD   dwClass;            // the CNG interface that supports this algorithm
+-    DWORD   dwAlgOperations;    // the types of operations supported by this algorithm
++    _Win32_AssociatedEnum_(NCRYPT_OPERATION) DWORD   dwAlgOperations;    // the types of operations supported by this algorithm
      DWORD   dwFlags;
  } NCryptAlgorithmName;
 +_Win32_SupportedOS_WindowsVista_
  // certenrolls_end
  
  _Check_return_
-@@ -753,6 +758,7 @@
+@@ -749,10 +754,11 @@
+ WINAPI
+ NCryptEnumAlgorithms(
+     _In_    NCRYPT_PROV_HANDLE hProvider,
+-    _In_    DWORD   dwAlgOperations,
++    _Win32_AssociatedEnum_(NCRYPT_OPERATION) _In_    DWORD   dwAlgOperations,
      _Out_   DWORD * pdwAlgCount,
      _Outptr_result_buffer_(*pdwAlgCount) NCryptAlgorithmName **ppAlgList,
      _In_    DWORD   dwFlags);
@@ -202,7 +211,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h b/generation/Win
  
  _Check_return_
  SECURITY_STATUS
-@@ -1661,3 +1684,13 @@
+@@ -1661,3 +1684,18 @@
  
  #endif // __NCRYPT_H__
  
@@ -215,4 +224,9 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h b/generation/Win
 +#ifndef _WIN32METADATA_NCRYPT_FRESH_DIRECT_38_GROUPS_
 +#define _WIN32METADATA_NCRYPT_FRESH_DIRECT_38_GROUPS_
 +_Win32_AnnotateField_(NCryptKeyName::dwLegacyKeySpec, _Win32_AssociatedEnum_(CERT_KEY_SPEC));
++#endif
++
++#ifndef _WIN32METADATA_NCRYPT_NEXT_NATIVE_10_GROUPS_
++#define _WIN32METADATA_NCRYPT_NEXT_NATIVE_10_GROUPS_
++_Win32_FlagsEnum_(NCRYPT_OPERATION, unsigned int, NCRYPT_CIPHER_OPERATION, NCRYPT_HASH_OPERATION, NCRYPT_ASYMMETRIC_ENCRYPTION_OPERATION, NCRYPT_SECRET_AGREEMENT_OPERATION, NCRYPT_SIGNATURE_OPERATION);
 +#endif

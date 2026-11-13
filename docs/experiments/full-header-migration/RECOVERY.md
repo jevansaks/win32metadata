@@ -1,15 +1,24 @@
 # Working-first recovery and sidecar reduction
 
 **Latest locally qualified migration checkpoint:**
-[13 native-owner SDK groups](#native-owner-sdk-groups), above `728bf2c3`.
-The actual local WinMD is `ACB37EF4...`; the fresh complete dump remains
+[NCRYPT_OPERATION](#cng-operation-group), above `0ce41004`.
+The actual local WinMD is `F4ED7568...`; the fresh complete dump remains
 `1F4F3839...`, with zero unmasked differences against the actual hosted parent.
-All 943 final tooling/SDK cases pass against the maintained fixture/new test
-DLL, and the original actual-candidate 54 integrity cases remain qualified.
-The original three fixture failures and targeted diagnostic remain separate.
-This continuation still requires its own ordinary exact-head hosted gate.
+Fresh complete 792+151 tooling/SDK cases and 54 actual-candidate integrity
+cases pass. This continuation still requires its own ordinary exact-head
+hosted gate; rejected earlier trials remain separate.
 
 **Latest hosted-qualified migration checkpoint:**
+[13 native-owner SDK groups](#native-owner-sdk-groups),
+`0ce4100429765677993d5b06bf132e84d00dbe32`, above `728bf2c3`.
+Its actual local WinMD is `ACB37EF4...` and hosted WinMD is `3A69DC26...`.
+Ordinary [run 43438187413](https://github.com/jevansaks/win32metadata/actions/runs/43438187413)
+attempt 2 passes all ten jobs; original reports, checkout trees and both
+actual hosted binaries are independently inspected. Attempt 1's changed-files
+HTTP 500/precondition failure remains preserved, not called generation
+qualification. Only its explicitly authorized failed-jobs retry was used.
+
+**Prior hosted-qualified migration checkpoint:**
 [26 further shipped SDK groups](#further-shipped-sdk-groups),
 `728bf2c3a40ebb2f6de5511f7be82b9950656027`, above `fbd7a530`.
 Its actual local WinMD is `5FB6EA33...` and hosted WinMD is `F1553FC9...`.
@@ -17,7 +26,7 @@ Ordinary [run 43413701369](https://github.com/jevansaks/win32metadata/actions/ru
 passes all ten jobs; original reports, checkout trees and both actual hosted
 binaries are independently inspected. Full raw output remains `1F4F3839...`.
 
-**Prior hosted-qualified migration checkpoint:**
+**Earlier hosted-qualified migration checkpoint:**
 [32 core SDK groups](#core-sdk-groups), `fbd7a53064adde9f80ae39e7bf3e75abbb159b5b`,
 above the unchanged clean CI repair. Its actual local WinMD is `8DA7BE1C...`
 and hosted WinMD is `A5099083...`. The fresh complete dump remains
@@ -25,7 +34,7 @@ and hosted WinMD is `A5099083...`. The fresh complete dump remains
 [run 43385556841](https://github.com/jevansaks/win32metadata/actions/runs/43385556841)
 passes all ten jobs; original reports and both actual binaries are inspected.
 
-**Earlier hosted-qualified checkpoint:** [clean CI repair](#clean-ci-repair)
+**Earlier clean repair checkpoint:** [clean CI repair](#clean-ci-repair)
 `d3a0f2beaa189529b61c76808efd55eb7ac21a7a`, following
 the [27 DRT DLL overrides](#drt-import-overrides), 23 file/memory/PE groups
 and previous 562 groups above `85444f25`.
@@ -48,27 +57,27 @@ all ten jobs succeed and the actual hosted WinMD is downloaded and inspected.
 The repair restores one complete DEVPROPTYPE definition, not an entire JSON
 corpus. Its fresh complete local WinMD is `5148224F...`, with the same full
 `1F4F3839...` dump, unmasked comparison zero and 54/54 integrity. The following
-tables describe the locally qualified 13-group continuation inputs. The
+tables describe the locally qualified CNG continuation inputs. The
 continuation does not inherit hosted qualification from its parent: its own
-ordinary run independently produces and qualifies the actual WinMD. Remaining inputs
+ordinary run must independently produce and qualify the actual WinMD. Remaining inputs
 are not blanket claims of failed migration.
 
 | Inventory / units | Recovery | Current local | Net retired |
 |---|---:|---:|---:|
 | Original parameter attribute atoms | 770 | 361 | 409 |
-| All RSP value rows | 146,789 | 134,667 | 12,122 |
+| All RSP value rows | 146,789 | 134,668 | 12,121 |
 | Allowed documentation URL rows | 90,502 | 90,502 | 0 (outside backlog) |
-| Other RSP rows, mixed configuration/API units | 56,287 | 44,165 | 12,122 |
+| Other RSP rows, mixed configuration/API units | 56,287 | 44,166 | 12,121 |
 | Emitter `memberRemap` rows | 2,295 | 1,592 | 703 |
 | LastError rows | 3,362 | 468 | 2,894 |
 | Availability rows | 17,070 | 7,883 | 9,187 |
-| Enum JSON records, mixed definitions/additional uses | 1,070 | 340 | 730 |
+| Enum JSON records, mixed definitions/additional uses | 1,070 | 339 | 731 |
 | autoTypes records | 444 | 436 | 8 |
 | Function-pointer fixup records | 27 | 27 | 0 |
 
 | Remaining category | Measured local quantity | Examination state |
 |---|---:|---|
-| Definition-bearing enum records | 316 | 655 whole definitions / 5,946 emitted members / 1,373 listed SDK-native use sites remain migrated after complete restorations. This cohort's 31 native sites comprise 25 public associations and six unchanged non-emitting native entrypoints. Previously recorded 13 inactive use selectors and 19 non-emitting legacy member selectors remain separate. Rejected outputs and restored closures are not coverage. |
+| Definition-bearing enum records | 315 | 656 whole definitions / 5,951 emitted members / 1,375 listed SDK-native use sites remain migrated after complete restorations. The latest group adds two public associations; the preceding 13-group cohort's 31 native sites remain 25 public associations plus six unchanged non-emitting native entrypoints. Previously recorded 13 inactive use selectors and 19 non-emitting legacy member selectors remain separate. Rejected outputs and restored closures are not coverage. |
 | Additional-use enum records / selector rows | 23 / 55 | Exact retained FILE/REG/SNMP/process, STGM, COM/MIDL and Cloud closures; observed boundaries are in [PROBLEMS.md](PROBLEMS.md). |
 | Genuine CLR flags request | 1 record | Native enum use override already redundant/retired; flags effect still unqualified. |
 | Native type/storage/ownership inputs | 436 records | 424 legacy-storage / 12 native selections; genuine types remain. COLORREF storage and its redundant NativeTypedef flag are retired, not its record. BOOL/BOOLEAN and six DiagnosticDataQuery selections/producer closures remain restored; thirteen contextual cleanup records are separate boundaries, not all 436 records. |
@@ -81,10 +90,10 @@ documentation URL mappings to remain in `documentationMappings.rsp` for now.
 They are separate from the annotation-retirement backlog and are not migrated
 or removed here. No such exemption was granted to DLL mappings or other API
 metadata; their unchanged state in these bounded cohorts is not an allowance.
-The 44,165 non-documentation rows are not 44,165 semantic annotations:
+The 44,166 non-documentation rows are not 44,166 semantic annotations:
 26,376 are the checked-in scan-derived library table, 1,950 are parser/reference
-configuration, and 15,839 are mixed API/policy/parser-review rows, including
-3,151 namespace rows. The last category is neither distinct facts nor disjoint
+configuration, and 15,840 are mixed API/policy/parser-review rows, including
+3,152 namespace rows. The last category is neither distinct facts nor disjoint
 from the parameter-atom inventory. The specification makes import scanning
 the default; scan-derived rows are not 26,376 per-function header overrides.
 
@@ -99,6 +108,79 @@ only the already-qualified parent header pilots. **No additional broad-migration
 header coverage is claimed.** All 737 broad patches and their sidecar retirements
 are deferred until they can be enabled in small batches that each emit.
 
+## CNG operation group
+
+The bounded continuation retires **one complete NCRYPT_OPERATION definition /
+five emitted members / two SDK-native sites**, both actual public associations:
+NCryptEnumAlgorithms.dwAlgOperations and NCryptAlgorithmName.dwAlgOperations.
+Its flags and UInt32 storage are unchanged. Only ncrypt.h, its authoritative
+post-MIDL patch, the complete JSON retirement and one namespace bridge change
+generation input. The bridge is routing configuration, not a retired fact.
+The remaining 339 JSON records are 315 named definitions, 23 additional-use
+records and one genuine CLR flags request.
+
+The original ten-group trial rejects TRUST_TYPE_DCE and
+TRUST_ATTRIBUTE_FILTER_SIDS: their native definitions are guarded by
+`_WIN32_WINNT < 0x0502`, not visible in the actual modern translation units.
+Both complete trust definition/use/routing closures are restored. An earlier
+missing-INCLUDE failure is local Visual Studio setup, not that native-input
+rejection. A private patch serializer also miscounts NTSecAPI's four preserved
+form-feed bytes as lines; LF-only splitting corrects the authoring mechanism.
+The actual header and patch are restored to exact parent raw bytes.
+
+The remaining eight groups pass focused generation but their actual full
+`33217838...` candidate is rejected: the complete raw diff contains only
+eleven added `int` globals through seven dependent alias closures. All eight
+groups' 50 members and twelve native sites remain unchanged in that rejected output.
+The original eight-group 792-case pass is preserved but cannot qualify either
+that API change or the final changed source; no eight-group 151 was run.
+
+ConstantsScraper initially seeds writtenConstants from valid generated Apis
+fields via ScraperUtils.GetConstants **before loading remaining JSON**.
+The actual generated header backing constants already provide the typed roots
+for these aliases; they need not first enter through the later
+!updatedEnum/AddConstantInteger path. The emission predicate also includes
+nativeTypeName and headerEnumMemberNames alternatives. Typed non-member aliases
+survive the cleaner's constituent-only removal. This corrects the preserved
+original private root account; it extends the constant-alias/global ownership
+boundary, not eleven unrelated reader defects.
+
+Seven complete BCRYPT_OPERATION, BCRYPT_FLAGS,
+OPEN_THREAD_WAIT_CHAIN_SESSION_FLAGS, WER_SUBMIT_FLAGS, INTERNET_ACCESS_TYPE,
+CERT_SELECT_CRITERIA_TYPE and INTERNET_STATE closures are restored. Together
+with the two trust groups, all **nine complete fallbacks** remain; six restored
+header/patch pairs equal the accepted parent exactly. No suppressions, numeric
+substitutions, API masks or reader changes are introduced.
+NCRYPT_RNG_OPERATION is a BCRYPT_OPERATION-dependent alias, not one of the
+five NCRYPT_OPERATION members.
+The two cryptxml value-policy observations remain deferred, not generated
+rejection trials; FONT_CHARSET remains unattempted.
+
+The final source freeze contains 224 entries / 202 physical files and retains
+the unchanged `04DCFDA3...` test assembly. All 353 actual patch targets replay
+against 407 Header-bearing ownership rows. Focused and complete production
+generation verify all five members/UInt32/flags and both native selectors:
+six target observations reuse one common generated file, not six declarations.
+The actual 24,174,592-byte candidate is
+`F4ED7568DD1EFD5978F96A2A8D86629DAB45D72C80ABAFA64C55A703BEC1AFAC`.
+Its fresh complete 35,379-type dump is `1F4F3839...`; comparison against actual
+hosted `3A69DC26...` is unmasked zero, and both full public signatures match.
+
+Entirely new original **792/792 plus 151/151**, followed sequentially by
+**54/54 against actual F4ED**, pass with no skips. Their exact disjoint 943
+identities match the parent, including 18 comparer, DirectX12+MediaFoundation12,
+three SERVICE, three producer replay and six producer ABI cases. All 108
+no-op cases across nine matrices also remain included and parent-equal.
+The original private checker that confused this broad 108-case inventory with
+the required 24-case subset is preserved; only that private counter is
+corrected, with no production assertion, test source or DLL change and no test rerun.
+
+Raw generation is **15m49.38s headers/constants + 5m02.80s emission =
+20m52.18s**. These local runs overlap the tooling execution and are uncontrolled
+observations, not improvement measurements. Independent local acceptance does
+not confer the continuation's still-required ordinary exact-head hosted gate.
+All previous fallbacks and original ten/nine/eight frozen inputs remain intact.
+
 ## Native-owner SDK groups
 
 The continuation retires **13 complete definitions / 56 emitted members /
@@ -106,7 +188,7 @@ The continuation retires **13 complete definitions / 56 emitted members /
 Twelve shipped headers and their twelve authoritative post-MIDL patches
 change. All 22 actual owner main/settings routes remain parent-exact. The
 only RSP delta is 13 namespace bridges, not retired annotation facts. The
-340 remaining enum records are 316 definitions, 23 additional-use records
+340 remaining enum records at that checkpoint are 316 definitions, 23 additional-use records
 and one CLR flags request; native type/storage, parameter and DLL inputs
 remain unchanged.
 
@@ -167,11 +249,28 @@ inputs remain exact, with the formerly unlisted fixture source added.
 
 Raw generation is **16m28.62s headers/constants + 5m06.00s emission =
 21m34.62s** at eight workers. These are required-run observations, not matched
-benchmarks. The preceding hosted parent's emission increase remains flagged
-below; this continuation needs its own ordinary exact-head hosted output gate.
+benchmarks. Its own ordinary exact-head hosted gate is subsequently qualified
+below; these local timings do not establish the hosted runtime's cause.
 The six earlier complete fallbacks, DEVPROPTYPE, KERB and both font-subset
 boundaries remain intact. None of the 316 remaining definitions is labeled
 unsupported merely because it has not yet been qualified.
+
+Ordinary exact-`0ce410` run 43438187413 attempt 1 fails before SDK generation:
+the changed-files API returns HTTP 500/truncated JSON and dependent
+preconditions fail. One explicitly authorized failed-jobs-only attempt 2
+then passes all ten jobs. Actual hosted binaries both hash to
+`3A69DC262DB0C8C385A8C741CC92F6C09CB6B620E09FA8BB7854C89B9B0683F8`;
+fresh complete output remains `1F4F3839...`, unmasked actual ACB3 comparison
+zero. Standalone Tooling/Workflow 768/17/52 executions are carried from
+attempt 1, while dependent build 131964900337 genuinely runs fresh 768/17/52
+executions as well as SDK/integrity work. Both original sets are separately
+qualified, not described as copied reports or a second retry. Original
+768+175 identities match exact 943, with actual 54 integrity.
+
+Required hosted x86 generation is **27m20.26s**, and emission **6m04.61s**:
+**50.78s (+16.18%) above 728bf** and **97.18s (+36.34%) above the clean
+repair** for emission. Preserve these observed increases on the next required
+run without causal attribution, extra benchmarks or CI tuning.
 
 ## Further shipped SDK groups
 

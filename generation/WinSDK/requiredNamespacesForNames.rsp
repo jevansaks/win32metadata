@@ -3367,3 +3367,5 @@ LOCK_FILE_FLAGS=Windows.Win32.Storage.FileSystem
 RICH_EDIT_GET_OBJECT_FLAGS=Windows.Win32.UI.Controls.RichEdit
 DEBUG_EVENT_CODE=Windows.Win32.System.Diagnostics.Debug
 SCHANNEL_SESSION_TOKEN_FLAGS=Windows.Win32.Security.Authentication.Identity
+# Current native SDK constant-group namespace owners
+NCRYPT_OPERATION=Windows.Win32.Security.Cryptography

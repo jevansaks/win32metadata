@@ -467,43 +467,6 @@
     ]
   },
   {
-    "finished": true,
-    "name": "NCRYPT_OPERATION",
-    "flags": true,
-    "members": [
-      {
-        "name": "NCRYPT_CIPHER_OPERATION",
-        "value": "1"
-      },
-      {
-        "name": "NCRYPT_HASH_OPERATION",
-        "value": "2"
-      },
-      {
-        "name": "NCRYPT_ASYMMETRIC_ENCRYPTION_OPERATION",
-        "value": "4"
-      },
-      {
-        "name": "NCRYPT_SECRET_AGREEMENT_OPERATION",
-        "value": "8"
-      },
-      {
-        "name": "NCRYPT_SIGNATURE_OPERATION",
-        "value": "16"
-      }
-    ],
-    "uses": [
-      {
-        "method": "NCryptEnumAlgorithms",
-        "parameter": "dwAlgOperations"
-      },
-      {
-        "struct": "NCryptAlgorithmName",
-        "field": "dwAlgOperations"
-      }
-    ]
-  },
-  {
     "name": "UPDFCACHE_FLAGS",
     "flags": true,
     "autoPopulate": {

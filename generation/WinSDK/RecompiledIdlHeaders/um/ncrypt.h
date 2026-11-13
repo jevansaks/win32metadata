@@ -743,7 +743,7 @@ typedef struct _NCryptAlgorithmName
 {
     LPWSTR  pszName;
     DWORD   dwClass;            // the CNG interface that supports this algorithm
-    DWORD   dwAlgOperations;    // the types of operations supported by this algorithm
+    _Win32_AssociatedEnum_(NCRYPT_OPERATION) DWORD   dwAlgOperations;    // the types of operations supported by this algorithm
     DWORD   dwFlags;
 } NCryptAlgorithmName;
 _Win32_SupportedOS_WindowsVista_
@@ -754,7 +754,7 @@ SECURITY_STATUS
 WINAPI
 NCryptEnumAlgorithms(
     _In_    NCRYPT_PROV_HANDLE hProvider,
-    _In_    DWORD   dwAlgOperations,
+    _Win32_AssociatedEnum_(NCRYPT_OPERATION) _In_    DWORD   dwAlgOperations,
     _Out_   DWORD * pdwAlgCount,
     _Outptr_result_buffer_(*pdwAlgCount) NCryptAlgorithmName **ppAlgList,
     _In_    DWORD   dwFlags);
@@ -1693,4 +1693,9 @@ _Win32_AnnotateField_(NCryptAlgorithmName::dwClass, _Win32_AssociatedEnum_(NCRYP
 #ifndef _WIN32METADATA_NCRYPT_FRESH_DIRECT_38_GROUPS_
 #define _WIN32METADATA_NCRYPT_FRESH_DIRECT_38_GROUPS_
 _Win32_AnnotateField_(NCryptKeyName::dwLegacyKeySpec, _Win32_AssociatedEnum_(CERT_KEY_SPEC));
+#endif
+
+#ifndef _WIN32METADATA_NCRYPT_NEXT_NATIVE_10_GROUPS_
+#define _WIN32METADATA_NCRYPT_NEXT_NATIVE_10_GROUPS_
+_Win32_FlagsEnum_(NCRYPT_OPERATION, unsigned int, NCRYPT_CIPHER_OPERATION, NCRYPT_HASH_OPERATION, NCRYPT_ASYMMETRIC_ENCRYPTION_OPERATION, NCRYPT_SECRET_AGREEMENT_OPERATION, NCRYPT_SIGNATURE_OPERATION);
 #endif
