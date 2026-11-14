@@ -341,6 +341,7 @@ extern "C"{
 /* interface __MIDL_itf_ocidl_0000_0000 */
 /* [local] */ 
 
+#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 //+-------------------------------------------------------------------------
 //
@@ -6720,6 +6721,15 @@ EXTERN_C const IID IID_IPointerInactive;
 
 #endif 	/* __IPointerInactive_INTERFACE_DEFINED__ */
 
+
+/* interface __MIDL_itf_ocidl_0000_0035 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_PARAMETER_(IPointerInactive::GetActivationPolicy, pdwPolicy, _Win32_AssociatedEnum_(POINTERINACTIVE));
+
+
+extern RPC_IF_HANDLE __MIDL_itf_ocidl_0000_0035_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ocidl_0000_0035_v0_0_s_ifspec;
 
 #ifndef __IObjectWithSite_INTERFACE_DEFINED__
 #define __IObjectWithSite_INTERFACE_DEFINED__

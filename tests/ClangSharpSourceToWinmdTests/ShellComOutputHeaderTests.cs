@@ -58,8 +58,7 @@ namespace ClangSharpSourceToWinmdTests
             Assert.AreEqual(16, Selectors.Length);
             Assert.IsFalse(records.Any(record => record.Split('=')[0].Contains('*')));
             foreach (string selector in Selectors) CollectionAssert.Contains(records, selector + "=[ComOutPtr]");
-            string current = File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
-                "generation", "WinSDK", "emitter.settings.rsp")).Replace("\r\n", "\n");
+            string current = FullHeaderMigrationExperimentTests.ReadRecoveryText("emitter.settings.rsp").Replace("\r\n", "\n");
             Assert.AreEqual(SyncComOutputHeaderTests.RetireRecords(ImagingComOutputHeaderTests.RetireRecords(AudioComOutputHeaderTests.RetireRecords(ClrComOutputHeaderTests.RetireRecords(ServiceComOutputHeaderTests.RetireRecords(MediaFoundationComOutputHeaderTests.RetireRecords(DirectXComOutputHeaderTests.RetireRecords(string.Join("\n", original.Split('\n').Where(line =>
                 !Selectors.Any(selector => line == selector + "=[ComOutPtr]")))))))))), current,
                 "Preserve all independent sidecars exactly.");
@@ -124,7 +123,8 @@ namespace ClangSharpSourceToWinmdTests
                 Assert.IsTrue(original.All(character => character <= 127), owner);
                 CollectionAssert.AreEqual(Encoding.ASCII.GetBytes(PatchOwner(owner, original)),
                     historical ? ProductionSalLocalHeaderTests.ReadBeforeCutover("RecompiledIdlHeaders/um/" + owner) :
-                        File.ReadAllBytes(Header(owner)), "No encoding, newline or unrelated changes: " + owner);
+                        FullHeaderMigrationExperimentTests.ReadRecoveryBytes("RecompiledIdlHeaders/um/" + owner),
+                    "No encoding, newline or unrelated changes: " + owner);
             }
         }
 

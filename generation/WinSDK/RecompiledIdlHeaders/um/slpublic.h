@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (C) Microsoft Corporation, 2006
@@ -232,6 +233,7 @@ typedef struct _tagSL_NONGENUINE_UI_OPTIONS
 #define SL_POLICY_EVALUATION_MODE_ENABLED                   L"Security-SPP-EvaluationModeEnabled"
 
 #define SL_DEFAULT_MIGRATION_ENCRYPTOR_URI                  L"msft:spp/migrationencryptor/tokenact/1.0"
+_Win32_SupportedOS_Windows8_
 
 __control_entrypoint(DllExport)
 HRESULT
@@ -239,6 +241,7 @@ WINAPI
 SLOpen(
     _Out_                       HSLC*                       phSLC
     );
+_Win32_SupportedOS_Windows8_
 /*++
 Routine Description:
     Initializes the Software Licensing Client (SLC)
@@ -259,6 +262,7 @@ WINAPI
 SLClose(
     _In_                        HSLC                        hSLC
     );
+_Win32_SupportedOS_Windows8_
 /*++
 Routine Description:
 
@@ -286,6 +290,7 @@ SLInstallProofOfPurchase(
     _In_reads_bytes_opt_(cbPKeySpecificData) PBYTE          pbPKeySpecificData,
     _Out_                   SLID*                           pPkeyId
     );
+_Win32_SupportedOS_Windows8_
 /*+
 Routine Description:
 
@@ -336,6 +341,7 @@ SLInstallProofOfPurchaseEx(
     _In_reads_bytes_opt_(cbPKeySpecificData) PBYTE          pbPKeySpecificData,
     _Out_                   SLID*                           pPkeyId
     );
+_Win32_SupportedOS_Windows8_
 /*+
 Routine Description:
 
@@ -387,6 +393,7 @@ SLUninstallProofOfPurchase(
     _In_                        HSLC                        hSLC,
     _In_                        CONST SLID*                 pPKeyId
     );
+_Win32_SupportedOS_Windows8_
 /*++
 Routine Description:
 
@@ -417,6 +424,7 @@ SLInstallLicense(
     _In_reads_bytes_(cbLicenseBlob)  CONST BYTE*            pbLicenseBlob,
     _Out_                       SLID*                       pLicenseFileId
     );
+_Win32_SupportedOS_Windows8_
 /*++
 Routine Description:
 
@@ -453,6 +461,7 @@ SLUninstallLicense(
     _In_                        HSLC                        hSLC,
     _In_                        CONST SLID*                 pLicenseFileId
     );
+_Win32_SupportedOS_Windows8_
 /*++
 Routine Description:
 
@@ -485,6 +494,7 @@ SLConsumeRight(
     _In_opt_                    PCWSTR                      pwszRightName,
     _Reserved_                  PVOID                       pvReserved
     );
+_Win32_SupportedOS_Windows8_
 /*++
 Routine Description:
 
@@ -529,6 +539,7 @@ SLGetProductSkuInformation(
     _Out_                       UINT*                       pcbValue,
     _Outptr_result_bytebuffer_(*pcbValue) PBYTE*            ppbValue
     );
+_Win32_SupportedOS_Windows8_
 /*++
 Routine Description:
 
@@ -581,6 +592,7 @@ SLGetPKeyInformation(
     _Out_                       UINT*                       pcbValue,
     _Outptr_result_bytebuffer_(*pcbValue) PBYTE*            ppbValue
     );
+_Win32_SupportedOS_Windows8_
 /*++
 Routine Description:
 
@@ -638,6 +650,7 @@ SLGetLicenseInformation(
     _Out_                       UINT*                       pcbValue,
     _Outptr_result_bytebuffer_(*pcbValue) PBYTE*            ppbValue
     );
+_Win32_SupportedOS_Windows8_
 /*++
 Routine Description:
     Get information of specified license
@@ -690,6 +703,7 @@ SLGetLicensingStatusInformation(
     _Out_                       UINT*                       pnStatusCount,
     _Outptr_result_buffer_(*pnStatusCount) SL_LICENSING_STATUS** ppLicensingStatus
     );
+_Win32_SupportedOS_Windows8_
 /*++
 Routine Description:
 
@@ -735,6 +749,7 @@ SLGetPolicyInformation(
     _Out_                       UINT*                       pcbValue,
     _Outptr_result_bytebuffer_(*pcbValue) PBYTE*            ppbValue
     );
+_Win32_SupportedOS_Windows8_
 /*++
 Routine Description:
 
@@ -775,6 +790,7 @@ SLGetPolicyInformationDWORD(
     _In_                        PCWSTR                      pwszValueName,
     _Out_                       DWORD*                      pdwValue
     );
+_Win32_SupportedOS_Windows8_
 /*++
 Routine Description:
 
@@ -809,6 +825,7 @@ SLGetServiceInformation(
     _Out_                       UINT*                       pcbValue,
     _Outptr_result_bytebuffer_(*pcbValue) PBYTE*            ppbValue
     );
+_Win32_SupportedOS_Windows8_
 /*++
 Routine Description:
 
@@ -876,6 +893,7 @@ SLGetApplicationInformation(
     _Out_                       UINT*                       pcbValue,
     _Outptr_result_bytebuffer_(*pcbValue) PBYTE*            ppbValue
     );
+_Win32_SupportedOS_Windows8_
 /*++
 Routine Description:
 
@@ -1104,6 +1122,7 @@ SLDepositStoreToken(
     _In_                        UINT                        cbValue,
     _In_reads_bytes_(cbValue)   CONST BYTE*                 pbValue
     );
+_Win32_SupportedOS_Windows8_
 /*++
 Routine Description:
 
@@ -1134,6 +1153,7 @@ SLReArm(
     _In_opt_                    CONST SLID*                 pProductSkuId,
     _In_                        DWORD                       dwFlags
     );
+_Win32_SupportedOS_Windows8_
 /*++
 Routine Description:
 
@@ -1168,6 +1188,7 @@ SLGenerateOfflineInstallationId(
     _In_                        CONST SLID*                 pProductSkuId,
     _Outptr_                    PWSTR*                      ppwszInstallationId
     );
+_Win32_SupportedOS_Windows8_
 /*++
 Routine Description:
 
@@ -1262,6 +1283,7 @@ SLDepositOfflineConfirmationId(
     _In_                        PCWSTR                      pwszInstallationId,
     _In_                        PCWSTR                      pwszConfirmationId
     );
+_Win32_SupportedOS_Windows8_
 /*++
 Routine Description:
 
@@ -1364,6 +1386,7 @@ SLGetPKeyId(
     _In_reads_bytes_opt_(cbPKeySpecificData) CONST BYTE*    pbPKeySpecificData,
     _Out_                       SLID*                       pPKeyId
     );
+_Win32_SupportedOS_Windows8_
 /*++
 Routine Description:
 
@@ -1405,6 +1428,7 @@ SLGetInstalledProductKeyIds(
     _Out_                       UINT*                       pnProductKeyIds,
     _Outptr_result_buffer_(*pnProductKeyIds) SLID**         ppProductKeyIds
     );
+_Win32_SupportedOS_Windows8_
 /*++
 Routine Description:
 
@@ -1439,6 +1463,7 @@ SLSetCurrentProductKey(
     _In_ CONST SLID* pProductSkuId,
     _In_ CONST SLID* pProductKeyId
     );
+_Win32_SupportedOS_Windows8_
 /*++
 Routine Description:
 
@@ -1474,6 +1499,7 @@ SLGetSLIDList(
     _Out_                       UINT*                       pnReturnIds,
     _Outptr_result_buffer_(*pnReturnIds) SLID**             ppReturnIds
     );
+_Win32_SupportedOS_Windows8_
 /*++
 
 Description:
@@ -1561,6 +1587,7 @@ SLGetLicenseFileId(
     _In_reads_bytes_(cbLicenseBlob)  CONST BYTE*                 pbLicenseBlob,
     _Out_                       SLID*                       pLicenseFileId
     );
+_Win32_SupportedOS_Windows8_
 /*++
 Routine Description:
 
@@ -1599,6 +1626,7 @@ SLGetLicense(
     _Out_                       UINT*                       pcbLicenseFile,
     _Outptr_result_bytebuffer_(*pcbLicenseFile) PBYTE*      ppbLicenseFile
     );
+_Win32_SupportedOS_Windows8_
 /*++
 Routine Description:
 
@@ -1632,6 +1660,7 @@ SLFireEvent(
     _In_                        PCWSTR                      pwszEventId,
     _In_                        CONST SLID*                 pApplicationId
     );
+_Win32_SupportedOS_Windows8_
 /*++
 Routine Description:
     This function sends specified event to registered listener
@@ -1666,6 +1695,7 @@ SLRegisterEvent(
     _In_                        CONST SLID*                 pApplicationId,
     _In_                        HANDLE                      hEvent
     );
+_Win32_SupportedOS_Windows8_
 /*++
 Routine Description:
 
@@ -1707,6 +1737,7 @@ SLUnregisterEvent(
     _In_                        CONST SLID*                 pApplicationId,
     _In_                        HANDLE                      hEvent
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 Routine Description:
 
@@ -1749,6 +1780,7 @@ SLGetWindowsInformation(
     _Out_                       UINT*                       pcbValue,
     _Outptr_result_bytebuffer_(*pcbValue) PBYTE*            ppbValue
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 Routine Description:
 
@@ -1787,6 +1819,7 @@ SLGetWindowsInformationDWORD(
     _In_ PCWSTR pwszValueName,
     _Out_ DWORD* pdwValue
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 Routine Description:
 
@@ -1816,6 +1849,7 @@ SLIsGenuineLocal(
     _Out_                       SL_GENUINE_STATE*           pGenuineState, 
     _Inout_opt_                 SL_NONGENUINE_UI_OPTIONS*   pUIOptions
     );
+_Win32_SupportedOS_Windows7_
 /*++
 Routine Description:
 
@@ -1856,6 +1890,7 @@ SLIsGenuineLocalEx(
     _In_opt_                    CONST SLID*                 pSkuId,
     _Out_                       SL_GENUINE_STATE*           pGenuineState
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 Routine Description:
 
@@ -1901,6 +1936,7 @@ SLAcquireGenuineTicket(
     _In_                        PCWSTR                      pwszServerUrl, 
     _In_opt_                    PCWSTR                      pwszClientToken 
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 Routine Description:
 
@@ -1947,6 +1983,7 @@ SLSetGenuineInformation(
     _In_opt_                    UINT                        cbValue,
     _In_reads_bytes_opt_(cbValue)    CONST BYTE*            pbValue
     );
+_Win32_SupportedOS_Windows8_
 /*++
 Routine Description:
 
@@ -2014,6 +2051,7 @@ SLGetReferralInformation(
     _In_                        PCWSTR                      pwszValueName,
     _Outptr_                    PWSTR*                      ppwszValue 
     );
+_Win32_SupportedOS_Windows8_
 /*++
 SLGetReferralInformation
 
@@ -2070,6 +2108,7 @@ SLPersistRTSPayloadOverride(
     _In_reads_bytes_(cbData)    BYTE*                       pbData,
     _In_                        DWORD                       cbData
     );
+_Win32_SupportedOS_Windows8_
 /*++
 SLPersistRTSPayloadOverride
 
@@ -2106,6 +2145,7 @@ SLPersistApplicationPolicies(
     _In_opt_                    CONST SLID*                 pProductSkuId,
     _In_                        DWORD                       dwFlags
     );
+_Win32_SupportedOS_Windows8_
 /*++
 Routine Description:
 
@@ -2142,6 +2182,7 @@ SLGetApplicationPolicy(
     _Out_                       UINT*                       pcbValue,
     _Outptr_result_bytebuffer_(*pcbValue) PBYTE*            ppbValue
     );
+_Win32_SupportedOS_Windows8_
 /*++
 Routine Description:
 
@@ -2182,6 +2223,7 @@ SLLoadApplicationPolicies(
     _In_                        DWORD                       dwFlags,
     _Out_                       HSLP*                       phPolicyContext
     );
+_Win32_SupportedOS_Windows8_
 /*++
 Routine Description:
 
@@ -2216,6 +2258,7 @@ SLUnloadApplicationPolicies(
     _In_                        HSLP                        hPolicyContext,
     _In_                        DWORD                       dwFlags
     );
+_Win32_SupportedOS_Windows8_
 /*++
 Routine Description:
 
@@ -2243,6 +2286,7 @@ SLGetAuthenticationResult(
     _Out_                         UINT*                     pcbValue,
     _Outptr_result_bytebuffer_(*pcbValue) PBYTE*            ppbValue
     );
+_Win32_SupportedOS_Windows8_
 /*++
 Routine Description:
 
@@ -2282,6 +2326,7 @@ SLSetAuthenticationData(
     _In_opt_                      UINT                      cbValue,
     _In_reads_bytes_opt_(cbValue) CONST BYTE*               pbValue
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 Routine Description:
 
@@ -2321,6 +2366,7 @@ SLGetGenuineInformation(
     _Out_                       UINT*                       pcbValue,
     _Outptr_result_bytebuffer_(*pcbValue) BYTE**            ppbValue
     );
+_Win32_SupportedOS_Windows8_
 /*++
 Routine Description:
 
@@ -2389,6 +2435,7 @@ SLGetGenuineInformationEx(
     _Out_                       UINT*                       pcbValue,
     _Outptr_result_bytebuffer_(*pcbValue) BYTE**            ppbValue
     );
+_Win32_SupportedOS_Windows8_
 /*++
 Routine Description:
 
@@ -2470,6 +2517,7 @@ SLGatherMigrationBlobEx(
     __in_opt                        LPCWSTR                 pwszEncryptorUri,
     __in                            HANDLE                  hFile
     );
+_Win32_SupportedOS_Windows8_
 /*+
 Routine Description:
 
@@ -2556,6 +2604,7 @@ typedef struct _SL_SYSTEM_POLICY_INFORMATION {
 
 #pragma region Application Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP) 
+_Win32_SupportedOS_10240_
 
 //
 // Capability needed by appcontainers for this API is slapiQueryLicensingValue

@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //+---------------------------------------------------------------------------
 //
 //  Microsoft Windows
@@ -247,8 +248,10 @@ typedef LPCSTRTABLEW LPCSTRTABLE;
 typedef STRTABLEA STRTABLE;
 typedef LPCSTRTABLEA LPCSTRTABLE;
 #endif // UNICODE
+_Win32_SupportedOS_10240_
 
 HRESULT WINAPI RegInstallA(HMODULE hmod, LPCSTR pszSection, const STRTABLEA* pstTable);
+_Win32_SupportedOS_10240_
 HRESULT WINAPI RegInstallW(HMODULE hmod, LPCWSTR pszSection, const STRTABLEW* pstTable);
 #ifdef UNICODE
 #define RegInstall  RegInstallW

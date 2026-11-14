@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) 2001  Microsoft Corporation
@@ -169,6 +170,7 @@ DECLARE_INTERFACE_(IPrintAsyncNotifyCallback, IUnknown)
 };
 
 #undef INTERFACE
+_Win32_SupportedOS_WindowsVista_
 
 HRESULT
 WINAPI
@@ -180,12 +182,14 @@ RegisterForPrintAsyncNotifications(
     _In_     IPrintAsyncNotifyCallback*        pCallback,
     _Out_    HANDLE*                           phNotify
     );
+_Win32_SupportedOS_WindowsVista_
 
 HRESULT
 WINAPI
 UnRegisterForPrintAsyncNotifications(
     _In_     HANDLE
     );
+_Win32_SupportedOS_WindowsVista_
 
 HRESULT
 WINAPI

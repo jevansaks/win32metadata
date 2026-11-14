@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 #include <wincrypt.h>
 
 #ifdef __cplusplus
@@ -214,7 +215,7 @@ HRESULT WINAPI SignerSignEx2(
     _In_       SIGNER_CERT            *pSignerCert,
     _In_       SIGNER_SIGNATURE_INFO  *pSignatureInfo,
     _In_opt_   SIGNER_PROVIDER_INFO   *pProviderInfo,
-    _In_opt_   DWORD                  dwTimestampFlags,
+    _Win32_AssociatedEnum_(SIGNER_TIMESTAMP_FLAGS) _In_opt_   DWORD                  dwTimestampFlags,
     _In_opt_   PCSTR                  pszTimestampAlgorithmOid,
     _In_opt_   PCWSTR                 pwszHttpTimeStamp,
     _In_opt_   PCRYPT_ATTRIBUTES      psRequest,
@@ -230,7 +231,7 @@ HRESULT WINAPI SignerSignEx3(
     _In_       SIGNER_CERT            *pSignerCert,
     _In_       SIGNER_SIGNATURE_INFO  *pSignatureInfo,
     _In_opt_   SIGNER_PROVIDER_INFO   *pProviderInfo,
-    _In_opt_   DWORD                  dwTimestampFlags,
+    _Win32_AssociatedEnum_(SIGNER_TIMESTAMP_FLAGS) _In_opt_   DWORD                  dwTimestampFlags,
     _In_opt_   PCSTR                  pszTimestampAlgorithmOid,
     _In_opt_   PCWSTR                 pwszHttpTimeStamp,
     _In_opt_   PCRYPT_ATTRIBUTES      psRequest,
@@ -258,7 +259,7 @@ HRESULT WINAPI SignerTimeStampEx(
     );
 
 HRESULT WINAPI SignerTimeStampEx2(
-    _Reserved_ DWORD               dwFlags,
+    _Win32_AssociatedEnum_(SIGNER_TIMESTAMP_FLAGS) _Reserved_ DWORD               dwFlags,
     _In_       SIGNER_SUBJECT_INFO *pSubjectInfo,
     _In_       LPCWSTR             pwszHttpTimeStamp,
     _In_       ALG_ID              dwAlgId,
@@ -268,7 +269,7 @@ HRESULT WINAPI SignerTimeStampEx2(
     );
 
 HRESULT WINAPI SignerTimeStampEx3(
-    _In_       DWORD                  dwFlags,
+    _Win32_AssociatedEnum_(SIGNER_TIMESTAMP_FLAGS) _In_       DWORD                  dwFlags,
     _In_       DWORD                  dwIndex,
     _In_       SIGNER_SUBJECT_INFO    *pSubjectInfo,
     _In_       PCWSTR                 pwszHttpTimeStamp,
@@ -282,4 +283,19 @@ HRESULT WINAPI SignerTimeStampEx3(
 
 #ifdef __cplusplus
 }
+#endif
+
+#ifndef _WIN32METADATA_MSSIGN_NATIVE_91_GROUPS_
+#define _WIN32METADATA_MSSIGN_NATIVE_91_GROUPS_
+_Win32_Enum_(SIGNER_TIMESTAMP_FLAGS, unsigned int, SIGNER_TIMESTAMP_AUTHENTICODE, SIGNER_TIMESTAMP_RFC3161);
+_Win32_Enum_(SIGNER_SUBJECT_CHOICE, unsigned int, SIGNER_SUBJECT_FILE, SIGNER_SUBJECT_BLOB);
+_Win32_AnnotateField_(SIGNER_SUBJECT_INFO::dwSubjectChoice, _Win32_AssociatedEnum_(SIGNER_SUBJECT_CHOICE));
+_Win32_Enum_(SIGNER_SIGNATURE_ATTRIBUTE_CHOICE, unsigned int, SIGNER_NO_ATTR, SIGNER_AUTHCODE_ATTR);
+_Win32_AnnotateField_(SIGNER_SIGNATURE_INFO::dwAttrChoice, _Win32_AssociatedEnum_(SIGNER_SIGNATURE_ATTRIBUTE_CHOICE));
+_Win32_Enum_(SIGNER_PRIVATE_KEY_CHOICE, unsigned int, PVK_TYPE_FILE_NAME, PVK_TYPE_KEYCONTAINER);
+_Win32_AnnotateField_(SIGNER_PROVIDER_INFO::dwPvkChoice, _Win32_AssociatedEnum_(SIGNER_PRIVATE_KEY_CHOICE));
+_Win32_FlagsEnum_(SIGNER_CERT_POLICY, unsigned int, SIGNER_CERT_POLICY_STORE, SIGNER_CERT_POLICY_CHAIN, SIGNER_CERT_POLICY_SPC, SIGNER_CERT_POLICY_CHAIN_NO_ROOT);
+_Win32_AnnotateField_(SIGNER_CERT_STORE_INFO::dwCertPolicy, _Win32_AssociatedEnum_(SIGNER_CERT_POLICY));
+_Win32_Enum_(SIGNER_CERT_CHOICE, unsigned int, SIGNER_CERT_SPC_FILE, SIGNER_CERT_STORE, SIGNER_CERT_SPC_CHAIN);
+_Win32_AnnotateField_(SIGNER_CERT::dwCertChoice, _Win32_AssociatedEnum_(SIGNER_CERT_CHOICE));
 #endif

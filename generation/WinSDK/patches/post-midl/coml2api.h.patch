@@ -2,16 +2,86 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/coml2api.h b/generation/WinSDK/RecompiledIdlHeaders/um/coml2api.h
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/coml2api.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/coml2api.h
-@@ -171,7 +171,7 @@
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ //+---------------------------------------------------------------------------
+ //
+ //  Microsoft Windows
+@@ -79,6 +80,7 @@
+ 
+ // This is a legacy define to allow old component to builds
+ #define STGFMT_DOCUMENT         0
++_Win32_SupportedOS_Windows2000_
+ 
+ // Structured storage APIs
+ _Check_return_
+@@ -89,6 +91,7 @@
+     _Reserved_ DWORD reserved,
+     _Outptr_ IStorage** ppstgOpen
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ _Check_return_
+ WINOLEAPI
+@@ -98,6 +101,7 @@
+     _In_ DWORD reserved,
+     _Outptr_ IStorage** ppstgOpen
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ _Check_return_
+ WINOLEAPI
+@@ -109,6 +113,7 @@
+     _In_ DWORD reserved,
+     _Outptr_ IStorage** ppstgOpen
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ _Check_return_
+ WINOLEAPI
+@@ -120,18 +125,21 @@
+     _Reserved_ DWORD reserved,
+     _Outptr_ IStorage** ppstgOpen
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ _Check_return_
+ WINOLEAPI
+ StgIsStorageFile(
+     _In_ _Null_terminated_ const WCHAR* pwcsName
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ _Check_return_
+ WINOLEAPI
+ StgIsStorageILockBytes(
+     _In_ ILockBytes* plkbyt
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ _Check_return_
+ WINOLEAPI
+@@ -160,6 +168,7 @@
+     const WCHAR *pwcsTemplateFile;  // version 2 or above
+ #endif
+ } STGOPTIONS;
++_Win32_SupportedOS_Windows2000_
+ 
+ _Check_return_
+ WINOLEAPI
+@@ -171,8 +180,9 @@
      _Inout_opt_ STGOPTIONS* pStgOptions,
      _In_opt_ PSECURITY_DESCRIPTOR pSecurityDescriptor,
      _In_ REFIID riid,
 -    _Outptr_ void** ppObjectOpen
+-    );
 +    _COM_Outptr_ void** ppObjectOpen
-     );
++    );
++_Win32_SupportedOS_Windows2000_
  
  _Check_return_
-@@ -184,7 +184,7 @@
+ WINOLEAPI
+@@ -184,10 +194,11 @@
      _Inout_opt_ STGOPTIONS* pStgOptions,
      _In_opt_ PSECURITY_DESCRIPTOR pSecurityDescriptor,
      _In_ REFIID riid,
@@ -20,3 +90,92 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/coml2api.h b/generation/W
      );
  
  #ifndef _STGCREATEPROPSTG_DEFINED_
++_Win32_SupportedOS_Windows2000_
+ 
+ _Check_return_
+ WINOLEAPI
+@@ -199,6 +210,7 @@
+     _Reserved_ DWORD dwReserved,
+     _Outptr_ IPropertyStorage** ppPropStg
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ _Check_return_
+ WINOLEAPI
+@@ -209,6 +221,7 @@
+     _Reserved_ DWORD dwReserved,
+     _Outptr_ IPropertyStorage** ppPropStg
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ _Check_return_
+ WINOLEAPI
+@@ -219,6 +232,7 @@
+     );
+ 
+ #define CCH_MAX_PROPSTG_NAME    31
++_Win32_SupportedOS_Windows2000_
+ 
+ _Check_return_
+ WINOLEAPI
+@@ -226,6 +240,7 @@
+     _In_ const FMTID* pfmtid,
+     _Out_writes_(CCH_MAX_PROPSTG_NAME+1) LPOLESTR oszName
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ _Check_return_
+ WINOLEAPI
+@@ -235,6 +250,7 @@
+     );
+ 
+ #endif // _STGCREATEPROPSTG_DEFINED_
++_Win32_SupportedOS_Windows2000_
+ 
+ // Helper functions
+ WINOLEAPI
+@@ -242,24 +258,28 @@
+     _In_ LPSTORAGE pStg,
+     _Out_ CLSID  FAR * pclsid
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINOLEAPI
+ WriteClassStg(
+     _In_ LPSTORAGE pStg,
+     _In_ REFCLSID rclsid
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINOLEAPI
+ ReadClassStm(
+     _In_ LPSTREAM pStm,
+     _Out_ CLSID  FAR * pclsid
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINOLEAPI
+ WriteClassStm(
+     _In_ LPSTREAM pStm,
+     _In_ REFCLSID rclsid
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ // Storage utility APIs
+ _Check_return_
+@@ -268,6 +288,7 @@
+     _In_ LPLOCKBYTES plkbyt,
+     _Out_ HGLOBAL  FAR * phglobal
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ _Check_return_
+ WINOLEAPI
+@@ -276,6 +297,7 @@
+     _In_ BOOL fDeleteOnRelease,
+     _Outptr_ LPLOCKBYTES  FAR * pplkbyt
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ // ConvertTo APIs
+ WINOLEAPI

@@ -1,0 +1,180 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/OleDlg.h b/generation/WinSDK/RecompiledIdlHeaders/um/OleDlg.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/OleDlg.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/OleDlg.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*++ BUILD Version: 0002    Increment this if a change has global effects
+ 
+ Copyright (c) Microsoft Corporation. All rights reserved.
+@@ -287,11 +288,13 @@
+ #define OLEUI_ERR_LOADSTRING            115
+ 
+ #define OLEUI_ERR_STANDARDMAX           116  // Start here for specific errors.
++_Win32_SupportedOS_Windows2000_
+ 
+ // Miscellaneous utility functions.
+ STDAPI_(BOOL) OleUIAddVerbMenuW(_In_opt_ LPOLEOBJECT lpOleObj, _In_opt_ LPCWSTR lpszShortType,
+         HMENU hMenu, UINT uPos, UINT uIDVerbMin, UINT uIDVerbMax,
+         BOOL bAddConvert, UINT idConvert, _Out_ HMENU *lphMenu);
++_Win32_SupportedOS_Windows2000_
+ STDAPI_(BOOL) OleUIAddVerbMenuA(_In_opt_ LPOLEOBJECT lpOleObj, _In_opt_ LPCSTR lpszShortType,
+         HMENU hMenu, UINT uPos, UINT uIDVerbMin, UINT uIDVerbMax,
+         BOOL bAddConvert, UINT idConvert, _Out_ HMENU *lphMenu);
+@@ -366,8 +369,10 @@
+         HGLOBAL         hMetaPict;      // OUT: metafile aspect (METAFILEPICT)
+ 
+ } OLEUIINSERTOBJECTA, *POLEUIINSERTOBJECTA, *LPOLEUIINSERTOBJECTA;
++_Win32_SupportedOS_Windows2000_
+ 
+ STDAPI_(UINT) OleUIInsertObjectW(_In_ LPOLEUIINSERTOBJECTW);
++_Win32_SupportedOS_Windows2000_
+ STDAPI_(UINT) OleUIInsertObjectA(_In_ LPOLEUIINSERTOBJECTA);
+ 
+ #ifdef UNICODE
+@@ -605,8 +610,10 @@
+ #define POLEUIPASTESPECIAL POLEUIPASTESPECIALA
+ #define LPOLEUIPASTESPECIAL LPOLEUIPASTESPECIALA
+ #endif
++_Win32_SupportedOS_Windows2000_
+ 
+ STDAPI_(UINT) OleUIPasteSpecialW(_In_ LPOLEUIPASTESPECIALW);
++_Win32_SupportedOS_Windows2000_
+ STDAPI_(UINT) OleUIPasteSpecialA(_In_ LPOLEUIPASTESPECIALA);
+ #ifdef UNICODE
+ #define OleUIPasteSpecial OleUIPasteSpecialW
+@@ -765,8 +772,10 @@
+ 
+ #define OLEUI_ELERR_LINKCNTRNULL        (OLEUI_ERR_STANDARDMAX+0)
+ #define OLEUI_ELERR_LINKCNTRINVALID     (OLEUI_ERR_STANDARDMAX+1)
++_Win32_SupportedOS_Windows2000_
+ 
+ STDAPI_(UINT) OleUIEditLinksW(_In_ LPOLEUIEDITLINKSW);
++_Win32_SupportedOS_Windows2000_
+ STDAPI_(UINT) OleUIEditLinksA(_In_ LPOLEUIEDITLINKSA);
+ 
+ #ifdef UNICODE
+@@ -830,8 +839,10 @@
+         int             cchIconExe;     // IN: number of characters in szIconExe
+ 
+ } OLEUICHANGEICONA, *POLEUICHANGEICONA, *LPOLEUICHANGEICONA;
++_Win32_SupportedOS_Windows2000_
+ 
+ STDAPI_(UINT) OleUIChangeIconW(_In_ LPOLEUICHANGEICONW);
++_Win32_SupportedOS_Windows2000_
+ STDAPI_(UINT) OleUIChangeIconA(_In_ LPOLEUICHANGEICONA);
+ 
+ #ifdef UNICODE
+@@ -948,8 +959,10 @@
+         LPCLSID         lpClsidExclude; //IN: List of CLSIDs to exclude from list
+ 
+ } OLEUICONVERTA, *POLEUICONVERTA, *LPOLEUICONVERTA;
++_Win32_SupportedOS_Windows2000_
+ 
+ STDAPI_(UINT) OleUIConvertW(_In_ LPOLEUICONVERTW);
++_Win32_SupportedOS_Windows2000_
+ STDAPI_(UINT) OleUIConvertA(_In_ LPOLEUICONVERTA);
+ 
+ #ifdef UNICODE
+@@ -965,6 +978,7 @@
+ #define LPOLEUICONVERT LPOLEUICONVERTA
+ #define OleUIConvert OleUIConvertA
+ #endif
++_Win32_SupportedOS_Windows2000_
+ 
+ // Determine if there is at least one class that can Convert or ActivateAs
+ // the given clsid.
+@@ -1029,8 +1043,10 @@
+         HWND *          lphWndDialog;   // OUT: Dialog's HWND is placed here
+ 
+ } OLEUIBUSYA, *POLEUIBUSYA, *LPOLEUIBUSYA;
++_Win32_SupportedOS_Windows2000_
+ 
+ STDAPI_(UINT) OleUIBusyW(_In_ LPOLEUIBUSYW);
++_Win32_SupportedOS_Windows2000_
+ STDAPI_(UINT) OleUIBusyA(_In_ LPOLEUIBUSYA);
+ 
+ #ifdef UNICODE
+@@ -1117,8 +1133,10 @@
+         LPSTR           lpszTo;         // OUT: prefix of source changed to
+ 
+ } OLEUICHANGESOURCEA, *POLEUICHANGESOURCEA, *LPOLEUICHANGESOURCEA;
++_Win32_SupportedOS_Windows2000_
+ 
+ STDAPI_(UINT) OleUIChangeSourceW(_In_ LPOLEUICHANGESOURCEW);
++_Win32_SupportedOS_Windows2000_
+ STDAPI_(UINT) OleUIChangeSourceA(_In_ LPOLEUICHANGESOURCEA);
+ 
+ #ifdef UNICODE
+@@ -1524,8 +1542,10 @@
+         LPOLEUILINKPROPSA lpLP;          // IN: link page
+ 
+ } OLEUIOBJECTPROPSA, *POLEUIOBJECTPROPSA, FAR* LPOLEUIOBJECTPROPSA;
++_Win32_SupportedOS_Windows2000_
+ 
+ STDAPI_(UINT) OleUIObjectPropertiesW(_In_ LPOLEUIOBJECTPROPSW);
++_Win32_SupportedOS_Windows2000_
+ STDAPI_(UINT) OleUIObjectPropertiesA(_In_ LPOLEUIOBJECTPROPSA);
+ 
+ #ifdef UNICODE
+@@ -1577,11 +1597,13 @@
+ // wParam used by PSM_QUERYSIBLINGS
+ #define OLEUI_QUERY_GETCLASSID          0xFF00  // override class id for icon
+ #define OLEUI_QUERY_LINKBROKEN          0xFF01  // after link broken
++_Win32_SupportedOS_Windows2000_
+ 
+ /////////////////////////////////////////////////////////////////////////////
+ // PROMPT USER DIALOGS
+ 
+ int __cdecl OleUIPromptUserW(int nTemplate, HWND hwndParent, ...);
++_Win32_SupportedOS_Windows2000_
+ int __cdecl OleUIPromptUserA(int nTemplate, HWND hwndParent, ...);
+ 
+ #ifdef UNICODE
+@@ -1589,9 +1611,11 @@
+ #else
+ #define OleUIPromptUser OleUIPromptUserA
+ #endif
++_Win32_SupportedOS_Windows2000_
+ 
+ STDAPI_(BOOL) OleUIUpdateLinksW(LPOLEUILINKCONTAINERW lpOleUILinkCntr,
+         HWND hwndParent, _In_ LPWSTR lpszTitle, int cLinks);
++_Win32_SupportedOS_Windows2000_
+ STDAPI_(BOOL) OleUIUpdateLinksA(LPOLEUILINKCONTAINERA lpOleUILinkCntr,
+         HWND hwndParent, _In_ LPSTR lpszTitle, int cLinks);
+ 
+@@ -1618,3 +1642,34 @@
+ #endif  //_OLEDLG_H_
+ 
+ /////////////////////////////////////////////////////////////////////////////
++
++#ifndef _WIN32METADATA_OLEDLG_GROUPS_
++#define _WIN32METADATA_OLEDLG_GROUPS_
++_Win32_FlagsEnum_(BUSY_DIALOG_FLAGS, unsigned int, BZ_DISABLECANCELBUTTON, BZ_DISABLESWITCHTOBUTTON, BZ_DISABLERETRYBUTTON, BZ_NOTRESPONDINGDIALOG);
++_Win32_AnnotateField_(OLEUIBUSYA::dwFlags, _Win32_AssociatedEnum_(BUSY_DIALOG_FLAGS));
++_Win32_AnnotateField_(OLEUIBUSYW::dwFlags, _Win32_AssociatedEnum_(BUSY_DIALOG_FLAGS));
++_Win32_FlagsEnum_(UI_CONVERT_FLAGS, unsigned int, CF_SHOWHELPBUTTON, CF_SETCONVERTDEFAULT, CF_SETACTIVATEDEFAULT, CF_SELECTCONVERTTO, CF_SELECTACTIVATEAS, CF_DISABLEDISPLAYASICON, CF_DISABLEACTIVATEAS, CF_HIDECHANGEICON, CF_CONVERTONLY);
++_Win32_AnnotateField_(OLEUICONVERTA::dwFlags, _Win32_AssociatedEnum_(UI_CONVERT_FLAGS));
++_Win32_AnnotateField_(OLEUICONVERTW::dwFlags, _Win32_AssociatedEnum_(UI_CONVERT_FLAGS));
++_Win32_FlagsEnum_(CHANGE_ICON_FLAGS, unsigned int, CIF_SHOWHELP, CIF_SELECTCURRENT, CIF_SELECTDEFAULT, CIF_SELECTFROMFILE, CIF_USEICONEXE);
++_Win32_AnnotateField_(OLEUICHANGEICONA::dwFlags, _Win32_AssociatedEnum_(CHANGE_ICON_FLAGS));
++_Win32_AnnotateField_(OLEUICHANGEICONW::dwFlags, _Win32_AssociatedEnum_(CHANGE_ICON_FLAGS));
++_Win32_FlagsEnum_(CHANGE_SOURCE_FLAGS, unsigned int, CSF_SHOWHELP, CSF_VALIDSOURCE, CSF_ONLYGETSOURCE, CSF_EXPLORER);
++_Win32_AnnotateField_(OLEUICHANGESOURCEA::dwFlags, _Win32_AssociatedEnum_(CHANGE_SOURCE_FLAGS));
++_Win32_AnnotateField_(OLEUICHANGESOURCEW::dwFlags, _Win32_AssociatedEnum_(CHANGE_SOURCE_FLAGS));
++_Win32_FlagsEnum_(EDIT_LINKS_FLAGS, unsigned int, ELF_SHOWHELP, ELF_DISABLEUPDATENOW, ELF_DISABLEOPENSOURCE, ELF_DISABLECHANGESOURCE, ELF_DISABLECANCELLINK);
++_Win32_AnnotateField_(OLEUIEDITLINKSA::dwFlags, _Win32_AssociatedEnum_(EDIT_LINKS_FLAGS));
++_Win32_AnnotateField_(OLEUIEDITLINKSW::dwFlags, _Win32_AssociatedEnum_(EDIT_LINKS_FLAGS));
++_Win32_FlagsEnum_(INSERT_OBJECT_FLAGS, unsigned int, IOF_SHOWHELP, IOF_SELECTCREATENEW, IOF_SELECTCREATEFROMFILE, IOF_CHECKLINK, IOF_CHECKDISPLAYASICON, IOF_CREATENEWOBJECT, IOF_CREATEFILEOBJECT, IOF_CREATELINKOBJECT, IOF_DISABLELINK, IOF_VERIFYSERVERSEXIST, IOF_DISABLEDISPLAYASICON, IOF_HIDECHANGEICON, IOF_SHOWINSERTCONTROL, IOF_SELECTCREATECONTROL);
++_Win32_AnnotateField_(OLEUIINSERTOBJECTA::dwFlags, _Win32_AssociatedEnum_(INSERT_OBJECT_FLAGS));
++_Win32_AnnotateField_(OLEUIINSERTOBJECTW::dwFlags, _Win32_AssociatedEnum_(INSERT_OBJECT_FLAGS));
++_Win32_FlagsEnum_(OBJECT_PROPERTIES_FLAGS, unsigned int, OPF_OBJECTISLINK, OPF_NOFILLDEFAULT, OPF_SHOWHELP, OPF_DISABLECONVERT);
++_Win32_AnnotateField_(OLEUIOBJECTPROPSA::dwFlags, _Win32_AssociatedEnum_(OBJECT_PROPERTIES_FLAGS));
++_Win32_AnnotateField_(OLEUIOBJECTPROPSW::dwFlags, _Win32_AssociatedEnum_(OBJECT_PROPERTIES_FLAGS));
++_Win32_FlagsEnum_(VIEW_OBJECT_PROPERTIES_FLAGS, unsigned int, VPF_SELECTRELATIVE, VPF_DISABLERELATIVE, VPF_DISABLESCALE);
++_Win32_AnnotateField_(OLEUIVIEWPROPSA::dwFlags, _Win32_AssociatedEnum_(VIEW_OBJECT_PROPERTIES_FLAGS));
++_Win32_AnnotateField_(OLEUIVIEWPROPSW::dwFlags, _Win32_AssociatedEnum_(VIEW_OBJECT_PROPERTIES_FLAGS));
++_Win32_FlagsEnum_(PASTE_SPECIAL_FLAGS, unsigned int, PSF_SHOWHELP, PSF_SELECTPASTE, PSF_SELECTPASTELINK, PSF_CHECKDISPLAYASICON, PSF_DISABLEDISPLAYASICON, PSF_HIDECHANGEICON, PSF_STAYONCLIPBOARDCHANGE, PSF_NOREFRESHDATAOBJECT);
++_Win32_AnnotateField_(OLEUIPASTESPECIALA::dwFlags, _Win32_AssociatedEnum_(PASTE_SPECIAL_FLAGS));
++_Win32_AnnotateField_(OLEUIPASTESPECIALW::dwFlags, _Win32_AssociatedEnum_(PASTE_SPECIAL_FLAGS));
++#endif

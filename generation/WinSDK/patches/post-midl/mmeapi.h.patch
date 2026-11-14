@@ -1,0 +1,729 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mmeapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/mmeapi.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/mmeapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/mmeapi.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /********************************************************************************
+ *                                                                               *
+ * mmeapi.h -- ApiSet Contract for api-ms-win-mm-mme-l1-1-0                      *
+@@ -336,6 +337,7 @@
+ 
+ #endif /* _WAVEFORMATEX_ */
+ typedef const WAVEFORMATEX FAR *LPCWAVEFORMATEX;
++_Win32_SupportedOS_Windows2000_
+ 
+ /* waveform audio function prototypes */
+ WINMMAPI
+@@ -376,6 +378,7 @@
+ #endif
+ 
+ #if (WINVER >= 0x0400)
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -383,6 +386,7 @@
+     _In_opt_ HWAVEOUT hwo,
+     _Out_ LPDWORD pdwVolume
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -426,6 +430,7 @@
+ #else
+ MMRESULT WINAPI waveOutGetErrorText(MMRESULT mmrError, LPSTR pszText, UINT cchText);
+ #endif
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -445,6 +450,7 @@
+ waveOutClose(
+     _In_ HWAVEOUT hwo
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -454,6 +460,7 @@
+     _Inout_updates_bytes_(cbwh) LPWAVEHDR pwh,
+     _In_ UINT cbwh
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -463,6 +470,7 @@
+     _Inout_updates_bytes_(cbwh) LPWAVEHDR pwh,
+     _In_ UINT cbwh
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -472,6 +480,7 @@
+     _Inout_updates_bytes_(cbwh) LPWAVEHDR pwh,
+     _In_ UINT cbwh
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -479,6 +488,7 @@
+ waveOutPause(
+     _In_ HWAVEOUT hwo
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -486,6 +496,7 @@
+ waveOutRestart(
+     _In_ HWAVEOUT hwo
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -493,6 +504,7 @@
+ waveOutReset(
+     _In_ HWAVEOUT hwo
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -500,6 +512,7 @@
+ waveOutBreakLoop(
+     _In_ HWAVEOUT hwo
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -509,6 +522,7 @@
+     _Inout_updates_bytes_(cbmmt) LPMMTIME pmmt,
+     _In_ UINT cbmmt
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -517,6 +531,7 @@
+     _In_ HWAVEOUT hwo,
+     _Out_ LPDWORD pdwPitch
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -525,6 +540,7 @@
+     _In_ HWAVEOUT hwo,
+     _In_ DWORD dwPitch
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -533,6 +549,7 @@
+     _In_ HWAVEOUT hwo,
+     _Out_ LPDWORD pdwRate
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -541,6 +558,7 @@
+     _In_ HWAVEOUT hwo,
+     _In_ DWORD dwRate
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -552,6 +570,7 @@
+ 
+ #if (WINVER >= 0x030a)
+ #ifdef _WIN32
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -566,6 +585,7 @@
+ DWORD WINAPI waveOutMessage(HWAVEOUT hwo, UINT uMsg, DWORD dw1, DWORD dw2);
+ #endif
+ #endif /* ifdef WINVER >= 0x030a */
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ UINT
+@@ -633,6 +653,7 @@
+ #else
+ MMRESULT WINAPI waveInGetErrorText(MMRESULT mmrError, LPSTR pszText, UINT cchText);
+ #endif
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -652,6 +673,7 @@
+ waveInClose(
+     _In_ HWAVEIN hwi
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -661,6 +683,7 @@
+     _Inout_updates_bytes_(cbwh) LPWAVEHDR pwh,
+     _In_ UINT cbwh
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -670,6 +693,7 @@
+     _Inout_updates_bytes_(cbwh) LPWAVEHDR pwh,
+     _In_ UINT cbwh
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -679,6 +703,7 @@
+     _Inout_updates_bytes_(cbwh) LPWAVEHDR pwh,
+     _In_ UINT cbwh
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -686,6 +711,7 @@
+ waveInStart(
+     _In_ HWAVEIN hwi
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -693,6 +719,7 @@
+ waveInStop(
+     _In_ HWAVEIN hwi
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -700,6 +727,7 @@
+ waveInReset(
+     _In_ HWAVEIN hwi
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -709,6 +737,7 @@
+     _Inout_updates_bytes_(cbmmt) LPMMTIME pmmt,
+     _In_ UINT cbmmt
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -720,6 +749,7 @@
+ 
+ #if (WINVER >= 0x030a)
+ #ifdef _WIN32
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1085,6 +1115,7 @@
+ } MIDIPROPTEMPO, FAR *LPMIDIPROPTEMPO;
+ 
+ #endif /* WINVER >= 0x0400 */
++_Win32_SupportedOS_Windows2000_
+ 
+ /* MIDI function prototypes */
+ WINMMAPI
+@@ -1095,6 +1126,7 @@
+     );
+ 
+ #if (WINVER >= 0x0400)
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1106,6 +1138,7 @@
+     _In_opt_ DWORD_PTR dwInstance,
+     _In_ DWORD fdwOpen
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1113,6 +1146,7 @@
+ midiStreamClose(
+     _In_ HMIDISTRM hms
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1122,6 +1156,7 @@
+     _Inout_updates_bytes_(sizeof(DWORD)+sizeof(DWORD)) LPBYTE lppropdata,
+     _In_ DWORD dwProperty
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1131,6 +1166,7 @@
+     _Out_writes_bytes_(cbmmt) LPMMTIME lpmmt,
+     _In_ UINT cbmmt
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1140,6 +1176,7 @@
+     _Out_writes_bytes_(cbmh) LPMIDIHDR pmh,
+     _In_ UINT cbmh
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1147,6 +1184,7 @@
+ midiStreamPause(
+     _In_ HMIDISTRM hms
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1154,6 +1192,7 @@
+ midiStreamRestart(
+     _In_ HMIDISTRM hms
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1163,6 +1202,7 @@
+     );
+ 
+ #ifdef _WIN32
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1171,6 +1211,7 @@
+     _In_ HMIDIOUT hmo,
+     _In_opt_ LPVOID pReserved
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1185,6 +1226,7 @@
+ #endif /* WINVER >= 0x0400 */
+ 
+ #ifdef _WIN32
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1194,6 +1236,7 @@
+     _Out_writes_bytes_(cbmoc) LPMIDIOUTCAPSA pmoc,
+     _In_ UINT cbmoc
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1215,6 +1258,7 @@
+ #endif
+ 
+ #if (WINVER >= 0x0400)
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1222,6 +1266,7 @@
+     _In_opt_ HMIDIOUT hmo,
+     _Out_ LPDWORD pdwVolume
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1237,6 +1282,7 @@
+ #endif
+ 
+ #ifdef _WIN32
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1246,6 +1292,7 @@
+     _Out_writes_(cchText) LPSTR pszText,
+     _In_ UINT cchText
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1265,6 +1312,7 @@
+ #else
+ WINMMAPI MMRESULT WINAPI midiOutGetErrorText(MMRESULT mmrError, LPSTR pszText, UINT cchText);
+ #endif
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1283,6 +1331,7 @@
+ midiOutClose(
+     _In_ HMIDIOUT hmo
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1292,6 +1341,7 @@
+     _Inout_updates_bytes_(cbmh) LPMIDIHDR pmh,
+     _In_ UINT cbmh
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1301,6 +1351,7 @@
+     _Inout_updates_bytes_(cbmh) LPMIDIHDR pmh,
+     _In_ UINT cbmh
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1309,6 +1360,7 @@
+     _In_ HMIDIOUT hmo,
+     _In_ DWORD dwMsg
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1318,6 +1370,7 @@
+     _In_reads_bytes_(cbmh) LPMIDIHDR pmh,
+     _In_ UINT cbmh
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1325,6 +1378,7 @@
+ midiOutReset(
+     _In_ HMIDIOUT hmo
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1335,6 +1389,7 @@
+     _In_reads_(MIDIPATCHSIZE) LPWORD pwpa,
+     _In_ UINT fuCache
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1345,6 +1400,7 @@
+     _In_reads_(MIDIPATCHSIZE) LPWORD pwkya,
+     _In_ UINT fuCache
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1356,6 +1412,7 @@
+ 
+ #if (WINVER >= 0x030a)
+ #ifdef _WIN32
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1370,6 +1427,7 @@
+ DWORD WINAPI midiOutMessage(HMIDIOUT hmo, UINT uMsg, DWORD dw1, DWORD dw2);
+ #endif
+ #endif /* ifdef WINVER >= 0x030a */
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ UINT
+@@ -1379,6 +1437,7 @@
+     );
+ 
+ #ifdef _WIN32
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1388,6 +1447,7 @@
+     _Out_writes_bytes_(cbmic) LPMIDIINCAPSA pmic,
+     _In_ UINT cbmic
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1403,6 +1463,7 @@
+ #else
+ #define midiInGetDevCaps  midiInGetDevCapsA
+ #endif // !UNICODE
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1411,6 +1472,7 @@
+     _Out_writes_(cchText) LPSTR pszText,
+     _In_ UINT cchText
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1431,6 +1493,7 @@
+ MMRESULT WINAPI midiInGetDevCaps(UINT uDeviceID, LPMIDIINCAPS pmic, UINT cbmic);
+ WINMMAPI MMRESULT WINAPI midiInGetErrorText(MMRESULT mmrError, _Out_writes_(cchText) LPSTR pszText, UINT cchText);
+ #endif
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1449,6 +1512,7 @@
+ midiInClose(
+     _In_ HMIDIIN hmi
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1458,6 +1522,7 @@
+     _Inout_updates_bytes_(cbmh) LPMIDIHDR pmh,
+     _In_ UINT cbmh
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1467,6 +1532,7 @@
+     _Inout_updates_bytes_(cbmh) LPMIDIHDR pmh,
+     _In_ UINT cbmh
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1476,6 +1542,7 @@
+     _Out_writes_bytes_(cbmh) LPMIDIHDR pmh,
+     _In_ UINT cbmh
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1483,6 +1550,7 @@
+ midiInStart(
+     _In_ HMIDIIN hmi
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1490,6 +1558,7 @@
+ midiInStop(
+     _In_ HMIDIIN hmi
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1497,6 +1566,7 @@
+ midiInReset(
+     _In_ HMIDIIN hmi
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1508,6 +1578,7 @@
+ 
+ #if (WINVER >= 0x030a)
+ #ifdef _WIN32
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1621,6 +1692,7 @@
+ /* flags for dwSupport field in AUXCAPS structure */
+ #define AUXCAPS_VOLUME          0x0001  /* supports volume control */
+ #define AUXCAPS_LRVOLUME        0x0002  /* separate left-right volume control */
++_Win32_SupportedOS_Windows2000_
+ 
+ /* auxiliary audio function prototypes */
+ WINMMAPI
+@@ -1631,6 +1703,7 @@
+     );
+ 
+ #ifdef _WIN32
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1640,6 +1713,7 @@
+     _Out_writes_bytes_(cbac) LPAUXCAPSA pac,
+     _In_ UINT cbac
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1659,6 +1733,7 @@
+ #else
+ MMRESULT WINAPI auxGetDevCaps(UINT uDeviceID, LPAUXCAPS pac, UINT cbac);
+ #endif
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1666,6 +1741,7 @@
+     _In_ UINT uDeviceID,
+     _In_ DWORD dwVolume
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1677,6 +1753,7 @@
+ 
+ #if (WINVER >= 0x030a)
+ #ifdef _WIN32
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -1731,6 +1808,7 @@
+ #define MIXER_OBJECTF_MIDIIN    0x40000000L
+ #define MIXER_OBJECTF_HMIDIIN   (MIXER_OBJECTF_HANDLE|MIXER_OBJECTF_MIDIIN)
+ #define MIXER_OBJECTF_AUX       0x50000000L
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ UINT
+@@ -1810,6 +1888,7 @@
+ #endif
+ 
+ #ifdef _WIN32
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1819,6 +1898,7 @@
+     _Out_writes_bytes_(cbmxcaps) LPMIXERCAPSA pmxcaps,
+     _In_ UINT cbmxcaps
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1838,6 +1918,7 @@
+ #else
+ MMRESULT WINAPI mixerGetDevCaps(UINT uMxId, LPMIXERCAPS pmxcaps, UINT cbmxcaps);
+ #endif
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1849,6 +1930,7 @@
+     _In_opt_ DWORD_PTR dwInstance,
+     _In_ DWORD fdwOpen
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -1856,6 +1938,7 @@
+ mixerClose(
+     _In_ HMIXER hmx
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ DWORD
+@@ -2000,6 +2083,7 @@
+ #define MIXERLINE_TARGETTYPE_AUX            5
+ 
+ #ifdef _WIN32
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -2009,6 +2093,7 @@
+     _Inout_ LPMIXERLINEA pmxl,
+     _In_ DWORD fdwInfo
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -2036,6 +2121,7 @@
+ #define MIXER_GETLINEINFOF_TARGETTYPE       0x00000004L
+ 
+ #define MIXER_GETLINEINFOF_QUERYMASK        0x0000000FL
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -2274,6 +2360,7 @@
+ /* */
+ /* */
+ #ifdef _WIN32
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -2283,6 +2370,7 @@
+     _Inout_ LPMIXERLINECONTROLSA pmxlc,
+     _In_ DWORD fdwControls
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -2378,6 +2466,7 @@
+  FAR *LPMIXERCONTROLDETAILS_UNSIGNED;
+ 
+ #ifdef _WIN32
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -2387,6 +2476,7 @@
+     _Inout_ LPMIXERCONTROLDETAILS pmxcd,
+     _In_ DWORD fdwDetails
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -2411,6 +2501,7 @@
+ #define MIXER_GETCONTROLDETAILSF_LISTTEXT   0x00000001L
+ 
+ #define MIXER_GETCONTROLDETAILSF_QUERYMASK  0x0000000FL
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT

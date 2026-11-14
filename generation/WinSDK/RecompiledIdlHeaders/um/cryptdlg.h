@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //+---------------------------------------------------------------------------
 //
 //  Microsoft Windows
@@ -152,6 +153,8 @@ typedef PCERT_SELECT_STRUCT_W PCERT_SELECT_STRUCT;
 typedef CERT_SELECT_STRUCT_A CERT_SELECT_STRUCT;
 typedef PCERT_SELECT_STRUCT_A PCERT_SELECT_STRUCT;
 #endif // UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 CRYPTDLGAPI
 BOOL
@@ -162,6 +165,8 @@ CertSelectCertificateA(
 #ifdef MAC
 #define CertSelectCertificate CertSelectCertificateA
 #else   // !MAC
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 CRYPTDLGAPI
 BOOL
 WINAPI
@@ -247,6 +252,7 @@ typedef PCERT_VIEWPROPERTIES_STRUCT_W PCERT_VIEWPROPERTIES_STRUCT;
 typedef CERT_VIEWPROPERTIES_STRUCT_A CERT_VIEWPROPERTIES_STRUCT;
 typedef PCERT_VIEWPROPERTIES_STRUCT_A PCERT_VIEWPROPERTIES_STRUCT;
 #endif // UNICODE
+_Win32_SupportedOS_WindowsXP_
 
 CRYPTDLGAPI
 BOOL
@@ -257,6 +263,7 @@ CertViewPropertiesA(
 #ifdef MAC
 #define CertViewProperties CertViewPropertiesA
 #else   // !MAC
+_Win32_SupportedOS_WindowsXP_
 CRYPTDLGAPI
 BOOL
 WINAPI
@@ -301,6 +308,7 @@ typedef struct tagCMFLTR {
     CERT_FILTER_EXTENSION_MATCH * arrayExtensionChecks;
     DWORD               dwCheckingFlags;
 } CERT_FILTER_DATA;
+_Win32_SupportedOS_WindowsXP_
 
 //
 //  Maybe this should not be here -- but until it goes into wincrypt.h
@@ -317,6 +325,7 @@ GetFriendlyNameOfCertA(
     _Out_writes_to_opt_(cch, return) LPSTR pch,
     _In_ DWORD cch
     );
+_Win32_SupportedOS_WindowsXP_
 CRYPTDLGAPI
 DWORD
 WINAPI
@@ -443,6 +452,7 @@ typedef struct _CTL_MODIFY_REQUEST {
     DWORD               dwOperation;    // Operation to be performed
     DWORD               dwError;        // Operation error code
 } CTL_MODIFY_REQUEST, * PCTL_MODIFY_REQUEST;
+_Win32_SupportedOS_WindowsXP_
 
 CRYPTDLGAPI
 HRESULT

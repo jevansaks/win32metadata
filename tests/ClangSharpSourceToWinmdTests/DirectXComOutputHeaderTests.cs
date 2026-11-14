@@ -98,8 +98,7 @@ namespace ClangSharpSourceToWinmdTests
                 Assert.IsTrue(original.All(character => character <= 127), path);
                 CollectionAssert.AreEqual(Encoding.ASCII.GetBytes(PatchOwner(path, original)),
                     historical ? ProductionSalLocalHeaderTests.ReadBeforeCutover("RecompiledIdlHeaders/" + path) :
-                        File.ReadAllBytes(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
-                            "generation", "WinSDK", "RecompiledIdlHeaders", path)),
+                        FullHeaderMigrationExperimentTests.ReadRecoveryBytes("RecompiledIdlHeaders/" + path),
                     "No encoding, newline, unrelated declaration or template changes: " + path);
             }
         }
@@ -146,8 +145,7 @@ namespace ClangSharpSourceToWinmdTests
             Assert.IsFalse(records.Any(record => record.Split('=')[0].Contains('*')));
             foreach (string selector in Selectors)
                 CollectionAssert.Contains(records, selector + "=[ComOutPtr]" + (selector == DWriteSelector ? "void**" : ""));
-            string current = File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
-                "generation", "WinSDK", "emitter.settings.rsp")).Replace("\r\n", "\n");
+            string current = FullHeaderMigrationExperimentTests.ReadRecoveryText("emitter.settings.rsp").Replace("\r\n", "\n");
             Assert.AreEqual(SyncComOutputHeaderTests.RetireRecords(ImagingComOutputHeaderTests.RetireRecords(AudioComOutputHeaderTests.RetireRecords(ClrComOutputHeaderTests.RetireRecords(ServiceComOutputHeaderTests.RetireRecords(MediaFoundationComOutputHeaderTests.RetireRecords(RetireRecords(original))))))), current,
                 "Preserve all independent sidecars exactly.");
             CollectionAssert.AreEqual(SyncComOutputHeaderTests.RetireRecords(ImagingComOutputHeaderTests.RetireRecords(AudioComOutputHeaderTests.RetireRecords(ClrComOutputHeaderTests.RetireRecords(ServiceComOutputHeaderTests.RetireRecords(MediaFoundationComOutputHeaderTests.RetireRecords(RetireRecords(string.Join("\n", records) + "\n"))))))).Split('\n').Where(line => line.Length != 0 && line != ClrComOutputHeaderTests.CombinedSelector + "=[Out]").ToArray(),

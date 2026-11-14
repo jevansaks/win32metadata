@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*=============================================================================
 
     Copyright (c) 2002  Microsoft Corporation
@@ -95,7 +96,7 @@ typedef struct _TXF_LOG_RECORD_BASE {
     //  Type of record, defined above.
     //
 
-    USHORT RecordType;
+    _Win32_AssociatedEnum_(TXF_LOG_RECORD_TYPE) USHORT RecordType;
 
     //
     //  Length of this record in bytes.
@@ -303,6 +304,8 @@ typedef struct _TXF_LOG_RECORD_AFFECTED_FILE {
 #ifdef __cplusplus
 extern "C" {
 #endif
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 BOOL
 WINAPI
@@ -348,6 +351,8 @@ TxfLogCreateRangeReadContext (
     _In_ ULONG RecordTypeMask,
     _Outptr_ PVOID *TxfLogContext
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 /*
 
   Description:
@@ -376,6 +381,8 @@ WINAPI
 TxfLogDestroyReadContext (
     _In_ PVOID TxfLogContext
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 /*
 
   Description:
@@ -606,3 +613,8 @@ TxfGetThreadMiniVersionForCreate (
 #endif
 
 
+
+#ifndef _WIN32METADATA_TXFW32_MANUAL_28_GROUPS_
+#define _WIN32METADATA_TXFW32_MANUAL_28_GROUPS_
+_Win32_Enum_(TXF_LOG_RECORD_TYPE, unsigned short, TXF_LOG_RECORD_TYPE_AFFECTED_FILE, TXF_LOG_RECORD_TYPE_TRUNCATE, TXF_LOG_RECORD_TYPE_WRITE);
+#endif

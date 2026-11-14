@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 
 
 /* this ALWAYS GENERATED file contains the definitions for the interfaces */
@@ -873,6 +874,9 @@ EXTERN_C const IID IID_IAzAuthorizationStore;
             /* [in] */ LONG lFlag) = 0;
         
     };
+_Win32_AnnotateParameter_(IAzAuthorizationStore::Initialize, lFlags, _Win32_AssociatedEnum_(AZ_PROP_CONSTANTS));
+_Win32_AnnotateParameter_(IAzAuthorizationStore::AddPropertyItem, lPropId, _Win32_AssociatedEnum_(AZ_PROP_CONSTANTS));
+
     
     
 #else 	/* C style interface */

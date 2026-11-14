@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /********************************************************************************
 *                                                                               *
 * powersetting.h -- ApiSet Contract for api-ms-win-power-setting-l1-1-0         *
@@ -40,6 +41,7 @@ typedef PVOID HPOWERNOTIFY, *PHPOWERNOTIFY;
 #endif // _HPOWERNOTIFY_DEF_
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
+_Win32_SupportedOS_WindowsVista_
 DWORD
 WINAPI
 PowerReadACValue(
@@ -55,6 +57,7 @@ PowerReadACValue(
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
+_Win32_SupportedOS_WindowsVista_
 DWORD
 WINAPI
 PowerReadDCValue(
@@ -70,6 +73,7 @@ PowerReadDCValue(
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
+_Win32_SupportedOS_WindowsVista_
 DWORD
 WINAPI
 PowerWriteACValueIndex(
@@ -83,6 +87,7 @@ PowerWriteACValueIndex(
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
+_Win32_SupportedOS_WindowsVista_
 DWORD
 WINAPI
 PowerWriteDCValueIndex(
@@ -96,6 +101,7 @@ PowerWriteDCValueIndex(
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
+_Win32_SupportedOS_WindowsVista_
 DWORD
 WINAPI
 PowerGetActiveScheme(
@@ -106,6 +112,7 @@ PowerGetActiveScheme(
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
+_Win32_SupportedOS_WindowsVista_
 DWORD
 WINAPI
 PowerSetActiveScheme(
@@ -116,6 +123,7 @@ PowerSetActiveScheme(
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_WIN7)
+_Win32_SupportedOS_Windows7_
 DWORD
 WINAPI
 PowerSettingRegisterNotification(
@@ -128,6 +136,7 @@ PowerSettingRegisterNotification(
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_WIN7)
+_Win32_SupportedOS_Windows7_
 DWORD
 WINAPI
 PowerSettingUnregisterNotification(
@@ -152,6 +161,7 @@ typedef enum EFFECTIVE_POWER_MODE {
 
 #define EFFECTIVE_POWER_MODE_V1 (0x00000001)
 #define EFFECTIVE_POWER_MODE_V2 (0x00000002)
+_Win32_SupportedOS_17763_
 
 typedef _Function_class_(EFFECTIVE_POWER_MODE_CALLBACK)
 VOID
@@ -163,6 +173,7 @@ EFFECTIVE_POWER_MODE_CALLBACK (
 #endif
 
 #if NTDDI_VERSION >= NTDDI_WIN10_RS5
+_Win32_SupportedOS_17763_
 _Must_inspect_result_
 HRESULT
 WINAPI
@@ -176,6 +187,7 @@ PowerRegisterForEffectivePowerModeNotifications(
 #endif
 
 #if NTDDI_VERSION >= NTDDI_WIN10_RS5
+_Win32_SupportedOS_17763_
 HRESULT
 WINAPI
 PowerUnregisterFromEffectivePowerModeNotifications(

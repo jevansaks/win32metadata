@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) 2007 Microsoft Corporation
@@ -242,6 +243,7 @@ VOID
 (CALLBACK *PWINBIO_ASYNC_COMPLETION_CALLBACK)(
     _In_ PWINBIO_ASYNC_RESULT AsyncResult
     );
+_Win32_SupportedOS_Windows7_
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -255,6 +257,7 @@ WinBioEnumServiceProviders(
     _Outptr_result_buffer_(*BspCount) WINBIO_BSP_SCHEMA **BspSchemaArray,
     _Out_ SIZE_T *BspCount
     );
+_Win32_SupportedOS_Windows7_
 
 HRESULT WINAPI
 WinBioEnumBiometricUnits(
@@ -262,6 +265,7 @@ WinBioEnumBiometricUnits(
     _Outptr_result_buffer_(*UnitCount) WINBIO_UNIT_SCHEMA **UnitSchemaArray,
     _Out_ SIZE_T *UnitCount
     );
+_Win32_SupportedOS_Windows7_
 
 HRESULT WINAPI
 WinBioEnumDatabases(
@@ -269,6 +273,7 @@ WinBioEnumDatabases(
     _Outptr_result_buffer_(*StorageCount) WINBIO_STORAGE_SCHEMA **StorageSchemaArray,
     _Out_ SIZE_T *StorageCount
     );
+_Win32_SupportedOS_Windows8_
 
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -285,35 +290,41 @@ WinBioAsyncOpenFramework(
     _In_ BOOL AsynchronousOpen,
     _Out_opt_ WINBIO_FRAMEWORK_HANDLE *FrameworkHandle
     );
+_Win32_SupportedOS_Windows8_
 
 HRESULT WINAPI
 WinBioCloseFramework(
     _In_ WINBIO_FRAMEWORK_HANDLE FrameworkHandle
     );
+_Win32_SupportedOS_Windows8_
 
 HRESULT WINAPI
 WinBioAsyncEnumServiceProviders(
     _In_ WINBIO_FRAMEWORK_HANDLE FrameworkHandle,
     _In_ WINBIO_BIOMETRIC_TYPE Factor
     );
+_Win32_SupportedOS_Windows8_
 
 HRESULT WINAPI
 WinBioAsyncEnumBiometricUnits(
     _In_ WINBIO_FRAMEWORK_HANDLE FrameworkHandle,
     _In_ WINBIO_BIOMETRIC_TYPE Factor
     );
+_Win32_SupportedOS_Windows8_
 
 HRESULT WINAPI
 WinBioAsyncEnumDatabases(
     _In_ WINBIO_FRAMEWORK_HANDLE FrameworkHandle,
     _In_ WINBIO_BIOMETRIC_TYPE Factor
     );
+_Win32_SupportedOS_Windows8_
 
 HRESULT WINAPI
 WinBioAsyncMonitorFrameworkChanges(
     _In_ WINBIO_FRAMEWORK_HANDLE FrameworkHandle,
     _In_ WINBIO_FRAMEWORK_CHANGE_TYPE ChangeTypes
     );
+_Win32_SupportedOS_Windows7_
 
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -330,6 +341,7 @@ WinBioOpenSession(
     _In_opt_ GUID *DatabaseId,
     _Out_ WINBIO_SESSION_HANDLE *SessionHandle
     );
+_Win32_SupportedOS_Windows8_
 
 //
 // Asynchronous sessions...
@@ -350,11 +362,13 @@ WinBioAsyncOpenSession(
     _In_ BOOL AsynchronousOpen,
     _Out_opt_ WINBIO_SESSION_HANDLE *SessionHandle
     );
+_Win32_SupportedOS_Windows7_
 
 HRESULT WINAPI
 WinBioCloseSession(
     _In_ WINBIO_SESSION_HANDLE SessionHandle
     );
+_Win32_SupportedOS_Windows7_
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -381,6 +395,7 @@ VOID
     _In_ BOOLEAN Match,
     _In_ WINBIO_REJECT_DETAIL RejectDetail
     );
+_Win32_SupportedOS_Windows7_
 
 HRESULT WINAPI
 WinBioVerifyWithCallback(
@@ -390,6 +405,7 @@ WinBioVerifyWithCallback(
     _In_ PWINBIO_VERIFY_CALLBACK VerifyCallback,
     _In_opt_ PVOID VerifyCallbackContext
     );
+_Win32_SupportedOS_Windows7_
 
 HRESULT WINAPI
 WinBioIdentify(
@@ -410,6 +426,7 @@ VOID
     _In_ WINBIO_BIOMETRIC_SUBTYPE SubFactor,
     _In_ WINBIO_REJECT_DETAIL RejectDetail
     );
+_Win32_SupportedOS_Windows7_
 
 HRESULT WINAPI
 WinBioIdentifyWithCallback(
@@ -417,16 +434,19 @@ WinBioIdentifyWithCallback(
     _In_ PWINBIO_IDENTIFY_CALLBACK IdentifyCallback,
     _In_opt_ PVOID IdentifyCallbackContext
     );
+_Win32_SupportedOS_Windows7_
 
 HRESULT WINAPI
 WinBioWait(
     _In_ WINBIO_SESSION_HANDLE SessionHandle
     );
+_Win32_SupportedOS_Windows7_
 
 HRESULT WINAPI
 WinBioCancel(
     _In_ WINBIO_SESSION_HANDLE SessionHandle
     );
+_Win32_SupportedOS_Windows7_
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -447,6 +467,7 @@ VOID
     _In_ HRESULT OperationStatus,
     _In_ WINBIO_UNIT_ID UnitId
     );
+_Win32_SupportedOS_Windows7_
 
 HRESULT WINAPI
 WinBioLocateSensorWithCallback(
@@ -454,6 +475,7 @@ WinBioLocateSensorWithCallback(
     _In_ PWINBIO_LOCATE_SENSOR_CALLBACK LocateCallback,
     _In_opt_ PVOID LocateCallbackContext
     );
+_Win32_SupportedOS_Windows7_
 
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -468,6 +490,7 @@ WinBioEnrollBegin(
     );
 
 #if (NTDDI_VERSION >= NTDDI_WINTHRESHOLD)
+_Win32_SupportedOS_10240_
 
 HRESULT WINAPI
 WinBioEnrollSelect(
@@ -476,6 +499,7 @@ WinBioEnrollSelect(
     );
 
 #endif // (NTDDI_VERSION >= NTDDI_WINTHRESHOLD)
+_Win32_SupportedOS_Windows7_
 
 HRESULT WINAPI
 WinBioEnrollCapture(
@@ -490,6 +514,7 @@ VOID
     _In_ HRESULT OperationStatus,
     _In_ WINBIO_REJECT_DETAIL RejectDetail
     );
+_Win32_SupportedOS_Windows7_
 
 HRESULT WINAPI
 WinBioEnrollCaptureWithCallback(
@@ -497,6 +522,7 @@ WinBioEnrollCaptureWithCallback(
     _In_ PWINBIO_ENROLL_CAPTURE_CALLBACK EnrollCallback,
     _In_opt_ PVOID EnrollCallbackContext
     );
+_Win32_SupportedOS_Windows7_
 
 HRESULT WINAPI
 WinBioEnrollCommit(
@@ -504,11 +530,13 @@ WinBioEnrollCommit(
     _Out_opt_ WINBIO_IDENTITY *Identity,
     _Out_opt_ BOOLEAN *IsNewTemplate
     );
+_Win32_SupportedOS_Windows7_
 
 HRESULT WINAPI
 WinBioEnrollDiscard(
     _In_ WINBIO_SESSION_HANDLE SessionHandle
     );
+_Win32_SupportedOS_Windows7_
 
 HRESULT WINAPI
 WinBioEnumEnrollments(
@@ -547,6 +575,7 @@ VOID
     _In_ HRESULT OperationStatus,
     _In_ PWINBIO_EVENT Event
     );
+_Win32_SupportedOS_Windows7_
 
 HRESULT WINAPI
 WinBioRegisterEventMonitor(
@@ -555,6 +584,7 @@ WinBioRegisterEventMonitor(
     _In_ PWINBIO_EVENT_CALLBACK EventCallback,
     _In_opt_ PVOID EventCallbackContext
     );
+_Win32_SupportedOS_Windows7_
 
 HRESULT WINAPI
 WinBioUnregisterEventMonitor(
@@ -562,6 +592,7 @@ WinBioUnregisterEventMonitor(
     );
 
 #if (NTDDI_VERSION >= NTDDI_WINTHRESHOLD)
+_Win32_SupportedOS_10240_
 
 HRESULT WINAPI
 WinBioMonitorPresence(
@@ -570,6 +601,7 @@ WinBioMonitorPresence(
     );
 
 #endif // (NTDDI_VERSION >= NTDDI_WINTHRESHOLD)
+_Win32_SupportedOS_Windows7_
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -598,6 +630,7 @@ VOID
     _In_ SIZE_T SampleSize,
     _In_ WINBIO_REJECT_DETAIL RejectDetail
     );
+_Win32_SupportedOS_Windows7_
 
 HRESULT WINAPI
 WinBioCaptureSampleWithCallback(
@@ -607,6 +640,7 @@ WinBioCaptureSampleWithCallback(
     _In_ PWINBIO_CAPTURE_CALLBACK CaptureCallback,
     _In_opt_ PVOID CaptureCallbackContext
     );
+_Win32_SupportedOS_Windows7_
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -621,6 +655,7 @@ WinBioDeleteTemplate(
     _In_ WINBIO_IDENTITY *Identity,
     _In_ WINBIO_BIOMETRIC_SUBTYPE SubFactor
     );
+_Win32_SupportedOS_Windows7_
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -633,12 +668,14 @@ WinBioLockUnit(
     _In_ WINBIO_SESSION_HANDLE SessionHandle,
     _In_ WINBIO_UNIT_ID UnitId
     );
+_Win32_SupportedOS_Windows7_
 
 HRESULT WINAPI
 WinBioUnlockUnit(
     _In_ WINBIO_SESSION_HANDLE SessionHandle,
     _In_ WINBIO_UNIT_ID UnitId
     );
+_Win32_SupportedOS_Windows7_
 
 HRESULT WINAPI
 WinBioControlUnit(
@@ -653,6 +690,7 @@ WinBioControlUnit(
     _Out_range_(<=,ReceiveBufferSize) SIZE_T *ReceiveDataSize,
     _Out_opt_ ULONG *OperationStatus
     );
+_Win32_SupportedOS_Windows7_
 
 HRESULT WINAPI
 WinBioControlUnitPrivileged(
@@ -667,6 +705,7 @@ WinBioControlUnitPrivileged(
     _Out_range_(<=,ReceiveBufferSize) SIZE_T *ReceiveDataSize,
     _Out_opt_ ULONG *OperationStatus
     );
+_Win32_SupportedOS_Windows7_
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -685,6 +724,7 @@ WinBioGetProperty(
     _Outptr_result_bytebuffer_maybenull_(*PropertyBufferSize) PVOID *PropertyBuffer,
     _Out_opt_ SIZE_T *PropertyBufferSize
     );
+_Win32_SupportedOS_10240_
 
 HRESULT WINAPI
 WinBioSetProperty(
@@ -697,6 +737,7 @@ WinBioSetProperty(
     _In_reads_bytes_(PropertyBufferSize) PVOID PropertyBuffer,
     _In_ SIZE_T PropertyBufferSize
     );
+_Win32_SupportedOS_Windows7_
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -708,6 +749,7 @@ HRESULT WINAPI
 WinBioFree(
     _In_ PVOID Address
     );
+_Win32_SupportedOS_Windows81_
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -722,23 +764,27 @@ WinBioSetCredential(
     _In_ SIZE_T CredentialSize,
     _In_ WINBIO_CREDENTIAL_FORMAT Format
     );
+_Win32_SupportedOS_Windows7_
 
 HRESULT WINAPI
 WinBioRemoveCredential(
     _In_ WINBIO_IDENTITY Identity,
     _In_ WINBIO_CREDENTIAL_TYPE Type
     );
+_Win32_SupportedOS_Windows7_
 
 HRESULT WINAPI
 WinBioRemoveAllCredentials(
     void
     );
+_Win32_SupportedOS_Windows7_
 
 
 HRESULT WINAPI
 WinBioRemoveAllDomainCredentials(
     void
     );
+_Win32_SupportedOS_Windows7_
 
 HRESULT WINAPI
 WinBioGetCredentialState(
@@ -746,6 +792,7 @@ WinBioGetCredentialState(
     _In_ WINBIO_CREDENTIAL_TYPE Type,
     _Out_ WINBIO_CREDENTIAL_STATE *CredentialState
     );
+_Win32_SupportedOS_Windows7_
 
 HRESULT WINAPI
 WinBioLogonIdentifiedUser(
@@ -753,6 +800,7 @@ WinBioLogonIdentifiedUser(
     );
 
 #if (NTDDI_VERSION >= NTDDI_WINTHRESHOLD)
+_Win32_SupportedOS_10240_
 
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -767,6 +815,7 @@ WinBioGetEnrolledFactors(
     );
 
 #endif // (NTDDI_VERSION >= NTDDI_WINTHRESHOLD)
+_Win32_SupportedOS_Windows7_
 
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -795,6 +844,7 @@ HRESULT WINAPI
 WinBioIsESSCapable(
     _Out_ BOOLEAN* Value
     );
+_Win32_SupportedOS_Windows7_
 
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -806,6 +856,7 @@ HRESULT WINAPI
 WinBioAcquireFocus(
     void
     );
+_Win32_SupportedOS_Windows7_
 
 HRESULT WINAPI
 WinBioReleaseFocus(

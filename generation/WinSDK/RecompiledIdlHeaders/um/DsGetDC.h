@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0001    // Increment this if a change has global effects
 
 Copyright (c) 1996-1999  Microsoft Corporation
@@ -218,6 +219,7 @@ typedef struct _DOMAIN_CONTROLLER_INFOW {
 #define DS_DNS_CONTROLLER_FLAG 0x20000000    // DomainControllerName is a DNS name
 #define DS_DNS_DOMAIN_FLAG     0x40000000    // DomainName is a DNS name
 #define DS_DNS_FOREST_FLAG     0x80000000    // DnsForestName is a DNS name
+_Win32_SupportedOS_WindowsVista_
 
 
 //
@@ -236,6 +238,7 @@ DsGetDcNameA(
     _In_ ULONG Flags,
     _Outptr_result_nullonfailure_ PDOMAIN_CONTROLLER_INFOA *DomainControllerInfo
     );
+_Win32_SupportedOS_WindowsVista_
 
 _Success_(return == ERROR_SUCCESS)
 DSGETDCAPI
@@ -255,6 +258,7 @@ DsGetDcNameW(
 #else
 #define DsGetDcName DsGetDcNameA
 #endif // !UNICODE
+_Win32_SupportedOS_WindowsVista_
 
 _Success_(return == ERROR_SUCCESS)
 DSGETDCAPI
@@ -264,6 +268,7 @@ DsGetSiteNameA(
     _In_opt_ LPCSTR ComputerName,
     _Outptr_result_nullonfailure_ LPSTR *SiteName
     );
+_Win32_SupportedOS_WindowsVista_
 
 _Success_(return == ERROR_SUCCESS)
 DSGETDCAPI
@@ -279,6 +284,7 @@ DsGetSiteNameW(
 #else
 #define DsGetSiteName DsGetSiteNameA
 #endif // !UNICODE
+_Win32_SupportedOS_WindowsVista_
 
 DSGETDCAPI
 DWORD
@@ -286,6 +292,7 @@ WINAPI
 DsValidateSubnetNameW(
     _In_ LPCWSTR SubnetName
     );
+_Win32_SupportedOS_WindowsVista_
 
 DSGETDCAPI
 DWORD
@@ -305,6 +312,7 @@ DsValidateSubnetNameA(
 // Only include if winsock2.h has been included
 //
 #ifdef _WINSOCK2API_
+_Win32_SupportedOS_WindowsVista_
 
 _Success_(return == ERROR_SUCCESS)
 DSGETDCAPI
@@ -316,6 +324,7 @@ DsAddressToSiteNamesW(
     _In_reads_(EntryCount) PSOCKET_ADDRESS SocketAddresses,
     _Outptr_result_nullonfailure_ _Outptr_result_buffer_(EntryCount) LPWSTR **SiteNames
     );
+_Win32_SupportedOS_WindowsVista_
 
 _Success_(return == ERROR_SUCCESS)
 DSGETDCAPI
@@ -333,6 +342,7 @@ DsAddressToSiteNamesA(
 #else
 #define DsAddressToSiteNames DsAddressToSiteNamesA
 #endif // !UNICODE
+_Win32_SupportedOS_WindowsVista_
 
 _Success_(return == ERROR_SUCCESS)
 DSGETDCAPI
@@ -345,6 +355,7 @@ DsAddressToSiteNamesExW(
     _Outptr_result_nullonfailure_ _Outptr_result_buffer_(EntryCount) LPWSTR **SiteNames,
     _Outptr_result_nullonfailure_ _Outptr_result_buffer_(EntryCount) LPWSTR **SubnetNames
     );
+_Win32_SupportedOS_WindowsVista_
 
 _Success_(return == ERROR_SUCCESS)
 DSGETDCAPI
@@ -458,6 +469,7 @@ typedef struct _DS_DOMAIN_TRUSTSA {
 #define DS_DOMAIN_TRUSTS DS_DOMAIN_TRUSTSA
 #define PDS_DOMAIN_TRUSTS PDS_DOMAIN_TRUSTSA
 #endif // !UNICODE
+_Win32_SupportedOS_WindowsVista_
 
 _Success_(return == ERROR_SUCCESS)
 DSGETDCAPI
@@ -469,6 +481,7 @@ DsEnumerateDomainTrustsW (
     _Outptr_result_nullonfailure_ _Outptr_result_buffer_(*DomainCount) PDS_DOMAIN_TRUSTSW *Domains,
     _Out_ PULONG DomainCount
     );
+_Win32_SupportedOS_WindowsVista_
 
 _Success_(return == ERROR_SUCCESS)
 DSGETDCAPI
@@ -493,6 +506,7 @@ DsEnumerateDomainTrustsA (
 //
 
 #if defined(_NTLSA_) || defined(_NTSECAPI_)
+_Win32_SupportedOS_WindowsVista_
 
 _Success_(return == ERROR_SUCCESS)
 DSGETDCAPI
@@ -507,6 +521,7 @@ DsGetForestTrustInformationW (
 
 #define DS_GFTI_UPDATE_TDO      0x1     // Update TDO with information returned
 #define DS_GFTI_VALID_FLAGS     0x1     // All valid flags to DsGetForestTrustInformation
+_Win32_SupportedOS_WindowsVista_
 
 _Success_(return == ERROR_SUCCESS)
 DSGETDCAPI
@@ -520,6 +535,7 @@ DsMergeForestTrustInformationW(
     );
 
 #endif // _NTLSA_ || _NTSECAPI_
+_Win32_SupportedOS_WindowsVista_
 
 _Success_(return == ERROR_SUCCESS)
 DSGETDCAPI
@@ -530,6 +546,7 @@ DsGetDcSiteCoverageW(
     _Out_ PULONG EntryCount,
     _Outptr_result_nullonfailure_ _Outptr_result_buffer_(*EntryCount) LPWSTR **SiteNames
     );
+_Win32_SupportedOS_WindowsVista_
 
 _Success_(return == ERROR_SUCCESS)
 DSGETDCAPI
@@ -546,6 +563,7 @@ DsGetDcSiteCoverageA(
 #else
 #define DsGetDcSiteCoverage DsGetDcSiteCoverageA
 #endif // !UNICODE
+_Win32_SupportedOS_WindowsVista_
 
 DSGETDCAPI
 DWORD
@@ -557,6 +575,7 @@ DsDeregisterDnsHostRecordsW (
     _In_opt_ GUID   *DsaGuid,
     _In_ LPWSTR DnsHostName
     );
+_Win32_SupportedOS_WindowsVista_
 
 DSGETDCAPI
 DWORD
@@ -632,6 +651,7 @@ DsGetDcOpenA(
 #else
 #define DsGetDcOpen DsGetDcOpenA
 #endif // !UNICODE
+_Win32_SupportedOS_WindowsVista_
 
 _Success_(return == ERROR_SUCCESS)
 DSGETDCAPI
@@ -643,6 +663,7 @@ DsGetDcNextW(
     _Outptr_opt_result_buffer_(*SockAddressCount) LPSOCKET_ADDRESS *SockAddresses,
     _Outptr_opt_result_nullonfailure_ LPWSTR *DnsHostName
     );
+_Win32_SupportedOS_WindowsVista_
 
 _Success_(return == ERROR_SUCCESS)
 DSGETDCAPI
@@ -660,6 +681,7 @@ DsGetDcNextA(
 #else
 #define DsGetDcNext DsGetDcNextA
 #endif // !UNICODE
+_Win32_SupportedOS_WindowsVista_
 
 DSGETDCAPI
 VOID

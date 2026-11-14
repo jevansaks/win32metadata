@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /********************************************************************************
 *                                                                               *
 * wow64app.h - ApiSet Contract for api-ms-win-core-wow64-l1                     *
@@ -28,6 +29,7 @@ extern "C" {
 // RC warns because "WINBASE_DECLARE_GET_SYSTEM_WOW64_DIRECTORY" is a bit long.
 #if !defined(RC_INVOKED)
 #if _WIN32_WINNT >= 0x0501 || defined(WINBASE_DECLARE_GET_SYSTEM_WOW64_DIRECTORY)
+_Win32_SupportedOS_WindowsVista_
 
 WINBASEAPI
 BOOLEAN
@@ -35,6 +37,8 @@ WINAPI
 Wow64EnableWow64FsRedirection(
     _In_ BOOLEAN Wow64FsEnableRedirection
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 WINBASEAPI
 BOOL
@@ -42,6 +46,8 @@ WINAPI
 Wow64DisableWow64FsRedirection(
     _Out_ PVOID* OldValue
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 WINBASEAPI
 BOOL
@@ -60,6 +66,8 @@ Wow64RevertWow64FsRedirection(
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
 
 #if (_WIN32_WINNT >= 0x0501)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 WINBASEAPI
 BOOL
@@ -80,6 +88,8 @@ IsWow64Process(
 // RC warns because "WINBASE_DECLARE_GET_SYSTEM_WOW64_DIRECTORY" is a bit long.
 #if !defined(RC_INVOKED)
 #if _WIN32_WINNT >= 0x0501 || defined(WINBASE_DECLARE_GET_SYSTEM_WOW64_DIRECTORY)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINBASEAPI
 _Must_inspect_result_
@@ -90,6 +100,8 @@ GetSystemWow64DirectoryA(
     _Out_writes_to_opt_(uSize,return + 1) LPSTR lpBuffer,
     _In_ UINT uSize
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINBASEAPI
 _Must_inspect_result_
@@ -128,14 +140,16 @@ Wow64SetThreadDefaultGuestMachine(
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
 
 #if (_WIN32_WINNT >= 0x0A00)
+_Win32_SetLastError_
+_Win32_SupportedOS_10586_
 
 WINBASEAPI
 BOOL
 WINAPI
 IsWow64Process2(
     _In_ HANDLE hProcess,
-    _Out_ USHORT* pProcessMachine,
-    _Out_opt_ USHORT* pNativeMachine
+    _Win32_AssociatedEnum_(IMAGE_FILE_MACHINE) _Out_ USHORT* pProcessMachine,
+    _Win32_AssociatedEnum_(IMAGE_FILE_MACHINE) _Out_opt_ USHORT* pNativeMachine
     );
 
 #endif // _WIN32_WINNT >= 0x0A00
@@ -147,6 +161,8 @@ IsWow64Process2(
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
 #if (_WIN32_WINNT >= 0x0A00)
+_Win32_SetLastError_
+_Win32_SupportedOS_10586_
 
 WINBASEAPI
 _Must_inspect_result_
@@ -156,8 +172,10 @@ WINAPI
 GetSystemWow64Directory2A(
     _Out_writes_to_opt_(uSize,return + 1) LPSTR lpBuffer,
     _In_ UINT uSize,
-    _In_ WORD ImageFileMachineType
+    _Win32_AssociatedEnum_(IMAGE_FILE_MACHINE) _In_ WORD ImageFileMachineType
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_10586_
 
 WINBASEAPI
 _Must_inspect_result_
@@ -167,7 +185,7 @@ WINAPI
 GetSystemWow64Directory2W(
     _Out_writes_to_opt_(uSize,return + 1) LPWSTR lpBuffer,
     _In_ UINT uSize,
-    _In_ WORD ImageFileMachineType
+    _Win32_AssociatedEnum_(IMAGE_FILE_MACHINE) _In_ WORD ImageFileMachineType
     );
 
 #ifdef UNICODE
@@ -179,19 +197,23 @@ GetSystemWow64Directory2W(
 #endif // _WIN32_WINNT >= 0x0A00
 
 #if (_WIN32_WINNT >= 0x0A00)
+_Win32_SetLastError_
+_Win32_SupportedOS_16299_
 
 WINBASEAPI
 _Must_inspect_result_
 HRESULT
 WINAPI
 IsWow64GuestMachineSupported(
-    _In_ USHORT WowGuestMachine,
+    _Win32_AssociatedEnum_(IMAGE_FILE_MACHINE) _In_ USHORT WowGuestMachine,
     _Out_ BOOL* MachineIsSupported
     );
 
 #endif // _WIN32_WINNT >= 0x0A00
 
 #if (_WIN32_WINNT >= 0x0600)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 WINBASEAPI
 BOOL
@@ -200,6 +222,8 @@ Wow64GetThreadContext(
     _In_ HANDLE hThread,
     _Inout_ PWOW64_CONTEXT lpContext
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 WINBASEAPI
 BOOL
@@ -208,6 +232,8 @@ Wow64SetThreadContext(
     _In_ HANDLE hThread,
     _In_ CONST WOW64_CONTEXT* lpContext
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 WINBASEAPI
 DWORD

@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) 2009 Microsoft Corporation
@@ -27,6 +28,7 @@ Author:
 extern "C"
 {
 #endif
+_Win32_SupportedOS_Windows7_
 
 VOID
 WINAPI

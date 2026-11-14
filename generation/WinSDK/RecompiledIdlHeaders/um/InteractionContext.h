@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*
 **  Copyright (c) Microsoft Corporation. All rights reserved.
 **  Interaction Context API
@@ -307,6 +308,7 @@ DECLARE_HANDLE(HINTERACTIONCONTEXT);
 }                                                                         \
 
 #define INERTIA_PARAMETER_INVALID_VALUE    FLT_MAX
+_Win32_SupportedOS_Windows8_
 
 HRESULT
 WINAPI
@@ -317,6 +319,7 @@ HRESULT
 WINAPI
 DestroyInteractionContext(
     _In_ HINTERACTIONCONTEXT interactionContext);
+_Win32_SupportedOS_Windows8_
 
 HRESULT
 WINAPI
@@ -333,6 +336,7 @@ RegisterOutputCallbackInteractionContext2(
     _In_ INTERACTION_CONTEXT_OUTPUT_CALLBACK2 outputCallback,
     _In_opt_ void *clientData);
 #endif
+_Win32_SupportedOS_Windows8_
 
 HRESULT
 WINAPI
@@ -340,6 +344,7 @@ SetInteractionConfigurationInteractionContext(
     _In_ HINTERACTIONCONTEXT interactionContext,
     _In_ UINT32 configurationCount,
     _In_reads_(configurationCount) const INTERACTION_CONTEXT_CONFIGURATION *configuration);
+_Win32_SupportedOS_Windows8_
 
 HRESULT
 WINAPI
@@ -347,6 +352,7 @@ GetInteractionConfigurationInteractionContext(
     _In_ HINTERACTIONCONTEXT interactionContext,
     _In_ UINT32 configurationCount,
     _Inout_updates_(configurationCount) INTERACTION_CONTEXT_CONFIGURATION *configuration);
+_Win32_SupportedOS_Windows8_
 
 HRESULT
 WINAPI
@@ -354,6 +360,7 @@ SetPropertyInteractionContext(
     _In_ HINTERACTIONCONTEXT interactionContext,
     _In_ INTERACTION_CONTEXT_PROPERTY contextProperty,
     _In_ UINT32 value);
+_Win32_SupportedOS_Windows8_
 
 HRESULT
 WINAPI
@@ -361,6 +368,7 @@ GetPropertyInteractionContext(
     _In_ HINTERACTIONCONTEXT interactionContext,
     _In_ INTERACTION_CONTEXT_PROPERTY contextProperty,
     _Out_writes_(1) UINT32 *value);
+_Win32_SupportedOS_Windows8_
 
 HRESULT
 WINAPI
@@ -368,6 +376,7 @@ SetInertiaParameterInteractionContext(
     _In_ HINTERACTIONCONTEXT interactionContext,
     _In_ INERTIA_PARAMETER inertiaParameter,
     _In_ float value);
+_Win32_SupportedOS_Windows8_
 
 HRESULT
 WINAPI
@@ -375,6 +384,7 @@ GetInertiaParameterInteractionContext(
     _In_ HINTERACTIONCONTEXT interactionContext,
     _In_ INERTIA_PARAMETER inertiaParameter,
     _Out_writes_(1) float *value);
+_Win32_SupportedOS_Windows8_
 
 HRESULT
 WINAPI
@@ -382,6 +392,7 @@ SetCrossSlideParametersInteractionContext(
     _In_ HINTERACTIONCONTEXT interactionContext,
     _In_ UINT32 parameterCount,
     _In_reads_(parameterCount) CROSS_SLIDE_PARAMETER *crossSlideParameters);
+_Win32_SupportedOS_Windows8_
 
 HRESULT
 WINAPI
@@ -433,6 +444,7 @@ GetTranslationParameterInteractionContext(
     TRANSLATION_PARAMETER parameter,
     _Out_ float *value);
 #endif
+_Win32_SupportedOS_Windows8_
 
 HRESULT
 WINAPI
@@ -440,6 +452,7 @@ SetMouseWheelParameterInteractionContext(
     _In_ HINTERACTIONCONTEXT interactionContext,
     _In_ MOUSE_WHEEL_PARAMETER parameter,
     _In_ float value);
+_Win32_SupportedOS_Windows8_
 
 HRESULT
 WINAPI
@@ -447,11 +460,13 @@ GetMouseWheelParameterInteractionContext(
     _In_ HINTERACTIONCONTEXT interactionContext,
     _In_ MOUSE_WHEEL_PARAMETER parameter,
     _Out_writes_(1) float *value);
+_Win32_SupportedOS_Windows8_
 
 HRESULT
 WINAPI
 ResetInteractionContext(
     _In_ HINTERACTIONCONTEXT interactionContext);
+_Win32_SupportedOS_Windows8_
 
 HRESULT
 WINAPI
@@ -459,18 +474,21 @@ GetStateInteractionContext(
     _In_ HINTERACTIONCONTEXT interactionContext,
     _In_opt_ const POINTER_INFO *pointerInfo,
     _Out_writes_(1) INTERACTION_STATE *state);
+_Win32_SupportedOS_Windows8_
 
 HRESULT
 WINAPI
 AddPointerInteractionContext(
     _In_ HINTERACTIONCONTEXT interactionContext,
     _In_ UINT32 pointerId);
+_Win32_SupportedOS_Windows8_
 
 HRESULT
 WINAPI
 RemovePointerInteractionContext(
     _In_ HINTERACTIONCONTEXT interactionContext,
     _In_ UINT32 pointerId);
+_Win32_SupportedOS_Windows8_
 
 HRESULT
 WINAPI
@@ -479,6 +497,7 @@ ProcessPointerFramesInteractionContext(
     _In_ UINT32 entriesCount,
     _In_ UINT32 pointerCount,
     _In_reads_(entriesCount * pointerCount) const POINTER_INFO *pointerInfo);
+_Win32_SupportedOS_Windows8_
 
 HRESULT
 WINAPI
@@ -486,21 +505,25 @@ BufferPointerPacketsInteractionContext(
     _In_ HINTERACTIONCONTEXT interactionContext,
     _In_ UINT32 entriesCount,
     _In_reads_(entriesCount) const POINTER_INFO *pointerInfo);
+_Win32_SupportedOS_Windows8_
 
 HRESULT
 WINAPI
 ProcessBufferedPacketsInteractionContext(
     _In_ HINTERACTIONCONTEXT interactionContext);
+_Win32_SupportedOS_Windows8_
 
 HRESULT
 WINAPI
 ProcessInertiaInteractionContext(
     _In_ HINTERACTIONCONTEXT interactionContext);
+_Win32_SupportedOS_Windows8_
 
 HRESULT
 WINAPI
 StopInteractionContext(
     _In_ HINTERACTIONCONTEXT interactionContext);
+_Win32_SupportedOS_Windows8_
 
 HRESULT
 WINAPI

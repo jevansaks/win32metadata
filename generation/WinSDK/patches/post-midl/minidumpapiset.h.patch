@@ -1,0 +1,51 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/minidumpapiset.h b/generation/WinSDK/RecompiledIdlHeaders/um/minidumpapiset.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/minidumpapiset.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/minidumpapiset.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ // Copyright (C) Microsoft Corporation. All rights reserved.
+ 
+ #if defined(_MSC_VER)
+@@ -587,7 +588,7 @@
+ 
+ typedef struct _MINIDUMP_MISC_INFO {
+     ULONG32 SizeOfInfo;
+-    ULONG32 Flags1;
++    _Win32_AssociatedEnum_(MINIDUMP_MISC_INFO_FLAGS) ULONG32 Flags1;
+     ULONG32 ProcessId;
+     ULONG32 ProcessCreateTime;
+     ULONG32 ProcessUserTime;
+@@ -744,7 +745,7 @@
+ 
+ typedef struct _MINIDUMP_THREAD_INFO {
+     ULONG32 ThreadId;
+-    ULONG32 DumpFlags;
++    _Win32_AssociatedEnum_(MINIDUMP_THREAD_INFO_DUMP_FLAGS) ULONG32 DumpFlags;
+     ULONG32 DumpError;
+     ULONG32 ExitStatus;
+     ULONG64 CreateTime;
+@@ -1489,6 +1490,7 @@
+ //--
+ 
+ #define RVA_TO_ADDR(Mapping,Rva) ((PVOID)(((ULONG_PTR) (Mapping)) + (Rva)))
++_Win32_SetLastError_
+ 
+ BOOL
+ WINAPI
+@@ -1547,3 +1549,15 @@
+ #endif /* _MINIDUMP_H */
+ 
+ // HEXTRACT: end_dbghelp hide-line end_imagehlp
++
++#ifndef _WIN32METADATA_MINIDUMPAPISET_FRESH_DIRECT_38_GROUPS_
++#define _WIN32METADATA_MINIDUMPAPISET_FRESH_DIRECT_38_GROUPS_
++_Win32_AnnotateField_(MINIDUMP_MEMORY_INFO::State, _Win32_AssociatedEnum_(VIRTUAL_ALLOCATION_TYPE));
++_Win32_AnnotateField_(MINIDUMP_SYSTEM_INFO::PlatformId, _Win32_AssociatedEnum_(VER_PLATFORM));
++#endif
++
++#ifndef _WIN32METADATA_MINIDUMPAPISET_MANUAL_28_GROUPS_
++#define _WIN32METADATA_MINIDUMPAPISET_MANUAL_28_GROUPS_
++_Win32_Enum_(MINIDUMP_THREAD_INFO_DUMP_FLAGS, unsigned int, MINIDUMP_THREAD_INFO_ERROR_THREAD, MINIDUMP_THREAD_INFO_EXITED_THREAD, MINIDUMP_THREAD_INFO_INVALID_CONTEXT, MINIDUMP_THREAD_INFO_INVALID_INFO, MINIDUMP_THREAD_INFO_INVALID_TEB, MINIDUMP_THREAD_INFO_WRITING_THREAD);
++_Win32_FlagsEnum_(MINIDUMP_MISC_INFO_FLAGS, unsigned int, MINIDUMP_MISC1_PROCESS_ID, MINIDUMP_MISC1_PROCESS_TIMES);
++#endif

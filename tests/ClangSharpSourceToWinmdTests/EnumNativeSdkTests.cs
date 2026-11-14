@@ -5,7 +5,6 @@ using System.Linq;
 using System.Reflection;
 using System.Reflection.Metadata;
 using System.Reflection.PortableExecutable;
-using System.Text.Json;
 using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -25,18 +24,229 @@ namespace ClangSharpSourceToWinmdTests
         [DataRow("i686-pc-windows-msvc")]
         [DataRow("x86_64-pc-windows-msvc")]
         [DataRow("aarch64-pc-windows-msvc")]
+        public void StructuredStorageGroup_DocumentationSidecarNeedsMetadataNamespaceImport(string target)
+        {
+            string header = File.ReadAllText(Sdk("um", "coml2api.h"));
+            var constants = Regex.Matches(header, @"(?m)^#define (STGM_\w+)\s+[^\r\n]+")
+                .Cast<Match>().ToArray();
+            Assert.AreEqual(18, constants.Length);
+            string source = string.Join("\n", constants.Select(match => match.Value)) +
+                "\n_Win32_FlagsEnum_(STGM, unsigned long, " +
+                string.Join(", ", constants.Select(match => match.Groups[1].Value)) + ");\n";
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(source, target);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            // SAL fixtures install a global metadata using absent from production enum files.
+            File.Copy(Path.Combine(LastErrorHeaderTests.RepositoryRoot(), "generation", "WinSDK", "manual", "Metadata.cs"),
+                Path.Combine(Path.GetDirectoryName(fixture.GeneratedSource)!, "Attributes.manual.cs"));
+            var namespaces = new Dictionary<string, string> { ["STGM"] = "Windows.Win32.System.Com" };
+            using (var pe = new PEReader(File.OpenRead(fixture.Emit(requiredNamespaces: namespaces))))
+            {
+                var reader = pe.GetMetadataReader();
+                var type = NativeTypedefHeaderTests.Type(reader, "STGM");
+                Assert.AreEqual(19, type.GetFields().Count);
+                var storage = type.GetFields().Select(reader.GetFieldDefinition)
+                    .Single(field => reader.GetString(field.Name) == "value__");
+                EnumAssociationHeaderTests.AssertSignature(reader, storage.Signature, 0, SignatureTypeCode.UInt32);
+            }
+            var remaps = new Dictionary<string, string>
+            {
+                ["STGM"] = "[Documentation(\"https://learn.microsoft.com/windows/win32/Stg/stgm-constants\")]",
+            };
+            var error = Assert.ThrowsException<AssertFailedException>(() => fixture.Emit(remaps, namespaces));
+            TestContext.WriteLine(error.Message);
+            StringAssert.Contains(error.Message, "CS0246");
+            StringAssert.Contains(error.Message, "Documentation");
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void SnmpGroup_UnsignedLegacyStorageCannotBackSignedNativeParameters(string target)
+        {
+            string header = File.ReadAllText(Sdk("um", "WinSnmp.h"));
+            string[] members = { "SNMP_PDU_GET", "SNMP_PDU_GETNEXT", "SNMP_PDU_RESPONSE",
+                "SNMP_PDU_SET", "SNMP_PDU_GETBULK", "SNMP_PDU_TRAP" };
+            string constants = string.Join("\n", members.Select(name =>
+                Slice(header, @"(?m)^#define " + name + @"\s+[^\r\n]+")));
+            string declaration = Slice(header, @"HSNMP_PDU\s+SNMPAPI_CALL\s+SnmpCreatePdu[^;]+;");
+            string annotated = declaration.Replace("IN smiINT PDU_type",
+                "IN _Win32_AssociatedEnum_(SNMP_PDU_TYPE) smiINT PDU_type");
+            Assert.AreNotEqual(declaration, annotated);
+            string source = @"
+#define FAR
+#define IN
+#define SNMPAPI_CALL __stdcall
+#define ULONG_MAX 4294967295U
+#define ASN_CONTEXT 0x80
+#define ASN_CONSTRUCTOR 0x20
+typedef void* HSNMP_SESSION;
+typedef void* HSNMP_PDU;
+typedef void* HSNMP_VBL;
+" + Slice(header, @"(?s)#if ULONG_MAX == 4294967295U.*?#endif") + "\n" + constants + "\n";
+            string group = "_Win32_Enum_(SNMP_PDU_TYPE, {0}, " + string.Join(", ", members) + ");\n";
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(source + string.Format(group, "unsigned long") + annotated, target, sal: true);
+            TestContext.WriteLine(result.Output);
+            Assert.AreNotEqual(0, result.ExitCode);
+            StringAssert.Contains(result.Output, "AssociatedEnum storage conflicts with enum group 'SNMP_PDU_TYPE'.");
+            result = fixture.Scrape(source + string.Format(group, "int") + annotated, target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            using var pe = new PEReader(File.OpenRead(fixture.Emit()));
+            var reader = pe.GetMetadataReader();
+            var type = NativeTypedefHeaderTests.Type(reader, "SNMP_PDU_TYPE");
+            var storage = type.GetFields().Select(reader.GetFieldDefinition)
+                .Single(field => reader.GetString(field.Name) == "value__");
+            EnumAssociationHeaderTests.AssertSignature(reader, storage.Signature, 0, SignatureTypeCode.Int32);
+            Assert.AreEqual(7, type.GetFields().Count);
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void CloudPolicyAssociation_RequiresAWrapperStorageContract(string target)
+        {
+            string header = File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
+                "generation", "WinSDK", "RecompiledIdlHeaders", "um", "cfapi.h"));
+            string source = "typedef unsigned short USHORT;\n" +
+                Slice(header, @"(?ms)^#define DEFINE_USHORT_ENUM\(ENUMTYPE\).*?^  \};") + "\n" +
+                Slice(header, @"typedef enum CF_HYDRATION_POLICY_PRIMARY\s*\{[^}]+\} CF_HYDRATION_POLICY_PRIMARY;") + "\n" +
+                Slice(header, @"typedef enum CF_HYDRATION_POLICY_MODIFIER\s*\{[^}]+\} CF_HYDRATION_POLICY_MODIFIER;") + @"
+DEFINE_USHORT_ENUM(CF_HYDRATION_POLICY_PRIMARY);
+DEFINE_USHORT_ENUM(CF_HYDRATION_POLICY_MODIFIER);
+" + Slice(header, @"typedef struct CF_HYDRATION_POLICY\s*\{[^}]+\} CF_HYDRATION_POLICY;");
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(source, target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            result = fixture.Scrape(source + @"
+_Win32_AnnotateField_(CF_HYDRATION_POLICY::Primary,
+    _Win32_AssociatedEnum_(CF_HYDRATION_POLICY_PRIMARY));
+", target, sal: true);
+            TestContext.WriteLine(result.Output);
+            Assert.AreNotEqual(0, result.ExitCode);
+            StringAssert.Contains(result.Output,
+                "AssociatedEnum requires integer or native enum storage, optionally through pointers.");
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void InstallerAndIconBindings_PreserveSignedStorageAndGenuineEnums(string target)
+        {
+            string root = Path.Combine(LastErrorHeaderTests.RepositoryRoot(), "generation", "WinSDK", "RecompiledIdlHeaders", "um");
+            string installer = File.ReadAllText(Path.Combine(root, "Msi.h"));
+            string controls = File.ReadAllText(Path.Combine(root, "CommCtrl.h"));
+            string[] names = { "MsiConfigureProductA", "MsiConfigureProductW", "MsiConfigureProductExA", "MsiConfigureProductExW" };
+            string source = @"
+#define WINAPI __stdcall
+#define WINCOMMCTRLAPI
+typedef unsigned int UINT;
+typedef int HRESULT;
+typedef void* HINSTANCE;
+typedef void* HICON;
+typedef const char* LPCSTR;
+typedef const unsigned short* LPCWSTR;
+typedef LPCWSTR PCWSTR;
+" + Slice(installer, @"typedef enum tagINSTALLLEVEL\s*\{[^}]+\} INSTALLLEVEL;") + "\n" +
+                Slice(installer, @"typedef enum tagINSTALLSTATE\s*\{[^}]+\} INSTALLSTATE;") + "\n" +
+                string.Join("\n", names.Select(name => Slice(installer, @"UINT WINAPI " + name + @"\([^;]+;"))) + "\n" +
+                Slice(controls, @"enum _LI_METRIC\s*\{[^}]+\};") + "\n" +
+                Slice(controls, @"WINCOMMCTRLAPI HRESULT WINAPI LoadIconMetric\([^;]+;");
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(source, target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            string path = fixture.Emit();
+            byte[] expected = File.ReadAllBytes(path);
+            string declarations = EnumHeaderTests.Decompile(path);
+            using (var pe = new PEReader(File.OpenRead(path)))
+            {
+                var reader = pe.GetMetadataReader();
+                Assert.AreEqual(4, NativeTypedefHeaderTests.Type(reader, "INSTALLLEVEL").GetFields().Count);
+                Assert.AreEqual(3, NativeTypedefHeaderTests.Type(reader, "_LI_METRIC").GetFields().Count);
+                foreach (string name in names.Append("LoadIconMetric"))
+                {
+                    string parameterName = name == "LoadIconMetric" ? "lims" : "iInstallLevel";
+                    string enumName = name == "LoadIconMetric" ? "_LI_METRIC" : "INSTALLLEVEL";
+                    var method = reader.MethodDefinitions.Select(reader.GetMethodDefinition)
+                        .Single(method => reader.GetString(method.Name) == name);
+                    var parameter = method.GetParameters().Select(reader.GetParameter)
+                        .Single(parameter => reader.GetString(parameter.Name) == parameterName);
+                    CollectionAssert.AreEqual(new[] { enumName },
+                        EnumAssociationHeaderTests.StringAttributes(reader, parameter.GetCustomAttributes(), "AssociatedEnumAttribute"));
+                    Assert.IsTrue(Regex.IsMatch(declarations, @"\b" + name + @"\([^;]*\bint " + parameterName + @"\b"), name);
+                    if (name != "LoadIconMetric")
+                        Assert.IsTrue(Regex.IsMatch(declarations, @"\b" + name + @"\([^;]*\bINSTALLSTATE eInstallState\b"), name);
+                }
+            }
+            var remaps = names.ToDictionary(name => name + "::iInstallLevel", _ => "[AssociatedEnum(\"INSTALLLEVEL\")]");
+            remaps["LoadIconMetric::lims"] = "[AssociatedEnum(\"_LI_METRIC\")]";
+            CollectionAssert.AreEqual(expected, File.ReadAllBytes(fixture.Emit(remaps)));
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void PathOptions_NativeIntegerUsesCarryAssociationsInsteadOfEnumSubstitution(string target)
+        {
+            string header = File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
+                "generation", "WinSDK", "RecompiledIdlHeaders", "um", "PathCch.h"));
+            string enumeration = Slice(header, @"typedef enum PATHCCH_OPTIONS\s*\{[^}]+\} PATHCCH_OPTIONS;");
+            string[] names = { "PathCchCanonicalizeEx", "PathCchCombineEx", "PathCchAppendEx",
+                "PathAllocCombine", "PathAllocCanonicalize" };
+            string declarations = string.Join("\n", names.Select(name =>
+                Slice(header, @"WINPATHCCHAPI\s+HRESULT\s+APIENTRY\s+" + name + @"\([^;]+;")));
+            string source = @"
+#define WINPATHCCHAPI
+#define APIENTRY __stdcall
+typedef unsigned long ULONG;
+typedef int HRESULT;
+typedef __SIZE_TYPE__ size_t;
+typedef unsigned short* PWSTR;
+typedef const unsigned short* PCWSTR;
+" + enumeration + "\n" + declarations;
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(source, target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            string path = fixture.Emit();
+            byte[] expected = File.ReadAllBytes(path);
+            string outputDeclarations = EnumHeaderTests.Decompile(path);
+            Save(path, "path-options-" + target);
+            using (var pe = new PEReader(File.OpenRead(path)))
+            {
+                var reader = pe.GetMetadataReader();
+                Assert.AreEqual(9, NativeTypedefHeaderTests.Type(reader, "PATHCCH_OPTIONS").GetFields().Count);
+                foreach (string name in names)
+                {
+                    var method = reader.MethodDefinitions.Select(reader.GetMethodDefinition)
+                        .Single(method => reader.GetString(method.Name) == name);
+                    var flags = method.GetParameters().Select(reader.GetParameter)
+                        .Single(parameter => reader.GetString(parameter.Name) == "dwFlags");
+                    CollectionAssert.AreEqual(new[] { "PATHCCH_OPTIONS" },
+                        EnumAssociationHeaderTests.StringAttributes(reader, flags.GetCustomAttributes(), "AssociatedEnumAttribute"),
+                        outputDeclarations);
+                    Assert.IsTrue(Regex.IsMatch(outputDeclarations, @"\b" + name + @"\([^;]*\buint dwFlags\b"), name);
+                }
+            }
+            CollectionAssert.AreEqual(expected, File.ReadAllBytes(fixture.Emit(names.ToDictionary(
+                name => name + "::dwFlags", _ => "[AssociatedEnum(\"PATHCCH_OPTIONS\")]"))));
+            var conflict = Assert.ThrowsException<AggregateException>(() =>
+                fixture.Emit(new Dictionary<string, string> { ["PathCchAppendEx::dwFlags"] = "PATHCCH_OPTIONS" }));
+            StringAssert.Contains(conflict.Message, "conflicts with native AssociatedEnum storage");
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
         public void ServiceNoChange_RealSdkMacrosStayGlobalAcrossRelatedGroups(string target)
         {
             string constants = ServiceConstants();
             string root = LastErrorHeaderTests.RepositoryRoot();
             string[] names = { "SERVICE_START_TYPE", "SERVICE_ERROR" };
-            using var json = JsonDocument.Parse(File.ReadAllText(Path.Combine(root, "generation", "WinSDK", "enums.json")));
-            foreach (string name in names)
-            {
-                var legacy = json.RootElement.GetProperty("items").EnumerateArray()
-                    .Single(item => item.TryGetProperty("name", out var candidate) && candidate.GetString() == name);
-                Assert.AreEqual(name == "SERVICE_START_TYPE" ? 5 : 4, legacy.GetProperty("members").GetArrayLength());
-            }
             string sidecar = File.ReadAllText(Path.Combine(root, "generation", "WinSDK", "emitter.settings.rsp"));
             var remaps = names.ToDictionary(name => name, name =>
                 Slice(sidecar, @"(?m)^" + name + @"=(?<value>[^\r\n]+)").Split('=', 2)[1]);

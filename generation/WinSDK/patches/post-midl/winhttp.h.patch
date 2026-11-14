@@ -48,7 +48,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h b/generation/Wi
  // WinHttpOpen prettifiers for optional parameters
  #define WINHTTP_NO_PROXY_NAME     NULL
  #define WINHTTP_NO_PROXY_BYPASS   NULL
-@@ -1584,6 +1600,7 @@
+@@ -1575,6 +1591,7 @@
+ #define WINHTTP_RESET_NOTIFY_NETWORK_CHANGED    0x00010000
+ #define WINHTTP_RESET_OUT_OF_PROC               0x00020000
+ #define WINHTTP_RESET_DISCARD_RESOLVERS         0x00040000
++_Win32_SetLastError_
+ 
+ 
+ //#endif // !defined(_WINERROR_)
+@@ -1584,6 +1601,7 @@
  // prototypes
  //
  
@@ -56,55 +64,84 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h b/generation/Wi
  WINHTTPAPI
  WINHTTP_STATUS_CALLBACK
  WINAPI
-@@ -1595,6 +1612,7 @@
+@@ -1594,7 +1612,9 @@
+     IN DWORD dwNotificationFlags,
      IN DWORD_PTR dwReserved
  );
- 
+-
++_Win32_SetLastError_
++
 +_Win32_SupportedOS_WindowsXP_
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1604,6 +1622,7 @@
+@@ -1603,7 +1623,9 @@
+     _In_ CONST SYSTEMTIME *pst,  // input GMT time
      _Out_writes_bytes_(WINHTTP_TIME_FORMAT_BUFSIZE) LPWSTR pwszTime // output string buffer
  );
- 
+-
++_Win32_SetLastError_
++
 +_Win32_SupportedOS_WindowsXP_
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1613,6 +1632,7 @@
+@@ -1612,7 +1634,9 @@
+     _In_z_ LPCWSTR pwszTime,        // NULL terminated string
      _Out_ SYSTEMTIME *pst           // output in GMT time
  );
- 
+-
++_Win32_SetLastError_
++
 +_Win32_SupportedOS_WindowsXP_
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1625,6 +1645,7 @@
+@@ -1623,15 +1647,17 @@
+     _In_ DWORD dwFlags,
+     _Inout_ LPURL_COMPONENTS lpUrlComponents
  );
++_Win32_SetLastError_
  
  _Success_(return != FALSE)
 +_Win32_SupportedOS_WindowsXP_
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1642,9 +1663,12 @@
+ WinHttpCreateUrl
+ (
+     _In_ LPURL_COMPONENTS lpUrlComponents,
+-    _In_ DWORD dwFlags,
++    _Win32_AssociatedEnum_(WIN_HTTP_CREATE_URL_FLAGS) _In_ DWORD dwFlags,
+     _Out_writes_to_opt_(*pdwUrlLength, *pdwUrlLength) LPWSTR pwszUrl,
+     _Inout_ LPDWORD pdwUrlLength
+ );
+@@ -1641,10 +1667,16 @@
+ 
  #pragma region Application Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
- 
+-
++_Win32_SetLastError_
++
 +_Win32_SupportedOS_WindowsXP_
  WINHTTPAPI BOOL WINAPI WinHttpCheckPlatform(void);
- 
+-
++_Win32_SetLastError_
++
 +_Win32_SupportedOS_WindowsXP_
  WINHTTPAPI BOOL WINAPI WinHttpGetDefaultProxyConfiguration( IN OUT WINHTTP_PROXY_INFO * pProxyInfo);
++_Win32_SetLastError_
 +_Win32_SupportedOS_WindowsXP_
  WINHTTPAPI BOOL WINAPI WinHttpSetDefaultProxyConfiguration( IN WINHTTP_PROXY_INFO * pProxyInfo);
  
  #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM) */
-@@ -1653,18 +1677,20 @@
+@@ -1652,19 +1684,23 @@
+ 
  #pragma region Application Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
- 
+-
++_Win32_SetLastError_
++
 +_Win32_SupportedOS_WindowsXP_
  WINHTTPAPI
  HINTERNET
@@ -118,20 +155,25 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h b/generation/Wi
      _In_opt_z_ LPCWSTR pszProxyBypassW,
      _In_ DWORD dwFlags
  );
- 
+-
++_Win32_SetLastError_
++
 +_Win32_SupportedOS_WindowsXP_
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1673,6 +1699,7 @@
+@@ -1672,7 +1708,9 @@
+ (
      IN HINTERNET hInternet
  );
- 
+-
++_Win32_SetLastError_
++
 +_Win32_SupportedOS_WindowsXP_
  WINHTTPAPI
  HINTERNET
  WINAPI
-@@ -1684,6 +1711,8 @@
+@@ -1684,6 +1722,8 @@
      IN DWORD dwReserved
  );
  
@@ -140,47 +182,68 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h b/generation/Wi
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1709,6 +1738,7 @@
+@@ -1708,7 +1748,9 @@
+     IN DWORD cbProperty,
      _In_reads_bytes_opt_(cbProperty) PVOID pvProperty
  );
- 
+-
++_Win32_SetLastError_
++
 +_Win32_SupportedOS_WindowsXP_
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1720,6 +1750,7 @@
+@@ -1719,7 +1761,9 @@
+     IN DWORD dwNumberOfBytesToWrite,
      OUT LPDWORD lpdwNumberOfBytesWritten
  );
- 
+-
++_Win32_SetLastError_
++
 +_Win32_SupportedOS_WindowsXP_
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1730,6 +1761,7 @@
+@@ -1728,8 +1772,10 @@
+     IN HINTERNET hRequest,
+     __out_data_source(NETWORK) LPDWORD lpdwNumberOfBytesAvailable
  );
++_Win32_SetLastError_
  
  _Success_(return != FALSE)
 +_Win32_SupportedOS_WindowsXP_
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1741,6 +1773,7 @@
+@@ -1740,7 +1786,9 @@
+     _Out_writes_bytes_to_opt_(*lpdwBufferLength, *lpdwBufferLength) __out_data_source(NETWORK) LPVOID lpBuffer,
      IN OUT LPDWORD lpdwBufferLength
  );
- 
+-
++_Win32_SetLastError_
++
 +_Win32_SupportedOS_WindowsXP_
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1767,6 +1800,7 @@
+@@ -1766,7 +1814,9 @@
+     LPVOID lpBuffer,
      _In_ DWORD dwBufferLength
  );
- 
+-
++_Win32_SetLastError_
++
 +_Win32_SupportedOS_WindowsXP_
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1807,6 +1841,7 @@
+@@ -1802,11 +1852,13 @@
+ 
+ #pragma region Application Family or OneCore Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
++_Win32_SetLastError_
+ 
+ //
  // prototypes
  //
  
@@ -188,7 +251,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h b/generation/Wi
  WINHTTPAPI
  HINTERNET
  WINAPI
-@@ -1818,9 +1853,10 @@
+@@ -1818,9 +1870,10 @@
      IN LPCWSTR pwszVersion,
      IN LPCWSTR pwszReferrer OPTIONAL,
      IN LPCWSTR FAR * ppwszAcceptTypes OPTIONAL,
@@ -202,7 +265,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h b/generation/Wi
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1847,6 +1883,8 @@
+@@ -1847,6 +1900,8 @@
      _In_reads_(cHeaders) WINHTTP_EXTENDED_HEADER *pHeaders
  );
  
@@ -211,7 +274,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h b/generation/Wi
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1861,6 +1899,7 @@
+@@ -1861,6 +1916,7 @@
      IN DWORD_PTR dwContext
  );
  
@@ -219,15 +282,18 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h b/generation/Wi
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1881,6 +1920,7 @@
+@@ -1880,7 +1936,9 @@
+                                     // NULL if pszUserName is not NULL
      IN LPVOID      pAuthParams
  );
- 
+-
++_Win32_SetLastError_
++
 +_Win32_SupportedOS_WindowsXP_
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1914,6 +1954,8 @@
+@@ -1914,6 +1972,8 @@
  #pragma region Application Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
@@ -236,15 +302,18 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h b/generation/Wi
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1924,6 +1966,7 @@
+@@ -1922,8 +1982,10 @@
+     IN HINTERNET hRequest,
+     IN LPVOID lpReserved
  );
++_Win32_SetLastError_
  
  _Success_(return != FALSE)
 +_Win32_SupportedOS_WindowsXP_
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1948,7 +1991,7 @@
+@@ -1948,7 +2010,7 @@
      _In_ UINT uiCodePage,
      _Inout_opt_ PDWORD pdwIndex,
      _In_opt_ PWINHTTP_HEADER_NAME pHeaderName,
@@ -253,23 +322,29 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h b/generation/Wi
      _Inout_ PDWORD pdwBufferLength,
      _Out_writes_opt_(*pdwHeadersCount) PWINHTTP_EXTENDED_HEADER *ppHeaders,
      _Out_ PDWORD pdwHeadersCount
-@@ -1979,6 +2022,7 @@
+@@ -1978,7 +2040,9 @@
+ 
  #pragma region Application Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
- 
+-
++_Win32_SetLastError_
++
 +_Win32_SupportedOS_WindowsXP_
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1988,6 +2032,7 @@
+@@ -1987,7 +2051,9 @@
+     DWORD dwAutoDetectFlags,
      _Outptr_result_maybenull_ LPWSTR * ppwstrAutoConfigUrl
  );
- 
+-
++_Win32_SetLastError_
++
 +_Win32_SupportedOS_WindowsXP_
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -1999,6 +2044,7 @@
+@@ -1999,6 +2065,7 @@
      OUT WINHTTP_PROXY_INFO *        pProxyInfo
  );
  
@@ -277,7 +352,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h b/generation/Wi
  WINHTTPAPI
  DWORD
  WINAPI
-@@ -2008,6 +2054,7 @@
+@@ -2008,6 +2075,7 @@
      _Out_ HINTERNET *phResolver
  );
  
@@ -285,7 +360,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h b/generation/Wi
  WINHTTPAPI
  DWORD
  WINAPI
-@@ -2032,6 +2079,7 @@
+@@ -2032,6 +2100,7 @@
      _In_opt_ DWORD_PTR pContext
  );
  
@@ -293,7 +368,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h b/generation/Wi
  WINHTTPAPI
  DWORD
  WINAPI
-@@ -2050,6 +2098,7 @@
+@@ -2050,6 +2119,7 @@
      _Out_ WINHTTP_PROXY_RESULT_EX *pProxyResultEx
  );
  
@@ -301,7 +376,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h b/generation/Wi
  WINHTTPAPI
  VOID
  WINAPI
-@@ -2066,6 +2115,7 @@
+@@ -2066,6 +2136,7 @@
      _Inout_ WINHTTP_PROXY_RESULT_EX *pProxyResultEx
  );
  
@@ -309,23 +384,29 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h b/generation/Wi
  WINHTTPAPI
  DWORD
  WINAPI
-@@ -2075,6 +2125,7 @@
+@@ -2074,7 +2145,9 @@
+     _In_ HINTERNET hSession,
      _In_ DWORD dwFlags
  );
- 
+-
++_Win32_SetLastError_
++
 +_Win32_SupportedOS_WindowsXP_
  WINHTTPAPI
  BOOL
  WINAPI
-@@ -2181,6 +2232,7 @@
+@@ -2180,7 +2253,9 @@
+ 
  #define WINHTTP_WEB_SOCKET_MAX_CLOSE_REASON_LENGTH 123
  #define WINHTTP_WEB_SOCKET_MIN_KEEPALIVE_VALUE 15000
- 
+-
++_Win32_SetLastError_
++
 +_Win32_SupportedOS_Windows8_
  WINHTTPAPI
  HINTERNET
  WINAPI
-@@ -2190,6 +2242,7 @@
+@@ -2190,6 +2265,7 @@
      _In_opt_ DWORD_PTR pContext
  );
  
@@ -333,7 +414,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h b/generation/Wi
  WINHTTPAPI
  DWORD
  WINAPI
-@@ -2201,6 +2254,7 @@
+@@ -2201,6 +2277,7 @@
      _In_ DWORD dwBufferLength
  );
  
@@ -341,7 +422,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h b/generation/Wi
  WINHTTPAPI
  DWORD
  WINAPI
-@@ -2213,6 +2267,7 @@
+@@ -2213,6 +2290,7 @@
      _Out_ WINHTTP_WEB_SOCKET_BUFFER_TYPE *peBufferType
  );
  
@@ -349,7 +430,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h b/generation/Wi
  WINHTTPAPI
  DWORD
  WINAPI
-@@ -2224,6 +2279,7 @@
+@@ -2224,6 +2302,7 @@
      _In_range_(0, WINHTTP_WEB_SOCKET_MAX_CLOSE_REASON_LENGTH) DWORD dwReasonLength
  );
  
@@ -357,7 +438,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h b/generation/Wi
  WINHTTPAPI
  DWORD
  WINAPI
-@@ -2235,6 +2291,7 @@
+@@ -2235,6 +2314,7 @@
      _In_range_(0, WINHTTP_WEB_SOCKET_MAX_CLOSE_REASON_LENGTH) DWORD dwReasonLength
  );
  
@@ -365,3 +446,18 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winhttp.h b/generation/Wi
  WINHTTPAPI
  DWORD
  WINAPI
+@@ -2526,3 +2606,14 @@
+ 
+ #endif // !defined(_WINHTTPX_)
+ 
++#ifndef _WIN32METADATA_WINHTTP_NATIVE_91_GROUPS_
++#define _WIN32METADATA_WINHTTP_NATIVE_91_GROUPS_
++_Win32_Enum_(WINHTTP_CREDS_AUTHSCHEME, unsigned int, WINHTTP_AUTH_SCHEME_BASIC, WINHTTP_AUTH_SCHEME_NTLM, WINHTTP_AUTH_SCHEME_NEGOTIATE);
++_Win32_AnnotateField_(WINHTTP_CREDS::dwAuthScheme, _Win32_AssociatedEnum_(WINHTTP_CREDS_AUTHSCHEME));
++_Win32_AnnotateField_(WINHTTP_CREDS_EX::dwAuthScheme, _Win32_AssociatedEnum_(WINHTTP_CREDS_AUTHSCHEME));
++#endif
++
++#ifndef _WIN32METADATA_WINHTTP_FILE_PE_23_GROUPS_
++#define _WIN32METADATA_WINHTTP_FILE_PE_23_GROUPS_
++_Win32_Enum_(WIN_HTTP_CREATE_URL_FLAGS, unsigned int, ICU_ESCAPE, ICU_REJECT_USERPWD, ICU_DECODE);
++#endif

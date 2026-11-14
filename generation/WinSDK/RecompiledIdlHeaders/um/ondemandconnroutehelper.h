@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //
 // Copyright (C) Microsoft Corporation. All rights reserved.
 //
@@ -18,12 +19,15 @@
 #ifdef _MSC_VER
 #pragma once
 #endif
+_Win32_SupportedOS_Windows81_
 
 STDAPI OnDemandGetRoutingHint(_In_ PCWSTR destinationHostName, _Out_ DWORD* interfaceIndex);
 
 typedef void(WINAPI* ONDEMAND_NOTIFICATION_CALLBACK)(_In_opt_ void*);
+_Win32_SupportedOS_Windows81_
 
 STDAPI OnDemandRegisterNotification(_In_ ONDEMAND_NOTIFICATION_CALLBACK callback, _In_opt_ void* callbackContext, _Out_ HANDLE* registrationHandle);
+_Win32_SupportedOS_Windows81_
 
 STDAPI OnDemandUnRegisterNotification(_In_ HANDLE registrationHandle);
 
@@ -50,6 +54,7 @@ typedef struct _NET_INTERFACE_CONTEXT_TABLE
     UINT NumberOfEntries;
     NET_INTERFACE_CONTEXT* InterfaceContextArray;
 } NET_INTERFACE_CONTEXT_TABLE;
+_Win32_SupportedOS_10240_
 
 //
 // Retrieve an interface context table for the given hostname and connection profile filter.
@@ -93,6 +98,7 @@ STDAPI GetInterfaceContextTableForHostName(
     _In_reads_bytes_opt_(ConnectionProfileFilterRawDataSize) BYTE* ConnectionProfileFilterRawData,
     _In_ DWORD ConnectionProfileFilterRawDataSize,
     _Outptr_ NET_INTERFACE_CONTEXT_TABLE** InterfaceContextTable);
+_Win32_SupportedOS_10240_
 
 //
 // Frees the interface context table retrieved from GetInterfaceContextTableForHostName. Internally, this also

@@ -1515,6 +1515,8 @@ struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID iid, _COM_Outp
 
             string converted = Path.Combine(fixture.Path, "converted");
             Directory.CreateDirectory(converted);
+            File.Copy(Path.Combine(Root(), "generation", "WinSDK", "RecompiledIdlHeaders", "shared",
+                "win32metadata_annotations.h"), Path.Combine(converted, "win32metadata_annotations.h"));
             string command = "";
             foreach (string dependency in new[] { "wtypesbase.idl", "wtypes.idl", "unknwnbase.idl", "unknwn.idl",
                 "objidlbase.idl", "objidl.idl", "oaidl.idl", "oleidl.idl", "servprov.idl", "urlmon.idl", "ocidl.idl" })
@@ -1735,8 +1737,8 @@ struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID iid, _COM_Outp
                 Assert.AreEqual(arch == "x86" ? 0x14c : arch == "x64" ? 0x8664 : 0xaa64, BitConverter.ToUInt16(bytes, 0));
                 Array.Clear(bytes, 4, 4);
             }
-            CollectionAssert.AreEqual(outputs[0], outputs[1]);
-            CollectionAssert.AreEqual(outputs[1], outputs[2]);
+            NativeCoffAssertions.CodeDataAndLinkageEqual(outputs[0], outputs[1]);
+            NativeCoffAssertions.CodeDataAndLinkageEqual(outputs[1], outputs[2]);
         }
 
         [TestMethod]
@@ -1912,8 +1914,8 @@ struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID iid, _COM_Outp
                 Assert.AreEqual(arch == "x86" ? 0x14c : arch == "x64" ? 0x8664 : 0xaa64, BitConverter.ToUInt16(bytes, 0));
                 Array.Clear(bytes, 4, 4);
             }
-            CollectionAssert.AreEqual(outputs[0], outputs[1]);
-            CollectionAssert.AreEqual(outputs[1], outputs[2]);
+            NativeCoffAssertions.CodeDataAndLinkageEqual(outputs[0], outputs[1]);
+            NativeCoffAssertions.CodeDataAndLinkageEqual(outputs[1], outputs[2]);
         }
 
         [DataTestMethod]

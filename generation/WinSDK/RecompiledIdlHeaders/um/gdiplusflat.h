@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /**************************************************************************\
 *
 * Copyright (c) 1998-2001, Microsoft Corp.  All Rights Reserved.
@@ -2357,7 +2358,7 @@ GdipGetImageDecodersSize(_Out_ UINT *numDecoders, _Out_ _Out_range_(>=, (*numDec
 GpStatus WINGDIPAPI
 GdipGetImageDecoders(_In_ UINT numDecoders,
                      _In_ UINT size,
-                     _Out_writes_bytes_(size) ImageCodecInfo *decoders);
+                     _Out_writes_bytes_(size) _Win32_ContainsInteriorPointers_ ImageCodecInfo *decoders);
 
 GpStatus WINGDIPAPI
 GdipGetImageEncodersSize(_Out_ UINT *numEncoders, _Out_ _Out_range_(>=, (*numEncoders) * sizeof(ImageCodecInfo)) UINT *size);
@@ -2365,7 +2366,7 @@ GdipGetImageEncodersSize(_Out_ UINT *numEncoders, _Out_ _Out_range_(>=, (*numEnc
 GpStatus WINGDIPAPI
 GdipGetImageEncoders(_In_ UINT numEncoders,
                      _In_ UINT size,
-                     _Out_writes_bytes_(size) ImageCodecInfo *encoders);
+                     _Out_writes_bytes_(size) _Win32_ContainsInteriorPointers_ ImageCodecInfo *encoders);
 
 GpStatus WINGDIPAPI
 GdipComment(GpGraphics* graphics, UINT sizeData, GDIPCONST BYTE * data);

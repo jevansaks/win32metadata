@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //  Copyright (C) 1995-1999 Microsoft Corporation.  All rights reserved.
 
 #ifndef __MTXDM_H__
@@ -17,6 +18,7 @@
 #ifdef __cplusplus
 extern "C"{
 #endif 
+_Win32_SupportedOS_Windows2000_
 
 //
 // GetDispenserManager

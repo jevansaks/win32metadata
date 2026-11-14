@@ -56,7 +56,7 @@ typedef struct DXGI_ADAPTER_DESC3
 interface IDXGIAdapter4 :
     IDXGIAdapter3
 {
-    HRESULT GetDesc3( [out, annotation("_Out_")] DXGI_ADAPTER_DESC3 *pDesc);
+    HRESULT GetDesc3( [out, annotation("_Out_"), retval] DXGI_ADAPTER_DESC3 *pDesc);
 };
 
 //--------------------------------------------------------------------------------------------------------
@@ -121,7 +121,7 @@ cpp_quote("DEFINE_ENUM_FLAG_OPERATORS( DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS )
 interface IDXGIOutput6 :
     IDXGIOutput5
 {
-    HRESULT GetDesc1([out, annotation("_Out_")] DXGI_OUTPUT_DESC1 *pDesc);
+    HRESULT GetDesc1([out, annotation("_Out_"), retval] DXGI_OUTPUT_DESC1 *pDesc);
     HRESULT CheckHardwareCompositionSupport([out, annotation("_Out_")] UINT* pFlags);
 };
 

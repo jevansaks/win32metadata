@@ -1,0 +1,287 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Snmp.h b/generation/WinSDK/RecompiledIdlHeaders/um/Snmp.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/Snmp.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/Snmp.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*++
+ 
+ Copyright (C) 1992-1999 Microsoft Corporation
+@@ -260,6 +261,7 @@
+ 
+ #define SNMPAPI_NOERROR                         TRUE
+ #define SNMPAPI_ERROR                           FALSE
++_Win32_SupportedOS_Windows2000_
+ 
+ ///////////////////////////////////////////////////////////////////////////////
+ //                                                                           //
+@@ -274,18 +276,21 @@
+     HANDLE *              phSubagentTrapEvent,
+     AsnObjectIdentifier * pFirstSupportedRegion
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ BOOL
+ SNMP_FUNC_TYPE
+ SnmpExtensionInitEx(
+     AsnObjectIdentifier * pNextSupportedRegion
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ BOOL
+ SNMP_FUNC_TYPE
+ SnmpExtensionMonitor(
+     LPVOID            pAgentMgmtData
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ BOOL
+ SNMP_FUNC_TYPE
+@@ -295,17 +300,19 @@
+     AsnInteger32 *    pErrorStatus,
+     AsnInteger32 *    pErrorIndex
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ BOOL
+ SNMP_FUNC_TYPE
+ SnmpExtensionQueryEx(
+-    UINT              nRequestType,
++    _Win32_AssociatedEnum_(SNMP_EXTENSION_REQUEST_TYPE) UINT              nRequestType,
+     UINT              nTransactionId,
+     SnmpVarBindList * pVarBindList,
+     AsnOctetString *  pContextInfo,
+     AsnInteger32 *    pErrorStatus,
+     AsnInteger32 *    pErrorIndex
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ BOOL
+ SNMP_FUNC_TYPE
+@@ -316,6 +323,7 @@
+     AsnTimeticks *        pTimeStamp,
+     SnmpVarBindList *     pVarBindList
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ VOID
+ SNMP_FUNC_TYPE
+@@ -368,6 +376,7 @@
+ 
+ typedef VOID (SNMP_FUNC_TYPE * PFNSNMPEXTENSIONCLOSE)(
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ ///////////////////////////////////////////////////////////////////////////////
+ //                                                                           //
+@@ -381,6 +390,8 @@
+     AsnObjectIdentifier * pOidDst,
+     AsnObjectIdentifier * pOidSrc
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ 
+ SNMPAPI
+ SNMP_FUNC_TYPE
+@@ -388,6 +399,7 @@
+     AsnObjectIdentifier * pOidDst,
+     AsnObjectIdentifier * pOidSrc
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ SNMPAPI
+ SNMP_FUNC_TYPE
+@@ -396,6 +408,7 @@
+     AsnObjectIdentifier * pOid2,
+     UINT                  nSubIds
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ SNMPAPI
+ SNMP_FUNC_TYPE
+@@ -403,12 +416,14 @@
+     AsnObjectIdentifier * pOid1,
+     AsnObjectIdentifier * pOid2
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ VOID
+ SNMP_FUNC_TYPE
+ SnmpUtilOidFree(
+     AsnObjectIdentifier * pOid
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ SNMPAPI
+ SNMP_FUNC_TYPE
+@@ -416,6 +431,7 @@
+     AsnOctetString * pOctets1,
+     AsnOctetString * pOctets2
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ SNMPAPI
+ SNMP_FUNC_TYPE
+@@ -424,6 +440,7 @@
+     AsnOctetString * pOctets2,
+     UINT             nChars
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ SNMPAPI
+ SNMP_FUNC_TYPE
+@@ -431,12 +448,14 @@
+     AsnOctetString * pOctetsDst,
+     AsnOctetString * pOctetsSrc
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ VOID
+ SNMP_FUNC_TYPE
+ SnmpUtilOctetsFree(
+     AsnOctetString * pOctets
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ SNMPAPI
+ SNMP_FUNC_TYPE
+@@ -444,12 +463,14 @@
+     AsnAny * pAnyDst,
+     AsnAny * pAnySrc
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ VOID
+ SNMP_FUNC_TYPE
+ SnmpUtilAsnAnyFree(
+     AsnAny * pAny
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ SNMPAPI
+ SNMP_FUNC_TYPE
+@@ -457,12 +478,14 @@
+     SnmpVarBind * pVbDst,
+     SnmpVarBind * pVbSrc
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ VOID
+ SNMP_FUNC_TYPE
+ SnmpUtilVarBindFree(
+     SnmpVarBind * pVb
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ SNMPAPI
+ SNMP_FUNC_TYPE
+@@ -470,24 +493,28 @@
+     SnmpVarBindList * pVblDst,
+     SnmpVarBindList * pVblSrc
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ VOID
+ SNMP_FUNC_TYPE
+ SnmpUtilVarBindListFree(
+     SnmpVarBindList * pVbl
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ VOID
+ SNMP_FUNC_TYPE
+ SnmpUtilMemFree(
+     LPVOID pMem
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ LPVOID
+ SNMP_FUNC_TYPE
+ SnmpUtilMemAlloc(
+     UINT nBytes
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ LPVOID
+ SNMP_FUNC_TYPE
+@@ -495,12 +522,14 @@
+     LPVOID pMem,
+     UINT   nBytes
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ LPSTR
+ SNMP_FUNC_TYPE
+ SnmpUtilOidToA(
+     IN AsnObjectIdentifier *Oid
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ LPSTR
+ SNMP_FUNC_TYPE
+@@ -508,28 +537,32 @@
+     IN UINT *Ids,
+     IN UINT IdLength
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ VOID
+ SNMP_FUNC_TYPE
+ SnmpUtilPrintOid(
+     IN AsnObjectIdentifier *Oid
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ VOID
+ SNMP_FUNC_TYPE
+ SnmpUtilPrintAsnAny(
+     AsnAny * pAny
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ DWORD
+ SNMP_FUNC_TYPE
+ SnmpSvcGetUptime(
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ VOID
+ SNMP_FUNC_TYPE
+ SnmpSvcSetLogLevel(
+-    INT nLogLevel
++    _Win32_AssociatedEnum_(SNMP_LOG) INT nLogLevel
+     );
+ 
+ VOID
+@@ -555,6 +588,7 @@
+ #define SNMP_OUTPUT_TO_LOGFILE          0x2
+ #define SNMP_OUTPUT_TO_EVENTLOG         0x4  // no longer supported
+ #define SNMP_OUTPUT_TO_DEBUGGER         0x8
++_Win32_SupportedOS_Windows2000_
+ 
+ ///////////////////////////////////////////////////////////////////////////////
+ //                                                                           //
+@@ -565,7 +599,7 @@
+ VOID
+ SNMP_FUNC_TYPE
+ SnmpUtilDbgPrint(
+-    IN INT nLogLevel,   // see log levels above...
++    _Win32_AssociatedEnum_(SNMP_LOG) IN INT nLogLevel,   // see log levels above...
+     _In_ _Printf_format_string_ LPSTR szFormat,
+     IN ...
+     );
+@@ -676,3 +710,14 @@
+ #pragma endregion
+ 
+ #endif // _INC_SNMP
++
++#ifndef _WIN32METADATA_SNMP_MANUAL_28_GROUPS_
++#define _WIN32METADATA_SNMP_MANUAL_28_GROUPS_
++_Win32_Enum_(SNMP_OUTPUT_LOG_TYPE, unsigned int, SNMP_OUTPUT_TO_CONSOLE, SNMP_OUTPUT_TO_LOGFILE, SNMP_OUTPUT_TO_DEBUGGER);
++_Win32_Enum_(SNMP_LOG, int, SNMP_LOG_SILENT, SNMP_LOG_FATAL, SNMP_LOG_ERROR, SNMP_LOG_WARNING, SNMP_LOG_TRACE, SNMP_LOG_VERBOSE);
++#endif
++
++#ifndef _WIN32METADATA_SNMP_NATIVE_OWNER_16_GROUPS_
++#define _WIN32METADATA_SNMP_NATIVE_OWNER_16_GROUPS_
++_Win32_Enum_(SNMP_EXTENSION_REQUEST_TYPE, unsigned int, SNMP_EXTENSION_GET, SNMP_EXTENSION_GET_NEXT, SNMP_EXTENSION_SET_TEST, SNMP_EXTENSION_SET_COMMIT, SNMP_EXTENSION_SET_UNDO, SNMP_EXTENSION_SET_CLEANUP);
++#endif

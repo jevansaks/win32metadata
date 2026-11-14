@@ -1,0 +1,704 @@
+[
+  {
+    "header": "um\\winnt.h",
+    "line": 27072,
+    "column": 28,
+    "diagnostic": "use of undeclared identifier 'SERVICE_NO_CHANGE'"
+  },
+  {
+    "header": "um\\winnt.h",
+    "line": 27108,
+    "column": 28,
+    "diagnostic": "use of undeclared identifier 'SERVICE_NO_CHANGE'"
+  },
+  {
+    "header": "um\\winnt.h",
+    "line": 27126,
+    "column": 28,
+    "diagnostic": "use of undeclared identifier 'SERVICE_NO_CHANGE'"
+  },
+  {
+    "header": "shared\\minwindef.h",
+    "line": 264,
+    "column": 23,
+    "diagnostic": "use of undeclared identifier 'HGDIOBJ'"
+  },
+  {
+    "header": "um\\fileapi.h",
+    "line": 351,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'FindVolumeClose'"
+  },
+  {
+    "header": "um\\memoryapi.h",
+    "line": 258,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'UnmapViewOfFile'"
+  },
+  {
+    "header": "um\\memoryapi.h",
+    "line": 275,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'UnmapViewOfFile'"
+  },
+  {
+    "header": "um\\threadpoolapiset.h",
+    "line": 48,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'CloseThreadpool'"
+  },
+  {
+    "header": "um\\threadpoolapiset.h",
+    "line": 105,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'CloseThreadpoolCleanupGroup'"
+  },
+  {
+    "header": "um\\threadpoolapiset.h",
+    "line": 207,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'CloseThreadpoolWork'"
+  },
+  {
+    "header": "um\\threadpoolapiset.h",
+    "line": 244,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'CloseThreadpoolTimer'"
+  },
+  {
+    "header": "um\\threadpoolapiset.h",
+    "line": 292,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'CloseThreadpoolWait'"
+  },
+  {
+    "header": "um\\threadpoolapiset.h",
+    "line": 331,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'CloseThreadpoolIo'"
+  },
+  {
+    "header": "um\\namespaceapi.h",
+    "line": 35,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'ClosePrivateNamespace'"
+  },
+  {
+    "header": "um\\namespaceapi.h",
+    "line": 44,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'ClosePrivateNamespace'"
+  },
+  {
+    "header": "um\\namespaceapi.h",
+    "line": 62,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DeleteBoundaryDescriptor'"
+  },
+  {
+    "header": "um\\winbase.h",
+    "line": 1390,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'GlobalFree'"
+  },
+  {
+    "header": "um\\winbase.h",
+    "line": 1410,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'GlobalFree'"
+  },
+  {
+    "header": "um\\winbase.h",
+    "line": 5107,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'EndUpdateResourceA'"
+  },
+  {
+    "header": "um\\winbase.h",
+    "line": 5116,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'EndUpdateResourceW'"
+  },
+  {
+    "header": "um\\winbase.h",
+    "line": 9572,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'FindVolumeMountPointClose'"
+  },
+  {
+    "header": "um\\winbase.h",
+    "line": 9582,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'FindVolumeMountPointClose'"
+  },
+  {
+    "header": "um\\winbase.h",
+    "line": 9795,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'ReleaseActCtx'"
+  },
+  {
+    "header": "um\\winbase.h",
+    "line": 9803,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'ReleaseActCtx'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 4716,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DeleteMetaFile'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 4723,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DeleteMetaFile'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 4728,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DeleteMetaFile'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 4738,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DeleteObject'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 4743,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DeleteObject'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 4748,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DeleteObject'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 4753,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DeleteObject'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 4758,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DeleteObject'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 4763,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DeleteDC'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 4768,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DeleteDC'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 4773,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DeleteDC'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 4783,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DeleteObject'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 4788,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DeleteObject'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 4793,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DeleteObject'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 4798,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DeleteObject'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 4803,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DeleteObject'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 4808,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DeleteObject'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 4813,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DeleteObject'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 4823,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DeleteObject'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 4830,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DeleteObject'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 4843,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DeleteObject'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 4848,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DeleteDC'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 4853,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DeleteDC'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 4872,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DeleteObject'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 4877,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DeleteObject'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 4882,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DeleteObject'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 4887,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DeleteObject'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 4895,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DeleteObject'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 4900,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DeleteObject'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 4905,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DeleteObject'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 4910,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DeleteObject'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 4926,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DeleteObject'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 6185,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DeleteEnhMetaFile'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 6190,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DeleteEnhMetaFile'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 6195,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DeleteEnhMetaFile'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 6745,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DeleteColorSpace'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 6750,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DeleteColorSpace'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 7916,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'wglDeleteContext'"
+  },
+  {
+    "header": "um\\wingdi.h",
+    "line": 7922,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'wglDeleteContext'"
+  },
+  {
+    "header": "um\\winuser.h",
+    "line": 2181,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'CloseWindowStation'"
+  },
+  {
+    "header": "um\\winuser.h",
+    "line": 2194,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'CloseWindowStation'"
+  },
+  {
+    "header": "um\\winuser.h",
+    "line": 2213,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'CloseWindowStation'"
+  },
+  {
+    "header": "um\\winuser.h",
+    "line": 2225,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'CloseWindowStation'"
+  },
+  {
+    "header": "um\\winuser.h",
+    "line": 5198,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'UnregisterDeviceNotification'"
+  },
+  {
+    "header": "um\\winuser.h",
+    "line": 5210,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'UnregisterDeviceNotification'"
+  },
+  {
+    "header": "um\\winuser.h",
+    "line": 5249,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'UnregisterPowerSettingNotification'"
+  },
+  {
+    "header": "um\\winuser.h",
+    "line": 8462,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DestroySyntheticPointerDevice'"
+  },
+  {
+    "header": "um\\winuser.h",
+    "line": 9148,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DestroyAcceleratorTable'"
+  },
+  {
+    "header": "um\\winuser.h",
+    "line": 9159,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DestroyAcceleratorTable'"
+  },
+  {
+    "header": "um\\winuser.h",
+    "line": 9618,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DestroyMenu'"
+  },
+  {
+    "header": "um\\winuser.h",
+    "line": 9629,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DestroyMenu'"
+  },
+  {
+    "header": "um\\winuser.h",
+    "line": 9646,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DestroyMenu'"
+  },
+  {
+    "header": "um\\winuser.h",
+    "line": 9656,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DestroyMenu'"
+  },
+  {
+    "header": "um\\winuser.h",
+    "line": 9780,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DestroyMenu'"
+  },
+  {
+    "header": "um\\winuser.h",
+    "line": 9791,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DestroyMenu'"
+  },
+  {
+    "header": "um\\winuser.h",
+    "line": 13250,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'UnhookWindowsHookEx'"
+  },
+  {
+    "header": "um\\winuser.h",
+    "line": 13263,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'UnhookWindowsHookEx'"
+  },
+  {
+    "header": "um\\winuser.h",
+    "line": 13633,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DestroyCursor'"
+  },
+  {
+    "header": "um\\winuser.h",
+    "line": 13760,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DestroyIcon'"
+  },
+  {
+    "header": "um\\winuser.h",
+    "line": 13776,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DestroyIcon'"
+  },
+  {
+    "header": "um\\winuser.h",
+    "line": 13789,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DestroyIcon'"
+  },
+  {
+    "header": "um\\winuser.h",
+    "line": 17543,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'UnhookWinEvent'"
+  },
+  {
+    "header": "um\\mmeapi.h",
+    "line": 440,
+    "column": 22,
+    "diagnostic": "use of undeclared identifier 'waveOutClose'"
+  },
+  {
+    "header": "um\\mmeapi.h",
+    "line": 664,
+    "column": 22,
+    "diagnostic": "use of undeclared identifier 'waveInClose'"
+  },
+  {
+    "header": "um\\mmeapi.h",
+    "line": 1143,
+    "column": 22,
+    "diagnostic": "use of undeclared identifier 'midiStreamClose'"
+  },
+  {
+    "header": "um\\mmeapi.h",
+    "line": 1330,
+    "column": 22,
+    "diagnostic": "use of undeclared identifier 'midiOutClose'"
+  },
+  {
+    "header": "um\\mmeapi.h",
+    "line": 1512,
+    "column": 22,
+    "diagnostic": "use of undeclared identifier 'midiInClose'"
+  },
+  {
+    "header": "um\\mmeapi.h",
+    "line": 1938,
+    "column": 22,
+    "diagnostic": "use of undeclared identifier 'mixerClose'"
+  },
+  {
+    "header": "shared\\bcrypt.h",
+    "line": 1327,
+    "column": 22,
+    "diagnostic": "use of undeclared identifier 'BCryptCloseAlgorithmProvider'"
+  },
+  {
+    "header": "shared\\bcrypt.h",
+    "line": 1473,
+    "column": 22,
+    "diagnostic": "use of undeclared identifier 'BCryptDestroyKey'"
+  },
+  {
+    "header": "shared\\bcrypt.h",
+    "line": 1487,
+    "column": 22,
+    "diagnostic": "use of undeclared identifier 'BCryptDestroyKey'"
+  },
+  {
+    "header": "shared\\bcrypt.h",
+    "line": 1548,
+    "column": 22,
+    "diagnostic": "use of undeclared identifier 'BCryptDestroyKey'"
+  },
+  {
+    "header": "shared\\bcrypt.h",
+    "line": 1572,
+    "column": 22,
+    "diagnostic": "use of undeclared identifier 'BCryptDestroyKey'"
+  },
+  {
+    "header": "shared\\bcrypt.h",
+    "line": 1584,
+    "column": 22,
+    "diagnostic": "use of undeclared identifier 'BCryptDestroyKey'"
+  },
+  {
+    "header": "shared\\bcrypt.h",
+    "line": 1691,
+    "column": 22,
+    "diagnostic": "use of undeclared identifier 'BCryptDestroyHash'"
+  },
+  {
+    "header": "shared\\bcrypt.h",
+    "line": 1728,
+    "column": 22,
+    "diagnostic": "use of undeclared identifier 'BCryptDestroyHash'"
+  },
+  {
+    "header": "shared\\bcrypt.h",
+    "line": 1755,
+    "column": 22,
+    "diagnostic": "use of undeclared identifier 'BCryptDestroyHash'"
+  },
+  {
+    "header": "um\\ncrypt.h",
+    "line": 736,
+    "column": 22,
+    "diagnostic": "use of undeclared identifier 'NCryptFreeObject'"
+  },
+  {
+    "header": "um\\ncrypt.h",
+    "line": 879,
+    "column": 22,
+    "diagnostic": "use of undeclared identifier 'NCryptFreeObject'"
+  },
+  {
+    "header": "um\\ncrypt.h",
+    "line": 896,
+    "column": 22,
+    "diagnostic": "use of undeclared identifier 'NCryptFreeObject'"
+  },
+  {
+    "header": "um\\ncrypt.h",
+    "line": 1512,
+    "column": 22,
+    "diagnostic": "use of undeclared identifier 'NCryptFreeObject'"
+  },
+  {
+    "header": "um\\wincrypt.h",
+    "line": 18255,
+    "column": 22,
+    "diagnostic": "use of undeclared identifier 'CryptCloseAsyncHandle'"
+  },
+  {
+    "header": "um\\wincrypt.h",
+    "line": 20543,
+    "column": 22,
+    "diagnostic": "use of undeclared identifier 'CertFreeCertificateChainEngine'"
+  },
+  {
+    "header": "um\\prsht.h",
+    "line": 598,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DestroyPropertySheetPage'"
+  },
+  {
+    "header": "um\\prsht.h",
+    "line": 603,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'DestroyPropertySheetPage'"
+  },
+  {
+    "header": "um\\oleauto.h",
+    "line": 83,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'SysFreeString'"
+  },
+  {
+    "header": "um\\oleauto.h",
+    "line": 89,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'SysFreeString'"
+  },
+  {
+    "header": "um\\oleauto.h",
+    "line": 149,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'SafeArrayDestroyDescriptor'"
+  },
+  {
+    "header": "um\\oleauto.h",
+    "line": 154,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'SafeArrayDestroyDescriptor'"
+  },
+  {
+    "header": "um\\oleauto.h",
+    "line": 160,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'SafeArrayDestroy'"
+  },
+  {
+    "header": "um\\oleauto.h",
+    "line": 165,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'SafeArrayDestroy'"
+  },
+  {
+    "header": "um\\imm.h",
+    "line": 259,
+    "column": 48,
+    "diagnostic": "use of undeclared identifier 'ImmDestroyContext'"
+  },
+  {
+    "header": "um\\WinSock2.h",
+    "line": 1675,
+    "column": 18,
+    "diagnostic": "use of undeclared identifier 'closesocket'"
+  }
+]

@@ -61,32 +61,43 @@ namespace ClangSharpSourceToWinmdTests
         {
             string parent = Parent();
             string original = Encoding.UTF8.GetString(PropertyComOutputHeaderTests.ReadOriginalBytes("autoTypes.json", parent));
-            Assert.AreEqual(ApplyAutoTypesDelta(original), File.ReadAllText(Sdk("autoTypes.json")).Replace("\r\n", "\n"));
+            Assert.AreEqual(ApplyAutoTypesDelta(original),
+                FullHeaderMigrationExperimentTests.ReadRecoveryText("autoTypes.json").Replace("\r\n", "\n"));
             foreach (string path in new[] { "emitter.settings.rsp", "scraper.settings.rsp", "functionPointerFixups.json",
                 "RecompiledIdlHeaders/shared/wtypes.h", "RecompiledIdlHeaders/shared/basetsd.h",
                 "RecompiledIdlHeaders/shared/minwindef.h", "RecompiledIdlHeaders/um/winnt.h",
                 "RecompiledIdlHeaders/um/winhttp.h" })
                 CollectionAssert.AreEqual(PropertyComOutputHeaderTests.ReadOriginalBytes(path, parent),
-                    File.ReadAllBytes(Sdk(path)), "Independent native/legacy facts stay byte-exact: " + path);
+                    FullHeaderMigrationExperimentTests.ReadRecoveryBytes(path),
+                    "Independent native/legacy facts stay byte-exact: " + path);
             var ancestry = LastErrorHeaderTests.Run("git", "-C", LastErrorHeaderTests.RepositoryRoot(),
                 "merge-base", "--is-ancestor", parent, "HEAD");
             Assert.AreEqual(0, ancestry.ExitCode, ancestry.Output);
         }
 
         [TestMethod]
-        public void ActualAutoTypePreparation_SelectsOnlyCompilerBackedPilots()
+        public void ActualAutoTypePreparation_SelectsOnlyCompilerBackedAliases()
         {
             string directory = Path.Combine(Path.GetTempPath(), "native-settings-" + Guid.NewGuid().ToString("N"));
             Directory.CreateDirectory(directory);
             try
             {
                 string output = Path.Combine(directory, "settings.rsp");
-                string text = PrepareSettings(output);
-                StringAssert.StartsWith(text, "--native-typedef\nHRESULT=Windows.Win32.Foundation\n" +
-                    "NCRYPT_HANDLE=Windows.Win32.Security.Cryptography\n" +
-                    "NCRYPT_KEY_HANDLE=Windows.Win32.Security.Cryptography\n--remap\n");
+                string autoTypes = Path.Combine(directory, "autoTypes.json");
+                File.WriteAllBytes(autoTypes, PropertyComOutputHeaderTests.ReadOriginalBytes(
+                    "autoTypes.json", "fc60db128ac08f4009737debc40cd4515e4a837a"));
+                string text = PrepareSettings(output, autoTypes);
+                string[] aliases =
+                {
+                    "HRESULT", "BCRYPT_HANDLE", "BCRYPT_ALG_HANDLE", "BCRYPT_KEY_HANDLE",
+                    "BCRYPT_HASH_HANDLE", "BCRYPT_SECRET_HANDLE", "NCRYPT_HANDLE", "NCRYPT_PROV_HANDLE",
+                    "NCRYPT_KEY_HANDLE", "NCRYPT_HASH_HANDLE", "NCRYPT_SECRET_HANDLE",
+                };
+                StringAssert.StartsWith(text, "--native-typedef\n" + string.Join("\n",
+                    aliases.Select(name => name + "=" + (name == "HRESULT" ? Foundation : Cryptography))) +
+                    "\n--remap\n");
                 string remaps = text.Substring(text.IndexOf("--remap\n", StringComparison.Ordinal));
-                foreach (string name in Pilots)
+                foreach (string name in aliases)
                     Assert.IsFalse(remaps.Contains(name + "=", StringComparison.Ordinal));
             }
             finally { Directory.Delete(directory, true); }
@@ -537,11 +548,11 @@ typedef char CallbackWidth[(sizeof(*((LPResultCallback)0)) == sizeof(void*)) ? 1
             return matches[0].Value;
         }
 
-        private static string PrepareSettings(string output)
+        private static string PrepareSettings(string output, string? autoTypes = null)
         {
             var task = new MetadataTasks.PrepSettingsForAutoTypes
             {
-                AutoTypes = new[] { new TaskItem(Sdk("autoTypes.json")) },
+                AutoTypes = new[] { new TaskItem(autoTypes ?? Sdk("autoTypes.json")) },
                 ScraperAutoTypesRsp = output,
             };
             Assert.IsTrue(task.Execute());

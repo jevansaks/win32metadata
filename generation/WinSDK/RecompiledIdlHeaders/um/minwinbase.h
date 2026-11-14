@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /************************************************************************
 *                                                                       *
 *   minwinbase.h -- This module defines the 32-Bit Windows Base APIs    *
@@ -272,7 +273,7 @@ typedef struct _PROCESS_HEAP_ENTRY {
 
 typedef struct _REASON_CONTEXT {
     ULONG Version;
-    DWORD Flags;
+    _Win32_AssociatedEnum_(POWER_REQUEST_CONTEXT_FLAGS) DWORD Flags;
     union {
         struct {
             HMODULE LocalizedReasonModule;
@@ -367,7 +368,7 @@ typedef struct _RIP_INFO {
 
 
 typedef struct _DEBUG_EVENT {
-    DWORD dwDebugEventCode;
+    _Win32_AssociatedEnum_(DEBUG_EVENT_CODE) DWORD dwDebugEventCode;
     DWORD dwProcessId;
     DWORD dwThreadId;
     union {
@@ -471,3 +472,14 @@ typedef PCONTEXT LPCONTEXT;
 
 #endif // _MINWINBASE_
 
+#ifndef _WIN32METADATA_MINWINBASE_FRESH_DIRECT_38_GROUPS_
+#define _WIN32METADATA_MINWINBASE_FRESH_DIRECT_38_GROUPS_
+_Win32_AnnotateField_(RIP_INFO::dwType, _Win32_AssociatedEnum_(RIP_INFO_TYPE));
+#endif
+
+#ifndef _WIN32METADATA_MINWINBASE_NATIVE_OWNER_16_GROUPS_
+#define _WIN32METADATA_MINWINBASE_NATIVE_OWNER_16_GROUPS_
+_Win32_FlagsEnum_(LOCAL_ALLOC_FLAGS, unsigned int, LHND, LMEM_FIXED, LMEM_MOVEABLE, LMEM_ZEROINIT, LPTR, NONZEROLHND, NONZEROLPTR);
+_Win32_FlagsEnum_(LOCK_FILE_FLAGS, unsigned int, LOCKFILE_EXCLUSIVE_LOCK, LOCKFILE_FAIL_IMMEDIATELY);
+_Win32_Enum_(DEBUG_EVENT_CODE, unsigned int, CREATE_PROCESS_DEBUG_EVENT, CREATE_THREAD_DEBUG_EVENT, EXCEPTION_DEBUG_EVENT, EXIT_PROCESS_DEBUG_EVENT, EXIT_THREAD_DEBUG_EVENT, LOAD_DLL_DEBUG_EVENT, OUTPUT_DEBUG_STRING_EVENT, RIP_EVENT, UNLOAD_DLL_DEBUG_EVENT);
+#endif

@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /********************************************************************************
 *                                                                               *
 * processtopologyapi.h -- ApiSet Contract for api-ms-win-core-processtopology-l1 *
@@ -26,6 +27,7 @@ extern "C" {
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
 #if (_WIN32_WINNT >= 0x0601)
+_Win32_SupportedOS_Windows7_
 
 WINBASEAPI
 BOOL
@@ -45,6 +47,7 @@ GetProcessGroupAffinity(
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
 #if (_WIN32_WINNT >= 0x0601)
+_Win32_SupportedOS_Windows7_
 
 WINBASEAPI
 BOOL
@@ -53,6 +56,7 @@ GetThreadGroupAffinity(
     _In_ HANDLE hThread,
     _Out_ PGROUP_AFFINITY GroupAffinity
     );
+_Win32_SupportedOS_Windows7_
 
 WINBASEAPI
 BOOL

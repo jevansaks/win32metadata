@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) 2010      Microsoft Corporation
@@ -30,6 +31,7 @@ extern "C"{
 #endif
 
 #if NTDDI_VERSION >= NTDDI_WIN8
+_Win32_SupportedOS_Windows8_
 
 
 
@@ -84,6 +86,7 @@ BluetoothGATTGetServices(
     _Out_ USHORT* ServicesBufferActual,
     _In_ ULONG Flags
     );
+_Win32_SupportedOS_Windows8_
 
 //
 //  Description:
@@ -151,6 +154,7 @@ BluetoothGATTGetIncludedServices(
     _Out_ USHORT* IncludedServicesBufferActual,
     _In_ ULONG Flags
     );
+_Win32_SupportedOS_Windows8_
 
 //
 //  Description:
@@ -208,6 +212,7 @@ BluetoothGATTGetCharacteristics(
     _Out_ USHORT* CharacteristicsBufferActual,
     _In_ ULONG Flags
     );
+_Win32_SupportedOS_Windows8_
 
 //
 //  Description:
@@ -263,6 +268,7 @@ BluetoothGATTGetDescriptors(
     _Out_ USHORT* DescriptorsBufferActual,
     _In_ ULONG Flags
     );
+_Win32_SupportedOS_Windows8_
 
 //
 //  Description:
@@ -336,6 +342,7 @@ BluetoothGATTGetCharacteristicValue(
     _Out_opt_ USHORT* CharacteristicValueSizeRequired,
     _In_ ULONG Flags
     );
+_Win32_SupportedOS_Windows8_
 
 //
 //  Description:
@@ -406,6 +413,7 @@ BluetoothGATTGetDescriptorValue(
     _Out_opt_ USHORT* DescriptorValueSizeRequired,
     _In_ ULONG Flags
     );
+_Win32_SupportedOS_Windows8_
 
 //
 //  Description:
@@ -435,6 +443,7 @@ BluetoothGATTBeginReliableWrite(
     _Out_ PBTH_LE_GATT_RELIABLE_WRITE_CONTEXT ReliableWriteContext,
     _In_ ULONG Flags
     );
+_Win32_SupportedOS_Windows8_
 
 //
 //  Description:
@@ -495,6 +504,7 @@ BluetoothGATTSetCharacteristicValue(
     _In_opt_ BTH_LE_GATT_RELIABLE_WRITE_CONTEXT ReliableWriteContext,
     _In_ ULONG Flags
     );
+_Win32_SupportedOS_Windows8_
 
 //
 //  Description:
@@ -539,6 +549,7 @@ BluetoothGATTEndReliableWrite(
     _In_ BTH_LE_GATT_RELIABLE_WRITE_CONTEXT ReliableWriteContext,
     _In_ ULONG Flags
     );
+_Win32_SupportedOS_Windows8_
 
 
 //
@@ -584,6 +595,7 @@ BluetoothGATTAbortReliableWrite(
     _In_ BTH_LE_GATT_RELIABLE_WRITE_CONTEXT ReliableWriteContext,
     _In_ ULONG Flags
     );
+_Win32_SupportedOS_Windows8_
 
 
 //
@@ -636,6 +648,7 @@ BluetoothGATTSetDescriptorValue(
     _In_ PBTH_LE_GATT_DESCRIPTOR_VALUE DescriptorValue,
     _In_ ULONG Flags
     );
+_Win32_SupportedOS_Windows8_
 
 
 //
@@ -687,6 +700,7 @@ BluetoothGATTRegisterEvent(
     _Out_ BLUETOOTH_GATT_EVENT_HANDLE * pEventHandle,
     _In_ ULONG Flags
     );
+_Win32_SupportedOS_Windows8_
 
 //
 //  Description:

@@ -1,0 +1,35 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/TextServ.h b/generation/WinSDK/RecompiledIdlHeaders/um/TextServ.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/TextServ.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/TextServ.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*	@doc EXTERNAL
+  *
+  *	@module TEXTSRV.H  Text Service Interface |
+@@ -328,7 +329,7 @@
+ 	virtual BOOL		TxShowScrollBar(INT fnBar, BOOL fShow) = 0;
+ 
+ 	//@cmember Enable the scroll bar
+-	virtual BOOL		TxEnableScrollBar (INT fuSBFlags, INT fuArrowflags) = 0;
++	virtual BOOL		TxEnableScrollBar (_Win32_AssociatedEnum_(SCROLLBAR_CONSTANTS) INT fuSBFlags, INT fuArrowflags) = 0;
+ 
+ 	//@cmember Set the scroll range
+ 	virtual BOOL		TxSetScrollRange(
+@@ -369,7 +370,7 @@
+ 							LPCRECT lprcClip,
+ 							HRGN hrgnUpdate, 
+ 							LPRECT lprcUpdate, 
+-							UINT fuScroll) = 0;
++							_Win32_AssociatedEnum_(SCROLL_WINDOW_FLAGS) UINT fuScroll) = 0;
+ 	
+ 	//@cmember Get mouse capture
+ 	virtual void		TxSetCapture(BOOL fCapture) = 0;
+@@ -496,6 +497,7 @@
+ 		PROPERTYID propertyId,
+ 		VARIANT *pRetValue) = 0;
+ };
++_Win32_SupportedOS_WindowsVista_
+ 
+ //+-----------------------------------------------------------------------
+ // 	Factories

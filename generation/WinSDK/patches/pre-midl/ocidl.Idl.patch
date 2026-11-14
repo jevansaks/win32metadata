@@ -2,7 +2,13 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ocidl.Idl b/generation/WinSDK/RecompiledIdlHeaders/um/ocidl.Idl
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/ocidl.Idl
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/ocidl.Idl
-@@ -369,7 +369,7 @@
+@@ -1,3 +1,5 @@
++#include <win32metadata_annotations.h>
++cpp_quote("#include <win32metadata_annotations.h>")
+ cpp_quote("#include <winapifamily.h>")
+ 
+ //+---------------------------------------------------------------------------
+@@ -369,7 +371,7 @@
                  [in, annotation("_Reserved_")] IUnknown * pUnkReserved,
                  [in, annotation("__RPC__in")] REFIID riid,
                  [in, annotation("__RPC__in")] BSTR bstrKey,
@@ -11,3 +17,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ocidl.Idl b/generation/Wi
              );
  
      [call_as(CreateInstanceLic)]
+@@ -1620,6 +1622,8 @@
+                 [in] BOOL fSetAlways
+             );
+ }
++_Win32_AnnotateParameter_(IPointerInactive::GetActivationPolicy, pdwPolicy, _Win32_AssociatedEnum_(POINTERINACTIVE))
++
+ 
+ 
+ [

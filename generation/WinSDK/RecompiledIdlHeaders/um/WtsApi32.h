@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*********************************************************************
 *
 * WTSAPI32.H
@@ -794,6 +795,8 @@ typedef struct _WTS_SESSION_ADDRESS {
     DWORD AddressFamily;  // AF_INET only.
     BYTE  Address[20];    // client network address
 } WTS_SESSION_ADDRESS, * PWTS_SESSION_ADDRESS;
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 
 /*=====================================================================
@@ -804,6 +807,8 @@ BOOL WINAPI
 WTSStopRemoteControlSession(
     IN ULONG   LogonId
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 BOOL WINAPI
 WTSStartRemoteControlSessionW(
@@ -812,6 +817,8 @@ WTSStartRemoteControlSessionW(
     IN BYTE    HotkeyVk,
     IN USHORT  HotkeyModifiers
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 BOOL WINAPI
 WTSStartRemoteControlSessionA(
@@ -826,6 +833,8 @@ WTSStartRemoteControlSessionA(
 #else
 #define WTSStartRemoteControlSession WTSStartRemoteControlSessionA
 #endif /* UNICODE */
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 BOOL
 WINAPI
@@ -835,6 +844,8 @@ WTSConnectSessionA(
     _In_ PSTR pPassword,
     IN BOOL bWait
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 BOOL
 WINAPI
@@ -850,6 +861,8 @@ WTSConnectSessionW(
 #else
 #define WTSConnectSession WTSConnectSessionA
 #endif
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 BOOL
 WINAPI
@@ -860,6 +873,8 @@ WTSEnumerateServersW(
     _Outptr_result_buffer_(*pCount) PWTS_SERVER_INFOW * ppServerInfo,
     _Out_ DWORD * pCount
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 BOOL
 WINAPI
@@ -876,6 +891,7 @@ WTSEnumerateServersA(
 #else
 #define WTSEnumerateServers WTSEnumerateServersA
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 /*------------------------------------------------*/
 
@@ -884,18 +900,21 @@ WINAPI
 WTSOpenServerW(
     _In_ LPWSTR pServerName
     );
+_Win32_SupportedOS_WindowsVista_
 
 HANDLE
 WINAPI
 WTSOpenServerA(
     _In_ LPSTR pServerName
     );
+_Win32_SupportedOS_Windows7_
 
 HANDLE
 WINAPI
 WTSOpenServerExW(
     _In_ LPWSTR pServerName
     );
+_Win32_SupportedOS_Windows7_
 
 HANDLE
 WINAPI
@@ -910,6 +929,7 @@ WTSOpenServerExA(
 #define WTSOpenServer WTSOpenServerA
 #define WTSOpenServerEx WTSOpenServerExA
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 /*------------------------------------------------*/
 
@@ -918,6 +938,8 @@ WINAPI
 WTSCloseServer(
     IN HANDLE hServer
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 /*------------------------------------------------*/
 
@@ -930,6 +952,8 @@ WTSEnumerateSessionsW(
     _Outptr_result_buffer_(*pCount) PWTS_SESSION_INFOW * ppSessionInfo,
     _Out_ DWORD * pCount
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 BOOL
 WINAPI
@@ -940,20 +964,24 @@ WTSEnumerateSessionsA(
     _Outptr_result_buffer_(*pCount)  PWTS_SESSION_INFOA * ppSessionInfo,
     _Out_ DWORD * pCount
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows7_
 
 BOOL
 WINAPI
 WTSEnumerateSessionsExW(
-    _In_ HANDLE hServer,
+    _In_opt_ HANDLE hServer,
     _Inout_ DWORD *pLevel,
     _In_ DWORD Filter,
     _Outptr_result_buffer_(*pCount) PWTS_SESSION_INFO_1W * ppSessionInfo,
     _Out_ DWORD * pCount );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows7_
 
 BOOL
 WINAPI
 WTSEnumerateSessionsExA(
-    _In_ HANDLE hServer,
+    _In_opt_ HANDLE hServer,
     _Inout_ DWORD *pLevel,
     _In_ DWORD Filter,
     _Outptr_result_buffer_(*pCount) PWTS_SESSION_INFO_1A * ppSessionInfo,
@@ -966,6 +994,8 @@ WTSEnumerateSessionsExA(
 #define WTSEnumerateSessions WTSEnumerateSessionsA
 #define WTSEnumerateSessionsEx WTSEnumerateSessionsExA
 #endif
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 /*------------------------------------------------*/
 
@@ -978,6 +1008,8 @@ WTSEnumerateProcessesW(
     OUT PWTS_PROCESS_INFOW * ppProcessInfo,
     OUT DWORD * pCount
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 BOOL
 WINAPI
@@ -994,6 +1026,8 @@ WTSEnumerateProcessesA(
 #else
 #define WTSEnumerateProcesses WTSEnumerateProcessesA
 #endif
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 /*------------------------------------------------*/
 
@@ -1004,6 +1038,8 @@ WTSTerminateProcess(
     IN DWORD ProcessId,
     IN DWORD ExitCode
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 
 /*------------------------------------------------*/
@@ -1017,6 +1053,8 @@ WTSQuerySessionInformationW(
     _Outptr_result_bytebuffer_(*pBytesReturned) LPWSTR * ppBuffer,
     _Out_ DWORD * pBytesReturned
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 BOOL
 WINAPI
@@ -1033,6 +1071,8 @@ WTSQuerySessionInformationA(
 #else
 #define WTSQuerySessionInformation WTSQuerySessionInformationA
 #endif
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 /*------------------------------------------------*/
 
@@ -1045,6 +1085,8 @@ WTSQueryUserConfigW(
     _Outptr_result_bytebuffer_(*pBytesReturned) LPWSTR * ppBuffer,
     _Out_ DWORD * pBytesReturned
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 BOOL
 WINAPI
@@ -1061,6 +1103,8 @@ WTSQueryUserConfigA(
 #else
 #define WTSQueryUserConfig WTSQueryUserConfigA
 #endif
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 /*------------------------------------------------*/
 
@@ -1073,6 +1117,8 @@ WTSSetUserConfigW(
     _In_reads_bytes_(DataLength) LPWSTR pBuffer,
     IN DWORD DataLength
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 BOOL
 WINAPI
@@ -1089,6 +1135,8 @@ WTSSetUserConfigA(
 #else
 #define WTSSetUserConfig WTSSetUserConfigA
 #endif
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 /*------------------------------------------------*/
 
@@ -1101,11 +1149,13 @@ WTSSendMessageW(
     IN DWORD TitleLength,
     _In_reads_bytes_(MessageLength) LPWSTR pMessage,
     IN DWORD MessageLength,
-    IN DWORD Style,
+    _Win32_AssociatedEnum_(MESSAGEBOX_STYLE) IN DWORD Style,
     IN DWORD Timeout,
     _Out_ DWORD * pResponse,
     IN BOOL bWait
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 BOOL
 WINAPI
@@ -1116,7 +1166,7 @@ WTSSendMessageA(
     IN DWORD TitleLength,
     _In_reads_bytes_(MessageLength) LPSTR pMessage,
     IN DWORD MessageLength,
-    IN DWORD Style,
+    _Win32_AssociatedEnum_(MESSAGEBOX_STYLE) IN DWORD Style,
     IN DWORD Timeout,
     _Out_ DWORD * pResponse,
     IN BOOL bWait
@@ -1127,6 +1177,8 @@ WTSSendMessageA(
 #else
 #define WTSSendMessage WTSSendMessageA
 #endif
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 /*------------------------------------------------*/
 
@@ -1137,6 +1189,8 @@ WTSDisconnectSession(
     IN DWORD SessionId,
     IN BOOL bWait
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 /*------------------------------------------------*/
 
@@ -1147,6 +1201,8 @@ WTSLogoffSession(
     IN DWORD SessionId,
     IN BOOL bWait
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 /*------------------------------------------------*/
 
@@ -1156,6 +1212,8 @@ WTSShutdownSystem(
     IN HANDLE hServer,
     IN DWORD ShutdownFlag
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 /*------------------------------------------------*/
 
@@ -1191,12 +1249,16 @@ WTSVirtualChannelOpenEx(
                      _In_ LPSTR pVirtualName,   /* ascii name */
                      IN DWORD flags
                      );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 BOOL
 WINAPI
 WTSVirtualChannelClose(
     IN HANDLE hChannelHandle
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 BOOL
 WINAPI
@@ -1207,6 +1269,8 @@ WTSVirtualChannelRead(
     IN ULONG BufferSize,
     _Out_ PULONG pBytesRead
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 BOOL
 WINAPI
@@ -1216,18 +1280,24 @@ WTSVirtualChannelWrite(
     IN ULONG Length,
     _Out_ PULONG pBytesWritten
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 BOOL
 WINAPI
 WTSVirtualChannelPurgeInput(
     IN HANDLE hChannelHandle
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 BOOL
 WINAPI
 WTSVirtualChannelPurgeOutput(
     IN HANDLE hChannelHandle
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 
 BOOL
@@ -1238,6 +1308,7 @@ WTSVirtualChannelQuery(
     OUT PVOID *ppBuffer,
     OUT DWORD *pBytesReturned
     );
+_Win32_SupportedOS_WindowsVista_
 
 /*------------------------------------------------*/
 
@@ -1252,6 +1323,8 @@ WTSFreeMemory(
 
 #define NOTIFY_FOR_ALL_SESSIONS     1
 #define NOTIFY_FOR_THIS_SESSION     0
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 
 BOOL
@@ -1260,12 +1333,16 @@ WTSRegisterSessionNotification(
     HWND hWnd,
     DWORD dwFlags
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 BOOL
 WINAPI
 WTSUnRegisterSessionNotification(
     HWND hWnd
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 
 BOOL
@@ -1275,6 +1352,8 @@ WTSRegisterSessionNotificationEx(
     IN HWND hWnd,
     IN DWORD dwFlags
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 BOOL
 WINAPI
@@ -1282,6 +1361,8 @@ WTSUnRegisterSessionNotificationEx(
     IN HANDLE hServer,
     IN HWND hWnd
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 BOOL
 WINAPI
@@ -1346,6 +1427,8 @@ typedef enum _WTS_TYPE_CLASS {
     WTSTypeSerializedUserCredential
 #endif
 } WTS_TYPE_CLASS;
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows7_
 
 BOOL WINAPI
 WTSFreeMemoryExW(
@@ -1353,6 +1436,8 @@ WTSFreeMemoryExW(
     _In_ PVOID   pMemory,
     _In_ ULONG   NumberOfEntries
 );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows7_
 
 BOOL WINAPI
 WTSFreeMemoryExA(
@@ -1366,23 +1451,27 @@ WTSFreeMemoryExA(
 #else
 #define WTSFreeMemoryEx WTSFreeMemoryExA
 #endif
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows7_
 
 /*------------------------------------------------*/
 
 BOOL WINAPI
 WTSEnumerateProcessesExW
 (
-    _In_ HANDLE    hServer,
+    _In_opt_ HANDLE    hServer,
     _Inout_ DWORD *pLevel,
     _In_ DWORD SessionId,
     _Out_ LPWSTR *ppProcessInfo,
     _Out_ DWORD * pCount
 );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows7_
 
 BOOL WINAPI
 WTSEnumerateProcessesExA
 (
-    _In_ HANDLE    hServer,
+    _In_opt_ HANDLE    hServer,
     _Inout_ DWORD *pLevel,
     _In_ DWORD SessionId,
     _Out_ LPSTR *ppProcessInfo,
@@ -1411,19 +1500,23 @@ typedef WTSLISTENERNAMEA *PWTSLISTENERNAMEA;
 #define WTSLISTENERNAME WTSLISTENERNAMEA
 #define PWTSLISTENERNAME PWTSLISTENERNAMEA
 #endif
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows7_
 
 BOOL WINAPI
 WTSEnumerateListenersW (
-  _In_                  HANDLE hServer,
+  _In_opt_ _Reserved_ _In_                  HANDLE hServer,
   _In_                  PVOID pReserved,
   _In_          DWORD   Reserved,
   _Out_writes_opt_(*pCount) PWTSLISTENERNAMEW pListeners,
   _Inout_       DWORD*  pCount
 );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows7_
 
 BOOL WINAPI
 WTSEnumerateListenersA (
-  _In_                  HANDLE hServer,
+  _In_opt_ _Reserved_ _In_                  HANDLE hServer,
   _In_                  PVOID pReserved,
   _In_                  DWORD Reserved,
   _Out_writes_opt_(*pCount) PWTSLISTENERNAMEA pListeners,
@@ -1520,59 +1613,73 @@ typedef struct _WTSLISTENERCONFIGA{
     CHAR WorkDirectory[ MAX_PATH + 1 ];
     CHAR InitialProgram[ MAX_PATH + 1 ];
 } WTSLISTENERCONFIGA, *PWTSLISTENERCONFIGA;
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows7_
 
 BOOL WINAPI WTSQueryListenerConfigW (
-  _In_          HANDLE hServer,
+  _In_opt_ _Reserved_ _In_          HANDLE hServer,
   _In_          PVOID pReserved,
   _In_          DWORD Reserved,
   _In_          LPWSTR pListenerName,
   _Out_         PWTSLISTENERCONFIGW pBuffer
 );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows7_
 
 BOOL WINAPI WTSQueryListenerConfigA (
-  _In_          HANDLE hServer,
+  _In_opt_ _Reserved_ _In_          HANDLE hServer,
   _In_          PVOID pReserved,
   _In_          DWORD Reserved,
   _In_          LPSTR pListenerName,
   _Out_         PWTSLISTENERCONFIGA pBuffer
 );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows7_
 
 BOOL WINAPI WTSCreateListenerW (
-  _In_          HANDLE hServer,
+  _In_opt_ _Reserved_ _In_          HANDLE hServer,
   _In_          PVOID pReserved,
   _In_          DWORD Reserved,
   _In_          LPWSTR pListenerName,
   _In_          PWTSLISTENERCONFIGW pBuffer,
   _In_          DWORD flag
 );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows7_
 
 BOOL WINAPI WTSCreateListenerA (
-  _In_          HANDLE hServer,
+  _In_opt_ _Reserved_ _In_          HANDLE hServer,
   _In_          PVOID pReserved,
   _In_          DWORD Reserved,
   _In_          LPSTR pListenerName,
   _In_          PWTSLISTENERCONFIGA pBuffer,
   _In_          DWORD flag
 );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows7_
 
 BOOL WINAPI WTSSetListenerSecurityW(
-  _In_          HANDLE hServer, 
+  _In_opt_ _Reserved_ _In_          HANDLE hServer,
   _In_          PVOID pReserved,  
   _In_          DWORD Reserved, 
   _In_          LPWSTR pListenerName, 
   _In_          SECURITY_INFORMATION SecurityInformation,
   _In_          PSECURITY_DESCRIPTOR pSecurityDescriptor);
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows7_
 
 BOOL WINAPI WTSSetListenerSecurityA(
-  _In_          HANDLE hServer, 
+  _In_opt_ _Reserved_ _In_          HANDLE hServer,
   _In_          PVOID pReserved,  
   _In_          DWORD Reserved, 
   _In_          LPSTR pListenerName, 
   _In_          SECURITY_INFORMATION SecurityInformation,
   _In_          PSECURITY_DESCRIPTOR pSecurityDescriptor);
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows7_
 
 BOOL WINAPI WTSGetListenerSecurityW(
-  _In_          HANDLE hServer,
+  _In_opt_ _Reserved_ _In_          HANDLE hServer,
   _In_          PVOID pReserved,
   _In_          DWORD Reserved,
   _In_          LPWSTR pListenerName, 
@@ -1580,10 +1687,12 @@ BOOL WINAPI WTSGetListenerSecurityW(
   _Out_opt_     PSECURITY_DESCRIPTOR pSecurityDescriptor,
   _In_          DWORD nLength,
   _Out_         LPDWORD lpnLengthNeeded);
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows7_
 
 
 BOOL WINAPI WTSGetListenerSecurityA(
-  _In_          HANDLE hServer,
+  _In_opt_ _Reserved_ _In_          HANDLE hServer,
   _In_          PVOID pReserved,
   _In_          DWORD Reserved,
   _In_          LPSTR pListenerName,
@@ -1645,16 +1754,19 @@ BOOL WINAPI WTSCloudAuthDuplicateSerializedUserCredential(
 #define WTSSetListenerSecurity WTSSetListenerSecurityA
 #define WTSGetListenerSecurity WTSGetListenerSecurityA
 #endif
+_Win32_SupportedOS_Windows8_
 
 BOOL
 WTSEnableChildSessions(
     BOOL bEnable
     );
+_Win32_SupportedOS_Windows8_
 
 BOOL
 WTSIsChildSessionsEnabled(
     _Out_ PBOOL pbEnabled
     );
+_Win32_SupportedOS_Windows8_
 
 BOOL
 WTSGetChildSessionId(

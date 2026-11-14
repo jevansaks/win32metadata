@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //---------------------------------------------------------------------------
 //
 // uxtheme.h - theming API header file.
@@ -399,7 +400,7 @@ THEMEAPI_(HTHEME)
 OpenThemeDataEx(
     _In_opt_ HWND hwnd,
     _In_ LPCWSTR pszClassList,
-    _In_ DWORD dwFlags
+    _Win32_AssociatedEnum_(OPEN_THEME_DATA_FLAGS) _In_ DWORD dwFlags
     );
 
 //---------------------------------------------------------------------------
@@ -541,7 +542,7 @@ DrawThemeText(
     _In_ int iStateId,
     _In_reads_(cchText) LPCWSTR pszText,
     _In_ int cchText,
-    _In_ DWORD dwTextFlags,
+    _Win32_AssociatedEnum_(DRAW_TEXT_FORMAT) _In_ DWORD dwTextFlags,
     _In_ DWORD dwTextFlags2,
     _In_ LPCRECT pRect
     );
@@ -667,7 +668,7 @@ GetThemeTextExtent(
     _In_ int iStateId,
     _In_reads_(cchCharCount) LPCWSTR pszText,
     _In_ int cchCharCount,
-    _In_ DWORD dwTextFlags,
+    _Win32_AssociatedEnum_(DRAW_TEXT_FORMAT) _In_ DWORD dwTextFlags,
     _In_opt_ LPCRECT pBoundingRect,
     _Out_ LPRECT pExtentRect
     );
@@ -756,7 +757,7 @@ HitTestThemeBackground(
     _In_opt_ HDC hdc,
     _In_ int iPartId,
     _In_ int iStateId,
-    _In_ DWORD dwOptions,
+    _Win32_AssociatedEnum_(HIT_TEST_BACKGROUND_OPTIONS) _In_ DWORD dwOptions,
     _In_ LPCRECT pRect,
     _In_opt_ HRGN hrgn,
     _In_ POINT ptTest,
@@ -782,8 +783,8 @@ DrawThemeEdge(
     _In_ int iPartId,
     _In_ int iStateId,
     _In_ LPCRECT pDestRect,
-    _In_ UINT uEdge,
-    _In_ UINT uFlags,
+    _Win32_AssociatedEnum_(DRAWEDGE_FLAGS) _In_ UINT uEdge,
+    _Win32_AssociatedEnum_(DRAW_EDGE_FLAGS) _In_ UINT uFlags,
     _Out_opt_ LPRECT pContentRect
     );
 
@@ -1563,7 +1564,7 @@ THEMEAPI
 DrawThemeParentBackgroundEx(
     _In_ HWND hwnd,
     _In_ HDC hdc,
-    _In_ DWORD dwFlags,
+    _Win32_AssociatedEnum_(DRAW_THEME_PARENT_BACKGROUND_FLAGS) _In_ DWORD dwFlags,
     _In_opt_ const RECT* prc
     );
 
@@ -1685,7 +1686,7 @@ DrawThemeTextEx(
     _In_ int iStateId,
     _In_reads_(cchText) LPCWSTR pszText,
     _In_ int cchText,
-    _In_ DWORD dwTextFlags,
+    _Win32_AssociatedEnum_(DRAW_TEXT_FORMAT) _In_ DWORD dwTextFlags,
     _Inout_ LPRECT pRect,
     _In_opt_ const DTTOPTS *pOptions
     );
@@ -1710,7 +1711,7 @@ GetThemeBitmap(
     _In_ int iPartId,
     _In_ int iStateId,
     _In_ int iPropId,
-    _In_ ULONG dwFlags,
+    _Win32_AssociatedEnum_(GET_THEME_BITMAP_FLAGS) _In_ ULONG dwFlags,
     _Out_ HBITMAP* phBitmap
     );
 
@@ -1816,6 +1817,7 @@ typedef struct _BP_PAINTPARAMS
     const RECT *                prcExclude;
     const BLENDFUNCTION *       pBlendFunction;
 } BP_PAINTPARAMS, *PBP_PAINTPARAMS;
+_Win32_SetLastError_
 
 THEMEAPI_(_Success_(return != NULL) HPAINTBUFFER)
 BeginBufferedPaint(
@@ -1988,4 +1990,14 @@ GetThemeTransitionDuration(
 
 #endif /* _UXTHEME_H_ */
 
-
+#ifndef _WIN32METADATA_UXTHEME_SECURITY_SYSTEM_91_GROUPS_
+#define _WIN32METADATA_UXTHEME_SECURITY_SYSTEM_91_GROUPS_
+_Win32_FlagsEnum_(OPEN_THEME_DATA_FLAGS, unsigned int, OTD_FORCE_RECT_SIZING, OTD_NONCLIENT);
+_Win32_Enum_(GET_THEME_BITMAP_FLAGS, unsigned int, GBF_DIRECT, GBF_COPY, GBF_VALIDBITS);
+_Win32_FlagsEnum_(DRAW_THEME_PARENT_BACKGROUND_FLAGS, unsigned int, DTPB_WINDOWDC, DTPB_USECTLCOLORSTATIC, DTPB_USEERASEBKGND);
+_Win32_FlagsEnum_(BP_PAINTPARAMS_FLAGS, unsigned int, BPPF_ERASE, BPPF_NOCLIP, BPPF_NONCLIENT);
+_Win32_AnnotateField_(BP_PAINTPARAMS::dwFlags, _Win32_AssociatedEnum_(BP_PAINTPARAMS_FLAGS));
+_Win32_FlagsEnum_(DTTOPTS_FLAGS, unsigned int, DTT_TEXTCOLOR, DTT_BORDERCOLOR, DTT_SHADOWCOLOR, DTT_SHADOWTYPE, DTT_SHADOWOFFSET, DTT_BORDERSIZE, DTT_FONTPROP, DTT_COLORPROP, DTT_STATEID, DTT_CALCRECT, DTT_APPLYOVERLAY, DTT_GLOWSIZE, DTT_CALLBACK, DTT_COMPOSITED, DTT_VALIDBITS);
+_Win32_AnnotateField_(DTTOPTS::dwFlags, _Win32_AssociatedEnum_(DTTOPTS_FLAGS));
+_Win32_Enum_(HIT_TEST_BACKGROUND_OPTIONS, unsigned int, HTTB_BACKGROUNDSEG, HTTB_FIXEDBORDER, HTTB_CAPTION, HTTB_RESIZINGBORDER_LEFT, HTTB_RESIZINGBORDER_TOP, HTTB_RESIZINGBORDER_RIGHT, HTTB_RESIZINGBORDER_BOTTOM, HTTB_RESIZINGBORDER, HTTB_SIZINGTEMPLATE, HTTB_SYSTEMSIZINGMARGINS);
+#endif

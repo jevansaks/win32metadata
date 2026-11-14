@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //
 //  Copyright 2002 - 2004, Microsoft Corporation
 //
@@ -101,6 +102,8 @@ typedef struct _BLUETOOTH_FIND_RADIO_PARAMS {
 } BLUETOOTH_FIND_RADIO_PARAMS;
 
 typedef HANDLE      HBLUETOOTH_RADIO_FIND;
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 //
 //  Description:
@@ -141,6 +144,8 @@ BluetoothFindFirstRadio(
     _In_ const BLUETOOTH_FIND_RADIO_PARAMS * pbtfrp,
     _Out_ HANDLE * phRadio
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 //
 //  Description:
@@ -225,6 +230,8 @@ typedef struct _BLUETOOTH_RADIO_INFO {
                                                 // list, goto the Bluetooth specification website and get the Bluetooth
                                                 // assigned numbers document.
 } BLUETOOTH_RADIO_INFO, *PBLUETOOTH_RADIO_INFO;
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 //
 //  Description:
@@ -384,6 +391,8 @@ typedef struct _BLUETOOTH_DEVICE_SEARCH_PARAMS {
 } BLUETOOTH_DEVICE_SEARCH_PARAMS;
 
 typedef HANDLE      HBLUETOOTH_DEVICE_FIND;
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 //
 //  Description:
@@ -426,6 +435,8 @@ BluetoothFindFirstDevice(
     _In_ const   BLUETOOTH_DEVICE_SEARCH_PARAMS * pbtsp,
     _Inout_ BLUETOOTH_DEVICE_INFO *   pbtdi
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 //
 //  Description:
@@ -493,6 +504,7 @@ WINAPI
 BluetoothFindDeviceClose(
     _In_ HBLUETOOTH_DEVICE_FIND hFind
     );
+_Win32_SupportedOS_WindowsVista_
 
 //
 //  Description:
@@ -539,6 +551,7 @@ BluetoothGetDeviceInfo(
     _In_opt_ HANDLE  hRadio,
     _Inout_ BLUETOOTH_DEVICE_INFO * pbtdi
     );
+_Win32_SupportedOS_WindowsVista_
 
 //
 //  Description:
@@ -573,6 +586,7 @@ WINAPI
 BluetoothUpdateDeviceRecord(
     _In_ const BLUETOOTH_DEVICE_INFO * pbtdi
     );
+_Win32_SupportedOS_WindowsVista_
 
 //
 //  Description:
@@ -676,6 +690,8 @@ typedef struct _BLUETOOTH_SELECT_DEVICE_PARAMS {
                                                 //      call BluetoothSelectDevicesFree() to free
 
 } BLUETOOTH_SELECT_DEVICE_PARAMS;
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 //
 //  Description:
@@ -712,6 +728,7 @@ WINAPI
 BluetoothSelectDevices(
     _Inout_ BLUETOOTH_SELECT_DEVICE_PARAMS * pbtsdp
     );
+_Win32_SupportedOS_WindowsVista_
 
 //
 //  Description:
@@ -734,6 +751,8 @@ BluetoothSelectDevicesFree(
     );
 
 #endif //!defined(_ARM_)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 // ***************************************************************************
 //
@@ -767,6 +786,7 @@ BluetoothDisplayDeviceProperties(
     _In_opt_ HWND hwndParent,
     _Inout_ BLUETOOTH_DEVICE_INFO * pbtdi
     );
+_Win32_SupportedOS_WindowsVista_
 
 
 // ***************************************************************************
@@ -892,6 +912,7 @@ typedef struct _BLUETOOTH_NUMERIC_COMPARISON_INFO {
 typedef struct _BLUETOOTH_PASSKEY_INFO {
     ULONG       passkey;
 }BLUETOOTH_PASSKEY_INFO, *PBLUETOOTH_PASSKEY_INFO;
+_Win32_SupportedOS_WindowsXP_
 
 //
 //  Description:
@@ -979,6 +1000,7 @@ BluetoothAuthenticateDeviceEx(
     );
 
 #endif // >= SP1+KB942567
+_Win32_SupportedOS_WindowsVista_
 
 //
 //  Description:
@@ -1053,6 +1075,7 @@ BluetoothAuthenticateMultipleDevices(
 #define BLUETOOTH_SERVICE_DISABLE   0x00
 #define BLUETOOTH_SERVICE_ENABLE    0x01
 #define BLUETOOTH_SERVICE_MASK      ( BLUETOOTH_SERVICE_DISABLE | BLUETOOTH_SERVICE_ENABLE )
+_Win32_SupportedOS_WindowsVista_
 
 //
 //  Description:
@@ -1101,6 +1124,7 @@ BluetoothSetServiceState(
     _In_ const GUID *  pGuidService,
     _In_ DWORD   dwServiceFlags
     );
+_Win32_SupportedOS_WindowsVista_
 
 //
 //  Description:
@@ -1144,6 +1168,7 @@ BluetoothEnumerateInstalledServices(
     _Inout_ DWORD * pcServiceInout,
     _Out_writes_to_opt_(*pcServiceInout, *pcServiceInout) GUID *  pGuidServices
     );
+_Win32_SupportedOS_WindowsVista_
 
 //
 //  Description:
@@ -1181,6 +1206,7 @@ BluetoothEnableDiscovery(
     _In_opt_ HANDLE hRadio,
     _In_ BOOL fEnabled
     );
+_Win32_SupportedOS_WindowsVista_
 
 //
 //  Description:
@@ -1206,6 +1232,7 @@ WINAPI
 BluetoothIsDiscoverable(
     _In_opt_ HANDLE hRadio
     );
+_Win32_SupportedOS_WindowsVista_
 
 //
 //  Description:
@@ -1243,6 +1270,7 @@ BluetoothEnableIncomingConnections(
     _In_opt_ HANDLE hRadio,
     _In_ BOOL fEnabled
     );
+_Win32_SupportedOS_WindowsVista_
 
 //
 //  Description:
@@ -1278,6 +1306,8 @@ BluetoothIsConnectable(
 typedef HANDLE HBLUETOOTH_AUTHENTICATION_REGISTRATION;
 
 typedef BOOL (CALLBACK *PFN_AUTHENTICATION_CALLBACK)(LPVOID pvParam, PBLUETOOTH_DEVICE_INFO pDevice);
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 //
 //  Description:
@@ -1336,6 +1366,7 @@ BluetoothRegisterForAuthentication(
 #pragma deprecated("BluetoothRegisterForAuthentication")
 
 typedef BOOL (CALLBACK *PFN_AUTHENTICATION_CALLBACK_EX)(_In_opt_ LPVOID pvParam, _In_ PBLUETOOTH_AUTHENTICATION_CALLBACK_PARAMS pAuthCallbackParams);
+_Win32_SupportedOS_WindowsVista_
 
 //
 //  Description:
@@ -1383,6 +1414,8 @@ BluetoothRegisterForAuthenticationEx(
     );
 
 #endif // >= SP1+KB942567
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 //
 //  Description:
@@ -1412,6 +1445,7 @@ WINAPI
 BluetoothUnregisterAuthentication(
     _In_ HBLUETOOTH_AUTHENTICATION_REGISTRATION hRegHandle
     );
+_Win32_SupportedOS_WindowsVista_
 
 //
 //  Description:
@@ -1483,6 +1517,7 @@ typedef struct _BLUETOOTH_AUTHENTICATE_RESPONSE {
     
     UCHAR negativeResponse;
 } BLUETOOTH_AUTHENTICATE_RESPONSE, *PBLUETOOTH_AUTHENTICATE_RESPONSE;
+_Win32_SupportedOS_WindowsVista_
 
 
 //
@@ -1614,6 +1649,7 @@ typedef struct _SDP_ELEMENT_DATA {
     } data;
 
 } SDP_ELEMENT_DATA, *PSDP_ELEMENT_DATA;
+_Win32_SupportedOS_WindowsVista_
 
 //
 // Description:
@@ -1706,6 +1742,7 @@ typedef HANDLE HBLUETOOTH_CONTAINER_ELEMENT;
 //
 //      // do something with data ...
 // }
+_Win32_SupportedOS_WindowsVista_
 //
 //
 _Must_inspect_result_
@@ -1761,6 +1798,7 @@ BluetoothSdpGetContainerElementData(
 // if (result == ERROR_SUCCESS) {
 //      printf("record handle is 0x%x\n", data.data.uint32);
 // }
+_Win32_SupportedOS_WindowsVista_
 //
 _Must_inspect_result_
 _Success_(return == ERROR_SUCCESS)
@@ -1795,6 +1833,7 @@ typedef struct _SDP_STRING_TYPE_DATA {
     USHORT attributeId;
 
 } SDP_STRING_TYPE_DATA, *PSDP_STRING_TYPE_DATA;
+_Win32_SupportedOS_WindowsVista_
 
 //
 // Description:
@@ -1897,6 +1936,8 @@ typedef BOOL (CALLBACK *PFN_BLUETOOTH_ENUM_ATTRIBUTES_CALLBACK)(
 //          other Win32 errors.
 //
 #define BluetoothEnumAttributes BluetoothSdpEnumAttributes
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 _Must_inspect_result_
 BOOL
@@ -1911,6 +1952,7 @@ BluetoothSdpEnumAttributes(
 #endif // (NTDDI_VERSION >= NTDDI_WINXPSP2)
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
+_Win32_SupportedOS_WindowsVista_
 
 //
 // The following APIs are only available on Vista or later
@@ -1934,6 +1976,7 @@ BluetoothSetLocalServiceInfo(
 //
 #if (NTDDI_VERSION > NTDDI_VISTASP1 || \
     (NTDDI_VERSION == NTDDI_VISTASP1 && defined(VISTA_KB942567)))
+_Win32_SupportedOS_WindowsVista_
 
 //
 // IsBluetoothVersionAvailable

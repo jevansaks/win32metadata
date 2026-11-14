@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /***************************************************
 *                                                  *
 *   Copyright (C) Microsoft. All rights reserved.  *
@@ -85,7 +86,7 @@ LONG
 WINAPI
 GetCurrentPackageId(
     _Inout_ UINT32* bufferLength,
-    _Out_writes_bytes_opt_(*bufferLength) BYTE* buffer
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_opt_(*bufferLength) BYTE* buffer
     );
 
 WINBASEAPI
@@ -122,7 +123,7 @@ WINAPI
 GetPackageId(
     _In_ HANDLE hProcess,
     _Inout_ UINT32* bufferLength,
-    _Out_writes_bytes_opt_(*bufferLength) BYTE* buffer
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_opt_(*bufferLength) BYTE* buffer
     );
 
 WINBASEAPI
@@ -244,7 +245,7 @@ GetCurrentPackageInfo2(
     _In_ const UINT32 flags,
     _In_ PackagePathType packagePathType,
     _Inout_ UINT32* bufferLength,
-    _Out_writes_bytes_opt_(*bufferLength) BYTE* buffer,
+    _Out_writes_bytes_opt_(*bufferLength) _Win32_ContainsInteriorPointers_ BYTE* buffer,
     _Out_opt_ UINT32* count
     );
 
@@ -358,7 +359,7 @@ PackageIdFromFullName(
     _In_ PCWSTR packageFullName,
     _In_ const UINT32 flags,
     _Inout_ UINT32* bufferLength,
-    _Out_writes_bytes_opt_(*bufferLength) BYTE* buffer
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_opt_(*bufferLength) BYTE* buffer
     );
 
 WINBASEAPI
@@ -431,6 +432,7 @@ ParseApplicationUserModelId(
     _Inout_ UINT32* packageRelativeApplicationIdLength,
     _Out_writes_opt_(*packageRelativeApplicationIdLength) PWSTR packageRelativeApplicationId
     );
+_Win32_SupportedOS_Windows8_
 
 /* ---------------------------------------------------------------- */
 
@@ -450,6 +452,7 @@ GetPackagesByPackageFamily(
     _Inout_ UINT32* bufferLength,
     _Out_writes_opt_(*bufferLength) WCHAR* buffer
     );
+_Win32_SupportedOS_Windows81_
 
 /* Any combination of PACKAGE_FILTER_* */
 WINBASEAPI
@@ -590,7 +593,7 @@ WINAPI
 GetCurrentPackageInfo(
     _In_ const UINT32 flags,
     _Inout_ UINT32* bufferLength,
-    _Out_writes_bytes_opt_(*bufferLength) BYTE* buffer,
+    _Out_writes_bytes_opt_(*bufferLength) _Win32_ContainsInteriorPointers_ BYTE* buffer,
     _Out_opt_ UINT32* count
     );
 
@@ -633,7 +636,7 @@ GetPackageInfo(
     _In_ PACKAGE_INFO_REFERENCE packageInfoReference,
     _In_ const UINT32 flags,
     _Inout_ UINT32* bufferLength,
-    _Out_writes_bytes_opt_(*bufferLength) BYTE* buffer,
+    _Out_writes_bytes_opt_(*bufferLength) _Win32_ContainsInteriorPointers_ BYTE* buffer,
     _Out_opt_ UINT32* count
     );
 
@@ -644,7 +647,7 @@ WINAPI
 GetPackageApplicationIds(
     _In_ PACKAGE_INFO_REFERENCE packageInfoReference,
     _Inout_ UINT32* bufferLength,
-    _Out_writes_bytes_opt_(*bufferLength) BYTE* buffer,
+    _Out_writes_bytes_opt_(*bufferLength) _Win32_ContainsInteriorPointers_ BYTE* buffer,
     _Out_opt_ UINT32* count
     );
 
@@ -658,7 +661,7 @@ GetPackageInfo2(
     _In_ const UINT32 flags,
     _In_ PackagePathType packagePathType,
     _Inout_ UINT32* bufferLength,
-    _Out_writes_bytes_opt_(*bufferLength) BYTE* buffer,
+    _Out_writes_bytes_opt_(*bufferLength) _Win32_ContainsInteriorPointers_ BYTE* buffer,
     _Out_opt_ UINT32* count
     );
 

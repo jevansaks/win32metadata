@@ -194,7 +194,7 @@ DEFINE_GUID(IIS_ControlAccessible,   0x38c682a6, 0x9731, 0x43f2, 0x9f, 0xae, 0xe
 STDAPI_(LRESULT) LresultFromObject(_In_ REFIID riid, _In_ WPARAM wParam, _In_ LPUNKNOWN punk);
 STDAPI          ObjectFromLresult(_In_ LRESULT lResult, _In_ REFIID riid, _In_ WPARAM wParam, _Outptr_ void** ppvObject);
 STDAPI          WindowFromAccessibleObject(_In_ IAccessible*, _Out_opt_ HWND* phwnd);
-STDAPI          AccessibleObjectFromWindow(_In_ HWND hwnd, _In_ DWORD dwId, _In_ REFIID riid, _Outptr_ void **ppvObject);
+STDAPI          AccessibleObjectFromWindow(_In_ HWND hwnd, _In_ DWORD dwId, _In_ REFIID riid, _COM_Outptr_ void **ppvObject);
 STDAPI          AccessibleObjectFromEvent(_In_ HWND hwnd, _In_ DWORD dwId, _In_ DWORD dwChildId, _Outptr_ IAccessible** ppacc, _Out_ VARIANT* pvarChild);
 STDAPI          AccessibleObjectFromPoint(_In_ POINT ptScreen, _Outptr_ IAccessible ** ppacc, _Out_ VARIANT* pvarChild);
 STDAPI          AccessibleChildren (_In_ IAccessible* paccContainer, _In_ LONG iChildStart, _In_ LONG cChildren, _Out_writes_(cChildren) VARIANT* rgvarChildren, _Out_ LONG* pcObtained);
@@ -218,10 +218,10 @@ STDAPI_(UINT)   GetStateTextW(_In_ DWORD lStateBit, _Out_writes_opt_(cchState) L
 
 STDAPI_(VOID)   GetOleaccVersionInfo(_Out_ DWORD* pVer, _Out_ DWORD* pBuild);
 
-STDAPI          CreateStdAccessibleObject(_In_ HWND hwnd, _In_ LONG idObject, _In_ REFIID riid, _Outptr_ void** ppvObject);
+STDAPI          CreateStdAccessibleObject(_In_ HWND hwnd, _In_ LONG idObject, _In_ REFIID riid, _COM_Outptr_ void** ppvObject);
 
-STDAPI          CreateStdAccessibleProxyA(_In_ HWND hwnd, _In_ LPCSTR pClassName, _In_ LONG idObject, _In_ REFIID riid, _Outptr_ void** ppvObject);
-STDAPI          CreateStdAccessibleProxyW(_In_ HWND hwnd, _In_ LPCWSTR pClassName, _In_ LONG idObject, _In_ REFIID riid, _Outptr_ void** ppvObject);
+STDAPI          CreateStdAccessibleProxyA(_In_ HWND hwnd, _In_ LPCSTR pClassName, _In_ LONG idObject, _In_ REFIID riid, _COM_Outptr_ void** ppvObject);
+STDAPI          CreateStdAccessibleProxyW(_In_ HWND hwnd, _In_ LPCWSTR pClassName, _In_ LONG idObject, _In_ REFIID riid, _COM_Outptr_ void** ppvObject);
 
 #ifdef UNICODE
 #define CreateStdAccessibleProxy     CreateStdAccessibleProxyW
@@ -588,72 +588,72 @@ EXTERN_C const IID IID_IAccessible;
     public:
         virtual /* [id][propget][hidden] */ HRESULT STDMETHODCALLTYPE get_accParent( 
             /* [annotation][retval][out] */ 
-            _Out_retval_  IDispatch **ppdispParent) = 0;
+            _Out_  IDispatch **ppdispParent) = 0;
         
         virtual /* [id][propget][hidden] */ HRESULT STDMETHODCALLTYPE get_accChildCount( 
             /* [annotation][retval][out] */ 
-            _Out_retval_  long *pcountChildren) = 0;
+            _Out_  long *pcountChildren) = 0;
         
         virtual /* [id][propget][hidden] */ HRESULT STDMETHODCALLTYPE get_accChild( 
             /* [annotation][in] */ 
             _In_  VARIANT varChild,
             /* [annotation][retval][out] */ 
-            _Out_retval_  IDispatch **ppdispChild) = 0;
+            _Out_  IDispatch **ppdispChild) = 0;
         
         virtual /* [id][propget][hidden] */ HRESULT STDMETHODCALLTYPE get_accName( 
             /* [optional][in] */ VARIANT varChild,
             /* [annotation][retval][out] */ 
-            _Out_retval_  BSTR *pszName) = 0;
+            _Out_  BSTR *pszName) = 0;
         
         virtual /* [id][propget][hidden] */ HRESULT STDMETHODCALLTYPE get_accValue( 
             /* [optional][in] */ VARIANT varChild,
             /* [annotation][retval][out] */ 
-            _Out_retval_  BSTR *pszValue) = 0;
+            _Out_  BSTR *pszValue) = 0;
         
         virtual /* [id][propget][hidden] */ HRESULT STDMETHODCALLTYPE get_accDescription( 
             /* [optional][in] */ VARIANT varChild,
             /* [annotation][retval][out] */ 
-            _Out_retval_  BSTR *pszDescription) = 0;
+            _Out_  BSTR *pszDescription) = 0;
         
         virtual /* [id][propget][hidden] */ HRESULT STDMETHODCALLTYPE get_accRole( 
             /* [optional][in] */ VARIANT varChild,
             /* [annotation][retval][out] */ 
-            _Out_retval_  VARIANT *pvarRole) = 0;
+            _Out_  VARIANT *pvarRole) = 0;
         
         virtual /* [id][propget][hidden] */ HRESULT STDMETHODCALLTYPE get_accState( 
             /* [optional][in] */ VARIANT varChild,
             /* [annotation][retval][out] */ 
-            _Out_retval_  VARIANT *pvarState) = 0;
+            _Out_  VARIANT *pvarState) = 0;
         
         virtual /* [id][propget][hidden] */ HRESULT STDMETHODCALLTYPE get_accHelp( 
             /* [optional][in] */ VARIANT varChild,
             /* [annotation][retval][out] */ 
-            _Out_retval_  BSTR *pszHelp) = 0;
+            _Out_  BSTR *pszHelp) = 0;
         
         virtual /* [id][propget][hidden] */ HRESULT STDMETHODCALLTYPE get_accHelpTopic( 
             /* [annotation][out] */ 
             _Out_  BSTR *pszHelpFile,
             /* [optional][in] */ VARIANT varChild,
             /* [annotation][retval][out] */ 
-            _Out_retval_  long *pidTopic) = 0;
+            _Out_  long *pidTopic) = 0;
         
         virtual /* [id][propget][hidden] */ HRESULT STDMETHODCALLTYPE get_accKeyboardShortcut( 
             /* [optional][in] */ VARIANT varChild,
             /* [annotation][retval][out] */ 
-            _Out_retval_  BSTR *pszKeyboardShortcut) = 0;
+            _Out_  BSTR *pszKeyboardShortcut) = 0;
         
         virtual /* [id][propget][hidden] */ HRESULT STDMETHODCALLTYPE get_accFocus( 
             /* [annotation][retval][out] */ 
-            _Out_retval_  VARIANT *pvarChild) = 0;
+            _Out_  VARIANT *pvarChild) = 0;
         
         virtual /* [id][propget][hidden] */ HRESULT STDMETHODCALLTYPE get_accSelection( 
             /* [annotation][retval][out] */ 
-            _Out_retval_  VARIANT *pvarChildren) = 0;
+            _Out_  VARIANT *pvarChildren) = 0;
         
         virtual /* [id][propget][hidden] */ HRESULT STDMETHODCALLTYPE get_accDefaultAction( 
             /* [optional][in] */ VARIANT varChild,
             /* [annotation][retval][out] */ 
-            _Out_retval_  BSTR *pszDefaultAction) = 0;
+            _Out_  BSTR *pszDefaultAction) = 0;
         
         virtual /* [id][hidden] */ HRESULT STDMETHODCALLTYPE accSelect( 
             /* [annotation][in] */ 
@@ -676,7 +676,7 @@ EXTERN_C const IID IID_IAccessible;
             _In_  long navDir,
             /* [optional][in] */ VARIANT varStart,
             /* [annotation][retval][out] */ 
-            _Out_retval_  VARIANT *pvarEndUpAt) = 0;
+            _Out_  VARIANT *pvarEndUpAt) = 0;
         
         virtual /* [id][hidden] */ HRESULT STDMETHODCALLTYPE accHitTest( 
             /* [annotation][in] */ 
@@ -684,7 +684,7 @@ EXTERN_C const IID IID_IAccessible;
             /* [annotation][in] */ 
             _In_  long yTop,
             /* [annotation][retval][out] */ 
-            _Out_retval_  VARIANT *pvarChild) = 0;
+            _Out_  VARIANT *pvarChild) = 0;
         
         virtual /* [id][hidden] */ HRESULT STDMETHODCALLTYPE accDoDefaultAction( 
             /* [optional][in] */ VARIANT varChild) = 0;
@@ -755,7 +755,7 @@ EXTERN_C const IID IID_IAccessible;
         
         DECLSPEC_XFGVIRT(IDispatch, Invoke)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Invoke )( 
-            IAccessible * This,
+            __RPC__in IAccessible * This,
             /* [annotation][in] */ 
             _In_  DISPID dispIdMember,
             /* [annotation][in] */ 
@@ -777,13 +777,13 @@ EXTERN_C const IID IID_IAccessible;
         /* [id][propget][hidden] */ HRESULT ( STDMETHODCALLTYPE *get_accParent )( 
             __RPC__in IAccessible * This,
             /* [annotation][retval][out] */ 
-            _Out_retval_  IDispatch **ppdispParent);
+            _Out_  IDispatch **ppdispParent);
         
         DECLSPEC_XFGVIRT(IAccessible, get_accChildCount)
         /* [id][propget][hidden] */ HRESULT ( STDMETHODCALLTYPE *get_accChildCount )( 
             __RPC__in IAccessible * This,
             /* [annotation][retval][out] */ 
-            _Out_retval_  long *pcountChildren);
+            _Out_  long *pcountChildren);
         
         DECLSPEC_XFGVIRT(IAccessible, get_accChild)
         /* [id][propget][hidden] */ HRESULT ( STDMETHODCALLTYPE *get_accChild )( 
@@ -791,49 +791,49 @@ EXTERN_C const IID IID_IAccessible;
             /* [annotation][in] */ 
             _In_  VARIANT varChild,
             /* [annotation][retval][out] */ 
-            _Out_retval_  IDispatch **ppdispChild);
+            _Out_  IDispatch **ppdispChild);
         
         DECLSPEC_XFGVIRT(IAccessible, get_accName)
         /* [id][propget][hidden] */ HRESULT ( STDMETHODCALLTYPE *get_accName )( 
             __RPC__in IAccessible * This,
             /* [optional][in] */ VARIANT varChild,
             /* [annotation][retval][out] */ 
-            _Out_retval_  BSTR *pszName);
+            _Out_  BSTR *pszName);
         
         DECLSPEC_XFGVIRT(IAccessible, get_accValue)
         /* [id][propget][hidden] */ HRESULT ( STDMETHODCALLTYPE *get_accValue )( 
             __RPC__in IAccessible * This,
             /* [optional][in] */ VARIANT varChild,
             /* [annotation][retval][out] */ 
-            _Out_retval_  BSTR *pszValue);
+            _Out_  BSTR *pszValue);
         
         DECLSPEC_XFGVIRT(IAccessible, get_accDescription)
         /* [id][propget][hidden] */ HRESULT ( STDMETHODCALLTYPE *get_accDescription )( 
             __RPC__in IAccessible * This,
             /* [optional][in] */ VARIANT varChild,
             /* [annotation][retval][out] */ 
-            _Out_retval_  BSTR *pszDescription);
+            _Out_  BSTR *pszDescription);
         
         DECLSPEC_XFGVIRT(IAccessible, get_accRole)
         /* [id][propget][hidden] */ HRESULT ( STDMETHODCALLTYPE *get_accRole )( 
             __RPC__in IAccessible * This,
             /* [optional][in] */ VARIANT varChild,
             /* [annotation][retval][out] */ 
-            _Out_retval_  VARIANT *pvarRole);
+            _Out_  VARIANT *pvarRole);
         
         DECLSPEC_XFGVIRT(IAccessible, get_accState)
         /* [id][propget][hidden] */ HRESULT ( STDMETHODCALLTYPE *get_accState )( 
             __RPC__in IAccessible * This,
             /* [optional][in] */ VARIANT varChild,
             /* [annotation][retval][out] */ 
-            _Out_retval_  VARIANT *pvarState);
+            _Out_  VARIANT *pvarState);
         
         DECLSPEC_XFGVIRT(IAccessible, get_accHelp)
         /* [id][propget][hidden] */ HRESULT ( STDMETHODCALLTYPE *get_accHelp )( 
             __RPC__in IAccessible * This,
             /* [optional][in] */ VARIANT varChild,
             /* [annotation][retval][out] */ 
-            _Out_retval_  BSTR *pszHelp);
+            _Out_  BSTR *pszHelp);
         
         DECLSPEC_XFGVIRT(IAccessible, get_accHelpTopic)
         /* [id][propget][hidden] */ HRESULT ( STDMETHODCALLTYPE *get_accHelpTopic )( 
@@ -842,33 +842,33 @@ EXTERN_C const IID IID_IAccessible;
             _Out_  BSTR *pszHelpFile,
             /* [optional][in] */ VARIANT varChild,
             /* [annotation][retval][out] */ 
-            _Out_retval_  long *pidTopic);
+            _Out_  long *pidTopic);
         
         DECLSPEC_XFGVIRT(IAccessible, get_accKeyboardShortcut)
         /* [id][propget][hidden] */ HRESULT ( STDMETHODCALLTYPE *get_accKeyboardShortcut )( 
             __RPC__in IAccessible * This,
             /* [optional][in] */ VARIANT varChild,
             /* [annotation][retval][out] */ 
-            _Out_retval_  BSTR *pszKeyboardShortcut);
+            _Out_  BSTR *pszKeyboardShortcut);
         
         DECLSPEC_XFGVIRT(IAccessible, get_accFocus)
         /* [id][propget][hidden] */ HRESULT ( STDMETHODCALLTYPE *get_accFocus )( 
             __RPC__in IAccessible * This,
             /* [annotation][retval][out] */ 
-            _Out_retval_  VARIANT *pvarChild);
+            _Out_  VARIANT *pvarChild);
         
         DECLSPEC_XFGVIRT(IAccessible, get_accSelection)
         /* [id][propget][hidden] */ HRESULT ( STDMETHODCALLTYPE *get_accSelection )( 
             __RPC__in IAccessible * This,
             /* [annotation][retval][out] */ 
-            _Out_retval_  VARIANT *pvarChildren);
+            _Out_  VARIANT *pvarChildren);
         
         DECLSPEC_XFGVIRT(IAccessible, get_accDefaultAction)
         /* [id][propget][hidden] */ HRESULT ( STDMETHODCALLTYPE *get_accDefaultAction )( 
             __RPC__in IAccessible * This,
             /* [optional][in] */ VARIANT varChild,
             /* [annotation][retval][out] */ 
-            _Out_retval_  BSTR *pszDefaultAction);
+            _Out_  BSTR *pszDefaultAction);
         
         DECLSPEC_XFGVIRT(IAccessible, accSelect)
         /* [id][hidden] */ HRESULT ( STDMETHODCALLTYPE *accSelect )( 
@@ -897,7 +897,7 @@ EXTERN_C const IID IID_IAccessible;
             _In_  long navDir,
             /* [optional][in] */ VARIANT varStart,
             /* [annotation][retval][out] */ 
-            _Out_retval_  VARIANT *pvarEndUpAt);
+            _Out_  VARIANT *pvarEndUpAt);
         
         DECLSPEC_XFGVIRT(IAccessible, accHitTest)
         /* [id][hidden] */ HRESULT ( STDMETHODCALLTYPE *accHitTest )( 
@@ -907,7 +907,7 @@ EXTERN_C const IID IID_IAccessible;
             /* [annotation][in] */ 
             _In_  long yTop,
             /* [annotation][retval][out] */ 
-            _Out_retval_  VARIANT *pvarChild);
+            _Out_  VARIANT *pvarChild);
         
         DECLSPEC_XFGVIRT(IAccessible, accDoDefaultAction)
         /* [id][hidden] */ HRESULT ( STDMETHODCALLTYPE *accDoDefaultAction )( 

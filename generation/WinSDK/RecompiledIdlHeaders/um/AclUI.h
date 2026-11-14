@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*+--------------------------------------------------------------------------
 
  Microsoft Windows
@@ -75,7 +76,7 @@ extern "C" {
 
 typedef struct _SI_OBJECT_INFO
 {
-    DWORD       dwFlags;
+    _Win32_AssociatedEnum_(SI_OBJECT_INFO_FLAGS) DWORD       dwFlags;
     HINSTANCE   hInstance;          // resources (e.g. strings) reside here
     LPWSTR      pszServerName;      // must be present
     LPWSTR      pszObjectName;      // must be present
@@ -221,7 +222,7 @@ DECLARE_INTERFACE_IID_(ISecurityInformation, IUnknown, "965FC360-16FF-11d0-91CB-
     STDMETHOD(SetSecurity) (THIS_ SECURITY_INFORMATION SecurityInformation,
                             PSECURITY_DESCRIPTOR pSecurityDescriptor ) PURE;
     STDMETHOD(GetAccessRights) (THIS_ const GUID* pguidObjectType,
-                                DWORD dwFlags, // SI_EDIT_AUDITS, SI_EDIT_PROPERTIES
+                                _Win32_AssociatedEnum_(SECURITY_INFO_PAGE_FLAGS) DWORD dwFlags, // SI_EDIT_AUDITS, SI_EDIT_PROPERTIES
                                 PSI_ACCESS *ppAccess,
                                 ULONG *pcAccesses,
                                 ULONG *piDefaultAccess ) PURE;
@@ -418,12 +419,17 @@ EXTERN_GUID(IID_ISecurityInformation4, 0xea961070, 0xcd14, 0x4621, 0xac, 0xe4, 0
 // {941FABCA-DD47-4FCA-90BB-B0E10255F20D}
 EXTERN_GUID(IID_IEffectivePermission2, 0x941fabca, 0xdd47, 0x4fca, 0x90, 0xbb, 0xb0, 0xe1, 0x2, 0x55, 0xf2, 0xd);
 #endif // (NTDDI_VERSION >= NTDDI_WIN8)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 HPROPSHEETPAGE ACLUIAPI CreateSecurityPage(_In_ LPSECURITYINFO psi );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 BOOL ACLUIAPI EditSecurity(_In_ HWND hwndOwner,
                            _In_ LPSECURITYINFO psi );
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
+_Win32_SupportedOS_WindowsVista_
 HRESULT ACLUIAPI EditSecurityAdvanced(_In_ HWND hwndOwner,
                                       _In_ LPSECURITYINFO psi,
                                       _In_ SI_PAGE_TYPE   uSIPage );
@@ -444,4 +450,14 @@ HRESULT ACLUIAPI EditSecurityAdvanced(_In_ HWND hwndOwner,
 #else
 #pragma warning(default:4001)
 #endif
+#endif
+
+#ifndef _WIN32METADATA_ACLUI_MANUAL_28_GROUPS_
+#define _WIN32METADATA_ACLUI_MANUAL_28_GROUPS_
+_Win32_FlagsEnum_(SI_OBJECT_INFO_FLAGS, unsigned int, SI_AUDITS_ELEVATION_REQUIRED, SI_DISABLE_DENY_ACE, SI_EDIT_EFFECTIVE, SI_ENABLE_CENTRAL_POLICY, SI_ENABLE_EDIT_ATTRIBUTE_CONDITION, SI_MAY_WRITE, SI_NO_ADDITIONAL_PERMISSION, SI_OWNER_ELEVATION_REQUIRED, SI_PERMS_ELEVATION_REQUIRED, SI_RESET_DACL, SI_RESET_OWNER, SI_RESET_SACL, SI_SCOPE_ELEVATION_REQUIRED, SI_VIEW_ONLY);
+#endif
+
+#ifndef _WIN32METADATA_ACLUI_NATIVE_OWNER_16_GROUPS_
+#define _WIN32METADATA_ACLUI_NATIVE_OWNER_16_GROUPS_
+_Win32_FlagsEnum_(SECURITY_INFO_PAGE_FLAGS, unsigned int, SI_ADVANCED, SI_EDIT_AUDITS, SI_EDIT_PROPERTIES);
 #endif

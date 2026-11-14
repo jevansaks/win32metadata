@@ -1,0 +1,33 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/evntcons.h b/generation/WinSDK/RecompiledIdlHeaders/um/evntcons.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/evntcons.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/evntcons.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ 
+ /*++
+ 
+@@ -326,6 +327,7 @@
+ } EVENTSECURITYOPERATION;
+ 
+ #if (WINVER >= _WIN32_WINNT_LONGHORN)
++_Win32_SupportedOS_WindowsVista_
+ ULONG
+ EVNTAPI
+ EventAccessControl(
+@@ -338,6 +340,7 @@
+ #endif
+ 
+ #if (WINVER >= _WIN32_WINNT_LONGHORN)
++_Win32_SupportedOS_WindowsVista_
+ ULONG
+ EVNTAPI
+ EventAccessQuery(
+@@ -348,6 +351,7 @@
+ #endif
+ 
+ #if (WINVER >= _WIN32_WINNT_LONGHORN)
++_Win32_SupportedOS_WindowsVista_
+ ULONG
+ EVNTAPI
+ EventAccessRemove(

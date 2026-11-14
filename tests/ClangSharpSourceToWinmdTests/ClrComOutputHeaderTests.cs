@@ -70,8 +70,7 @@ namespace ClangSharpSourceToWinmdTests
             Assert.IsFalse(records.Any(record => record.Split('=')[0].Contains('*')));
             foreach (string selector in FamilySelectors)
                 CollectionAssert.Contains(records, selector + "=" + (selector == CombinedSelector ? "[Out]" : "") + "[ComOutPtr]");
-            string current = File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
-                "generation", "WinSDK", "emitter.settings.rsp")).Replace("\r\n", "\n");
+            string current = FullHeaderMigrationExperimentTests.ReadRecoveryText("emitter.settings.rsp").Replace("\r\n", "\n");
             Assert.AreEqual(SyncComOutputHeaderTests.RetireRecords(ImagingComOutputHeaderTests.RetireRecords(AudioComOutputHeaderTests.RetireRecords(RetireRecords(parent)))), current, "Preserve all independent sidecars exactly.");
             CollectionAssert.AreEqual(SyncComOutputHeaderTests.RetireRecords(ImagingComOutputHeaderTests.RetireRecords(AudioComOutputHeaderTests.RetireRecords(RetireRecords(parent)))).Split('\n').Where(Contract).ToArray(),
                 current.Split('\n').Where(Contract).ToArray());
@@ -125,9 +124,8 @@ namespace ClangSharpSourceToWinmdTests
                 string before = Encoding.Latin1.GetString(original);
                 string after = PatchHeader(owner.Path, before);
                 sites += Regex.Matches(after, "_COM_Outptr_").Count - Regex.Matches(before, "_COM_Outptr_").Count;
-                CollectionAssert.AreEqual(Encoding.Latin1.GetBytes(after), File.ReadAllBytes(Path.Combine(
-                    LastErrorHeaderTests.RepositoryRoot(), "generation", "WinSDK", "RecompiledIdlHeaders",
-                    owner.Path.Replace('/', Path.DirectorySeparatorChar))), owner.Path);
+                CollectionAssert.AreEqual(Encoding.Latin1.GetBytes(after),
+                    FullHeaderMigrationExperimentTests.ReadRecoveryBytes("RecompiledIdlHeaders/" + owner.Path), owner.Path);
             }
             Assert.AreEqual(1, sites, "Only MetaDataGetDispenser has an authoritative selected SDK source.");
         }

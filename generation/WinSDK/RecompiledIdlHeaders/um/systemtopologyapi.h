@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /********************************************************************************
 *                                                                               *
 * consoleapi.h -- ApiSet Contract for api-ms-win-core-systemtopology-l1         *
@@ -24,6 +25,8 @@ extern "C" {
 
 #pragma region Desktop Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 WINBASEAPI
 BOOL
@@ -39,6 +42,7 @@ GetNumaHighestNodeNumber(
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
 #if _WIN32_WINNT >= 0x0601
+_Win32_SupportedOS_Windows7_
 
 WINBASEAPI
 BOOL
@@ -66,6 +70,7 @@ GetNumaNodeProcessorMask2(
 #endif // (_WIN32_WINNT >= _WIN32_WINNT_WIN10_FE)
 
 #if _WIN32_WINNT >= 0x0601
+_Win32_SupportedOS_Windows7_
 
 WINBASEAPI
 BOOL

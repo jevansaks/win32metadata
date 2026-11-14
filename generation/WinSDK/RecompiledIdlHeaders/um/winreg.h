@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0001    // Increment this if a change has global effects
 
 Copyright (c) Microsoft Corporation.  All rights reserved.
@@ -380,7 +381,7 @@ RegCreateKeyExA(
     _Reserved_ DWORD Reserved,
     _In_opt_ LPSTR lpClass,
     _In_ DWORD dwOptions,
-    _In_ REGSAM samDesired,
+    _Win32_AssociatedEnum_(REG_SAM_FLAGS) _In_ REGSAM samDesired,
     _In_opt_ CONST LPSECURITY_ATTRIBUTES lpSecurityAttributes,
     _Out_ PHKEY phkResult,
     _Out_opt_ LPDWORD lpdwDisposition
@@ -395,7 +396,7 @@ RegCreateKeyExW(
     _Reserved_ DWORD Reserved,
     _In_opt_ LPWSTR lpClass,
     _In_ DWORD dwOptions,
-    _In_ REGSAM samDesired,
+    _Win32_AssociatedEnum_(REG_SAM_FLAGS) _In_ REGSAM samDesired,
     _In_opt_ CONST LPSECURITY_ATTRIBUTES lpSecurityAttributes,
     _Out_ PHKEY phkResult,
     _Out_opt_ LPDWORD lpdwDisposition
@@ -422,7 +423,7 @@ RegCreateKeyTransactedA (
     _Reserved_ DWORD Reserved,
     _In_opt_ LPSTR lpClass,
     _In_ DWORD dwOptions,
-    _In_ REGSAM samDesired,
+    _Win32_AssociatedEnum_(REG_SAM_FLAGS) _In_ REGSAM samDesired,
     _In_opt_ CONST LPSECURITY_ATTRIBUTES lpSecurityAttributes,
     _Out_ PHKEY phkResult,
     _Out_opt_ LPDWORD lpdwDisposition,
@@ -438,7 +439,7 @@ RegCreateKeyTransactedW (
     _Reserved_ DWORD Reserved,
     _In_opt_ LPWSTR lpClass,
     _In_ DWORD dwOptions,
-    _In_ REGSAM samDesired,
+    _Win32_AssociatedEnum_(REG_SAM_FLAGS) _In_ REGSAM samDesired,
     _In_opt_ CONST LPSECURITY_ATTRIBUTES lpSecurityAttributes,
     _Out_ PHKEY phkResult,
     _Out_opt_ LPDWORD lpdwDisposition,
@@ -778,7 +779,7 @@ RegOpenKeyExA(
     _In_ HKEY hKey,
     _In_opt_ LPCSTR lpSubKey,
     _In_opt_ DWORD ulOptions,
-    _In_ REGSAM samDesired,
+    _Win32_AssociatedEnum_(REG_SAM_FLAGS) _In_ REGSAM samDesired,
     _Out_ PHKEY phkResult
     );
 
@@ -789,7 +790,7 @@ RegOpenKeyExW(
     _In_ HKEY hKey,
     _In_opt_ LPCWSTR lpSubKey,
     _In_opt_ DWORD ulOptions,
-    _In_ REGSAM samDesired,
+    _Win32_AssociatedEnum_(REG_SAM_FLAGS) _In_ REGSAM samDesired,
     _Out_ PHKEY phkResult
     );
 
@@ -812,7 +813,7 @@ RegOpenKeyTransactedA (
     _In_ HKEY hKey,
     _In_opt_ LPCSTR lpSubKey,
     _In_opt_ DWORD ulOptions,
-    _In_ REGSAM samDesired,
+    _Win32_AssociatedEnum_(REG_SAM_FLAGS) _In_ REGSAM samDesired,
     _Out_ PHKEY phkResult,
     _In_        HANDLE hTransaction,
     _Reserved_ PVOID  pExtendedParemeter
@@ -824,7 +825,7 @@ RegOpenKeyTransactedW (
     _In_ HKEY hKey,
     _In_opt_ LPCWSTR lpSubKey,
     _In_opt_ DWORD ulOptions,
-    _In_ REGSAM samDesired,
+    _Win32_AssociatedEnum_(REG_SAM_FLAGS) _In_ REGSAM samDesired,
     _Out_ PHKEY phkResult,
     _In_        HANDLE hTransaction,
     _Reserved_ PVOID  pExtendedParemeter
@@ -1285,7 +1286,7 @@ RegGetValueA(
     _In_ HKEY hkey,
     _In_opt_ LPCSTR lpSubKey,
     _In_opt_ LPCSTR lpValue,
-    _In_ DWORD dwFlags,
+    _Win32_AssociatedEnum_(REG_ROUTINE_FLAGS) _In_ DWORD dwFlags,
     _Out_opt_ LPDWORD pdwType,
     _When_((dwFlags & 0x7F) == RRF_RT_REG_SZ ||
                (dwFlags & 0x7F) == RRF_RT_REG_EXPAND_SZ ||
@@ -1305,7 +1306,7 @@ RegGetValueW(
     _In_ HKEY hkey,
     _In_opt_ LPCWSTR lpSubKey,
     _In_opt_ LPCWSTR lpValue,
-    _In_ DWORD dwFlags,
+    _Win32_AssociatedEnum_(REG_ROUTINE_FLAGS) _In_ DWORD dwFlags,
     _Out_opt_ LPDWORD pdwType,
     _When_((dwFlags & 0x7F) == RRF_RT_REG_SZ ||
                (dwFlags & 0x7F) == RRF_RT_REG_EXPAND_SZ ||
@@ -1408,6 +1409,8 @@ RegLoadAppKeyW(
 
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 //
 // Remoteable System Shutdown APIs
@@ -1424,6 +1427,8 @@ InitiateSystemShutdownA(
     _In_ BOOL bForceAppsClosed,
     _In_ BOOL bRebootAfterShutdown
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 __drv_preferredFunction("InitiateSystemShutdownEx", "Legacy API. Rearchitect to avoid Reboot")
 WINADVAPI
 BOOL
@@ -1440,6 +1445,8 @@ InitiateSystemShutdownW(
 #else
 #define InitiateSystemShutdown  InitiateSystemShutdownA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINADVAPI
 BOOL
@@ -1447,6 +1454,8 @@ APIENTRY
 AbortSystemShutdownA(
     _In_opt_ LPSTR lpMachineName
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 WINADVAPI
 BOOL
 APIENTRY
@@ -1481,6 +1490,8 @@ AbortSystemShutdownW(
 // MAX Shutdown TimeOut == 10 Years in seconds
 //
 #define MAX_SHUTDOWN_TIMEOUT (10*365*24*60*60)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 __drv_preferredFunction("a design alternative", "Rearchitect to avoid Reboot")
 _When_(((dwReason==0 && lpMessage==0)) || dwReason>=0xd0000000,
@@ -1538,6 +1549,7 @@ InitiateSystemShutdownExW(
 #define SHUTDOWN_VAIL_CONTAINER         0x00008000
 #define SHUTDOWN_SYSTEM_INITIATED       0x00010000
 #define SHUTDOWN_UPDATE_POWEROFF        0x00020000
+_Win32_SupportedOS_WindowsVista_
 
 WINADVAPI
 DWORD
@@ -1546,7 +1558,7 @@ InitiateShutdownA(
     _In_opt_ LPSTR lpMachineName,
     _In_opt_ LPSTR lpMessage,
     _In_     DWORD dwGracePeriod,
-    _In_     DWORD dwShutdownFlags,
+    _Win32_AssociatedEnum_(SHUTDOWN_FLAGS) _In_     DWORD dwShutdownFlags,
     _In_     DWORD dwReason
     );
 WINADVAPI
@@ -1556,7 +1568,7 @@ InitiateShutdownW(
     _In_opt_ LPWSTR lpMachineName,
     _In_opt_ LPWSTR lpMessage,
     _In_     DWORD dwGracePeriod,
-    _In_     DWORD dwShutdownFlags,
+    _Win32_AssociatedEnum_(SHUTDOWN_FLAGS) _In_     DWORD dwShutdownFlags,
     _In_     DWORD dwReason
     );
 #ifdef UNICODE
@@ -1586,7 +1598,7 @@ RegSaveKeyExA(
     _In_ HKEY hKey,
     _In_ LPCSTR lpFile,
     _In_opt_ CONST LPSECURITY_ATTRIBUTES lpSecurityAttributes,
-    _In_ DWORD Flags
+    _Win32_AssociatedEnum_(REG_SAVE_FORMAT) _In_ DWORD Flags
     );
 
 WINADVAPI
@@ -1596,7 +1608,7 @@ RegSaveKeyExW(
     _In_ HKEY hKey,
     _In_ LPCWSTR lpFile,
     _In_opt_ CONST LPSECURITY_ATTRIBUTES lpSecurityAttributes,
-    _In_ DWORD Flags
+    _Win32_AssociatedEnum_(REG_SAVE_FORMAT) _In_ DWORD Flags
     );
 
 #ifdef UNICODE
@@ -1616,5 +1628,13 @@ RegSaveKeyExW(
 }
 #endif
 
+
+_Win32_FlagsEnum_(REG_SAM_FLAGS, unsigned long, KEY_QUERY_VALUE, KEY_SET_VALUE, KEY_CREATE_SUB_KEY, KEY_ENUMERATE_SUB_KEYS, KEY_NOTIFY, KEY_CREATE_LINK, KEY_WOW64_32KEY, KEY_WOW64_64KEY, KEY_WOW64_RES, KEY_READ, KEY_WRITE, KEY_EXECUTE, KEY_ALL_ACCESS);
+
 #endif // _WINREG_
 
+#ifndef _WIN32METADATA_WINREG_NATIVE_91_GROUPS_
+#define _WIN32METADATA_WINREG_NATIVE_91_GROUPS_
+_Win32_FlagsEnum_(SHUTDOWN_FLAGS, unsigned int, SHUTDOWN_FORCE_OTHERS, SHUTDOWN_FORCE_SELF, SHUTDOWN_RESTART, SHUTDOWN_POWEROFF, SHUTDOWN_NOREBOOT, SHUTDOWN_GRACE_OVERRIDE, SHUTDOWN_INSTALL_UPDATES, SHUTDOWN_RESTARTAPPS, SHUTDOWN_SKIP_SVC_PRESHUTDOWN, SHUTDOWN_HYBRID, SHUTDOWN_RESTART_BOOTOPTIONS, SHUTDOWN_SOFT_REBOOT, SHUTDOWN_MOBILE_UI, SHUTDOWN_ARSO, SHUTDOWN_CHECK_SAFE_FOR_SERVER, SHUTDOWN_VAIL_CONTAINER, SHUTDOWN_SYSTEM_INITIATED, SHUTDOWN_UPDATE_POWEROFF);
+_Win32_FlagsEnum_(REG_ROUTINE_FLAGS, unsigned int, RRF_RT_DWORD, RRF_RT_QWORD, RRF_RT_REG_NONE, RRF_RT_REG_SZ, RRF_RT_REG_EXPAND_SZ, RRF_RT_REG_BINARY, RRF_RT_REG_DWORD, RRF_RT_REG_MULTI_SZ, RRF_RT_REG_QWORD, RRF_RT_ANY, RRF_SUBKEY_WOW6464KEY, RRF_SUBKEY_WOW6432KEY, RRF_WOW64_MASK, RRF_NOEXPAND, RRF_ZEROONFAILURE);
+#endif

@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) 2004  Microsoft Corporation
@@ -462,6 +463,7 @@ QOS_SUBTRACT_OVERHEAD(
 
     return r;
 }
+_Win32_SupportedOS_WindowsVista_
 
 //
 // Description:
@@ -510,6 +512,7 @@ QOSCreateHandle(
     _In_    PQOS_VERSION    Version,
     _Out_   PHANDLE         QOSHandle
 );
+_Win32_SupportedOS_WindowsVista_
 
 //
 // Description:
@@ -544,6 +547,7 @@ WINAPI
 QOSCloseHandle(
     _In_    HANDLE         QOSHandle
 );
+_Win32_SupportedOS_WindowsVista_
 
 //
 // Description:
@@ -603,6 +607,7 @@ QOSStartTrackingClient(
     _In_        PSOCKADDR       DestAddr,
     _Reserved_  DWORD           Flags
 );
+_Win32_SupportedOS_WindowsVista_
 
 //
 // Description:
@@ -637,6 +642,7 @@ QOSStopTrackingClient(
     _In_        PSOCKADDR       DestAddr,
     _Reserved_  DWORD           Flags
 );
+_Win32_SupportedOS_WindowsVista_
 
 //
 // Description:
@@ -682,6 +688,7 @@ QOSEnumerateFlows(
     _Inout_             PULONG      Size,
     _Out_writes_bytes_(*Size) PVOID       Buffer
 );
+_Win32_SupportedOS_WindowsVista_
 
 //
 // Description:
@@ -828,6 +835,7 @@ QOSAddSocketToFlow(
     _In_opt_    DWORD               Flags,
     _Inout_     PQOS_FLOWID         FlowId
 );
+_Win32_SupportedOS_WindowsVista_
 
 //
 // Description:
@@ -889,6 +897,7 @@ QOSRemoveSocketFromFlow(
     _In_        QOS_FLOWID          FlowId,
     _Reserved_  DWORD               Flags
 );
+_Win32_SupportedOS_WindowsVista_
 
 //
 // Description:
@@ -996,6 +1005,7 @@ QOSSetFlow(
     _Reserved_          DWORD           Flags,
     _Out_opt_           LPOVERLAPPED    Overlapped
 );
+_Win32_SupportedOS_WindowsVista_
 
 //
 // Description:
@@ -1118,6 +1128,7 @@ QOSQueryFlow(
     _In_opt_            DWORD               Flags,
     _Out_opt_           LPOVERLAPPED        Overlapped
 );
+_Win32_SupportedOS_WindowsVista_
 
 //
 // Description:
@@ -1239,6 +1250,7 @@ QOSNotifyFlow(
     _Reserved_                  DWORD           Flags,
     _Out_opt_                   LPOVERLAPPED    Overlapped
 );
+_Win32_SupportedOS_WindowsVista_
 
 //
 // Description:

@@ -325,27 +325,27 @@ STDAPI
 DebugConnect(
     _In_ PCSTR RemoteOptions,
     _In_ REFIID InterfaceId,
-    _Out_ PVOID* Interface
+    _COM_Outptr_  PVOID* Interface
     );
 
 STDAPI
 DebugConnectWide(
     _In_ PCWSTR RemoteOptions,
     _In_ REFIID InterfaceId,
-    _Out_ PVOID* Interface
+    _COM_Outptr_  PVOID* Interface
     );
 
 STDAPI
 DebugCreate(
     _In_ REFIID InterfaceId,
-    _Out_ PVOID* Interface
+    _COM_Outptr_  PVOID* Interface
     );
 
 STDAPI
 DebugCreateEx(
     _In_ REFIID InterfaceId,
     _In_ DWORD  DbgEngOptions,
-    _Out_ PVOID* Interface
+    _COM_Outptr_  PVOID* Interface
     );
 
 //----------------------------------------------------------------------------

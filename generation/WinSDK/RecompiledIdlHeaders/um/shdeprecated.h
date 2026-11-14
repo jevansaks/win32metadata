@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 
 
 /* this ALWAYS GENERATED file contains the definitions for the interfaces */
@@ -1051,6 +1052,8 @@ EXTERN_C const IID IID_IBrowserService;
             int swc) = 0;
         
     };
+_Win32_AnnotateParameter_(IBrowserService::RegisterWindow, swc, _Win32_AssociatedEnum_(ShellWindowTypeConstants));
+
     
     
 #else 	/* C style interface */

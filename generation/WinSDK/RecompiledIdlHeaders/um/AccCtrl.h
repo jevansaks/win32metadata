@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*+-------------------------------------------------------------------
 
  Microsoft Windows
@@ -814,3 +815,22 @@ typedef PINHERITED_FROMA PINHERITED_FROM;
 #endif
 
 #endif /* __ACCESS_CONTROL__ */
+
+#ifndef _WIN32METADATA_ACCCTRL_SECURITY_SYSTEM_91_GROUPS_
+#define _WIN32METADATA_ACCCTRL_SECURITY_SYSTEM_91_GROUPS_
+_Win32_Enum_(ACTRL_ACCESS_ENTRY_ACCESS_FLAGS, unsigned int, ACTRL_ACCESS_ALLOWED, ACTRL_ACCESS_DENIED, ACTRL_AUDIT_SUCCESS, ACTRL_AUDIT_FAILURE);
+_Win32_AnnotateField_(ACTRL_ACCESS_ENTRYA::fAccessFlags, _Win32_AssociatedEnum_(ACTRL_ACCESS_ENTRY_ACCESS_FLAGS));
+_Win32_AnnotateField_(ACTRL_ACCESS_ENTRYW::fAccessFlags, _Win32_AssociatedEnum_(ACTRL_ACCESS_ENTRY_ACCESS_FLAGS));
+#endif
+
+#ifndef _WIN32METADATA_ACCCTRL_FILE_PE_23_GROUPS_
+#define _WIN32METADATA_ACCCTRL_FILE_PE_23_GROUPS_
+_Win32_AnnotateField_(OBJECTS_AND_NAME_W::ObjectsPresent, _Win32_AssociatedEnum_(SYSTEM_AUDIT_OBJECT_ACE_FLAGS));
+_Win32_AnnotateField_(OBJECTS_AND_SID::ObjectsPresent, _Win32_AssociatedEnum_(SYSTEM_AUDIT_OBJECT_ACE_FLAGS));
+_Win32_AnnotateField_(OBJECTS_AND_NAME_A::ObjectsPresent, _Win32_AssociatedEnum_(SYSTEM_AUDIT_OBJECT_ACE_FLAGS));
+#endif
+
+#ifndef _WIN32METADATA_ACCCTRL_FRESH_DIRECT_38_GROUPS_
+#define _WIN32METADATA_ACCCTRL_FRESH_DIRECT_38_GROUPS_
+_Win32_Enum_(TREE_SEC_INFO, unsigned int, TREE_SEC_INFO_SET, TREE_SEC_INFO_RESET, TREE_SEC_INFO_RESET_KEEP_EXPLICIT);
+#endif

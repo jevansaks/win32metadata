@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0000     Increment this if a change has global effects
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -124,6 +125,8 @@ typedef struct _LOADED_IMAGE {
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 
 BOOL
@@ -186,6 +189,8 @@ BOOL
     _In_ ULONG64 Va,
     _In_ ULONG_PTR Parameter
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 
 BOOL
@@ -205,6 +210,8 @@ BindImageEx(
                                                 //  calls to BindImageEx
                                                 //  (same as NT 3.1->NT 4.0)
 #define BIND_REPORT_64BIT_VA   0x00000010
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 BOOL
 IMAGEAPI
@@ -222,6 +229,8 @@ ReBaseImage(
                                      // (out) Next address (actual if going down)
     _In_ ULONG TimeStamp             // new timestamp for image, if non-zero
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 BOOL
 IMAGEAPI
@@ -264,6 +273,8 @@ ReBaseImage64(
                                                     //  exists...
 
 #define SPLITSYM_SYMBOLPATH_IS_SRC  0x00000004      // The SymbolFilePath contains an alternate
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
                                                     //  path to locate the pdb.
 
 
@@ -279,6 +290,7 @@ CheckSumMappedFile (
     _Out_ PDWORD HeaderSum,
     _Out_ PDWORD CheckSum
     );
+_Win32_SupportedOS_WindowsXP_
 
 DWORD
 IMAGEAPI
@@ -287,6 +299,7 @@ MapFileAndCheckSumA (
     _Out_ PDWORD HeaderSum,
     _Out_ PDWORD CheckSum
     );
+_Win32_SupportedOS_WindowsXP_
 
 DWORD
 IMAGEAPI
@@ -301,6 +314,8 @@ MapFileAndCheckSumW (
 #else
 #define MapFileAndCheckSum  MapFileAndCheckSumA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 BOOL
 IMAGEAPI
@@ -308,6 +323,8 @@ GetImageConfigInformation(
     _In_ PLOADED_IMAGE LoadedImage,
     _Out_ PIMAGE_LOAD_CONFIG_DIRECTORY ImageConfigInformation
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 DWORD
 IMAGEAPI
@@ -315,6 +332,8 @@ GetImageUnusedHeaderBytes(
     _In_ PLOADED_IMAGE LoadedImage,
     _Out_ PDWORD SizeUnusedHeaderBytes
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 BOOL
 IMAGEAPI
@@ -335,6 +354,8 @@ SetImageConfigInformation(
 typedef PVOID DIGEST_HANDLE;
 
 typedef BOOL (WINAPI *DIGEST_FUNCTION) (DIGEST_HANDLE refdata, PBYTE pData, DWORD dwLength);
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 BOOL
 IMAGEAPI
@@ -344,6 +365,8 @@ ImageGetDigestStream(
     _In_ DIGEST_FUNCTION DigestFunction,
     _In_ DIGEST_HANDLE DigestHandle
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 _Success_(return != FALSE)
 BOOL
@@ -353,6 +376,8 @@ ImageAddCertificate(
     _In_ LPWIN_CERTIFICATE Certificate,
     _Out_ PDWORD Index
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 BOOL
 IMAGEAPI
@@ -360,6 +385,8 @@ ImageRemoveCertificate(
     _In_ HANDLE FileHandle,
     _In_ DWORD Index
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 _Success_(return != FALSE)
 BOOL
@@ -371,6 +398,8 @@ ImageEnumerateCertificates(
     _Inout_updates_opt_(IndexCount) PDWORD Indices,
     _In_opt_ DWORD IndexCount
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 _Success_(return != FALSE)
 BOOL
@@ -381,6 +410,8 @@ ImageGetCertificateData(
     _Out_ LPWIN_CERTIFICATE Certificate,
     _Inout_ PDWORD RequiredLength
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 BOOL
 IMAGEAPI
@@ -389,6 +420,8 @@ ImageGetCertificateHeader(
     _In_ DWORD CertificateIndex,
     _Inout_ LPWIN_CERTIFICATE Certificateheader
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 PLOADED_IMAGE
 IMAGEAPI
@@ -396,12 +429,16 @@ ImageLoad(
     _In_ PCSTR DllName,
     _In_opt_ PCSTR DllPath
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 BOOL
 IMAGEAPI
 ImageUnload(
     _Inout_ PLOADED_IMAGE LoadedImage
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 BOOL
 IMAGEAPI
@@ -412,12 +449,16 @@ MapAndLoad(
     _In_ BOOL DotDll,
     _In_ BOOL ReadOnly
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 BOOL
 IMAGEAPI
 UnMapAndLoad(
     _Inout_ PLOADED_IMAGE LoadedImage
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 BOOL
 IMAGEAPI
@@ -425,6 +466,8 @@ TouchFileTimes (
     _In_ HANDLE FileHandle,
     _In_opt_ PSYSTEMTIME pSystemTime
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 BOOL
 IMAGEAPI
@@ -434,6 +477,8 @@ SplitSymbols (
     _Inout_ PSTR SymbolFilePath,
     _In_ ULONG Flags
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 BOOL
 IMAGEAPI
@@ -443,6 +488,7 @@ UpdateDebugInfoFile(
     _Out_writes_(MAX_PATH + 1) PSTR DebugFilePath,
     _In_ PIMAGE_NT_HEADERS32 NtHeaders
     );
+_Win32_SupportedOS_WindowsXP_
 
 BOOL
 IMAGEAPI
@@ -469,6 +515,7 @@ typedef BOOL
     _In_ PCSTR FileName,
     _In_ PVOID CallerData
     );
+_Win32_SetLastError_
 
 HANDLE
 IMAGEAPI
@@ -540,7 +587,7 @@ SymFindFileInPath(
     _In_opt_ PVOID id,
     _In_ DWORD two,
     _In_ DWORD three,
-    _In_ DWORD flags,
+    _Win32_AssociatedEnum_(SYM_FIND_ID_OPTION) _In_ DWORD flags,
     _Out_writes_(MAX_PATH + 1) PSTR FoundFile,
     _In_opt_ PFINDFILEINPATHCALLBACK callback,
     _In_opt_ PVOID context
@@ -561,7 +608,7 @@ SymFindFileInPathW(
     _In_opt_ PVOID id,
     _In_ DWORD two,
     _In_ DWORD three,
-    _In_ DWORD flags,
+    _Win32_AssociatedEnum_(SYM_FIND_ID_OPTION) _In_ DWORD flags,
     _Out_writes_(MAX_PATH + 1) PWSTR FoundFile,
     _In_opt_ PFINDFILEINPATHCALLBACKW callback,
     _In_opt_ PVOID context
@@ -628,6 +675,7 @@ FindExecutableImageExW(
     _In_opt_ PFIND_EXE_FILE_CALLBACKW Callback,
     _In_ PVOID CallerData
     );
+_Win32_SetLastError_
 
 PIMAGE_NT_HEADERS
 IMAGEAPI
@@ -640,7 +688,7 @@ IMAGEAPI
 ImageDirectoryEntryToDataEx (
     _In_ PVOID Base,
     _In_ BOOLEAN MappedAsImage,
-    _In_ USHORT DirectoryEntry,
+    _Win32_AssociatedEnum_(IMAGE_DIRECTORY_ENTRY) _In_ USHORT DirectoryEntry,
     _Out_ PULONG Size,
     _Out_opt_ PIMAGE_SECTION_HEADER *FoundHeader
     );
@@ -650,7 +698,7 @@ IMAGEAPI
 ImageDirectoryEntryToData (
     _In_ PVOID Base,
     _In_ BOOLEAN MappedAsImage,
-    _In_ USHORT DirectoryEntry,
+    _Win32_AssociatedEnum_(IMAGE_DIRECTORY_ENTRY) _In_ USHORT DirectoryEntry,
     _Out_ PULONG Size
     );
 
@@ -855,7 +903,7 @@ UnDecorateSymbolNameW(
 
 typedef struct _MODLOAD_DATA {
     DWORD   ssize;                  // size of this struct
-    DWORD   ssig;                   // signature identifying the passed data
+    _Win32_AssociatedEnum_(MODLOAD_DATA_TYPE) DWORD   ssig;                   // signature identifying the passed data
     PVOID   data;                   // pointer to passed data
     DWORD   size;                   // size of passed data
     DWORD   flags;                  // options
@@ -3173,7 +3221,7 @@ typedef struct _SYMBOL_INFO {
     ULONG       Index;
     ULONG       Size;
     ULONG64     ModBase;          // Base Address of module comtaining this symbol
-    ULONG       Flags;
+    _Win32_AssociatedEnum_(SYMBOL_INFO_FLAGS) ULONG       Flags;
     ULONG64     Value;            // Value of symbol, ValuePresent should be 1
     ULONG64     Address;          // Address of symbol including base address of module
     ULONG       Register;         // register holding value or pointer to value
@@ -3196,7 +3244,7 @@ typedef struct _SYMBOL_INFOW {
     ULONG       Index;
     ULONG       Size;
     ULONG64     ModBase;          // Base Address of module comtaining this symbol
-    ULONG       Flags;
+    _Win32_AssociatedEnum_(SYMBOL_INFO_FLAGS) ULONG       Flags;
     ULONG64     Value;            // Value of symbol, ValuePresent should be 1
     ULONG64     Address;          // Address of symbol including base address of module
     ULONG       Register;         // register holding value or pointer to value
@@ -3618,7 +3666,7 @@ SymGetTypeInfo(
 
 typedef struct _IMAGEHLP_GET_TYPE_INFO_PARAMS {
     IN  ULONG    SizeOfStruct;
-    IN  ULONG    Flags;
+    _Win32_AssociatedEnum_(IMAGEHLP_GET_TYPE_INFO_FLAGS) IN  ULONG    Flags;
     IN  ULONG    NumIds;
     IN  PULONG   TypeIds;
     IN  ULONG64  TagFilter;
@@ -3957,7 +4005,7 @@ SymSrvStoreFile(
     _In_ HANDLE hProcess,
     _In_opt_ PCSTR SrvPath,
     _In_ PCSTR File,
-    _In_ DWORD Flags
+    _Win32_AssociatedEnum_(SYM_SRV_STORE_FILE_FLAGS) _In_ DWORD Flags
     );
 
 #endif /* WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS) */
@@ -3972,7 +4020,7 @@ SymSrvStoreFileW(
     _In_ HANDLE hProcess,
     _In_opt_ PCWSTR SrvPath,
     _In_ PCWSTR File,
-    _In_ DWORD Flags
+    _Win32_AssociatedEnum_(SYM_SRV_STORE_FILE_FLAGS) _In_ DWORD Flags
     );
 
 #endif /* WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS | WINAPI_PARTITION_GAMES) */
@@ -4708,3 +4756,12 @@ RangeMapWrite(
 #pragma endregion
 
 #endif // _IMAGEHLP_
+
+#ifndef _WIN32METADATA_IMAGEHLP_MANUAL_28_GROUPS_
+#define _WIN32METADATA_IMAGEHLP_MANUAL_28_GROUPS_
+_Win32_Enum_(SYM_SRV_STORE_FILE_FLAGS, unsigned int, SYMSTOREOPT_COMPRESS, SYMSTOREOPT_OVERWRITE, SYMSTOREOPT_PASS_IF_EXISTS, SYMSTOREOPT_POINTER, SYMSTOREOPT_RETURNINDEX);
+_Win32_Enum_(SYM_FIND_ID_OPTION, unsigned int, SSRVOPT_DWORD, SSRVOPT_DWORDPTR, SSRVOPT_GUIDPTR);
+_Win32_FlagsEnum_(SYMBOL_INFO_FLAGS, unsigned int, SYMFLAG_CLR_TOKEN, SYMFLAG_CONSTANT, SYMFLAG_EXPORT, SYMFLAG_FORWARDER, SYMFLAG_FRAMEREL, SYMFLAG_FUNCTION, SYMFLAG_ILREL, SYMFLAG_LOCAL, SYMFLAG_METADATA, SYMFLAG_PARAMETER, SYMFLAG_REGISTER, SYMFLAG_REGREL, SYMFLAG_SLOT, SYMFLAG_THUNK, SYMFLAG_TLSREL, SYMFLAG_VALUEPRESENT, SYMFLAG_VIRTUAL);
+_Win32_Enum_(IMAGEHLP_GET_TYPE_INFO_FLAGS, unsigned int, IMAGEHLP_GET_TYPE_INFO_CHILDREN, IMAGEHLP_GET_TYPE_INFO_UNCACHED);
+_Win32_Enum_(MODLOAD_DATA_TYPE, unsigned int, DBHHEADER_DEBUGDIRS, DBHHEADER_CVMISC);
+#endif

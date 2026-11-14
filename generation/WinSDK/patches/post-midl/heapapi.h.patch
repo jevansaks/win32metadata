@@ -1,0 +1,130 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/heapapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/heapapi.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/heapapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/heapapi.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /********************************************************************************
+ *                                                                               *
+ * HeapApi.h -- ApiSet Contract for api-ms-win-core-heap-l1                      *
+@@ -48,6 +49,7 @@
+     SIZE_T cbMaxReserve;
+ } HEAP_SUMMARY, *PHEAP_SUMMARY;
+ typedef PHEAP_SUMMARY LPHEAP_SUMMARY;
++_Win32_SetLastError_
+ 
+ //
+ // Prototypes
+@@ -62,6 +64,8 @@
+     _In_ SIZE_T dwInitialSize,
+     _In_ SIZE_T dwMaximumSize
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ BOOL
+@@ -69,6 +73,7 @@
+ HeapDestroy(
+     _In_ HANDLE hHeap
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ _Ret_maybenull_
+@@ -81,6 +86,7 @@
+     _In_ DWORD dwFlags,
+     _In_ SIZE_T dwBytes
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ _Success_(return != 0)
+@@ -95,6 +101,8 @@
+     _Frees_ptr_opt_ LPVOID lpMem,
+     _In_ SIZE_T dwBytes
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ _Success_(return != FALSE)
+@@ -105,6 +113,7 @@
+     _In_ DWORD dwFlags,
+     __drv_freesMem(Mem) _Frees_ptr_opt_ LPVOID lpMem
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ SIZE_T
+@@ -114,6 +123,8 @@
+     _In_ DWORD dwFlags,
+     _In_ LPCVOID lpMem
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ HANDLE
+@@ -121,6 +132,8 @@
+ GetProcessHeap(
+     VOID
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ SIZE_T
+@@ -145,6 +158,7 @@
+ 
+ #pragma region Desktop Family or OneCore Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ BOOL
+@@ -174,6 +188,8 @@
+ 
+ #pragma region Application Family or OneCore Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ DWORD
+@@ -182,6 +198,8 @@
+     _In_ DWORD NumberOfHeaps,
+     _Out_writes_to_(NumberOfHeaps,return) PHANDLE ProcessHeaps
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ BOOL
+@@ -189,6 +207,8 @@
+ HeapLock(
+     _In_ HANDLE hHeap
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ BOOL
+@@ -202,6 +222,8 @@
+ 
+ #pragma region Desktop Family or OneCore Family or Games Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ BOOL
+@@ -210,6 +232,8 @@
+     _In_ HANDLE hHeap,
+     _Inout_ LPPROCESS_HEAP_ENTRY lpEntry
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ BOOL

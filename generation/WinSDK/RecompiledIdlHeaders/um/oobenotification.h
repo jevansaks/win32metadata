@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /********************************************************************************
 *                                                                               *
 * oobenotification.h - API Set Contract for api-ms-win-oobe-notification-l1      *
@@ -51,6 +52,7 @@ VOID
 (CALLBACK *OOBE_COMPLETED_CALLBACK)(
     _In_opt_ PVOID CallbackContext
     );
+_Win32_SetLastError_
 
 _Check_return_
 _Success_(return != FALSE)
@@ -59,6 +61,7 @@ WINAPI
 OOBEComplete(
     _Out_ PBOOL isOOBEComplete
     );
+_Win32_SetLastError_
 
 _Check_return_
 _Success_(return != FALSE)
@@ -69,6 +72,7 @@ RegisterWaitUntilOOBECompleted(
     _In_opt_ PVOID CallbackContext,
     _Out_ PVOID* WaitHandle
     );
+_Win32_SetLastError_
 
 _Check_return_
 _Success_(return != FALSE)

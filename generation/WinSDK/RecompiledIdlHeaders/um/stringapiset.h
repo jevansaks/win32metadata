@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /********************************************************************************
 *                                                                               *
 * stringapi.h -- ApiSet Contract for api-ms-win-core-string-l1                  *
@@ -26,13 +27,14 @@ extern "C" {
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES)
 
 #if (WINVER >= 0x0600)
+_Win32_SupportedOS_WindowsVista_
 
 WINBASEAPI
 int
 WINAPI
 CompareStringEx(
     _In_opt_ LPCWSTR lpLocaleName,
-    _In_ DWORD dwCmpFlags,
+    _Win32_AssociatedEnum_(COMPARE_STRING_FLAGS) _In_ DWORD dwCmpFlags,
     _In_NLS_string_(cchCount1) LPCWCH lpString1,
     _In_ int cchCount1,
     _In_NLS_string_(cchCount2) LPCWCH lpString2,
@@ -41,6 +43,7 @@ CompareStringEx(
     _Reserved_ LPVOID lpReserved,
     _Reserved_ LPARAM lParam
     );
+_Win32_SupportedOS_WindowsVista_
 
 WINBASEAPI
 int
@@ -70,12 +73,14 @@ CompareStringW(
 #ifdef UNICODE
 #define CompareString  CompareStringW
 #endif
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 WINBASEAPI
 int
 WINAPI
 FoldStringW(
-    _In_ DWORD dwMapFlags,
+    _Win32_AssociatedEnum_(FOLD_STRING_MAP_FLAGS) _In_ DWORD dwMapFlags,
     _In_NLS_string_(cchSrc) LPCWCH lpSrcStr,
     _In_ int cchSrc,
     _Out_writes_opt_(cchDest) LPWSTR lpDestStr,
@@ -85,6 +90,8 @@ FoldStringW(
 #ifdef UNICODE
 #define FoldString  FoldStringW
 #endif
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 WINBASEAPI
 BOOL
@@ -100,6 +107,8 @@ GetStringTypeExW(
 #ifdef UNICODE
 #define GetStringTypeEx  GetStringTypeExW
 #endif
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 WINBASEAPI
 BOOL
@@ -110,6 +119,8 @@ GetStringTypeW(
     _In_ int cchSrc,
     _Out_ LPWORD lpCharType
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 //
 //  NLS Code Page Dependent APIs.
@@ -122,12 +133,14 @@ int
 WINAPI
 MultiByteToWideChar(
     _In_ UINT CodePage,
-    _In_ DWORD dwFlags,
+    _Win32_AssociatedEnum_(MULTI_BYTE_TO_WIDE_CHAR_FLAGS) _In_ DWORD dwFlags,
     _In_NLS_string_(cbMultiByte) LPCCH lpMultiByteStr,
     _In_ int cbMultiByte,
     _Out_writes_to_opt_(cchWideChar,return) LPWSTR lpWideCharStr,
     _In_ int cchWideChar
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 WINBASEAPI
 _Success_(return != 0)

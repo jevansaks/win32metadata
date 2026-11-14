@@ -981,7 +981,7 @@ EXTERN_C const IID IID_IDXGISurface;
     {
     public:
         virtual HRESULT STDMETHODCALLTYPE GetDesc( 
-            /* [annotation][out] */ 
+            /* [retval][annotation][out] */ 
             _Out_  DXGI_SURFACE_DESC *pDesc) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE Map( 
@@ -1064,7 +1064,7 @@ EXTERN_C const IID IID_IDXGISurface;
         DECLSPEC_XFGVIRT(IDXGISurface, GetDesc)
         HRESULT ( STDMETHODCALLTYPE *GetDesc )( 
             __RPC__in IDXGISurface * This,
-            /* [annotation][out] */ 
+            /* [retval][annotation][out] */ 
             _Out_  DXGI_SURFACE_DESC *pDesc);
         
         DECLSPEC_XFGVIRT(IDXGISurface, Map)
@@ -1236,7 +1236,7 @@ EXTERN_C const IID IID_IDXGISurface1;
         DECLSPEC_XFGVIRT(IDXGISurface, GetDesc)
         HRESULT ( STDMETHODCALLTYPE *GetDesc )( 
             __RPC__in IDXGISurface1 * This,
-            /* [annotation][out] */ 
+            /* [retval][annotation][out] */ 
             _Out_  DXGI_SURFACE_DESC *pDesc);
         
         DECLSPEC_XFGVIRT(IDXGISurface, Map)
@@ -1539,7 +1539,7 @@ EXTERN_C const IID IID_IDXGIOutput;
     {
     public:
         virtual HRESULT STDMETHODCALLTYPE GetDesc( 
-            /* [annotation][out] */ 
+            /* [retval][annotation][out] */ 
             _Out_  DXGI_OUTPUT_DESC *pDesc) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE GetDisplayModeList( 
@@ -1657,7 +1657,7 @@ EXTERN_C const IID IID_IDXGIOutput;
         DECLSPEC_XFGVIRT(IDXGIOutput, GetDesc)
         HRESULT ( STDMETHODCALLTYPE *GetDesc )( 
             __RPC__in IDXGIOutput * This,
-            /* [annotation][out] */ 
+            /* [retval][annotation][out] */ 
             _Out_  DXGI_OUTPUT_DESC *pDesc);
         
         DECLSPEC_XFGVIRT(IDXGIOutput, GetDisplayModeList)
@@ -1876,7 +1876,7 @@ EXTERN_C const IID IID_IDXGISwapChain;
             _COM_Outptr_opt_result_maybenull_  IDXGIOutput **ppTarget) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE GetDesc( 
-            /* [annotation][out] */ 
+            /* [retval][annotation][out] */ 
             _Out_  DXGI_SWAP_CHAIN_DESC *pDesc) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE ResizeBuffers( 
@@ -2013,7 +2013,7 @@ EXTERN_C const IID IID_IDXGISwapChain;
         DECLSPEC_XFGVIRT(IDXGISwapChain, GetDesc)
         HRESULT ( STDMETHODCALLTYPE *GetDesc )( 
             __RPC__in IDXGISwapChain * This,
-            /* [annotation][out] */ 
+            /* [retval][annotation][out] */ 
             _Out_  DXGI_SWAP_CHAIN_DESC *pDesc);
         
         DECLSPEC_XFGVIRT(IDXGISwapChain, ResizeBuffers)
@@ -2834,7 +2834,7 @@ EXTERN_C const IID IID_IDXGIAdapter1;
     {
     public:
         virtual HRESULT STDMETHODCALLTYPE GetDesc1( 
-            /* [annotation][out] */ 
+            /* [retval][annotation][out] */ 
             _Out_  DXGI_ADAPTER_DESC1 *pDesc) = 0;
         
     };
@@ -2923,7 +2923,7 @@ EXTERN_C const IID IID_IDXGIAdapter1;
         DECLSPEC_XFGVIRT(IDXGIAdapter1, GetDesc1)
         HRESULT ( STDMETHODCALLTYPE *GetDesc1 )( 
             __RPC__in IDXGIAdapter1 * This,
-            /* [annotation][out] */ 
+            /* [retval][annotation][out] */ 
             _Out_  DXGI_ADAPTER_DESC1 *pDesc);
         
         END_INTERFACE

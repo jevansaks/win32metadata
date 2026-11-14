@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++ BUILD VERSION: 0007    // INCREMENT THIS IF A CHANGE HAS GLOBAL EFFECTS
 
 Copyright (c) 1990-1999  Microsoft Corporation
@@ -49,6 +50,7 @@ extern "C" {
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+_Win32_SupportedOS_Windows2000_
 
 //
 // Function Prototypes - SERVER
@@ -62,7 +64,7 @@ NetServerEnum (
     _In_ IN  DWORD       prefmaxlen,
     _Out_ OUT LPDWORD     entriesread,
     _Out_ OUT LPDWORD     totalentries,
-    _In_ IN  DWORD       servertype,
+    _Win32_AssociatedEnum_(NET_SERVER_TYPE) _In_ IN  DWORD       servertype,
     _In_opt_ IN  LMCSTR      domain OPTIONAL,
     _Out_opt_ IN OUT LPDWORD  resume_handle OPTIONAL
     );
@@ -86,6 +88,7 @@ NetServerEnumEx (
 
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+_Win32_SupportedOS_Windows2000_
 
 _Check_return_
 _Success_( return == 0 )
@@ -98,6 +101,7 @@ NetServerGetInfo (
     _When_( level == 102, _Outptr_result_bytebuffer_(sizeof(SERVER_INFO_102)) )
     LPBYTE *bufptr
     );
+_Win32_SupportedOS_Windows2000_
 
 _Check_return_
 NET_API_STATUS NET_API_FUNCTION
@@ -138,6 +142,7 @@ NetServerSetInfoCommandLine (
 
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+_Win32_SupportedOS_Windows2000_
 
 _Check_return_
 _Success_( return == 0 || return == ERROR_MORE_DATA )
@@ -151,6 +156,7 @@ NetServerDiskEnum (
     _Out_ LPDWORD totalentries,
     _Inout_opt_ LPDWORD resume_handle
     );
+_Win32_SupportedOS_Windows2000_
 
 _Check_return_
 NET_API_STATUS NET_API_FUNCTION
@@ -159,6 +165,7 @@ NetServerComputerNameAdd(
     _In_opt_ LMSTR EmulatedDomainName,
     _In_ LMSTR EmulatedServerName
     );
+_Win32_SupportedOS_Windows2000_
 
 _Check_return_
 NET_API_STATUS NET_API_FUNCTION
@@ -166,6 +173,7 @@ NetServerComputerNameDel(
     _In_opt_ LMSTR ServerName,
     _In_ LMSTR EmulatedServerName
     );
+_Win32_SupportedOS_Windows2000_
 
 _Check_return_
 NET_API_STATUS NET_API_FUNCTION
@@ -174,6 +182,7 @@ NetServerTransportAdd (
     _In_ DWORD level,
     _In_reads_bytes_(sizeof(SERVER_TRANSPORT_INFO_0)) LPBYTE bufptr
     );
+_Win32_SupportedOS_Windows2000_
 
 _Check_return_
 NET_API_STATUS NET_API_FUNCTION
@@ -211,6 +220,7 @@ NetServerTransportAddForInstance(
 
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+_Win32_SupportedOS_Windows2000_
 
 _Check_return_
 NET_API_STATUS NET_API_FUNCTION
@@ -244,6 +254,7 @@ NetServerTransportDelForInstance(
 
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+_Win32_SupportedOS_Windows2000_
 
 _Check_return_
 _Success_( return == 0 || return == ERROR_MORE_DATA )
@@ -266,6 +277,8 @@ NetServerTransportEnum (
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 //
 // The following function can be called by Win NT services to register
@@ -1545,3 +1558,15 @@ typedef struct _SERVER_TRANSPORT_INFO_3 {
 
 #endif // _LMSERVER_
 
+#ifndef _WIN32METADATA_LMSERVER_NATIVE_C_64_GROUPS_
+#define _WIN32METADATA_LMSERVER_NATIVE_C_64_GROUPS_
+_Win32_FlagsEnum_(NET_SERVER_TYPE, unsigned int, SV_TYPE_WORKSTATION, SV_TYPE_SERVER, SV_TYPE_SQLSERVER, SV_TYPE_DOMAIN_CTRL, SV_TYPE_DOMAIN_BAKCTRL, SV_TYPE_TIME_SOURCE, SV_TYPE_AFP, SV_TYPE_NOVELL, SV_TYPE_DOMAIN_MEMBER, SV_TYPE_PRINTQ_SERVER, SV_TYPE_DIALIN_SERVER, SV_TYPE_XENIX_SERVER, SV_TYPE_SERVER_UNIX, SV_TYPE_NT, SV_TYPE_WFW, SV_TYPE_SERVER_MFPN, SV_TYPE_SERVER_NT, SV_TYPE_POTENTIAL_BROWSER, SV_TYPE_BACKUP_BROWSER, SV_TYPE_MASTER_BROWSER, SV_TYPE_DOMAIN_MASTER, SV_TYPE_SERVER_OSF, SV_TYPE_SERVER_VMS, SV_TYPE_WINDOWS, SV_TYPE_DFS, SV_TYPE_CLUSTER_NT, SV_TYPE_TERMINALSERVER, SV_TYPE_CLUSTER_VS_NT, SV_TYPE_DCE, SV_TYPE_ALTERNATE_XPORT, SV_TYPE_LOCAL_LIST_ONLY, SV_TYPE_DOMAIN_ENUM, SV_TYPE_ALL);
+_Win32_AnnotateField_(SERVER_INFO_102::sv102_type, _Win32_AssociatedEnum_(NET_SERVER_TYPE));
+_Win32_AnnotateField_(SERVER_INFO_101::sv101_type, _Win32_AssociatedEnum_(NET_SERVER_TYPE));
+_Win32_Enum_(SERVER_INFO_SECURITY, unsigned int, SV_SHARESECURITY, SV_USERSECURITY);
+_Win32_AnnotateField_(SERVER_INFO_402::sv402_security, _Win32_AssociatedEnum_(SERVER_INFO_SECURITY));
+_Win32_AnnotateField_(SERVER_INFO_403::sv403_security, _Win32_AssociatedEnum_(SERVER_INFO_SECURITY));
+_Win32_Enum_(SERVER_INFO_HIDDEN, int, SV_VISIBLE, SV_HIDDEN);
+_Win32_AnnotateField_(SERVER_INFO_1016::sv1016_hidden, _Win32_AssociatedEnum_(SERVER_INFO_HIDDEN));
+_Win32_AnnotateField_(SERVER_INFO_102::sv102_hidden, _Win32_AssociatedEnum_(SERVER_INFO_HIDDEN));
+#endif

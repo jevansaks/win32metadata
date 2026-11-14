@@ -1,0 +1,25 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fontsub.h b/generation/WinSDK/RecompiledIdlHeaders/um/fontsub.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/fontsub.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/fontsub.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*************************************************************************
+ *                                                                        *
+ * fontsub.h -- font subsetting services (fontsub.dll)                    *
+@@ -25,6 +26,7 @@
+ typedef void *(__cdecl *CFP_ALLOCPROC)(size_t);
+ typedef void *(__cdecl *CFP_REALLOCPROC)(void *, size_t);
+ typedef void (__cdecl *CFP_FREEPROC)(void *);
++_Win32_SupportedOS_WindowsXP_
+ 
+ unsigned long __cdecl CreateFontPackage(
+ 	CONST unsigned char * puchSrcBuffer, /* input TTF or TTC buffer */
+@@ -70,6 +72,7 @@
+ #define TTFCFP_FLAGS_COMPRESS 0x0002  /* if bit off, don't compress */
+ #define TTFCFP_FLAGS_TTC 0x0004  /* if bit off, its a TTF */
+ #define TTFCFP_FLAGS_GLYPHLIST 0x0008 /* if bit off, list is characters */
++_Win32_SupportedOS_WindowsXP_
+ 
+ unsigned long __cdecl MergeFontPackage(CONST unsigned char * puchMergeFontBuffer, /* buffer containing font to merge with */
+ 			CONST unsigned long ulMergeFontBufferSize,	/* size of buffer containing font to merge with */

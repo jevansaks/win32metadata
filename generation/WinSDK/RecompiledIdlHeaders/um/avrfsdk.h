@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0011    // Increment this if a change has global effects
 
 Copyright (c) 2004  Microsoft Corporation
@@ -143,11 +144,12 @@ typedef ULONG
 ULONG NTAPI
 VerifierEnumerateResource(
     HANDLE Process,
-    ULONG  Flags,    
+    _Win32_AssociatedEnum_(VERIFIER_ENUM_RESOURCE_FLAGS) ULONG  Flags,    
     ULONG  ResourceType,
     AVRF_RESOURCE_ENUMERATE_CALLBACK ResourceCallback,
     PVOID  EnumerationContext
     );
+_Win32_SupportedOS_WindowsVista_
     
 //
 // API to find out if per user verifier settings are enabled
@@ -167,3 +169,8 @@ VerifierIsPerUserSettingsEnabled(
 #pragma endregion
 
 #endif /*AVRFSDK*/
+
+#ifndef _WIN32METADATA_AVRFSDK_VERIFIER_1_GROUPS_
+#define _WIN32METADATA_AVRFSDK_VERIFIER_1_GROUPS_
+_Win32_FlagsEnum_(VERIFIER_ENUM_RESOURCE_FLAGS, unsigned int, AVRF_ENUM_RESOURCES_FLAGS_DONT_RESOLVE_TRACES, AVRF_ENUM_RESOURCES_FLAGS_SUSPEND);
+#endif

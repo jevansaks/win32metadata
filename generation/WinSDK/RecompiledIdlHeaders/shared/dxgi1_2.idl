@@ -82,7 +82,7 @@ typedef struct DXGI_OUTDUPL_FRAME_INFO
 interface IDXGIOutputDuplication :
     IDXGIObject
 {
-    void GetDesc([out, annotation ("_Out_")] DXGI_OUTDUPL_DESC* pDesc);
+    void GetDesc([out, annotation ("_Out_"), retval] DXGI_OUTDUPL_DESC* pDesc);
     HRESULT AcquireNextFrame([in, annotation ("_In_")] UINT TimeoutInMilliseconds,
                              [out, annotation("_Out_")] DXGI_OUTDUPL_FRAME_INFO* pFrameInfo,
                              [out, annotation("_COM_Outptr_")] IDXGIResource** ppDesktopResource);
@@ -246,8 +246,8 @@ typedef struct DXGI_PRESENT_PARAMETERS
 interface IDXGISwapChain1 :
     IDXGISwapChain
 {
-    HRESULT GetDesc1( [out, annotation("_Out_")] DXGI_SWAP_CHAIN_DESC1 *pDesc );
-    HRESULT GetFullscreenDesc( [out, annotation("_Out_")] DXGI_SWAP_CHAIN_FULLSCREEN_DESC *pDesc );
+    HRESULT GetDesc1( [out, annotation("_Out_"), retval] DXGI_SWAP_CHAIN_DESC1 *pDesc );
+    HRESULT GetFullscreenDesc( [out, annotation("_Out_"), retval] DXGI_SWAP_CHAIN_FULLSCREEN_DESC *pDesc );
 
     HRESULT GetHwnd( [out, annotation("_Out_")] HWND *pHwnd);
     HRESULT GetCoreWindow (
@@ -384,7 +384,7 @@ typedef struct DXGI_ADAPTER_DESC2
 interface IDXGIAdapter2 :
     IDXGIAdapter1
 {
-    HRESULT GetDesc2( [out, annotation("_Out_")] DXGI_ADAPTER_DESC2 *pDesc);
+    HRESULT GetDesc2( [out, annotation("_Out_"), retval] DXGI_ADAPTER_DESC2 *pDesc);
 };
 
 //--------------------------------------------------------------------------------------------------------

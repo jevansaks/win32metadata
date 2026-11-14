@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 // -------------------------------------------------------------
 // magnification.h
 //
@@ -79,8 +80,8 @@ BOOL WINAPI MagSetWindowSource(HWND hwnd, RECT rect);
 BOOL WINAPI MagGetWindowSource(HWND hwnd, RECT *pRect);
 BOOL WINAPI MagSetWindowTransform(HWND hwnd, PMAGTRANSFORM pTransform);
 BOOL WINAPI MagGetWindowTransform(HWND hwnd, PMAGTRANSFORM pTransform);
-BOOL WINAPI MagSetWindowFilterList(HWND hwnd, DWORD dwFilterMode, int count, HWND *pHWND );
-int  WINAPI MagGetWindowFilterList(HWND hwnd, DWORD *pdwFilterMode, int count, HWND *pHWND );
+BOOL WINAPI MagSetWindowFilterList(HWND hwnd, _Win32_AssociatedEnum_(MW_FILTERMODE) DWORD dwFilterMode, int count, HWND *pHWND );
+int  WINAPI MagGetWindowFilterList(HWND hwnd, _Win32_AssociatedEnum_(MW_FILTERMODE) DWORD *pdwFilterMode, int count, HWND *pHWND );
 BOOL WINAPI MagSetImageScalingCallback(HWND hwnd, MagImageScalingCallback callback );
 MagImageScalingCallback WINAPI MagGetImageScalingCallback(HWND hwnd );
 BOOL WINAPI MagSetColorEffect(HWND hwnd, PMAGCOLOREFFECT pEffect);
@@ -89,6 +90,7 @@ BOOL WINAPI MagSetFullscreenTransform(_In_ float magLevel, _In_ int xOffset, _In
 BOOL WINAPI MagGetFullscreenTransform(_Out_ float *pMagLevel, _Out_ int *pxOffset, _Out_ int *pyOffset);
 BOOL WINAPI MagSetFullscreenColorEffect(_In_ PMAGCOLOREFFECT pEffect);
 BOOL WINAPI MagGetFullscreenColorEffect(_Out_ PMAGCOLOREFFECT pEffect);
+_Win32_SetLastError_
 BOOL WINAPI MagSetInputTransform(_In_ BOOL fEnabled, _In_ const LPRECT pRectSource, _In_ const LPRECT pRectDest);
 BOOL WINAPI MagGetInputTransform(_Out_ BOOL *pfEnabled, _Out_ LPRECT pRectSource, _Out_ LPRECT pRectDest);
 BOOL WINAPI MagShowSystemCursor(_In_ BOOL fShowCursor);
@@ -102,3 +104,8 @@ BOOL WINAPI MagShowSystemCursor(_In_ BOOL fShowCursor);
 #pragma endregion
 
 #endif // !_INC_MAGNIFIER
+
+#ifndef _WIN32METADATA_MAGNIFICATION_SECURITY_SYSTEM_91_GROUPS_
+#define _WIN32METADATA_MAGNIFICATION_SECURITY_SYSTEM_91_GROUPS_
+_Win32_Enum_(MW_FILTERMODE, unsigned int, MW_FILTERMODE_EXCLUDE, MW_FILTERMODE_INCLUDE);
+#endif

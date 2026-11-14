@@ -46,7 +46,7 @@ struct IDxcIncludeHandler;
 /// This can be used with GetProcAddress to get the DxcCreateInstance function.
 typedef HRESULT(__stdcall *DxcCreateInstanceProc)(_In_ REFCLSID rclsid,
                                                   _In_ REFIID riid,
-                                                  _Out_ LPVOID *ppv);
+                                                  _COM_Outptr_ LPVOID *ppv);
 
 /// \brief Typedef for DxcCreateInstance2 function pointer.
 ///
@@ -54,7 +54,7 @@ typedef HRESULT(__stdcall *DxcCreateInstanceProc)(_In_ REFCLSID rclsid,
 typedef HRESULT(__stdcall *DxcCreateInstance2Proc)(_In_ IMalloc *pMalloc,
                                                    _In_ REFCLSID rclsid,
                                                    _In_ REFIID riid,
-                                                   _Out_ LPVOID *ppv);
+                                                   _COM_Outptr_ LPVOID *ppv);
 
 /// \brief Creates a single uninitialized object of the class associated with a
 /// specified CLSID.

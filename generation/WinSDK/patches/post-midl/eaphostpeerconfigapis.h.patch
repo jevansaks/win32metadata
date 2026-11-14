@@ -1,0 +1,110 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/eaphostpeerconfigapis.h b/generation/WinSDK/RecompiledIdlHeaders/um/eaphostpeerconfigapis.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/eaphostpeerconfigapis.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/eaphostpeerconfigapis.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ ///////////////////////////////////////////////////////////////////////////////
+ //
+ // Copyright (c) Microsoft Corporation
+@@ -25,6 +26,7 @@
+ extern "C"
+ {
+ #endif
++_Win32_SupportedOS_WindowsVista_
+ 
+     // This API is used to enumerate all the EAP Methods installed and available for use; this
+     // includes legacy EAP Methods too. Returns non zero return code up on error.
+@@ -34,6 +36,7 @@
+         _Out_ EAP_METHOD_INFO_ARRAY* pEapMethodInfoArray,
+         // In case of error, API fills ppEapError if possible. Caller should free ppEapError using EapHostPeerFreeErrorMemory
+         _Outptr_ EAP_ERROR** ppEapError);
++_Win32_SupportedOS_Windows7_
+ 
+     // This API is used to retrieve the method properties for a specific configuration
+     // It returns non zero return code upon error.
+@@ -60,6 +63,7 @@
+         // A pointer to a pointer to an EAP_ERROR structure that contains any errors raised by EAPHost
+         // during the execution of this function call.
+         _Outptr_ EAP_ERROR** ppEapError);
++_Win32_SupportedOS_WindowsVista_
+ 
+     // This API is used to invoke configure UI of the specified EAP Method.
+     // API Returns non zero return code up on error.
+@@ -81,6 +85,7 @@
+         _Outptr_result_buffer_(*pdwSizeOfConfigOut) BYTE** ppConfigOut,
+         // In case of error, API fills ppEapError if possible. Caller should free ppEapError using EapHostPeerFreeErrorMemory
+         _Outptr_ EAP_ERROR** ppEapError);
++_Win32_SupportedOS_WindowsVista_
+ 
+     // This API is used to obtain the fields to be shown in Single Sign On scenario for
+     // showing UI in long screen. The structures returned have details on how to show the fields.
+@@ -130,6 +135,7 @@
+             BYTE** ppbUserBlob,
+         // In case of error, API fills ppEapError if possible. Caller should free ppEapError using EapHostPeerFreeErrorMemory
+         _Out_ EAP_ERROR** ppEapError);
++_Win32_SupportedOS_WindowsVista_
+ 
+     // Tunnel Methods call this function to invoke Identity UI of the inner Methods.
+     // This function returns the identity as well as the credentials to use to start the authentication.
+@@ -162,6 +168,7 @@
+         _Outptr_ EAP_ERROR** ppEapError,
+         // Reserved for future usage. It must be NULL.
+         _Inout_ LPVOID* ppvReserved);
++_Win32_SupportedOS_WindowsVista_
+ 
+     // While doing authentication with EapHost, when supplicant receives action code of EapHostPeerResponseInvokeUi
+     // supplicant should call EapHostPeerGetUIContext to get UI context data. After that. it then should call this
+@@ -182,6 +189,7 @@
+         _Outptr_result_buffer_(*pdwSizeOfDataFromInteractiveUI) BYTE** ppDataFromInteractiveUI,
+         // In case of error, API fills ppEapError if possible. Caller should free ppEapError using EapHostPeerFreeErrorMemory
+         _Outptr_ EAP_ERROR** ppEapError);
++_Win32_SupportedOS_WindowsVista_
+ 
+     // This API will enable supplicants to collect necessary information from EAPHost to raise interactive UI and collect user
+     // information supplicant should call EapHostPeerQueryInteractiveUIInputFields() API first after it receives
+@@ -204,6 +212,7 @@
+         _Outptr_ EAP_ERROR** ppEapError,
+         // Reserved for future usage. It must be NULL.
+         _Inout_ LPVOID* ppvReserved);
++_Win32_SupportedOS_WindowsVista_
+ 
+     // This API will enable supplicants to convert user information into a user-blob which can be consumed by EAPHost runtime APIs
+     // API Returns non zero return code up on error.
+@@ -229,6 +238,7 @@
+         _Outptr_ EAP_ERROR** ppEapError,
+         // Reserved for future usage. It must be NULL.
+         _Inout_ LPVOID* ppvReserved);
++_Win32_SupportedOS_WindowsVista_
+ 
+     // Supplicant can utilize XML based EAP configuration storing, managing, editing. When it wants to call EapHostPeerConfigureUI
+     // or when it has to start authentication, it calls this API to convert XML configuration into blob.
+@@ -246,6 +256,7 @@
+         _Out_ EAP_METHOD_TYPE* pEapMethodType,
+         // In case of error, API fills ppEapError if possible. Caller should free ppEapError using EapHostPeerFreeErrorMemory
+         _Outptr_ EAP_ERROR** ppEapError);
++_Win32_SupportedOS_WindowsVista_
+ 
+     // Supplicant can utilize XML based EAP credentials storing, managing, editing. When it wants to start
+     // authentication, it calls this API to convert XML based credentials into blob.
+@@ -268,6 +279,7 @@
+         _Out_ EAP_METHOD_TYPE* pEapMethodType,
+         // In case of error, API fills ppEapError if possible. Caller should free ppEapError using EapHostPeerFreeErrorMemory
+         _Outptr_ EAP_ERROR** ppEapError);
++_Win32_SupportedOS_WindowsVista_
+ 
+     // Supplicant can utilize XML based EAP credentials storing, managing, editing. When it wants to start
+     // convert configuration blob to XML, it can call this API.
+@@ -286,10 +298,12 @@
+         _COM_Outptr_ IXMLDOMDocument2** ppConfigDoc,
+         // In case of error, API fills ppEapError if possible. Caller should free ppEapError using EapHostPeerFreeErrorMemory
+         _Outptr_ EAP_ERROR** ppEapError);
++_Win32_SupportedOS_WindowsVista_
+ 
+     // Supplicant calls this API to free memory returned by Config APIs. Supplicant should not use this API
+     // for freeing EAP_ERROR structure.
+     VOID WINAPI EapHostPeerFreeMemory(BYTE* pData);
++_Win32_SupportedOS_WindowsVista_
+ 
+     // Supplicant calls this API to free EAP_ERROR memory, which will get filled when an API fails.
+     VOID WINAPI EapHostPeerFreeErrorMemory(EAP_ERROR* pEapError);

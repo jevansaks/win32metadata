@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 
 /*++
 
@@ -513,7 +514,7 @@ typedef
 VOID
 (NTAPI *PENABLECALLBACK) (
     _In_ LPCGUID SourceId,
-    _In_ ULONG IsEnabled,
+    _Win32_AssociatedEnum_(ENABLECALLBACK_ENABLED_STATE) _In_ ULONG IsEnabled,
     _In_ UCHAR Level,
     _In_ ULONGLONG MatchAnyKeyword,
     _In_ ULONGLONG MatchAllKeyword,
@@ -531,6 +532,7 @@ VOID
 //
 
 #if (WINVER >= _WIN32_WINNT_VISTA)
+_Win32_SupportedOS_WindowsVista_
 
 /*
 Registers a provider with the ETW runtime and obtains a handle to use with
@@ -552,6 +554,7 @@ EventRegister(
 #endif
 
 #if (WINVER >= _WIN32_WINNT_VISTA)
+_Win32_SupportedOS_WindowsVista_
 /*
 Closes the RegHandle that was opened by EventRegister.
 */
@@ -563,6 +566,7 @@ EventUnregister(
 #endif
 
 #if (WINVER >= _WIN32_WINNT_WIN8)
+_Win32_SupportedOS_Windows8_
 /*
 Used to provide the ETW runtime with additional information about your provider
 or to configure how the ETW runtime handles your provider's events.
@@ -666,6 +670,7 @@ EventProviderEnabled(
 //
 
 #if (WINVER >= _WIN32_WINNT_VISTA)
+_Win32_SupportedOS_WindowsVista_
 /*
 Logs an ETW event.
 
@@ -688,6 +693,7 @@ EventWrite(
 #endif
 
 #if (WINVER >= _WIN32_WINNT_VISTA)
+_Win32_SupportedOS_WindowsVista_
 /*
 Logs an ETW event, optionally specifying activity IDs.
 
@@ -715,6 +721,7 @@ EventWriteTransfer(
 #endif
 
 #if (WINVER >= _WIN32_WINNT_WIN7)
+_Win32_SupportedOS_Windows7_
 /*
 Logs an ETW event, optionally specifying activity IDs, filter, and flags.
 
@@ -751,6 +758,7 @@ EventWriteEx(
 #endif
 
 #if (WINVER >= _WIN32_WINNT_VISTA)
+_Win32_SupportedOS_WindowsVista_
 /*
 Writes a simple event containing a string.
 */
@@ -765,6 +773,7 @@ EventWriteString(
 #endif
 
 #if (WINVER >= _WIN32_WINNT_VISTA)
+_Win32_SupportedOS_WindowsVista_
 /*
 Performs operations on activity IDs.
 
@@ -1035,5 +1044,9 @@ EventDescOrKeyword(
 #pragma warning(pop)
 #endif
 
+#endif
+
+#if defined(WIN32METADATA) && defined(__clang__)
+#include <evntrace.h>
 #endif
 

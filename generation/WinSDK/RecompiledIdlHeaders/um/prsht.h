@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 
 /*****************************************************************************\
@@ -581,12 +582,19 @@ typedef LPCPROPSHEETHEADERW_V2      LPCPROPSHEETHEADERW;
 
 #define PSCB_BUTTONPRESSED 3
 #endif  // NTDDI_VERSION >= NTDDI_WINXP
+_Win32_SupportedOS_WindowsVista_
 
 WINCOMMCTRLAPI HPROPSHEETPAGE WINAPI CreatePropertySheetPageA(LPCPROPSHEETPAGEA constPropSheetPagePointer);
+_Win32_SupportedOS_WindowsVista_
 WINCOMMCTRLAPI HPROPSHEETPAGE WINAPI CreatePropertySheetPageW(LPCPROPSHEETPAGEW constPropSheetPagePointer);
+_Win32_SupportedOS_WindowsVista_
 WINCOMMCTRLAPI BOOL           WINAPI DestroyPropertySheetPage(HPROPSHEETPAGE);
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 WINCOMMCTRLAPI INT_PTR        WINAPI PropertySheetA(LPCPROPSHEETHEADERA);
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 WINCOMMCTRLAPI INT_PTR        WINAPI PropertySheetW(LPCPROPSHEETHEADERW);
 

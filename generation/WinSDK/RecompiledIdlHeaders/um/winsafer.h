@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) 1997-2001  Microsoft Corporation
@@ -612,6 +613,8 @@ typedef struct _SAFER_URLZONE_IDENTIFICATION
 
 
 #include <poppack.h>
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 //
 // Functions related to querying and setting the global policy
@@ -629,6 +632,8 @@ SaferGetPolicyInformation(
     _Out_ PDWORD                 InfoBufferRetSize,
     _Reserved_ LPVOID            lpReserved
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINADVAPI
 BOOL WINAPI
@@ -639,6 +644,8 @@ SaferSetPolicyInformation(
     _In_reads_bytes_(InfoBufferSize) PVOID   InfoBuffer,
     _Reserved_ LPVOID                   lpReserved
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 //
 // Functions to open or close a handle to a Safer Level.
@@ -653,12 +660,16 @@ SaferCreateLevel(
     _Outptr_ SAFER_LEVEL_HANDLE * pLevelHandle,
     _Reserved_ LPVOID               lpReserved
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINADVAPI
 BOOL WINAPI
 SaferCloseLevel(
     _In_ SAFER_LEVEL_HANDLE hLevelHandle
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINADVAPI
 BOOL WINAPI
@@ -668,6 +679,8 @@ SaferIdentifyLevel(
     _Outptr_ SAFER_LEVEL_HANDLE  * pLevelHandle,
     _In_opt_ LPVOID         lpReserved
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINADVAPI
 BOOL WINAPI
@@ -675,9 +688,11 @@ SaferComputeTokenFromLevel(
     _In_ SAFER_LEVEL_HANDLE LevelHandle,
     _In_opt_ HANDLE         InAccessToken,
     _Out_ PHANDLE           OutAccessToken,
-    _In_ DWORD              dwFlags,
+    _Win32_AssociatedEnum_(SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS) _In_ DWORD              dwFlags,
     _Inout_opt_ LPVOID      lpReserved
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINADVAPI
 BOOL WINAPI
@@ -688,6 +703,8 @@ SaferGetLevelInformation(
         _In_ DWORD                              dwInBufferSize,
         _Out_ LPDWORD                           lpdwOutBufferSize
         );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINADVAPI
 BOOL WINAPI
@@ -697,6 +714,8 @@ SaferSetLevelInformation(
     _In_reads_bytes_(dwInBufferSize) LPVOID  lpQueryBuffer,
     _In_ DWORD                          dwInBufferSize
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 //
 // This function performs logging of messages to the Application
@@ -711,6 +730,7 @@ SaferRecordEventLogEntry(
     _In_ LPCWSTR            szTargetPath,
     _Reserved_ LPVOID       lpReserved
     );
+_Win32_SupportedOS_WindowsXP_
 
 
 WINADVAPI
@@ -739,4 +759,9 @@ SaferiIsExecutableFileType(
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
 #pragma endregion
 
+#endif
+
+#ifndef _WIN32METADATA_WINSAFER_NATIVE_C_64_GROUPS_
+#define _WIN32METADATA_WINSAFER_NATIVE_C_64_GROUPS_
+_Win32_FlagsEnum_(SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS, unsigned int, SAFER_TOKEN_NULL_IF_EQUAL, SAFER_TOKEN_COMPARE_ONLY, SAFER_TOKEN_MAKE_INERT, SAFER_TOKEN_WANT_FLAGS);
 #endif

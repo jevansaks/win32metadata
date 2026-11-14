@@ -1,0 +1,268 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/usp10.h b/generation/WinSDK/RecompiledIdlHeaders/um/usp10.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/usp10.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/usp10.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*++
+ 
+    Copyright (c) Microsoft Corporation. All rights reserved.
+@@ -94,6 +95,7 @@
+ //c         ... select font into hdc ...
+ //c         hr = ScriptShape(hdc, &sc, ...);
+ //c     }
++_Win32_SupportedOS_Windows2000_
+ 
+ 
+ 
+@@ -327,6 +329,7 @@
+     int              iCharPos;      // Logical offset to first character in this item
+     SCRIPT_ANALYSIS  a;
+ } SCRIPT_ITEM;
++_Win32_SupportedOS_Windows2000_
+ //
+ //
+ //p     iCharPos: Offset from beginning of itemised string to first character
+@@ -364,6 +367,7 @@
+     _In_reads_opt_(1) const SCRIPT_STATE               *psState,       // In   Initial bidi algorithm state (optional)
+     _Out_writes_to_(cMaxItems, *pcItems) SCRIPT_ITEM  *pItems,        // Out  Array to receive itemization
+     _Out_writes_(1) int                                 *pcItems);      // Out  Count of items processed (optional)
++_Win32_SupportedOS_Windows2000_
+ 
+ 
+ 
+@@ -681,6 +685,7 @@
+     _Out_writes_all_(cGlyphs) int               *piAdvance, // Out   Advance wdiths
+     _Out_writes_all_opt_(cGlyphs) GOFFSET       *pGoffset,  // Out   x,y offset for combining glyph
+     _Out_writes_(1) ABC                         *pABC);     // Out   Composite ABC for the whole run (Optional)
++_Win32_SupportedOS_Windows2000_
+ 
+ 
+ 
+@@ -713,6 +718,7 @@
+     _In_reads_(cGlyphs) const int          *piAdvance,     // In     Advance widths from ScriptPlace
+     _In_reads_opt_(cGlyphs) const int      *piJustify,     // In     Justified advance widths (optional)
+     _In_reads_(cGlyphs) const GOFFSET      *pGoffset);     // In     x,y offset for combining glyph
++_Win32_SupportedOS_Windows2000_
+ 
+ 
+ 
+@@ -813,6 +819,7 @@
+     BYTE    fInvalid        :1;     // Invalid character sequence
+     BYTE    fReserved       :3;
+ } SCRIPT_LOGATTR;
++_Win32_SupportedOS_Windows2000_
+ //
+ //
+ //p     fSoftBreak: It would be valid to break the line in front of this
+@@ -875,6 +882,7 @@
+     int                                         cChars,     // In   Length of unicode item
+     _In_reads_(1) const SCRIPT_ANALYSIS        *psa,       // In   Result of earlier ScriptItemize call
+     _Out_writes_all_(cChars) SCRIPT_LOGATTR    *psla);     // Out  Logical character attributes
++_Win32_SupportedOS_Windows2000_
+ 
+ 
+ 
+@@ -908,6 +916,7 @@
+     _In_reads_(cGlyphs) const int              *piAdvance,     // In   Advance widths
+     _In_reads_(1) const SCRIPT_ANALYSIS        *psa,           // In   Script analysis from item attributes
+     int                                         *piX);          // Out  Resulting X position
++_Win32_SupportedOS_Windows2000_
+ 
+ 
+ 
+@@ -1161,6 +1170,7 @@
+ //      Or, more simply, given an fAdvancing BOOL restricted to TRUE or FALSE:
+ //
+ //c     ScriptCPtoX(iCharPos-fAdvancing, fAdvancing, ..., &iCaretX);
++_Win32_SupportedOS_Windows2000_
+ //
+ //      ScriptCPtoX handles out of range positions logically: it returns the
+ //      leading edge of the run for iCharPos <0, and the trailing edge of the
+@@ -1182,6 +1192,7 @@
+     _In_reads_(cChars) const WORD              *pwLogClust,    // In   Logical clusters
+     _In_reads_(cGlyphs) const SCRIPT_VISATTR   *psva,          // In   Visual glyph attributes
+     _In_reads_(cChars) int                     *piDx);         // Out  Logical widths
++_Win32_SupportedOS_Windows2000_
+ 
+ 
+ 
+@@ -1265,6 +1276,7 @@
+ 
+ 
+ #define SGCM_RTL  0x00000001      // Return mirrored glyph for mirrorable Unicode codepoints
++_Win32_SupportedOS_Windows2000_
+ 
+ 
+ _Check_return_ HRESULT WINAPI ScriptGetCMap(
+@@ -1274,6 +1286,7 @@
+     int                                     cChars,         // In    Number of characters
+     DWORD                                   dwFlags,        // In    Flags such as SGCM_RTL
+     _Out_writes_(cChars) WORD               *pwOutGlyphs);  // Out   Array of glyphs, one per input character
++_Win32_SupportedOS_Windows2000_
+ 
+ 
+ 
+@@ -1324,6 +1337,7 @@
+     DWORD   fClusterSizeVaries     :1;  // Measured cluster width depends on adjacent clusters
+     DWORD   fRejectInvalid         :1;  // Invalid combinations should be rejected
+ } SCRIPT_PROPERTIES;
++_Win32_SupportedOS_Windows2000_
+ //
+ //p     langid: Language associated with this script. When a script is used for many languages,
+ //          langid id represents a default language. For example, Western script is represented
+@@ -1408,6 +1422,7 @@
+     WORD    wgKashida;      // Shortest continuous kashida glyph in the font, -1 if doesn't exist
+     int     iKashidaWidth;  // Widths of shortest continuous kashida glyph in the font
+ } SCRIPT_FONTPROPERTIES;
++_Win32_SupportedOS_Windows2000_
+ 
+ 
+ /////   ScriptGetFontProperties
+@@ -1419,6 +1434,7 @@
+     HDC                                     hdc,    // In    Optional (see notes on caching)
+     _Inout_updates_(1) SCRIPT_CACHE        *psc,   // InOut Address of Cache handle
+     _Out_writes_(1) SCRIPT_FONTPROPERTIES   *sfp);  // Out   Receives properties for this font
++_Win32_SupportedOS_Windows2000_
+ 
+ 
+ 
+@@ -1528,6 +1544,7 @@
+ 
+ 
+ typedef void* SCRIPT_STRING_ANALYSIS;
++_Win32_SupportedOS_Windows2000_
+ 
+ 
+ _Check_return_ HRESULT WINAPI ScriptStringAnalyse(
+@@ -1544,6 +1561,7 @@
+     _In_reads_opt_(1) SCRIPT_TABDEF                *pTabdef,   //In  Tab positions (optional)
+     const BYTE                                      *pbInClass, //In  Legacy GetCharacterPlacement character classifications (deprecated)
+     _Outptr_result_buffer_(1) SCRIPT_STRING_ANALYSIS    *pssa);     //Out Analysis of string
++_Win32_SupportedOS_Windows2000_
+ 
+ 
+ 
+@@ -1557,6 +1575,7 @@
+ 
+ _Check_return_ HRESULT WINAPI ScriptStringFree(
+     _Inout_updates_(1) SCRIPT_STRING_ANALYSIS  *pssa);  //InOut Address of pointer to analysis
++_Win32_SupportedOS_Windows2000_
+ 
+ 
+ 
+@@ -1573,6 +1592,7 @@
+ 
+ const SIZE* WINAPI ScriptString_pSize(
+     _In_reads_(1) SCRIPT_STRING_ANALYSIS   ssa); 
++_Win32_SupportedOS_Windows2000_
+ 
+ 
+ 
+@@ -1589,6 +1609,7 @@
+ 
+ const int* WINAPI ScriptString_pcOutChars(
+     _In_reads_(1) SCRIPT_STRING_ANALYSIS   ssa); 
++_Win32_SupportedOS_Windows2000_
+ 
+ 
+ 
+@@ -1608,6 +1629,7 @@
+ 
+ const SCRIPT_LOGATTR* WINAPI ScriptString_pLogAttr(
+     _In_reads_(1) SCRIPT_STRING_ANALYSIS   ssa); 
++_Win32_SupportedOS_Windows2000_
+ 
+ 
+ 
+@@ -1631,6 +1653,7 @@
+ _Check_return_ HRESULT WINAPI ScriptStringGetOrder(
+     _In_reads_(1) SCRIPT_STRING_ANALYSIS   ssa,
+     UINT                                    *puOrder); 
++_Win32_SupportedOS_Windows2000_
+ 
+ 
+ 
+@@ -1647,6 +1670,7 @@
+     int                                     icp,        //In  Caret character position
+     BOOL                                    fTrailing,  //In  Which edge of icp
+     _Out_writes_(1) int                     *pX);       //Out Corresponding x offset
++_Win32_SupportedOS_Windows2000_
+ 
+ 
+ 
+@@ -1663,6 +1687,7 @@
+     int                                     iX,             // In
+     _Out_writes_(1) int                     *piCh,          // Out
+     _Out_writes_(1) int                     *piTrailing);   // Out
++_Win32_SupportedOS_Windows2000_
+ 
+ 
+ 
+@@ -1683,6 +1708,7 @@
+ _Check_return_ HRESULT WINAPI ScriptStringGetLogicalWidths(
+     _In_reads_(1) SCRIPT_STRING_ANALYSIS   ssa,
+     int                                     *piDx); 
++_Win32_SupportedOS_Windows2000_
+ 
+ 
+ 
+@@ -1702,6 +1728,7 @@
+ 
+ _Check_return_ HRESULT WINAPI ScriptStringValidate(
+     _In_reads_(1) SCRIPT_STRING_ANALYSIS   ssa); 
++_Win32_SupportedOS_Windows2000_
+ 
+ 
+ 
+@@ -1719,7 +1746,7 @@
+ _Check_return_ HRESULT WINAPI ScriptStringOut(
+     _In_reads_(1) SCRIPT_STRING_ANALYSIS   ssa,            //In  Analysis with glyphs
+     int                                     iX,             //In
+-    int                                     iY,             //In
++    int                                     iY,             _Win32_AssociatedEnum_(ETO_OPTIONS) //In
+     UINT                                    uOptions,       //In  ExtTextOut options
+     _In_reads_opt_(1) const RECT           *prc,           //In  Clipping rectangle (iff ETO_CLIPPED)
+     int                                     iMinSel,        //In  Logical selection. Set iMinSel>=iMaxSel for no selection
+@@ -1764,7 +1791,7 @@
+ _Check_return_ HRESULT WINAPI ScriptIsComplex(
+     _In_reads_(cInChars) const WCHAR   *pwcInChars,    //In  String to be tested
+     int                                 cInChars,       //In  Length in characters
+-    DWORD                               dwFlags);       //In  Flags (see above)
++    _Win32_AssociatedEnum_(SCRIPT_IS_COMPLEX_FLAGS) DWORD                               dwFlags);       //In  Flags (see above)
+ 
+ 
+ 
+@@ -1783,6 +1810,7 @@
+     DWORD  DigitSubstitute          :8;    // Substitution type
+     DWORD  dwReserved;                     // Reserved
+ } SCRIPT_DIGITSUBSTITUTE;
++_Win32_SupportedOS_Windows2000_
+ //
+ //
+ //p     NationalDigitLanguage: Standard digits for the selected locale as
+@@ -1870,6 +1898,7 @@
+ #define SCRIPT_DIGITSUBSTITUTE_NONE         1  // No substitution
+ #define SCRIPT_DIGITSUBSTITUTE_NATIONAL     2  // Substitute with official national digits
+ #define SCRIPT_DIGITSUBSTITUTE_TRADITIONAL  3  // Substitute with traditional digits of the locale
++_Win32_SupportedOS_Windows2000_
+ //
+ //
+ //p     SCRIPT_DIGITSUBSTITUTE_CONTEXT: Digits U+0030 - U+0039 will be
+@@ -2068,6 +2097,7 @@
+     _Out_writes_all_(cGlyphs) int                     *piAdvance,      // Out   Advance widths
+     _Out_writes_all_(cGlyphs) GOFFSET                 *pGoffset,       // Out   x,y offset for combining glyph
+     _Out_opt_                  ABC                    *pABC);          // Out   Composite ABC for the whole run (Optional)
++_Win32_SupportedOS_WindowsVista_
+ 
+ //
+ // ScriptItemizeOpenType
+@@ -2231,3 +2261,8 @@
+ #pragma endregion
+ 
+ #endif
++
++#ifndef _WIN32METADATA_USP10_MANUAL_28_GROUPS_
++#define _WIN32METADATA_USP10_MANUAL_28_GROUPS_
++_Win32_Enum_(SCRIPT_IS_COMPLEX_FLAGS, unsigned int, SIC_ASCIIDIGIT, SIC_COMPLEX, SIC_NEUTRAL);
++#endif

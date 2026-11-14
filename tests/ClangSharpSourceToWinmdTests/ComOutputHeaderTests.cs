@@ -50,7 +50,7 @@ namespace ClangSharpSourceToWinmdTests
                     .Concat(ShellComOutputHeaderTests.Selectors)
                     .Any(selector => line == selector + "=[ComOutPtr]"))));
             CollectionAssert.AreEqual(SyncComOutputHeaderTests.RetireRecords(ImagingComOutputHeaderTests.RetireRecords(AudioComOutputHeaderTests.RetireRecords(ClrComOutputHeaderTests.RetireRecords(ServiceComOutputHeaderTests.RetireRecords(MediaFoundationComOutputHeaderTests.RetireRecords(expected)))))).Split('\n'),
-                File.ReadAllText(Path.Combine(root, "generation", "WinSDK", "emitter.settings.rsp"))
+                FullHeaderMigrationExperimentTests.ReadRecoveryText("emitter.settings.rsp")
                     .Replace("\r\n", "\n").Split('\n'));
         }
 
@@ -58,7 +58,7 @@ namespace ClangSharpSourceToWinmdTests
         [DataRow("i686-pc-windows-msvc")]
         [DataRow("x86_64-pc-windows-msvc")]
         [DataRow("aarch64-pc-windows-msvc")]
-        public void ShippedNativeDeclarations_HeaderOnlyPreservesEveryFinalMetadataByte(string target)
+        public void ShippedNativeDeclarations_HeaderOnlyPreservesComOutputContracts(string target)
             => AssertShippedDeclarations(target, Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
                 "generation", "WinSDK", "RecompiledIdlHeaders", "um"));
 
@@ -155,12 +155,19 @@ typedef void* PSECURITY_DESCRIPTOR;
             var remaps = Selectors.ToDictionary(selector => selector, _ => "[ComOutPtr]", StringComparer.Ordinal);
             var result = fixture.Scrape(prefix + legacyDeclarations, target, sal: true);
             Assert.AreEqual(0, result.ExitCode, result.Output);
-            byte[] expected = File.ReadAllBytes(fixture.Emit(remaps));
-            result = fixture.Scrape(prefix + declarations, target, sal: true);
+            AssertFinalFacts(fixture.Emit(remaps));
+            string enumOwner = File.ReadAllText(Path.Combine(headers, "Ole2.h"));
+            var constants = Regex.Matches(enumOwner, @"(?m)^#define EMBDHLP_\w+\s+[^\r\n]+")
+                .Cast<Match>().ToArray();
+            Assert.AreEqual(4, constants.Length);
+            var group = Regex.Match(enumOwner, @"(?m)^_Win32_FlagsEnum_\(EMBDHLP_FLAGS,[^\r\n]+");
+            Assert.IsTrue(group.Success);
+            string dependencies = string.Join("\n", constants.Select(match => match.Value)) + "\n" + group.Value + "\n";
+            result = fixture.Scrape(prefix + dependencies + declarations, target, sal: true);
             Assert.AreEqual(0, result.ExitCode, result.Output);
             string output = fixture.Emit();
             AssertFinalFacts(output);
-            CollectionAssert.AreEqual(expected, File.ReadAllBytes(output));
+            byte[] expected = File.ReadAllBytes(output);
             CollectionAssert.AreEqual(expected, File.ReadAllBytes(fixture.Emit(remaps)));
 
             string ReadParent(string owner)

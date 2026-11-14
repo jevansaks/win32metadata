@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) 1989-2002  Microsoft Corporation
@@ -429,6 +430,7 @@ FilterGetMessage (
     _In_ DWORD dwMessageBufferSize,
     _Inout_opt_ LPOVERLAPPED lpOverlapped
     );
+_Win32_SupportedOS_Windows2000_
 
 _Must_inspect_result_
 HRESULT

@@ -1,0 +1,27 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/DbgHelp.h b/generation/WinSDK/RecompiledIdlHeaders/um/DbgHelp.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/DbgHelp.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/DbgHelp.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*++ BUILD Version: 0000     Increment this if a change has global effects
+ 
+ Copyright (c) Microsoft Corporation. All rights reserved.
+@@ -308,7 +309,7 @@
+ ImageDirectoryEntryToDataEx (
+     _In_ PVOID Base,
+     _In_ BOOLEAN MappedAsImage,
+-    _In_ USHORT DirectoryEntry,
++    _Win32_AssociatedEnum_(IMAGE_DIRECTORY_ENTRY) _In_ USHORT DirectoryEntry,
+     _Out_ PULONG Size,
+     _Out_opt_ PIMAGE_SECTION_HEADER *FoundHeader
+     );
+@@ -318,7 +319,7 @@
+ ImageDirectoryEntryToData (
+     _In_ PVOID Base,
+     _In_ BOOLEAN MappedAsImage,
+-    _In_ USHORT DirectoryEntry,
++    _Win32_AssociatedEnum_(IMAGE_DIRECTORY_ENTRY) _In_ USHORT DirectoryEntry,
+     _Out_ PULONG Size
+     );
+ 

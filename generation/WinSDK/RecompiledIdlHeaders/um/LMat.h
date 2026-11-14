@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0006    // Increment this if a change has global effects
 
 Copyright (c) 1992-1999  Microsoft Corporation
@@ -107,6 +108,7 @@ typedef struct _AT_ENUM {
     UCHAR   Flags;
     LPWSTR  Command;
 } AT_ENUM, *PAT_ENUM, *LPAT_ENUM;
+_Win32_SupportedOS_Windows2000_
 
 NET_API_STATUS NET_API_FUNCTION
 NetScheduleJobAdd(
@@ -114,6 +116,7 @@ NetScheduleJobAdd(
     IN      LPBYTE          Buffer,
     OUT     LPDWORD         JobId
     );
+_Win32_SupportedOS_Windows2000_
 
 NET_API_STATUS NET_API_FUNCTION
 NetScheduleJobDel(
@@ -121,6 +124,7 @@ NetScheduleJobDel(
     IN      DWORD           MinJobId,
     IN      DWORD           MaxJobId
     );
+_Win32_SupportedOS_Windows2000_
 
 NET_API_STATUS NET_API_FUNCTION
 NetScheduleJobEnum(
@@ -131,6 +135,7 @@ NetScheduleJobEnum(
     OUT     LPDWORD         TotalEntries,
     IN OUT  LPDWORD         ResumeHandle
     );
+_Win32_SupportedOS_Windows2000_
 
 NET_API_STATUS NET_API_FUNCTION
 NetScheduleJobGetInfo(

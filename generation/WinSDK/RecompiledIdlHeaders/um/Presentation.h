@@ -836,7 +836,7 @@ EXTERN_C const IID IID_IPresentationManager;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][retval][out] */ 
-            _Out_  void **fence) = 0;
+            _COM_Outptr_  void **fence) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE CancelPresentsFrom( 
             /* [annotation][in] */ 
@@ -935,7 +935,7 @@ EXTERN_C const IID IID_IPresentationManager;
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][retval][out] */ 
-            _Out_  void **fence);
+            _COM_Outptr_  void **fence);
         
         DECLSPEC_XFGVIRT(IPresentationManager, CancelPresentsFrom)
         HRESULT ( STDMETHODCALLTYPE *CancelPresentsFrom )( 

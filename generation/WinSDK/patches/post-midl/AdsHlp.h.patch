@@ -1,0 +1,150 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/AdsHlp.h b/generation/WinSDK/RecompiledIdlHeaders/um/AdsHlp.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/AdsHlp.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/AdsHlp.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ #include <winapifamily.h>
+ //+---------------------------------------------------------------------------
+ //
+@@ -23,13 +24,15 @@
+ 
+ #pragma region Desktop Family
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
++_Win32_SupportedOS_WindowsVista_
+ 
+ HRESULT WINAPI
+ ADsGetObject(
+     LPCWSTR lpszPathName,
+     REFIID riid,
+-    VOID * * ppObject
+-    );
++    _COM_Outptr_ VOID * * ppObject
++    );
++_Win32_SupportedOS_WindowsVista_
+ 
+ 
+ HRESULT WINAPI
+@@ -37,11 +40,13 @@
+     IADsContainer *pADsContainer,
+     IEnumVARIANT   **ppEnumVariant
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ HRESULT WINAPI
+ ADsFreeEnumerator(
+     IEnumVARIANT *pEnumVariant
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ HRESULT WINAPI
+ ADsEnumerateNext(
+@@ -50,6 +55,7 @@
+     VARIANT FAR  *pvar,
+     ULONG FAR    *pcElementsFetched
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ HRESULT WINAPI
+ ADsBuildVarArrayStr(
+@@ -57,6 +63,7 @@
+     DWORD  dwPathNames,
+     VARIANT * pVar
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ HRESULT WINAPI
+ ADsBuildVarArrayInt(
+@@ -64,6 +71,7 @@
+     DWORD      dwObjectTypes,
+     VARIANT * pVar
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ 
+ HRESULT WINAPI
+@@ -73,8 +81,10 @@
+     LPCWSTR lpszPassword,
+     DWORD  dwReserved,
+     REFIID riid,
+-    void FAR * FAR * ppObject
+-    );
++    _COM_Outptr_ void FAR * FAR * ppObject
++    );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ 
+ //
+ // Helper functions for extended error support
+@@ -88,6 +98,7 @@
+     _Out_writes_(dwNameBufLen)     LPWSTR  lpNameBuf,
+     IN      DWORD   dwNameBufLen
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ VOID WINAPI
+ ADsSetLastError(
+@@ -100,16 +111,19 @@
+ VOID WINAPI
+ ADsFreeAllErrorRecords(
+     VOID);
++_Win32_SupportedOS_WindowsVista_
+ 
+ LPVOID WINAPI
+ AllocADsMem(
+     DWORD cb
+ );
++_Win32_SupportedOS_WindowsVista_
+ 
+ BOOL WINAPI
+ FreeADsMem(
+    LPVOID pMem
+ );
++_Win32_SupportedOS_WindowsVista_
+ 
+ LPVOID WINAPI
+ ReallocADsMem(
+@@ -117,16 +131,19 @@
+    DWORD cbOld,
+    DWORD cbNew
+ );
++_Win32_SupportedOS_WindowsVista_
+ 
+ LPWSTR WINAPI
+ AllocADsStr(
+     LPCWSTR pStr
+ );
++_Win32_SupportedOS_WindowsVista_
+ 
+ BOOL WINAPI
+ FreeADsStr(
+    _In_ LPWSTR pStr
+ );
++_Win32_SupportedOS_WindowsVista_
+ 
+ 
+ BOOL WINAPI
+@@ -134,6 +151,7 @@
+    _Inout_ LPWSTR *ppStr,
+    _In_ LPWSTR pStr
+ );
++_Win32_SupportedOS_WindowsVista_
+ 
+ 
+ HRESULT WINAPI
+@@ -170,6 +188,7 @@
+     PADSVALUE pAdsValues,
+     DWORD dwNumValues
+     );
++_Win32_SupportedOS_WindowsVista_
+     
+ //
+ // Helper routines to convert IADsSecurityDescriptor to a binary
+@@ -185,6 +204,7 @@
+     LPCWSTR passWord,
+     DWORD dwFlags
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ HRESULT WINAPI
+ SecurityDescriptorToBinarySD(

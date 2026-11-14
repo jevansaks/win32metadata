@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 // begin_consoleapi_h
 /********************************************************************************
 *                                                                               *
@@ -27,6 +28,7 @@ extern "C" {
 
 #pragma region Application Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
+_Win32_SetLastError_
 
 WINBASEAPI
 BOOL
@@ -64,6 +66,7 @@ AllocConsoleWithOptions(
     );
 
 #endif
+_Win32_SetLastError_
 
 WINBASEAPI
 BOOL
@@ -73,6 +76,7 @@ FreeConsole(
     );
 
 #if (_WIN32_WINNT >= 0x0500)
+_Win32_SetLastError_
 
 WINBASEAPI
 BOOL
@@ -84,6 +88,7 @@ AttachConsole(
 #define ATTACH_PARENT_PROCESS ((DWORD)-1)
 
 #endif /* _WIN32_WINNT >= 0x0500 */
+_Win32_SetLastError_
 
 WINBASEAPI
 UINT
@@ -91,6 +96,7 @@ WINAPI
 GetConsoleCP(
     VOID
     );
+_Win32_SetLastError_
 
 WINBASEAPI
 UINT
@@ -123,6 +129,7 @@ GetConsoleOutputCP(
 #define ENABLE_VIRTUAL_TERMINAL_PROCESSING  0x0004
 #define DISABLE_NEWLINE_AUTO_RETURN         0x0008
 #define ENABLE_LVB_GRID_WORLDWIDE           0x0010
+_Win32_SetLastError_
 
 WINBASEAPI
 BOOL
@@ -147,6 +154,7 @@ GetNumberOfConsoleInputEvents(
     _In_ HANDLE hConsoleInput,
     _Out_ LPDWORD lpNumberOfEvents
     );
+_Win32_SetLastError_
 
 WINBASEAPI
 _Success_(return != FALSE)
@@ -158,6 +166,7 @@ ReadConsoleInputA(
     _In_ DWORD nLength,
     _Out_ _Deref_out_range_(<=, nLength) LPDWORD lpNumberOfEventsRead
     );
+_Win32_SetLastError_
 
 WINBASEAPI
 _Success_(return != FALSE)
@@ -181,6 +190,7 @@ ReadConsoleInputW(
 #ifndef UNICODE
 #define PeekConsoleInput  PeekConsoleInputA
 #endif
+_Win32_SetLastError_
 
 // begin_consoleapi_h
 
@@ -193,6 +203,7 @@ PeekConsoleInputA(
     _In_ DWORD nLength,
     _Out_ LPDWORD lpNumberOfEventsRead
     );
+_Win32_SetLastError_
 
 WINBASEAPI
 BOOL
@@ -216,6 +227,7 @@ typedef struct _CONSOLE_READCONSOLE_CONTROL {
     ULONG dwCtrlWakeupMask;
     ULONG dwControlKeyState;
 } CONSOLE_READCONSOLE_CONTROL, *PCONSOLE_READCONSOLE_CONTROL;
+_Win32_SetLastError_
 
 WINBASEAPI
 _Success_(return != FALSE)
@@ -228,6 +240,7 @@ ReadConsoleA(
     _Out_ _Deref_out_range_(<=, nNumberOfCharsToRead) LPDWORD lpNumberOfCharsRead,
     _In_opt_ PCONSOLE_READCONSOLE_CONTROL pInputControl
     );
+_Win32_SetLastError_
 
 WINBASEAPI
 _Success_(return != FALSE)
@@ -246,6 +259,7 @@ ReadConsoleW(
 #else
 #define ReadConsole  ReadConsoleA
 #endif // !UNICODE
+_Win32_SetLastError_
 
 WINBASEAPI
 BOOL
@@ -257,6 +271,7 @@ WriteConsoleA(
     _Out_opt_ LPDWORD lpNumberOfCharsWritten,
     _Reserved_ LPVOID lpReserved
     );
+_Win32_SetLastError_
 
 WINBASEAPI
 BOOL
@@ -296,6 +311,7 @@ BOOL
 (WINAPI *PHANDLER_ROUTINE)(
     _In_ DWORD CtrlType
     );
+_Win32_SetLastError_
 
 WINBASEAPI
 BOOL
