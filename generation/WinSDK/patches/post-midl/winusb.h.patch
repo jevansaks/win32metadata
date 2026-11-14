@@ -61,7 +61,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winusb.h b/generation/Win
  
  BOOL __stdcall
  WinUsb_QueryPipeEx(
-@@ -141,6 +149,7 @@
+@@ -141,24 +149,27 @@
      _In_  UCHAR PipeIndex,
      _Out_ PWINUSB_PIPE_INFORMATION_EX PipeInformationEx
      );
@@ -69,7 +69,10 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winusb.h b/generation/Win
  
  BOOL __stdcall
  WinUsb_SetPipePolicy(
-@@ -150,6 +159,7 @@
+     _In_  WINUSB_INTERFACE_HANDLE InterfaceHandle,
+     _In_  UCHAR PipeID,
+-    _In_  ULONG PolicyType,
++    _Win32_AssociatedEnum_(WINUSB_PIPE_POLICY) _In_  ULONG PolicyType,
      _In_  ULONG ValueLength,
      _In_reads_bytes_(ValueLength) PVOID Value
      );
@@ -77,7 +80,10 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winusb.h b/generation/Win
  
  BOOL __stdcall
  WinUsb_GetPipePolicy(
-@@ -159,6 +169,7 @@
+     _In_  WINUSB_INTERFACE_HANDLE InterfaceHandle,
+     _In_  UCHAR PipeID,
+-    _In_  ULONG PolicyType,
++    _Win32_AssociatedEnum_(WINUSB_PIPE_POLICY) _In_  ULONG PolicyType,
      _Inout_ PULONG ValueLength,
      _Out_writes_bytes_(*ValueLength) PVOID Value
      );
@@ -101,7 +107,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winusb.h b/generation/Win
  
  BOOL __stdcall
  WinUsb_ControlTransfer(
-@@ -189,24 +202,28 @@
+@@ -189,40 +202,46 @@
      _Out_opt_ PULONG LengthTransferred,
      _In_opt_  LPOVERLAPPED Overlapped
      );
@@ -130,7 +136,9 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winusb.h b/generation/Win
  
  BOOL __stdcall
  WinUsb_SetPowerPolicy(
-@@ -215,6 +232,7 @@
+     _In_  WINUSB_INTERFACE_HANDLE InterfaceHandle,
+-    _In_  ULONG PolicyType,
++    _Win32_AssociatedEnum_(WINUSB_POWER_POLICY) _In_  ULONG PolicyType,
      _In_  ULONG ValueLength,
      _In_reads_bytes_(ValueLength) PVOID Value
      );
@@ -138,7 +146,9 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winusb.h b/generation/Win
  
  BOOL __stdcall
  WinUsb_GetPowerPolicy(
-@@ -223,6 +241,7 @@
+     _In_  WINUSB_INTERFACE_HANDLE InterfaceHandle,
+-    _In_  ULONG PolicyType,
++    _Win32_AssociatedEnum_(WINUSB_POWER_POLICY) _In_  ULONG PolicyType,
      _Inout_ PULONG ValueLength,
      _Out_writes_bytes_(*ValueLength) PVOID Value
      );

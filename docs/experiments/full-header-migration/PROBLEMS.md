@@ -93,7 +93,7 @@ documentationMappings.rsp is unchanged. Preserve the real repro for a
 separately authorized minimal import fix with regression coverage; no reader,
 fixture or RSP workaround is introduced by the verifier continuation.
 
-The independently locally qualified VERIFIER_ENUM_RESOURCE_FLAGS closure
+The independently hosted-qualified VERIFIER_ENUM_RESOURCE_FLAGS closure
 does not have a Documentation remap and does not fix that defect. Its two real
 members retain UInt32/Flags and one complete public signature in actual 5EA5,
 with complete raw output equality and genuinely new 943+54. Its owning
@@ -101,10 +101,31 @@ ApplicationVerifier traversal emits the group; FileHistory inclusion alone
 does not. Initial private raw/prepared ownership and cross-stage producer
 prefix assumptions are preserved as checker corrections, not reader failures.
 
+## Qualified WinUSB policy continuation
+
+WINUSB_PIPE_POLICY and WINUSB_POWER_POLICY retire two complete JSON/use records,
+eleven members and four native scalar sites without a reader or input workaround.
+Both full enum blocks remain UInt32/nonflags and all four whole public signatures
+match the accepted parent. Actual 56530D0B freshly dumps to complete 1F4F3839;
+unmasked comparison against actual hosted 400E8C77 is zero. Genuinely new
+792+151 and actual-candidate 54 pass the exact parent inventories and controls.
+This is independently locally accepted coverage, not hosted qualification of
+the forthcoming publication and not a fix for the documented biometric defect.
+
+Buses owns both direct shipped headers; all eleven roots have no dependent
+non-member macro aliases. The existing recipe consumes the new winusbio patch,
+bringing exact replay to 354 targets without changing 403/407 ownership.
+Four native sites produce twelve target observations by reusing common output;
+neither this reuse nor the initial private checker's separate-CppAttributeList
+assumption is a reader limitation. Removing only selected prefixes within
+the real unchanged SAL aggregates and their NativeAnnotations recovers all
+other producer bytes; the original checker is preserved. No generated source,
+fixture, tooling, import workaround or API mask is introduced.
+
 ## Backlog, not established retention exceptions
 
-The locally qualified verifier continuation has 314 remaining
-definition-bearing enum records; hosted c7f540 has 315 and the preceding
+The locally qualified WinUSB continuation has 312 remaining
+definition-bearing enum records; hosted verifier15eed has 314, c7f540 has 315 and the preceding
 hosted0ce410 checkpoint has 316. Additional-use records and a separate CLR
 flag request remain distinct.
 That inventory mixes demonstrated restored closures above with unqualified

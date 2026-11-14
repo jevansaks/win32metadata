@@ -155,7 +155,7 @@ BOOL __stdcall
 WinUsb_SetPipePolicy(
     _In_  WINUSB_INTERFACE_HANDLE InterfaceHandle,
     _In_  UCHAR PipeID,
-    _In_  ULONG PolicyType,
+    _Win32_AssociatedEnum_(WINUSB_PIPE_POLICY) _In_  ULONG PolicyType,
     _In_  ULONG ValueLength,
     _In_reads_bytes_(ValueLength) PVOID Value
     );
@@ -165,7 +165,7 @@ BOOL __stdcall
 WinUsb_GetPipePolicy(
     _In_  WINUSB_INTERFACE_HANDLE InterfaceHandle,
     _In_  UCHAR PipeID,
-    _In_  ULONG PolicyType,
+    _Win32_AssociatedEnum_(WINUSB_PIPE_POLICY) _In_  ULONG PolicyType,
     _Inout_ PULONG ValueLength,
     _Out_writes_bytes_(*ValueLength) PVOID Value
     );
@@ -228,7 +228,7 @@ _Win32_SetLastError_
 BOOL __stdcall
 WinUsb_SetPowerPolicy(
     _In_  WINUSB_INTERFACE_HANDLE InterfaceHandle,
-    _In_  ULONG PolicyType,
+    _Win32_AssociatedEnum_(WINUSB_POWER_POLICY) _In_  ULONG PolicyType,
     _In_  ULONG ValueLength,
     _In_reads_bytes_(ValueLength) PVOID Value
     );
@@ -237,7 +237,7 @@ _Win32_SetLastError_
 BOOL __stdcall
 WinUsb_GetPowerPolicy(
     _In_  WINUSB_INTERFACE_HANDLE InterfaceHandle,
-    _In_  ULONG PolicyType,
+    _Win32_AssociatedEnum_(WINUSB_POWER_POLICY) _In_  ULONG PolicyType,
     _Inout_ PULONG ValueLength,
     _Out_writes_bytes_(*ValueLength) PVOID Value
     );

@@ -3371,3 +3371,6 @@ SCHANNEL_SESSION_TOKEN_FLAGS=Windows.Win32.Security.Authentication.Identity
 NCRYPT_OPERATION=Windows.Win32.Security.Cryptography
 # Current native SDK constant-group namespace owners
 VERIFIER_ENUM_RESOURCE_FLAGS=Windows.Win32.System.ApplicationVerifier
+# Current native SDK constant-group namespace owners
+WINUSB_PIPE_POLICY=Windows.Win32.Devices.Usb
+WINUSB_POWER_POLICY=Windows.Win32.Devices.Usb
