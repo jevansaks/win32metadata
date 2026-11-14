@@ -6338,26 +6338,6 @@
     ]
   },
   {
-    "name": "PROCESS_DEP_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "PROCESS_DEP_ENABLE",
-        "value": "1"
-      },
-      {
-        "name": "PROCESS_DEP_DISABLE_ATL_THUNK_EMULATION",
-        "value": "2"
-      }
-    ],
-    "uses": [
-      {
-        "method": "SetProcessDEPPolicy",
-        "parameter": "dwFlags"
-      }
-    ]
-  },
-  {
     "name": "PROCESS_NAME_FORMAT",
     "members": [
       {

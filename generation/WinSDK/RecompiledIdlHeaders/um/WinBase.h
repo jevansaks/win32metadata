@@ -1890,6 +1890,11 @@ SetThreadAffinityMask(
 
 #define PROCESS_DEP_ENABLE                          0x00000001
 #define PROCESS_DEP_DISABLE_ATL_THUNK_EMULATION     0x00000002
+
+#ifndef _WIN32METADATA_WINBASE_PROCESSDEP_1_GROUPS_
+#define _WIN32METADATA_WINBASE_PROCESSDEP_1_GROUPS_
+_Win32_FlagsEnum_(PROCESS_DEP_FLAGS, unsigned int, PROCESS_DEP_ENABLE, PROCESS_DEP_DISABLE_ATL_THUNK_EMULATION);
+#endif
 _Win32_SetLastError_
 _Win32_SupportedOS_WindowsVista_
 
@@ -1897,7 +1902,7 @@ WINBASEAPI
 BOOL
 WINAPI
 SetProcessDEPPolicy(
-    _In_ DWORD dwFlags
+    _Win32_AssociatedEnum_(PROCESS_DEP_FLAGS) _In_ DWORD dwFlags
     );
 
 WINBASEAPI

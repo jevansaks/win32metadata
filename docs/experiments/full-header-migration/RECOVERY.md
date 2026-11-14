@@ -1,14 +1,27 @@
 # Working-first recovery and sidecar reduction
 
 **Latest locally qualified migration checkpoint:**
-[HTTP initialization flags](#http-initialization-flags), above `e4fb35f9`.
-The actual local WinMD is `9AB39D0E...`; the fresh complete dump remains
+[Process DEP flags](#process-dep-flags), above `6cc18b8d`.
+The actual local WinMD is `71031816...`; the fresh complete dump remains
 `1F4F3839...`, with zero unmasked differences against the actual hosted parent.
 Fresh complete 792+151 tooling/SDK cases and 54 actual-candidate integrity
 cases pass. This continuation still requires its own ordinary exact-head
 hosted gate; rejected earlier trials remain separate.
 
 **Latest hosted-qualified migration checkpoint:**
+[HTTP initialization flags](#http-initialization-flags),
+`6cc18b8d3dd94b5673ff3f6b094300f98c363d37`, above `e4fb35f9`.
+Ordinary [run 43552560586](https://github.com/jevansaks/win32metadata/actions/runs/43552560586)
+attempt 1 passes all ten jobs. Both original actual production artifacts are
+`B223F11B...`; their independently fresh complete dump is `1F4F3839...`,
+and unmasked comparison against actual local `9AB39D0E...` is zero.
+Original standalone 768+175 and the distinct dependent-build 768+the same
+175 both preserve the exact local 943 identities and all required controls.
+Eight original archives, ten logs and synthetic checkout bindings are
+independently qualified under release `0979A65F...`. Owner inspection uses
+`511F`; independent inspection uses `E154`, not the same invocation.
+
+**Prior hosted-qualified migration checkpoint:**
 [WinUSB policies](#winusb-policies),
 `e4fb35f93945797cd9cfd26a818a9b7d6ca0be4a`, above `15eed3ca`.
 Ordinary [run 43536791650](https://github.com/jevansaks/win32metadata/actions/runs/43536791650)
@@ -90,7 +103,7 @@ all ten jobs succeed and the actual hosted WinMD is downloaded and inspected.
 The repair restores one complete DEVPROPTYPE definition, not an entire JSON
 corpus. Its fresh complete local WinMD is `5148224F...`, with the same full
 `1F4F3839...` dump, unmasked comparison zero and 54/54 integrity. The following
-tables describe the locally qualified HTTP initialization continuation inputs. The
+tables describe the locally qualified process DEP continuation inputs. The
 continuation does not inherit hosted qualification from its parent: its own
 ordinary run must independently produce and qualify the actual WinMD. Remaining inputs
 are not blanket claims of failed migration.
@@ -98,19 +111,19 @@ are not blanket claims of failed migration.
 | Inventory / units | Recovery | Current local | Net retired |
 |---|---:|---:|---:|
 | Original parameter attribute atoms | 770 | 361 | 409 |
-| All RSP value rows | 146,789 | 134,672 | 12,117 |
+| All RSP value rows | 146,789 | 134,673 | 12,116 |
 | Allowed documentation URL rows | 90,502 | 90,502 | 0 (outside backlog) |
-| Other RSP rows, mixed configuration/API units | 56,287 | 44,170 | 12,117 |
+| Other RSP rows, mixed configuration/API units | 56,287 | 44,171 | 12,116 |
 | Emitter `memberRemap` rows | 2,295 | 1,592 | 703 |
 | LastError rows | 3,362 | 468 | 2,894 |
 | Availability rows | 17,070 | 7,883 | 9,187 |
-| Enum JSON records, mixed definitions/additional uses | 1,070 | 335 | 735 |
+| Enum JSON records, mixed definitions/additional uses | 1,070 | 334 | 736 |
 | autoTypes records | 444 | 436 | 8 |
 | Function-pointer fixup records | 27 | 27 | 0 |
 
 | Remaining category | Measured local quantity | Examination state |
 |---|---:|---|
-| Definition-bearing enum records | 311 | 660 whole definitions / 5,966 emitted members / 1,382 listed SDK-native use sites remain migrated after complete restorations. The latest group adds two public associations; the preceding 13-group cohort's 31 native sites remain 25 public associations plus six unchanged non-emitting native entrypoints. Previously recorded 13 inactive use selectors and 19 non-emitting legacy member selectors remain separate. Rejected outputs and restored closures are not coverage. |
+| Definition-bearing enum records | 310 | 661 whole definitions / 5,968 emitted native members / 1,383 listed SDK-native use sites remain migrated after complete restorations. The latest group adds one public association and two native members; its existing RSP-only zero is not migrated or counted as a third native member. The preceding 13-group cohort's 31 native sites remain 25 public associations plus six unchanged non-emitting native entrypoints. Previously recorded 13 inactive use selectors and 19 non-emitting legacy member selectors remain separate. Rejected outputs and restored closures are not coverage. |
 | Additional-use enum records / selector rows | 23 / 55 | Exact retained FILE/REG/SNMP/process, STGM, COM/MIDL and Cloud closures; observed boundaries are in [PROBLEMS.md](PROBLEMS.md). |
 | Genuine CLR flags request | 1 record | Native enum use override already redundant/retired; flags effect still unqualified. |
 | Native type/storage/ownership inputs | 436 records | 424 legacy-storage / 12 native selections; genuine types remain. COLORREF storage and its redundant NativeTypedef flag are retired, not its record. BOOL/BOOLEAN and six DiagnosticDataQuery selections/producer closures remain restored; thirteen contextual cleanup records are separate boundaries, not all 436 records. |
@@ -123,10 +136,10 @@ documentation URL mappings to remain in `documentationMappings.rsp` for now.
 They are separate from the annotation-retirement backlog and are not migrated
 or removed here. No such exemption was granted to DLL mappings or other API
 metadata; their unchanged state in these bounded cohorts is not an allowance.
-The 44,170 non-documentation rows are not 44,170 semantic annotations:
+The 44,171 non-documentation rows are not 44,171 semantic annotations:
 26,376 are the checked-in scan-derived library table, 1,950 are parser/reference
-configuration, and 15,844 are mixed API/policy/parser-review rows, including
-3,156 namespace rows. The last category is neither distinct facts nor disjoint
+configuration, and 15,845 are mixed API/policy/parser-review rows, including
+3,157 namespace rows. The last category is neither distinct facts nor disjoint
 from the parameter-atom inventory. The specification makes import scanning
 the default; scan-derived rows are not 26,376 per-function header overrides.
 
@@ -140,6 +153,71 @@ rewriting history, or changing lower stack layers. This conservative batch keeps
 only the already-qualified parent header pilots. **No additional broad-migration
 header coverage is claimed.** All 737 broad patches and their sidecar retirements
 are deferred until they can be enabled in small batches that each emit.
+
+## Process DEP flags
+
+The independently locally accepted continuation retires **one complete
+PROCESS_DEP_FLAGS definition, two native members and one SDK-native site**:
+SetProcessDEPPolicy.dwFlags. PROCESS_DEP_ENABLE=1 and
+PROCESS_DEP_DISABLE_ATL_THUNK_EMULATION=2 remain native DWORD / actual
+UInt32/Flags. The whole setter and unselected GetProcessDEPPolicy getter
+retain their signatures, KERNEL32.dll imports, LastError, availability and
+documentation. Actual output has **one public association / zero absent
+sites**. Its complete three-member public enum retains the existing
+**PROCESS_DEP_NONE=0 emitter-only addition**: the entire emitter.settings.rsp
+is byte-exact, there is no shipped NONE macro, and this zero is neither
+migrated native coverage nor a newly restored fallback. Remaining JSON is
+334 records: 310 named definitions, 23 additional-use records and one genuine
+CLR flags request.
+
+The actual directly shipped owner is um/WinBase.h. WinProg is its sole
+explicit traversal; **25 total direct includes already include WinProg**,
+leaving **24 other include-only partitions**, not 25 others. Original plan
+`A9C89769...` and separate correction `705E4F3A...` are both preserved.
+All 2342 header bindings, 26 route bindings, native roots and alias/backing
+closure remain pinned. Only WinBase.h, its existing post-MIDL patch, the
+whole JSON/use record and one namespace bridge change generation inputs.
+Both old/new patches recover their exact header bytes from the shipped SDK;
+the original full **354-target replay** is retained with unchanged
+403 raw-SDK / 407 prepared-header ownership. WinBase is not a generated
+MIDL owner and no removed surface is restored.
+
+Frozen source is **258 logical / 236 physical files**. Focused and whole
+production observe all three physical x86/x64/ARM64 WinProg producers,
+with zero reused-common producers, both complete native members and the
+setter carrier. All 25 include routes are bound in whole output.
+**Strict carrier-only producer equality remains false:** exactly eighteen
+NativeTypeName locators per physical WinProg producer shift five source
+lines, preserving native line/column text. Every other body byte and the
+whole ConstantsScraper prefix match the parent. Original raw diffs and
+producers remain unnormalized. The unchanged final writer omits those
+attributes; fourteen writer inputs and 93 installed tools/tests match the
+accepted immutable parent. This is not a reader correction.
+
+Actual candidate
+`7103181637DB068A25FCD921D6F945F4FDE1B5299146EC7BDE366AD2A5287A3A`
+freshly dumps to complete raw `1F4F3839...`; the original completely unmasked
+actual B223-to-7103 comparison is zero. Owner inspection is `511F`;
+independent fresh inspection is `E154`. Genuinely new sequential
+**792/792 + 151/151**, followed by **54/54 against actual 7103**, preserve
+the exact disjoint accepted local/hosted 943 identities, distinct IDs/times,
+all 18 comparer, 24 DirectX/Media Foundation, separate 108 native no-op,
+three SERVICE, three producer replay and six native ABI controls.
+The only integrity copy is original 9AB3-to-7103 under unchanged 04DC/545A.
+Joined local evidence `9BE0E313...` and independent publication release
+`EF9B36E7...` bind source/producers `E614FF50...`, fresh actual output
+`003C94B8...`, original complete tests `085A7C41...` and live guard
+`F9146D17...`. The initial independent path-separator checker `D0D0595A...`
+is preserved; its corrected inspection changes no production source.
+
+Raw local observations are **31.38s focused; 13m40.47s whole
+headers/constants; 4m41.23s emission**, without causal attribution or an
+extra reference/benchmark run. All original 139 artifacts, HTTP archives,
+logs/tests/output, nine complete fallbacks, biometric import rejection and
+complete restoration, withdrawn unattempted RSP idea and historical
+snapshots remain frozen. No tooling, fixture, helper, reader or CI change
+is made. This publication still requires its own ordinary exact-head hosted
+output/full-test gate before another cohort.
 
 ## HTTP initialization flags
 
@@ -194,8 +272,11 @@ three SERVICE, three producer replay and six producer ABI controls. Original
 IDs/times/wrappers, unchanged 04DC/545A and the sole justified 5653-to-9AB3
 integrity copy are bound. Independent local acceptance/release is
 `A5949DA5...`; joined local evidence is `8F626159...`. This is not a reader
-correction or inherited hosted qualification: publication still needs its
-own original ordinary exact-head actual-output/full-test gate.
+correction or inherited hosted qualification. Its original exact-head
+ordinary run 43552560586 attempt 1 is now independently hosted-qualified:
+both actual B223F11B artifacts retain full 1F4F3839, unmasked 9AB3-to-B223
+comparison zero and both complete original 943 inventories. Release
+0979A65F separately accepts those original output/test/checkout bindings.
 
 Raw local observations are **20.19s focused; 13m45.41s whole
 headers/constants; 4m47.93s emission**, without causal attribution, extra

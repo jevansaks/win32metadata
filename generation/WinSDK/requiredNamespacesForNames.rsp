@@ -3376,3 +3376,5 @@ WINUSB_PIPE_POLICY=Windows.Win32.Devices.Usb
 WINUSB_POWER_POLICY=Windows.Win32.Devices.Usb
 # Current native SDK constant-group namespace owners
 HTTP_INITIALIZE=Windows.Win32.Networking.HttpServer
+# Current native SDK constant-group namespace owners
+PROCESS_DEP_FLAGS=Windows.Win32.System.Threading

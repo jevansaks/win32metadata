@@ -151,14 +151,52 @@ to complete raw 1F4F3839, and completely unmasked actual8484-to-9AB3 comparison
 is zero. Both whole signatures/enum/value/storage sets pass. New original
 sequential 792+151 and actual9AB3 integrity54 preserve exact disjoint parent
 local/hosted 943 identities and all required controls. Independent local
-release A5949DA5 accepts those gates, not this publication's pending hosted
-output/tests. The biometric Documentation import failure remains unfixed,
+release A5949DA5 accepts those local gates. Original exact-head ordinary
+run 43552560586 attempt 1 is independently hosted-qualified under release
+0979A65F: both actual B223F11B artifacts preserve full 1F4F3839, unmasked
+9AB3-to-B223 comparison zero and both original complete 943 inventories.
+Owner inspection511F remains distinct from independent E154.
+The biometric Documentation import failure remains unfixed,
 its RSP idea withdrawn and unattempted; no tooling workaround is claimed.
+
+## Qualified DEP flags and retained emitter-only zero
+
+PROCESS_DEP_FLAGS retires one complete JSON/use record, two native members
+and one setter association from actual shipped WinBase.h. Both real roots
+retain values1/2 and DWORD/UInt32/Flags; the entire setter and unselected
+getter import/signature/availability/documentation blocks remain exact.
+The existing PROCESS_DEP_NONE=0 is still an emitter-only addition, with the
+entire emitter.settings.rsp byte-exact. No native NONE macro is invented or
+counted as a third migrated member. This is a retained synthetic-zero
+ownership boundary, not a newly demonstrated reader failure or fallback.
+
+WinProg alone explicitly traverses the owner. All25 direct include routes
+include WinProg, leaving24 other include-only partitions; original planA9
+and separate correction705E remain bound. Raw inverse, original354 SDK
+replay and403/407 ownership are preserved. All three physical WinProg
+producers, with no common-file reuse, contain the full native UInt32/Flags
+set and exact setter annotation. Strict carrier-only equality remains
+**false**: exactly18 NativeTypeName locators per producer shift+5 with
+unchanged native text/columns, and every other body byte/full constant
+prefix remains exact. Original raw output is never normalized. The
+unchanged writer's deliberate attribute omission is not reader correction.
+
+Actual71031816 independently freshly dumps to full1F4F3839; completely
+unmasked original B223-to-7103 comparison is zero, including all three
+public enum members and both whole public signatures. Writer14/tools93
+equal the accepted immutable parent; owner511F and independentE154 remain
+distinct. Original new792+151 and actual7103-54 preserve exact disjoint943,
+distinct IDs/times, all18/24/separate108/3/3/6 controls and only the original
+9AB3-to-7103 integrity copy. Independent releaseEF9B accepts these local
+gates, not this head's future ordinary hosted output/tests. All previous
+fallbacks and the separate biometric import failure/restoration/withdrawn
+RSP proposal remain unchanged; no tooling or fixture workaround is added.
 
 ## Backlog, not established retention exceptions
 
-The locally qualified HTTP continuation has 311 remaining
-definition-bearing enum records; hosted WinUSB e4fb has 312, verifier15eed has 314, c7f540 has 315 and the preceding
+The locally qualified DEP continuation has 310 remaining
+definition-bearing enum records; hosted HTTP6cc has311, WinUSB e4fb has312,
+verifier15eed has314, c7f540 has315 and the preceding
 hosted0ce410 checkpoint has 316. Additional-use records and a separate CLR
 flag request remain distinct.
 That inventory mixes demonstrated restored closures above with unqualified
