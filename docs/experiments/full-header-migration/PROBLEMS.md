@@ -109,8 +109,10 @@ Both full enum blocks remain UInt32/nonflags and all four whole public signature
 match the accepted parent. Actual 56530D0B freshly dumps to complete 1F4F3839;
 unmasked comparison against actual hosted 400E8C77 is zero. Genuinely new
 792+151 and actual-candidate 54 pass the exact parent inventories and controls.
-This is independently locally accepted coverage, not hosted qualification of
-the forthcoming publication and not a fix for the documented biometric defect.
+Its exact e4fb35 ordinary run 43536791650 is independently hosted-qualified:
+both actual 848417E5 artifacts preserve full 1F4F3839 and unmasked comparison
+against local 5653 is zero. Both original complete 943 inventories and all
+required controls pass. This does not fix the documented biometric defect.
 
 Buses owns both direct shipped headers; all eleven roots have no dependent
 non-member macro aliases. The existing recipe consumes the new winusbio patch,
@@ -122,10 +124,41 @@ the real unchanged SAL aggregates and their NativeAnnotations recovers all
 other producer bytes; the original checker is preserved. No generated source,
 fixture, tooling, import workaround or API mask is introduced.
 
+## Qualified HTTP initialization continuation and preserved producer delta
+
+HTTP_INITIALIZE retires one complete JSON/use record, two members and two
+native scalar sites without changing the reader or weakening an input
+contract. UInt32/Flags, CONFIG=2, SERVER=1, separate HTTP_DEMAND_CBT=4 and
+both whole public signatures remain exact. HttpServer actually includes and
+traverses the shipped http.h owner; its existing patch preserves 354 consumed
+replay targets and 403/407 ownership. The complete raw header inverse, every
+prior annotation, all original/rejected snapshots and nine fallbacks remain.
+
+Strict producer equality after removing only the two selected carrier pairs
+is **false**. The preserved original diff 7185449E/checker 5BE50B47 records
+exactly eight NativeTypeName anonymous-record locators shifted five source
+lines; native line/column text and every other scraper-body byte are exact.
+The whole ConstantsScraper prefix equals the parent. This is not a reader
+correction: the unchanged cleaner preserves NativeTypeName, but the unchanged
+final writer deliberately omits that attribute. Original raw diff/checker,
+the initial private filtered-versus-raw Git pin assumption 459C and explicit
+checkout line-ending bindings remain preserved. No native/generated source
+normalization or output mask is used to dismiss the difference.
+
+All fourteen raw emitter inputs and 93 installed tools/tests stay pinned;
+the writer itself is raw-parent-exact 06030F83. Actual 9AB39D0E freshly dumps
+to complete raw 1F4F3839, and completely unmasked actual8484-to-9AB3 comparison
+is zero. Both whole signatures/enum/value/storage sets pass. New original
+sequential 792+151 and actual9AB3 integrity54 preserve exact disjoint parent
+local/hosted 943 identities and all required controls. Independent local
+release A5949DA5 accepts those gates, not this publication's pending hosted
+output/tests. The biometric Documentation import failure remains unfixed,
+its RSP idea withdrawn and unattempted; no tooling workaround is claimed.
+
 ## Backlog, not established retention exceptions
 
-The locally qualified WinUSB continuation has 312 remaining
-definition-bearing enum records; hosted verifier15eed has 314, c7f540 has 315 and the preceding
+The locally qualified HTTP continuation has 311 remaining
+definition-bearing enum records; hosted WinUSB e4fb has 312, verifier15eed has 314, c7f540 has 315 and the preceding
 hosted0ce410 checkpoint has 316. Additional-use records and a separate CLR
 flag request remain distinct.
 That inventory mixes demonstrated restored closures above with unqualified

@@ -6732,28 +6732,6 @@
     ]
   },
   {
-    "name": "HTTP_INITIALIZE",
-    "flags": true,
-    "members": [
-      {
-        "name": "HTTP_INITIALIZE_CONFIG"
-      },
-      {
-        "name": "HTTP_INITIALIZE_SERVER"
-      }
-    ],
-    "uses": [
-      {
-        "method": "HttpTerminate",
-        "parameter": "Flags"
-      },
-      {
-        "method": "HttpInitialize",
-        "parameter": "Flags"
-      }
-    ]
-  },
-  {
     "name": "RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE",
     "type": "ushort",
     "flags": true,

@@ -80,6 +80,11 @@ extern "C" {
 #define HTTP_INITIALIZE_CONFIG          0x00000002
 #define HTTP_DEMAND_CBT                 0x00000004
 
+#ifndef _WIN32METADATA_HTTP_HTTPINIT_1_GROUPS_
+#define _WIN32METADATA_HTTP_HTTPINIT_1_GROUPS_
+_Win32_FlagsEnum_(HTTP_INITIALIZE, unsigned int, HTTP_INITIALIZE_CONFIG, HTTP_INITIALIZE_SERVER);
+#endif
+
 
 #if _WIN32_WINNT >= 0x0600
 
@@ -3004,7 +3009,7 @@ ULONG
 WINAPI
 HttpInitialize(
     IN HTTPAPI_VERSION Version,
-    IN ULONG Flags,
+    _Win32_AssociatedEnum_(HTTP_INITIALIZE) IN ULONG Flags,
     _Reserved_ IN OUT PVOID pReserved
     );
 _Win32_SupportedOS_WindowsVista_
@@ -3015,7 +3020,7 @@ HTTPAPI_LINKAGE
 ULONG
 WINAPI
 HttpTerminate(
-    IN ULONG Flags,
+    _Win32_AssociatedEnum_(HTTP_INITIALIZE) IN ULONG Flags,
     _Reserved_ IN OUT PVOID pReserved
     );
 _Win32_SupportedOS_WindowsVista_

@@ -1,14 +1,25 @@
 # Working-first recovery and sidecar reduction
 
 **Latest locally qualified migration checkpoint:**
-[WinUSB policies](#winusb-policies), above `15eed3ca`.
-The actual local WinMD is `56530D0B...`; the fresh complete dump remains
+[HTTP initialization flags](#http-initialization-flags), above `e4fb35f9`.
+The actual local WinMD is `9AB39D0E...`; the fresh complete dump remains
 `1F4F3839...`, with zero unmasked differences against the actual hosted parent.
 Fresh complete 792+151 tooling/SDK cases and 54 actual-candidate integrity
 cases pass. This continuation still requires its own ordinary exact-head
 hosted gate; rejected earlier trials remain separate.
 
 **Latest hosted-qualified migration checkpoint:**
+[WinUSB policies](#winusb-policies),
+`e4fb35f93945797cd9cfd26a818a9b7d6ca0be4a`, above `15eed3ca`.
+Ordinary [run 43536791650](https://github.com/jevansaks/win32metadata/actions/runs/43536791650)
+attempt 1 passes all ten jobs. Both original actual production artifacts are
+`848417E5...`; their fresh complete dump is `1F4F3839...`, and unmasked
+comparison against actual local `56530D0B...` is zero. Original standalone
+768+175 and the separate dependent-build 768+the same 175 both match the
+exact local 943 identities. All eight original archives, ten original logs,
+checkout bindings and complete test inventories are independently qualified.
+
+**Prior hosted-qualified migration checkpoint:**
 [VERIFIER_ENUM_RESOURCE_FLAGS](#verifier-resource-flags),
 `15eed3cac412e47df2c6d387dbf690bcd413707b`, above `c7f54054`.
 Ordinary [run 43518019743](https://github.com/jevansaks/win32metadata/actions/runs/43518019743)
@@ -79,7 +90,7 @@ all ten jobs succeed and the actual hosted WinMD is downloaded and inspected.
 The repair restores one complete DEVPROPTYPE definition, not an entire JSON
 corpus. Its fresh complete local WinMD is `5148224F...`, with the same full
 `1F4F3839...` dump, unmasked comparison zero and 54/54 integrity. The following
-tables describe the locally qualified WinUSB continuation inputs. The
+tables describe the locally qualified HTTP initialization continuation inputs. The
 continuation does not inherit hosted qualification from its parent: its own
 ordinary run must independently produce and qualify the actual WinMD. Remaining inputs
 are not blanket claims of failed migration.
@@ -87,19 +98,19 @@ are not blanket claims of failed migration.
 | Inventory / units | Recovery | Current local | Net retired |
 |---|---:|---:|---:|
 | Original parameter attribute atoms | 770 | 361 | 409 |
-| All RSP value rows | 146,789 | 134,671 | 12,118 |
+| All RSP value rows | 146,789 | 134,672 | 12,117 |
 | Allowed documentation URL rows | 90,502 | 90,502 | 0 (outside backlog) |
-| Other RSP rows, mixed configuration/API units | 56,287 | 44,169 | 12,118 |
+| Other RSP rows, mixed configuration/API units | 56,287 | 44,170 | 12,117 |
 | Emitter `memberRemap` rows | 2,295 | 1,592 | 703 |
 | LastError rows | 3,362 | 468 | 2,894 |
 | Availability rows | 17,070 | 7,883 | 9,187 |
-| Enum JSON records, mixed definitions/additional uses | 1,070 | 336 | 734 |
+| Enum JSON records, mixed definitions/additional uses | 1,070 | 335 | 735 |
 | autoTypes records | 444 | 436 | 8 |
 | Function-pointer fixup records | 27 | 27 | 0 |
 
 | Remaining category | Measured local quantity | Examination state |
 |---|---:|---|
-| Definition-bearing enum records | 312 | 659 whole definitions / 5,964 emitted members / 1,380 listed SDK-native use sites remain migrated after complete restorations. The latest two groups add four public associations; the preceding 13-group cohort's 31 native sites remain 25 public associations plus six unchanged non-emitting native entrypoints. Previously recorded 13 inactive use selectors and 19 non-emitting legacy member selectors remain separate. Rejected outputs and restored closures are not coverage. |
+| Definition-bearing enum records | 311 | 660 whole definitions / 5,966 emitted members / 1,382 listed SDK-native use sites remain migrated after complete restorations. The latest group adds two public associations; the preceding 13-group cohort's 31 native sites remain 25 public associations plus six unchanged non-emitting native entrypoints. Previously recorded 13 inactive use selectors and 19 non-emitting legacy member selectors remain separate. Rejected outputs and restored closures are not coverage. |
 | Additional-use enum records / selector rows | 23 / 55 | Exact retained FILE/REG/SNMP/process, STGM, COM/MIDL and Cloud closures; observed boundaries are in [PROBLEMS.md](PROBLEMS.md). |
 | Genuine CLR flags request | 1 record | Native enum use override already redundant/retired; flags effect still unqualified. |
 | Native type/storage/ownership inputs | 436 records | 424 legacy-storage / 12 native selections; genuine types remain. COLORREF storage and its redundant NativeTypedef flag are retired, not its record. BOOL/BOOLEAN and six DiagnosticDataQuery selections/producer closures remain restored; thirteen contextual cleanup records are separate boundaries, not all 436 records. |
@@ -112,10 +123,10 @@ documentation URL mappings to remain in `documentationMappings.rsp` for now.
 They are separate from the annotation-retirement backlog and are not migrated
 or removed here. No such exemption was granted to DLL mappings or other API
 metadata; their unchanged state in these bounded cohorts is not an allowance.
-The 44,169 non-documentation rows are not 44,169 semantic annotations:
+The 44,170 non-documentation rows are not 44,170 semantic annotations:
 26,376 are the checked-in scan-derived library table, 1,950 are parser/reference
-configuration, and 15,843 are mixed API/policy/parser-review rows, including
-3,155 namespace rows. The last category is neither distinct facts nor disjoint
+configuration, and 15,844 are mixed API/policy/parser-review rows, including
+3,156 namespace rows. The last category is neither distinct facts nor disjoint
 from the parameter-atom inventory. The specification makes import scanning
 the default; scan-derived rows are not 26,376 per-function header overrides.
 
@@ -130,6 +141,70 @@ only the already-qualified parent header pilots. **No additional broad-migration
 header coverage is claimed.** All 737 broad patches and their sidecar retirements
 are deferred until they can be enabled in small batches that each emit.
 
+## HTTP initialization flags
+
+The independently locally accepted continuation retires **one complete
+HTTP_INITIALIZE definition, two members and two SDK-native sites**:
+HttpInitialize.Flags and HttpTerminate.Flags. CONFIG remains 2 and SERVER
+remains 1, with UInt32 storage and Flags. HTTP_DEMAND_CBT remains a separate
+unchanged constant with value 4. Both entire public signatures preserve
+the native ULONG parameters, HTTPAPI_VERSION by value, uint returns,
+HTTPAPI.dll/PreserveSig contracts, availability, documentation and optional
+In/Out/Reserved pointer facts. Actual output has **two public associations /
+zero absent sites**. Remaining JSON is 335 records: 311 named definitions,
+23 additional-use records and one genuine CLR flags request.
+
+HttpServer directly includes and traverses shipped um/http.h, which owns both
+real macro operands and whole prototypes. The pinned 2342-header alias and
+collision scan remains owner evidence; independent immutable-parent review
+does not claim to reenumerate it. The group declaration stays inside the
+existing Desktop/XP/extern-C gates. A complete raw inverse preserves every
+prior annotation and unrelated header byte. Only http.h, its existing
+post-MIDL patch, the complete JSON/use record and one namespace bridge change
+generation input. All **354 consumed targets** replay to exact live bytes,
+with unchanged 403 raw-SDK / 407 prepared-header ownership. No generated owner
+is recreated; the namespace bridge is routing configuration.
+
+Frozen source has **239 entries / 217 physical files**. Focused and complete
+production verify UInt32/Flags, both values and six reused-common target
+observations of the two native sites. **Strict producer equality after only
+the selected carrier removal is false.** The original diff `7185449E...` and
+checker `5BE50B47...` remain preserved: exactly eight NativeTypeName locators
+at original lines 1313, 1319, 1330, 1341, 1352, 1363, 1370 and 2529 shift by
+five lines, with identical native line/column text. Every other scraper-body
+byte and the full ConstantsScraper prefix match the parent. There is no
+source revision, generated-source normalization or API mask.
+
+The unchanged writer's AddCustomAttributes deliberately omits
+NativeTypeNameAttribute; the cleaner preserves it earlier. Actual writer
+source is raw-parent-exact `06030F83...`; all fourteen emitter project inputs
+and 93 installed tool/test files are pinned before emission and remain
+unchanged. The initial private pin checker `459C...` assumed a filtered Git
+hash equaled the raw blob; that failure and explicit checkout line-ending
+bindings are retained, not repaired by changing source.
+
+Actual candidate
+`9AB39D0E45BD3E82D90273E807657E281ECDD1E0CDE0E3A335B9E98E82F4C1F3`
+freshly dumps to complete raw `1F4F3839...`; completely unmasked comparison
+against independently archived actual parent `848417E5...` is zero.
+Genuinely new sequential **792/792 + 151/151**, followed by **54/54 against
+actual 9AB3**, preserve the exact disjoint local/hosted 943 identities and
+all 18 comparer, 24 DirectX/Media Foundation, separate 108 native no-op,
+three SERVICE, three producer replay and six producer ABI controls. Original
+IDs/times/wrappers, unchanged 04DC/545A and the sole justified 5653-to-9AB3
+integrity copy are bound. Independent local acceptance/release is
+`A5949DA5...`; joined local evidence is `8F626159...`. This is not a reader
+correction or inherited hosted qualification: publication still needs its
+own original ordinary exact-head actual-output/full-test gate.
+
+Raw local observations are **20.19s focused; 13m45.41s whole
+headers/constants; 4m47.93s emission**, without causal attribution, extra
+benchmarking or reference generation. All nine complete fallbacks, corrected
+initial backing-constant seed account, original ten/eight rejections,
+restored biometric import repro and withdrawn unattempted Documentation RSP
+proposal remain unchanged. cryptxml value-policy observations remain deferred
+and FONT_CHARSET unattempted.
+
 ## WinUSB policies
 
 The independently locally accepted continuation retires **two complete
@@ -140,7 +215,7 @@ WinUsb_GetPowerPolicy and WinUsb_SetPowerPolicy. Both enums remain UInt32 and
 public signatures, native ULONG/SAL, return, handle, buffer/length contracts,
 WINUSB.dll imports, LastError, availability and function documentation remain
 unchanged. Actual output has **four public associations / zero absent sites**.
-Remaining JSON is 336 records: 312 named definitions, 23 additional-use
+At this checkpoint, remaining JSON is 336 records: 312 named definitions, 23 additional-use
 records and one genuine CLR flags request.
 
 Buses directly includes and traverses both shared/winusbio.h and um/winusb.h.
@@ -176,8 +251,10 @@ Foundation, separate 108 native no-op, three SERVICE, three producer replay
 and six producer ABI controls. Unchanged 04DC/545A assemblies, original
 reports, accepted local 5EA5/both hosted 400E references and historical
 rejections are hash-bound. Independent final local acceptance/release is
-`892B5433...`; joined local evidence is `45626E0A...`. Publication still needs
-its own ordinary exact-head hosted actual-output/full-test qualification.
+`892B5433...`; joined local evidence is `45626E0A...`. Its exact e4fb35
+ordinary run 43536791650 subsequently independently qualifies both actual
+8484 artifacts, complete output and both original 943 inventories; final
+hosted acceptance/release is `989438B4...`.
 
 Raw local observations are **14.42s focused; 13m50.01s whole
 headers/constants; 5m00.26s emission**, without causal attribution, extra
