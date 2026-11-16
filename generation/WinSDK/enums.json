@@ -3480,43 +3480,6 @@
     ]
   },
   {
-    "name": "SNMP_STATUS",
-    "members": [
-      {
-        "name": "SNMPAPI_ON"
-      },
-      {
-        "name": "SNMPAPI_OFF"
-      }
-    ],
-    "uses": [
-      {
-        "method": "SnmpListen",
-        "parameter": "lStatus"
-      },
-      {
-        "method": "SnmpStartup",
-        "parameter": "nRetransmitMode"
-      },
-      {
-        "method": "SnmpSetRetransmitMode",
-        "parameter": "nRetransmitMode"
-      },
-      {
-        "method": "SnmpGetRetransmitMode",
-        "parameter": "nRetransmitMode"
-      },
-      {
-        "method": "SnmpRegister",
-        "parameter": "state"
-      },
-      {
-        "method": "SnmpStartupEx",
-        "parameter": "nRetransmitMode"
-      }
-    ]
-  },
-  {
     "name": "BCRYPT_INTERFACE",
     "members": [
       {

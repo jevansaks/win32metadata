@@ -196,6 +196,11 @@ typedef const  smiVALUE       FAR *smiLPCVALUE;
 #define SNMPAPI_OFF                0    /* Refuse support */
 #define SNMPAPI_ON                 1    /* Request support */
 
+#ifndef _WIN32METADATA_WINSNMP_SNMPSTATUS_1_GROUPS_
+#define _WIN32METADATA_WINSNMP_SNMPSTATUS_1_GROUPS_
+_Win32_Enum_(SNMP_STATUS, unsigned int, SNMPAPI_ON, SNMPAPI_OFF);
+#endif
+
 /* WinSNMP API Function Return Codes */
 typedef smiUINT32    SNMPAPI_STATUS;    /* Used for function ret values */
 #define SNMPAPI_FAILURE            0    /* Generic error code */
@@ -276,10 +281,10 @@ SNMPAPI_STATUS SNMPAPI_CALL   SnmpSetTranslateMode
                               (IN smiUINT32 nTranslateMode);
 
 SNMPAPI_STATUS SNMPAPI_CALL   SnmpGetRetransmitMode
-                              (OUT smiLPUINT32 nRetransmitMode);
+                              (_Win32_AssociatedEnum_(SNMP_STATUS) OUT smiLPUINT32 nRetransmitMode);
 
 SNMPAPI_STATUS SNMPAPI_CALL   SnmpSetRetransmitMode
-                              (IN smiUINT32 nRetransmitMode);
+                              (_Win32_AssociatedEnum_(SNMP_STATUS) IN smiUINT32 nRetransmitMode);
 
 SNMPAPI_STATUS SNMPAPI_CALL   SnmpGetTimeout
                               (IN HSNMP_ENTITY hEntity,
@@ -314,7 +319,7 @@ SNMPAPI_STATUS SNMPAPI_CALL   SnmpStartup
                               OUT smiLPUINT32 nMinorVersion,
                               OUT smiLPUINT32 nLevel,
                               OUT smiLPUINT32 nTranslateMode,
-                              OUT smiLPUINT32 nRetransmitMode);
+                              _Win32_AssociatedEnum_(SNMP_STATUS) OUT smiLPUINT32 nRetransmitMode);
 
 SNMPAPI_STATUS SNMPAPI_CALL   SnmpCleanup
                               (void);
@@ -351,7 +356,7 @@ SNMPAPI_STATUS SNMPAPI_CALL   SnmpRegister
                               IN HSNMP_ENTITY dstEntity,
                               IN HSNMP_CONTEXT context,
                               IN smiLPCOID notification,
-                              IN smiUINT32 state);
+                              _Win32_AssociatedEnum_(SNMP_STATUS) IN smiUINT32 state);
 _Win32_SupportedOS_Windows2000_
 
 /* Following Communications Functions added in v2.0 */
@@ -364,7 +369,7 @@ _Win32_SupportedOS_Windows2000_
 
 SNMPAPI_STATUS SNMPAPI_CALL   SnmpListen
                               (IN HSNMP_ENTITY hEntity,
-                              IN SNMPAPI_STATUS lStatus);
+                              _Win32_AssociatedEnum_(SNMP_STATUS) IN SNMPAPI_STATUS lStatus);
 
 SNMPAPI_STATUS SNMPAPI_CALL   SnmpListenEx
                               (IN HSNMP_ENTITY hEntity,
@@ -383,7 +388,7 @@ SNMPAPI_STATUS SNMPAPI_CALL SnmpStartupEx
                              OUT smiLPUINT32 nMinorVersion,
                              OUT smiLPUINT32 nLevel,
                              OUT smiLPUINT32 nTranslateMode,
-                             OUT smiLPUINT32 nRetransmitMode);
+                             _Win32_AssociatedEnum_(SNMP_STATUS) OUT smiLPUINT32 nRetransmitMode);
 typedef SNMPAPI_STATUS (SNMPAPI_CALL * PFNSNMPSTARTUPEX)(  smiLPUINT32,
                                                         smiLPUINT32,
                                                         smiLPUINT32,

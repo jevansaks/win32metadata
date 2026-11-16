@@ -188,14 +188,56 @@ equal the accepted immutable parent; owner511F and independentE154 remain
 distinct. Original new792+151 and actual7103-54 preserve exact disjoint943,
 distinct IDs/times, all18/24/separate108/3/3/6 controls and only the original
 9AB3-to-7103 integrity copy. Independent releaseEF9B accepts these local
-gates, not this head's future ordinary hosted output/tests. All previous
+gates. Original cdc4b56c ordinary run43569638942 attempt1 is subsequently
+independently hosted-qualified under releaseC25E4D0E: both actualBA21
+artifacts preserve full1F4F and unmasked7103-to-BA21 zero; both distinct
+original complete943 inventories and all controls pass. All previous
 fallbacks and the separate biometric import failure/restoration/withdrawn
 RSP proposal remain unchanged; no tooling or fixture workaround is added.
 
+## Qualified SNMP status and raw producer differences
+
+SNMP_STATUS retires one whole JSON/use record, two real native macros
+(ON=1/OFF=0) and six actual public associations, three scalar and three
+pointer. The complete UInt32/nonflags enum, existing IN/OUT/[In]/[In][Out],
+uint returns, imports/docs/availability and four unselected public blocks
+remain exact. Neither the SNMPAPI_STATUS return alias nor translation
+record is globally remapped. Native OFF=0 is not a synthetic zero or
+new fallback. Only shipped WinSnmp.h, its existing patch, whole JSON record
+and one namespace bridge change; Snmp alone includes/traverses the owner.
+
+All three physical producers and eighteen observations are retained.
+Main Snmp.cs strict carrier-only equality is **true**, with zero locator
+changes. Equality across all raw files is **false**: each raw
+headerConstants file gains native int OFF0/ON1, headerEnums gains the
+UInt32 enum, and generated JSON enum output disappears. The complete
+1886-path inventory is1873 byte-exact plus13 classified changes, including
+four root/emitter-transformed files; the earlier582 inventory is only
+partial. No producer normalization is used. Actual A6E3 freshly dumps
+to full1F4F and unmasked BA21-to-A6E3 comparison is zero, proving the
+selected raw constants do not leak as public Apis members.
+
+Original object-only virtual JSON equality remains **false**; actual
+whole-record-line retirement has an exact raw inverse, additionally
+removing only the selected record's two leading spaces/trailing CRLF.
+Original private checker assumptions and coordinator guard selector
+72FFC9FB remain preserved with separate corrections; immutable-parent
+hashes cover the two WinSnmp paths absent from the DEP source manifest.
+No frozen source or producer changed to satisfy these inspections.
+
+Original new792/151/actual54, exact disjoint943/all controls,354 SDK replay,
+407/403 ownership, source260/238 and unchanged writer14/tools93 pass.
+Independent local release967674F3 binds source3C1C3C55/outputD390C61F/
+testsA8B6333A/fullguard6C43BF31. Owner511F remains distinct from
+independentE154. This is locally accepted transport, not a new reader
+fix, new retention exception or inherited hosted qualification. Its own
+immutable publication and original ordinary hosted output/tests remain
+separate gates.
+
 ## Backlog, not established retention exceptions
 
-The locally qualified DEP continuation has 310 remaining
-definition-bearing enum records; hosted HTTP6cc has311, WinUSB e4fb has312,
+The locally qualified SNMP continuation has 309 remaining
+definition-bearing enum records; hosted DEPcdc4 has310, HTTP6cc has311, WinUSB e4fb has312,
 verifier15eed has314, c7f540 has315 and the preceding
 hosted0ce410 checkpoint has 316. Additional-use records and a separate CLR
 flag request remain distinct.

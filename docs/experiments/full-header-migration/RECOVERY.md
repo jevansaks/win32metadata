@@ -1,14 +1,28 @@
 # Working-first recovery and sidecar reduction
 
 **Latest locally qualified migration checkpoint:**
-[Process DEP flags](#process-dep-flags), above `6cc18b8d`.
-The actual local WinMD is `71031816...`; the fresh complete dump remains
+[SNMP status](#snmp-status), above `cdc4b56c`.
+The actual local WinMD is `A6E3CDC5...`; the fresh complete dump remains
 `1F4F3839...`, with zero unmasked differences against the actual hosted parent.
 Fresh complete 792+151 tooling/SDK cases and 54 actual-candidate integrity
 cases pass. This continuation still requires its own ordinary exact-head
 hosted gate; rejected earlier trials remain separate.
 
 **Latest hosted-qualified migration checkpoint:**
+[Process DEP flags](#process-dep-flags),
+`cdc4b56cbbd5eb71bf2eabca191d1c625146f618`, above `6cc18b8d`.
+Ordinary [run 43569638942](https://github.com/jevansaks/win32metadata/actions/runs/43569638942)
+attempt 1 passes all ten jobs. Both original actual production artifacts are
+`BA215FA9...`; their independently fresh complete dump is `1F4F3839...`,
+and unmasked comparison against actual local `71031816...` is zero.
+Original standalone 768+175 and the distinct dependent-build 768+the same
+175 preserve the exact local 943 identities and all required controls.
+Eight original archives, ten logs and synthetic checkout bindings are
+independently qualified under release `C25E4D0E...`. The retained emitter-only
+NONE=0 and original eighteen locator shifts per physical producer remain
+separate from native migration coverage and unchanged actual output.
+
+**Prior hosted-qualified migration checkpoint:**
 [HTTP initialization flags](#http-initialization-flags),
 `6cc18b8d3dd94b5673ff3f6b094300f98c363d37`, above `e4fb35f9`.
 Ordinary [run 43552560586](https://github.com/jevansaks/win32metadata/actions/runs/43552560586)
@@ -103,7 +117,7 @@ all ten jobs succeed and the actual hosted WinMD is downloaded and inspected.
 The repair restores one complete DEVPROPTYPE definition, not an entire JSON
 corpus. Its fresh complete local WinMD is `5148224F...`, with the same full
 `1F4F3839...` dump, unmasked comparison zero and 54/54 integrity. The following
-tables describe the locally qualified process DEP continuation inputs. The
+tables describe the locally qualified SNMP status continuation inputs. The
 continuation does not inherit hosted qualification from its parent: its own
 ordinary run must independently produce and qualify the actual WinMD. Remaining inputs
 are not blanket claims of failed migration.
@@ -111,19 +125,19 @@ are not blanket claims of failed migration.
 | Inventory / units | Recovery | Current local | Net retired |
 |---|---:|---:|---:|
 | Original parameter attribute atoms | 770 | 361 | 409 |
-| All RSP value rows | 146,789 | 134,673 | 12,116 |
+| All RSP value rows | 146,789 | 134,674 | 12,115 |
 | Allowed documentation URL rows | 90,502 | 90,502 | 0 (outside backlog) |
-| Other RSP rows, mixed configuration/API units | 56,287 | 44,171 | 12,116 |
+| Other RSP rows, mixed configuration/API units | 56,287 | 44,172 | 12,115 |
 | Emitter `memberRemap` rows | 2,295 | 1,592 | 703 |
 | LastError rows | 3,362 | 468 | 2,894 |
 | Availability rows | 17,070 | 7,883 | 9,187 |
-| Enum JSON records, mixed definitions/additional uses | 1,070 | 334 | 736 |
+| Enum JSON records, mixed definitions/additional uses | 1,070 | 333 | 737 |
 | autoTypes records | 444 | 436 | 8 |
 | Function-pointer fixup records | 27 | 27 | 0 |
 
 | Remaining category | Measured local quantity | Examination state |
 |---|---:|---|
-| Definition-bearing enum records | 310 | 661 whole definitions / 5,968 emitted native members / 1,383 listed SDK-native use sites remain migrated after complete restorations. The latest group adds one public association and two native members; its existing RSP-only zero is not migrated or counted as a third native member. The preceding 13-group cohort's 31 native sites remain 25 public associations plus six unchanged non-emitting native entrypoints. Previously recorded 13 inactive use selectors and 19 non-emitting legacy member selectors remain separate. Rejected outputs and restored closures are not coverage. |
+| Definition-bearing enum records | 309 | 662 whole definitions / 5,970 emitted native members / 1,389 listed SDK-native use sites remain migrated after complete restorations. The latest SNMP group adds six public associations and two real native members, including OFF=0. The preceding DEP group's existing RSP-only zero remains unmigrated and uncounted as a native member. The preceding 13-group cohort's 31 native sites remain 25 public associations plus six unchanged non-emitting native entrypoints. Previously recorded 13 inactive use selectors and 19 non-emitting legacy member selectors remain separate. Rejected outputs and restored closures are not coverage. |
 | Additional-use enum records / selector rows | 23 / 55 | Exact retained FILE/REG/SNMP/process, STGM, COM/MIDL and Cloud closures; observed boundaries are in [PROBLEMS.md](PROBLEMS.md). |
 | Genuine CLR flags request | 1 record | Native enum use override already redundant/retired; flags effect still unqualified. |
 | Native type/storage/ownership inputs | 436 records | 424 legacy-storage / 12 native selections; genuine types remain. COLORREF storage and its redundant NativeTypedef flag are retired, not its record. BOOL/BOOLEAN and six DiagnosticDataQuery selections/producer closures remain restored; thirteen contextual cleanup records are separate boundaries, not all 436 records. |
@@ -136,10 +150,10 @@ documentation URL mappings to remain in `documentationMappings.rsp` for now.
 They are separate from the annotation-retirement backlog and are not migrated
 or removed here. No such exemption was granted to DLL mappings or other API
 metadata; their unchanged state in these bounded cohorts is not an allowance.
-The 44,171 non-documentation rows are not 44,171 semantic annotations:
+The 44,172 non-documentation rows are not 44,172 semantic annotations:
 26,376 are the checked-in scan-derived library table, 1,950 are parser/reference
-configuration, and 15,845 are mixed API/policy/parser-review rows, including
-3,157 namespace rows. The last category is neither distinct facts nor disjoint
+configuration, and 15,846 are mixed API/policy/parser-review rows, including
+3,158 namespace rows. The last category is neither distinct facts nor disjoint
 from the parameter-atom inventory. The specification makes import scanning
 the default; scan-derived rows are not 26,376 per-function header overrides.
 
@@ -153,6 +167,74 @@ rewriting history, or changing lower stack layers. This conservative batch keeps
 only the already-qualified parent header pilots. **No additional broad-migration
 header coverage is claimed.** All 737 broad patches and their sidecar retirements
 are deferred until they can be enabled in small batches that each emit.
+
+## SNMP status
+
+The independently locally accepted continuation retires **one complete
+SNMP_STATUS definition, two native members and six SDK-native sites**.
+SNMPAPI_ON=1 and SNMPAPI_OFF=0 are both real shipped macros, with actual
+UInt32 storage and no Flags attribute. The six public associations are
+SnmpListen.lStatus, SnmpSetRetransmitMode.nRetransmitMode,
+SnmpRegister.state, and the nRetransmitMode pointers in SnmpGetRetransmitMode,
+SnmpStartup and SnmpStartupEx: **three scalar / three pointer, six public /
+zero absent**. Existing IN/OUT tokens, actual [In]/[In][Out], uint returns
+through SNMPAPI_STATUS, all other parameters, imports, documentation and
+availability remain exact. SnmpListenEx's uint lStatus, the complete
+PFNSNMPSTARTUPEX delegate and both translation APIs/record are unchanged.
+There is no global return-alias remap or new fallback.
+
+Only actual shipped um/WinSnmp.h, its existing post-MIDL patch, the whole
+JSON/use record and one namespace bridge change generation inputs.
+Snmp is the sole direct include and explicit traversal, with no other
+include-only partition. All 2342 native headers and 644 route files remain
+bound. Frozen source `A862AB17...` has **260 logical / 238 physical files**;
+the original **354-target SDK replay** recovers every live header under
+unchanged 403 raw / 407 prepared MIDL ownership. WinSnmp is not a generated
+MIDL output. The entire emitter RSP remains unchanged.
+
+Focused and whole production retain three physical Snmp producers, nine
+raw producer files and eighteen association observations, with no common
+reuse. **Main Snmp.cs carrier-only equality is true, with zero changed
+NativeTypeName locators; all raw-file equality is false.** Each native
+headerConstants file gains exactly int OFF=0/ON=1, headerEnums gains the
+UInt32/nonflags group, and the old generated JSON enum is retired.
+Complete inventory covers **1886 C# paths: 1873 byte-exact / thirteen
+classified changes**, including four root/emitter-transformed paths.
+The initial 582 first-level inventory remains explicitly partial.
+Original raw diffs are preserved without normalization. Actual output,
+not an assumed suppression rule, proves no selected member constants leak
+into public Apis.
+
+Actual candidate
+`A6E3CDC595D38CB74325BD7636A4694C5412BA71D44931E6DADC09811DFF49E9`
+freshly dumps to complete `1F4F3839...`; wholly unmasked actual BA21-to-A6E3
+comparison is zero, including both enum members, all six whole selected
+blocks and four unselected public blocks. Unchanged writer14/tools93 remain
+bound; owner inspection is `511F`, distinct from independent `E154`.
+New original sequential **792/792 + 151/151**, then **54/54 against actual
+A6E3**, preserve exact disjoint local/hosted 943 identities, distinct IDs
+and times, all18/24/separate108/3/3/6 controls, and only the original
+7103-to-A6E3 integrity copy.
+
+Original join `E7871760...` and independent publication release
+`967674F3...` bind independent source `3C1C3C55...`, actual output
+`D390C61F...`, original tests `A8B6333A...` and full guard `6C43BF31...`.
+The original virtual object-only JSON span remains strictly unequal;
+the exact full-record-line inverse additionally removes only its two
+leading spaces and trailing CRLF. Original private marker, constant-file
+and inventory-checker failures/corrections are preserved, not source fixes.
+The coordinator's original `72FFC9FB...` guard selector and separate
+correction preserve immutable-parent hashes for two paths absent from the
+DEP manifest; they do not imply those paths were in that manifest.
+
+Raw observations are **14.45s focused; 13m33.78s whole headers/constants;
+4m32.96s emission**, without causal attribution or an extra benchmark.
+All earlier rejected snapshots, original139 artifacts, nine complete
+fallbacks, biometric import failure/restoration and withdrawn unattempted
+RSP proposal remain preserved. No tooling/helper/reader/fixture/CI change
+is made. Reports describe local acceptance only: this head still needs
+independent immutable publication review and its own ordinary hosted
+actual-output/full-test qualification before another cohort.
 
 ## Process DEP flags
 
@@ -216,8 +298,14 @@ extra reference/benchmark run. All original 139 artifacts, HTTP archives,
 logs/tests/output, nine complete fallbacks, biometric import rejection and
 complete restoration, withdrawn unattempted RSP idea and historical
 snapshots remain frozen. No tooling, fixture, helper, reader or CI change
-is made. This publication still requires its own ordinary exact-head hosted
-output/full-test gate before another cohort.
+is made. Its original exact-head ordinary run 43569638942 attempt 1 is
+subsequently independently qualified under release `C25E4D0E...`: all ten
+jobs pass, both actual BA215FA9 artifacts freshly dump to full1F4F3839,
+and unmasked 7103-to-BA21 comparison is zero. Original standalone768+175
+and distinct dependent-build768+the same175 retain exact943/all controls,
+with eight full archives, ten logs and synthetic checkout bindings.
+Original raw hosted x86 1247.69s / emission 319.67s remain archived alongside
+earlier increases, without causal attribution. Owner511F is not independentE154.
 
 ## HTTP initialization flags
 

@@ -3378,3 +3378,4 @@ WINUSB_POWER_POLICY=Windows.Win32.Devices.Usb
 HTTP_INITIALIZE=Windows.Win32.Networking.HttpServer
 # Current native SDK constant-group namespace owners
 PROCESS_DEP_FLAGS=Windows.Win32.System.Threading
+SNMP_STATUS=Windows.Win32.NetworkManagement.Snmp
