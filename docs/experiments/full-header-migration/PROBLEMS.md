@@ -234,10 +234,49 @@ fix, new retention exception or inherited hosted qualification. Its own
 immutable publication and original ordinary hosted output/tests remain
 separate gates.
 
+## Qualified SNMP translation mode and preserved inspection failures
+
+SNMP_API_TRANSLATE_MODE retires its complete three-member/four-use JSON
+record using actual shipped WinSnmp.h: TRANSLATED=0, UNTRANSLATED_V1=1
+and UNTRANSLATED_V2=2 are all real roots, with actual UInt32/nonflags
+storage. One scalar and three pointer associations preserve complete
+public imports/docs/availability, native IN/OUT, actual [In]/[In][Out],
+uint returns and six unselected public blocks. All accepted SNMP_STATUS
+sites and overlapping startup retransmit parameters remain exact. There
+is no global typedef/return-alias remap or emitter RSP change.
+
+Original focused and whole output each retain three physical producers,
+nine raw files and twelve selected observations, with no common reuse.
+Main carrier-only equality is **true**, with zero NativeTypeName locator
+changes; all raw-file equality is **false**. The complete **1886 =
+1873 byte-exact + thirteen classified** inventory retains native int
+0/1/2 constants, the native UInt32 enum, the whole generated JSON enum's
+retirement and corresponding emitter transforms without normalization.
+Actual46E5 freshly dumps to full1F4F; wholly unmasked actual133F-to-46E5
+comparison is zero and proves no selected public constant leakage.
+Owner511F and independentE154 are distinct.
+
+Original new792/151/actual54, exact disjoint943/all controls, sole
+A6E3-to-46E5 integrity copy, source66B/260/238,354 SDK replay,
+407/403 ownership and unchanged writer14/tools93 are independently
+accepted under release8716DC50. The new full-record-line JSON inverse
+is exact; previous SNMP status inverse scopes remain unchanged.
+Three original private inspection failures and their separate corrections
+are retained, not called reader defects: a parent-test receipt selector
+needed its existing local-join hop; a post-actual54 guard and a later
+join both misapplied historical pre-copy bin bindings after the
+explicitly required copy. The original54 passed before that post-guard
+threw. Only the exact mutable bin observation uses the original wrapper's
+hashes/times; every other preservation binding remains byte-exact.
+No scientific execution or copy was repeated. This is qualified input
+transport, not a tooling fix; independent immutable publication and this
+head's own ordinary hosted output/full tests remain separate gates.
+
 ## Backlog, not established retention exceptions
 
-The locally qualified SNMP continuation has 309 remaining
-definition-bearing enum records; hosted DEPcdc4 has310, HTTP6cc has311, WinUSB e4fb has312,
+The locally qualified SNMP translation continuation has 308 remaining
+definition-bearing enum records; hosted SNMP status32629854 has309,
+DEPcdc4 has310, HTTP6cc has311, WinUSB e4fb has312,
 verifier15eed has314, c7f540 has315 and the preceding
 hosted0ce410 checkpoint has 316. Additional-use records and a separate CLR
 flag request remain distinct.

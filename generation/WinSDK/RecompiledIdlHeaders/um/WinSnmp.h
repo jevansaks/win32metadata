@@ -186,6 +186,11 @@ typedef const  smiVALUE       FAR *smiLPCVALUE;
 #define SNMPAPI_UNTRANSLATED_V1    1
 #define SNMPAPI_UNTRANSLATED_V2    2
 
+#ifndef _WIN32METADATA_WINSNMP_SNMPTRANSLATE_1_GROUPS_
+#define _WIN32METADATA_WINSNMP_SNMPTRANSLATE_1_GROUPS_
+_Win32_Enum_(SNMP_API_TRANSLATE_MODE, unsigned int, SNMPAPI_TRANSLATED, SNMPAPI_UNTRANSLATED_V1, SNMPAPI_UNTRANSLATED_V2);
+#endif
+
 /* Values used to indicate "SNMP level" supported by the implementation */
 #define SNMPAPI_NO_SUPPORT         0
 #define SNMPAPI_V1_SUPPORT         1
@@ -275,10 +280,10 @@ _Win32_SupportedOS_Windows2000_
 
 /* Local Database Functions */
 SNMPAPI_STATUS SNMPAPI_CALL   SnmpGetTranslateMode
-                              (OUT smiLPUINT32 nTranslateMode);
+                              (_Win32_AssociatedEnum_(SNMP_API_TRANSLATE_MODE) OUT smiLPUINT32 nTranslateMode);
 
 SNMPAPI_STATUS SNMPAPI_CALL   SnmpSetTranslateMode
-                              (IN smiUINT32 nTranslateMode);
+                              (_Win32_AssociatedEnum_(SNMP_API_TRANSLATE_MODE) IN smiUINT32 nTranslateMode);
 
 SNMPAPI_STATUS SNMPAPI_CALL   SnmpGetRetransmitMode
                               (_Win32_AssociatedEnum_(SNMP_STATUS) OUT smiLPUINT32 nRetransmitMode);
@@ -318,7 +323,7 @@ SNMPAPI_STATUS SNMPAPI_CALL   SnmpStartup
                               (OUT smiLPUINT32 nMajorVersion,
                               OUT smiLPUINT32 nMinorVersion,
                               OUT smiLPUINT32 nLevel,
-                              OUT smiLPUINT32 nTranslateMode,
+                              _Win32_AssociatedEnum_(SNMP_API_TRANSLATE_MODE) OUT smiLPUINT32 nTranslateMode,
                               _Win32_AssociatedEnum_(SNMP_STATUS) OUT smiLPUINT32 nRetransmitMode);
 
 SNMPAPI_STATUS SNMPAPI_CALL   SnmpCleanup
@@ -387,7 +392,7 @@ SNMPAPI_STATUS SNMPAPI_CALL SnmpStartupEx
                             (OUT smiLPUINT32 nMajorVersion,
                              OUT smiLPUINT32 nMinorVersion,
                              OUT smiLPUINT32 nLevel,
-                             OUT smiLPUINT32 nTranslateMode,
+                             _Win32_AssociatedEnum_(SNMP_API_TRANSLATE_MODE) OUT smiLPUINT32 nTranslateMode,
                              _Win32_AssociatedEnum_(SNMP_STATUS) OUT smiLPUINT32 nRetransmitMode);
 typedef SNMPAPI_STATUS (SNMPAPI_CALL * PFNSNMPSTARTUPEX)(  smiLPUINT32,
                                                         smiLPUINT32,

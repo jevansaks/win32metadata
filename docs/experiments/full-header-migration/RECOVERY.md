@@ -1,14 +1,30 @@
 # Working-first recovery and sidecar reduction
 
 **Latest locally qualified migration checkpoint:**
-[SNMP status](#snmp-status), above `cdc4b56c`.
-The actual local WinMD is `A6E3CDC5...`; the fresh complete dump remains
+[SNMP translation mode](#snmp-translation-mode), above `32629854`.
+The actual local WinMD is `46E5A144...`; the fresh complete dump remains
 `1F4F3839...`, with zero unmasked differences against the actual hosted parent.
 Fresh complete 792+151 tooling/SDK cases and 54 actual-candidate integrity
 cases pass. This continuation still requires its own ordinary exact-head
 hosted gate; rejected earlier trials remain separate.
 
 **Latest hosted-qualified migration checkpoint:**
+[SNMP status](#snmp-status),
+`3262985403a5c4c308545726ec41b60d06d3ad8a`, above `cdc4b56c`.
+Ordinary [run 43803176424](https://github.com/jevansaks/win32metadata/actions/runs/43803176424)
+attempt 1 passes all ten jobs. Both original actual production artifacts are
+`133F0EA1...`; their independently fresh complete dump is `1F4F3839...`,
+and unmasked comparison against actual local `A6E3CDC5...` is zero.
+Original standalone 768+175 and the distinct dependent-build 768+the same
+175 preserve the exact local 943 identities and all required controls.
+Eight original archives, ten logs and synthetic checkout bindings are
+independently qualified under release `95C26F5C...`. Main Snmp carrier-only
+equality is true with zero locator changes; all raw-file equality remains
+false. The original object-only JSON inverse remains false, with a separate
+exact full-record-line inverse. These are preserved evidence scopes, not
+reader fixes or qualification inherited by the translation continuation.
+
+**Prior hosted-qualified migration checkpoint:**
 [Process DEP flags](#process-dep-flags),
 `cdc4b56cbbd5eb71bf2eabca191d1c625146f618`, above `6cc18b8d`.
 Ordinary [run 43569638942](https://github.com/jevansaks/win32metadata/actions/runs/43569638942)
@@ -117,7 +133,7 @@ all ten jobs succeed and the actual hosted WinMD is downloaded and inspected.
 The repair restores one complete DEVPROPTYPE definition, not an entire JSON
 corpus. Its fresh complete local WinMD is `5148224F...`, with the same full
 `1F4F3839...` dump, unmasked comparison zero and 54/54 integrity. The following
-tables describe the locally qualified SNMP status continuation inputs. The
+tables describe the locally qualified SNMP translation continuation inputs. The
 continuation does not inherit hosted qualification from its parent: its own
 ordinary run must independently produce and qualify the actual WinMD. Remaining inputs
 are not blanket claims of failed migration.
@@ -125,19 +141,19 @@ are not blanket claims of failed migration.
 | Inventory / units | Recovery | Current local | Net retired |
 |---|---:|---:|---:|
 | Original parameter attribute atoms | 770 | 361 | 409 |
-| All RSP value rows | 146,789 | 134,674 | 12,115 |
+| All RSP value rows | 146,789 | 134,675 | 12,114 |
 | Allowed documentation URL rows | 90,502 | 90,502 | 0 (outside backlog) |
-| Other RSP rows, mixed configuration/API units | 56,287 | 44,172 | 12,115 |
+| Other RSP rows, mixed configuration/API units | 56,287 | 44,173 | 12,114 |
 | Emitter `memberRemap` rows | 2,295 | 1,592 | 703 |
 | LastError rows | 3,362 | 468 | 2,894 |
 | Availability rows | 17,070 | 7,883 | 9,187 |
-| Enum JSON records, mixed definitions/additional uses | 1,070 | 333 | 737 |
+| Enum JSON records, mixed definitions/additional uses | 1,070 | 332 | 738 |
 | autoTypes records | 444 | 436 | 8 |
 | Function-pointer fixup records | 27 | 27 | 0 |
 
 | Remaining category | Measured local quantity | Examination state |
 |---|---:|---|
-| Definition-bearing enum records | 309 | 662 whole definitions / 5,970 emitted native members / 1,389 listed SDK-native use sites remain migrated after complete restorations. The latest SNMP group adds six public associations and two real native members, including OFF=0. The preceding DEP group's existing RSP-only zero remains unmigrated and uncounted as a native member. The preceding 13-group cohort's 31 native sites remain 25 public associations plus six unchanged non-emitting native entrypoints. Previously recorded 13 inactive use selectors and 19 non-emitting legacy member selectors remain separate. Rejected outputs and restored closures are not coverage. |
+| Definition-bearing enum records | 308 | 663 whole definitions / 5,973 emitted native members / 1,393 listed SDK-native use sites remain migrated after complete restorations. The latest SNMP translation group adds four public associations and three real native members, including TRANSLATED=0. The accepted SNMP status group and its six associations remain exact. The preceding DEP group's existing RSP-only zero remains unmigrated and uncounted as a native member. The preceding 13-group cohort's 31 native sites remain 25 public associations plus six unchanged non-emitting native entrypoints. Previously recorded 13 inactive use selectors and 19 non-emitting legacy member selectors remain separate. Rejected outputs and restored closures are not coverage. |
 | Additional-use enum records / selector rows | 23 / 55 | Exact retained FILE/REG/SNMP/process, STGM, COM/MIDL and Cloud closures; observed boundaries are in [PROBLEMS.md](PROBLEMS.md). |
 | Genuine CLR flags request | 1 record | Native enum use override already redundant/retired; flags effect still unqualified. |
 | Native type/storage/ownership inputs | 436 records | 424 legacy-storage / 12 native selections; genuine types remain. COLORREF storage and its redundant NativeTypedef flag are retired, not its record. BOOL/BOOLEAN and six DiagnosticDataQuery selections/producer closures remain restored; thirteen contextual cleanup records are separate boundaries, not all 436 records. |
@@ -150,10 +166,10 @@ documentation URL mappings to remain in `documentationMappings.rsp` for now.
 They are separate from the annotation-retirement backlog and are not migrated
 or removed here. No such exemption was granted to DLL mappings or other API
 metadata; their unchanged state in these bounded cohorts is not an allowance.
-The 44,172 non-documentation rows are not 44,172 semantic annotations:
+The 44,173 non-documentation rows are not 44,173 semantic annotations:
 26,376 are the checked-in scan-derived library table, 1,950 are parser/reference
-configuration, and 15,846 are mixed API/policy/parser-review rows, including
-3,158 namespace rows. The last category is neither distinct facts nor disjoint
+configuration, and 15,847 are mixed API/policy/parser-review rows, including
+3,159 namespace rows. The last category is neither distinct facts nor disjoint
 from the parameter-atom inventory. The specification makes import scanning
 the default; scan-derived rows are not 26,376 per-function header overrides.
 
@@ -167,6 +183,72 @@ rewriting history, or changing lower stack layers. This conservative batch keeps
 only the already-qualified parent header pilots. **No additional broad-migration
 header coverage is claimed.** All 737 broad patches and their sidecar retirements
 are deferred until they can be enabled in small batches that each emit.
+
+## SNMP translation mode
+
+The independently locally accepted continuation retires **one complete
+SNMP_API_TRANSLATE_MODE definition, three real native members and four
+SDK-native sites**. SNMPAPI_TRANSLATED=0, SNMPAPI_UNTRANSLATED_V1=1 and
+SNMPAPI_UNTRANSLATED_V2=2 retain actual UInt32/nonflags storage. The scalar
+SnmpSetTranslateMode parameter and the SnmpGetTranslateMode, SnmpStartup
+and SnmpStartupEx pointers preserve their complete imports, documentation,
+availability, existing IN/OUT/[In]/[In][Out] and uint returns. All six
+accepted SNMP_STATUS carriers, its declaration and the overlapping startup
+retransmit parameters remain exact, as do six whole unselected public
+blocks, including PFNSNMPSTARTUPEX and SnmpListenEx's uint lStatus.
+Neither smiUINT32 branch nor SNMPAPI_STATUS is globally remapped.
+
+Only existing shipped WinSnmp.h, its existing post-MIDL patch, the whole
+JSON/use record and one namespace bridge change generation inputs.
+Frozen source `66B73883...` remains **260 logical / 238 physical files**.
+The original **354-target SDK replay**, unchanged **403 raw / 407 prepared**
+MIDL ownership, all 2342 headers and 644 route files are bound. Snmp alone
+includes and explicitly traverses the owner; no other include-only route,
+emitter RSP change, new fallback or tooling workaround is introduced.
+
+The original focused and whole productions each retain **three physical
+Snmp producers, nine raw files and twelve association observations**, with
+no common reuse. Main Snmp.cs carrier-only equality is **true**, with zero
+changed NativeTypeName locators and an identical whole ConstantsScraper
+prefix. All raw-file equality is **false**: native int 0/1/2 constants and
+the UInt32/nonflags header enum appear, while the whole JSON enum retires.
+The complete inventory is **1886 paths = 1873 byte-exact + thirteen
+classified changes**, including root/emitter-transformed files. Raw diffs
+are preserved without normalization. The planned full-record-line JSON
+inverse is exact; the preceding status cohort's object-only false and
+separate full-line true remain unchanged historical observations.
+
+Actual candidate
+`46E5A144EECB3A2065621304FC8EB3503EDBC536D80E6D816696401D8750E076`
+freshly dumps through unchanged owner `511F` to complete `1F4F3839...`;
+wholly unmasked actual 133F-to-46E5 comparison is zero. Independent `E154`
+freshly verifies that same complete output, all three enum members, four
+whole selected blocks, six whole unselected blocks and absence of selected
+public Apis constants. Writer14/tools93 remain unchanged.
+
+Genuinely new original sequential **792/792 + 151/151**, followed by
+**54/54 against actual46E5**, preserve exact disjoint local/hosted943,
+distinct IDs/times, all18/24/separate12+12/108/3/3/6 controls and only the
+original A6E3-to-46E5 integrity copy. Three original private inspection
+failures remain preserved with separate corrections: an initially direct
+parent-test receipt selector needed its existing local-join hop; the
+post-actual54 guard rejected its stale parent-bin binding after the tests
+passed; the original join similarly compared a historical pre-copy bin
+observation with the current bin. Only the exact authorized mutable bin
+transition uses the original wrapper's before/after hashes and times.
+Every other preservation binding is rehashed. No test, copy, replay,
+source production or candidate was repeated or changed for these checks.
+
+Original join `41037D2B...` and independent publication release
+`8716DC50...` bind source/producers `E1167243...`, original tests
+`0713D841...`, fresh actual output `279FB39D...` and full guard
+`57E8FE39...`. Raw observations are **15.36s focused; 13m41.80s whole
+headers/constants; 4m34.80s emission**, without a causal claim or extra
+benchmark. All historical timing increases, fallbacks, biometric import
+failure/restoration and withdrawn unattempted RSP proposal remain preserved.
+This publication does not inherit hosted qualification: its own original
+ordinary exact-head output/full-test gate and independent immutable
+publication review remain mandatory. No next cohort is selected.
 
 ## SNMP status
 

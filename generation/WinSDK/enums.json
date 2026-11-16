@@ -2110,38 +2110,6 @@
     ]
   },
   {
-    "name": "SNMP_API_TRANSLATE_MODE",
-    "members": [
-      {
-        "name": "SNMPAPI_TRANSLATED"
-      },
-      {
-        "name": "SNMPAPI_UNTRANSLATED_V1"
-      },
-      {
-        "name": "SNMPAPI_UNTRANSLATED_V2"
-      }
-    ],
-    "uses": [
-      {
-        "method": "SnmpStartupEx",
-        "parameter": "nTranslateMode"
-      },
-      {
-        "method": "SnmpGetTranslateMode",
-        "parameter": "nTranslateMode"
-      },
-      {
-        "method": "SnmpSetTranslateMode",
-        "parameter": "nTranslateMode"
-      },
-      {
-        "method": "SnmpStartup",
-        "parameter": "nTranslateMode"
-      }
-    ]
-  },
-  {
     "name": "ACC_UTILITY_STATE_FLAGS",
     "flags": true,
     "members": [

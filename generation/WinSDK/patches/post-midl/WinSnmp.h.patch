@@ -7,7 +7,19 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinSnmp.h b/generation/Wi
  /* WinSNMP.h */
  /* Copyright (C) 1993-1999 Microsoft Corporation */
  /* v1.0 - Sep 13, 1993 */
-@@ -194,6 +195,11 @@
+@@ -185,6 +186,11 @@
+ #define SNMPAPI_UNTRANSLATED_V1    1
+ #define SNMPAPI_UNTRANSLATED_V2    2
+ 
++#ifndef _WIN32METADATA_WINSNMP_SNMPTRANSLATE_1_GROUPS_
++#define _WIN32METADATA_WINSNMP_SNMPTRANSLATE_1_GROUPS_
++_Win32_Enum_(SNMP_API_TRANSLATE_MODE, unsigned int, SNMPAPI_TRANSLATED, SNMPAPI_UNTRANSLATED_V1, SNMPAPI_UNTRANSLATED_V2);
++#endif
++
+ /* Values used to indicate "SNMP level" supported by the implementation */
+ #define SNMPAPI_NO_SUPPORT         0
+ #define SNMPAPI_V1_SUPPORT         1
+@@ -194,6 +200,11 @@
  /* Values used to indicate retransmit mode in the implementation */
  #define SNMPAPI_OFF                0    /* Refuse support */
  #define SNMPAPI_ON                 1    /* Request support */
@@ -19,7 +31,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinSnmp.h b/generation/Wi
  
  /* WinSNMP API Function Return Codes */
  typedef smiUINT32    SNMPAPI_STATUS;    /* Used for function ret values */
-@@ -265,6 +271,7 @@
+@@ -265,59 +276,68 @@
                           IN WPARAM wParam,
                           IN LPARAM lParam,
                           IN LPVOID lpClientData);
@@ -27,8 +39,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinSnmp.h b/generation/Wi
  
  /* Local Database Functions */
  SNMPAPI_STATUS SNMPAPI_CALL   SnmpGetTranslateMode
-@@ -274,32 +281,37 @@
-                               (IN smiUINT32 nTranslateMode);
+-                              (OUT smiLPUINT32 nTranslateMode);
++                              (_Win32_AssociatedEnum_(SNMP_API_TRANSLATE_MODE) OUT smiLPUINT32 nTranslateMode);
+ 
+ SNMPAPI_STATUS SNMPAPI_CALL   SnmpSetTranslateMode
+-                              (IN smiUINT32 nTranslateMode);
++                              (_Win32_AssociatedEnum_(SNMP_API_TRANSLATE_MODE) IN smiUINT32 nTranslateMode);
  
  SNMPAPI_STATUS SNMPAPI_CALL   SnmpGetRetransmitMode
 -                              (OUT smiLPUINT32 nRetransmitMode);
@@ -67,11 +83,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinSnmp.h b/generation/Wi
  
  /* Communications Functions */
  SNMPAPI_STATUS SNMPAPI_CALL   SnmpStartup
-@@ -307,17 +319,20 @@
+                               (OUT smiLPUINT32 nMajorVersion,
                                OUT smiLPUINT32 nMinorVersion,
                                OUT smiLPUINT32 nLevel,
-                               OUT smiLPUINT32 nTranslateMode,
+-                              OUT smiLPUINT32 nTranslateMode,
 -                              OUT smiLPUINT32 nRetransmitMode);
++                              _Win32_AssociatedEnum_(SNMP_API_TRANSLATE_MODE) OUT smiLPUINT32 nTranslateMode,
 +                              _Win32_AssociatedEnum_(SNMP_STATUS) OUT smiLPUINT32 nRetransmitMode);
  
  SNMPAPI_STATUS SNMPAPI_CALL   SnmpCleanup
@@ -89,7 +106,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinSnmp.h b/generation/Wi
  
  SNMPAPI_STATUS SNMPAPI_CALL   SnmpSendMsg
                                (IN HSNMP_SESSION session,
-@@ -325,6 +340,7 @@
+@@ -325,6 +345,7 @@
                                IN HSNMP_ENTITY dstEntity,
                                IN HSNMP_CONTEXT context,
                                IN HSNMP_PDU PDU);
@@ -97,7 +114,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinSnmp.h b/generation/Wi
  
  SNMPAPI_STATUS SNMPAPI_CALL   SnmpRecvMsg
                                (IN HSNMP_SESSION session,
-@@ -332,6 +348,7 @@
+@@ -332,6 +353,7 @@
                                OUT LPHSNMP_ENTITY dstEntity,
                                OUT LPHSNMP_CONTEXT  context,
                                OUT LPHSNMP_PDU PDU);
@@ -105,7 +122,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinSnmp.h b/generation/Wi
  
  SNMPAPI_STATUS SNMPAPI_CALL   SnmpRegister
                                (IN HSNMP_SESSION session,
-@@ -339,7 +356,8 @@
+@@ -339,7 +361,8 @@
                                IN HSNMP_ENTITY dstEntity,
                                IN HSNMP_CONTEXT context,
                                IN smiLPCOID notification,
@@ -115,7 +132,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinSnmp.h b/generation/Wi
  
  /* Following Communications Functions added in v2.0 */
  HSNMP_SESSION  SNMPAPI_CALL   SnmpCreateSession
-@@ -347,19 +365,22 @@
+@@ -347,64 +370,76 @@
                                IN UINT wMsg,
                                IN SNMPAPI_CALLBACK fCallBack,
                                IN LPVOID lpClientData);
@@ -139,11 +156,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinSnmp.h b/generation/Wi
  
  /* Extensions to Communications Functions */
  SNMPAPI_STATUS SNMPAPI_CALL SnmpStartupEx 
-@@ -367,44 +388,53 @@
+                             (OUT smiLPUINT32 nMajorVersion,
                               OUT smiLPUINT32 nMinorVersion,
                               OUT smiLPUINT32 nLevel,
-                              OUT smiLPUINT32 nTranslateMode,
+-                             OUT smiLPUINT32 nTranslateMode,
 -                             OUT smiLPUINT32 nRetransmitMode);
++                             _Win32_AssociatedEnum_(SNMP_API_TRANSLATE_MODE) OUT smiLPUINT32 nTranslateMode,
 +                             _Win32_AssociatedEnum_(SNMP_STATUS) OUT smiLPUINT32 nRetransmitMode);
  typedef SNMPAPI_STATUS (SNMPAPI_CALL * PFNSNMPSTARTUPEX)(  smiLPUINT32,
                                                          smiLPUINT32,
@@ -194,7 +212,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinSnmp.h b/generation/Wi
  
  /* PDU Functions */
  HSNMP_PDU      SNMPAPI_CALL   SnmpCreatePdu
-@@ -414,6 +444,7 @@
+@@ -414,6 +449,7 @@
                                IN smiINT error_status,
                                IN smiINT error_index,
                                IN HSNMP_VBL varbindlist);
@@ -202,7 +220,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinSnmp.h b/generation/Wi
  
  SNMPAPI_STATUS SNMPAPI_CALL   SnmpGetPduData
                                (IN HSNMP_PDU PDU,
-@@ -422,6 +453,7 @@
+@@ -422,6 +458,7 @@
                                OUT smiLPINT error_status,
                                OUT smiLPINT error_index,
                                OUT LPHSNMP_VBL varbindlist);
@@ -210,7 +228,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinSnmp.h b/generation/Wi
  
  SNMPAPI_STATUS SNMPAPI_CALL   SnmpSetPduData
                                (IN HSNMP_PDU PDU,
-@@ -430,68 +462,83 @@
+@@ -430,68 +467,83 @@
                                IN const smiINT FAR *non_repeaters,
                                IN const smiINT FAR *max_repetitions,
                                IN const HSNMP_VBL FAR *varbindlist);
@@ -294,7 +312,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinSnmp.h b/generation/Wi
  
  SNMPAPI_STATUS SNMPAPI_CALL   SnmpEncodeMsg
                                (IN HSNMP_SESSION session,
-@@ -500,6 +547,7 @@
+@@ -500,6 +552,7 @@
                                IN HSNMP_CONTEXT context,
                                IN HSNMP_PDU pdu,
                                OUT smiLPOCTETS msgBufDesc);
@@ -302,7 +320,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinSnmp.h b/generation/Wi
  
  SNMPAPI_STATUS SNMPAPI_CALL   SnmpDecodeMsg
                                (IN HSNMP_SESSION session,
-@@ -508,6 +556,7 @@
+@@ -508,6 +561,7 @@
                                OUT LPHSNMP_CONTEXT context,
                                OUT LPHSNMP_PDU pdu,
                                IN smiLPCOCTETS msgBufDesc);

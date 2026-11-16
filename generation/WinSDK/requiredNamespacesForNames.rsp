@@ -3379,3 +3379,4 @@ HTTP_INITIALIZE=Windows.Win32.Networking.HttpServer
 # Current native SDK constant-group namespace owners
 PROCESS_DEP_FLAGS=Windows.Win32.System.Threading
 SNMP_STATUS=Windows.Win32.NetworkManagement.Snmp
+SNMP_API_TRANSLATE_MODE=Windows.Win32.NetworkManagement.Snmp
