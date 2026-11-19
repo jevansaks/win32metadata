@@ -1,5 +1,8 @@
 #include <win32metadata_annotations.h>
 #include <winapifamily.h>
+#if defined(WIN32METADATA) && defined(__clang__)
+#include <cderr.h>
+#endif
 
 /************************************************************************
 *                                                                       *

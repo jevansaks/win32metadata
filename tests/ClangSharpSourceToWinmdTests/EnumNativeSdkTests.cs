@@ -24,6 +24,43 @@ namespace ClangSharpSourceToWinmdTests
         [DataRow("i686-pc-windows-msvc")]
         [DataRow("x86_64-pc-windows-msvc")]
         [DataRow("aarch64-pc-windows-msvc")]
+        public void CommonDialogConsumer_ResolvesItsNativeErrorDefinition(string target)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            string headers = Path.Combine(LastErrorHeaderTests.RepositoryRoot(), "generation", "WinSDK", "RecompiledIdlHeaders");
+            string dialogs = File.ReadAllText(Path.Combine(headers, "um", "commdlg.h"));
+            string declarations = "#define WINCOMMDLGAPI\n#define APIENTRY __stdcall\n#define VOID void\n" +
+                "typedef unsigned long DWORD;\n" + Slice(dialogs, @"\A[\s\S]*?(?=/\*)") +
+                Slice(dialogs, @"_Win32_AssociatedEnum_\(COMMON_DLG_ERRORS\)\s+WINCOMMDLGAPI DWORD APIENTRY CommDlgExtendedError\([^;]+;");
+            var result = fixture.Scrape(declarations, target, sal: true,
+                extraSettings: "--traverse\n" + Path.Combine(fixture.DirectoryPath, "cderr.h"),
+                headers: new Dictionary<string, string>
+                {
+                    ["winapifamily.h"] = "",
+                    ["cderr.h"] = File.ReadAllText(Path.Combine(headers, "shared", "cderr.h")),
+                });
+            Save(Path.Combine(fixture.DirectoryPath, "input.h"), "commdlg-consumer-" + target + ".h");
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            string path = fixture.Emit();
+            Save(path, "commdlg-consumer-" + target + ".winmd");
+            using var pe = new PEReader(File.OpenRead(path));
+            var reader = pe.GetMetadataReader();
+            var method = reader.MethodDefinitions.Select(reader.GetMethodDefinition)
+                .Single(method => reader.GetString(method.Name) == "CommDlgExtendedError");
+            var parameter = method.GetParameters().Select(reader.GetParameter)
+                .Single(parameter => parameter.SequenceNumber == 0);
+            CollectionAssert.AreEqual(new[] { "COMMON_DLG_ERRORS" },
+                EnumAssociationHeaderTests.StringAttributes(reader, parameter.GetCustomAttributes(), "AssociatedEnumAttribute"));
+            var type = NativeTypedefHeaderTests.Type(reader, "COMMON_DLG_ERRORS");
+            EnumAssociationHeaderTests.AssertSignature(reader,
+                type.GetFields().Select(reader.GetFieldDefinition)
+                    .Single(field => reader.GetString(field.Name) == "value__").Signature, 0, SignatureTypeCode.UInt32);
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
         public void ThemeAndDialogGroups_PreserveMembersAndNativeIntegerUses(string target)
         {
             using var fixture = new LastErrorHeaderTests.Fixture();

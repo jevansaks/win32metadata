@@ -76,6 +76,22 @@ qualifies `7723abba`, not this new checkpoint. The original unexplained
 CI-only maintenance may fix failing checks, but does not authorize review changes,
 conflict resolution, external-consumer edits, stack mutation or merging.
 
+The published through-mixer19 head's first ordinary
+[run 44441448903](https://github.com/jevansaks/win32metadata/actions/runs/44441448903)
+exposes a real consumer-definition dependency in all three KernelStreaming
+targets and eight common-architecture consumers: commdlg.h references `COMMON_DLG_ERRORS` without
+including cderr.h. The narrow repair adds that owning include only under the
+metadata-Clang guard, with the corresponding original-SDK patch and an
+actual-prologue regression on all three targets. The earlier sliced fixture
+manually supplied the missing header and did not cover this dependency.
+No native declaration, enum value, sidecar inventory or reader validation changes.
+Refreshing all nine failed owners plus DlgBox produces the exact accepted
+mixer19 WinMD and complete API dump above. The full 1,904-producer inventory
+retains every declaration body; 16 companion files only refresh their preambles
+to the already-qualified Audio preambles.
+The original run remains separate from the repair's fresh qualification and
+next exact-head hosted gate.
+
 ## Preserved earlier checkpoints
 
 **Earlier locally qualified migration checkpoint:**
