@@ -1959,7 +1959,7 @@ typedef struct tagMIXERLINEA {
     DWORD       dwLineID;               /* unique line id for mixer device */
     DWORD       fdwLine;                /* state/information about line */
     DWORD_PTR   dwUser;                 /* driver specific information */
-    DWORD       dwComponentType;        /* component type line connects to */
+    _Win32_AssociatedEnum_(MIXERLINE_COMPONENTTYPE) DWORD       dwComponentType;        /* component type line connects to */
     DWORD       cChannels;              /* number of channels line supports */
     DWORD       cConnections;           /* number of connections [possible] */
     DWORD       cControls;              /* number of controls at this line */
@@ -1981,7 +1981,7 @@ typedef struct tagMIXERLINEW {
     DWORD       dwLineID;               /* unique line id for mixer device */
     DWORD       fdwLine;                /* state/information about line */
     DWORD_PTR   dwUser;                 /* driver specific information */
-    DWORD       dwComponentType;        /* component type line connects to */
+    _Win32_AssociatedEnum_(MIXERLINE_COMPONENTTYPE) DWORD       dwComponentType;        /* component type line connects to */
     DWORD       cChannels;              /* number of channels line supports */
     DWORD       cConnections;           /* number of connections [possible] */
     DWORD       cControls;              /* number of controls at this line */
@@ -2014,7 +2014,7 @@ typedef struct tMIXERLINE {
     DWORD       dwLineID;               /* unique line id for mixer device */
     DWORD       fdwLine;                /* state/information about line */
     DWORD       dwUser;                 /* driver specific information */
-    DWORD       dwComponentType;        /* component type line connects to */
+    _Win32_AssociatedEnum_(MIXERLINE_COMPONENTTYPE) DWORD       dwComponentType;        /* component type line connects to */
     DWORD       cChannels;              /* number of channels line supports */
     DWORD       cConnections;           /* number of connections [possible] */
     DWORD       cControls;              /* number of controls at this line */
@@ -2070,6 +2070,7 @@ typedef struct tMIXERLINE {
 #define MIXERLINE_COMPONENTTYPE_SRC_AUXILIARY   (MIXERLINE_COMPONENTTYPE_SRC_FIRST + 9)
 #define MIXERLINE_COMPONENTTYPE_SRC_ANALOG      (MIXERLINE_COMPONENTTYPE_SRC_FIRST + 10)
 #define MIXERLINE_COMPONENTTYPE_SRC_LAST        (MIXERLINE_COMPONENTTYPE_SRC_FIRST + 10)
+_Win32_Enum_(MIXERLINE_COMPONENTTYPE, unsigned int, MIXERLINE_COMPONENTTYPE_DST_DIGITAL, MIXERLINE_COMPONENTTYPE_DST_HEADPHONES, MIXERLINE_COMPONENTTYPE_DST_LINE, MIXERLINE_COMPONENTTYPE_DST_MONITOR, MIXERLINE_COMPONENTTYPE_DST_SPEAKERS, MIXERLINE_COMPONENTTYPE_DST_TELEPHONE, MIXERLINE_COMPONENTTYPE_DST_UNDEFINED, MIXERLINE_COMPONENTTYPE_DST_VOICEIN, MIXERLINE_COMPONENTTYPE_DST_WAVEIN, MIXERLINE_COMPONENTTYPE_SRC_ANALOG, MIXERLINE_COMPONENTTYPE_SRC_AUXILIARY, MIXERLINE_COMPONENTTYPE_SRC_COMPACTDISC, MIXERLINE_COMPONENTTYPE_SRC_DIGITAL, MIXERLINE_COMPONENTTYPE_SRC_LINE, MIXERLINE_COMPONENTTYPE_SRC_MICROPHONE, MIXERLINE_COMPONENTTYPE_SRC_PCSPEAKER, MIXERLINE_COMPONENTTYPE_SRC_SYNTHESIZER, MIXERLINE_COMPONENTTYPE_SRC_TELEPHONE, MIXERLINE_COMPONENTTYPE_SRC_UNDEFINED, MIXERLINE_COMPONENTTYPE_SRC_WAVEOUT);
 
 /* */
 /*  MIXERLINE.Target.dwType */

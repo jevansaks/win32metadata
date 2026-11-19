@@ -60,15 +60,20 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/commdlg.h b/generation/Wi
  WINCOMMDLGAPI HWND APIENTRY ReplaceTextW(LPFINDREPLACEW);
  #ifdef UNICODE
  #define ReplaceText  ReplaceTextW
-@@ -1153,6 +1164,7 @@
+@@ -1153,8 +1164,10 @@
  typedef const DEVNAMES *PCDEVNAMES;
  
  #define DN_DEFAULTPRN      0x0001
+-
+-
 +_Win32_SupportedOS_Windows2000_
- 
- 
++
++
++_Win32_AssociatedEnum_(COMMON_DLG_ERRORS)
  WINCOMMDLGAPI DWORD APIENTRY CommDlgExtendedError(VOID);
-@@ -1266,3 +1278,33 @@
+ 
+ #if(WINVER >= 0x0400)
+@@ -1266,3 +1279,33 @@
  #pragma warning(pop)
  #endif
  

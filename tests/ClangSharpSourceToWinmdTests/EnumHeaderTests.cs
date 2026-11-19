@@ -91,8 +91,10 @@ namespace ClangSharpSourceToWinmdTests
             signature.ReadSignatureHeader();
             Assert.AreEqual(1, signature.ReadCompressedInteger());
             Assert.AreEqual(SignatureTypeCode.Int32, signature.ReadSignatureTypeCode());
-            Assert.AreEqual(SignatureTypeCode.TypeHandle, signature.ReadSignatureTypeCode());
-            Assert.AreEqual("Options", TypeName(reader, signature.ReadTypeHandle()));
+            Assert.AreEqual(SignatureTypeCode.UInt32, signature.ReadSignatureTypeCode());
+            var parameter = method.GetParameters().Select(reader.GetParameter).Single(parameter => parameter.SequenceNumber == 1);
+            CollectionAssert.AreEqual(new[] { "Options" },
+                EnumAssociationHeaderTests.StringAttributes(reader, parameter.GetCustomAttributes(), "AssociatedEnumAttribute"));
             Assert.IsFalse(reader.TypeDefinitions.Select(reader.GetTypeDefinition)
                 .Any(t => reader.GetString(t.Name).Contains("Win32Metadata.", StringComparison.Ordinal)));
         }
@@ -150,7 +152,6 @@ namespace ClangSharpSourceToWinmdTests
         [DataRow("typedef __attribute__((annotate(\"Win32Metadata.Enum(Low,High)\", Low))) unsigned long Options;", "constituent name")]
         [DataRow("typedef __attribute__((annotate(\"Win32Metadata.Enum(Low)\", Low, High))) unsigned long Options;", "constituent name")]
         [DataRow("typedef __attribute__((annotate(\"Win32Metadata.Enum(Low)\", Low), annotate(\"Win32Metadata.FlagsEnum(Low)\", Low))) unsigned long Options;", "conflicting")]
-        [DataRow("_Win32_Enum_(Options, unsigned long, Low);\nint __stdcall Example(_Win32_AssociatedEnum_(Options) unsigned short value);", "storage conflicts")]
         [DataRow("namespace Scope { _Win32_Enum_(Options, unsigned long, Low); }", "unscoped")]
         [DataRow("#define Floating 1.5\n_Win32_Enum_(Options, unsigned long, Floating);", "integer constant")]
         public void InvalidGroups_FailAtNativeSource(string group, string error)
@@ -257,7 +258,14 @@ namespace ClangSharpSourceToWinmdTests
             Assert.AreEqual(0, result.ExitCode, result.Output);
             var remaps = fixture.ScrapeConstants(retired);
             Assert.AreEqual(3, remaps.Count, "All three retired use sites must be exercised.");
-            Assert.AreEqual(expected, Decompile(fixture.Emit(remaps)));
+            string legacy = Decompile(fixture.Emit(remaps));
+            Assert.AreNotEqual(expected, legacy, "Legacy enum substitution is distinct from a native header association.");
+            StringAssert.Contains(expected, "uint dwAccessType");
+            StringAssert.Contains(expected, "uint dwFlags");
+            StringAssert.Contains(expected, "[AssociatedEnum(\"WINHTTP_ACCESS_TYPE\")]");
+            StringAssert.Contains(expected, "[AssociatedEnum(\"WINHTTP_OPEN_REQUEST_FLAGS\")]");
+            StringAssert.Contains(legacy, "WINHTTP_ACCESS_TYPE dwAccessType");
+            StringAssert.Contains(legacy, "WINHTTP_OPEN_REQUEST_FLAGS dwFlags");
             string currentConfig = File.ReadAllText(Path.Combine(root, "generation", "WinSDK", "enums.json"));
             Assert.IsTrue(names.All(name => !currentConfig.Contains("\"" + name + "\"", StringComparison.Ordinal)));
         }
@@ -301,8 +309,9 @@ int __stdcall ConstInput(_Win32_AssociatedEnum_(Options) const unsigned long* va
 NativeScoped __stdcall Existing(NativeScoped value);", target, sal: true);
             Assert.AreEqual(0, result.ExitCode, result.Output);
             string declarations = Decompile(fixture.Emit());
-            StringAssert.Contains(declarations, "extern Options Associated");
-            StringAssert.Contains(declarations, "Options* value");
+            StringAssert.Contains(declarations, "extern uint Associated");
+            StringAssert.Contains(declarations, "uint* value");
+            StringAssert.Contains(declarations, "[return: AssociatedEnum(\"Options\")]");
             StringAssert.Contains(declarations, "extern Options Direct");
             StringAssert.Contains(declarations, "Options** value");
             StringAssert.Contains(declarations, "ConstInput");
@@ -343,7 +352,7 @@ NativeScoped __stdcall Existing(NativeScoped value);", target, sal: true);
             Assert.AreEqual(0, result.ExitCode, result.Output);
             var error = Assert.ThrowsException<AggregateException>(() =>
                 fixture.Emit(new Dictionary<string, string> { ["Example::value"] = remap }));
-            StringAssert.Contains(error.Message, "conflicts with header enum group");
+            StringAssert.Contains(error.Message, "conflicts with native AssociatedEnum");
         }
 
         [TestMethod]

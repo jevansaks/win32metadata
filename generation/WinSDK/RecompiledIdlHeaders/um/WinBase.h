@@ -3248,7 +3248,7 @@ WINAPI
 IsTextUnicode(
     _In_reads_bytes_(iSize) CONST VOID* lpv,
     _In_        int iSize,
-    _Inout_opt_ LPINT lpiResult
+    _Win32_AssociatedEnum_(IS_TEXT_UNICODE_RESULT) _Inout_opt_ LPINT lpiResult
     );
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM) */

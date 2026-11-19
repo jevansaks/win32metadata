@@ -115,7 +115,7 @@ SnmpMgrRequest(
     IN     LPSNMP_MGR_SESSION session,           // SNMP session pointer
     IN     BYTE               requestType,       // Get, GetNext, or Set
     IN OUT RFC1157VarBindList *variableBindings, // Varible bindings
-       OUT AsnInteger         *errorStatus,      // Result error status
+       _Win32_AssociatedEnum_(SNMP_ERROR_STATUS) OUT AsnInteger         *errorStatus,      // Result error status
        OUT AsnInteger         *errorIndex        // Result error index
     );
 _Win32_SupportedOS_Windows2000_
@@ -149,7 +149,7 @@ SNMP_FUNC_TYPE
 SnmpMgrGetTrap(
     OUT AsnObjectIdentifier *enterprise,         // Generating enterprise
     OUT AsnNetworkAddress   *IPAddress,          // Generating IP address
-    OUT AsnInteger          *genericTrap,        // Generic trap type
+    _Win32_AssociatedEnum_(SNMP_GENERICTRAP) OUT AsnInteger          *genericTrap,        // Generic trap type
     OUT AsnInteger          *specificTrap,       // Enterprise specific type
     OUT AsnTimeticks        *timeStamp,          // Time stamp
     OUT RFC1157VarBindList  *variableBindings    // Variable bindings
@@ -162,7 +162,7 @@ SnmpMgrGetTrapEx(
     OUT AsnObjectIdentifier *enterprise,       // Generating enterprise
     OUT AsnNetworkAddress   *agentAddress,     // Generating agent addr
     OUT AsnNetworkAddress   *sourceAddress,    // Generating network addr
-    OUT AsnInteger          *genericTrap,      // Generic trap type
+    _Win32_AssociatedEnum_(SNMP_GENERICTRAP) OUT AsnInteger          *genericTrap,      // Generic trap type
     OUT AsnInteger          *specificTrap,     // Enterprise specific type
     OUT AsnOctetString      *community,        // Generating community
     OUT AsnTimeticks        *timeStamp,        // Time stamp

@@ -1,12 +1,45 @@
 # Retained migration problems
 
 These are restoration boundaries, not reasons to stop unrelated header work.
-Production readers, helper, SAL converter and CI remain unchanged. Exact
+The initial broad experiment left production tooling unchanged; the accepted
+through-mixer19 continuation now includes narrow reader/emitter fixes within the
+existing contract. The original failures below remain historical evidence,
+not blanket claims that their every previously restored selector is still blocked.
+Exact
 historical repros and raw diagnostics are retained in [README.md](README.md)
 and [RECOVERY.md](RECOVERY.md); the current counts are at the top of
 RECOVERY.md. A rejected trial is not migrated coverage.
 
-| Class | Exact closure / observed evidence | Current restoration state | Narrow follow-up |
+## Accepted continuation and remaining boundaries
+
+The independently reviewed continuation retires 40 complete enum records,
+23 complete callback-fixup records and 106 manual emitter rows. It retains
+292 enum records, four callback selectors and all 436 autoTypes records.
+
+| Finding | Accepted correction / retained evidence | Remaining boundary |
+|---|---|---|
+| Native callback transport and ownership | Complete selected callback records now derive their aliases and invoke contracts from native declarations and SAL. A real certificate-selection traversal exposed a foreign-owner reduction; the resolver guard now precedes both bare-function branches. The original wrong candidate remains excluded even though its generic integrity suite passed. | `PTHREAD_START_ROUTINE`, `INTERNET_STATUS_CALLBACK`, `PBMCALLBACKFN` and `LPFNADDPROPSHEETPAGE` remain sidecars. Do not infer identity or ownership from an alias spelling alone. |
+| Anonymous defining fields versus synthetic carriers | The two DEVMODE A/W groups now cover all four actual nested fields. Copied AssociatedEnum is ignored only on synthetic IndirectFieldDecl/ref-property targets; defining storage fields retain it. Complete layout/member/storage and unmasked output checks accompany the focused repros. | This is not blanket qualification of every formerly restored anonymous-field or cross-owner group. |
+| Mistaken sidecar membership | PANOSE's four position-table indices are removed from value-group member lists. All 113 genuine value members and 20 sentinel aliases remain; the four native uint position globals remain unmasked. The incorrect first trial and its separate corrected qualification are both preserved. | Do not put an index into a value group merely to preserve old WinMD membership. |
+| Mistaken sidecar values, storage or omitted native constants | MODEM settings use genuine native values rather than capability bits; selected WinBio/GDI/TBS/PDH/restore-point/PeerDist associations are qualified at their actual native declarations. Genuine native additions such as WCTP_OPEN_ALL_FLAGS and CERT_SELECT_LAST are retained under the user's header-authoritative instruction. | Native evidence and the entire output difference must still establish identity, ownership, value and ABI. Unexplained changes remain blockers; no exclusion/mask is introduced to reproduce a sidecar mistake. |
+| Fixture setup versus product defects | Original missing native dependencies, wrong target typedefs, missing CHAR projection and compiler/setup failures remain separate from genuine missing-association or reader failures. Final fixtures use actual SDK declarations/macros and assert native ABI as well as emitted contracts. | A repaired fixture is not itself a production reader fix. The historical unexplained Fixture.Apply timeout remains recorded despite later passing suites. |
+| Fresh complete publication gate: stale fixture expectations/context | The original 998 tooling cases retain four Winapi1-versus-Cdecl2 retval/vtable failures; the original 175 SDK cases retain one stale Uxtheme comment-proof patch failure. Six independent MSVC C/C++ compilations prove the exact native stdcall field and the distinct-x86/unified-64-bit ABI. The repair aligns the vtable assertion with the existing named callback's Winapi expectation and refreshes only the test patch's unchanged-context lines. | Production inputs/output are unchanged. Keep all original failed source/DLL/log/TRX evidence and require separate fresh complete qualification. The measured 23m03s/22m29s whole-suite durations justify 40-minute job budgets, not a change to any individual test timeout. |
+
+Major accepted checkpoints are now authorized for publication and exact-head CI
+qualification. A previous head's green checks do not qualify the next one.
+CI-only app maintenance does not permit merges, stack/base changes, unrelated
+review edits or external-consumer work. Contextual NCRYPT ownership, nine CLR
+exceptions, converter/ownership closures without new qualification, and the
+previous external-consumer namespace/U2 and VARCMP conversion failures remain
+outside this checkpoint's claims.
+
+## Preserved historical trials
+
+The following table records each trial's restoration state at the time.
+Where a later accepted cohort resolves a selector, its separately qualified
+source/output supersedes that restoration; the failed trial is not rewritten.
+
+| Class | Exact closure / observed evidence | Historical restoration state | Narrow follow-up |
 |---|---|---|---|
 | Demonstrated clean-generation definition leak | Exact `350e73c0` hosted run 43338802835 passes all architecture scrapes but fails emission with `Unknown or malformed owned annotation 'Win32Metadata.Enum(DEVPROP_TYPEMOD_ARRAY, ...)'`. Emitting the untouched hosted artifacts in workflow merge order reproduces it. `DeviceQuery.cs:482` attaches the DEVPROPTYPE definition annotation to `DEVPROPERTY.Type`. | Complete original 30-member auto-populated JSON definition restored; genuine native typedef/header bytes preserved; helper/group patch and routing bridge removed. Fresh local `5148224F...` and actual hosted `8FC4AA51...` preserve full raw output. Exact-`d3a0` ordinary run 43359091013 passes all ten jobs, including 54 integrity cases; the older local binary alone was not clean-CI qualification. | Keep this complete fallback until definition-only native typedef annotations cannot leak to transitive field consumers. Trace the reader transfer in a later tooling layer; do not make the owned-annotation parser ignore it or edit generated C#. |
 | Fixture dependency / obsolete projection expectation | All three COM sliced-header controls lack EMBDHLP_FLAGS after its independent definition migration; all three mapped-view cleanup controls lack FILE_MAP before reaching the intended const cleanup check. Historical versus current whole-WinMD equality also enforces an intentionally retired enum shape. | COM now supplies the actual EMBDHLP definition and asserts twelve COM contracts; current header-only versus redundant COM overrides retains byte equality. Cleanup uses the pinned SDK declaration. All six targeted cases and the complete 768-case tooling suite pass in exact-`d3a0` hosted CI. | Maintain tests of replacement contracts, not fictional historical structure. Keep genuine cleanup rejection and unrelated metadata preservation. |

@@ -7,7 +7,128 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  #include <winapifamily.h>
  
  /**************************************************************************
-@@ -3850,58 +3851,81 @@
+@@ -210,6 +211,8 @@
+ #define DCB_SET         (DCB_RESET | DCB_ACCUMULATE)
+ #define DCB_ENABLE      0x0004
+ #define DCB_DISABLE     0x0008
++
++_Win32_Enum_(SET_BOUNDS_RECT_FLAGS, unsigned int, DCB_ACCUMULATE, DCB_DISABLE, DCB_ENABLE, DCB_RESET);
+ 
+ #ifndef NOMETAFILE
+ 
+@@ -585,6 +588,8 @@
+ #define MWT_MIN             MWT_IDENTITY
+ #define MWT_MAX             MWT_RIGHTMULTIPLY
+ 
++_Win32_Enum_(MODIFY_WORLD_TRANSFORM_MODE, unsigned int, MWT_IDENTITY, MWT_LEFTMULTIPLY, MWT_RIGHTMULTIPLY);
++
+ #define _XFORM_
+ 
+ #pragma region Application Family
+@@ -1685,16 +1690,16 @@
+ 
+ typedef struct tagPANOSE
+ {
+-    BYTE    bFamilyType;
+-    BYTE    bSerifStyle;
+-    BYTE    bWeight;
+-    BYTE    bProportion;
+-    BYTE    bContrast;
+-    BYTE    bStrokeVariation;
+-    BYTE    bArmStyle;
+-    BYTE    bLetterform;
+-    BYTE    bMidline;
+-    BYTE    bXHeight;
++    _Win32_AssociatedEnum_(PAN_FAMILY_TYPE) BYTE    bFamilyType;
++    _Win32_AssociatedEnum_(PAN_SERIF_STYLE) BYTE    bSerifStyle;
++    _Win32_AssociatedEnum_(PAN_WEIGHT) BYTE    bWeight;
++    _Win32_AssociatedEnum_(PAN_PROPORTION) BYTE    bProportion;
++    _Win32_AssociatedEnum_(PAN_CONTRAST) BYTE    bContrast;
++    _Win32_AssociatedEnum_(PAN_STROKE_VARIATION) BYTE    bStrokeVariation;
++    _Win32_AssociatedEnum_(PAN_ARM_STYLE) BYTE    bArmStyle;
++    _Win32_AssociatedEnum_(PAN_LETT_FORM) BYTE    bLetterform;
++    _Win32_AssociatedEnum_(PAN_MIDLINE) BYTE    bMidline;
++    _Win32_AssociatedEnum_(PAN_XHEIGHT) BYTE    bXHeight;
+ } PANOSE, * LPPANOSE;
+ 
+ #define PAN_ANY                         0 /* Any                            */
+@@ -1803,6 +1808,39 @@
+ #define PAN_XHEIGHT_DUCKING_STD         6 /* Ducking/Standard               */
+ #define PAN_XHEIGHT_DUCKING_LARGE       7 /* Ducking/Large                  */
+ 
++#if defined(WIN32METADATA) && defined(__clang__)
++// Preserve the existing public names for the two shared native sentinels.
++const unsigned char PAN_FAMILY_ANY = PAN_ANY;
++const unsigned char PAN_FAMILY_NO_FIT = PAN_NO_FIT;
++const unsigned char PAN_SERIF_ANY = PAN_ANY;
++const unsigned char PAN_SERIF_NO_FIT = PAN_NO_FIT;
++const unsigned char PAN_WEIGHT_ANY = PAN_ANY;
++const unsigned char PAN_WEIGHT_NO_FIT = PAN_NO_FIT;
++const unsigned char PAN_STROKE_ANY = PAN_ANY;
++const unsigned char PAN_STROKE_NO_FIT = PAN_NO_FIT;
++const unsigned char PAN_PROP_ANY = PAN_ANY;
++const unsigned char PAN_PROP_NO_FIT = PAN_NO_FIT;
++const unsigned char PAN_CONTRAST_ANY = PAN_ANY;
++const unsigned char PAN_CONTRAST_NO_FIT = PAN_NO_FIT;
++const unsigned char PAN_ARM_ANY = PAN_ANY;
++const unsigned char PAN_ARM_NO_FIT = PAN_NO_FIT;
++const unsigned char PAN_LETT_FORM_ANY = PAN_ANY;
++const unsigned char PAN_LETT_FORM_NO_FIT = PAN_NO_FIT;
++const unsigned char PAN_MIDLINE_ANY = PAN_ANY;
++const unsigned char PAN_MIDLINE_NO_FIT = PAN_NO_FIT;
++const unsigned char PAN_XHEIGHT_ANY = PAN_ANY;
++const unsigned char PAN_XHEIGHT_NO_FIT = PAN_NO_FIT;
++_Win32_Enum_(PAN_FAMILY_TYPE, unsigned char, PAN_FAMILY_ANY, PAN_FAMILY_NO_FIT, PAN_FAMILY_TEXT_DISPLAY, PAN_FAMILY_SCRIPT, PAN_FAMILY_DECORATIVE, PAN_FAMILY_PICTORIAL);
++_Win32_Enum_(PAN_SERIF_STYLE, unsigned char, PAN_SERIF_ANY, PAN_SERIF_NO_FIT, PAN_SERIF_COVE, PAN_SERIF_OBTUSE_COVE, PAN_SERIF_SQUARE_COVE, PAN_SERIF_OBTUSE_SQUARE_COVE, PAN_SERIF_SQUARE, PAN_SERIF_THIN, PAN_SERIF_BONE, PAN_SERIF_EXAGGERATED, PAN_SERIF_TRIANGLE, PAN_SERIF_NORMAL_SANS, PAN_SERIF_OBTUSE_SANS, PAN_SERIF_PERP_SANS, PAN_SERIF_FLARED, PAN_SERIF_ROUNDED);
++_Win32_Enum_(PAN_WEIGHT, unsigned char, PAN_WEIGHT_ANY, PAN_WEIGHT_NO_FIT, PAN_WEIGHT_VERY_LIGHT, PAN_WEIGHT_LIGHT, PAN_WEIGHT_THIN, PAN_WEIGHT_BOOK, PAN_WEIGHT_MEDIUM, PAN_WEIGHT_DEMI, PAN_WEIGHT_BOLD, PAN_WEIGHT_HEAVY, PAN_WEIGHT_BLACK, PAN_WEIGHT_NORD);
++_Win32_Enum_(PAN_STROKE_VARIATION, unsigned char, PAN_STROKE_ANY, PAN_STROKE_NO_FIT, PAN_STROKE_GRADUAL_DIAG, PAN_STROKE_GRADUAL_TRAN, PAN_STROKE_GRADUAL_VERT, PAN_STROKE_GRADUAL_HORZ, PAN_STROKE_RAPID_VERT, PAN_STROKE_RAPID_HORZ, PAN_STROKE_INSTANT_VERT);
++_Win32_Enum_(PAN_PROPORTION, unsigned char, PAN_PROP_ANY, PAN_PROP_NO_FIT, PAN_PROP_OLD_STYLE, PAN_PROP_MODERN, PAN_PROP_EVEN_WIDTH, PAN_PROP_EXPANDED, PAN_PROP_CONDENSED, PAN_PROP_VERY_EXPANDED, PAN_PROP_VERY_CONDENSED, PAN_PROP_MONOSPACED);
++_Win32_Enum_(PAN_CONTRAST, unsigned char, PAN_CONTRAST_ANY, PAN_CONTRAST_NO_FIT, PAN_CONTRAST_NONE, PAN_CONTRAST_VERY_LOW, PAN_CONTRAST_LOW, PAN_CONTRAST_MEDIUM_LOW, PAN_CONTRAST_MEDIUM, PAN_CONTRAST_MEDIUM_HIGH, PAN_CONTRAST_HIGH, PAN_CONTRAST_VERY_HIGH);
++_Win32_Enum_(PAN_ARM_STYLE, unsigned char, PAN_ARM_ANY, PAN_ARM_NO_FIT, PAN_STRAIGHT_ARMS_HORZ, PAN_STRAIGHT_ARMS_WEDGE, PAN_STRAIGHT_ARMS_VERT, PAN_STRAIGHT_ARMS_SINGLE_SERIF, PAN_STRAIGHT_ARMS_DOUBLE_SERIF, PAN_BENT_ARMS_HORZ, PAN_BENT_ARMS_WEDGE, PAN_BENT_ARMS_VERT, PAN_BENT_ARMS_SINGLE_SERIF, PAN_BENT_ARMS_DOUBLE_SERIF);
++_Win32_Enum_(PAN_LETT_FORM, unsigned char, PAN_LETT_FORM_ANY, PAN_LETT_FORM_NO_FIT, PAN_LETT_NORMAL_CONTACT, PAN_LETT_NORMAL_WEIGHTED, PAN_LETT_NORMAL_BOXED, PAN_LETT_NORMAL_FLATTENED, PAN_LETT_NORMAL_ROUNDED, PAN_LETT_NORMAL_OFF_CENTER, PAN_LETT_NORMAL_SQUARE, PAN_LETT_OBLIQUE_CONTACT, PAN_LETT_OBLIQUE_WEIGHTED, PAN_LETT_OBLIQUE_BOXED, PAN_LETT_OBLIQUE_FLATTENED, PAN_LETT_OBLIQUE_ROUNDED, PAN_LETT_OBLIQUE_OFF_CENTER, PAN_LETT_OBLIQUE_SQUARE);
++_Win32_Enum_(PAN_MIDLINE, unsigned char, PAN_MIDLINE_ANY, PAN_MIDLINE_NO_FIT, PAN_MIDLINE_STANDARD_TRIMMED, PAN_MIDLINE_STANDARD_POINTED, PAN_MIDLINE_STANDARD_SERIFED, PAN_MIDLINE_HIGH_TRIMMED, PAN_MIDLINE_HIGH_POINTED, PAN_MIDLINE_HIGH_SERIFED, PAN_MIDLINE_CONSTANT_TRIMMED, PAN_MIDLINE_CONSTANT_POINTED, PAN_MIDLINE_CONSTANT_SERIFED, PAN_MIDLINE_LOW_TRIMMED, PAN_MIDLINE_LOW_POINTED, PAN_MIDLINE_LOW_SERIFED);
++_Win32_Enum_(PAN_XHEIGHT, unsigned char, PAN_XHEIGHT_ANY, PAN_XHEIGHT_NO_FIT, PAN_XHEIGHT_CONSTANT_SMALL, PAN_XHEIGHT_CONSTANT_STD, PAN_XHEIGHT_CONSTANT_LARGE, PAN_XHEIGHT_DUCKING_SMALL, PAN_XHEIGHT_DUCKING_STD, PAN_XHEIGHT_DUCKING_LARGE);
++#endif
+ 
+ #define ELF_VENDOR_SIZE     4
+ 
+@@ -2217,8 +2255,8 @@
+       /* display only fields */
+       struct {
+         POINTL dmPosition;
+-        DWORD  dmDisplayOrientation;
+-        DWORD  dmDisplayFixedOutput;
++        _Win32_AssociatedEnum_(DEVMODE_DISPLAY_ORIENTATION) DWORD  dmDisplayOrientation;
++        _Win32_AssociatedEnum_(DEVMODE_DISPLAY_FIXED_OUTPUT) DWORD  dmDisplayFixedOutput;
+       } DUMMYSTRUCTNAME2;
+     } DUMMYUNIONNAME;
+     short dmColor;
+@@ -2271,8 +2309,8 @@
+       /* display only fields */
+       struct {
+         POINTL dmPosition;
+-        DWORD  dmDisplayOrientation;
+-        DWORD  dmDisplayFixedOutput;
++        _Win32_AssociatedEnum_(DEVMODE_DISPLAY_ORIENTATION) DWORD  dmDisplayOrientation;
++        _Win32_AssociatedEnum_(DEVMODE_DISPLAY_FIXED_OUTPUT) DWORD  dmDisplayFixedOutput;
+       } DUMMYSTRUCTNAME2;
+     } DUMMYUNIONNAME;
+     short dmColor;
+@@ -2670,11 +2708,13 @@
+ #define DMDO_90         1
+ #define DMDO_180        2
+ #define DMDO_270        3
++_Win32_Enum_(DEVMODE_DISPLAY_ORIENTATION, unsigned int, DMDO_DEFAULT, DMDO_90, DMDO_180, DMDO_270);
+ 
+ /* DEVMODE dmDisplayFixedOutput specifiations */
+ #define DMDFO_DEFAULT   0
+ #define DMDFO_STRETCH   1
+ #define DMDFO_CENTER    2
++_Win32_Enum_(DEVMODE_DISPLAY_FIXED_OUTPUT, unsigned int, DMDFO_DEFAULT, DMDFO_STRETCH, DMDFO_CENTER);
+ #endif /* WINVER >= 0x0501 */
+ 
+ /* DEVMODE dmDisplayFlags flags */
+@@ -3850,58 +3890,81 @@
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -94,7 +215,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  WINGDIAPI HFONT   WINAPI CreateFontW( _In_ int cHeight, _In_ int cWidth, _In_ int cEscapement, _In_ int cOrientation, _In_ int cWeight, _In_ DWORD bItalic,
                               _In_ DWORD bUnderline, _In_ DWORD bStrikeOut, _In_ DWORD iCharSet, _In_ DWORD iOutPrecision, _In_ DWORD iClipPrecision,
                               _In_ DWORD iQuality, _In_ DWORD iPitchAndFamily, _In_opt_ LPCWSTR pszFaceName);
-@@ -3911,44 +3935,62 @@
+@@ -3911,44 +3974,62 @@
  #define CreateFont  CreateFontA
  #endif // !UNICODE
  
@@ -160,7 +281,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  WINGDIAPI int  WINAPI DescribePixelFormat(  _In_ HDC hdc,
                                              _In_ int iPixelFormat,
                                              _In_ UINT nBytes,
-@@ -4044,6 +4086,7 @@
+@@ -4044,6 +4125,7 @@
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -168,7 +289,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  
  WINSPOOLAPI
  int
-@@ -4051,17 +4094,18 @@
+@@ -4051,17 +4133,18 @@
  DeviceCapabilitiesA(
      _In_                LPCSTR         pDevice,
      _In_opt_            LPCSTR         pPort,
@@ -189,7 +310,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
      _Out_writes_opt_(_Inexpressible_(1)) LPWSTR          pOutput,
      _In_opt_            CONST DEVMODEW   *pDevMode
      );
-@@ -4070,6 +4114,7 @@
+@@ -4070,6 +4153,7 @@
  #else
  #define DeviceCapabilities  DeviceCapabilitiesA
  #endif // !UNICODE
@@ -197,7 +318,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  
  WINGDIAPI int  WINAPI DrawEscape(   _In_ HDC    hdc,
                                      _In_ int    iEscape,
-@@ -4079,7 +4124,9 @@
+@@ -4079,7 +4163,9 @@
   WINGDIAPI BOOL WINAPI Ellipse( _In_ HDC hdc, _In_ int left, _In_ int top,  _In_ int right, _In_ int bottom);
  
  #if(WINVER >= 0x0400)
@@ -207,7 +328,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  WINGDIAPI int  WINAPI EnumFontFamiliesExW( _In_ HDC hdc, _In_ LPLOGFONTW lpLogfont, _In_ FONTENUMPROCW lpProc, _In_ LPARAM lParam, _In_ DWORD dwFlags);
  #ifdef UNICODE
  #define EnumFontFamiliesEx  EnumFontFamiliesExW
-@@ -4087,15 +4134,19 @@
+@@ -4087,15 +4173,19 @@
  #define EnumFontFamiliesEx  EnumFontFamiliesExA
  #endif // !UNICODE
  #endif /* WINVER >= 0x0400 */
@@ -227,7 +348,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  WINGDIAPI int  WINAPI EnumFontsW( _In_ HDC hdc, _In_opt_ LPCWSTR lpLogfont,  _In_ FONTENUMPROCW lpProc, _In_ LPARAM lParam);
  #ifdef UNICODE
  #define EnumFonts  EnumFontsW
-@@ -4108,34 +4159,44 @@
+@@ -4108,34 +4198,44 @@
  #else
  WINGDIAPI int  WINAPI EnumObjects( _In_ HDC hdc, _In_ int nType, _In_ GOBJENUMPROC lpFunc, _In_ LPVOID lParam);
  #endif
@@ -273,7 +394,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  
  WINGDIAPI
  int
-@@ -4143,6 +4204,7 @@
+@@ -4143,6 +4243,7 @@
  GetBkMode(
      _In_ HDC hdc
      );
@@ -281,7 +402,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  
  WINGDIAPI
  LONG
-@@ -4152,38 +4214,49 @@
+@@ -4152,38 +4253,49 @@
      _In_ LONG cb,
      _Out_writes_bytes_(cb) LPVOID lpvBits
      );
@@ -331,7 +452,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  WINGDIAPI BOOL  APIENTRY GetCharABCWidthsW( _In_ HDC hdc,
                                              _In_ UINT wFirst,
                                              _In_ UINT wLast,
-@@ -4193,22 +4266,30 @@
+@@ -4193,22 +4305,30 @@
  #else
  #define GetCharABCWidths  GetCharABCWidthsA
  #endif // !UNICODE
@@ -363,7 +484,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  
  _Success_(return != GDI_ERROR)
  WINGDIAPI DWORD WINAPI GetFontData (    _In_ HDC     hdc,
-@@ -4217,18 +4298,20 @@
+@@ -4217,18 +4337,20 @@
                                          _Out_writes_bytes_to_opt_(cjBuffer, return) PVOID pvBuffer,
                                          _In_ DWORD   cjBuffer
                                          );
@@ -386,7 +507,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
                                              _Out_ LPGLYPHMETRICS lpgm,
                                              _In_ DWORD cjBuffer,
                                              _Out_writes_bytes_opt_(cjBuffer) LPVOID pvBuffer,
-@@ -4239,6 +4322,7 @@
+@@ -4239,6 +4361,7 @@
  #else
  #define GetGlyphOutline  GetGlyphOutlineA
  #endif // !UNICODE
@@ -394,7 +515,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  
  WINGDIAPI int   WINAPI GetGraphicsMode( _In_ HDC hdc);
  WINGDIAPI int   WINAPI GetMapMode( _In_ HDC hdc);
-@@ -4250,16 +4334,21 @@
+@@ -4250,16 +4373,21 @@
  #else
  #define GetMetaFile  GetMetaFileA
  #endif // !UNICODE
@@ -416,7 +537,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  WINGDIAPI UINT APIENTRY GetOutlineTextMetricsW( _In_ HDC hdc,
                                                  _In_ UINT cjCopy,
                                                  _Out_writes_bytes_opt_(cjCopy) LPOUTLINETEXTMETRICW potm);
-@@ -4270,25 +4359,35 @@
+@@ -4270,25 +4398,35 @@
  #endif // !UNICODE
  
  #endif /* NOTEXTMETRIC */
@@ -453,7 +574,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  WINGDIAPI
  UINT
  WINAPI
-@@ -4298,11 +4397,15 @@
+@@ -4298,11 +4436,15 @@
      _In_ UINT cEntries,
      _Out_writes_opt_(cEntries) LPPALETTEENTRY pPalEntries
      );
@@ -469,7 +590,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  
  WINGDIAPI
  BOOL
-@@ -4313,6 +4416,7 @@
+@@ -4313,6 +4455,7 @@
      _In_ int c,
      _Out_ LPSIZE lpsz
      );
@@ -477,7 +598,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  WINGDIAPI
  BOOL
  APIENTRY
-@@ -4327,6 +4431,7 @@
+@@ -4327,6 +4470,7 @@
  #else
  #define GetTextExtentPoint  GetTextExtentPointA
  #endif // !UNICODE
@@ -485,7 +606,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  
  WINGDIAPI
  BOOL
-@@ -4337,6 +4442,7 @@
+@@ -4337,6 +4481,7 @@
      _In_ int c,
      _Out_ LPSIZE psizl
      );
@@ -493,7 +614,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  WINGDIAPI
  BOOL
  APIENTRY
-@@ -4351,6 +4457,7 @@
+@@ -4351,6 +4496,7 @@
  #else
  #define GetTextExtentPoint32  GetTextExtentPoint32A
  #endif // !UNICODE
@@ -501,7 +622,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  
  WINGDIAPI
  BOOL
-@@ -4364,6 +4471,7 @@
+@@ -4364,6 +4510,7 @@
      _Out_writes_to_opt_ (cchString, *lpnFit) LPINT lpnDx,
      _Out_ LPSIZE lpSize
      );
@@ -509,7 +630,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  WINGDIAPI
  BOOL
  APIENTRY
-@@ -4383,12 +4491,14 @@
+@@ -4383,12 +4530,14 @@
  #endif // !UNICODE
  
  #if(WINVER >= 0x0400)
@@ -527,7 +648,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  #ifdef UNICODE
  #define GetCharacterPlacement  GetCharacterPlacementW
  #else
-@@ -4427,16 +4537,21 @@
+@@ -4427,16 +4576,21 @@
  /* flags for GetGlyphIndices */
  
  #define GGI_MARK_NONEXISTING_GLYPHS  0X0001
@@ -549,7 +670,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  WINGDIAPI BOOL  WINAPI GetTextExtentExPointI (  _In_ HDC hdc,
                                                  _In_reads_(cwchString) LPWORD lpwszString,
                                                  _In_ int cwchString,
-@@ -4445,6 +4560,7 @@
+@@ -4445,6 +4599,7 @@
                                                  _Out_writes_to_opt_(cwchString, *lpnFit) LPINT lpnDx,
                                                  _Out_ LPSIZE lpSize
                                                  );
@@ -557,7 +678,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  
  WINGDIAPI BOOL  WINAPI GetCharWidthI(   _In_ HDC hdc,
                                          _In_ UINT giFirst,
-@@ -4452,6 +4568,7 @@
+@@ -4452,6 +4607,7 @@
                                          _In_reads_opt_(cgi) LPWORD pgi,
                                          _Out_writes_(cgi) LPINT piWidths
                                          );
@@ -565,7 +686,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  
  WINGDIAPI BOOL  WINAPI GetCharABCWidthsI(   _In_ HDC    hdc,
                                              _In_ UINT   giFirst,
-@@ -4476,24 +4593,28 @@
+@@ -4476,24 +4632,28 @@
      LONG   dvValues[MM_MAX_NUMAXES];
  } DESIGNVECTOR, *PDESIGNVECTOR, FAR *LPDESIGNVECTOR;
  
@@ -596,7 +717,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  
  WINGDIAPI BOOL WINAPI RemoveFontMemResourceEx( _In_ HANDLE h);
  #define FR_PRIVATE     0x10
-@@ -4572,8 +4693,10 @@
+@@ -4572,8 +4732,10 @@
  typedef PENUMLOGFONTEXDVA PENUMLOGFONTEXDV;
  typedef LPENUMLOGFONTEXDVA LPENUMLOGFONTEXDV;
  #endif // UNICODE
@@ -607,7 +728,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  WINGDIAPI HFONT  WINAPI CreateFontIndirectExW( _In_ CONST ENUMLOGFONTEXDVW *);
  #ifdef UNICODE
  #define CreateFontIndirectEx  CreateFontIndirectExW
-@@ -4610,66 +4733,103 @@
+@@ -4610,66 +4772,103 @@
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -713,11 +834,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  
  WINGDIAPI
  LONG WINAPI
-@@ -4679,38 +4839,47 @@
+@@ -4678,39 +4877,48 @@
+     _In_ DWORD cb,
      _In_reads_bytes_(cb) CONST VOID *pvBits);
  
- WINGDIAPI UINT  WINAPI SetBoundsRect(_In_ HDC hdc, _In_opt_ CONST RECT * lprect, _In_ UINT flags);
+-WINGDIAPI UINT  WINAPI SetBoundsRect(_In_ HDC hdc, _In_opt_ CONST RECT * lprect, _In_ UINT flags);
 -WINGDIAPI int   WINAPI SetDIBits(_In_opt_ HDC hdc, _In_ HBITMAP hbm, _In_ UINT start, _In_ UINT cLines, _In_ CONST VOID *lpBits, _In_ CONST BITMAPINFO * lpbmi, _In_ UINT ColorUse);
++WINGDIAPI UINT  WINAPI SetBoundsRect(_In_ HDC hdc, _In_opt_ CONST RECT * lprect, _In_ _Win32_AssociatedEnum_(SET_BOUNDS_RECT_FLAGS) UINT flags);
 +WINGDIAPI int   WINAPI SetDIBits(_In_opt_ HDC hdc, _In_ HBITMAP hbm, _In_ UINT start, _In_ UINT cLines, _In_ CONST VOID *lpBits, _In_ CONST BITMAPINFO * lpbmi, _Win32_AssociatedEnum_(DIB_USAGE) _In_ UINT ColorUse);
   WINGDIAPI int   WINAPI SetDIBitsToDevice(_In_ HDC hdc, _In_ int xDest, _In_ int yDest, _In_ DWORD w, _In_ DWORD h, _In_ int xSrc,
 -        _In_ int ySrc, _In_ UINT StartScan, _In_ UINT cLines, _In_ CONST VOID * lpvBits, _In_ CONST BITMAPINFO * lpbmi, _In_ UINT ColorUse);
@@ -771,7 +894,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  WINGDIAPI BOOL  WINAPI UpdateColors(_In_ HDC hdc);
  
  #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
-@@ -4825,6 +4994,7 @@
+@@ -4825,6 +5033,7 @@
  //
  
  #define AC_SRC_ALPHA                0x01
@@ -779,7 +902,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  
  WINGDIAPI BOOL WINAPI AlphaBlend(
      _In_ HDC hdcDest,
-@@ -4838,6 +5008,7 @@
+@@ -4838,6 +5047,7 @@
      _In_ int wSrc,
      _In_ int hSrc,
      _In_ BLENDFUNCTION ftn);
@@ -787,7 +910,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  
  WINGDIAPI BOOL WINAPI TransparentBlt(
      _In_ HDC hdcDest,
-@@ -4861,6 +5032,7 @@
+@@ -4861,6 +5071,7 @@
  #define GRADIENT_FILL_RECT_V    0x00000001
  #define GRADIENT_FILL_TRIANGLE  0x00000002
  #define GRADIENT_FILL_OP_FLAG   0x000000ff
@@ -795,7 +918,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  
  WINGDIAPI
  BOOL
-@@ -4871,7 +5043,7 @@
+@@ -4871,7 +5082,7 @@
      _In_ ULONG nVertex,
      _In_ PVOID pMesh,
      _In_ ULONG nMesh,
@@ -804,7 +927,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
      );
  
  #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
-@@ -4883,25 +5055,29 @@
+@@ -4883,25 +5094,29 @@
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
  
  #if (_WIN32_WINNT >= _WIN32_WINNT_WIN2K)
@@ -835,7 +958,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  
  WINGDIAPI BOOL  WINAPI PlayMetaFileRecord(  _In_ HDC hdc,
                                              _In_reads_(noObjs) LPHANDLETABLE lpHandleTable,
-@@ -4909,43 +5085,56 @@
+@@ -4909,43 +5124,56 @@
                                              _In_ UINT noObjs);
  
  typedef int (CALLBACK* MFENUMPROC)( _In_ HDC hdc, _In_reads_(nObj) HANDLETABLE FAR* lpht, _In_ METARECORD FAR* lpMR, _In_ int nObj, _In_opt_ LPARAM param);
@@ -892,7 +1015,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  WINGDIAPI UINT  WINAPI GetEnhMetaFileDescriptionW(  _In_ HENHMETAFILE hemf,
                                                      _In_ UINT cchBuffer,
                                                      _Out_writes_opt_(cchBuffer) LPWSTR lpDescription);
-@@ -4954,34 +5143,44 @@
+@@ -4954,34 +5182,44 @@
  #else
  #define GetEnhMetaFileDescription  GetEnhMetaFileDescriptionA
  #endif // !UNICODE
@@ -937,7 +1060,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  WINGDIAPI BOOL  WINAPI GdiComment(_In_ HDC hdc, _In_ UINT nSize, _In_reads_bytes_(nSize) CONST BYTE *lpData);
  
  #endif  /* NOMETAFILE */
-@@ -5027,11 +5226,15 @@
+@@ -5027,29 +5265,36 @@
      HANDLE              dshSection;
      DWORD               dsOffset;
  } DIBSECTION, FAR *LPDIBSECTION, *PDIBSECTION;
@@ -951,9 +1074,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  WINGDIAPI BOOL WINAPI GetWorldTransform( _In_ HDC hdc, _Out_ LPXFORM lpxf);
 +_Win32_SupportedOS_Windows2000_
  WINGDIAPI BOOL WINAPI SetWorldTransform( _In_ HDC hdc, _In_ CONST XFORM * lpxf);
- WINGDIAPI BOOL WINAPI ModifyWorldTransform( _In_ HDC hdc, _In_opt_ CONST XFORM * lpxf, _In_ DWORD mode);
+-WINGDIAPI BOOL WINAPI ModifyWorldTransform( _In_ HDC hdc, _In_opt_ CONST XFORM * lpxf, _In_ DWORD mode);
++WINGDIAPI BOOL WINAPI ModifyWorldTransform( _In_ HDC hdc, _In_opt_ CONST XFORM * lpxf, _In_ _Win32_AssociatedEnum_(MODIFY_WORLD_TRANSFORM_MODE) DWORD mode);
  WINGDIAPI BOOL WINAPI CombineTransform( _Out_ LPXFORM lpxfOut, _In_ CONST XFORM *lpxf1, _In_ CONST XFORM *lpxf2);
-@@ -5040,16 +5243,19 @@
+ 
+ #define GDI_WIDTHBYTES(bits) ((DWORD)(((bits)+31) & (~31)) / 8)
  #define GDI_DIBWIDTHBYTES(bi) (DWORD)GDI_WIDTHBYTES((DWORD)(bi).biWidth * (DWORD)(bi).biBitCount)
  #define GDI__DIBSIZE(bi) (GDI_DIBWIDTHBYTES(bi) * (DWORD)(bi).biHeight)
  #define GDI_DIBSIZE(bi) ((bi).biHeight < 0 ? (-1)*(GDI__DIBSIZE(bi)) : GDI__DIBSIZE(bi))
@@ -974,7 +1099,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  
  
  _Ret_range_(0,cEntries)
-@@ -5057,6 +5263,7 @@
+@@ -5057,6 +5302,7 @@
                                          _In_ UINT iStart,
                                          _In_ UINT cEntries,
                                          _Out_writes_to_(cEntries,return) RGBQUAD *prgbq);
@@ -982,7 +1107,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  WINGDIAPI UINT WINAPI SetDIBColorTable( _In_ HDC  hdc,
                                          _In_ UINT iStart,
                                          _In_ UINT cEntries,
-@@ -5111,9 +5318,12 @@
+@@ -5111,9 +5357,12 @@
      SHORT  caColorfulness;
      SHORT  caRedGreenTint;
  } COLORADJUSTMENT, *PCOLORADJUSTMENT, FAR *LPCOLORADJUSTMENT;
@@ -995,7 +1120,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  WINGDIAPI HPALETTE WINAPI CreateHalftonePalette( _In_opt_ HDC hdc);
  
  #ifdef STRICT
-@@ -5152,42 +5362,65 @@
+@@ -5152,42 +5401,65 @@
  #define DI_APPBANDING               0x00000001
  #define DI_ROPS_READ_DESTINATION    0x00000002
  #endif /* WINVER >= 0x0400 */
@@ -1063,7 +1188,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  WINGDIAPI int  WINAPI GetArcDirection(_In_ HDC hdc);
  
  WINGDIAPI int   WINAPI GetObjectA(_In_ HANDLE h, _In_ int c, _Out_writes_bytes_opt_(c) LPVOID pv);
-@@ -5218,56 +5451,80 @@
+@@ -5218,56 +5490,80 @@
          );
  }
  #endif  /* _M_CEE */
@@ -1147,7 +1272,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  WINGDIAPI int   WINAPI GetTextFaceW( _In_ HDC hdc, _In_ int c, _Out_writes_to_opt_(c, return)  LPWSTR lpName);
  #ifdef UNICODE
  #define GetTextFace  GetTextFaceW
-@@ -5282,10 +5539,12 @@
+@@ -5282,10 +5578,12 @@
     WORD wSecond;
     int  iKernAmount;
  } KERNINGPAIR, *LPKERNINGPAIR;
@@ -1160,7 +1285,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  WINGDIAPI DWORD WINAPI GetKerningPairsW(    _In_ HDC hdc,
                                              _In_ DWORD nPairs,
                                              _Out_writes_to_opt_(nPairs, return) LPKERNINGPAIR   lpKernPair);
-@@ -5294,14 +5553,19 @@
+@@ -5294,14 +5592,19 @@
  #else
  #define GetKerningPairs  GetKerningPairsA
  #endif // !UNICODE
@@ -1180,7 +1305,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  WINGDIAPI DWORD WINAPI GdiGetBatchLimit(void);
  
  #if(WINVER >= 0x0400)
-@@ -5319,16 +5583,19 @@
+@@ -5319,16 +5622,19 @@
  #define ICMENUMPROC  ICMENUMPROCA
  #endif // !UNICODE
  
@@ -1201,7 +1326,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  WINGDIAPI BOOL        WINAPI GetLogColorSpaceW( _In_ HCOLORSPACE hColorSpace,
                                                  _Out_writes_bytes_(nSize) LPLOGCOLORSPACEW lpBuffer,
                                                  _In_ DWORD nSize);
-@@ -5337,19 +5604,25 @@
+@@ -5337,19 +5643,25 @@
  #else
  #define GetLogColorSpace  GetLogColorSpaceA
  #endif // !UNICODE
@@ -1227,7 +1352,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  WINGDIAPI BOOL        WINAPI GetICMProfileW(    _In_ HDC hdc,
                                                  _Inout_ LPDWORD pBufSize,
                                                  _Out_writes_opt_(*pBufSize) LPWSTR pszFilename);
-@@ -5358,18 +5631,23 @@
+@@ -5358,18 +5670,23 @@
  #else
  #define GetICMProfile  GetICMProfileA
  #endif // !UNICODE
@@ -1252,7 +1377,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  WINGDIAPI int         WINAPI EnumICMProfilesW( _In_ HDC hdc, _In_ ICMENUMPROCW proc, _In_opt_ LPARAM param);
  #ifdef UNICODE
  #define EnumICMProfiles  EnumICMProfilesW
-@@ -5377,9 +5655,9 @@
+@@ -5377,9 +5694,9 @@
  #define EnumICMProfiles  EnumICMProfilesA
  #endif // !UNICODE
  // The Win95 update API UpdateICMRegKeyA is deprecated to set last error to ERROR_NOT_SUPPORTED and return FALSE
@@ -1264,7 +1389,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  #ifdef UNICODE
  #define UpdateICMRegKey  UpdateICMRegKeyW
  #else
-@@ -5394,6 +5672,7 @@
+@@ -5394,6 +5711,7 @@
  #endif /* WINVER >= 0x0400 */
  
  #if (WINVER >= 0x0500)
@@ -1272,7 +1397,16 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  WINGDIAPI BOOL        WINAPI ColorCorrectPalette( _In_ HDC hdc, _In_ HPALETTE hPal, _In_ DWORD deFirst, _In_ DWORD num);
  #endif
  
-@@ -6323,26 +6602,48 @@
+@@ -5757,7 +6075,7 @@
+ {
+     EMR     emr;
+     XFORM   xform;
+-    DWORD   iMode;
++    _Win32_AssociatedEnum_(MODIFY_WORLD_TRANSFORM_MODE) DWORD   iMode;
+ } EMRMODIFYWORLDTRANSFORM, *PEMRMODIFYWORLDTRANSFORM;
+ 
+ typedef struct tagEMRSETPIXELV
+@@ -6323,26 +6641,48 @@
  #define GDICOMMENT_UNICODE_END          0x00000080
  
  #endif  /* NOMETAFILE */
@@ -1321,7 +1455,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  WINGDIAPI BOOL  WINAPI SwapBuffers(HDC);
  
  typedef struct _POINTFLOAT {
-@@ -6360,8 +6661,12 @@
+@@ -6360,8 +6700,12 @@
  
  #define WGL_FONT_LINES      0
  #define WGL_FONT_POLYGONS   1
@@ -1334,7 +1468,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  WINGDIAPI BOOL  WINAPI wglUseFontOutlinesW(HDC, DWORD, DWORD, DWORD, FLOAT,
                                             FLOAT, int, LPGLYPHMETRICSFLOAT);
  #ifdef UNICODE
-@@ -6445,14 +6750,23 @@
+@@ -6445,14 +6789,23 @@
  #define WGL_SWAP_UNDERLAY13     0x10000000
  #define WGL_SWAP_UNDERLAY14     0x20000000
  #define WGL_SWAP_UNDERLAY15     0x40000000
@@ -1358,7 +1492,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wingdi.h b/generation/Win
  WINGDIAPI BOOL  WINAPI wglSwapLayerBuffers(HDC, UINT);
  
  #if (WINVER >= 0x0500)
-@@ -6489,5 +6803,110 @@
+@@ -6489,5 +6842,110 @@
  #pragma warning(pop)
  #endif
  

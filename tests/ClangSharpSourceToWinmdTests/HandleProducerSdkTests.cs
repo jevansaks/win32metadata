@@ -25,6 +25,105 @@ namespace ClangSharpSourceToWinmdTests
         [DataRow("i686-pc-windows-msvc")]
         [DataRow("x86_64-pc-windows-msvc")]
         [DataRow("aarch64-pc-windows-msvc")]
+        public void NCryptKeyProducers_OwnAllFourPublicOutputsWithoutOwningInputs(string target)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(NCryptKeyDeclarations(), target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            using var pe = new PEReader(File.OpenRead(fixture.Emit()));
+            var reader = pe.GetMetadataReader();
+            var outputs = new Dictionary<string, int>
+            {
+                ["NCryptOpenKey"] = 2,
+                ["NCryptCreatePersistedKey"] = 2,
+                ["NCryptImportKey"] = 5,
+                ["NCryptTranslateHandle"] = 2,
+            };
+            foreach (var output in outputs)
+            {
+                ProducerHeaderTests.AssertFacts(reader, output.Key, output.Value, "NCryptFreeObject", 0);
+                var method = reader.MethodDefinitions.Select(reader.GetMethodDefinition)
+                    .Single(method => reader.GetString(method.Name) == output.Key);
+                foreach (var parameter in method.GetParameters().Select(reader.GetParameter)
+                    .Where(parameter => parameter.SequenceNumber != output.Value))
+                    Assert.IsFalse(parameter.GetCustomAttributes().Select(reader.GetCustomAttribute)
+                        .Any(attribute => ProducerHeaderTests.Name(reader, attribute) is
+                            "RAIIFreeAttribute" or "InvalidHandleValueAttribute"));
+            }
+            foreach (string name in new[] { "NCryptFreeObject", "NCryptDeleteKey", "NCryptIsKeyHandle" })
+                ProducerHeaderTests.AssertNoOwnership(reader, name);
+            var key = NativeTypedefHeaderTests.Type(reader, "NCRYPT_KEY_HANDLE");
+            Assert.IsFalse(key.GetCustomAttributes().Select(reader.GetCustomAttribute)
+                .Any(attribute => ProducerHeaderTests.Name(reader, attribute) is
+                    "RAIIFreeAttribute" or "InvalidHandleValueAttribute"));
+            string declarations = EnumHeaderTests.Decompile(Path.Combine(fixture.DirectoryPath, "Test.winmd"));
+            StringAssert.Contains(declarations, "NCRYPT_KEY_HANDLE* phKey");
+            StringAssert.Contains(declarations, "NCRYPT_KEY_HANDLE hImportKey");
+        }
+
+        [DataTestMethod]
+        [DataRow("x86", 4, "/TC")]
+        [DataRow("x64", 8, "/TC")]
+        [DataRow("arm64", 8, "/TC")]
+        [DataRow("x86", 4, "/TP")]
+        [DataRow("x64", 8, "/TP")]
+        [DataRow("arm64", 8, "/TP")]
+        public void NCryptKeyProducers_PreserveNativeSignatures(string arch, int pointerSize, string language)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            fixture.AssertNativeAbi(arch, pointerSize, language, @"
+#define _In_
+#define _Out_
+#define _In_opt_
+#define _Out_opt_
+#define _Check_return_
+#define _In_reads_bytes_(...)
+" + NCryptKeyDeclarations() + @"
+SECURITY_STATUS (WINAPI *verifyOpen)(NCRYPT_PROV_HANDLE, NCRYPT_KEY_HANDLE*, LPCWSTR, DWORD, DWORD) = &NCryptOpenKey;
+SECURITY_STATUS (WINAPI *verifyCreate)(NCRYPT_PROV_HANDLE, NCRYPT_KEY_HANDLE*, LPCWSTR, LPCWSTR, DWORD, DWORD) = &NCryptCreatePersistedKey;
+SECURITY_STATUS (WINAPI *verifyImport)(NCRYPT_PROV_HANDLE, NCRYPT_KEY_HANDLE, LPCWSTR, NCryptBufferDesc*, NCRYPT_KEY_HANDLE*, PBYTE, DWORD, DWORD) = &NCryptImportKey;
+SECURITY_STATUS (WINAPI *verifyTranslate)(NCRYPT_PROV_HANDLE*, NCRYPT_KEY_HANDLE*, HCRYPTPROV, HCRYPTKEY, DWORD, DWORD) = &NCryptTranslateHandle;
+SECURITY_STATUS (WINAPI *verifyFree)(NCRYPT_HANDLE) = &NCryptFreeObject;
+");
+        }
+
+        private static string NCryptKeyDeclarations()
+        {
+            string header = File.ReadAllText(Sdk("RecompiledIdlHeaders/um/ncrypt.h"));
+            var names = new HashSet<string> { "NCryptFreeObject", "NCryptOpenKey", "NCryptCreatePersistedKey",
+                "NCryptImportKey", "NCryptTranslateHandle", "NCryptDeleteKey", "NCryptIsKeyHandle" };
+            var declarations = Regex.Matches(header,
+                @"(?m)^(?:SECURITY_STATUS|BOOL)\s+WINAPI\s+(NCrypt\w+)\s*\([^;]+;")
+                .Cast<Match>().Where(match => names.Contains(match.Groups[1].Value)).ToArray();
+            Assert.AreEqual(names.Count, declarations.Length);
+            Assert.AreEqual("NCryptFreeObject", declarations[0].Groups[1].Value,
+                "The typed cleanup must precede every first public producer declaration.");
+            string handles = Regex.Match(header,
+                @"typedef ULONG_PTR NCRYPT_HANDLE;[\s\S]*?typedef ULONG_PTR NCRYPT_KEY_HANDLE;").Value;
+            Assert.IsFalse(string.IsNullOrEmpty(handles));
+            return @"
+#define WINAPI __stdcall
+#ifdef _WIN64
+typedef unsigned long long ULONG_PTR;
+#else
+typedef unsigned long ULONG_PTR;
+#endif
+typedef long SECURITY_STATUS;
+typedef unsigned long DWORD;
+typedef int BOOL;
+typedef const unsigned short* LPCWSTR;
+typedef unsigned char* PBYTE;
+typedef struct _NCryptBufferDesc NCryptBufferDesc;
+typedef ULONG_PTR HCRYPTPROV;
+typedef ULONG_PTR HCRYPTKEY;
+" + handles + "\n" + string.Join("\n", declarations.Select(match =>
+                match.Value.Replace("_Win32_AssociatedEnum_(CERT_KEY_SPEC) ", "", StringComparison.Ordinal)));
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
         public void PrinterClosure_OwnsOnlyOpenAndAddProducers(string target)
         {
             using var fixture = new LastErrorHeaderTests.Fixture();
@@ -545,10 +644,13 @@ typedef struct _PRINTER_DEFAULTSW* LPPRINTER_DEFAULTSW;
             Assert.AreEqual(2, localSignature.ReadCompressedInteger());
             Assert.AreEqual(SignatureTypeCode.Pointer, localSignature.ReadSignatureTypeCode());
             Assert.AreEqual(SignatureTypeCode.Void, localSignature.ReadSignatureTypeCode());
-            Assert.AreEqual(SignatureTypeCode.TypeHandle, localSignature.ReadSignatureTypeCode());
-            Assert.AreEqual("LOCAL_ALLOC_FLAGS", EnumHeaderTests.TypeName(reader, localSignature.ReadTypeHandle()));
+            Assert.AreEqual(SignatureTypeCode.UInt32, localSignature.ReadSignatureTypeCode());
             Assert.AreEqual(SignatureTypeCode.UIntPtr, localSignature.ReadSignatureTypeCode());
             Assert.AreEqual(0, localSignature.RemainingBytes);
+            var localFlagsParameter = localAlloc.GetParameters().Select(reader.GetParameter)
+                .Single(parameter => parameter.SequenceNumber == 1);
+            CollectionAssert.AreEqual(new[] { "LOCAL_ALLOC_FLAGS" },
+                EnumAssociationHeaderTests.StringAttributes(reader, localFlagsParameter.GetCustomAttributes(), "AssociatedEnumAttribute"));
             var localFlags = reader.TypeDefinitions.Select(reader.GetTypeDefinition)
                 .Single(type => reader.GetString(type.Name) == "LOCAL_ALLOC_FLAGS");
             var value = reader.GetFieldDefinition(localFlags.GetFields()

@@ -54,7 +54,37 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h b/generation/Wi
      _Out_opt_ LPRECT pContentRect
      );
  
-@@ -1563,7 +1564,7 @@
+@@ -1413,10 +1414,20 @@
+                                  STAP_ALLOW_CONTROLS | \
+                                  STAP_ALLOW_WEBCONTENT)
+ 
++#if defined(WIN32METADATA) && defined(__clang__)
++const unsigned int ALLOW_NONCLIENT = STAP_ALLOW_NONCLIENT;
++const unsigned int ALLOW_CONTROLS = STAP_ALLOW_CONTROLS;
++const unsigned int ALLOW_WEBCONTENT = STAP_ALLOW_WEBCONTENT;
++const unsigned int VALIDBITS = STAP_VALIDBITS;
++_Win32_FlagsEnum_(SET_THEME_APP_PROPERTIES_FLAGS, unsigned int,
++    ALLOW_NONCLIENT, ALLOW_CONTROLS, ALLOW_WEBCONTENT, VALIDBITS);
++#endif
++
+ //---------------------------------------------------------------------------
+ //  GetThemeAppProperties()
+ //                      - returns the app property flags that control theming
+ //---------------------------------------------------------------------------
++_Win32_AssociatedEnum_(SET_THEME_APP_PROPERTIES_FLAGS)
+ THEMEAPI_(DWORD)
+ GetThemeAppProperties(
+     VOID
+@@ -1430,7 +1441,7 @@
+ //---------------------------------------------------------------------------
+ THEMEAPI_(void)
+ SetThemeAppProperties(
+-    _In_ DWORD dwFlags
++    _In_ _Win32_AssociatedEnum_(SET_THEME_APP_PROPERTIES_FLAGS) DWORD dwFlags
+     );
+ 
+ //---------------------------------------------------------------------------
+@@ -1563,7 +1574,7 @@
  DrawThemeParentBackgroundEx(
      _In_ HWND hwnd,
      _In_ HDC hdc,
@@ -63,7 +93,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h b/generation/Wi
      _In_opt_ const RECT* prc
      );
  
-@@ -1685,7 +1686,7 @@
+@@ -1685,7 +1696,7 @@
      _In_ int iStateId,
      _In_reads_(cchText) LPCWSTR pszText,
      _In_ int cchText,
@@ -72,7 +102,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h b/generation/Wi
      _Inout_ LPRECT pRect,
      _In_opt_ const DTTOPTS *pOptions
      );
-@@ -1710,7 +1711,7 @@
+@@ -1710,7 +1721,7 @@
      _In_ int iPartId,
      _In_ int iStateId,
      _In_ int iPropId,
@@ -81,7 +111,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h b/generation/Wi
      _Out_ HBITMAP* phBitmap
      );
  
-@@ -1816,6 +1817,7 @@
+@@ -1816,6 +1827,7 @@
      const RECT *                prcExclude;
      const BLENDFUNCTION *       pBlendFunction;
  } BP_PAINTPARAMS, *PBP_PAINTPARAMS;
@@ -89,7 +119,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h b/generation/Wi
  
  THEMEAPI_(_Success_(return != NULL) HPAINTBUFFER)
  BeginBufferedPaint(
-@@ -1988,4 +1990,14 @@
+@@ -1988,4 +2000,14 @@
  
  #endif /* _UXTHEME_H_ */
  

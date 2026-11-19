@@ -312,18 +312,20 @@ generate-cpp-attributes
                 return Run("dotnet", scraper, Path.Combine(this.directory, "remaps.rsp"), "@" + rsp);
             }
 
-            public string Emit(Dictionary<string, string>? memberRemaps = null, Dictionary<string, string>? requiredNamespaces = null)
+            public string Emit(Dictionary<string, string>? memberRemaps = null, Dictionary<string, string>? requiredNamespaces = null,
+                HashSet<string>? reducePointerLevels = null)
             {
+                reducePointerLevels ??= new HashSet<string>();
                 var compilation = ClangSharpSourceCompilation.Create(
                     Path.GetDirectoryName(this.GeneratedSource), "crossarch",
                     memberRemaps ?? new Dictionary<string, string>(), new Dictionary<string, Dictionary<string, string>>(),
                     Array.Empty<string>(), new Dictionary<string, string>(), requiredNamespaces ?? new Dictionary<string, string>(),
-                    new HashSet<string>(), Array.Empty<string>(), new Dictionary<string, string>(), new Dictionary<string, string>());
+                    reducePointerLevels, Array.Empty<string>(), new Dictionary<string, string>(), new Dictionary<string, string>());
                 var errors = compilation.GetDiagnostics().Where(d => d.Severity == DiagnosticSeverity.Error).ToArray();
                 Assert.AreEqual(0, errors.Length, string.Join(Environment.NewLine, errors.Select(d => d.ToString())));
                 string output = Path.Combine(this.directory, "Test.winmd");
                 var generator = ClangSharpSourceWinmdGenerator.GenerateWindmdForCompilation(compilation,
-                    new Dictionary<string, string>(), new HashSet<string>(), new HashSet<string>(),
+                    new Dictionary<string, string>(), reducePointerLevels, new HashSet<string>(),
                     new Version(1, 0, 0, 0), output);
                 Assert.IsTrue(generator.WroteWinmd, string.Join(Environment.NewLine, generator.GetDiagnostics()));
                 return output;

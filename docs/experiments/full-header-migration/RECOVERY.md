@@ -1,6 +1,84 @@
 # Working-first recovery and sidecar reduction
 
-**Latest locally qualified migration checkpoint:**
+## Major checkpoint: independently accepted migrations through mixer19
+
+This checkpoint publishes the complete, independently reviewed continuation
+through `MIXERLINE_COMPONENTTYPE`, above `7723abbadcb334feb2cb831c3f8533c54026d12e`.
+It retires **63 whole JSON records (40 enum definitions and 23 callback fixups)
+and 106 manual emitter rows** beyond that published checkpoint. No later local
+cohort is included. The branch, PR base and complete native stack remain unchanged;
+this is not a request to merge them.
+
+| Accepted checkpoint inventory | Before continuation | Through mixer19 |
+|---|---:|---:|
+| Enum JSON records, including additional-use/CLR records | 332 | 292 |
+| Function-pointer fixup records | 27 | 4 |
+| autoTypes records | 436 | 436 |
+
+These are complete record retirements, not counts of successful probes,
+annotation atoms or emitted APIs. The four remaining callback selectors are
+`PTHREAD_START_ROUTINE`, `INTERNET_STATUS_CALLBACK`, `PBMCALLBACKFN` and
+`LPFNADDPROPSHEETPAGE`. Contextual `NCRYPT_KEY_HANDLE` ownership, the nine CLR
+exceptions and unqualified external-consumer changes remain separate boundaries.
+The older mixed-unit RSP tables and TSV below are historical measurements; they
+are not recomputed by subtracting JSON records or callback counts.
+
+**Headers, not mistaken sidecars, are authoritative.** Complete unmasked
+comparisons retain source-proven constant additions and native value/storage
+corrections. Examples include `WCTP_OPEN_ALL_FLAGS=1`, the four genuine MODEM
+settings values and four PANOSE position constants. The latter remain native
+globals, not members of font-value enums: `PAN_WEIGHT_INDEX`,
+`PAN_CONTRAST_INDEX`, `PAN_MIDLINE_INDEX` and `PAN_XHEIGHT_INDEX` are offsets
+2, 4, 8 and 9 in the ten-byte PANOSE record. The original incorrect PANOSE trial
+is preserved and unaccepted; only its separately corrected output is included.
+The original certificate-selection output with foreign callback reductions is
+likewise preserved and excluded in favor of its corrected owner-scoped output.
+
+Unlike the initial experiment, this checkpoint includes bounded reader/emitter
+fixes within the existing contract: native callback inference and owner scoping,
+annotation/import preservation, and associations on defining anonymous storage
+fields without copying them onto synthetic promoted/ref-property carriers.
+Actual SDK declarations, whole-record layouts, inactive physical declarations
+and all producing architectures are qualified; no generated C# is edited.
+Original fixture/setup, scientific and private-accounting failures remain
+distinct from their separately named repairs.
+
+The final independently accepted local candidate is
+`499DD082A01F344A230C94FA7E88621B353552C992226E4C9E3BBE2A87F36971`;
+its complete dump is
+`B861CC410DE0179F5F4933DBE663F9915FB91AAA06E60D055C3FF5DA5601B884`.
+Mixer19 preserves the complete 35,385-entry qualified/duplicate-ordinal identity
+inventory and changes only its two native DWORD field associations relative
+to corrected certificate-selection. Its original 9 focused and 54 actual-candidate
+integrity cases pass. Owner qualification `4FC7CC12...` and independent review
+`45172943...` bind the full 1,904-file generated inventory, three actual Audio
+architecture traversals and complete selected SDK patch replay.
+
+The first fresh publication gate retained four failures among 998 tooling
+cases and one among 175 SDK-patch cases. Native C/C++ controls on x86, x64 and
+ARM64 confirm the retval fixture's authored `__stdcall` field: the existing
+emitter maps it to Winapi on every Windows target, whereas the old assertion
+expected Cdecl on 64-bit targets. The other failure is stale context in a
+test-only Uxtheme comment-proof patch after the accepted theme group migration.
+The repairs change that expectation and proof context, not production output;
+all other assertions remain. Separate corrected qualification is required.
+Measured complete suite times of 23m03s and 22m29s justify increasing only those
+two CI job budgets from 20 to 40 minutes. No case is disabled, and the historical
+test-level timeout is unchanged.
+
+Publication additionally requires fresh complete tooling, SDK-patch and workflow
+controls on these exact accepted sources, followed by its **own ordinary
+exact-head hosted pipeline**, including actual emitted output and integrity.
+The green ten-job parent
+[run 43825144303](https://github.com/jevansaks/win32metadata/actions/runs/43825144303)
+qualifies `7723abba`, not this new checkpoint. The original unexplained
+`Fixture.Apply` timeout is retained; later successful executions do not erase it.
+CI-only maintenance may fix failing checks, but does not authorize review changes,
+conflict resolution, external-consumer edits, stack mutation or merging.
+
+## Preserved earlier checkpoints
+
+**Earlier locally qualified migration checkpoint:**
 [SNMP translation mode](#snmp-translation-mode), above `32629854`.
 The actual local WinMD is `46E5A144...`; the fresh complete dump remains
 `1F4F3839...`, with zero unmasked differences against the actual hosted parent.
@@ -8,7 +86,7 @@ Fresh complete 792+151 tooling/SDK cases and 54 actual-candidate integrity
 cases pass. This continuation still requires its own ordinary exact-head
 hosted gate; rejected earlier trials remain separate.
 
-**Latest hosted-qualified migration checkpoint:**
+**Earlier hosted-qualified migration checkpoint:**
 [SNMP status](#snmp-status),
 `3262985403a5c4c308545726ec41b60d06d3ad8a`, above `cdc4b56c`.
 Ordinary [run 43803176424](https://github.com/jevansaks/win32metadata/actions/runs/43803176424)
@@ -133,7 +211,7 @@ all ten jobs succeed and the actual hosted WinMD is downloaded and inspected.
 The repair restores one complete DEVPROPTYPE definition, not an entire JSON
 corpus. Its fresh complete local WinMD is `5148224F...`, with the same full
 `1F4F3839...` dump, unmasked comparison zero and 54/54 integrity. The following
-tables describe the locally qualified SNMP translation continuation inputs. The
+tables describe the historical SNMP translation continuation inputs. The
 continuation does not inherit hosted qualification from its parent: its own
 ordinary run must independently produce and qualify the actual WinMD. Remaining inputs
 are not blanket claims of failed migration.

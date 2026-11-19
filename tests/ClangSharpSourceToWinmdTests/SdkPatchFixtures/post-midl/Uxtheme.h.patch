@@ -2,9 +2,9 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h b/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h
-@@ -1413,6 +1413,7 @@
-                                  STAP_ALLOW_CONTROLS | \
-                                  STAP_ALLOW_WEBCONTENT)
+@@ -1423,6 +1423,7 @@
+     ALLOW_NONCLIENT, ALLOW_CONTROLS, ALLOW_WEBCONTENT, VALIDBITS);
+ #endif
  
 +// [win32metadata sdk patch] Post-MIDL header patch proof
  //---------------------------------------------------------------------------

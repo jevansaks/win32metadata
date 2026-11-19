@@ -2695,6 +2695,13 @@ SymSetSearchPathW(
 #define SLMFLAG_ALT_INDEX   0x2
 #define SLMFLAG_NO_SYMBOLS  0x4
 
+#if defined(WIN32METADATA) && defined(__clang__) && !defined(_WIN32METADATA_SYM_LOAD_FLAGS_)
+#define _WIN32METADATA_SYM_LOAD_FLAGS_
+const unsigned int SLMFLAG_NONE = 0;
+_Win32_FlagsEnum_(SYM_LOAD_FLAGS, unsigned int,
+    SLMFLAG_NONE, SLMFLAG_VIRTUAL, SLMFLAG_ALT_INDEX, SLMFLAG_NO_SYMBOLS);
+#endif
+
 DWORD64
 IMAGEAPI
 SymLoadModuleEx(
@@ -2705,7 +2712,7 @@ SymLoadModuleEx(
     _In_ DWORD64 BaseOfDll,
     _In_ DWORD DllSize,
     _In_opt_ PMODLOAD_DATA Data,
-    _In_opt_ DWORD Flags
+    _In_opt_ _Win32_AssociatedEnum_(SYM_LOAD_FLAGS) DWORD Flags
     );
 
 #endif /* WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS) */
@@ -2724,7 +2731,7 @@ SymLoadModuleExW(
     _In_ DWORD64 BaseOfDll,
     _In_ DWORD DllSize,
     _In_opt_ PMODLOAD_DATA Data,
-    _In_opt_ DWORD Flags
+    _In_opt_ _Win32_AssociatedEnum_(SYM_LOAD_FLAGS) DWORD Flags
     );
 
 #endif /* WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS | WINAPI_PARTITION_GAMES) */

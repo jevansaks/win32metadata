@@ -279,7 +279,39 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ImageHlp.h b/generation/W
      PVOID   data;                   // pointer to passed data
      DWORD   size;                   // size of passed data
      DWORD   flags;                  // options
-@@ -3173,7 +3221,7 @@
+@@ -3026,6 +3074,13 @@
+ #define SLMFLAG_ALT_INDEX   0x2
+ #define SLMFLAG_NO_SYMBOLS  0x4
+ 
++#if defined(WIN32METADATA) && defined(__clang__) && !defined(_WIN32METADATA_SYM_LOAD_FLAGS_)
++#define _WIN32METADATA_SYM_LOAD_FLAGS_
++const unsigned int SLMFLAG_NONE = 0;
++_Win32_FlagsEnum_(SYM_LOAD_FLAGS, unsigned int,
++    SLMFLAG_NONE, SLMFLAG_VIRTUAL, SLMFLAG_ALT_INDEX, SLMFLAG_NO_SYMBOLS);
++#endif
++
+ DWORD64
+ IMAGEAPI
+ SymLoadModuleEx(
+@@ -3036,7 +3091,7 @@
+     _In_ DWORD64 BaseOfDll,
+     _In_ DWORD DllSize,
+     _In_opt_ PMODLOAD_DATA Data,
+-    _In_opt_ DWORD Flags
++    _In_opt_ _Win32_AssociatedEnum_(SYM_LOAD_FLAGS) DWORD Flags
+     );
+ 
+ #endif /* WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS) */
+@@ -3055,7 +3110,7 @@
+     _In_ DWORD64 BaseOfDll,
+     _In_ DWORD DllSize,
+     _In_opt_ PMODLOAD_DATA Data,
+-    _In_opt_ DWORD Flags
++    _In_opt_ _Win32_AssociatedEnum_(SYM_LOAD_FLAGS) DWORD Flags
+     );
+ 
+ #endif /* WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS | WINAPI_PARTITION_GAMES) */
+@@ -3173,7 +3228,7 @@
      ULONG       Index;
      ULONG       Size;
      ULONG64     ModBase;          // Base Address of module comtaining this symbol
@@ -288,7 +320,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ImageHlp.h b/generation/W
      ULONG64     Value;            // Value of symbol, ValuePresent should be 1
      ULONG64     Address;          // Address of symbol including base address of module
      ULONG       Register;         // register holding value or pointer to value
-@@ -3196,7 +3244,7 @@
+@@ -3196,7 +3251,7 @@
      ULONG       Index;
      ULONG       Size;
      ULONG64     ModBase;          // Base Address of module comtaining this symbol
@@ -297,7 +329,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ImageHlp.h b/generation/W
      ULONG64     Value;            // Value of symbol, ValuePresent should be 1
      ULONG64     Address;          // Address of symbol including base address of module
      ULONG       Register;         // register holding value or pointer to value
-@@ -3618,7 +3666,7 @@
+@@ -3618,7 +3673,7 @@
  
  typedef struct _IMAGEHLP_GET_TYPE_INFO_PARAMS {
      IN  ULONG    SizeOfStruct;
@@ -306,7 +338,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ImageHlp.h b/generation/W
      IN  ULONG    NumIds;
      IN  PULONG   TypeIds;
      IN  ULONG64  TagFilter;
-@@ -3957,7 +4005,7 @@
+@@ -3957,7 +4012,7 @@
      _In_ HANDLE hProcess,
      _In_opt_ PCSTR SrvPath,
      _In_ PCSTR File,
@@ -315,7 +347,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ImageHlp.h b/generation/W
      );
  
  #endif /* WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS) */
-@@ -3972,7 +4020,7 @@
+@@ -3972,7 +4027,7 @@
      _In_ HANDLE hProcess,
      _In_opt_ PCWSTR SrvPath,
      _In_ PCWSTR File,
@@ -324,7 +356,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ImageHlp.h b/generation/W
      );
  
  #endif /* WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS | WINAPI_PARTITION_GAMES) */
-@@ -4708,3 +4756,12 @@
+@@ -4708,3 +4763,12 @@
  #pragma endregion
  
  #endif // _IMAGEHLP_

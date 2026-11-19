@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -16,6 +17,345 @@ namespace ClangSharpSourceToWinmdTests
     {
         private const string LegacySettings = "--exclude\nLPWINHTTP_STATUS_CALLBACK\n--remap\n" +
             "WINHTTP_STATUS_CALLBACK=WINHTTP_STATUS_CALLBACK\nLPWINHTTP_STATUS_CALLBACK=WINHTTP_STATUS_CALLBACK";
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void SameLevelCallbackArrays_KeepTheirQualifiedElementTypes(string target)
+        {
+            string header = File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
+                "generation", "WinSDK", "RecompiledIdlHeaders", "um", "RtmV2.h"));
+            string methods = Regex.Match(header, @"typedef struct _RTM_ENTITY_EXPORT_METHODS\s*\{[^}]+\}" +
+                @"\s*RTM_ENTITY_EXPORT_METHODS, \*PRTM_ENTITY_EXPORT_METHODS;").Value;
+            Assert.IsFalse(string.IsNullOrEmpty(methods));
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(@"
+typedef unsigned int UINT;
+typedef void (__stdcall *_ENTITY_METHOD)(void* caller, void* callee, void* input, void* output);
+typedef _ENTITY_METHOD RTM_ENTITY_EXPORT_METHOD, *PRTM_ENTITY_EXPORT_METHOD;
+" + methods + @"
+struct AddressControl { RTM_ENTITY_EXPORT_METHOD* Methods[2]; };
+", target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            foreach (var buffer in CSharpSyntaxTree.ParseText(File.ReadAllText(fixture.GeneratedSource)).GetRoot()
+                .DescendantNodes().OfType<StructDeclarationSyntax>()
+                .Where(type => type.Identifier.ValueText == "_Methods_e__FixedBuffer"))
+                Assert.IsFalse(buffer.DescendantNodes().OfType<TypeSyntax>()
+                    .Any(type => type.ToString().Contains("_ENTITY_METHOD", StringComparison.Ordinal)));
+            Console.WriteLine("RAW_OUTPUT native-rtm-arrays." + target + ".cs " +
+                Convert.ToBase64String(File.ReadAllBytes(fixture.GeneratedSource)));
+            using var pe = new PEReader(File.OpenRead(fixture.Emit(requiredNamespaces: new Dictionary<string, string>
+            {
+                ["RTM_ENTITY_EXPORT_METHOD"] = "Public.Callbacks",
+            })));
+            var reader = pe.GetMetadataReader();
+            foreach (string owner in new[] { "RTM_ENTITY_EXPORT_METHODS", "AddressControl" })
+            {
+                var field = NativeTypedefHeaderTests.Type(reader, owner).GetFields()
+                    .Select(reader.GetFieldDefinition).Single(f => reader.GetString(f.Name) == "Methods");
+                var signature = reader.GetBlobReader(field.Signature);
+                signature.ReadSignatureHeader();
+                Assert.AreEqual(SignatureTypeCode.Array, signature.ReadSignatureTypeCode());
+                if (owner == "AddressControl") Assert.AreEqual(SignatureTypeCode.Pointer, signature.ReadSignatureTypeCode());
+                NativeTypedefHeaderTests.AssertReference(reader, ref signature, "RTM_ENTITY_EXPORT_METHOD", "Public.Callbacks");
+                Assert.AreEqual(1, signature.ReadCompressedInteger());
+                Assert.AreEqual(1, signature.ReadCompressedInteger());
+                Assert.AreEqual(owner == "AddressControl" ? 2 : 1, signature.ReadCompressedInteger());
+                Assert.AreEqual(1, signature.ReadCompressedInteger());
+                Assert.AreEqual(0, signature.ReadCompressedSignedInteger());
+                Assert.AreEqual(0, signature.RemainingBytes);
+            }
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void TransitiveCallbackAlias_HonorsOpaquePointerAndPointerSizedRemaps(string target)
+        {
+            string header = File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
+                "generation", "WinSDK", "RecompiledIdlHeaders", "um", "prsht.h"));
+            string handle = Regex.Match(header, @"typedef struct _PSP \* HPROPSHEETPAGE;").Value;
+            string callback = Regex.Match(header,
+                @"typedef BOOL \(CALLBACK \*LPFNADDPROPSHEETPAGE\)\(HPROPSHEETPAGE, LPARAM\);").Value;
+            Assert.IsFalse(string.IsNullOrEmpty(handle));
+            Assert.IsFalse(string.IsNullOrEmpty(callback));
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape("typedef LPFNADDPROPSHEETPAGE LPFNSVADDPROPSHEETPAGE;", target, sal: true,
+                includedHeader: "#define CALLBACK __stdcall\ntypedef int BOOL;\ntypedef __INTPTR_TYPE__ LPARAM;\n" +
+                    "struct _PSP;\n" + handle + "\n" + callback,
+                extraSettings: "--exclude\n_PSP\n--remap\n_PSP*=IntPtr\nLPARAM=IntPtr");
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            Console.WriteLine("RAW_OUTPUT native-transitive-alias." + target + ".cs " +
+                Convert.ToBase64String(File.ReadAllBytes(fixture.GeneratedSource)));
+            using var pe = new PEReader(File.OpenRead(fixture.Emit()));
+            var reader = pe.GetMetadataReader();
+            var type = NativeTypedefHeaderTests.Type(reader, "LPFNSVADDPROPSHEETPAGE");
+            var invoke = type.GetMethods().Select(reader.GetMethodDefinition)
+                .Single(method => reader.GetString(method.Name) == "Invoke");
+            var signature = reader.GetBlobReader(invoke.Signature);
+            signature.ReadSignatureHeader();
+            Assert.AreEqual(2, signature.ReadCompressedInteger());
+            Assert.AreEqual(SignatureTypeCode.Int32, signature.ReadSignatureTypeCode());
+            Assert.AreEqual(SignatureTypeCode.IntPtr, signature.ReadSignatureTypeCode());
+            Assert.AreEqual(SignatureTypeCode.IntPtr, signature.ReadSignatureTypeCode());
+            Assert.AreEqual(0, signature.RemainingBytes);
+            MidlHeaderTests.AssertCallingConvention(reader, type, 1);
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void NativeFontAliases_KeepTheCompleteUnannotatedSignature(string target)
+        {
+            string header = File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
+                "generation", "WinSDK", "RecompiledIdlHeaders", "um", "wingdi.h"));
+            string declarations = "";
+            foreach (string suffix in new[] { "A", "W" })
+            {
+                var definition = Regex.Match(header, @"typedef int \(CALLBACK\* OLDFONTENUMPROC" + suffix +
+                    @"\)\(CONST LOGFONT" + suffix + @" \*, CONST TEXTMETRIC" + suffix + @" \*, DWORD, LPARAM\);");
+                var alias = Regex.Match(header, @"typedef OLDFONTENUMPROC" + suffix + @"\s+FONTENUMPROC" + suffix + ";");
+                Assert.IsTrue(definition.Success);
+                Assert.IsTrue(alias.Success);
+                declarations += definition.Value + "\n" + alias.Value + "\n";
+            }
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(@"
+#define CALLBACK __stdcall
+#define CONST const
+typedef unsigned long DWORD;
+typedef __INTPTR_TYPE__ LPARAM;
+struct LOGFONTA { int value; };
+struct LOGFONTW { int value; };
+struct TEXTMETRICA { int value; };
+struct TEXTMETRICW { int value; };
+" + declarations + @"
+typedef FONTENUMPROCA FONT_CHAIN;
+typedef unsigned long long (__cdecl *ZERO_CALLBACK)(void);
+typedef ZERO_CALLBACK ZERO_ALIAS;
+void Use(FONTENUMPROCA first, FONTENUMPROCW second, FONT_CHAIN third, ZERO_ALIAS zero);
+", target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            Console.WriteLine("RAW_OUTPUT native-font-aliases." + target + ".cs " +
+                Convert.ToBase64String(File.ReadAllBytes(fixture.GeneratedSource)));
+            using var pe = new PEReader(File.OpenRead(fixture.Emit()));
+            var reader = pe.GetMetadataReader();
+            foreach (var pair in new[] {
+                ("OLDFONTENUMPROCA", "FONTENUMPROCA", 4), ("OLDFONTENUMPROCW", "FONTENUMPROCW", 4),
+                ("OLDFONTENUMPROCA", "FONT_CHAIN", 4), ("ZERO_CALLBACK", "ZERO_ALIAS", 0) })
+            {
+                var defining = NativeTypedefHeaderTests.Type(reader, pair.Item1).GetMethods()
+                    .Select(reader.GetMethodDefinition).Single(m => reader.GetString(m.Name) == "Invoke");
+                var alias = NativeTypedefHeaderTests.Type(reader, pair.Item2).GetMethods()
+                    .Select(reader.GetMethodDefinition).Single(m => reader.GetString(m.Name) == "Invoke");
+                var signature = reader.GetBlobReader(alias.Signature);
+                signature.ReadSignatureHeader();
+                Assert.AreEqual(pair.Item3, signature.ReadCompressedInteger(), pair.Item2);
+                CollectionAssert.AreEqual(reader.GetBlobBytes(defining.Signature), reader.GetBlobBytes(alias.Signature), pair.Item2);
+                CollectionAssert.AreEqual(defining.GetParameters().Select(reader.GetParameter).Select(p => p.Attributes).ToArray(),
+                    alias.GetParameters().Select(reader.GetParameter).Select(p => p.Attributes).ToArray(), pair.Item2);
+                MidlHeaderTests.AssertCallingConvention(reader, NativeTypedefHeaderTests.Type(reader, pair.Item2),
+                    pair.Item1 == "ZERO_CALLBACK" ? 2 : 1);
+            }
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void SameLevelCallbackWithPointerAlias_KeepsItsQualifiedPublicTarget(string target)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(@"
+typedef unsigned long (__stdcall *_EVENT_CALLBACK)(unsigned long eventType, void* context);
+typedef _EVENT_CALLBACK RTM_EVENT_CALLBACK, *PRTM_EVENT_CALLBACK;
+struct Holder { RTM_EVENT_CALLBACK value; PRTM_EVENT_CALLBACK address; RTM_EVENT_CALLBACK* aliasAddress; };
+RTM_EVENT_CALLBACK Notify(RTM_EVENT_CALLBACK callback);
+RTM_EVENT_CALLBACK* Address(RTM_EVENT_CALLBACK* callback);
+", target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            Console.WriteLine("RAW_OUTPUT native-rtm-alias." + target + ".cs " +
+                Convert.ToBase64String(File.ReadAllBytes(fixture.GeneratedSource)));
+            using var pe = new PEReader(File.OpenRead(fixture.Emit(requiredNamespaces: new Dictionary<string, string>
+            {
+                ["RTM_EVENT_CALLBACK"] = "Public.Callbacks",
+            })));
+            var reader = pe.GetMetadataReader();
+            var signature = reader.GetBlobReader(Method(reader, "Notify").Signature);
+            signature.ReadSignatureHeader();
+            Assert.AreEqual(1, signature.ReadCompressedInteger());
+            NativeTypedefHeaderTests.AssertReference(reader, ref signature, "RTM_EVENT_CALLBACK", "Public.Callbacks");
+            NativeTypedefHeaderTests.AssertReference(reader, ref signature, "RTM_EVENT_CALLBACK", "Public.Callbacks");
+            Assert.AreEqual(0, signature.RemainingBytes);
+            var callback = reader.TypeDefinitions.Select(reader.GetTypeDefinition).Single(t =>
+                reader.GetString(t.Name) == "RTM_EVENT_CALLBACK" &&
+                reader.GetString(t.Namespace) == "Public.Callbacks");
+            var invoke = callback.GetMethods().Select(reader.GetMethodDefinition)
+                .Single(m => reader.GetString(m.Name) == "Invoke");
+            signature = reader.GetBlobReader(invoke.Signature);
+            signature.ReadSignatureHeader();
+            Assert.AreEqual(2, signature.ReadCompressedInteger());
+            var field = reader.GetFieldDefinition(NativeTypedefHeaderTests.Type(reader, "Holder").GetFields()
+                .Single(h => reader.GetString(reader.GetFieldDefinition(h).Name) == "address"));
+            signature = reader.GetBlobReader(field.Signature);
+            signature.ReadSignatureHeader();
+            Assert.AreEqual(SignatureTypeCode.Pointer, signature.ReadSignatureTypeCode());
+            NativeTypedefHeaderTests.AssertReference(reader, ref signature, "_EVENT_CALLBACK");
+            Assert.AreEqual(0, signature.RemainingBytes);
+            foreach (string fieldName in new[] { "value", "aliasAddress" })
+            {
+                field = reader.GetFieldDefinition(NativeTypedefHeaderTests.Type(reader, "Holder").GetFields()
+                    .Single(h => reader.GetString(reader.GetFieldDefinition(h).Name) == fieldName));
+                signature = reader.GetBlobReader(field.Signature);
+                signature.ReadSignatureHeader();
+                if (fieldName == "aliasAddress") Assert.AreEqual(SignatureTypeCode.Pointer, signature.ReadSignatureTypeCode());
+                NativeTypedefHeaderTests.AssertReference(reader, ref signature, "RTM_EVENT_CALLBACK", "Public.Callbacks");
+                Assert.AreEqual(0, signature.RemainingBytes);
+            }
+            signature = reader.GetBlobReader(Method(reader, "Address").Signature);
+            signature.ReadSignatureHeader();
+            Assert.AreEqual(1, signature.ReadCompressedInteger());
+            for (int i = 0; i < 2; i++)
+            {
+                Assert.AreEqual(SignatureTypeCode.Pointer, signature.ReadSignatureTypeCode());
+                NativeTypedefHeaderTests.AssertReference(reader, ref signature, "RTM_EVENT_CALLBACK", "Public.Callbacks");
+            }
+            Assert.AreEqual(0, signature.RemainingBytes);
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void NativeRpcDispatchTable_PreservesTheAddressOfItsFunctionPointers(string target)
+        {
+            string root = LastErrorHeaderTests.RepositoryRoot();
+            string header = File.ReadAllText(Path.Combine(root,
+                "generation", "WinSDK", "RecompiledIdlHeaders", "shared", "rpcdcep.h"));
+            string callback = Regex.Match(header,
+                @"typedef\s+void\s+\(__RPC_STUB __RPC_FAR \* RPC_DISPATCH_FUNCTION\)\s*\([^;]+;").Value;
+            string table = Regex.Match(header,
+                @"typedef struct \{\s+unsigned int DispatchTableCount;[^}]+\} RPC_DISPATCH_TABLE, __RPC_FAR \* PRPC_DISPATCH_TABLE;").Value;
+            Assert.IsFalse(string.IsNullOrEmpty(callback));
+            Assert.IsFalse(string.IsNullOrEmpty(table));
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(@"
+#define __RPC_STUB __stdcall
+#define __RPC_FAR
+#define IN _In_
+#define OUT _Out_
+typedef __INTPTR_TYPE__ LONG_PTR;
+typedef struct RPC_MESSAGE* PRPC_MESSAGE;
+" + callback + "\n" + table, target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            var reductions = fixture.DiscoveredRemaps.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)
+                .Where(line => line.StartsWith("REDUCE_PTR_LEVEL:", StringComparison.Ordinal))
+                .Select(line => line.Substring("REDUCE_PTR_LEVEL:".Length)).ToHashSet(StringComparer.Ordinal);
+            string[] settings = File.ReadAllLines(Path.Combine(root, "generation", "WinSDK", "emitter.settings.rsp"));
+            int manual = Array.IndexOf(settings, "--reducePointerLevel");
+            if (manual >= 0)
+                reductions.UnionWith(settings.Skip(manual + 1).TakeWhile(line => !line.StartsWith("--", StringComparison.Ordinal))
+                    .Where(line => !string.IsNullOrWhiteSpace(line)));
+            using var pe = new PEReader(File.OpenRead(fixture.Emit(reducePointerLevels: reductions)));
+            var reader = pe.GetMetadataReader();
+            var field = NativeTypedefHeaderTests.Type(reader, "RPC_DISPATCH_TABLE").GetFields()
+                .Select(reader.GetFieldDefinition).Single(f => reader.GetString(f.Name) == "DispatchTable");
+            var signature = reader.GetBlobReader(field.Signature);
+            signature.ReadSignatureHeader();
+            Assert.AreEqual(SignatureTypeCode.Pointer, signature.ReadSignatureTypeCode());
+            NativeTypedefHeaderTests.AssertReference(reader, ref signature, "RPC_DISPATCH_FUNCTION");
+            Assert.AreEqual(0, signature.RemainingBytes);
+        }
+
+        [DataTestMethod]
+        [DataRow(false)]
+        [DataRow(true)]
+        public void BareFunctionOutsideTraversal_DoesNotReduceItsExternalReference(bool pointerAlias)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape("struct Slots { OutsideCallback* callback; };",
+                includedHeader: "typedef int OutsideCallback(void* context);" +
+                    (pointerAlias ? "typedef OutsideCallback* OutsideCallbackPointer;" : ""));
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            string[] discovered = fixture.DiscoveredRemaps.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            Assert.IsFalse(discovered.Any(line => line.StartsWith("REDUCE_PTR_LEVEL:", StringComparison.Ordinal)));
+            Assert.IsFalse(discovered.Contains("OutsideCallback=OutsideCallbackPointer"));
+            string generated = File.ReadAllText(fixture.GeneratedSource);
+            var field = CSharpSyntaxTree.ParseText(generated).GetRoot().DescendantNodes()
+                .OfType<FieldDeclarationSyntax>().Single();
+            Assert.AreEqual("IntPtr", field.Declaration.Type.ToString());
+            StringAssert.Contains(generated, "[NativeTypeName(\"OutsideCallback *\")]");
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void BareIcuFunctionTypedef_AddressesKeepExactlyTheirNativePointerDepth(string target)
+        {
+            string header = File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
+                "generation", "WinSDK", "RecompiledIdlHeaders", "um", "icu.h"));
+            string declaration = Regex.Match(header,
+                @"typedef UChar32 U_CALLCONV\s+UCharIteratorCurrent\(UCharIterator \*iter\);").Value;
+            Assert.IsFalse(string.IsNullOrEmpty(declaration));
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(@"
+#define U_CALLCONV __cdecl
+typedef int UChar32;
+typedef struct UCharIterator UCharIterator;
+" + declaration + @"
+typedef int (__cdecl *PointerCallback)(UCharIterator* iter);
+struct Slots {
+    UCharIteratorCurrent* current;
+    UCharIteratorCurrent** address;
+    PointerCallback* pointerAddress;
+    void* unrelated;
+};
+void Use(UCharIteratorCurrent* current, UCharIteratorCurrent** address, PointerCallback* pointerAddress);
+UCharIteratorCurrent* GetCurrent(void);
+UCharIteratorCurrent** GetAddress(void);
+", target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            var reductions = fixture.DiscoveredRemaps.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)
+                .Where(line => line.StartsWith("REDUCE_PTR_LEVEL:", StringComparison.Ordinal))
+                .Select(line => line.Substring("REDUCE_PTR_LEVEL:".Length)).ToHashSet(StringComparer.Ordinal);
+            using var pe = new PEReader(File.OpenRead(fixture.Emit(reducePointerLevels: reductions)));
+            var reader = pe.GetMetadataReader();
+            var slots = NativeTypedefHeaderTests.Type(reader, "Slots");
+            foreach (var field in slots.GetFields().Select(reader.GetFieldDefinition))
+            {
+                string name = reader.GetString(field.Name);
+                var signature = reader.GetBlobReader(field.Signature);
+                signature.ReadSignatureHeader();
+                if (name != "current") Assert.AreEqual(SignatureTypeCode.Pointer, signature.ReadSignatureTypeCode(), name);
+                if (name == "unrelated") Assert.AreEqual(SignatureTypeCode.Void, signature.ReadSignatureTypeCode());
+                else NativeTypedefHeaderTests.AssertReference(reader, ref signature,
+                    name == "pointerAddress" ? "PointerCallback" : "UCharIteratorCurrent");
+                Assert.AreEqual(0, signature.RemainingBytes);
+            }
+            foreach (string name in new[] { "GetCurrent", "GetAddress" })
+            {
+                var signature = reader.GetBlobReader(Method(reader, name).Signature);
+                signature.ReadSignatureHeader();
+                Assert.AreEqual(0, signature.ReadCompressedInteger());
+                if (name == "GetAddress") Assert.AreEqual(SignatureTypeCode.Pointer, signature.ReadSignatureTypeCode());
+                NativeTypedefHeaderTests.AssertReference(reader, ref signature, "UCharIteratorCurrent");
+                Assert.AreEqual(0, signature.RemainingBytes);
+            }
+            var use = reader.GetBlobReader(Method(reader, "Use").Signature);
+            use.ReadSignatureHeader();
+            Assert.AreEqual(3, use.ReadCompressedInteger());
+            Assert.AreEqual(SignatureTypeCode.Void, use.ReadSignatureTypeCode());
+            NativeTypedefHeaderTests.AssertReference(reader, ref use, "UCharIteratorCurrent");
+            Assert.AreEqual(SignatureTypeCode.Pointer, use.ReadSignatureTypeCode());
+            NativeTypedefHeaderTests.AssertReference(reader, ref use, "UCharIteratorCurrent");
+            Assert.AreEqual(SignatureTypeCode.Pointer, use.ReadSignatureTypeCode());
+            NativeTypedefHeaderTests.AssertReference(reader, ref use, "PointerCallback");
+            Assert.AreEqual(0, use.RemainingBytes);
+        }
 
         [DataTestMethod]
         [DataRow("i686-pc-windows-msvc")]

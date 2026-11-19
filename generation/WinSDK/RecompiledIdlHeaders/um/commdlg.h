@@ -1167,6 +1167,7 @@ typedef const DEVNAMES *PCDEVNAMES;
 _Win32_SupportedOS_Windows2000_
 
 
+_Win32_AssociatedEnum_(COMMON_DLG_ERRORS)
 WINCOMMDLGAPI DWORD APIENTRY CommDlgExtendedError(VOID);
 
 #if(WINVER >= 0x0400)

@@ -177,7 +177,33 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/PeerDist.h b/generation/W
  
  DWORD WINAPI PeerDistClientCancelAsyncOperation(
          _In_ PEERDIST_INSTANCE_HANDLE hPeerDist,
-@@ -291,11 +318,13 @@
+@@ -263,11 +290,12 @@
+ #define PEERDIST_RETRIEVAL_OPTIONS_CONTENTINFO_VERSION_1 1L
+ #define PEERDIST_RETRIEVAL_OPTIONS_CONTENTINFO_VERSION_2 2L
+ 
++_Win32_Enum_(PEERDIST_RETRIEVAL_OPTIONS_CONTENTINFO_VERSION_VALUE, unsigned int, PEERDIST_RETRIEVAL_OPTIONS_CONTENTINFO_VERSION_1, PEERDIST_RETRIEVAL_OPTIONS_CONTENTINFO_VERSION_2, PEERDIST_RETRIEVAL_OPTIONS_CONTENTINFO_VERSION);
+ typedef struct peerdist_retrieval_options_tag 
+ {
+     DWORD cbSize;
+-    DWORD dwContentInfoMinVersion;
+-    DWORD dwContentInfoMaxVersion;
++    _Win32_AssociatedEnum_(PEERDIST_RETRIEVAL_OPTIONS_CONTENTINFO_VERSION_VALUE) DWORD dwContentInfoMinVersion;
++    _Win32_AssociatedEnum_(PEERDIST_RETRIEVAL_OPTIONS_CONTENTINFO_VERSION_VALUE) DWORD dwContentInfoMaxVersion;
+     DWORD dwReserved;
+ } PEERDIST_RETRIEVAL_OPTIONS, *PPEERDIST_RETRIEVAL_OPTIONS;
+ typedef const PEERDIST_RETRIEVAL_OPTIONS * PCPEERDIST_RETRIEVAL_OPTIONS;
+@@ -276,8 +304,8 @@
+ {
+     DWORD cbSize;
+     PEERDIST_STATUS status;
+-    DWORD dwMinVer;
+-    DWORD dwMaxVer;
++    _Win32_AssociatedEnum_(PEERDIST_RETRIEVAL_OPTIONS_CONTENTINFO_VERSION_VALUE) DWORD dwMinVer;
++    _Win32_AssociatedEnum_(PEERDIST_RETRIEVAL_OPTIONS_CONTENTINFO_VERSION_VALUE) DWORD dwMaxVer;
+ } PEERDIST_STATUS_INFO, *PPEERDIST_STATUS_INFO;
+ typedef const PEERDIST_STATUS_INFO * PCPEERDIST_STATUS_INFO;
+ 
+@@ -291,11 +319,13 @@
  } PEERDIST_CLIENT_BASIC_INFO, *PPEERDIST_CLIENT_BASIC_INFO;
  
  #ifndef MIDL_PASS
@@ -191,7 +217,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/PeerDist.h b/generation/W
  
  DWORD WINAPI PeerDistRegisterForStatusChangeNotificationEx(
          _In_      PEERDIST_INSTANCE_HANDLE hPeerDist,
-@@ -304,12 +333,14 @@
+@@ -304,12 +334,14 @@
          _In_      LPOVERLAPPED lpOverlapped,
          _Inout_ PEERDIST_STATUS_INFO *pPeerDistStatus
          );
@@ -206,7 +232,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/PeerDist.h b/generation/W
  
  DWORD WINAPI PeerDistServerOpenContentInformationEx(
          _In_ PEERDIST_INSTANCE_HANDLE  hPeerDist,
-@@ -322,6 +353,7 @@
+@@ -322,6 +354,7 @@
          _In_opt_ ULONG_PTR ulCompletionKey,
          _Out_ PPEERDIST_CONTENTINFO_HANDLE phContentInfo
          );

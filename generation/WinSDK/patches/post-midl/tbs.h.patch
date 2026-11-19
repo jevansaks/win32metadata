@@ -7,7 +7,24 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/tbs.h b/generation/Wi
  /*+--------------------------------------------------------------------------
  
  Microsoft Windows
-@@ -93,6 +94,7 @@
+@@ -66,12 +67,16 @@
+ #define TBS_COMMAND_PRIORITY_SYSTEM     400
+ #define TBS_COMMAND_PRIORITY_MAX        0x80000000
+ 
++_Win32_Enum_(TBS_COMMAND_PRIORITY, unsigned int, TBS_COMMAND_PRIORITY_LOW, TBS_COMMAND_PRIORITY_NORMAL, TBS_COMMAND_PRIORITY_SYSTEM, TBS_COMMAND_PRIORITY_HIGH, TBS_COMMAND_PRIORITY_MAX);
++
+ #define TBS_COMMAND_LOCALITY_ZERO       0
+ #define TBS_COMMAND_LOCALITY_ONE        1
+ #define TBS_COMMAND_LOCALITY_TWO        2
+ #define TBS_COMMAND_LOCALITY_THREE      3
+ #define TBS_COMMAND_LOCALITY_FOUR       4
+ 
++_Win32_Enum_(TBS_COMMAND_LOCALITY, unsigned int, TBS_COMMAND_LOCALITY_ZERO, TBS_COMMAND_LOCALITY_ONE, TBS_COMMAND_LOCALITY_TWO, TBS_COMMAND_LOCALITY_THREE, TBS_COMMAND_LOCALITY_FOUR);
++
+ #define TBS_SUCCESS                     0
+ 
+ #define TBS_IN_OUT_BUF_SIZE_MAX         (256*1024)
+@@ -93,6 +98,7 @@
      UINT32 version;
  } TBS_CONTEXT_PARAMS, *PTBS_CONTEXT_PARAMS;
  typedef const TBS_CONTEXT_PARAMS *PCTBS_CONTEXT_PARAMS;
@@ -15,7 +32,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/tbs.h b/generation/Wi
  
  TBS_RESULT WINAPI
  Tbsi_Context_Create(
-@@ -103,10 +105,12 @@
+@@ -103,24 +109,28 @@
  Tbsi_Tpm_Vendor_Maintenance_Mode(
      _In_ PCTBS_CONTEXT_PARAMS pContextParams,
      _Out_ PTBS_HCONTEXT phContext);
@@ -28,7 +45,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/tbs.h b/generation/Wi
  
  TBS_RESULT WINAPI
  Tbsip_Submit_Command(
-@@ -117,10 +121,12 @@
+     _In_ TBS_HCONTEXT hContext,
+-    _In_ TBS_COMMAND_LOCALITY Locality,
+-    _In_ TBS_COMMAND_PRIORITY Priority,
++    _In_ _Win32_AssociatedEnum_(TBS_COMMAND_LOCALITY) TBS_COMMAND_LOCALITY Locality,
++    _In_ _Win32_AssociatedEnum_(TBS_COMMAND_PRIORITY) TBS_COMMAND_PRIORITY Priority,
+     _In_reads_bytes_(cbCommand) PCBYTE pabCommand,
      _In_ UINT32 cbCommand,
      _Out_writes_bytes_(*pcbResult) PBYTE pabResult,
      _Inout_ PUINT32 pcbResult);
@@ -41,7 +63,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/tbs.h b/generation/Wi
  
  TBS_RESULT WINAPI
  Tbsi_Physical_Presence_Command(
-@@ -212,11 +218,13 @@
+@@ -212,11 +222,13 @@
  } TPM_DEVICE_INFO, *PTPM_DEVICE_INFO;
  typedef const TPM_DEVICE_INFO *PCTPM_DEVICE_INFO;
  #endif //TPM_VERSION_UNKNOWN
@@ -55,7 +77,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/tbs.h b/generation/Wi
  
  _Success_(return == TBS_SUCCESS)
  TBS_RESULT WINAPI
-@@ -225,6 +233,7 @@
+@@ -225,6 +237,7 @@
      _In_ TBS_OWNERAUTH_TYPE ownerauthType,
      _Out_writes_bytes_to_opt_(*pOutputBufLen, *pOutputBufLen) PBYTE pOutputBuf,
      _Inout_  PUINT32 pOutputBufLen);
@@ -63,7 +85,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/tbs.h b/generation/Wi
  
  TBS_RESULT WINAPI
  Tbsi_Revoke_Attestation();
-@@ -280,6 +289,7 @@
+@@ -280,6 +293,7 @@
  #define TBS_TCGLOG_DRTM_BOOT        4
  // (User mode only) Returns the DRTM log associated with the most recent clean boot
  #define TBS_TCGLOG_DRTM_RESUME      5

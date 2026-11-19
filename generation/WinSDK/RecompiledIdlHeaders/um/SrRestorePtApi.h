@@ -31,6 +31,7 @@ Abstract:
 #define BEGIN_NESTED_SYSTEM_CHANGE_NORP  104
 #define END_NESTED_SYSTEM_CHANGE_NORP    END_NESTED_SYSTEM_CHANGE
 #define MAX_EVENT                        104
+_Win32_Enum_(RESTOREPOINTINFO_EVENT_TYPE, unsigned int, BEGIN_NESTED_SYSTEM_CHANGE, BEGIN_SYSTEM_CHANGE, END_NESTED_SYSTEM_CHANGE, END_SYSTEM_CHANGE);
 
 //
 // Type of Restore Points
@@ -57,6 +58,7 @@ Abstract:
 #define WINDOWS_UPDATE          17
 #define CRITICAL_UPDATE         18
 #define MAX_RPT                 18
+_Win32_Enum_(RESTOREPOINTINFO_TYPE, unsigned int, APPLICATION_INSTALL, APPLICATION_UNINSTALL, DEVICE_DRIVER_INSTALL, MODIFY_SETTINGS, CANCELLED_OPERATION);
 
 
 #define MAX_DESC                64
@@ -74,23 +76,23 @@ Abstract:
 //
 
 typedef struct _RESTOREPTINFOA {
-    DWORD   dwEventType;                // Type of Event - Begin or End
-    DWORD   dwRestorePtType;            // Type of Restore Point - App install/uninstall
+    _Win32_AssociatedEnum_(RESTOREPOINTINFO_EVENT_TYPE) DWORD   dwEventType;                // Type of Event - Begin or End
+    _Win32_AssociatedEnum_(RESTOREPOINTINFO_TYPE) DWORD   dwRestorePtType;            // Type of Restore Point - App install/uninstall
     INT64   llSequenceNumber;           // Sequence Number - 0 for begin
     CHAR    szDescription[MAX_DESC];    // Description - Name of Application / Operation
 } RESTOREPOINTINFOA, *PRESTOREPOINTINFOA;
 
 typedef struct _RESTOREPTINFOW {
-    DWORD   dwEventType;
-    DWORD   dwRestorePtType;
+    _Win32_AssociatedEnum_(RESTOREPOINTINFO_EVENT_TYPE) DWORD   dwEventType;
+    _Win32_AssociatedEnum_(RESTOREPOINTINFO_TYPE) DWORD   dwRestorePtType;
     INT64   llSequenceNumber;
     WCHAR   szDescription[MAX_DESC_W];
 } RESTOREPOINTINFOW, *PRESTOREPOINTINFOW;
 
 typedef struct _RESTOREPTINFOEX {
     FILETIME ftCreation;
-    DWORD    dwEventType;
-    DWORD    dwRestorePtType;
+    _Win32_AssociatedEnum_(RESTOREPOINTINFO_EVENT_TYPE) DWORD    dwEventType;
+    _Win32_AssociatedEnum_(RESTOREPOINTINFO_TYPE) DWORD    dwRestorePtType;
     DWORD    dwRPNum;
     WCHAR    szDescription[MAX_DESC_W];
 } RESTOREPOINTINFOEX, *PRESTOREPOINTINFOEX;

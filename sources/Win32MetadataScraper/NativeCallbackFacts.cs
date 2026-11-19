@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using ClangSharp;
 using ClangSharp.Interop;
 using Microsoft.CodeAnalysis;
@@ -58,6 +59,13 @@ namespace Win32MetadataScraper
             if (type is PointerType address) type = RemapDiscovery.UnwrapType(address.PointeeType);
             if (type is TypedefType alias)
                 this.aliases[declaration.CanonicalDecl] = (declaration, alias.Decl.CanonicalDecl);
+            else if (type is FunctionProtoType)
+            {
+                var context = declaration.DeclContext;
+                while (context is LinkageSpecDecl linkage) context = linkage.DeclContext;
+                if (context is TranslationUnitDecl && !this.callbacks.ContainsKey(declaration.CanonicalDecl))
+                    this.GetCallback(declaration, declaration.CursorChildren.OfType<ParmVarDecl>().ToArray());
+            }
         }
 
         private Callback GetCallback(NamedDecl owner, IReadOnlyList<ParmVarDecl> parameters)
@@ -100,9 +108,11 @@ namespace Win32MetadataScraper
         public override SyntaxNode VisitCompilationUnit(CompilationUnitSyntax node)
         {
             node = (CompilationUnitSyntax)base.VisitCompilationUnit(node);
-            if (this.emittedNativeDelegate && !node.Usings.Any(u => u.Name.ToString() == "System.Runtime.InteropServices"))
-                node = node.AddUsings(SyntaxFactory.UsingDirective(SyntaxFactory.ParseName("System.Runtime.InteropServices"))
-                    .NormalizeWhitespace().WithTrailingTrivia(SyntaxFactory.CarriageReturnLineFeed));
+            if (this.emittedNativeDelegate)
+                foreach (string name in new[] { "System", "System.Runtime.InteropServices" })
+                    if (!node.Usings.Any(u => u.Name.ToString() == name))
+                        node = node.AddUsings(SyntaxFactory.UsingDirective(SyntaxFactory.ParseName(name))
+                            .NormalizeWhitespace().WithTrailingTrivia(SyntaxFactory.CarriageReturnLineFeed));
             return node;
         }
 
@@ -121,13 +131,14 @@ namespace Win32MetadataScraper
         public override SyntaxNode VisitDelegateDeclaration(DelegateDeclarationSyntax node)
         {
             var matches = this.callbacks.Values.Where(c => c.Owner is TypedefDecl &&
+                (c.Owner.CanonicalDecl != c.Prototype || c.Retvals.Count != 0 || c.DoubleNulls.Count != 0) &&
                 Projected(Name(c.Owner)) == node.Identifier.ValueText).GroupBy(c => c.Prototype)
                 .Select(g => g.First()).ToArray();
             if (matches.Length > 1) throw Error(matches[0].Owner, "Ambiguous projected callback name.");
             if (matches.Length == 0) return base.VisitDelegateDeclaration(node);
             var callback = matches[0];
             if (callback.Owner.CanonicalDecl != callback.Prototype &&
-                node.ParameterList.Parameters.Count == 0 && callback.Parameters.Count != 0)
+                node.ParameterList.Parameters.Count == 0)
             {
                 var defining = node.Parent?.ChildNodes().OfType<DelegateDeclarationSyntax>()
                     .SingleOrDefault(d => d.Identifier.ValueText == Projected(Name((NamedDecl)callback.Prototype)) &&
@@ -136,8 +147,8 @@ namespace Win32MetadataScraper
                     .Where(a => a.Name.ToString() is not "NativeTypeName" and not "UnmanagedFunctionPointer")
                     .Select(a => SyntaxFactory.AttributeList(SyntaxFactory.SingletonSeparatedList(a)));
                 if (defining == null)
-                    return this.NativeDelegate(callback, node.Identifier.ValueText)
-                        .AddAttributeLists(retained.ToArray()).WithTriviaFrom(node);
+                    return base.VisitDelegateDeclaration(this.NativeDelegate(callback, node.Identifier.ValueText)
+                        .AddAttributeLists(retained.ToArray()).WithTriviaFrom(node));
                 node = defining.WithIdentifier(node.Identifier).AddAttributeLists(retained.ToArray()).WithTriviaFrom(node);
             }
             if (node.ParameterList.Parameters.Count != callback.Parameters.Count)
@@ -155,8 +166,50 @@ namespace Win32MetadataScraper
                 node = node.WithParameterList(node.ParameterList.WithParameters(
                     node.ParameterList.Parameters.Replace(parameter, parameter.AddAttributeLists(attributes.ToArray()))));
             }
-            return node;
+            return base.VisitDelegateDeclaration(node);
         }
+
+        public override SyntaxNode Visit(SyntaxNode node)
+        {
+            node = base.Visit(node);
+            return node switch
+            {
+                ParameterSyntax parameter when parameter.Type != null =>
+                    parameter.WithType(this.PreserveAlias(parameter.Type, parameter.AttributeLists)),
+                FieldDeclarationSyntax field => field.WithDeclaration(field.Declaration.WithType(
+                    this.PreserveAlias(field.Declaration.Type, field.AttributeLists))),
+                MethodDeclarationSyntax method =>
+                    method.WithReturnType(this.PreserveAlias(method.ReturnType, method.AttributeLists, returnType: true)),
+                DelegateDeclarationSyntax callback =>
+                    callback.WithReturnType(this.PreserveAlias(callback.ReturnType, callback.AttributeLists, returnType: true)),
+                _ => node,
+            };
+        }
+
+        private TypeSyntax PreserveAlias(TypeSyntax type, SyntaxList<AttributeListSyntax> attributes, bool returnType = false)
+        {
+            foreach (string native in NativeTypeNames(attributes, returnType))
+                if (this.PreservedAlias(native) is string selected)
+                    return SyntaxFactory.ParseTypeName(selected).WithTriviaFrom(type);
+            return type;
+        }
+
+        private string PreservedAlias(string native)
+        {
+            string[] names = native.Split(new[] { ' ', '\t', '\r', '\n', '*' }, StringSplitOptions.RemoveEmptyEntries)
+                .Where(token => token is not "const" and not "volatile").ToArray();
+            if (names.Length != 1 || !this.types.TryGetValue(names[0], out string selected) ||
+                selected != names[0] || !this.aliases.Values.Any(alias => Name(alias.Owner) == names[0]))
+                return null;
+            return Projected(names[0]) + new string('*', native.Count(c => c == '*'));
+        }
+
+        private static IEnumerable<string> NativeTypeNames(SyntaxList<AttributeListSyntax> attributes, bool returnType = false) =>
+            attributes.Where(list => returnType == (list.Target?.Identifier.IsKind(SyntaxKind.ReturnKeyword) == true))
+                .SelectMany(list => list.Attributes).Where(attribute => attribute.Name.ToString() == "NativeTypeName" &&
+                    attribute.ArgumentList?.Arguments.Count == 1 &&
+                    attribute.ArgumentList.Arguments[0].Expression is LiteralExpressionSyntax)
+                .Select(attribute => ((LiteralExpressionSyntax)attribute.ArgumentList.Arguments[0].Expression).Token.ValueText);
 
         public override SyntaxNode VisitStructDeclaration(StructDeclarationSyntax node)
         {
@@ -175,6 +228,31 @@ namespace Win32MetadataScraper
                     SyntaxFactory.ParseTypeName(delegateName).WithTrailingTrivia(SyntaxFactory.Space)))) as StructDeclarationSyntax;
                 this.vtableDelegates.Add(declaration);
             }
+            foreach (var field in node.Members.OfType<FieldDeclarationSyntax>().ToArray())
+                foreach (string native in NativeTypeNames(field.AttributeLists))
+                {
+                    int bracket = native.IndexOf('[');
+                    if (bracket < 0 || !Regex.IsMatch(native.Substring(bracket), @"\A(?:\s*\[\s*\d+\s*\])+\z") ||
+                        this.PreservedAlias(native.Substring(0, bracket)) is not string selected)
+                        continue;
+                    string bufferName = field.Declaration.Type.ToString();
+                    var buffer = node.Members.OfType<StructDeclarationSyntax>()
+                        .SingleOrDefault(member => member.Identifier.ValueText == bufferName);
+                    if (buffer == null)
+                        throw new FormatException($"Native callback array '{node.Identifier}.{field.Declaration.Variables.Single().Identifier}' has no generated fixed-buffer carrier.");
+                    var element = buffer.Members.OfType<FieldDeclarationSyntax>()
+                        .Single(member => member.Declaration.Variables.Any(variable => variable.Identifier.ValueText == "e0"))
+                        .Declaration.Type;
+                    // The native element annotation is on the outer field, not on the generated buffer slots.
+                    // Identical type spellings can have different Roslyn pointer-context flags.
+                    var uses = buffer.DescendantNodes().OfType<VariableDeclarationSyntax>().Select(variable => variable.Type)
+                        .Concat(buffer.Members.OfType<IndexerDeclarationSyntax>().Select(indexer => indexer.Type))
+                        .SelectMany(type => type.DescendantNodesAndSelf().OfType<TypeSyntax>())
+                        .Where(type => type.ToString() == element.ToString());
+                    node = node.ReplaceNode(buffer, buffer.ReplaceNodes(
+                        uses,
+                        (_, rewritten) => SyntaxFactory.ParseTypeName(selected).WithTriviaFrom(rewritten)));
+                }
             return base.VisitStructDeclaration(node);
         }
 
@@ -186,16 +264,17 @@ namespace Win32MetadataScraper
                 FieldDecl field => field.Type,
                 _ => throw Error(callback.Owner, "Native callback prototype has no defining declaration."),
             };
+            string convention = AuthoredConvention(type);
             var canonical = type.CanonicalType;
             if (canonical is PointerType nativePointer) canonical = nativePointer.PointeeType.CanonicalType;
             type = RemapDiscovery.UnwrapType(type);
             if (type is PointerType pointer) type = RemapDiscovery.UnwrapType(pointer.PointeeType);
             var prototype = type as FunctionProtoType;
-            // Canonical storage retains calling conventions; the authored prototype retains return aliases.
+            // Keep explicit convention spelling and return aliases alongside the effective native ABI.
             var nativePrototype = canonical as FunctionProtoType;
             if (prototype == null || nativePrototype == null || prototype.IsVariadic)
                 throw Error(callback.Owner, "Native callback facts require a non-variadic native function prototype.");
-            string convention = nativePrototype.CallConv switch
+            convention ??= nativePrototype.CallConv switch
             {
                 CXCallingConv.CXCallingConv_X86StdCall => "StdCall",
                 CXCallingConv.CXCallingConv_C => "Cdecl",
@@ -249,9 +328,16 @@ namespace Win32MetadataScraper
             {
                 string name = Name(alias.Decl);
                 if (this.types.TryGetValue(name, out string configured)) return configured;
+                if (this.remaps.TryGetValue(name, out string mapped) && mapped != name) return mapped;
                 return this.TypeName(alias.Decl.UnderlyingType, site);
             }
-            if (type is PointerType pointer) return this.TypeName(pointer.PointeeType, site) + "*";
+            if (type is PointerType pointer)
+            {
+                if (RemapDiscovery.UnwrapType(pointer.PointeeType) is TagType nativeTag &&
+                    this.remaps.TryGetValue(Name(nativeTag.Decl) + "*", out string mapped))
+                    return mapped;
+                return this.TypeName(pointer.PointeeType, site) + "*";
+            }
             if (type is LValueReferenceType reference) return this.TypeName(reference.PointeeType, site) + "*";
             if (type is TagType tag) return Projected(Name(tag.Decl));
             return type.Kind switch
@@ -270,6 +356,25 @@ namespace Win32MetadataScraper
                 CXTypeKind.CXType_Double => "double",
                 _ => throw Error(site, $"Unsupported native callback storage '{type.AsString}'."),
             };
+        }
+
+        private static string AuthoredConvention(ClangSharp.Type type)
+        {
+            while (true)
+            {
+                switch (type)
+                {
+                    case AttributedType attribute:
+                        if (attribute.AttrKind == CX_AttrKind.CX_AttrKind_StdCall) return "StdCall";
+                        if (attribute.AttrKind == CX_AttrKind.CX_AttrKind_CDecl) return "Cdecl";
+                        type = attribute.ModifiedType;
+                        break;
+                    case PointerType pointer: type = pointer.PointeeType; break;
+                    case ParenType paren: type = paren.InnerType; break;
+                    case ElaboratedType elaborated: type = elaborated.NamedType; break;
+                    default: return null;
+                }
+            }
         }
 
         private string Projected(string name)

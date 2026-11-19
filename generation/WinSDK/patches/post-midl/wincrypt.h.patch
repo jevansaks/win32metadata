@@ -2876,7 +2876,24 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  
  //+-------------------------------------------------------------------------
-@@ -21615,6 +22048,8 @@
+@@ -21574,7 +22007,7 @@
+ 
+ typedef struct _CERT_SELECT_CRITERIA
+ {
+-    DWORD                           dwType;
++    _Win32_AssociatedEnum_(CERT_SELECT_CRITERIA_TYPE) DWORD                           dwType;
+     DWORD                           cPara;
+     _Field_size_(cPara) void**    ppPara;
+ }
+@@ -21603,6 +22036,7 @@
+ 
+ #define CERT_SELECT_LAST                    CERT_SELECT_BY_TLS_SIGNATURES
+ #define CERT_SELECT_MAX                     (CERT_SELECT_LAST * 3)
++_Win32_Enum_(CERT_SELECT_CRITERIA_TYPE, unsigned int, CERT_SELECT_BY_ENHKEY_USAGE, CERT_SELECT_BY_KEY_USAGE, CERT_SELECT_BY_POLICY_OID, CERT_SELECT_BY_PROV_NAME, CERT_SELECT_BY_EXTENSION, CERT_SELECT_BY_SUBJECT_HOST_NAME, CERT_SELECT_BY_ISSUER_ATTR, CERT_SELECT_BY_SUBJECT_ATTR, CERT_SELECT_BY_ISSUER_NAME, CERT_SELECT_BY_PUBLIC_KEY, CERT_SELECT_BY_TLS_SIGNATURES);
+ 
+ // Selection Flags
+ 
+@@ -21615,6 +22049,8 @@
  #define CERT_SELECT_HARDWARE_ONLY                   0x00000040
  #define CERT_SELECT_ALLOW_DUPLICATES                0x00000080
  #define CERT_SELECT_IGNORE_AUTOSELECT               0x00000100
@@ -2885,7 +2902,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Build certificate chains from the certificates in the store and select
-@@ -21635,6 +22070,7 @@
+@@ -21635,6 +22071,7 @@
      _Out_ PDWORD pcSelection,
      _Outptr_result_buffer_(*pcSelection) PCCERT_CHAIN_CONTEXT** pprgpSelection
      );
@@ -2893,7 +2910,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Free the array of pointers to chain contexts.
-@@ -21777,6 +22213,8 @@
+@@ -21777,6 +22214,8 @@
      _Field_size_(cExtension)
      PCERT_EXTENSION             rgExtension;                // OPTIONAL
  } CRYPT_TIMESTAMP_PARA, *PCRYPT_TIMESTAMP_PARA;
@@ -2902,7 +2919,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  CryptRetrieveTimeStamp
-@@ -21847,6 +22285,8 @@
+@@ -21847,6 +22286,8 @@
  // Set this flag to inhibit automatic authentication handling. See the
  // wininet flag, INTERNET_FLAG_NO_AUTH, for more details.
  #define TIMESTAMP_NO_AUTH_RETRIEVAL             0x00020000  //  CRYPT_NO_AUTH_RETRIEVAL
@@ -2911,7 +2928,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  // CryptVerifyTimeStampSignature
-@@ -22023,7 +22463,7 @@
+@@ -22023,7 +22464,7 @@
  //    it is initialized. 
  //--------------------------------------------------------------------------
  typedef void (WINAPI * PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_RELEASE)(
@@ -2920,7 +2937,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _In_opt_ LPVOID pPluginContext);
  
  
-@@ -22217,3 +22657,84 @@
+@@ -22217,3 +22658,84 @@
  #pragma endregion
  
  #endif // __WINCRYPT_H__

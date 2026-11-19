@@ -216,6 +216,7 @@ namespace ClangSharpSourceToWinmd
                     .Where(payload => payload != null && payload.StartsWith(ParameterAnnotation.Owner, StringComparison.Ordinal) &&
                         payload != ParameterAnnotation.Owner + "SetLastError" &&
                         payload != ParameterAnnotation.Owner + "PreserveResult" &&
+                        !IsEnumGroupAnnotation(payload) &&
                         !payload.StartsWith(ParameterAnnotation.Owner + "AlsoUsableFor(", StringComparison.Ordinal) &&
                         !payload.StartsWith(ParameterAnnotation.Owner + "ImportLibrary(", StringComparison.Ordinal) &&
                         !payload.StartsWith(SupportedOSAnnotation.Prefix, StringComparison.Ordinal))
@@ -226,9 +227,11 @@ namespace ClangSharpSourceToWinmd
 
             private IEnumerable<string> OwnedParameterNames(string payload) =>
                 new[] { ParameterAnnotation.Parse(payload) }
-                    .Where(annotation => annotation.Kind != ParameterAnnotationKind.AssociatedEnum ||
-                        !this.headerEnumNames.Contains(annotation.EnumName))
                     .Select(annotation => annotation.AttributeName);
+
+            private static bool IsEnumGroupAnnotation(string payload) =>
+                payload.StartsWith(ParameterAnnotation.Owner + "Enum(", StringComparison.Ordinal) ||
+                payload.StartsWith(ParameterAnnotation.Owner + "FlagsEnum(", StringComparison.Ordinal);
 
             private string GetHeaderEnumType(SyntaxList<AttributeListSyntax> attributes, string type, string fullName)
             {
@@ -237,9 +240,9 @@ namespace ClangSharpSourceToWinmd
                     .Select(a => (a.ArgumentList?.Arguments.FirstOrDefault()?.Expression as LiteralExpressionSyntax)?.Token.ValueText)
                     .Where(p => p != null && p.StartsWith(ParameterAnnotation.Owner + "AssociatedEnum(", StringComparison.Ordinal))
                     .Select(ParameterAnnotation.Parse).SingleOrDefault();
-                string enumName = annotation.EnumName;
-                if (enumName == null)
-                    enumName = SyntaxUtils.GetNativeTypeNameFromAttributesLists(attributes)?.TrimEnd('*', ' ');
+                // Associations describe a projection choice, not a native use of the group typedef.
+                if (annotation.EnumName != null) return null;
+                string enumName = SyntaxUtils.GetNativeTypeNameFromAttributesLists(attributes)?.TrimEnd('*', ' ');
                 if (enumName == null || !this.headerEnumNames.Contains(enumName)) return null;
                 string result = enumName + new string('*', type.Length - type.TrimEnd('*').Length);
                 this.GetRemapInfo(fullName, attributes, out var remappedAttributes, type, out var remappedType, out _);
@@ -672,6 +675,7 @@ namespace ClangSharpSourceToWinmd
                             if (payload.StartsWith(ParameterAnnotation.Owner + "ImportLibrary(", StringComparison.Ordinal)) return null;
                             // Typedef facts are resolved on the compiler-owned nominal declaration, not propagated uses.
                             if (payload.StartsWith(ParameterAnnotation.Owner + "AlsoUsableFor(", StringComparison.Ordinal)) return null;
+                            if (IsEnumGroupAnnotation(payload)) return null;
                             if (payload.StartsWith(AssociatedConstantAnnotation.Prefix, StringComparison.Ordinal))
                             {
                                 if (node.Parent is not EnumDeclarationSyntax)
@@ -734,7 +738,10 @@ namespace ClangSharpSourceToWinmd
                                     producerAttributes.WithTarget(SyntaxFactory.AttributeTargetSpecifier(SyntaxFactory.Token(SyntaxKind.ReturnKeyword)));
                             }
                             var annotation = ParameterAnnotation.Parse(payload);
-                            if (annotation.Kind == ParameterAnnotationKind.AssociatedEnum && this.headerEnumNames.Contains(annotation.EnumName))
+                            // Promoted ref properties mirror anonymous-record fields; the
+                            // association is emitted only on the defining storage field.
+                            if (annotation.Kind == ParameterAnnotationKind.AssociatedEnum &&
+                                node.Parent is PropertyDeclarationSyntax { Type: RefTypeSyntax })
                                 return null;
                             if (node.Parent is not ParameterSyntax &&
                                 !(annotation.Kind == ParameterAnnotationKind.AssociatedEnum &&

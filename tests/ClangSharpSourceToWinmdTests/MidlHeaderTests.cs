@@ -204,7 +204,7 @@ struct __declspec(uuid(""64abea93-aac7-4f3b-a257-976deba89f04"")) IExample {
             Assert.AreEqual("Test", reader.GetString(reference.Namespace));
             var delegateType = NativeTypedefHeaderTests.Type(reader, "Vtable_Value");
             Assert.AreEqual("Vtable_Value", reader.GetString(delegateType.Name));
-            AssertCallingConvention(reader, delegateType, target.StartsWith("i686", StringComparison.Ordinal) ? 1 : 2);
+            AssertCallingConvention(reader, delegateType, 1);
             var invoke = delegateType.GetMethods().Select(reader.GetMethodDefinition)
                 .Single(m => reader.GetString(m.Name) == "Invoke");
             CollectionAssert.AreEqual(new[] { "self", "event", "result" }, invoke.GetParameters()

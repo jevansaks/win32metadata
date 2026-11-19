@@ -38,8 +38,8 @@ unsigned long __cdecl CreateFontPackage(
 	CONST unsigned short usTTCIndex,	/* TTC Index, only used if TTC bit set */
 	CONST unsigned short usSubsetFormat, /* Old Subset, Subset or Delta */
 	CONST unsigned short usSubsetLanguage,	/* Language in Name table to keep */
-	CONST unsigned short usSubsetPlatform,	/* if ListType is Character, Platform of cmap to use for glyph list */
-	CONST unsigned short usSubsetEncoding,	/* if ListType is Character, Encoding of cmap to use for glyph list */
+	_Win32_AssociatedEnum_(CREATE_FONT_PACKAGE_SUBSET_PLATFORM) CONST unsigned short usSubsetPlatform,	/* if ListType is Character, Platform of cmap to use for glyph list */
+	_Win32_AssociatedEnum_(CREATE_FONT_PACKAGE_SUBSET_ENCODING) CONST unsigned short usSubsetEncoding,	/* if ListType is Character, Encoding of cmap to use for glyph list */
 	CONST unsigned short *pusSubsetKeepList, /* List of Characters or Glyphs to keep */
 	CONST unsigned short usSubsetListCount,	 /* number of elements in list */
 	CFP_ALLOCPROC lpfnAllocate,	  /* call back function to allocate temp buffers and output buffers */
@@ -187,3 +187,9 @@ unsigned long __cdecl MergeFontPackage(CONST unsigned char * puchMergeFontBuffer
 #pragma endregion
 
 #endif /* FONTSUB_DOT_H_DEFINED */
+
+#ifndef _WIN32METADATA_FONTSUB_NATIVE_ABI_RESIDUAL_GROUPS_
+#define _WIN32METADATA_FONTSUB_NATIVE_ABI_RESIDUAL_GROUPS_
+_Win32_Enum_(CREATE_FONT_PACKAGE_SUBSET_ENCODING, short, TTFCFP_STD_MAC_CHAR_SET, TTFCFP_SYMBOL_CHAR_SET, TTFCFP_UNICODE_CHAR_SET);
+_Win32_Enum_(CREATE_FONT_PACKAGE_SUBSET_PLATFORM, short, TTFCFP_UNICODE_PLATFORMID, TTFCFP_ISO_PLATFORMID);
+#endif

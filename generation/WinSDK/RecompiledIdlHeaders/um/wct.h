@@ -105,6 +105,7 @@ typedef VOID (CALLBACK *PWAITCHAINCALLBACK) (
 
 #define WCT_ASYNC_OPEN_FLAG 0x1
 #define WCTP_OPEN_ALL_FLAGS (WCT_ASYNC_OPEN_FLAG)
+_Win32_Enum_(OPEN_THREAD_WAIT_CHAIN_SESSION_FLAGS, unsigned int, WCT_ASYNC_OPEN_FLAG);
 _Win32_SetLastError_
 _Win32_SupportedOS_WindowsVista_
 
@@ -112,7 +113,7 @@ _Check_return_
 WINADVAPI
 HWCT WINAPI
 OpenThreadWaitChainSession (
-    _In_ DWORD Flags,
+    _In_ _Win32_AssociatedEnum_(OPEN_THREAD_WAIT_CHAIN_SESSION_FLAGS) DWORD Flags,
     _In_opt_ PWAITCHAINCALLBACK callback
     );
 _Win32_SupportedOS_WindowsVista_

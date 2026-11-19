@@ -67,7 +67,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h b/generation/Win
  
  _Check_return_
  SECURITY_STATUS
-@@ -810,6 +818,7 @@
+@@ -810,12 +818,19 @@
  
  #endif // WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
  #pragma endregion
@@ -75,7 +75,19 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h b/generation/Win
  
  SECURITY_STATUS
  WINAPI
-@@ -827,6 +836,7 @@
+ NCryptFreeBuffer(
+     _Pre_notnull_ PVOID   pvInput);
+ 
++
++_Win32_SupportedOS_WindowsVista_
++SECURITY_STATUS
++WINAPI
++NCryptFreeObject(
++    _In_    NCRYPT_HANDLE hObject);
+ 
+ 
+ // NCryptOpenKey flags
+@@ -827,15 +842,16 @@
  #if (NTDDI_VERSION >= NTDDI_WIN10_NI)
  #define NCRYPT_EXTENDED_ERRORS_FLAG     0x10000000
  #endif
@@ -83,16 +95,18 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h b/generation/Win
  
  _Check_return_
  SECURITY_STATUS
-@@ -835,7 +845,7 @@
+ WINAPI
+ NCryptOpenKey(
      _In_    NCRYPT_PROV_HANDLE hProvider,
-     _Out_   NCRYPT_KEY_HANDLE *phKey,
+-    _Out_   NCRYPT_KEY_HANDLE *phKey,
++    _Out_ _Win32_RAIIFree_(NCryptFreeObject, 0) NCRYPT_KEY_HANDLE *phKey,
      _In_    LPCWSTR pszKeyName,
 -    _In_opt_ DWORD  dwLegacyKeySpec,
 +    _Win32_AssociatedEnum_(CERT_KEY_SPEC) _In_opt_ DWORD  dwLegacyKeySpec,
      _In_    DWORD   dwFlags);
  
  
-@@ -843,6 +853,7 @@
+@@ -843,16 +859,17 @@
  // NCryptCreatePersistedKey flags
  #define NCRYPT_MACHINE_KEY_FLAG         0x00000020
  #define NCRYPT_OVERWRITE_KEY_FLAG       0x00000080
@@ -100,8 +114,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h b/generation/Win
  
  _Check_return_
  SECURITY_STATUS
-@@ -852,7 +863,7 @@
-     _Out_   NCRYPT_KEY_HANDLE *phKey,
+ WINAPI
+ NCryptCreatePersistedKey(
+     _In_    NCRYPT_PROV_HANDLE hProvider,
+-    _Out_   NCRYPT_KEY_HANDLE *phKey,
++    _Out_ _Win32_RAIIFree_(NCryptFreeObject, 0) NCRYPT_KEY_HANDLE *phKey,
      _In_    LPCWSTR pszAlgId,
      _In_opt_ LPCWSTR pszKeyName,
 -    _In_    DWORD   dwLegacyKeySpec,
@@ -109,7 +126,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h b/generation/Win
      _In_    DWORD   dwFlags);
  
  
-@@ -1268,6 +1279,7 @@
+@@ -1268,6 +1285,7 @@
  
  // NCryptGetProperty flags
  #define NCRYPT_PERSIST_ONLY_FLAG        0x40000000
@@ -117,7 +134,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h b/generation/Win
  
  _Check_return_
  _Success_( return == 0 )
-@@ -1286,6 +1298,7 @@
+@@ -1286,6 +1304,7 @@
  // NCryptSetProperty flags
  #define NCRYPT_PERSIST_FLAG             0x80000000
  #define NCRYPT_PERSIST_ONLY_FLAG        0x40000000
@@ -125,7 +142,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h b/generation/Win
  
  _Check_return_
  SECURITY_STATUS
-@@ -1301,6 +1314,7 @@
+@@ -1301,6 +1320,7 @@
  
  // NCryptFinalizeKey flags
  #define     NCRYPT_WRITE_KEY_TO_LEGACY_STORE_FLAG   0x00000200
@@ -133,7 +150,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h b/generation/Win
  
  _Check_return_
  SECURITY_STATUS
-@@ -1450,6 +1464,7 @@
+@@ -1450,6 +1470,7 @@
  #define NCRYPT_MACHINE_KEY_FLAG         0x00000020
  #define NCRYPT_DO_NOT_FINALIZE_FLAG     0x00000400
  #define NCRYPT_EXPORT_LEGACY_FLAG       0x00000800
@@ -141,16 +158,26 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h b/generation/Win
  
  _Check_return_
  SECURITY_STATUS
-@@ -1515,6 +1530,7 @@
- NCryptDeleteKey(
-     _In_    NCRYPT_KEY_HANDLE hKey,
+@@ -1459,7 +1480,7 @@
+     _In_opt_ NCRYPT_KEY_HANDLE hImportKey,
+     _In_    LPCWSTR pszBlobType,
+     _In_opt_ NCryptBufferDesc *pParameterList,
+-    _Out_   NCRYPT_KEY_HANDLE *phKey,
++    _Out_ _Win32_RAIIFree_(NCryptFreeObject, 0) NCRYPT_KEY_HANDLE *phKey,
+     _In_reads_bytes_(cbData) PBYTE pbData,
+     _In_    DWORD   cbData,
      _In_    DWORD   dwFlags);
-+_Win32_SupportedOS_WindowsVista_
+@@ -1518,29 +1539,24 @@
  
  
  
-@@ -1527,10 +1543,12 @@
- 
+-SECURITY_STATUS
+-WINAPI
+-NCryptFreeObject(
+-    _In_    NCRYPT_HANDLE hObject);
+-
+-
+-
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 +_Win32_SupportedOS_WindowsVista_
@@ -162,8 +189,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h b/generation/Win
  
  _Check_return_
  SECURITY_STATUS
-@@ -1540,7 +1558,7 @@
-     _Out_   NCRYPT_KEY_HANDLE *phKey,
+ WINAPI
+ NCryptTranslateHandle(
+     _Out_opt_ NCRYPT_PROV_HANDLE *phProvider,
+-    _Out_   NCRYPT_KEY_HANDLE *phKey,
++    _Out_ _Win32_RAIIFree_(NCryptFreeObject, 0) NCRYPT_KEY_HANDLE *phKey,
      _In_    HCRYPTPROV hLegacyProv,
      _In_opt_ HCRYPTKEY hLegacyKey,
 -    _In_opt_ DWORD  dwLegacyKeySpec,
@@ -171,7 +201,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h b/generation/Win
      _In_    DWORD   dwFlags);
  
  #endif // WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
-@@ -1554,6 +1572,7 @@
+@@ -1554,6 +1570,7 @@
  
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
@@ -179,7 +209,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h b/generation/Win
  
  _Check_return_
  SECURITY_STATUS
-@@ -1567,6 +1586,7 @@
+@@ -1567,6 +1584,7 @@
  
  #endif // WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
  #pragma endregion
@@ -187,7 +217,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h b/generation/Win
  
  _Check_return_
  SECURITY_STATUS
-@@ -1594,6 +1614,7 @@
+@@ -1594,6 +1612,7 @@
  
  
  #if (NTDDI_VERSION >= NTDDI_WIN8)
@@ -195,7 +225,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h b/generation/Win
  
  _Check_return_
  SECURITY_STATUS
-@@ -1610,6 +1631,7 @@
+@@ -1610,6 +1629,7 @@
  
  
  #if (NTDDI_VERSION >= NTDDI_WINTHRESHOLD)
@@ -203,7 +233,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h b/generation/Win
  
  _Check_return_
  SECURITY_STATUS
-@@ -1628,6 +1650,7 @@
+@@ -1628,6 +1648,7 @@
  
  
  #if (NTDDI_VERSION >= NTDDI_WINTHRESHOLD)
@@ -211,7 +241,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ncrypt.h b/generation/Win
  
  _Check_return_
  SECURITY_STATUS
-@@ -1661,3 +1684,18 @@
+@@ -1661,3 +1682,18 @@
  
  #endif // __NCRYPT_H__
  

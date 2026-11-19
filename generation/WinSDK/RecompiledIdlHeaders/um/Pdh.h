@@ -627,7 +627,7 @@ PdhMakeCounterPathW(
     _In_    PPDH_COUNTER_PATH_ELEMENTS_W pCounterPathElements,
     _Out_writes_opt_(* pcchBufferSize)   LPWSTR szFullPathBuffer,
     _Inout_ LPDWORD                      pcchBufferSize,
-    _In_    DWORD                        dwFlags
+    _In_    _Win32_AssociatedEnum_(PDH_PATH_FLAGS) DWORD                        dwFlags
 );
 
 PDH_FUNCTION
@@ -635,7 +635,7 @@ PdhMakeCounterPathA(
     _In_    PPDH_COUNTER_PATH_ELEMENTS_A pCounterPathElements,
     _Out_writes_opt_(* pcchBufferSize)   LPSTR szFullPathBuffer,
     _Inout_ LPDWORD                      pcchBufferSize,
-    _In_    DWORD                        dwFlags
+    _In_    _Win32_AssociatedEnum_(PDH_PATH_FLAGS) DWORD                        dwFlags
 );
 
 _Success_(return == ERROR_SUCCESS)
@@ -659,6 +659,11 @@ PdhParseCounterPathA(
 
 #define PDH_PATH_WBEM_RESULT ((DWORD) 0x00000001)
 #define PDH_PATH_WBEM_INPUT  ((DWORD) 0x00000002)
+
+#if defined(WIN32METADATA) && defined(__clang__)
+const unsigned int PDH_PATH_WBEM_NONE = 0;
+_Win32_Enum_(PDH_PATH_FLAGS, unsigned int, PDH_PATH_WBEM_RESULT, PDH_PATH_WBEM_INPUT, PDH_PATH_WBEM_NONE);
+#endif
 
 #define PDH_PATH_LANG_FLAGS(LangId, Flags)  ((DWORD)(((LangId & 0x0000FFFF) << 16) | (Flags & 0x0000FFFF)))
 _Win32_SupportedOS_WindowsXP_
@@ -1087,10 +1092,15 @@ PdhCloseLog(
 //
 #define PDH_FLAGS_FILE_BROWSER_ONLY ((DWORD) 0x00000001)
 
+#if defined(WIN32METADATA) && defined(__clang__)
+const unsigned int PDH_FLAGS_NONE = 0;
+_Win32_Enum_(PDH_SELECT_DATA_SOURCE_FLAGS, unsigned int, PDH_FLAGS_FILE_BROWSER_ONLY, PDH_FLAGS_NONE);
+#endif
+
 PDH_FUNCTION
 PdhSelectDataSourceW(
     _In_    HWND    hWndOwner,
-    _In_    DWORD   dwFlags,
+    _In_    _Win32_AssociatedEnum_(PDH_SELECT_DATA_SOURCE_FLAGS) DWORD   dwFlags,
     _Inout_updates_(* pcchBufferLength) LPWSTR  szDataSource,
     _Inout_ LPDWORD pcchBufferLength
 );
@@ -1099,7 +1109,7 @@ _Win32_SupportedOS_WindowsXP_
 PDH_FUNCTION
 PdhSelectDataSourceA(
     _In_    HWND    hWndOwner,
-    _In_    DWORD   dwFlags,
+    _In_    _Win32_AssociatedEnum_(PDH_SELECT_DATA_SOURCE_FLAGS) DWORD   dwFlags,
     _Inout_updates_(* pcchBufferLength) LPSTR   szDataSource,
     _Inout_ LPDWORD pcchBufferLength
 );

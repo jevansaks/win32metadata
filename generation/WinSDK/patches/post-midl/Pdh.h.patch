@@ -261,7 +261,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhEnumObjectItemsA(
-@@ -589,6 +620,7 @@
+@@ -589,13 +620,14 @@
      _In_     DWORD   dwDetailLevel,
      _In_     DWORD   dwFlags
  );
@@ -269,6 +269,23 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhMakeCounterPathW(
+     _In_    PPDH_COUNTER_PATH_ELEMENTS_W pCounterPathElements,
+     _Out_writes_opt_(* pcchBufferSize)   LPWSTR szFullPathBuffer,
+     _Inout_ LPDWORD                      pcchBufferSize,
+-    _In_    DWORD                        dwFlags
++    _In_    _Win32_AssociatedEnum_(PDH_PATH_FLAGS) DWORD                        dwFlags
+ );
+ 
+ PDH_FUNCTION
+@@ -603,7 +635,7 @@
+     _In_    PPDH_COUNTER_PATH_ELEMENTS_A pCounterPathElements,
+     _Out_writes_opt_(* pcchBufferSize)   LPSTR szFullPathBuffer,
+     _Inout_ LPDWORD                      pcchBufferSize,
+-    _In_    DWORD                        dwFlags
++    _In_    _Win32_AssociatedEnum_(PDH_PATH_FLAGS) DWORD                        dwFlags
+ );
+ 
+ _Success_(return == ERROR_SUCCESS)
 @@ -614,6 +646,7 @@
      _Inout_ LPDWORD                   pdwBufferSize,
      _In_    DWORD                     dwFlags
@@ -277,15 +294,21 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  _Success_(return == ERROR_SUCCESS)
  PDH_FUNCTION
-@@ -628,6 +661,7 @@
+@@ -627,7 +660,13 @@
+ #define PDH_PATH_WBEM_RESULT ((DWORD) 0x00000001)
  #define PDH_PATH_WBEM_INPUT  ((DWORD) 0x00000002)
  
++#if defined(WIN32METADATA) && defined(__clang__)
++const unsigned int PDH_PATH_WBEM_NONE = 0;
++_Win32_Enum_(PDH_PATH_FLAGS, unsigned int, PDH_PATH_WBEM_RESULT, PDH_PATH_WBEM_INPUT, PDH_PATH_WBEM_NONE);
++#endif
++
  #define PDH_PATH_LANG_FLAGS(LangId, Flags)  ((DWORD)(((LangId & 0x0000FFFF) << 16) | (Flags & 0x0000FFFF)))
 +_Win32_SupportedOS_WindowsXP_
  
  PDH_FUNCTION
  PdhParseInstanceNameW(
-@@ -638,6 +672,7 @@
+@@ -638,6 +677,7 @@
      _Inout_ LPDWORD pcchParentNameLength,
      _Out_   LPDWORD lpIndex
  );
@@ -293,7 +316,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhParseInstanceNameA(
-@@ -648,16 +683,19 @@
+@@ -648,16 +688,19 @@
      _Inout_ LPDWORD pcchParentNameLength,
      _Out_   LPDWORD lpIndex
  );
@@ -313,7 +336,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhGetDefaultPerfObjectW(
-@@ -666,6 +704,7 @@
+@@ -666,6 +709,7 @@
      _Out_writes_opt_(* pcchBufferSize) LPWSTR  szDefaultObjectName,
      _Inout_  LPDWORD pcchBufferSize
  );
@@ -321,7 +344,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhGetDefaultPerfObjectA(
-@@ -674,6 +713,7 @@
+@@ -674,6 +718,7 @@
      _Out_writes_opt_(* pcchBufferSize) LPSTR   szDefaultObjectName,
      _Inout_  LPDWORD pcchBufferSize
  );
@@ -329,7 +352,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhGetDefaultPerfCounterW(
-@@ -683,6 +723,7 @@
+@@ -683,6 +728,7 @@
      _Out_writes_opt_(* pcchBufferSize) LPWSTR  szDefaultCounterName,
      _Inout_  LPDWORD pcchBufferSize
  );
@@ -337,7 +360,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhGetDefaultPerfCounterA(
-@@ -856,16 +897,19 @@
+@@ -856,16 +902,19 @@
  #else
  #pragma warning ( default : 4214 )
  #endif
@@ -357,7 +380,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhExpandCounterPathW(
-@@ -873,6 +917,7 @@
+@@ -873,6 +922,7 @@
      _Out_writes_opt_(* pcchPathListLength) PZZWSTR  mszExpandedPathList,
      _Inout_ LPDWORD pcchPathListLength
  );
@@ -365,7 +388,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhExpandCounterPathA(
-@@ -880,6 +925,7 @@
+@@ -880,6 +930,7 @@
      _Out_writes_opt_(* pcchPathListLength) PZZSTR   mszExpandedPathList,
      _Inout_ LPDWORD pcchPathListLength
  );
@@ -373,7 +396,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  //
  //  v2.0 functions
-@@ -891,6 +937,7 @@
+@@ -891,6 +942,7 @@
      _Out_writes_opt_(* pcchNameBufferSize) LPWSTR  szNameBuffer,
      _Inout_  LPDWORD pcchNameBufferSize
  );
@@ -381,7 +404,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhLookupPerfNameByIndexA(
-@@ -899,6 +946,7 @@
+@@ -899,6 +951,7 @@
      _Out_writes_opt_(* pcchNameBufferSize) LPSTR   szNameBuffer,
      _Inout_  LPDWORD pcchNameBufferSize
  );
@@ -389,7 +412,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhLookupPerfIndexByNameW(
-@@ -906,6 +954,7 @@
+@@ -906,6 +959,7 @@
      _In_     LPCWSTR szNameBuffer,
      _Out_    LPDWORD pdwIndex
  );
@@ -397,7 +420,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhLookupPerfIndexByNameA(
-@@ -919,6 +968,7 @@
+@@ -919,6 +973,7 @@
  #if (_WIN32_WINDOWS >= 0x0502 || _WIN32_WINNT >= 0x0502 || (defined(NTDDI_VERSION) && NTDDI_VERSION >= NTDDI_WIN2003))
  #define PDH_REFRESHCOUNTERS     4
  #endif
@@ -405,7 +428,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhExpandWildCardPathA(
-@@ -928,6 +978,7 @@
+@@ -928,6 +983,7 @@
      _Inout_  LPDWORD pcchPathListLength,
      _In_     DWORD   dwFlags
  );
@@ -413,7 +436,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhExpandWildCardPathW(
-@@ -978,8 +1029,8 @@
+@@ -978,8 +1034,8 @@
  PDH_FUNCTION
  PdhOpenLogW(
      _In_     LPCWSTR     szLogFileName,
@@ -424,7 +447,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
      _In_opt_ PDH_HQUERY  hQuery,
      _In_     DWORD       dwMaxSize,
      _In_opt_ LPCWSTR     szUserCaption,
-@@ -989,8 +1040,8 @@
+@@ -989,8 +1045,8 @@
  PDH_FUNCTION
  PdhOpenLogA(
      _In_     LPCSTR       szLogFileName,
@@ -435,7 +458,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
      _In_opt_ PDH_HQUERY   hQuery,
      _In_     DWORD        dwMaxSize,
      _In_opt_ LPCSTR       szUserCaption,
-@@ -1002,23 +1053,27 @@
+@@ -1002,23 +1058,27 @@
      _In_     PDH_HLOG hLog,
      _In_opt_ LPCWSTR  szUserString
  );
@@ -463,7 +486,20 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhCloseLog(
-@@ -1039,6 +1094,7 @@
+@@ -1032,33 +1092,42 @@
+ //
+ #define PDH_FLAGS_FILE_BROWSER_ONLY ((DWORD) 0x00000001)
+ 
++#if defined(WIN32METADATA) && defined(__clang__)
++const unsigned int PDH_FLAGS_NONE = 0;
++_Win32_Enum_(PDH_SELECT_DATA_SOURCE_FLAGS, unsigned int, PDH_FLAGS_FILE_BROWSER_ONLY, PDH_FLAGS_NONE);
++#endif
++
+ PDH_FUNCTION
+ PdhSelectDataSourceW(
+     _In_    HWND    hWndOwner,
+-    _In_    DWORD   dwFlags,
++    _In_    _Win32_AssociatedEnum_(PDH_SELECT_DATA_SOURCE_FLAGS) DWORD   dwFlags,
      _Inout_updates_(* pcchBufferLength) LPWSTR  szDataSource,
      _Inout_ LPDWORD pcchBufferLength
  );
@@ -471,7 +507,9 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhSelectDataSourceA(
-@@ -1047,18 +1103,21 @@
+     _In_    HWND    hWndOwner,
+-    _In_    DWORD   dwFlags,
++    _In_    _Win32_AssociatedEnum_(PDH_SELECT_DATA_SOURCE_FLAGS) DWORD   dwFlags,
      _Inout_updates_(* pcchBufferLength) LPSTR   szDataSource,
      _Inout_ LPDWORD pcchBufferLength
  );
@@ -493,7 +531,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  _Success_(return == ERROR_SUCCESS)
  PDH_FUNCTION
-@@ -1068,6 +1127,7 @@
+@@ -1068,6 +1137,7 @@
      _Out_writes_bytes_(* pdwBufferSize)    PPDH_TIME_INFO pInfo,
      _Inout_  LPDWORD  pdwBufferSize
  );
@@ -501,7 +539,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  _Success_(return == ERROR_SUCCESS)
  PDH_FUNCTION
-@@ -1077,6 +1137,7 @@
+@@ -1077,6 +1147,7 @@
      _Out_writes_bytes_(* pdwBufferSize) PPDH_TIME_INFO pInfo,
      _Inout_  LPDWORD  pdwBufferSize
  );
@@ -509,7 +547,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhCollectQueryDataEx(
-@@ -1084,22 +1145,25 @@
+@@ -1084,22 +1155,25 @@
      _In_ DWORD      dwIntervalTime,
      _In_ HANDLE     hNewDataEvent
  );
@@ -536,7 +574,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  _Success_(return == ERROR_SUCCESS)
  PDH_FUNCTION
-@@ -1114,13 +1178,15 @@
+@@ -1114,13 +1188,15 @@
  #define DATA_SOURCE_REGISTRY ((DWORD) 0x00000001)
  #define DATA_SOURCE_LOGFILE  ((DWORD) 0x00000002)
  #define DATA_SOURCE_WBEM     ((DWORD) 0x00000004)
@@ -553,7 +591,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  // Extended API for WMI event trace logfile format
  //
  PDH_FUNCTION
-@@ -1128,12 +1194,14 @@
+@@ -1128,12 +1204,14 @@
      _Out_    PDH_HLOG * phDataSource,
      _In_opt_ LPCWSTR    LogFileNameList
  );
@@ -568,7 +606,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhOpenQueryH(
-@@ -1141,6 +1209,7 @@
+@@ -1141,6 +1219,7 @@
      _In_      DWORD_PTR    dwUserData,
      _Out_     PDH_HQUERY * phQuery
  );
@@ -576,7 +614,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhEnumMachinesHW(
-@@ -1148,6 +1217,7 @@
+@@ -1148,6 +1227,7 @@
      _Out_writes_opt_(* pcchBufferSize) PZZWSTR   mszMachineList,
      _Inout_  LPDWORD  pcchBufferSize
  );
@@ -584,7 +622,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhEnumMachinesHA(
-@@ -1155,6 +1225,7 @@
+@@ -1155,6 +1235,7 @@
      _Out_writes_opt_(* pcchBufferSize) PZZSTR    mszMachineList,
      _Inout_  LPDWORD  pcchBufferSize
  );
@@ -592,7 +630,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhEnumObjectsHW(
-@@ -1165,6 +1236,7 @@
+@@ -1165,6 +1246,7 @@
      _In_     DWORD    dwDetailLevel,
      _In_     BOOL     bRefresh
  ) ;
@@ -600,7 +638,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhEnumObjectsHA(
-@@ -1175,6 +1247,7 @@
+@@ -1175,6 +1257,7 @@
      _In_     DWORD    dwDetailLevel,
      _In_     BOOL     bRefresh
  );
@@ -608,7 +646,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhEnumObjectItemsHW(
-@@ -1188,6 +1261,7 @@
+@@ -1188,6 +1271,7 @@
      _In_     DWORD    dwDetailLevel,
      _In_     DWORD    dwFlags
  );
@@ -616,7 +654,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhEnumObjectItemsHA(
-@@ -1201,6 +1275,7 @@
+@@ -1201,6 +1285,7 @@
      _In_     DWORD    dwDetailLevel,
      _In_     DWORD    dwFlags
  );
@@ -624,7 +662,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhExpandWildCardPathHW(
-@@ -1210,6 +1285,7 @@
+@@ -1210,6 +1295,7 @@
      _Inout_  LPDWORD  pcchPathListLength,
      _In_    DWORD    dwFlags
  );
@@ -632,7 +670,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhExpandWildCardPathHA(
-@@ -1219,6 +1295,7 @@
+@@ -1219,6 +1305,7 @@
      _Inout_  LPDWORD  pcchPathListLength,
      _In_    DWORD    dwFlags
  );
@@ -640,7 +678,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  _Success_(return == ERROR_SUCCESS)
  PDH_FUNCTION
-@@ -1228,6 +1305,7 @@
+@@ -1228,6 +1315,7 @@
      _Out_writes_bytes_(* pdwBufferSize) PPDH_TIME_INFO pInfo,
      _Inout_  LPDWORD  pdwBufferSize
  );
@@ -648,7 +686,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhGetDefaultPerfObjectHW(
-@@ -1236,6 +1314,7 @@
+@@ -1236,6 +1324,7 @@
      _Out_writes_opt_(* pcchBufferSize) LPWSTR   szDefaultObjectName,
      _Inout_  LPDWORD  pcchBufferSize
  );
@@ -656,7 +694,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhGetDefaultPerfObjectHA(
-@@ -1244,6 +1323,7 @@
+@@ -1244,6 +1333,7 @@
      _Out_writes_opt_(* pcchBufferSize) LPSTR    szDefaultObjectName,
      _Inout_  LPDWORD  pcchBufferSize
  );
@@ -664,7 +702,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhGetDefaultPerfCounterHW(
-@@ -1253,6 +1333,7 @@
+@@ -1253,6 +1343,7 @@
      _Out_writes_opt_(* pcchBufferSize) LPWSTR   szDefaultCounterName,
      _Inout_  LPDWORD  pcchBufferSize
  );
@@ -672,7 +710,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhGetDefaultPerfCounterHA(
-@@ -1262,11 +1343,13 @@
+@@ -1262,11 +1353,13 @@
      _Out_writes_opt_(* pcchBufferSize) LPSTR    szDefaultCounterName,
      _Inout_  LPDWORD  pcchBufferSize
  );
@@ -686,7 +724,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhBrowseCountersHA(
-@@ -1295,6 +1378,7 @@
+@@ -1295,6 +1388,7 @@
  PdhCreateSQLTablesA(
      _In_ LPCSTR szDataSource
  );     
@@ -694,7 +732,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  //Return the list of Log set names in the database pointed to by the DSN.
  PDH_FUNCTION
-@@ -1303,6 +1387,7 @@
+@@ -1303,6 +1397,7 @@
      _Out_writes_opt_(* pcchBufferLength) PZZWSTR  mszDataSetNameList,
      _Inout_ LPDWORD pcchBufferLength
  );
@@ -702,7 +740,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Pdh.h b/generation/WinSDK
  
  PDH_FUNCTION
  PdhEnumLogSetNamesA(
-@@ -1486,3 +1571,13 @@
+@@ -1486,3 +1581,13 @@
  #pragma endregion
  
  #endif //_PDH_H_

@@ -13,13 +13,12 @@ namespace Win32MetadataScraper
     {
         private const string Owner = "Win32Metadata.";
         public HashSet<string> FunctionNames { get; } = new(StringComparer.Ordinal);
-        private readonly List<(Attr Attribute, string EnumName, ClangSharp.Type Storage)> enumAssociations = new();
+        private readonly List<(Attr Attribute, string EnumName)> enumAssociations = new();
         private readonly HashSet<string> nativeEnums = new(StringComparer.Ordinal);
         public Dictionary<string, EnumObject> EnumGroups { get; } = new(StringComparer.Ordinal);
         public Dictionary<string, (string Type, string Value)> EnumConstants { get; } = new(StringComparer.Ordinal);
         public Dictionary<string, List<string>> AssociatedConstants { get; } = new(StringComparer.Ordinal);
         private readonly List<(Decl Declaration, Attr Attribute, string Name)> constantAssociations = new();
-        private readonly Dictionary<string, ClangSharp.Type> enumStorage = new(StringComparer.Ordinal);
         private readonly Dictionary<string, (string Version, Cursor Source)> supportedFunctions = new(StringComparer.Ordinal);
         private readonly SupportedOSScopes supportedScopes = new();
         private readonly HashSet<NamedDecl> supportedDeclarations = new();
@@ -215,6 +214,11 @@ namespace Win32MetadataScraper
                     continue;
 
                 string payload = attribute.Spelling;
+                // Clang copies field annotations onto anonymous-record lookup aliases.
+                // Validate the defining FieldDecl, not its synthetic promoted aliases.
+                if (declaration is IndirectFieldDecl &&
+                    payload.StartsWith(Owner + "AssociatedEnum(", StringComparison.Ordinal))
+                    continue;
                 if (payload.StartsWith(AssociatedConstantAnnotation.Prefix, StringComparison.Ordinal))
                 {
                     this.VisitAssociatedConstant(declaration, attribute);
@@ -398,10 +402,6 @@ namespace Win32MetadataScraper
             {
                 if (!this.nativeEnums.Contains(association.EnumName))
                     throw Error(association.Attribute, $"AssociatedEnum requires an existing native enum '{association.EnumName}'.");
-                if (this.enumStorage.TryGetValue(association.EnumName, out var storage) &&
-                    (association.Storage is not BuiltinType ||
-                    GetIntegerStorage(storage, association.Attribute) != GetIntegerStorage(association.Storage, association.Attribute)))
-                    throw Error(association.Attribute, $"AssociatedEnum storage conflicts with enum group '{association.EnumName}'.");
             }
             foreach (var association in this.constantAssociations)
             {
@@ -726,7 +726,6 @@ namespace Win32MetadataScraper
             if (this.EnumGroups.ContainsKey(alias.Name))
                 throw Error(attribute, $"Duplicate enum group '{alias.Name}'.");
             this.EnumGroups.Add(alias.Name, group);
-            this.enumStorage.Add(alias.Name, storage);
             this.nativeEnums.Add(alias.Name);
         }
 
@@ -815,7 +814,7 @@ namespace Win32MetadataScraper
                     storage.Kind < CXTypeKind.CXType_Bool || storage.Kind > CXTypeKind.CXType_UInt128 &&
                     (storage.Kind < CXTypeKind.CXType_Char_S || storage.Kind > CXTypeKind.CXType_Int128))
                     throw Error(attribute, "AssociatedEnum requires integer or native enum storage, optionally through pointers.");
-                this.enumAssociations.Add((attribute, annotation.EnumName, storage));
+                this.enumAssociations.Add((attribute, annotation.EnumName));
             }
         }
 

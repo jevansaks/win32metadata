@@ -212,6 +212,8 @@ extern "C" {
 #define DCB_ENABLE      0x0004
 #define DCB_DISABLE     0x0008
 
+_Win32_Enum_(SET_BOUNDS_RECT_FLAGS, unsigned int, DCB_ACCUMULATE, DCB_DISABLE, DCB_ENABLE, DCB_RESET);
+
 #ifndef NOMETAFILE
 
 /* Metafile Functions */
@@ -585,6 +587,8 @@ typedef struct _PSFEATURE_CUSTPAPER {
 
 #define MWT_MIN             MWT_IDENTITY
 #define MWT_MAX             MWT_RIGHTMULTIPLY
+
+_Win32_Enum_(MODIFY_WORLD_TRANSFORM_MODE, unsigned int, MWT_IDENTITY, MWT_LEFTMULTIPLY, MWT_RIGHTMULTIPLY);
 
 #define _XFORM_
 
@@ -1686,16 +1690,16 @@ typedef LPENUMLOGFONTEXA LPENUMLOGFONTEX;
 
 typedef struct tagPANOSE
 {
-    BYTE    bFamilyType;
-    BYTE    bSerifStyle;
-    BYTE    bWeight;
-    BYTE    bProportion;
-    BYTE    bContrast;
-    BYTE    bStrokeVariation;
-    BYTE    bArmStyle;
-    BYTE    bLetterform;
-    BYTE    bMidline;
-    BYTE    bXHeight;
+    _Win32_AssociatedEnum_(PAN_FAMILY_TYPE) BYTE    bFamilyType;
+    _Win32_AssociatedEnum_(PAN_SERIF_STYLE) BYTE    bSerifStyle;
+    _Win32_AssociatedEnum_(PAN_WEIGHT) BYTE    bWeight;
+    _Win32_AssociatedEnum_(PAN_PROPORTION) BYTE    bProportion;
+    _Win32_AssociatedEnum_(PAN_CONTRAST) BYTE    bContrast;
+    _Win32_AssociatedEnum_(PAN_STROKE_VARIATION) BYTE    bStrokeVariation;
+    _Win32_AssociatedEnum_(PAN_ARM_STYLE) BYTE    bArmStyle;
+    _Win32_AssociatedEnum_(PAN_LETT_FORM) BYTE    bLetterform;
+    _Win32_AssociatedEnum_(PAN_MIDLINE) BYTE    bMidline;
+    _Win32_AssociatedEnum_(PAN_XHEIGHT) BYTE    bXHeight;
 } PANOSE, * LPPANOSE;
 
 #define PAN_ANY                         0 /* Any                            */
@@ -1804,6 +1808,39 @@ typedef struct tagPANOSE
 #define PAN_XHEIGHT_DUCKING_STD         6 /* Ducking/Standard               */
 #define PAN_XHEIGHT_DUCKING_LARGE       7 /* Ducking/Large                  */
 
+#if defined(WIN32METADATA) && defined(__clang__)
+// Preserve the existing public names for the two shared native sentinels.
+const unsigned char PAN_FAMILY_ANY = PAN_ANY;
+const unsigned char PAN_FAMILY_NO_FIT = PAN_NO_FIT;
+const unsigned char PAN_SERIF_ANY = PAN_ANY;
+const unsigned char PAN_SERIF_NO_FIT = PAN_NO_FIT;
+const unsigned char PAN_WEIGHT_ANY = PAN_ANY;
+const unsigned char PAN_WEIGHT_NO_FIT = PAN_NO_FIT;
+const unsigned char PAN_STROKE_ANY = PAN_ANY;
+const unsigned char PAN_STROKE_NO_FIT = PAN_NO_FIT;
+const unsigned char PAN_PROP_ANY = PAN_ANY;
+const unsigned char PAN_PROP_NO_FIT = PAN_NO_FIT;
+const unsigned char PAN_CONTRAST_ANY = PAN_ANY;
+const unsigned char PAN_CONTRAST_NO_FIT = PAN_NO_FIT;
+const unsigned char PAN_ARM_ANY = PAN_ANY;
+const unsigned char PAN_ARM_NO_FIT = PAN_NO_FIT;
+const unsigned char PAN_LETT_FORM_ANY = PAN_ANY;
+const unsigned char PAN_LETT_FORM_NO_FIT = PAN_NO_FIT;
+const unsigned char PAN_MIDLINE_ANY = PAN_ANY;
+const unsigned char PAN_MIDLINE_NO_FIT = PAN_NO_FIT;
+const unsigned char PAN_XHEIGHT_ANY = PAN_ANY;
+const unsigned char PAN_XHEIGHT_NO_FIT = PAN_NO_FIT;
+_Win32_Enum_(PAN_FAMILY_TYPE, unsigned char, PAN_FAMILY_ANY, PAN_FAMILY_NO_FIT, PAN_FAMILY_TEXT_DISPLAY, PAN_FAMILY_SCRIPT, PAN_FAMILY_DECORATIVE, PAN_FAMILY_PICTORIAL);
+_Win32_Enum_(PAN_SERIF_STYLE, unsigned char, PAN_SERIF_ANY, PAN_SERIF_NO_FIT, PAN_SERIF_COVE, PAN_SERIF_OBTUSE_COVE, PAN_SERIF_SQUARE_COVE, PAN_SERIF_OBTUSE_SQUARE_COVE, PAN_SERIF_SQUARE, PAN_SERIF_THIN, PAN_SERIF_BONE, PAN_SERIF_EXAGGERATED, PAN_SERIF_TRIANGLE, PAN_SERIF_NORMAL_SANS, PAN_SERIF_OBTUSE_SANS, PAN_SERIF_PERP_SANS, PAN_SERIF_FLARED, PAN_SERIF_ROUNDED);
+_Win32_Enum_(PAN_WEIGHT, unsigned char, PAN_WEIGHT_ANY, PAN_WEIGHT_NO_FIT, PAN_WEIGHT_VERY_LIGHT, PAN_WEIGHT_LIGHT, PAN_WEIGHT_THIN, PAN_WEIGHT_BOOK, PAN_WEIGHT_MEDIUM, PAN_WEIGHT_DEMI, PAN_WEIGHT_BOLD, PAN_WEIGHT_HEAVY, PAN_WEIGHT_BLACK, PAN_WEIGHT_NORD);
+_Win32_Enum_(PAN_STROKE_VARIATION, unsigned char, PAN_STROKE_ANY, PAN_STROKE_NO_FIT, PAN_STROKE_GRADUAL_DIAG, PAN_STROKE_GRADUAL_TRAN, PAN_STROKE_GRADUAL_VERT, PAN_STROKE_GRADUAL_HORZ, PAN_STROKE_RAPID_VERT, PAN_STROKE_RAPID_HORZ, PAN_STROKE_INSTANT_VERT);
+_Win32_Enum_(PAN_PROPORTION, unsigned char, PAN_PROP_ANY, PAN_PROP_NO_FIT, PAN_PROP_OLD_STYLE, PAN_PROP_MODERN, PAN_PROP_EVEN_WIDTH, PAN_PROP_EXPANDED, PAN_PROP_CONDENSED, PAN_PROP_VERY_EXPANDED, PAN_PROP_VERY_CONDENSED, PAN_PROP_MONOSPACED);
+_Win32_Enum_(PAN_CONTRAST, unsigned char, PAN_CONTRAST_ANY, PAN_CONTRAST_NO_FIT, PAN_CONTRAST_NONE, PAN_CONTRAST_VERY_LOW, PAN_CONTRAST_LOW, PAN_CONTRAST_MEDIUM_LOW, PAN_CONTRAST_MEDIUM, PAN_CONTRAST_MEDIUM_HIGH, PAN_CONTRAST_HIGH, PAN_CONTRAST_VERY_HIGH);
+_Win32_Enum_(PAN_ARM_STYLE, unsigned char, PAN_ARM_ANY, PAN_ARM_NO_FIT, PAN_STRAIGHT_ARMS_HORZ, PAN_STRAIGHT_ARMS_WEDGE, PAN_STRAIGHT_ARMS_VERT, PAN_STRAIGHT_ARMS_SINGLE_SERIF, PAN_STRAIGHT_ARMS_DOUBLE_SERIF, PAN_BENT_ARMS_HORZ, PAN_BENT_ARMS_WEDGE, PAN_BENT_ARMS_VERT, PAN_BENT_ARMS_SINGLE_SERIF, PAN_BENT_ARMS_DOUBLE_SERIF);
+_Win32_Enum_(PAN_LETT_FORM, unsigned char, PAN_LETT_FORM_ANY, PAN_LETT_FORM_NO_FIT, PAN_LETT_NORMAL_CONTACT, PAN_LETT_NORMAL_WEIGHTED, PAN_LETT_NORMAL_BOXED, PAN_LETT_NORMAL_FLATTENED, PAN_LETT_NORMAL_ROUNDED, PAN_LETT_NORMAL_OFF_CENTER, PAN_LETT_NORMAL_SQUARE, PAN_LETT_OBLIQUE_CONTACT, PAN_LETT_OBLIQUE_WEIGHTED, PAN_LETT_OBLIQUE_BOXED, PAN_LETT_OBLIQUE_FLATTENED, PAN_LETT_OBLIQUE_ROUNDED, PAN_LETT_OBLIQUE_OFF_CENTER, PAN_LETT_OBLIQUE_SQUARE);
+_Win32_Enum_(PAN_MIDLINE, unsigned char, PAN_MIDLINE_ANY, PAN_MIDLINE_NO_FIT, PAN_MIDLINE_STANDARD_TRIMMED, PAN_MIDLINE_STANDARD_POINTED, PAN_MIDLINE_STANDARD_SERIFED, PAN_MIDLINE_HIGH_TRIMMED, PAN_MIDLINE_HIGH_POINTED, PAN_MIDLINE_HIGH_SERIFED, PAN_MIDLINE_CONSTANT_TRIMMED, PAN_MIDLINE_CONSTANT_POINTED, PAN_MIDLINE_CONSTANT_SERIFED, PAN_MIDLINE_LOW_TRIMMED, PAN_MIDLINE_LOW_POINTED, PAN_MIDLINE_LOW_SERIFED);
+_Win32_Enum_(PAN_XHEIGHT, unsigned char, PAN_XHEIGHT_ANY, PAN_XHEIGHT_NO_FIT, PAN_XHEIGHT_CONSTANT_SMALL, PAN_XHEIGHT_CONSTANT_STD, PAN_XHEIGHT_CONSTANT_LARGE, PAN_XHEIGHT_DUCKING_SMALL, PAN_XHEIGHT_DUCKING_STD, PAN_XHEIGHT_DUCKING_LARGE);
+#endif
 
 #define ELF_VENDOR_SIZE     4
 
@@ -2218,8 +2255,8 @@ typedef struct _devicemodeA {
       /* display only fields */
       struct {
         POINTL dmPosition;
-        DWORD  dmDisplayOrientation;
-        DWORD  dmDisplayFixedOutput;
+        _Win32_AssociatedEnum_(DEVMODE_DISPLAY_ORIENTATION) DWORD  dmDisplayOrientation;
+        _Win32_AssociatedEnum_(DEVMODE_DISPLAY_FIXED_OUTPUT) DWORD  dmDisplayFixedOutput;
       } DUMMYSTRUCTNAME2;
     } DUMMYUNIONNAME;
     short dmColor;
@@ -2272,8 +2309,8 @@ typedef struct _devicemodeW {
       /* display only fields */
       struct {
         POINTL dmPosition;
-        DWORD  dmDisplayOrientation;
-        DWORD  dmDisplayFixedOutput;
+        _Win32_AssociatedEnum_(DEVMODE_DISPLAY_ORIENTATION) DWORD  dmDisplayOrientation;
+        _Win32_AssociatedEnum_(DEVMODE_DISPLAY_FIXED_OUTPUT) DWORD  dmDisplayFixedOutput;
       } DUMMYSTRUCTNAME2;
     } DUMMYUNIONNAME;
     short dmColor;
@@ -2671,11 +2708,13 @@ typedef LPDEVMODEA LPDEVMODE;
 #define DMDO_90         1
 #define DMDO_180        2
 #define DMDO_270        3
+_Win32_Enum_(DEVMODE_DISPLAY_ORIENTATION, unsigned int, DMDO_DEFAULT, DMDO_90, DMDO_180, DMDO_270);
 
 /* DEVMODE dmDisplayFixedOutput specifiations */
 #define DMDFO_DEFAULT   0
 #define DMDFO_STRETCH   1
 #define DMDFO_CENTER    2
+_Win32_Enum_(DEVMODE_DISPLAY_FIXED_OUTPUT, unsigned int, DMDFO_DEFAULT, DMDFO_STRETCH, DMDFO_CENTER);
 #endif /* WINVER >= 0x0501 */
 
 /* DEVMODE dmDisplayFlags flags */
@@ -4838,7 +4877,7 @@ SetBitmapBits(
     _In_ DWORD cb,
     _In_reads_bytes_(cb) CONST VOID *pvBits);
 
-WINGDIAPI UINT  WINAPI SetBoundsRect(_In_ HDC hdc, _In_opt_ CONST RECT * lprect, _In_ UINT flags);
+WINGDIAPI UINT  WINAPI SetBoundsRect(_In_ HDC hdc, _In_opt_ CONST RECT * lprect, _In_ _Win32_AssociatedEnum_(SET_BOUNDS_RECT_FLAGS) UINT flags);
 WINGDIAPI int   WINAPI SetDIBits(_In_opt_ HDC hdc, _In_ HBITMAP hbm, _In_ UINT start, _In_ UINT cLines, _In_ CONST VOID *lpBits, _In_ CONST BITMAPINFO * lpbmi, _Win32_AssociatedEnum_(DIB_USAGE) _In_ UINT ColorUse);
  WINGDIAPI int   WINAPI SetDIBitsToDevice(_In_ HDC hdc, _In_ int xDest, _In_ int yDest, _In_ DWORD w, _In_ DWORD h, _In_ int xSrc,
         _In_ int ySrc, _In_ UINT StartScan, _In_ UINT cLines, _In_ CONST VOID * lpvBits, _In_ CONST BITMAPINFO * lpbmi, _Win32_AssociatedEnum_(DIB_USAGE) _In_ UINT ColorUse);
@@ -5236,7 +5275,7 @@ _Win32_SupportedOS_Windows2000_
 WINGDIAPI BOOL WINAPI GetWorldTransform( _In_ HDC hdc, _Out_ LPXFORM lpxf);
 _Win32_SupportedOS_Windows2000_
 WINGDIAPI BOOL WINAPI SetWorldTransform( _In_ HDC hdc, _In_ CONST XFORM * lpxf);
-WINGDIAPI BOOL WINAPI ModifyWorldTransform( _In_ HDC hdc, _In_opt_ CONST XFORM * lpxf, _In_ DWORD mode);
+WINGDIAPI BOOL WINAPI ModifyWorldTransform( _In_ HDC hdc, _In_opt_ CONST XFORM * lpxf, _In_ _Win32_AssociatedEnum_(MODIFY_WORLD_TRANSFORM_MODE) DWORD mode);
 WINGDIAPI BOOL WINAPI CombineTransform( _Out_ LPXFORM lpxfOut, _In_ CONST XFORM *lpxf1, _In_ CONST XFORM *lpxf2);
 
 #define GDI_WIDTHBYTES(bits) ((DWORD)(((bits)+31) & (~31)) / 8)
@@ -6036,7 +6075,7 @@ typedef struct tagEMRMODIFYWORLDTRANSFORM
 {
     EMR     emr;
     XFORM   xform;
-    DWORD   iMode;
+    _Win32_AssociatedEnum_(MODIFY_WORLD_TRANSFORM_MODE) DWORD   iMode;
 } EMRMODIFYWORLDTRANSFORM, *PEMRMODIFYWORLDTRANSFORM;
 
 typedef struct tagEMRSETPIXELV

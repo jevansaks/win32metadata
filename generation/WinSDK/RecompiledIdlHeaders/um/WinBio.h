@@ -334,7 +334,7 @@ _Win32_SupportedOS_Windows7_
 HRESULT WINAPI
 WinBioOpenSession(
     _In_ WINBIO_BIOMETRIC_TYPE Factor,
-    _In_ WINBIO_POOL_TYPE PoolType,
+    _In_ _Win32_AssociatedEnum_(WINBIO_POOL) WINBIO_POOL_TYPE PoolType,
     _In_ WINBIO_SESSION_FLAGS Flags,
     _In_reads_opt_(UnitCount) WINBIO_UNIT_ID *UnitArray,
     _In_opt_ SIZE_T UnitCount,
@@ -349,7 +349,7 @@ _Win32_SupportedOS_Windows8_
 HRESULT WINAPI
 WinBioAsyncOpenSession(
     _In_ WINBIO_BIOMETRIC_TYPE Factor,
-    _In_ WINBIO_POOL_TYPE PoolType,
+    _In_ _Win32_AssociatedEnum_(WINBIO_POOL) WINBIO_POOL_TYPE PoolType,
     _In_ WINBIO_SESSION_FLAGS Flags,
     _In_reads_opt_(UnitCount) WINBIO_UNIT_ID *UnitArray,
     _In_opt_ SIZE_T UnitCount,
@@ -681,7 +681,7 @@ HRESULT WINAPI
 WinBioControlUnit(
     _In_ WINBIO_SESSION_HANDLE SessionHandle,
     _In_ WINBIO_UNIT_ID UnitId,
-    _In_ WINBIO_COMPONENT Component,
+    _In_ _Win32_AssociatedEnum_(WINBIO_COMPONENT) WINBIO_COMPONENT Component,
     _In_ ULONG ControlCode,
     _In_reads_bytes_(SendBufferSize) PUCHAR SendBuffer,
     _In_ SIZE_T SendBufferSize,
@@ -696,7 +696,7 @@ HRESULT WINAPI
 WinBioControlUnitPrivileged(
     _In_ WINBIO_SESSION_HANDLE SessionHandle,
     _In_ WINBIO_UNIT_ID UnitId,
-    _In_ WINBIO_COMPONENT Component,
+    _In_ _Win32_AssociatedEnum_(WINBIO_COMPONENT) WINBIO_COMPONENT Component,
     _In_ ULONG ControlCode,
     _In_reads_bytes_(SendBufferSize) PUCHAR SendBuffer,
     _In_ SIZE_T SendBufferSize,
@@ -825,19 +825,19 @@ _Win32_SupportedOS_Windows7_
 VOID WINAPI
 WinBioGetEnabledSetting(
     _Out_ BOOLEAN* Value,
-    _Out_ PWINBIO_SETTING_SOURCE_TYPE Source
+    _Out_ _Win32_AssociatedEnum_(WINBIO_SETTING_SOURCE) PWINBIO_SETTING_SOURCE_TYPE Source
     );
 
 VOID WINAPI
 WinBioGetLogonSetting(
     _Out_ BOOLEAN* Value,
-    _Out_ PWINBIO_SETTING_SOURCE_TYPE Source
+    _Out_ _Win32_AssociatedEnum_(WINBIO_SETTING_SOURCE) PWINBIO_SETTING_SOURCE_TYPE Source
     );
 
 VOID WINAPI
 WinBioGetDomainLogonSetting(
     _Out_ BOOLEAN* Value,
-    _Out_ PWINBIO_SETTING_SOURCE_TYPE Source
+    _Out_ _Win32_AssociatedEnum_(WINBIO_SETTING_SOURCE) PWINBIO_SETTING_SOURCE_TYPE Source
     );
 
 HRESULT WINAPI

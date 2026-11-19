@@ -663,7 +663,42 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mmeapi.h b/generation/Win
  
  WINMMAPI
  DWORD
-@@ -2000,6 +2083,7 @@
+@@ -1876,7 +1959,7 @@
+     DWORD       dwLineID;               /* unique line id for mixer device */
+     DWORD       fdwLine;                /* state/information about line */
+     DWORD_PTR   dwUser;                 /* driver specific information */
+-    DWORD       dwComponentType;        /* component type line connects to */
++    _Win32_AssociatedEnum_(MIXERLINE_COMPONENTTYPE) DWORD       dwComponentType;        /* component type line connects to */
+     DWORD       cChannels;              /* number of channels line supports */
+     DWORD       cConnections;           /* number of connections [possible] */
+     DWORD       cControls;              /* number of controls at this line */
+@@ -1898,7 +1981,7 @@
+     DWORD       dwLineID;               /* unique line id for mixer device */
+     DWORD       fdwLine;                /* state/information about line */
+     DWORD_PTR   dwUser;                 /* driver specific information */
+-    DWORD       dwComponentType;        /* component type line connects to */
++    _Win32_AssociatedEnum_(MIXERLINE_COMPONENTTYPE) DWORD       dwComponentType;        /* component type line connects to */
+     DWORD       cChannels;              /* number of channels line supports */
+     DWORD       cConnections;           /* number of connections [possible] */
+     DWORD       cControls;              /* number of controls at this line */
+@@ -1931,7 +2014,7 @@
+     DWORD       dwLineID;               /* unique line id for mixer device */
+     DWORD       fdwLine;                /* state/information about line */
+     DWORD       dwUser;                 /* driver specific information */
+-    DWORD       dwComponentType;        /* component type line connects to */
++    _Win32_AssociatedEnum_(MIXERLINE_COMPONENTTYPE) DWORD       dwComponentType;        /* component type line connects to */
+     DWORD       cChannels;              /* number of channels line supports */
+     DWORD       cConnections;           /* number of connections [possible] */
+     DWORD       cControls;              /* number of controls at this line */
+@@ -1987,6 +2070,7 @@
+ #define MIXERLINE_COMPONENTTYPE_SRC_AUXILIARY   (MIXERLINE_COMPONENTTYPE_SRC_FIRST + 9)
+ #define MIXERLINE_COMPONENTTYPE_SRC_ANALOG      (MIXERLINE_COMPONENTTYPE_SRC_FIRST + 10)
+ #define MIXERLINE_COMPONENTTYPE_SRC_LAST        (MIXERLINE_COMPONENTTYPE_SRC_FIRST + 10)
++_Win32_Enum_(MIXERLINE_COMPONENTTYPE, unsigned int, MIXERLINE_COMPONENTTYPE_DST_DIGITAL, MIXERLINE_COMPONENTTYPE_DST_HEADPHONES, MIXERLINE_COMPONENTTYPE_DST_LINE, MIXERLINE_COMPONENTTYPE_DST_MONITOR, MIXERLINE_COMPONENTTYPE_DST_SPEAKERS, MIXERLINE_COMPONENTTYPE_DST_TELEPHONE, MIXERLINE_COMPONENTTYPE_DST_UNDEFINED, MIXERLINE_COMPONENTTYPE_DST_VOICEIN, MIXERLINE_COMPONENTTYPE_DST_WAVEIN, MIXERLINE_COMPONENTTYPE_SRC_ANALOG, MIXERLINE_COMPONENTTYPE_SRC_AUXILIARY, MIXERLINE_COMPONENTTYPE_SRC_COMPACTDISC, MIXERLINE_COMPONENTTYPE_SRC_DIGITAL, MIXERLINE_COMPONENTTYPE_SRC_LINE, MIXERLINE_COMPONENTTYPE_SRC_MICROPHONE, MIXERLINE_COMPONENTTYPE_SRC_PCSPEAKER, MIXERLINE_COMPONENTTYPE_SRC_SYNTHESIZER, MIXERLINE_COMPONENTTYPE_SRC_TELEPHONE, MIXERLINE_COMPONENTTYPE_SRC_UNDEFINED, MIXERLINE_COMPONENTTYPE_SRC_WAVEOUT);
+ 
+ /* */
+ /*  MIXERLINE.Target.dwType */
+@@ -2000,6 +2084,7 @@
  #define MIXERLINE_TARGETTYPE_AUX            5
  
  #ifdef _WIN32
@@ -671,7 +706,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mmeapi.h b/generation/Win
  
  WINMMAPI
  MMRESULT
-@@ -2009,6 +2093,7 @@
+@@ -2009,6 +2094,7 @@
      _Inout_ LPMIXERLINEA pmxl,
      _In_ DWORD fdwInfo
      );
@@ -679,7 +714,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mmeapi.h b/generation/Win
  
  WINMMAPI
  MMRESULT
-@@ -2036,6 +2121,7 @@
+@@ -2036,6 +2122,7 @@
  #define MIXER_GETLINEINFOF_TARGETTYPE       0x00000004L
  
  #define MIXER_GETLINEINFOF_QUERYMASK        0x0000000FL
@@ -687,7 +722,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mmeapi.h b/generation/Win
  
  WINMMAPI
  MMRESULT
-@@ -2274,6 +2360,7 @@
+@@ -2274,6 +2361,7 @@
  /* */
  /* */
  #ifdef _WIN32
@@ -695,7 +730,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mmeapi.h b/generation/Win
  
  WINMMAPI
  MMRESULT
-@@ -2283,6 +2370,7 @@
+@@ -2283,6 +2371,7 @@
      _Inout_ LPMIXERLINECONTROLSA pmxlc,
      _In_ DWORD fdwControls
      );
@@ -703,7 +738,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mmeapi.h b/generation/Win
  
  WINMMAPI
  MMRESULT
-@@ -2378,6 +2466,7 @@
+@@ -2378,6 +2467,7 @@
   FAR *LPMIXERCONTROLDETAILS_UNSIGNED;
  
  #ifdef _WIN32
@@ -711,7 +746,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mmeapi.h b/generation/Win
  
  WINMMAPI
  MMRESULT
-@@ -2387,6 +2476,7 @@
+@@ -2387,6 +2477,7 @@
      _Inout_ LPMIXERCONTROLDETAILS pmxcd,
      _In_ DWORD fdwDetails
      );
@@ -719,7 +754,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mmeapi.h b/generation/Win
  
  WINMMAPI
  MMRESULT
-@@ -2411,6 +2501,7 @@
+@@ -2411,6 +2502,7 @@
  #define MIXER_GETCONTROLDETAILSF_LISTTEXT   0x00000001L
  
  #define MIXER_GETCONTROLDETAILSF_QUERYMASK  0x0000000FL

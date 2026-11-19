@@ -826,6 +826,12 @@ NCryptFreeBuffer(
     _Pre_notnull_ PVOID   pvInput);
 
 
+_Win32_SupportedOS_WindowsVista_
+SECURITY_STATUS
+WINAPI
+NCryptFreeObject(
+    _In_    NCRYPT_HANDLE hObject);
+
 
 // NCryptOpenKey flags
 #define NCRYPT_MACHINE_KEY_FLAG         0x00000020
@@ -843,7 +849,7 @@ SECURITY_STATUS
 WINAPI
 NCryptOpenKey(
     _In_    NCRYPT_PROV_HANDLE hProvider,
-    _Out_   NCRYPT_KEY_HANDLE *phKey,
+    _Out_ _Win32_RAIIFree_(NCryptFreeObject, 0) NCRYPT_KEY_HANDLE *phKey,
     _In_    LPCWSTR pszKeyName,
     _Win32_AssociatedEnum_(CERT_KEY_SPEC) _In_opt_ DWORD  dwLegacyKeySpec,
     _In_    DWORD   dwFlags);
@@ -860,7 +866,7 @@ SECURITY_STATUS
 WINAPI
 NCryptCreatePersistedKey(
     _In_    NCRYPT_PROV_HANDLE hProvider,
-    _Out_   NCRYPT_KEY_HANDLE *phKey,
+    _Out_ _Win32_RAIIFree_(NCryptFreeObject, 0) NCRYPT_KEY_HANDLE *phKey,
     _In_    LPCWSTR pszAlgId,
     _In_opt_ LPCWSTR pszKeyName,
     _Win32_AssociatedEnum_(CERT_KEY_SPEC) _In_    DWORD   dwLegacyKeySpec,
@@ -1474,7 +1480,7 @@ NCryptImportKey(
     _In_opt_ NCRYPT_KEY_HANDLE hImportKey,
     _In_    LPCWSTR pszBlobType,
     _In_opt_ NCryptBufferDesc *pParameterList,
-    _Out_   NCRYPT_KEY_HANDLE *phKey,
+    _Out_ _Win32_RAIIFree_(NCryptFreeObject, 0) NCRYPT_KEY_HANDLE *phKey,
     _In_reads_bytes_(cbData) PBYTE pbData,
     _In_    DWORD   cbData,
     _In_    DWORD   dwFlags);
@@ -1530,14 +1536,6 @@ WINAPI
 NCryptDeleteKey(
     _In_    NCRYPT_KEY_HANDLE hKey,
     _In_    DWORD   dwFlags);
-_Win32_SupportedOS_WindowsVista_
-
-
-
-SECURITY_STATUS
-WINAPI
-NCryptFreeObject(
-    _In_    NCRYPT_HANDLE hObject);
 
 
 
@@ -1555,7 +1553,7 @@ SECURITY_STATUS
 WINAPI
 NCryptTranslateHandle(
     _Out_opt_ NCRYPT_PROV_HANDLE *phProvider,
-    _Out_   NCRYPT_KEY_HANDLE *phKey,
+    _Out_ _Win32_RAIIFree_(NCryptFreeObject, 0) NCRYPT_KEY_HANDLE *phKey,
     _In_    HCRYPTPROV hLegacyProv,
     _In_opt_ HCRYPTKEY hLegacyKey,
     _Win32_AssociatedEnum_(CERT_KEY_SPEC) _In_opt_ DWORD  dwLegacyKeySpec,

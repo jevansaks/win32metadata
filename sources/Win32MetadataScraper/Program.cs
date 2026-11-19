@@ -216,13 +216,16 @@ class Program
                         traversalNames.Contains(Path.GetFullPath(fileName.ToString())))
                         emittedEnumNames.Add(group.Name);
                 }
-                if (declaration is TypedefDecl typedef && traversalNames.Count != 0 &&
-                    RemapDiscovery.UnwrapType(typedef.UnderlyingType) is PointerType pointer &&
-                    RemapDiscovery.UnwrapType(pointer.PointeeType) is FunctionProtoType)
+                if (declaration is TypedefDecl typedef && traversalNames.Count != 0)
                 {
-                    typedef.Location.GetPresumedLocation(out var fileName, out _, out _);
-                    if (fileName.ToString().Length == 0 || !traversalNames.Contains(Path.GetFullPath(fileName.ToString())))
-                        callbacksOutsideTraversal.Add(typedef.Name);
+                    var callbackType = RemapDiscovery.UnwrapType(typedef.UnderlyingType);
+                    if (callbackType is FunctionProtoType || callbackType is PointerType pointer &&
+                        RemapDiscovery.UnwrapType(pointer.PointeeType) is FunctionProtoType)
+                    {
+                        typedef.Location.GetPresumedLocation(out var fileName, out _, out _);
+                        if (fileName.ToString().Length == 0 || !traversalNames.Contains(Path.GetFullPath(fileName.ToString())))
+                            callbacksOutsideTraversal.Add(typedef.Name);
+                    }
                 }
             });
             annotations.ResolveCarriers();
@@ -317,9 +320,10 @@ class Program
                 }
 
                 nativeTypedefs.Write(Path.ChangeExtension(outputFile, ".headerTypedefs.cs"), ns, annotations.SupportedTypes);
+                string companionHeader = string.IsNullOrEmpty(headerFile) ? "using System;" : File.ReadAllText(headerFile);
                 string enumOutput = Path.ChangeExtension(outputFile, ".headerEnums.cs");
                 if (File.Exists(enumOutput)) File.Delete(enumOutput);
-                using (var writer = new MetadataUtils.EnumWriter(enumOutput, ns, "using System;", useConstants: false))
+                using (var writer = new MetadataUtils.EnumWriter(enumOutput, ns, companionHeader, useConstants: false))
                     foreach (string name in emittedEnumNames.OrderBy(n => n, StringComparer.Ordinal))
                     {
                         var group = annotations.EnumGroups[name];
@@ -334,7 +338,7 @@ class Program
                 if (constantNames.Length != 0)
                 {
                     using var stream = File.Create(constantsOutput);
-                    using var writer = new MetadataUtils.ConstantWriter(stream, ns, "using System;", new Dictionary<string, string>());
+                    using var writer = new MetadataUtils.ConstantWriter(stream, ns, companionHeader, new Dictionary<string, string>());
                     foreach (string name in constantNames)
                     {
                         var constant = annotations.EnumConstants[name];
@@ -352,7 +356,7 @@ class Program
                 if (globalNames.Length != 0)
                 {
                     using var stream = File.Create(globalsOutput);
-                    using var writer = new MetadataUtils.ConstantWriter(stream, ns, "using System;", new Dictionary<string, string>());
+                    using var writer = new MetadataUtils.ConstantWriter(stream, ns, companionHeader, new Dictionary<string, string>());
                     foreach (string name in globalNames)
                     {
                         var constant = annotations.EnumConstants[name];

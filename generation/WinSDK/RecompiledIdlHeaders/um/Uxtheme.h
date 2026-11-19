@@ -1414,10 +1414,20 @@ IsThemeDialogTextureEnabled(
                                  STAP_ALLOW_CONTROLS | \
                                  STAP_ALLOW_WEBCONTENT)
 
+#if defined(WIN32METADATA) && defined(__clang__)
+const unsigned int ALLOW_NONCLIENT = STAP_ALLOW_NONCLIENT;
+const unsigned int ALLOW_CONTROLS = STAP_ALLOW_CONTROLS;
+const unsigned int ALLOW_WEBCONTENT = STAP_ALLOW_WEBCONTENT;
+const unsigned int VALIDBITS = STAP_VALIDBITS;
+_Win32_FlagsEnum_(SET_THEME_APP_PROPERTIES_FLAGS, unsigned int,
+    ALLOW_NONCLIENT, ALLOW_CONTROLS, ALLOW_WEBCONTENT, VALIDBITS);
+#endif
+
 //---------------------------------------------------------------------------
 //  GetThemeAppProperties()
 //                      - returns the app property flags that control theming
 //---------------------------------------------------------------------------
+_Win32_AssociatedEnum_(SET_THEME_APP_PROPERTIES_FLAGS)
 THEMEAPI_(DWORD)
 GetThemeAppProperties(
     VOID
@@ -1431,7 +1441,7 @@ GetThemeAppProperties(
 //---------------------------------------------------------------------------
 THEMEAPI_(void)
 SetThemeAppProperties(
-    _In_ DWORD dwFlags
+    _In_ _Win32_AssociatedEnum_(SET_THEME_APP_PROPERTIES_FLAGS) DWORD dwFlags
     );
 
 //---------------------------------------------------------------------------
