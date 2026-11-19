@@ -92,6 +92,42 @@ to the already-qualified Audio preambles.
 The original run remains separate from the repair's fresh qualification and
 next exact-head hosted gate.
 
+### Independently accepted cold hosted output and continuation baseline
+
+The repair is published as `ebea529f73124343994ab8a848798cf3c67b212f`.
+Its own ordinary [run 44455942988](https://github.com/jevansaks/win32metadata/actions/runs/44455942988)
+completes all ten jobs successfully. Actual checkout merge `7a4f8354` has the
+exact published source tree; no later CryptXML work is included. Both standalone
+WinMD artifacts and the actual SDK NuGet package contain
+`E244CF6D3ABDC96D472C7B2AE0A3CBB7BCE9AB5EF0DCFBED01FDCF70E651624C`;
+the complete hosted dump is
+`6F64104F8CB438EB7770F6B6DA192DA05E7A83342765539829F910BC0DF49CA0`.
+These are distinct from the historical local `499D...` / `B861...` outputs.
+
+Cold generation discovers 21 native function-type aliases omitted by all 17
+inherited local automatic maps. Their 22 formal parameter occurrences across
+14 methods now project as delegates, not pointers to delegates; native function
+typedefs and their one-pointer consumers establish the correct depth. The
+delegate declarations themselves are unchanged. The entire API difference is
+limited to those complete method lines, including redundant Out removal and
+mechanical unsafe removal. Native callback, actual-report, binary and complete
+hosted-output qualification are now independently accepted.
+
+Complete binary accounting also separates the direct local emission's default
+assembly version `1.0.0.0` from hosted `71.0.170.31311`, its deterministic content
+identity and resulting layout effects. No unexplained binary region remains in
+the closed, independently accepted packet. Both actual 1,001-case tooling runs,
+175 SDK cases, 54 integrity cases and 44 workflow cases pass; raw report identities
+and the exact checkout-dependent theory-display substitutions remain retained.
+
+Continuation uses the actual cold artifacts in workflow order x64, x86,
+then ARM64. Their exact final selection
+contains 2,187 files, including 986 raw C# producers and all three automatic
+pointer maps. Do not mix in the stale 17-map cache or old modified C#; the old
+1,904-file inventory includes a different raw-plus-modified execution surface.
+Preserve every historical local and CryptXML proof. This does not release a
+later publication, change the 292/4/436 published sidecar counts or permit merging.
+
 ## Preserved earlier checkpoints
 
 **Earlier locally qualified migration checkpoint:**

@@ -1342,6 +1342,100 @@ typedef unsigned int UINT;
                 (Regex.Match(header, @"(?m)^_Win32_Enum_\(MIXERLINE_COMPONENTTYPE,[^\r\n]+").Value) + "\n";
         }
 
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void XmlSignatureStatusGroup_PreservesNativeErrorFlagsAndExistingInfoAssociation(string target)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(XmlSignatureStatusDeclarations(), target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            Save(fixture.GeneratedSource, "xml-signature-status-" + target);
+            string path = fixture.Emit();
+            Save(path, "xml-signature-status-" + target);
+            using var pe = new PEReader(File.OpenRead(path));
+            var reader = pe.GetMetadataReader();
+            var owner = NativeTypedefHeaderTests.Type(reader, "CRYPT_XML_STATUS");
+            foreach (var use in new[]
+            {
+                ("dwErrorStatus", "CRYPT_XML_STATUS_ERROR_STATUS"),
+                ("dwInfoStatus", "CRYPT_XML_STATUS_INFO_STATUS"),
+            })
+            {
+                var field = owner.GetFields().Select(reader.GetFieldDefinition)
+                    .Single(candidate => reader.GetString(candidate.Name) == use.Item1);
+                EnumAssociationHeaderTests.AssertSignature(reader, field.Signature, 0, SignatureTypeCode.UInt32);
+                CollectionAssert.AreEqual(new[] { use.Item2 },
+                    EnumAssociationHeaderTests.StringAttributes(reader, field.GetCustomAttributes(), "AssociatedEnumAttribute"));
+            }
+            var type = NativeTypedefHeaderTests.Type(reader, "CRYPT_XML_STATUS_ERROR_STATUS");
+            var members = type.GetFields().Select(reader.GetFieldDefinition)
+                .Where(candidate => !candidate.GetDefaultValue().IsNil).ToArray();
+            CollectionAssert.AreEqual(new[]
+            {
+                "CRYPT_XML_STATUS_ERROR_NOT_RESOLVED", "CRYPT_XML_STATUS_ERROR_DIGEST_INVALID",
+                "CRYPT_XML_STATUS_ERROR_NOT_SUPPORTED_ALGORITHM", "CRYPT_XML_STATUS_ERROR_NOT_SUPPORTED_TRANSFORM",
+                "CRYPT_XML_STATUS_ERROR_SIGNATURE_INVALID", "CRYPT_XML_STATUS_ERROR_KEYINFO_NOT_PARSED",
+            }, members.Select(member => reader.GetString(member.Name)).ToArray());
+            CollectionAssert.AreEqual(new uint[] { 1, 2, 4, 8, 65536, 131072 },
+                members.Select(member => reader.GetBlobReader(reader.GetConstant(member.GetDefaultValue()).Value).ReadUInt32()).ToArray());
+            var attributes = type.GetCustomAttributes().Select(reader.GetCustomAttribute)
+                .Select(attribute => ParameterHeaderTests.AttributeName(reader, attribute)).ToArray();
+            Assert.IsTrue(attributes.Contains("FlagsAttribute"));
+            Assert.IsFalse(attributes.Contains("ScopedEnumAttribute"));
+        }
+
+        [DataTestMethod]
+        [DataRow("x86", 4, "/TC")]
+        [DataRow("x64", 8, "/TC")]
+        [DataRow("arm64", 8, "/TC")]
+        [DataRow("x86", 4, "/TP")]
+        [DataRow("x64", 8, "/TP")]
+        [DataRow("arm64", 8, "/TP")]
+        public void XmlSignatureStatusGroup_PreservesCompleteNativeCAndCppRecordAndMasks(string arch, int pointerSize, string language)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            string source = XmlSignatureStatusDeclarations() + @"
+typedef char CheckStatusSize[(sizeof(CRYPT_XML_STATUS) == 12) ? 1 : -1];
+typedef char CheckSizeOffset[(((unsigned __int64)&(((CRYPT_XML_STATUS*)0)->cbSize)) == 0) ? 1 : -1];
+typedef char CheckErrorOffset[(((unsigned __int64)&(((CRYPT_XML_STATUS*)0)->dwErrorStatus)) == 4) ? 1 : -1];
+typedef char CheckInfoOffset[(((unsigned __int64)&(((CRYPT_XML_STATUS*)0)->dwInfoStatus)) == 8) ? 1 : -1];
+typedef char CheckErrorWidth[(sizeof(((CRYPT_XML_STATUS*)0)->dwErrorStatus) == 4) ? 1 : -1];
+typedef char CheckInfoWidth[(sizeof(((CRYPT_XML_STATUS*)0)->dwInfoStatus) == 4) ? 1 : -1];
+typedef char CheckNoError[(CRYPT_XML_STATUS_NO_ERROR == 0) ? 1 : -1];
+typedef char CheckNativeErrorMask[((CRYPT_XML_STATUS_ERROR_NOT_RESOLVED |
+    CRYPT_XML_STATUS_ERROR_DIGEST_INVALID | CRYPT_XML_STATUS_ERROR_NOT_SUPPORTED_ALGORITHM |
+    CRYPT_XML_STATUS_ERROR_NOT_SUPPORTED_TRANSFORM | CRYPT_XML_STATUS_ERROR_SIGNATURE_INVALID |
+    CRYPT_XML_STATUS_ERROR_KEYINFO_NOT_PARSED) == 0x0003000F) ? 1 : -1];
+typedef char CheckNativeAlgorithmBit[(CRYPT_XML_STATUS_ERROR_NOT_SUPPORTED_ALGORITHM == 4 &&
+    (CRYPT_XML_STATUS_ERROR_NOT_SUPPORTED_ALGORITHM & CRYPT_XML_STATUS_ERROR_NOT_RESOLVED) == 0) ? 1 : -1];
+typedef char CheckUnchangedHighInfoFlag[(CRYPT_XML_STATUS_OPENED_TO_ENCODE == 0x80000000) ? 1 : -1];
+";
+            fixture.AssertNativeAbi(arch, pointerSize, language, source);
+            foreach (var original in new[] { fixture.OrdinaryNativeObject, fixture.MetadataNativeObject })
+            {
+                string path = Path.Combine(TestContext.ResultsDirectory,
+                    "xml-signature-status-" + arch + "-" + language.TrimStart('/') + "-" + Path.GetFileName(original));
+                File.Copy(original, path, true);
+                TestContext.AddResultFile(path);
+            }
+        }
+
+        private static string XmlSignatureStatusDeclarations()
+        {
+            string header = File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
+                "generation", "WinSDK", "RecompiledIdlHeaders", "um", "cryptxml.h"));
+            return @"
+typedef unsigned long DWORD;
+typedef unsigned long ULONG;
+" + Slice(header, @"typedef struct _CRYPT_XML_STATUS\{[\s\S]+?\}CRYPT_XML_STATUS[^;]+;") + "\n" +
+                Slice(header, @"(?m)^#define CRYPT_XML_STATUS_NO_ERROR[\s\S]+?^#define CRYPT_XML_STATUS_OPENED_TO_ENCODE[^\r\n]+") + "\n" +
+                string.Join("\n", Regex.Matches(header, @"(?m)^_Win32_[^\r\n]*CRYPT_XML_STATUS_INFO_STATUS[^\r\n]*")
+                    .Select(match => match.Value)) + "\n" +
+                Regex.Match(header, @"(?m)^_Win32_FlagsEnum_\(CRYPT_XML_STATUS_ERROR_STATUS,[^\r\n]+").Value + "\n";
+        }
+
         private static string ThemeAndDialogDeclarations()
         {
             string headers = Path.Combine(LastErrorHeaderTests.RepositoryRoot(), "generation", "WinSDK", "RecompiledIdlHeaders");
