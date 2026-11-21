@@ -1,3 +1,5 @@
+cpp_quote("#include <win32metadata_annotations.h>")
+#include <win32metadata_annotations.h>
 cpp_quote("#include <winapifamily.h>")
 
 // AudioPolicy.idl : IDL source for IAudioPolicy and associated interfaces
@@ -485,6 +487,7 @@ interface IAudioSessionControl2 : IAudioSessionControl
 	HRESULT SetDuckingPreference([in] BOOL optOut);
 
 } // IAudioSessionControl2
+_Win32_AnnotateMethod_(IAudioSessionControl2::IsSystemSoundsSession, _Win32_PreserveResult_)
 
 
 /*++    IAudioSessionManager.

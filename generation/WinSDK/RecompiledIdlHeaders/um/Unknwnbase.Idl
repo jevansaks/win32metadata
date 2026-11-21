@@ -1,3 +1,5 @@
+cpp_quote("#include <win32metadata_annotations.h>")
+#include <win32metadata_annotations.h>
 cpp_quote("#include <winapifamily.h>")
 
 //+-------------------------------------------------------------------------
@@ -56,6 +58,7 @@ cpp_quote("        IUnknown")
 cpp_quote("        {")
 cpp_quote("        public:")
 cpp_quote("            BEGIN_INTERFACE")
+cpp_quote("            _Win32_PreserveResult_")
 cpp_quote("            virtual HRESULT STDMETHODCALLTYPE QueryInterface( ")
 cpp_quote("                /* [in] */ REFIID riid,")
 cpp_quote("                /* [iid_is][out] */ _COM_Outptr_ void __RPC_FAR *__RPC_FAR *ppvObject) = 0;")
@@ -115,6 +118,9 @@ cpp_quote("#else")
     ULONG AddRef();
     ULONG Release();
 }
+cpp_quote("#if !((_MSC_VER >= 1100) && defined(__cplusplus) && !defined(CINTERFACE))")
+_Win32_AnnotateMethod_(IUnknown::QueryInterface, _Win32_PreserveResult_)
+cpp_quote("#endif")
 cpp_quote("#endif")
 
 cpp_quote("#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES) */")

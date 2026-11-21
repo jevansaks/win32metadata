@@ -1,3 +1,5 @@
+cpp_quote("#include <win32metadata_annotations.h>")
+#include <win32metadata_annotations.h>
 // Copyright (c) Microsoft Corporation.  All Rights Reserved
 
 import "dxgi1_2.idl";
@@ -149,6 +151,7 @@ interface IDXGIDecodeSwapChain :
     HRESULT SetColorSpace(DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAGS ColorSpace);
     DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAGS GetColorSpace();
 };
+_Win32_AnnotateMethod_(IDXGIDecodeSwapChain::PresentBuffer, _Win32_PreserveResult_)
 
 //--------------------------------------------------------------------------------------------------------
 // IDXGIFactoryMedia interface

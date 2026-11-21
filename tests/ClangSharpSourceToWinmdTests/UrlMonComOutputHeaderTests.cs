@@ -82,10 +82,12 @@ namespace ClangSharpSourceToWinmdTests
                     .Replace(output, owner.EndsWith(".Idl", StringComparison.Ordinal)
                         ? "[out, annotation(\"_COM_Outptr_\")]   void                **ppvObj"
                         : "_COM_Outptr_  void **ppvObj");
+                if (!historical)
+                    expected = ResultHeaderTests.AddNativeIdlResultPolicy(expected, "IPersistMoniker::IsDirty");
                 CollectionAssert.AreEqual(Encoding.ASCII.GetBytes(expected),
                     historical ? ProductionSalLocalHeaderTests.ReadBeforeCutover("RecompiledIdlHeaders/um/" + owner) :
                         File.ReadAllBytes(Path.Combine(root, "generation", "WinSDK", "RecompiledIdlHeaders", "um", owner)),
-                    "No encoding, newline, or unrelated native changes: " + owner);
+                    "Only the exact SAL and selected result edits; preserve encoding and newlines: " + owner);
             }
         }
 

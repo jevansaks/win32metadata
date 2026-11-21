@@ -432,7 +432,18 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ShlObj_core.h b/generatio
  // both ANSI and UNICODE
  SHSTDAPI SHStartNetConnectionDialogW(_In_opt_ HWND hwnd, _In_opt_ LPCWSTR pszRemoteName, DWORD dwType);
  #ifdef UNICODE
-@@ -2765,13 +2856,18 @@
+@@ -2721,8 +2812,10 @@
+ #else
+ #define SHStartNetConnectionDialog  SHStartNetConnectionDialogA
+ #endif // !UNICODE
++_Win32_PreserveResult_
+ SHSTDAPI SHDefExtractIconA(_In_ LPCSTR pszIconFile, int iIndex, UINT uFlags,
+                            _Out_opt_ HICON *phiconLarge, _Out_opt_ HICON *phiconSmall, UINT nIconSize);
++_Win32_PreserveResult_
+ SHSTDAPI SHDefExtractIconW(_In_ LPCWSTR pszIconFile, int iIndex, UINT uFlags,
+                            _Out_opt_ HICON *phiconLarge, _Out_opt_ HICON *phiconSmall, UINT nIconSize);
+ #ifdef UNICODE
+@@ -2765,13 +2858,18 @@
  #include <poppack.h>        /* Return to byte packing */
  
  #if (NTDDI_VERSION >= NTDDI_VISTA)
@@ -451,7 +462,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ShlObj_core.h b/generatio
  SHSTDAPI_(int)  Shell_GetCachedImageIndexW(_In_ LPCWSTR pszIconPath, int iIconIndex, UINT uIconFlags);
  #ifdef UNICODE
  #define Shell_GetCachedImageIndex  Shell_GetCachedImageIndexW
-@@ -2816,14 +2912,21 @@
+@@ -2816,14 +2914,21 @@
  typedef UNALIGNED PROPPRG *PPROPPRG;
  typedef UNALIGNED PROPPRG FAR *LPPROPPRG;
  typedef const UNALIGNED PROPPRG FAR *LPCPROPPRG;
@@ -473,7 +484,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ShlObj_core.h b/generatio
  
  SHSTDAPI_(LRESULT) SHShellFolderView_Message(_In_ HWND hwndMain, UINT uMsg, LPARAM lParam);
  
-@@ -2991,6 +3094,7 @@
+@@ -2991,6 +3096,7 @@
      IShellView*     psvOuter;   // optional: IShellView to pass to psfvcb
      IShellFolderViewCB* psfvcb; // No callback if NULL
  } SFV_CREATE;
@@ -481,7 +492,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ShlObj_core.h b/generatio
  
  SHSTDAPI SHCreateShellFolderView(_In_ const SFV_CREATE* pcsfv, _Outptr_ IShellView ** ppsv);
  typedef HRESULT (CALLBACK * LPFNDFMCALLBACK)(_In_opt_ IShellFolder *psf, _In_opt_ HWND hwnd,
-@@ -3017,7 +3121,7 @@
+@@ -3017,7 +3123,7 @@
  // used in the implemetnation of ::GetUIObjectOf()
  
  #if (NTDDI_VERSION >= NTDDI_VISTA)
@@ -490,7 +501,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ShlObj_core.h b/generatio
  #endif // NTDDI_VISTA
  
  // structure for lParam of DFM_INFOKECOMMANDEX
-@@ -3099,8 +3203,10 @@
+@@ -3099,8 +3205,10 @@
  } CSFV, * LPCSFV;
  
  #include <poppack.h>        /* Return to byte packing */
@@ -501,7 +512,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ShlObj_core.h b/generatio
  SHSTDAPI SHCreateShellFolderViewEx(_In_ CSFV *pcsfv, _Outptr_ IShellView **ppsv);
  
  
-@@ -3386,6 +3492,7 @@
+@@ -3386,6 +3494,7 @@
  #if (NTDDI_VERSION >= NTDDI_WIN8)
  #define SSF_SHOWSTATUSBAR           0x04000000
  #endif  // NTDDI_VISTA
@@ -509,7 +520,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ShlObj_core.h b/generatio
  
  //
  // Specify the bits you are interested in in dwMask and they will be
-@@ -3400,18 +3507,18 @@
+@@ -3400,18 +3509,18 @@
  // Given a pidl, you can get an interface pointer (as specified by riid) of the pidl's parent folder (in ppv)
  // If ppidlLast is non-NULL, you can also get the pidl of the last item.
  //
@@ -532,7 +543,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ShlObj_core.h b/generatio
  
  #endif // NTDDI_VISTA
  
-@@ -3445,6 +3552,7 @@
+@@ -3445,6 +3554,7 @@
  //  psfgaoOut is optional for SFGAO attributes
  //
  #if (NTDDI_VERSION >= NTDDI_WINXP)
@@ -540,7 +551,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ShlObj_core.h b/generatio
  SHSTDAPI SHParseDisplayName(_In_ PCWSTR pszName, _In_opt_ IBindCtx *pbc, _Outptr_ PIDLIST_ABSOLUTE *ppidl, _In_ SFGAOF sfgaoIn, _Out_opt_ SFGAOF *psfgaoOut);
  #endif // NTDDI_WINXP
  
-@@ -3473,9 +3581,11 @@
+@@ -3473,9 +3583,11 @@
  #if (NTDDI_VERSION >= NTDDI_WINXP)
  #define SHPPFW_MEDIACHECKONLY   0x00000010              // do the retrys on the media (or net path), return errors if the file can't be found
  #endif // NTDDI_WINXP
@@ -552,7 +563,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ShlObj_core.h b/generatio
  SHSTDAPI SHPathPrepareForWriteW(_In_opt_ HWND hwnd, _In_opt_ IUnknown *punkEnableModless, _In_ LPCWSTR pszPath, DWORD dwFlags);
  #ifdef UNICODE
  #define SHPathPrepareForWrite  SHPathPrepareForWriteW
-@@ -3504,6 +3614,7 @@
+@@ -3504,6 +3616,7 @@
      STDMETHOD(RemovePropertyNPB)(THIS_ _In_ PCWSTR pszBagname,
                                   _In_ PCWSTR pszPropName) PURE;
  };
@@ -560,7 +571,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ShlObj_core.h b/generatio
  
  //  SHPropStgCreate()
  //  Wrap of IPropertySetStorage::Open/Create
-@@ -3522,6 +3633,7 @@
+@@ -3522,6 +3635,7 @@
  //  puCodePage      //  Optional address to receive the code page ID for the set.
  //
  SHSTDAPI SHPropStgCreate(_In_ IPropertySetStorage* psstg, _In_ REFFMTID fmtid, _In_opt_ const CLSID *pclsid, DWORD grfFlags, DWORD grfMode, DWORD dwDisposition, _Outptr_ IPropertyStorage** ppstg, _Out_opt_ UINT* puCodePage);
@@ -568,7 +579,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ShlObj_core.h b/generatio
  
  
  //  SHPropStgReadMultiple()
-@@ -3537,6 +3649,7 @@
+@@ -3537,6 +3651,7 @@
  //  rgvar      //Array of PROPVARIANTs containing the property values on return
  //
  SHSTDAPI SHPropStgReadMultiple(_In_ IPropertyStorage* pps, UINT uCodePage, ULONG cpspec, _In_reads_(cpspec) PROPSPEC const rgpspec[], _Out_writes_all_(cpspec) PROPVARIANT rgvar[] );
@@ -576,7 +587,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ShlObj_core.h b/generatio
  
  
  //  SHPropStgWriteMultiple()
-@@ -3556,31 +3669,35 @@
+@@ -3556,31 +3671,36 @@
  
  #if (NTDDI_VERSION >= NTDDI_WINXP)
  SHSTDAPI SHCreateFileExtractIconA(_In_ LPCSTR pszFile, _In_ DWORD dwFileAttributes, _In_ REFIID riid, _Outptr_ void **ppv);
@@ -591,6 +602,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ShlObj_core.h b/generatio
  
  SHSTDAPI SHLimitInputEdit(_In_ HWND hwndEdit, _In_ IShellFolder *psf);
  
++_Win32_PreserveResult_
  STDAPI SHGetAttributesFromDataObject(_In_opt_ IDataObject *pdo, DWORD dwAttributeMask, _Out_opt_ DWORD *pdwAttributes, _Out_opt_ UINT *pcItems);
  
  #endif  // NTDDI_WINXP

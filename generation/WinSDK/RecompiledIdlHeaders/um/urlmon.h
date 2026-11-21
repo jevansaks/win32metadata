@@ -446,6 +446,7 @@ extern "C"{
 /* interface __MIDL_itf_urlmon_0000_0000 */
 /* [local] */ 
 
+#include <win32metadata_annotations.h>
 //=--------------------------------------------------------------------------=
 // UrlMon.h
 //=--------------------------------------------------------------------------=
@@ -965,6 +966,7 @@ EXTERN_C const IID IID_IPersistMoniker;
 /* interface __MIDL_itf_urlmon_0000_0001 */
 /* [local] */ 
 
+_WIN32META_ANNOTATE_METHOD_(IPersistMoniker::IsDirty, _Win32_PreserveResult_);
 #endif
 #ifndef _LPMONIKERPROP_DEFINED
 #define _LPMONIKERPROP_DEFINED

@@ -121,6 +121,7 @@ extern "C"{
 /* interface __MIDL_itf_dxgi1_2_0000_0000 */
 /* [local] */ 
 
+#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -1705,6 +1706,15 @@ EXTERN_C const IID IID_IDXGISwapChain1;
 
 #endif 	/* __IDXGISwapChain1_INTERFACE_DEFINED__ */
 
+
+/* interface __MIDL_itf_dxgi1_2_0000_0006 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_METHOD_(IDXGISwapChain1::Present1, _Win32_PreserveResult_);
+
+
+extern RPC_IF_HANDLE __MIDL_itf_dxgi1_2_0000_0006_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_dxgi1_2_0000_0006_v0_0_s_ifspec;
 
 #ifndef __IDXGIFactory2_INTERFACE_DEFINED__
 #define __IDXGIFactory2_INTERFACE_DEFINED__

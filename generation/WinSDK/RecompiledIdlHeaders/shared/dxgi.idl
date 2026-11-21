@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 import "oaidl.idl";
 import "ocidl.idl";
 
@@ -343,6 +344,7 @@ interface IDXGIAdapter : IDXGIObject
         [in, annotation("_In_")] REFGUID InterfaceName,
         [out, annotation("_Out_")] LARGE_INTEGER * pUMDVersion );
 };
+_Win32_AnnotateMethod_(IDXGIAdapter::EnumOutputs, _Win32_PreserveResult_)
 
 //--------------------------------------------------------------------------------------------------------
 const UINT DXGI_ENUM_MODES_INTERLACED = 1UL;
@@ -430,6 +432,7 @@ interface IDXGISwapChain :
     HRESULT GetFrameStatistics( [out, annotation("_Out_")] DXGI_FRAME_STATISTICS *pStats );
     HRESULT GetLastPresentCount( [out, annotation("_Out_")] UINT *pLastPresentCount );
 };
+_Win32_AnnotateMethod_(IDXGISwapChain::Present, _Win32_PreserveResult_)
 
 //--------------------------------------------------------------------------------------------------------
 // The DXGIFactory
@@ -462,6 +465,8 @@ interface IDXGIFactory :
         [in] HMODULE Module,
         [out, annotation("_COM_Outptr_")] IDXGIAdapter **ppAdapter );
 };
+_Win32_AnnotateMethod_(IDXGIFactory::CreateSwapChain, _Win32_PreserveResult_)
+_Win32_AnnotateMethod_(IDXGIFactory::EnumAdapters, _Win32_PreserveResult_)
 
 //--------------------------------------------------------------------------------------------------------
 // DXGI instantiation
@@ -566,6 +571,7 @@ interface IDXGIFactory1 :
         [out, annotation("_COM_Outptr_")] IDXGIAdapter1 **ppAdapter );
     BOOL IsCurrent();
 };
+_Win32_AnnotateMethod_(IDXGIFactory1::EnumAdapters1, _Win32_PreserveResult_)
 
 //--------------------------------------------------------------------------------------------------------
 // The DXGIAdapter1

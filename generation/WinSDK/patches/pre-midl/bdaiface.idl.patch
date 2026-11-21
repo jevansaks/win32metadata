@@ -1,0 +1,18 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/bdaiface.idl b/generation/WinSDK/RecompiledIdlHeaders/um/bdaiface.idl
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/bdaiface.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/bdaiface.idl
+@@ -1,3 +1,5 @@
++cpp_quote("#include <win32metadata_annotations.h>")
++#include <win32metadata_annotations.h>
+ //------------------------------------------------------------------------------
+ // File: BDAIface.idl
+ //
+@@ -1103,6 +1105,7 @@
+         [out]   IEnumPIDMap **  ppIEnumPIDMap
+         ) ;
+ } ;
++_Win32_AnnotateMethod_(IEnumPIDMap::Next, _Win32_PreserveResult_)
+ 
+ //---------------------------------------------------------------------
+ // IMPEG2PIDMap interface

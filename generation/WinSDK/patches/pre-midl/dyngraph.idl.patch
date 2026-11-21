@@ -1,0 +1,18 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/dyngraph.idl b/generation/WinSDK/RecompiledIdlHeaders/um/dyngraph.idl
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/dyngraph.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/dyngraph.idl
+@@ -1,3 +1,5 @@
++cpp_quote("#include <win32metadata_annotations.h>")
++#include <win32metadata_annotations.h>
+ //------------------------------------------------------------------------------
+ // File: DynGraph.idl
+ //
+@@ -42,6 +44,7 @@
+ 
+     HRESULT DynamicDisconnect();
+ };
++_Win32_AnnotateMethod_(IPinConnection::IsEndPin, _Win32_PreserveResult_)
+ 
+ //--------------------------------------------------------------------
+ //

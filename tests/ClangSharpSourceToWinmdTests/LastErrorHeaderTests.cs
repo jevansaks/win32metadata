@@ -385,6 +385,7 @@ int __stdcall Caller(void) {{ return Example(0, 3); }}
                     "; $compiler = Join-Path (Get-VcDirPath -Arch " + Quote(arch) + " -HostArch x64) 'cl.exe'; " +
                     "foreach ($mode in 'ordinary', 'metadata') { " +
                     "$arguments = @('/nologo', '/c', " + Quote(language) + ", " + Quote(source) +
+                    ", " + Quote("/I" + this.directory) +
                     ", " + Quote("/Fo" + Path.Combine(this.directory, "abi.obj")) + "); " +
                     "if ($mode -eq 'metadata') { $arguments += '/DWIN32METADATA' }; " +
                     "& $compiler @arguments; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; " +

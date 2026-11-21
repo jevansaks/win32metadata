@@ -79,6 +79,7 @@ WINOLEAPI_(DWORD) CoBuildVersion( VOID );
 /* init/uninit */
 
 _Win32_SupportedOS_Windows2000_
+_Win32_PreserveResult_
 _Check_return_ WINOLEAPI  CoInitialize(_In_opt_ _Reserved_ LPVOID pvReserved);
 
 #define COM_SUPPORT_MALLOC_SPIES

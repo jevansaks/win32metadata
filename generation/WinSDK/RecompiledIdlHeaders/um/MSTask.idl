@@ -1,3 +1,5 @@
+cpp_quote("#include <win32metadata_annotations.h>")
+#include <win32metadata_annotations.h>
 //+----------------------------------------------------------------------------
 //
 //  Task Scheduler
@@ -387,6 +389,8 @@ interface IEnumWorkItems : IUnknown
     HRESULT Clone(
                 [out] IEnumWorkItems ** ppEnumWorkItems);
 }
+_Win32_AnnotateMethod_(IEnumWorkItems::Next, _Win32_PreserveResult_)
+_Win32_AnnotateMethod_(IEnumWorkItems::Skip, _Win32_PreserveResult_)
 
 //+----------------------------------------------------------------------------
 //

@@ -15,23 +15,29 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/PathCch.h b/generation/Wi
  
  WINPATHCCHAPI
  BOOL
-@@ -86,6 +88,7 @@
+@@ -86,7 +88,9 @@
  PathCchIsRoot(
      _In_opt_ PCWSTR pszPath
      );
+-
 +_Win32_SupportedOS_Windows8_
- 
++
++_Win32_PreserveResult_
  WINPATHCCHAPI
  HRESULT
-@@ -96,6 +99,7 @@
+ APIENTRY
+@@ -96,7 +100,9 @@
      _Outptr_opt_result_buffer_(*pcchRemaining) PWSTR* ppszEnd,
      _Out_opt_ size_t* pcchRemaining
      );
+-
 +_Win32_SupportedOS_Windows8_
- 
++
++_Win32_PreserveResult_
  WINPATHCCHAPI
  HRESULT
-@@ -104,6 +108,7 @@
+ APIENTRY
+@@ -104,6 +110,7 @@
      _Inout_updates_(cchPath) PWSTR pszPath,
      _In_ size_t cchPath
      );
@@ -39,23 +45,29 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/PathCch.h b/generation/Wi
  
  WINPATHCCHAPI
  HRESULT
-@@ -114,6 +119,7 @@
+@@ -114,7 +121,9 @@
      _Outptr_opt_result_buffer_(*pcchRemaining) PWSTR* ppszEnd,
      _Out_opt_ size_t* pcchRemaining
      );
+-
 +_Win32_SupportedOS_Windows8_
- 
++
++_Win32_PreserveResult_
  WINPATHCCHAPI
  HRESULT
-@@ -130,6 +136,7 @@
+ APIENTRY
+@@ -130,7 +139,9 @@
      _In_ PCWSTR pszPath,
      _Outptr_ PCWSTR* ppszRootEnd
      );
+-
 +_Win32_SupportedOS_Windows8_
- 
++
++_Win32_PreserveResult_
  WINPATHCCHAPI
  HRESULT
-@@ -138,6 +145,7 @@
+ APIENTRY
+@@ -138,6 +149,7 @@
      _Inout_updates_(_Inexpressible_(cchPath)) PWSTR pszPath,
      _In_ size_t cchPath
      );
@@ -63,7 +75,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/PathCch.h b/generation/Wi
  
  WINPATHCCHAPI
  HRESULT
-@@ -155,6 +163,7 @@
+@@ -155,6 +167,7 @@
      _In_ size_t cchPath,
      _Outptr_ PCWSTR* ppszExt
      );
@@ -71,7 +83,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/PathCch.h b/generation/Wi
  
  WINPATHCCHAPI
  HRESULT
-@@ -164,6 +173,7 @@
+@@ -164,6 +177,7 @@
      _In_ size_t cchPath,
      _In_ PCWSTR pszExt
      );
@@ -79,7 +91,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/PathCch.h b/generation/Wi
  
  WINPATHCCHAPI
  HRESULT
-@@ -173,6 +183,7 @@
+@@ -173,6 +187,7 @@
      _In_ size_t cchPath,
      _In_ PCWSTR pszExt
      );
@@ -87,7 +99,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/PathCch.h b/generation/Wi
  
  WINPATHCCHAPI
  HRESULT
-@@ -181,6 +192,7 @@
+@@ -181,6 +196,7 @@
      _Inout_updates_(_Inexpressible_(cchPath)) PWSTR pszPath,
      _In_ size_t cchPath
      );
@@ -95,7 +107,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/PathCch.h b/generation/Wi
  
  /* PATHCCH_OPTIONS */
  WINPATHCCHAPI
-@@ -190,7 +202,7 @@
+@@ -190,7 +206,7 @@
      _Out_writes_(cchPathOut) PWSTR pszPathOut,
      _In_ size_t cchPathOut,
      _In_ PCWSTR pszPathIn,
@@ -104,7 +116,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/PathCch.h b/generation/Wi
      );
  
  WINPATHCCHAPI
-@@ -201,6 +213,7 @@
+@@ -201,6 +217,7 @@
      _In_ size_t cchPathOut,
      _In_ PCWSTR pszPathIn
      );
@@ -112,7 +124,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/PathCch.h b/generation/Wi
  
  /* PATHCCH_OPTIONS */
  WINPATHCCHAPI
-@@ -211,7 +224,7 @@
+@@ -211,7 +228,7 @@
      _In_ size_t cchPathOut,
      _In_opt_ PCWSTR pszPathIn,
      _In_opt_ PCWSTR pszMore,
@@ -121,7 +133,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/PathCch.h b/generation/Wi
      );
  
  WINPATHCCHAPI
-@@ -223,6 +236,7 @@
+@@ -223,6 +240,7 @@
      _In_opt_ PCWSTR pszPathIn,
      _In_opt_ PCWSTR pszMore
      );
@@ -129,7 +141,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/PathCch.h b/generation/Wi
  
  /* PATHCCH_OPTIONS */
  WINPATHCCHAPI
-@@ -232,7 +246,7 @@
+@@ -232,7 +250,7 @@
      _Inout_updates_(cchPath) PWSTR pszPath,
      _In_ size_t cchPath,
      _In_opt_ PCWSTR pszMore,
@@ -138,15 +150,18 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/PathCch.h b/generation/Wi
      );
  
  WINPATHCCHAPI
-@@ -243,6 +257,7 @@
+@@ -243,7 +261,9 @@
      _In_ size_t cchPath,
      _In_opt_ PCWSTR pszMore
      );
+-
 +_Win32_SupportedOS_Windows8_
- 
++
++_Win32_PreserveResult_
  WINPATHCCHAPI
  HRESULT
-@@ -251,6 +266,7 @@
+ APIENTRY
+@@ -251,6 +271,7 @@
      _Inout_updates_(cchPath) PWSTR pszPath,
      _In_ size_t cchPath
      );
@@ -154,7 +169,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/PathCch.h b/generation/Wi
  
  /* PATHCCH_OPTIONS */
  WINPATHCCHAPI
-@@ -259,9 +275,10 @@
+@@ -259,9 +280,10 @@
  PathAllocCombine(
      _In_opt_ PCWSTR pszPathIn,
      _In_opt_ PCWSTR pszMore,
@@ -166,7 +181,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/PathCch.h b/generation/Wi
  
  /* PATHCCH_OPTIONS */
  WINPATHCCHAPI
-@@ -269,7 +286,7 @@
+@@ -269,7 +291,7 @@
  APIENTRY
  PathAllocCanonicalize(
      _In_ PCWSTR pszPathIn,

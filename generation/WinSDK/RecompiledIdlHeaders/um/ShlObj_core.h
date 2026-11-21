@@ -2812,8 +2812,10 @@ SHSTDAPI SHStartNetConnectionDialogW(_In_opt_ HWND hwnd, _In_opt_ LPCWSTR pszRem
 #else
 #define SHStartNetConnectionDialog  SHStartNetConnectionDialogA
 #endif // !UNICODE
+_Win32_PreserveResult_
 SHSTDAPI SHDefExtractIconA(_In_ LPCSTR pszIconFile, int iIndex, UINT uFlags,
                            _Out_opt_ HICON *phiconLarge, _Out_opt_ HICON *phiconSmall, UINT nIconSize);
+_Win32_PreserveResult_
 SHSTDAPI SHDefExtractIconW(_In_ LPCWSTR pszIconFile, int iIndex, UINT uFlags,
                            _Out_opt_ HICON *phiconLarge, _Out_opt_ HICON *phiconSmall, UINT nIconSize);
 #ifdef UNICODE
@@ -3679,6 +3681,7 @@ _Win32_SupportedOS_Windows2000_
 
 SHSTDAPI SHLimitInputEdit(_In_ HWND hwndEdit, _In_ IShellFolder *psf);
 
+_Win32_PreserveResult_
 STDAPI SHGetAttributesFromDataObject(_In_opt_ IDataObject *pdo, DWORD dwAttributeMask, _Out_opt_ DWORD *pdwAttributes, _Out_opt_ UINT *pcItems);
 
 #endif  // NTDDI_WINXP

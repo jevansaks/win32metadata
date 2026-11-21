@@ -54,6 +54,7 @@ typedef HRESULT (STDAPICALLTYPE * PFNGETACTIVATIONFACTORY)(HSTRING, IActivationF
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
 
 // forward declarations of the dllexport'd versions
+_Win32_PreserveResult_
 ROAPI
 _Check_return_
 HRESULT

@@ -220,6 +220,7 @@ _Win32_SupportedOS_Windows2000_
 WINOLEAPI  RegisterDragDrop(IN HWND hwnd, IN LPDROPTARGET pDropTarget);
 _Win32_SupportedOS_Windows2000_
 WINOLEAPI  RevokeDragDrop(IN HWND hwnd);
+_Win32_PreserveResult_
 WINOLEAPI  DoDragDrop(IN LPDATAOBJECT pDataObj, IN LPDROPSOURCE pDropSource,
             IN DWORD dwOKEffects, OUT LPDWORD pdwEffect);
 _Win32_SupportedOS_Windows2000_

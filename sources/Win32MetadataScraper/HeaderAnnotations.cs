@@ -362,6 +362,9 @@ namespace Win32MetadataScraper
             {
                 var parameter = parameters[i];
                 var start = i == 0 ? owner.Extent.Start : parameters[i - 1].Extent.End;
+                // Declaration annotations can contain parentheses before the native parameter list.
+                if (i == 0 && owner is FunctionDecl)
+                    start = owner.Location;
                 var unit = owner.TranslationUnit.Handle;
                 var tokens = unit.Tokenize(CXSourceRange.Create(start, parameter.Location));
                 bool retval = false;

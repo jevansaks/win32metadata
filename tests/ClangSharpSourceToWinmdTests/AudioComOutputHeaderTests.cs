@@ -132,10 +132,19 @@ namespace ClangSharpSourceToWinmdTests
                     File.ReadAllBytes(Path.Combine(LastErrorHeaderTests.RepositoryRoot(), "generation", "WinSDK",
                         "RecompiledIdlHeaders", owner.Path.Replace('/', Path.DirectorySeparatorChar))), owner.Path);
             foreach (string idl in Idls)
-                CollectionAssert.AreEqual(Encoding.Latin1.GetBytes(PatchIdl(idl, Encoding.Latin1.GetString(
-                    ReadOriginalBytes("RecompiledIdlHeaders/um/" + idl)))),
+            {
+                string expected = PatchIdl(idl, Encoding.Latin1.GetString(
+                    ReadOriginalBytes("RecompiledIdlHeaders/um/" + idl)));
+                expected = idl switch
+                {
+                    "Audioclient.idl" => ResultHeaderTests.AddNativeIdlResultPolicy(expected, "IAudioClient::IsFormatSupported"),
+                    "axextend.idl" => ResultHeaderTests.AddNativeIdlResultPolicy(expected, "IEnumRegFilters::Next"),
+                    _ => expected,
+                };
+                CollectionAssert.AreEqual(Encoding.Latin1.GetBytes(expected),
                     File.ReadAllBytes(Path.Combine(LastErrorHeaderTests.RepositoryRoot(), "generation", "WinSDK",
                         "RecompiledIdlHeaders", "um", idl)), idl);
+            }
         }
 
         internal static string PatchIdl(string name, string text) => name switch

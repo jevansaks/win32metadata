@@ -119,6 +119,7 @@ _Win32_SetLastError_
 _Win32_SupportedOS_Windows2000_
 
 /* Returns size of version info in bytes */
+_Win32_PreserveResult_
 DWORD
 APIENTRY
 GetFileVersionInfoSizeA(
@@ -128,6 +129,7 @@ GetFileVersionInfoSizeA(
 _Win32_SetLastError_
 _Win32_SupportedOS_Windows2000_
 /* Returns size of version info in bytes */
+_Win32_PreserveResult_
 DWORD
 APIENTRY
 GetFileVersionInfoSizeW(

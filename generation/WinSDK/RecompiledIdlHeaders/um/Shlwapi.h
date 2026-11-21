@@ -2078,9 +2078,11 @@ STDAPI_(DWORD) SHGetAssocKeys(_In_ IQueryAssociations *pqa, _Out_writes_to_(cKey
 _Win32_SupportedOS_Windows2000_
 
 //  wrappers for the interface
+_Win32_PreserveResult_
 LWSTDAPI AssocQueryStringA(_In_ ASSOCF flags, _In_ ASSOCSTR str, _In_ LPCSTR pszAssoc, _In_opt_ LPCSTR pszExtra, _Out_writes_opt_(*pcchOut) LPSTR pszOut, _Inout_ DWORD *pcchOut);
 _Win32_SupportedOS_Windows2000_
 //  wrappers for the interface
+_Win32_PreserveResult_
 LWSTDAPI AssocQueryStringW(_In_ ASSOCF flags, _In_ ASSOCSTR str, _In_ LPCWSTR pszAssoc, _In_opt_ LPCWSTR pszExtra, _Out_writes_opt_(*pcchOut) LPWSTR pszOut, _Inout_ DWORD *pcchOut);
 #ifdef UNICODE
 #define AssocQueryString  AssocQueryStringW
@@ -2088,8 +2090,10 @@ LWSTDAPI AssocQueryStringW(_In_ ASSOCF flags, _In_ ASSOCSTR str, _In_ LPCWSTR ps
 #define AssocQueryString  AssocQueryStringA
 #endif // !UNICODE
 _Win32_SupportedOS_Windows2000_
+_Win32_PreserveResult_
 LWSTDAPI AssocQueryStringByKeyA(_In_ ASSOCF flags, _In_ ASSOCSTR str, _In_ HKEY hkAssoc, _In_opt_ LPCSTR pszExtra, _Out_writes_opt_(*pcchOut) LPSTR pszOut, _Inout_ DWORD *pcchOut);
 _Win32_SupportedOS_Windows2000_
+_Win32_PreserveResult_
 LWSTDAPI AssocQueryStringByKeyW(_In_ ASSOCF flags, _In_ ASSOCSTR str, _In_ HKEY hkAssoc, _In_opt_ LPCWSTR pszExtra, _Out_writes_opt_(*pcchOut) LPWSTR pszOut, _Inout_ DWORD *pcchOut);
 #ifdef UNICODE
 #define AssocQueryStringByKey  AssocQueryStringByKeyW

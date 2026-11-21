@@ -90,6 +90,7 @@ PathCchIsRoot(
     );
 _Win32_SupportedOS_Windows8_
 
+_Win32_PreserveResult_
 WINPATHCCHAPI
 HRESULT
 APIENTRY
@@ -101,6 +102,7 @@ PathCchAddBackslashEx(
     );
 _Win32_SupportedOS_Windows8_
 
+_Win32_PreserveResult_
 WINPATHCCHAPI
 HRESULT
 APIENTRY
@@ -121,6 +123,7 @@ PathCchRemoveBackslashEx(
     );
 _Win32_SupportedOS_Windows8_
 
+_Win32_PreserveResult_
 WINPATHCCHAPI
 HRESULT
 APIENTRY
@@ -138,6 +141,7 @@ PathCchSkipRoot(
     );
 _Win32_SupportedOS_Windows8_
 
+_Win32_PreserveResult_
 WINPATHCCHAPI
 HRESULT
 APIENTRY
@@ -259,6 +263,7 @@ PathCchAppend(
     );
 _Win32_SupportedOS_Windows8_
 
+_Win32_PreserveResult_
 WINPATHCCHAPI
 HRESULT
 APIENTRY

@@ -1,3 +1,5 @@
+cpp_quote("#include <win32metadata_annotations.h>")
+#include <win32metadata_annotations.h>
 //------------------------------------------------------------------------------
 // File: AXExtend.idl
 //
@@ -136,6 +138,7 @@ interface IEnumRegFilters : IUnknown {
         [out AM_ANNOTATION("_Out_")] IEnumRegFilters **ppEnum
     );
 }
+_Win32_AnnotateMethod_(IEnumRegFilters::Next, _Win32_PreserveResult_)
 
 
 typedef IEnumRegFilters *PENUMREGFILTERS;

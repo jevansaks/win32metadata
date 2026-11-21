@@ -385,6 +385,7 @@ ReleaseMutex(
     _In_ HANDLE hMutex
     );
 
+_Win32_PreserveResult_
 WINBASEAPI
 DWORD
 WINAPI
@@ -402,6 +403,7 @@ SleepEx(
     _In_ BOOL bAlertable
     );
 
+_Win32_PreserveResult_
 WINBASEAPI
 DWORD
 WINAPI
@@ -411,6 +413,7 @@ WaitForSingleObjectEx(
     _In_ BOOL bAlertable
     );
 
+_Win32_PreserveResult_
 WINBASEAPI
 DWORD
 WINAPI
@@ -810,6 +813,7 @@ WakeByAddressAll(
 
 #ifndef MIDL_PASS
 
+_Win32_PreserveResult_
 WINBASEAPI
 DWORD
 WINAPI
@@ -828,6 +832,7 @@ SignalObjectAndWait(
 #pragma region Application or OneCore Family or Games Partition
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
+_Win32_PreserveResult_
 WINBASEAPI
 DWORD
 WINAPI

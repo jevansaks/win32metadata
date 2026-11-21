@@ -249,8 +249,44 @@ _Win32_PreserveResult_ virtual int __stdcall Method(_Out_ _Win32_Retval_ int* va
         [DataRow("int __stdcall Example(__attribute__((annotate(\"Win32Metadata.ContainsInteriorPointers()\"))) int* value);")]
         public void LifetimeMarkers_KeepStrictPlacementAndValuelessContracts(string declaration) => Reject(declaration);
 
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void NativeResultPrefix_KeepsTheFirstSdkRetvalParameter(string target)
+        {
+            string definition = AudioComOutputHeaderTests.Definition(Owner("Iads.h"), "IADsPropertyList");
+            Match declaration = Regex.Match(definition,
+                @"_Win32_PreserveResult_\s+virtual[^;]*?\bNext\s*\([^;]+;");
+            Assert.IsTrue(declaration.Success);
+            byte[]? signature = null;
+            foreach (bool preserveResult in new[] { false, true })
+            {
+                using var fixture = new LastErrorHeaderTests.Fixture();
+                string native = preserveResult ? declaration.Value :
+                    declaration.Value.Replace("_Win32_PreserveResult_", "", StringComparison.Ordinal);
+                var result = fixture.Scrape("#define STDMETHODCALLTYPE __stdcall\n#include <rpcsal.h>\n" +
+                    "typedef long HRESULT; struct VARIANT { int value; };\n" +
+                    "struct __declspec(uuid(\"c6f602b6-8f69-11d0-8528-00c04fd8d503\")) IADsPropertyList {\n" +
+                    native + "\n};", target, sal: true,
+                    extraSettings: "--include-directory\n" + MidlHeaderTests.SharedHeaders() + "\n");
+                Assert.AreEqual(0, result.ExitCode, result.Output);
+                using var pe = new PEReader(File.OpenRead(fixture.Emit()));
+                var reader = pe.GetMetadataReader();
+                var method = NativeTypedefHeaderTests.Type(reader, "IADsPropertyList").GetMethods()
+                    .Select(reader.GetMethodDefinition).Single(m => reader.GetString(m.Name) == "Next");
+                if (signature == null) signature = reader.GetBlobBytes(method.Signature);
+                else CollectionAssert.AreEqual(signature, reader.GetBlobBytes(method.Signature));
+                Assert.AreEqual(preserveResult, method.ImplAttributes.HasFlag(MethodImplAttributes.PreserveSig));
+                var parameter = method.GetParameters().Select(reader.GetParameter).Single(p => p.SequenceNumber == 1);
+                Assert.AreEqual("pVariant", reader.GetString(parameter.Name));
+                Assert.IsTrue(parameter.Attributes.HasFlag(ParameterAttributes.Out));
+                ParameterHeaderTests.AssertAttribute(reader, parameter, "RetValAttribute");
+            }
+        }
+
         [TestMethod]
-        public void CoreLifetimeInventory_IsExhaustedButLegacyResultFactsRemain()
+        public void CoreLifetimeInventory_AndNativeResultMigrationRemainHeaderOwned()
         {
             string root = LastErrorHeaderTests.RepositoryRoot();
             var names = new HashSet<string>(StringComparer.Ordinal);
@@ -258,7 +294,6 @@ _Win32_PreserveResult_ virtual int __stdcall Method(_Out_ _Win32_Retval_ int* va
                 "combaseapi.h", "objbase.h", "ObjIdl.h", "ObjIdlbase.h" })
             {
                 string header = Owner(owner);
-                Assert.IsFalse(header.Contains("_Win32_PreserveResult_", StringComparison.Ordinal), owner);
                 foreach (Match match in Regex.Matches(header, @"\b(\w+)\s*\("))
                     names.Add(match.Groups[1].Value);
                 foreach (Match match in Regex.Matches(header, @"\b(I\w+)\s*:"))
@@ -286,9 +321,52 @@ _Win32_PreserveResult_ virtual int __stdcall Method(_Out_ _Win32_Retval_ int* va
                 "ISequentialStream::Read", "ISequentialStream::Write", "IEnumMoniker::Next", "IEnumMoniker::Skip",
                 "IPersistStream::IsDirty", "IMoniker::IsEqual", "IPersistFile::IsDirty", "IPersistStorage::IsDirty",
                 "IEnumFORMATETC::Next", "IDataObject::QueryGetData", "IDataObject::GetCanonicalFormatEtc",
-                "CoInitialize", "CoInitializeEx", "CoGetTreatAsClass", "IEnumVARIANT::Next", "IEnumVARIANT::Skip" })
-                StringAssert.Contains(emitter, selector + "=[CanReturnMultipleSuccessValues]");
-            StringAssert.Contains(emitter, "IUnknown::QueryInterface=[CanReturnErrorsAsSuccess]");
+                "IUnknown::QueryInterface", "IMoniker::IsDirty", "DXGIFactory::EnumAdapters",
+                "IDXGIDecodeSwapChainPartner::PresentBuffer", "IEnumVARIANT::Next", "IEnumVARIANT::Skip" })
+                Assert.IsFalse(emitter.Contains(selector + "=[CanReturn", StringComparison.Ordinal), selector);
+            foreach (string selector in new[] { "IEnumVARIANT::Next", "IEnumVARIANT::Skip" })
+                StringAssert.Contains(Owner("oaidl.h"),
+                    "_WIN32META_ANNOTATE_METHOD_(" + selector + ", _Win32_PreserveResult_);");
+            foreach (var declaration in new[] { ("xmllite.h", "IXmlReader::Read", "Read"),
+                ("mileffects.h", "IMILBitmapEffectPrimitiveImpl::IsDirty", "IsDirty") })
+            {
+                string header = Owner(declaration.Item1);
+                int carrier = header.IndexOf("_WIN32META_ANNOTATE_METHOD_(" + declaration.Item2,
+                    StringComparison.Ordinal);
+                int method = header.IndexOf("virtual HRESULT STDMETHODCALLTYPE " + declaration.Item3,
+                    StringComparison.Ordinal);
+                Assert.IsTrue(method >= 0 && carrier > method,
+                    "Library-scoped MIDL carriers must follow the emitted native owner: " + declaration.Item2);
+            }
+            foreach (string selector in new[] { "IEnumUnknown::Next", "IEnumString::Next", "IEnumString::Skip",
+                "ISequentialStream::Read", "ISequentialStream::Write" })
+                StringAssert.Contains(Owner("ObjIdlbase.h"),
+                    "_WIN32META_ANNOTATE_METHOD_(" + selector + ", _Win32_PreserveResult_);");
+            Assert.IsTrue(Owner("ObjIdlbase.h").IndexOf("_WIN32META_ANNOTATE_METHOD_(ISequentialStream::Read",
+                StringComparison.Ordinal) > Owner("ObjIdlbase.h").IndexOf("virtual HRESULT STDMETHODCALLTYPE Read",
+                StringComparison.Ordinal), "A MIDL carrier must follow its complete native owner.");
+            Assert.IsTrue(Regex.IsMatch(Owner("Unknwnbase.h"),
+                @"_Win32_PreserveResult_\s+virtual HRESULT STDMETHODCALLTYPE QueryInterface"), "Manual IUnknown branch");
+            StringAssert.Contains(Owner("Unknwnbase.h"),
+                "#if !((_MSC_VER >= 1100) && defined(__cplusplus) && !defined(CINTERFACE))");
+            StringAssert.Contains(File.ReadAllText(Path.Combine(root, "generation", "WinSDK",
+                "RecompiledIdlHeaders", "shared", "dxgi.h")),
+                "_WIN32META_ANNOTATE_METHOD_(IDXGIFactory::EnumAdapters, _Win32_PreserveResult_);");
+            string direct2d = Owner("d2d1.h");
+            Match interpolation = Regex.Match(direct2d,
+                @"(?m)^enum\s*\{\s*D2D1_INTERPOLATION_MODE_DEFINITION_NEAREST_NEIGHBOR");
+            Assert.IsTrue(interpolation.Success);
+            int enumLine = direct2d.Substring(0, interpolation.Index).Count(c => c == '\n') + 1;
+            StringAssert.Contains(File.ReadAllText(Path.Combine(root, "generation", "WinSDK", "scraper.settings.rsp")),
+                "__AnonymousEnum_d2d1_L" + enumLine + "_C1=D2D1_INTERPOLATION_MODE_DEFINITION");
+            foreach (var declaration in new[] { ("objbase.h", "CoInitialize"),
+                ("combaseapi.h", "CoInitializeEx"), ("combaseapi.h", "CoGetTreatAsClass") })
+            {
+                Assert.IsFalse(emitter.Contains(declaration.Item2 + "=[CanReturn", StringComparison.Ordinal));
+                Assert.IsTrue(Regex.IsMatch(Owner(declaration.Item1),
+                    @"_Win32_PreserveResult_\s+(?:_Check_return_\s+)?(?:_Win32_SupportedOS_\w+_\s+)?WINOLEAPI\s+" +
+                    declaration.Item2 + @"\s*\("), declaration.Item2);
+            }
         }
 
         [DataTestMethod]
@@ -341,6 +419,23 @@ _Win32_PreserveResult_ virtual int __stdcall Method(_Out_ _Win32_Retval_ int* va
                 Assert.AreEqual(0, result.ExitCode, result.Output);
                 AssertResult(fixture.Emit(), "Example", metadata);
             }
+        }
+
+        internal static string AddNativeIdlResultPolicy(string text, string selector)
+        {
+            string[] parts = selector.Split("::", StringSplitOptions.None);
+            Assert.AreEqual(2, parts.Length);
+            var owners = Regex.Matches(text, @"\binterface\s+" + Regex.Escape(parts[0]) +
+                @"\s*:\s*\w+\s*\{[^{}]*\}");
+            Assert.AreEqual(1, owners.Count, selector);
+            Assert.IsTrue(Regex.IsMatch(owners[0].Value, @"\bHRESULT\s+" +
+                Regex.Escape(parts[1]) + @"\s*\("), selector);
+            Assert.IsFalse(text.Contains("win32metadata_annotations.h", StringComparison.Ordinal));
+            string newline = text.Contains("\r\n", StringComparison.Ordinal) ? "\r\n" : "\n";
+            return "cpp_quote(\"#include <win32metadata_annotations.h>\")" + newline +
+                "#include <win32metadata_annotations.h>" + newline +
+                text.Insert(owners[0].Index + owners[0].Length, newline +
+                    "_Win32_AnnotateMethod_(" + selector + ", _Win32_PreserveResult_)");
         }
 
         internal static void AssertResult(string output, string name, bool preserved)

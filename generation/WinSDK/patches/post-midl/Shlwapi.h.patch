@@ -921,7 +921,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Shlwapi.h b/generation/Wi
  LWSTDAPI_(BOOL) SHRegGetBoolUSValueW(_In_ LPCWSTR pszSubKey, _In_opt_ LPCWSTR pszValue, _In_ BOOL fIgnoreHKCU, _In_ BOOL fDefault);
  #ifdef UNICODE
  #define SHRegGetBoolUSValue  SHRegGetBoolUSValueW
-@@ -1790,22 +2061,25 @@
+@@ -1790,37 +2061,48 @@
      STDMETHOD (GetString)(THIS_ _In_ ASSOCF flags, _In_ ASSOCSTR str, _In_opt_ LPCWSTR pszExtra, _Out_writes_opt_(*pcchOut) LPWSTR pszOut, _Inout_ DWORD *pcchOut) PURE;
      STDMETHOD (GetKey)(THIS_ _In_ ASSOCF flags, _In_ ASSOCKEY key, _In_opt_ LPCWSTR pszExtra, _Out_ HKEY *phkeyOut) PURE;
      STDMETHOD (GetData)(THIS_ _In_ ASSOCF flags, _In_ ASSOCDATA data, _In_opt_ LPCWSTR pszExtra, _Out_writes_bytes_opt_(*pcbOut) void * pvOut, _Inout_opt_ DWORD *pcbOut) PURE;
@@ -944,18 +944,22 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Shlwapi.h b/generation/Wi
 +_Win32_SupportedOS_Windows2000_
  
  //  wrappers for the interface
++_Win32_PreserveResult_
  LWSTDAPI AssocQueryStringA(_In_ ASSOCF flags, _In_ ASSOCSTR str, _In_ LPCSTR pszAssoc, _In_opt_ LPCSTR pszExtra, _Out_writes_opt_(*pcchOut) LPSTR pszOut, _Inout_ DWORD *pcchOut);
 +_Win32_SupportedOS_Windows2000_
  //  wrappers for the interface
++_Win32_PreserveResult_
  LWSTDAPI AssocQueryStringW(_In_ ASSOCF flags, _In_ ASSOCSTR str, _In_ LPCWSTR pszAssoc, _In_opt_ LPCWSTR pszExtra, _Out_writes_opt_(*pcchOut) LPWSTR pszOut, _Inout_ DWORD *pcchOut);
  #ifdef UNICODE
-@@ -1813,14 +2087,18 @@
+ #define AssocQueryString  AssocQueryStringW
  #else
  #define AssocQueryString  AssocQueryStringA
  #endif // !UNICODE
 +_Win32_SupportedOS_Windows2000_
++_Win32_PreserveResult_
  LWSTDAPI AssocQueryStringByKeyA(_In_ ASSOCF flags, _In_ ASSOCSTR str, _In_ HKEY hkAssoc, _In_opt_ LPCSTR pszExtra, _Out_writes_opt_(*pcchOut) LPSTR pszOut, _Inout_ DWORD *pcchOut);
 +_Win32_SupportedOS_Windows2000_
++_Win32_PreserveResult_
  LWSTDAPI AssocQueryStringByKeyW(_In_ ASSOCF flags, _In_ ASSOCSTR str, _In_ HKEY hkAssoc, _In_opt_ LPCWSTR pszExtra, _Out_writes_opt_(*pcchOut) LPWSTR pszOut, _Inout_ DWORD *pcchOut);
  #ifdef UNICODE
  #define AssocQueryStringByKey  AssocQueryStringByKeyW
@@ -968,7 +972,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Shlwapi.h b/generation/Wi
  LWSTDAPI AssocQueryKeyW(_In_ ASSOCF flags, _In_ ASSOCKEY key, _In_ LPCWSTR pszAssoc, _In_opt_ LPCWSTR pszExtra, _Out_ HKEY *phkeyOut);
  #ifdef UNICODE
  #define AssocQueryKey  AssocQueryKeyW
-@@ -1829,6 +2107,7 @@
+@@ -1829,6 +2111,7 @@
  #endif // !UNICODE
  
  #if (_WIN32_IE >= 0x0601)
@@ -976,7 +980,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Shlwapi.h b/generation/Wi
  //  AssocIsDangerous() checks a file type to determine whether it is "Dangerous"
  //      this maps to the IE download dialog's forcing a prompt to open or save.
  //      dangerous file types should be handled more carefully than other file types.
-@@ -1848,6 +2127,7 @@
+@@ -1848,6 +2131,7 @@
  #endif  // _WIN32_IE >= 0x0601
  
  #if (_WIN32_IE >= _WIN32_IE_IE60SP2)
@@ -984,7 +988,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Shlwapi.h b/generation/Wi
  LWSTDAPI AssocGetPerceivedType(_In_ PCWSTR pszExt, _Out_ PERCEIVED *ptype, _Out_ PERCEIVEDFLAG *pflag, _Outptr_opt_ PWSTR *ppszType);
  #endif
  
-@@ -1873,15 +2153,19 @@
+@@ -1873,15 +2157,19 @@
  #define __IStream_FWD_DEFINED__
  typedef interface IStream IStream;
  #endif  /* __IStream_FWD_DEFINED__ */
@@ -1004,7 +1008,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Shlwapi.h b/generation/Wi
  LWSTDAPI_(IStream *) SHOpenRegStream2W(_In_ HKEY hkey, _In_opt_ LPCWSTR pszSubkey, _In_opt_ LPCWSTR pszValue, _In_ DWORD grfMode);
  #ifdef UNICODE
  #define SHOpenRegStream2  SHOpenRegStream2W
-@@ -1891,8 +2175,10 @@
+@@ -1891,8 +2179,10 @@
  // New code always wants new implementation...
  #undef SHOpenRegStream
  #define SHOpenRegStream SHOpenRegStream2
@@ -1015,7 +1019,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Shlwapi.h b/generation/Wi
  LWSTDAPI SHCreateStreamOnFileW(_In_ LPCWSTR pszFile, _In_ DWORD grfMode, _Outptr_ IStream **ppstm);
  #ifdef UNICODE
  #define SHCreateStreamOnFile  SHCreateStreamOnFileW
-@@ -1902,10 +2188,12 @@
+@@ -1902,10 +2192,12 @@
  
  
  #if (_WIN32_IE >= 0x0600)
@@ -1028,7 +1032,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Shlwapi.h b/generation/Wi
  
  LWSTDAPI_(IStream *) SHCreateMemStream(_In_reads_bytes_opt_(cbInit) const BYTE *pInit, _In_ UINT cbInit);
  
-@@ -1933,7 +2221,9 @@
+@@ -1933,7 +2225,9 @@
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP)
  
  #if (_WIN32_IE >= 0x0603)
@@ -1038,7 +1042,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Shlwapi.h b/generation/Wi
  LWSTDAPI GetAcceptLanguagesW(_Out_writes_to_(*pcchLanguages, *pcchLanguages) LPWSTR pszLanguages, _Inout_ DWORD *pcchLanguages);
  #ifdef UNICODE
  #define GetAcceptLanguages  GetAcceptLanguagesW
-@@ -1971,18 +2261,24 @@
+@@ -1971,18 +2265,24 @@
  #ifndef NO_ETW_TRACING
  #define SPMODE_EVENTTRACE 0x00008000 // Event Tracing for Windows Enabled
  #endif
@@ -1064,7 +1068,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Shlwapi.h b/generation/Wi
      LWSTDAPI IUnknown_QueryService(_In_opt_ IUnknown* punk, _In_ REFGUID guidService, _In_ REFIID riid, _COM_Outptr_ void ** ppvOut);
  
  
-@@ -1990,10 +2286,14 @@
+@@ -1990,10 +2290,14 @@
  #undef IStream_Read
  #undef IStream_Write
  #endif
@@ -1079,7 +1083,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Shlwapi.h b/generation/Wi
  LWSTDAPI IStream_Size(_In_ IStream *pstm, _Out_ ULARGE_INTEGER *pui);
  
  // ocidl.h
-@@ -2001,20 +2301,26 @@
+@@ -2001,20 +2305,26 @@
  #define __IConnectionPoint_FWD_DEFINED__
  typedef interface IConnectionPoint IConnectionPoint;
  #endif  /* __IConnectionPoint_FWD_DEFINED__ */
@@ -1106,7 +1110,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Shlwapi.h b/generation/Wi
  
  LWSTDAPI IStream_Copy(_In_ IStream *pstmFrom, _In_ IStream *pstmTo, DWORD cb);
  
-@@ -2035,7 +2341,7 @@
+@@ -2035,7 +2345,7 @@
  #define SHGVSPB_USERDEFAULTS        (SHGVSPB_PERUSER | SHGVSPB_ALLFOLDERS)
  #define SHGVSPB_GLOBALDEFAULTS      (SHGVSPB_ALLUSERS | SHGVSPB_ALLFOLDERS)
  
@@ -1115,7 +1119,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Shlwapi.h b/generation/Wi
  #endif  // (_WIN32_IE >= 0x0600)
  
  // SHFormatDateTime flags
-@@ -2051,8 +2357,10 @@
+@@ -2051,8 +2361,10 @@
  #define FDTF_LTRDATE            0x00000100      // Left To Right reading order
  #define FDTF_RTLDATE            0x00000200      // Right To Left reading order
  #define FDTF_NOAUTOREADINGORDER 0x00000400      // Don't detect reading order automatically. Useful if you will be converting to Ansi and don't want Unicode reading order characters
@@ -1126,7 +1130,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Shlwapi.h b/generation/Wi
  LWSTDAPI_(int)  SHFormatDateTimeW(_In_ const FILETIME UNALIGNED * pft, _Inout_opt_ DWORD * pdwFlags, _Out_writes_(cchBuf) LPWSTR pszBuf, UINT cchBuf);
  #ifdef UNICODE
  #define SHFormatDateTime  SHFormatDateTimeW
-@@ -2065,13 +2373,17 @@
+@@ -2065,13 +2377,17 @@
  
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
@@ -1144,7 +1148,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Shlwapi.h b/generation/Wi
  _Success_(return > 0)
  LWSTDAPI_(int)  SHUnicodeToUnicode(_In_ PCWSTR pwzSrc, _Out_writes_(cwchBuf) PWSTR pwzDst, _In_ int cwchBuf);
  
-@@ -2093,19 +2405,23 @@
+@@ -2093,19 +2409,23 @@
  
  #pragma region Desktop Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -1168,7 +1172,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Shlwapi.h b/generation/Wi
  // Prevents hang do to hung window on broadcast
  LWSTDAPI_(LRESULT) SHSendMessageBroadcastW(_In_ UINT uMsg, _In_ WPARAM wParam, _In_ LPARAM lParam);
  #ifdef UNICODE
-@@ -2113,8 +2429,10 @@
+@@ -2113,8 +2433,10 @@
  #else
  #define SHSendMessageBroadcast  SHSendMessageBroadcastA
  #endif // !UNICODE
@@ -1179,7 +1183,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Shlwapi.h b/generation/Wi
  LWSTDAPI_(WCHAR) SHStripMneumonicW(_Inout_ LPWSTR pszMenu);
  #ifdef UNICODE
  #define SHStripMneumonic  SHStripMneumonicW
-@@ -2165,7 +2483,7 @@
+@@ -2165,7 +2487,7 @@
  #define OS_MEDIACENTER              35          // eHome Freestyle Project
  #define OS_APPLIANCE                36          // Windows .NET Appliance Server
  
@@ -1188,7 +1192,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Shlwapi.h b/generation/Wi
  
  #endif // NO_SHLWAPI_ISOS
  
-@@ -2241,8 +2559,11 @@
+@@ -2241,8 +2563,11 @@
  } SHGLOBALCOUNTER;
  
  #if (NTDDI_VERSION >= NTDDI_WIN7)
@@ -1200,7 +1204,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Shlwapi.h b/generation/Wi
  LWSTDAPI_(long) SHGlobalCounterDecrement(const SHGLOBALCOUNTER id);
  #endif // (NTDDI_VERSION >= NTDDI_WIN7)
  
-@@ -2251,11 +2572,18 @@
+@@ -2251,11 +2576,18 @@
  
  
  #if (_WIN32_IE >= 0x0603)
@@ -1219,7 +1223,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Shlwapi.h b/generation/Wi
  
  
  LWSTDAPI_(UINT) WhichPlatform(void);
-@@ -2343,6 +2671,7 @@
+@@ -2343,6 +2675,7 @@
      { (IID*) &Ifoo, OFFSETOFCLASS(Iimpl, Cthis) }
  
  #define QITABENT(Cthis, Ifoo) QITABENTMULTI(Cthis, Ifoo, Ifoo)
@@ -1227,7 +1231,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Shlwapi.h b/generation/Wi
  
  STDAPI QISearch(_Inout_ void* that, _In_ LPCQITAB pqit, _In_ REFIID riid, _COM_Outptr_ void **ppv);
  
-@@ -2375,10 +2704,13 @@
+@@ -2375,10 +2708,13 @@
  
  // Types for SHIsLowMemoryMachine
  #define ILMM_IE4    0       // 1997-era machine
@@ -1241,7 +1245,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Shlwapi.h b/generation/Wi
  
  LWSTDAPI        SHGetInverseCMAP(_Out_writes_bytes_(cbMap) BYTE *pbMap, ULONG cbMap);
  
-@@ -2411,13 +2743,17 @@
+@@ -2411,13 +2747,17 @@
  #define SHACF_AUTOAPPEND_FORCE_ON       0x40000000  // Ignore the registry default and force the feature on. (Also know as AutoComplete)
  #define SHACF_AUTOAPPEND_FORCE_OFF      0x80000000  // Ignore the registry default and force the feature off. (Also know as AutoComplete)
  
@@ -1260,7 +1264,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Shlwapi.h b/generation/Wi
  
  LWSTDAPI_(BOOL) SHSkipJunction(_In_opt_ IBindCtx* pbc, _In_ const CLSID *pclsid);
  
-@@ -2454,28 +2790,39 @@
+@@ -2454,28 +2794,39 @@
  
  
  typedef DWORD SHCT_FLAGS;   // SHCreateThread flags values
@@ -1300,7 +1304,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Shlwapi.h b/generation/Wi
  LWSTDAPI_(COLORREF) ColorAdjustLuma(COLORREF clrRGB, int n, BOOL fScale);
  
  
-@@ -2526,12 +2873,14 @@
+@@ -2526,12 +2877,14 @@
  //
  
  typedef HRESULT (CALLBACK* DLLGETVERSIONPROC)(DLLVERSIONINFO *);
@@ -1315,7 +1319,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Shlwapi.h b/generation/Wi
  // Function to see if Internet Explorer Enhanced Security Configuration is active for the current user
  LWSTDAPI_(BOOL) IsInternetESCEnabled(void);
  #endif // (_WIN32_IE >= 0x0602)
-@@ -2723,3 +3072,8 @@
+@@ -2723,3 +3076,8 @@
  
  #endif  // _INC_SHLWAPI
  

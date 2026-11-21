@@ -1788,6 +1788,7 @@ _Check_return_ HRESULT WINAPI ScriptStringOut(
 //                       side from left to right.
 
 
+_Win32_PreserveResult_
 _Check_return_ HRESULT WINAPI ScriptIsComplex(
     _In_reads_(cInChars) const WCHAR   *pwcInChars,    //In  String to be tested
     int                                 cInChars,       //In  Length in characters

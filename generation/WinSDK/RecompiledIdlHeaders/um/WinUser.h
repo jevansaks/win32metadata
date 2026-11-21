@@ -3498,6 +3498,7 @@ typedef struct tagCOMPAREITEMSTRUCT {
  * Message Function Templates
  */
 
+_Win32_PreserveResult_
 WINUSERAPI
 BOOL
 WINAPI
@@ -3506,6 +3507,7 @@ GetMessageA(
     _In_opt_ HWND hWnd,
     _In_ UINT wMsgFilterMin,
     _In_ UINT wMsgFilterMax);
+_Win32_PreserveResult_
 WINUSERAPI
 BOOL
 WINAPI
@@ -3863,6 +3865,7 @@ SendMessage(
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 
+_Win32_PreserveResult_
 WINUSERAPI
 LRESULT
 WINAPI
@@ -3874,6 +3877,7 @@ SendMessageTimeoutA(
     _Win32_AssociatedEnum_(SEND_MESSAGE_TIMEOUT_FLAGS) _In_ UINT fuFlags,
     _In_ UINT uTimeout,
     _Out_opt_ PDWORD_PTR lpdwResult);
+_Win32_PreserveResult_
 WINUSERAPI
 LRESULT
 WINAPI
@@ -4248,6 +4252,7 @@ PostThreadMessageW(
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 
+_Win32_PreserveResult_
 WINUSERAPI
 BOOL
 WINAPI
@@ -7561,6 +7566,7 @@ WINAPI
 ReleaseCapture(
     VOID);
 
+_Win32_PreserveResult_
 WINUSERAPI
 DWORD
 WINAPI
@@ -7571,6 +7577,7 @@ MsgWaitForMultipleObjects(
     _In_ DWORD dwMilliseconds,
     _In_ DWORD dwWakeMask);
 
+_Win32_PreserveResult_
 WINUSERAPI
 DWORD
 WINAPI
@@ -8406,6 +8413,7 @@ WINAPI
 GetMenuCheckMarkDimensions(
     VOID);
 
+_Win32_PreserveResult_
 WINUSERAPI
 BOOL
 WINAPI
@@ -8432,6 +8440,7 @@ typedef struct tagTPMPARAMS
 }   TPMPARAMS;
 typedef TPMPARAMS FAR *LPTPMPARAMS;
 
+_Win32_PreserveResult_
 WINUSERAPI
 BOOL
 WINAPI
@@ -9194,6 +9203,7 @@ WINAPI
 UpdateWindow(
     _In_ HWND hWnd);
 
+_Win32_PreserveResult_
 WINUSERAPI
 HWND
 WINAPI
@@ -11166,6 +11176,7 @@ GetTopWindow(
 #define GetSysModalWindow() (NULL)
 #define SetSysModalWindow(hWnd) (NULL)
 
+_Win32_PreserveResult_
 WINUSERAPI
 DWORD
 WINAPI

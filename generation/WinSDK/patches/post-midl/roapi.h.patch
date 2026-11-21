@@ -7,7 +7,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/winrt/roapi.h b/generation/W
  // Copyright (c) Microsoft Corporation. All rights reserved.
  
  #ifndef __ROAPI_H_
-@@ -60,12 +61,14 @@
+@@ -53,6 +54,7 @@
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
+ 
+ // forward declarations of the dllexport'd versions
++_Win32_PreserveResult_
+ ROAPI
+ _Check_return_
+ HRESULT
+@@ -60,12 +62,14 @@
  RoInitialize(
      _In_ RO_INIT_TYPE initType
      );
@@ -22,7 +30,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/winrt/roapi.h b/generation/W
  
  ROAPI
  _Check_return_
-@@ -75,6 +78,7 @@
+@@ -75,6 +79,7 @@
      _In_ HSTRING activatableClassId,
      _COM_Outptr_ IInspectable** instance
      );
@@ -30,7 +38,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/winrt/roapi.h b/generation/W
  
  ROAPI
  _Check_return_
-@@ -86,6 +90,7 @@
+@@ -86,6 +91,7 @@
      _In_ UINT32 count,
      _Out_ RO_REGISTRATION_COOKIE* cookie
      );
@@ -38,7 +46,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/winrt/roapi.h b/generation/W
  
  ROAPI
  void
-@@ -93,6 +98,7 @@
+@@ -93,6 +99,7 @@
  RoRevokeActivationFactories(
      _In_ RO_REGISTRATION_COOKIE cookie
      );
@@ -46,7 +54,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/winrt/roapi.h b/generation/W
  
  ROAPI
  _Check_return_
-@@ -106,6 +112,7 @@
+@@ -106,6 +113,7 @@
  
  typedef interface IApartmentShutdown IApartmentShutdown;
  DECLARE_HANDLE(APARTMENT_SHUTDOWN_REGISTRATION_COOKIE);
@@ -54,7 +62,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/winrt/roapi.h b/generation/W
  
  ROAPI
  _Check_return_
-@@ -116,6 +123,7 @@
+@@ -116,6 +124,7 @@
      _Out_ UINT64* apartmentIdentifier,
      _Out_ APARTMENT_SHUTDOWN_REGISTRATION_COOKIE* regCookie
      );
@@ -62,7 +70,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/winrt/roapi.h b/generation/W
  
  ROAPI
  _Check_return_
-@@ -124,6 +132,7 @@
+@@ -124,6 +133,7 @@
  RoUnregisterForApartmentShutdown(
      _In_ APARTMENT_SHUTDOWN_REGISTRATION_COOKIE regCookie
      );

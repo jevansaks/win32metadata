@@ -262,23 +262,28 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  UINT
-@@ -593,6 +639,7 @@
+@@ -593,14 +639,18 @@
      DWORD nFileSizeHigh;
      DWORD nFileSizeLow;
  } WIN32_FILE_ATTRIBUTE_DATA, *LPWIN32_FILE_ATTRIBUTE_DATA;
+-
 +_Win32_SupportedOS_WindowsXP_
- 
++
++_Win32_PreserveResult_
  WINBASEAPI
  DWORD
-@@ -600,6 +647,7 @@
+ WINAPI
  GetFileAttributesA(
      _In_ LPCSTR lpFileName
      );
+-
 +_Win32_SupportedOS_WindowsXP_
- 
++
++_Win32_PreserveResult_
  WINBASEAPI
  DWORD
-@@ -613,6 +661,8 @@
+ WINAPI
+@@ -613,6 +663,8 @@
  #else
  #define GetFileAttributes  GetFileAttributesA
  #endif // !UNICODE
@@ -287,7 +292,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -622,6 +672,8 @@
+@@ -622,6 +674,8 @@
      _In_ GET_FILEEX_INFO_LEVELS fInfoLevelId,
      _Out_writes_bytes_(sizeof(WIN32_FILE_ATTRIBUTE_DATA)) LPVOID lpFileInformation
      );
@@ -296,7 +301,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -650,6 +702,8 @@
+@@ -650,6 +704,8 @@
      DWORD nFileIndexHigh;
      DWORD nFileIndexLow;
  } BY_HANDLE_FILE_INFORMATION, *PBY_HANDLE_FILE_INFORMATION, *LPBY_HANDLE_FILE_INFORMATION;
@@ -305,7 +310,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -664,6 +718,8 @@
+@@ -664,6 +720,8 @@
  
  #pragma region Desktop Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
@@ -314,7 +319,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  DWORD
-@@ -678,6 +734,8 @@
+@@ -678,6 +736,8 @@
  
  #pragma region Application Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
@@ -323,7 +328,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -687,6 +745,7 @@
+@@ -687,6 +747,7 @@
      _Out_ PLARGE_INTEGER lpFileSize
      );
  
@@ -331,7 +336,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  WINBASEAPI
  DWORD
  WINAPI
-@@ -695,6 +754,8 @@
+@@ -695,6 +756,8 @@
      );
  
  #if (_WIN32_WINNT >= 0x0600)
@@ -340,7 +345,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  DWORD
-@@ -703,7 +764,7 @@
+@@ -703,7 +766,7 @@
      _In_ HANDLE hFile,
      _Out_writes_(cchFilePath) LPSTR lpszFilePath,
      _In_ DWORD cchFilePath,
@@ -349,7 +354,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
      );
  
  WINBASEAPI
-@@ -713,7 +774,7 @@
+@@ -713,7 +776,7 @@
      _In_ HANDLE hFile,
      _Out_writes_(cchFilePath) LPWSTR lpszFilePath,
      _In_ DWORD cchFilePath,
@@ -358,7 +363,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
      );
  
  #ifdef UNICODE
-@@ -723,6 +784,8 @@
+@@ -723,6 +786,8 @@
  #endif // !UNICODE
  
  #endif // (_WIN32_WINNT >= 0x0600)
@@ -367,7 +372,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -733,6 +796,8 @@
+@@ -733,6 +798,8 @@
      _Out_opt_ LPFILETIME lpLastAccessTime,
      _Out_opt_ LPFILETIME lpLastWriteTime
      );
@@ -376,7 +381,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  _Success_(return != 0 && return < nBufferLength)
-@@ -748,6 +813,8 @@
+@@ -748,6 +815,8 @@
  #ifdef UNICODE
  #define GetFullPathName  GetFullPathNameW
  #endif
@@ -385,7 +390,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  _Success_(return != 0 && return < nBufferLength)
-@@ -763,6 +830,8 @@
+@@ -763,6 +832,8 @@
  #ifndef UNICODE
  #define GetFullPathName GetFullPathNameA
  #endif
@@ -394,7 +399,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  DWORD
-@@ -776,6 +845,8 @@
+@@ -776,6 +847,8 @@
  
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
@@ -403,7 +408,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  DWORD
-@@ -794,6 +865,8 @@
+@@ -794,6 +867,8 @@
  
  #pragma region Application Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
@@ -412,7 +417,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  _Success_(return != 0 && return < cchBuffer)
-@@ -808,6 +881,8 @@
+@@ -808,6 +883,8 @@
  #ifndef UNICODE
  #define GetLongPathName GetLongPathNameA
  #endif
@@ -421,7 +426,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  _Success_(return != 0 && return < cchBuffer)
-@@ -840,6 +915,8 @@
+@@ -840,6 +917,8 @@
      );
  
  #endif // (NTDDI_VERSION >= NTDDI_WIN10_FE)
@@ -430,7 +435,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  _Success_(return != 0 && return < cchBuffer)
-@@ -860,6 +937,8 @@
+@@ -860,6 +939,8 @@
  
  #pragma region Application Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
@@ -439,7 +444,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  UINT
-@@ -882,6 +961,8 @@
+@@ -882,6 +963,8 @@
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
  #if (_WIN32_WINNT >= 0x0600)
@@ -448,7 +453,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -898,6 +979,8 @@
+@@ -898,6 +981,8 @@
      );
  
  #endif /* _WIN32_WINNT >=  0x0600 */
@@ -457,7 +462,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -916,6 +999,8 @@
+@@ -916,6 +1001,8 @@
  #ifdef UNICODE
  #define GetVolumeInformation  GetVolumeInformationW
  #endif
@@ -466,7 +471,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -929,6 +1014,8 @@
+@@ -929,6 +1016,8 @@
  #ifdef UNICODE
  #define GetVolumePathName  GetVolumePathNameW
  #endif
@@ -475,7 +480,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -937,6 +1024,8 @@
+@@ -937,6 +1026,8 @@
      _In_ CONST FILETIME* lpLocalFileTime,
      _Out_ LPFILETIME lpFileTime
      );
@@ -484,7 +489,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -948,13 +1037,15 @@
+@@ -948,13 +1039,15 @@
      _In_ DWORD nNumberOfBytesToLockLow,
      _In_ DWORD nNumberOfBytesToLockHigh
      );
@@ -501,15 +506,18 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
      _Reserved_ DWORD dwReserved,
      _In_ DWORD nNumberOfBytesToLockLow,
      _In_ DWORD nNumberOfBytesToLockHigh,
-@@ -966,6 +1057,7 @@
+@@ -966,7 +1059,9 @@
  
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+-
 +_Win32_SupportedOS_WindowsXP_
- 
++
++_Win32_PreserveResult_
  WINBASEAPI
  DWORD
-@@ -985,6 +1077,8 @@
+ WINAPI
+@@ -985,6 +1080,8 @@
  
  #pragma region Application Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
@@ -518,7 +526,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  _Must_inspect_result_
-@@ -997,6 +1091,8 @@
+@@ -997,6 +1094,8 @@
      _Out_opt_ LPDWORD lpNumberOfBytesRead,
      _Inout_opt_ LPOVERLAPPED lpOverlapped
      );
@@ -527,7 +535,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  _Must_inspect_result_
-@@ -1006,9 +1102,11 @@
+@@ -1006,9 +1105,11 @@
      _In_ HANDLE hFile,
      _Out_writes_bytes_opt_(nNumberOfBytesToRead) __out_data_source(FILE) LPVOID lpBuffer,
      _In_ DWORD nNumberOfBytesToRead,
@@ -540,7 +548,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  _Must_inspect_result_
-@@ -1021,6 +1119,8 @@
+@@ -1021,6 +1122,8 @@
      _Reserved_ LPDWORD lpReserved,
      _Inout_ LPOVERLAPPED lpOverlapped
      );
@@ -549,7 +557,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -1028,6 +1128,8 @@
+@@ -1028,6 +1131,8 @@
  RemoveDirectoryA(
      _In_ LPCSTR lpPathName
      );
@@ -558,7 +566,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -1041,6 +1143,8 @@
+@@ -1041,6 +1146,8 @@
  #else
  #define RemoveDirectory  RemoveDirectoryA
  #endif // !UNICODE
@@ -567,7 +575,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -1048,6 +1152,8 @@
+@@ -1048,6 +1155,8 @@
  SetEndOfFile(
      _In_ HANDLE hFile
      );
@@ -576,7 +584,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -1072,6 +1178,8 @@
+@@ -1072,6 +1181,8 @@
  #endif // !UNICODE
  
  #if (_WIN32_WINNT >= 0x0600)
@@ -585,7 +593,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -1084,6 +1192,8 @@
+@@ -1084,6 +1195,8 @@
      );
  
  #endif
@@ -594,7 +602,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  DWORD
-@@ -1092,7 +1202,7 @@
+@@ -1092,7 +1205,7 @@
      _In_ HANDLE hFile,
      _In_ LONG lDistanceToMove,
      _Inout_opt_ PLONG lpDistanceToMoveHigh,
@@ -603,7 +611,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
      );
  
  WINBASEAPI
-@@ -1102,7 +1212,7 @@
+@@ -1102,7 +1215,7 @@
      _In_ HANDLE hFile,
      _In_ LARGE_INTEGER liDistanceToMove,
      _Out_opt_ PLARGE_INTEGER lpNewFilePointer,
@@ -612,7 +620,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
      );
  
  WINBASEAPI
-@@ -1116,6 +1226,8 @@
+@@ -1116,6 +1229,8 @@
      );
  
  #if _WIN32_WINNT >= 0x0501
@@ -621,7 +629,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -1126,6 +1238,8 @@
+@@ -1126,6 +1241,8 @@
      );
  
  #endif // (_WIN32_WINNT >= 0x0501)
@@ -630,7 +638,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -1137,6 +1251,8 @@
+@@ -1137,6 +1254,8 @@
      _In_ DWORD nNumberOfBytesToUnlockLow,
      _In_ DWORD nNumberOfBytesToUnlockHigh
      );
@@ -639,7 +647,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -1148,6 +1264,8 @@
+@@ -1148,6 +1267,8 @@
      _In_ DWORD nNumberOfBytesToUnlockHigh,
      _Inout_ LPOVERLAPPED lpOverlapped
      );
@@ -648,7 +656,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -1159,6 +1277,8 @@
+@@ -1159,6 +1280,8 @@
      _Out_opt_ LPDWORD lpNumberOfBytesWritten,
      _Inout_opt_ LPOVERLAPPED lpOverlapped
      );
@@ -657,7 +665,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -1167,9 +1287,11 @@
+@@ -1167,9 +1290,11 @@
      _In_ HANDLE hFile,
      _In_reads_bytes_opt_(nNumberOfBytesToWrite) LPCVOID lpBuffer,
      _In_ DWORD nNumberOfBytesToWrite,
@@ -670,7 +678,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -1181,6 +1303,8 @@
+@@ -1181,6 +1306,8 @@
      _Reserved_ LPDWORD lpReserved,
      _Inout_ LPOVERLAPPED lpOverlapped
      );
@@ -679,7 +687,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  DWORD
-@@ -1199,6 +1323,8 @@
+@@ -1199,6 +1326,8 @@
  
  #pragma region Application Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
@@ -688,7 +696,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -1220,6 +1346,8 @@
+@@ -1220,6 +1349,8 @@
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
  
  #if (_WIN32_WINNT >= 0x0501)
@@ -697,7 +705,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -1253,6 +1381,8 @@
+@@ -1253,6 +1384,8 @@
      LPSECURITY_ATTRIBUTES lpSecurityAttributes;
      HANDLE hTemplateFile;
  } CREATEFILE2_EXTENDED_PARAMETERS, *PCREATEFILE2_EXTENDED_PARAMETERS, *LPCREATEFILE2_EXTENDED_PARAMETERS;
@@ -706,7 +714,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  HANDLE
-@@ -1261,7 +1391,7 @@
+@@ -1261,7 +1394,7 @@
      _In_ LPCWSTR lpFileName,
      _In_ DWORD dwDesiredAccess,
      _In_ DWORD dwShareMode,
@@ -715,7 +723,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
      _In_opt_ LPCREATEFILE2_EXTENDED_PARAMETERS pCreateExParams
      );
  
-@@ -1274,6 +1404,8 @@
+@@ -1274,6 +1407,8 @@
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
  
  #if (_WIN32_WINNT >= 0x0600)
@@ -724,7 +732,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -1287,6 +1419,8 @@
+@@ -1287,6 +1422,8 @@
  #endif // _WIN32_WINNT >= 0x0600
  
  #if _WIN32_WINNT >= 0x0501
@@ -733,7 +741,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  DWORD
-@@ -1295,6 +1429,8 @@
+@@ -1295,6 +1432,8 @@
      _In_ LPCSTR lpFileName,
      _Out_opt_ LPDWORD lpFileSizeHigh
      );
@@ -742,7 +750,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  DWORD
-@@ -1337,6 +1473,8 @@
+@@ -1337,6 +1476,8 @@
      _Out_writes_bytes_(sizeof(WIN32_FIND_STREAM_DATA)) LPVOID lpFindStreamData,
      _Reserved_ DWORD dwFlags
      );
@@ -751,7 +759,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -1353,6 +1491,7 @@
+@@ -1353,6 +1494,7 @@
  
  #pragma region Desktop Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
@@ -759,7 +767,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -1366,6 +1505,8 @@
+@@ -1366,6 +1508,8 @@
  
  #pragma region Application Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
@@ -768,7 +776,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  DWORD
-@@ -1396,6 +1537,8 @@
+@@ -1396,6 +1540,8 @@
      _Inout_ LPDWORD StringLength,
      _Out_writes_(*StringLength) PWSTR LinkName
      );
@@ -777,7 +785,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -1413,6 +1556,8 @@
+@@ -1413,6 +1559,8 @@
  
  #pragma region Application Family or OneCore Family or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
@@ -786,7 +794,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  BOOL
-@@ -1437,6 +1582,8 @@
+@@ -1437,6 +1585,8 @@
  
  #pragma region Application Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
@@ -795,7 +803,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  UINT
-@@ -1456,6 +1603,7 @@
+@@ -1456,6 +1606,7 @@
  
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
@@ -803,7 +811,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  VOID
-@@ -1463,6 +1611,7 @@
+@@ -1463,6 +1614,7 @@
  SetFileApisToOEM(
      VOID
      );
@@ -811,7 +819,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fileapi.h b/generation/Wi
  
  WINBASEAPI
  VOID
-@@ -1623,3 +1772,8 @@
+@@ -1623,3 +1775,8 @@
  #endif
  
  #endif // _APISETFILE_

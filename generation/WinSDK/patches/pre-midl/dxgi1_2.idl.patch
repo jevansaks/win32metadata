@@ -2,7 +2,13 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/dxgi1_2.idl b/generation/WinSDK/RecompiledIdlHeaders/shared/dxgi1_2.idl
 --- a/generation/WinSDK/RecompiledIdlHeaders/shared/dxgi1_2.idl
 +++ b/generation/WinSDK/RecompiledIdlHeaders/shared/dxgi1_2.idl
-@@ -82,7 +82,7 @@
+@@ -1,3 +1,5 @@
++cpp_quote("#include <win32metadata_annotations.h>")
++#include <win32metadata_annotations.h>
+ // Copyright (c) Microsoft Corporation.  All Rights Reserved
+ 
+ import "dxgi.idl";
+@@ -82,7 +84,7 @@
  interface IDXGIOutputDuplication :
      IDXGIObject
  {
@@ -11,7 +17,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/dxgi1_2.idl b/generat
      HRESULT AcquireNextFrame([in, annotation ("_In_")] UINT TimeoutInMilliseconds,
                               [out, annotation("_Out_")] DXGI_OUTDUPL_FRAME_INFO* pFrameInfo,
                               [out, annotation("_COM_Outptr_")] IDXGIResource** ppDesktopResource);
-@@ -246,8 +246,8 @@
+@@ -246,8 +248,8 @@
  interface IDXGISwapChain1 :
      IDXGISwapChain
  {
@@ -22,7 +28,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/dxgi1_2.idl b/generat
  
      HRESULT GetHwnd( [out, annotation("_Out_")] HWND *pHwnd);
      HRESULT GetCoreWindow (
-@@ -384,7 +384,7 @@
+@@ -265,6 +267,7 @@
+     HRESULT SetRotation( [in, annotation("_In_")] DXGI_MODE_ROTATION Rotation );
+     HRESULT GetRotation( [out, annotation("_Out_")] DXGI_MODE_ROTATION* pRotation );
+ };
++_Win32_AnnotateMethod_(IDXGISwapChain1::Present1, _Win32_PreserveResult_)
+ 
+ //--------------------------------------------------------------------------------------------------------
+ // IDXGIFactory2 interface
+@@ -384,7 +387,7 @@
  interface IDXGIAdapter2 :
      IDXGIAdapter1
  {

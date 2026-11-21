@@ -2,7 +2,57 @@
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ShObjIdl_core.idl b/generation/WinSDK/RecompiledIdlHeaders/um/ShObjIdl_core.idl
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/ShObjIdl_core.idl
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/ShObjIdl_core.idl
-@@ -2743,22 +2743,22 @@ cpp_quote("SHSTDAPI_(PIDLIST_ABSOLUTE) SHSimpleIDListFromPath(_In_ PCWSTR pszPat
+@@ -1,3 +1,5 @@
++cpp_quote("#include <win32metadata_annotations.h>")
++#include <win32metadata_annotations.h>
+ //
+ //  Microsoft Windows
+ //  Copyright (c) Microsoft Corporation. All rights reserved.
+@@ -340,6 +342,7 @@
+         [in] UINT cchMax);
+ #endif
+ }
++_Win32_AnnotateMethod_(IContextMenu::QueryContextMenu, _Win32_PreserveResult_)
+ 
+ typedef IContextMenu *LPCONTEXTMENU;
+ 
+@@ -705,6 +708,10 @@
+ 
+     HRESULT Clone([out] IEnumIDList **ppenum);
+ }
++_Win32_AnnotateMethod_(IEnumIDList::Next, _Win32_PreserveResult_)
++_Win32_AnnotateMethod_(IEnumIDList::Skip, _Win32_PreserveResult_)
++_Win32_AnnotateMethod_(IEnumIDList::Reset, _Win32_PreserveResult_)
++_Win32_AnnotateMethod_(IEnumIDList::Clone, _Win32_PreserveResult_)
+ 
+ typedef IEnumIDList *LPENUMIDLIST;
+ 
+@@ -733,6 +740,7 @@
+ 
+     HRESULT Clone([out] IEnumFullIDList **ppenum);
+ }
++_Win32_AnnotateMethod_(IEnumFullIDList::Next, _Win32_PreserveResult_)
+ 
+ // IShellFolder::GetDisplayNameOf/SetNameOf uFlags
+ [v1_enum] enum _SHGDNF
+@@ -1279,6 +1287,8 @@
+         [in] SHGDNF uFlags,
+         [out] PITEMID_CHILD *ppidlOut);
+ }
++_Win32_AnnotateMethod_(IShellFolder::EnumObjects, _Win32_PreserveResult_)
++_Win32_AnnotateMethod_(IShellFolder::CompareIDs, _Win32_PreserveResult_)
+ typedef IShellFolder * LPSHELLFOLDER;
+ 
+ 
+@@ -1646,6 +1656,7 @@
+ 
+ typedef IShellView *LPSHELLVIEW;
+ }
++_Win32_AnnotateMethod_(IShellView::TranslateAccelerator, _Win32_PreserveResult_)
+ 
+ [
+     uuid(88E39E80-3578-11CF-AE69-08002B2E1262),
+@@ -2743,22 +2754,22 @@
  
  cpp_quote("#if (_WIN32_IE >= _WIN32_IE_IE70)")
  cpp_quote("// CLSID_ShellItem create and init helper APIs. produce IShellItem derived interfaces from these different expressions of an item")
@@ -33,7 +83,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ShObjIdl_core.idl b/gener
  cpp_quote("SHSTDAPI SHGetNameFromIDList(_In_ PCIDLIST_ABSOLUTE pidl, _In_ SIGDN sigdnName, _Outptr_ PWSTR *ppszName);")
  
  cpp_quote("#endif // (NTDDI_VERSION >= NTDDI_VISTA)")
-@@ -2774,7 +2774,7 @@ typedef [v1_enum] enum DATAOBJ_GET_ITEM_FLAGS
+@@ -2774,7 +2785,7 @@
  } DATAOBJ_GET_ITEM_FLAGS;
  cpp_quote("DEFINE_ENUM_FLAG_OPERATORS(DATAOBJ_GET_ITEM_FLAGS)")
  // returns IShellItem and other interfaces that CLSID_ShellItem implements
@@ -42,7 +92,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ShObjIdl_core.idl b/gener
  cpp_quote("#endif // (NTDDI_VERSION >= NTDDI_WIN7)")
  
  // New for Vista, but used by downlevel code
-@@ -3174,7 +3174,7 @@ interface ITransferSource : IUnknown
+@@ -3174,7 +3185,7 @@
          [in, annotation("_In_")] IShellItem *psi,
          [in, annotation("_In_")] TRANSFER_SOURCE_FLAGS flags,
          [in, annotation("_In_")] REFIID riid,
@@ -51,7 +101,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ShObjIdl_core.idl b/gener
  
      // Move the item within the volume/namespace, returning the shell item
      // in its new location.
-@@ -3387,10 +3387,10 @@ interface ITransferDestination : IUnknown
+@@ -3387,10 +3398,10 @@
          [in, annotation("_In_")] TRANSFER_SOURCE_FLAGS flags,
          // ppvItem should be an IShellItem or derived interface
          [in, annotation("_In_")] REFIID riidItem,
@@ -64,7 +114,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ShObjIdl_core.idl b/gener
  }
  
  cpp_quote("#if (_WIN32_IE >= _WIN32_IE_IE70)")
-@@ -3528,9 +3528,9 @@ interface IShellItemArray : IUnknown
+@@ -3528,9 +3539,9 @@
  
  cpp_quote("#if (_WIN32_IE >= _WIN32_IE_IE70)")
  cpp_quote("SHSTDAPI SHCreateShellItemArray(_In_opt_ PCIDLIST_ABSOLUTE pidlParent, _In_opt_ IShellFolder *psf, _In_ UINT cidl, _In_reads_opt_(cidl) PCUITEMID_CHILD_ARRAY ppidl, _Outptr_ IShellItemArray **ppsiItemArray);")
@@ -76,7 +126,25 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ShObjIdl_core.idl b/gener
  cpp_quote("#endif  // (_WIN32_IE >= _WIN32_IE_IE70)")
  
  [
-@@ -6212,7 +6212,7 @@ interface IApplicationAssociationRegistration : IUnknown
+@@ -3997,6 +4008,8 @@
+     HRESULT SetPath(
+         [in, string] LPCSTR pszFile);
+ }
++_Win32_AnnotateMethod_(IShellLinkA::GetPath, _Win32_PreserveResult_)
++_Win32_AnnotateMethod_(IShellLinkA::GetIDList, _Win32_PreserveResult_)
+ 
+ [
+     uuid(000214F9-0000-0000-C000-000000000046),
+@@ -4070,6 +4083,8 @@
+     HRESULT SetPath(
+         [in, string] LPCWSTR pszFile);
+ }
++_Win32_AnnotateMethod_(IShellLinkW::GetPath, _Win32_PreserveResult_)
++_Win32_AnnotateMethod_(IShellLinkW::GetIDList, _Win32_PreserveResult_)
+ [
+     uuid(45e2b4ae-b1c3-11d0-b92f-00a0c90312e1),
+     object,
+@@ -6212,7 +6227,7 @@
  }
  
  // SHCreateAssociationRegistration can be used to create an IApplicationAssociationRegistration
@@ -85,7 +153,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ShObjIdl_core.idl b/gener
  
  cpp_quote("#endif  // NTDDI_VISTA")
  
-@@ -6696,7 +6696,7 @@ interface IShellMenu : IUnknown
+@@ -6696,7 +6711,7 @@
          [out, annotation("_Out_")] DWORD* pdwFlags,
          [out, annotation("_Outptr_")] PIDLIST_ABSOLUTE* ppidl,
          [in] REFIID riid,
@@ -94,7 +162,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ShObjIdl_core.idl b/gener
  
      HRESULT SetMenu(
          [in, unique, annotation("_In_opt_")] HMENU hmenu,
-@@ -7528,7 +7528,7 @@ interface IDefaultExtractIconInit : IUnknown
+@@ -7528,7 +7543,7 @@
  }
  
  // "Default" IExtractIcon implementation useful for implementation of ::GetUIObjectOf(IID_IExtractIcon)
@@ -103,7 +171,23 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ShObjIdl_core.idl b/gener
  
  interface IEnumExplorerCommand;
  
-@@ -8615,7 +8615,7 @@ cpp_quote("SHSTDAPI SHAssocEnumHandlers(_In_ PCWSTR pszExtra, _In_ ASSOC_FILTER
+@@ -7648,6 +7663,7 @@
+ 
+     HRESULT Clone([out] IEnumExplorerCommand **ppenum);
+ }
++_Win32_AnnotateMethod_(IEnumExplorerCommand::Next, _Win32_PreserveResult_)
+ 
+ [
+     uuid(64961751-0835-43c0-8ffe-d57686530e64),
+@@ -8588,6 +8604,7 @@
+         [in, annotation("_In_")] IDataObject *pdo,
+         [out, annotation("_Outptr_")] IAssocHandlerInvoker **ppInvoker);
+ }
++_Win32_AnnotateMethod_(IAssocHandler::IsRecommended, _Win32_PreserveResult_)
+ 
+ // Enumerate handlers
+ [
+@@ -8615,7 +8632,7 @@
  cpp_quote("#endif  // NTDDI_VISTA")
  
  cpp_quote("#if (NTDDI_VERSION >= NTDDI_WIN7)")

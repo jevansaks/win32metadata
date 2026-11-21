@@ -1,3 +1,5 @@
+cpp_quote("#include <win32metadata_annotations.h>")
+#include <win32metadata_annotations.h>
 //****************************************************************************
 //
 //  Copyright (c) Microsoft Corporation. All rights reserved.
@@ -206,6 +208,7 @@ interface IPropertyStoreCapabilities : IUnknown
 {
     HRESULT IsPropertyWritable([in] REFPROPERTYKEY key);
 }
+_Win32_AnnotateMethod_(IPropertyStoreCapabilities::IsPropertyWritable, _Win32_PreserveResult_)
 
 [
     uuid(3017056d-9a91-4e90-937d-746c72abbf4f),

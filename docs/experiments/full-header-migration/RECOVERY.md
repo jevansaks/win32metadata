@@ -1,6 +1,205 @@
 # Working-first recovery and sidecar reduction
 
-## Major checkpoint: independently accepted migrations through mixer19
+## Current published checkpoint: CryptXML20
+
+Published head `78652d934715afefec83ec8d3febab054195d220` is independently
+hosted-qualified by its own ordinary
+[run 44490723920](https://github.com/jevansaks/win32metadata/actions/runs/44490723920).
+All ten jobs pass. The actual standalone/comparison/packaged WinMD is
+`F0244A605C84DB5573A2BB62F55E03D203745382B0D01CE652BDC0E170275C74`;
+its complete dump is
+`30D9B33163A1529ED9C34B14A2D8779016D7369A1E4AF0529BC7CA6A4110E01E`.
+Use this run's actual raw producers and three automatic maps for continuation,
+preserving all 21 cold callback corrections. Historical `499D...`, local
+CryptXML20 `E59...` and earlier hosted outputs remain separate evidence.
+
+This checkpoint retires **64 whole JSON records (41 enum definitions and 23
+callback fixups) and 106 manual emitter rows**. It retains **291 enum records,
+four callback selectors and all 436 autoTypes records**. The native CryptXML
+status-error bitmask is now header-owned; the actual DWORD field remains UInt32
+with its association, and the algorithm-error bit is the native `4`, not
+the former JSON `5`. The exact-head hosted gate includes raw 1010-case tooling,
+175 SDK-patch, 44 workflow and 54 integrity scope plus actual output qualification.
+It does not release another publication, merging, restacking or consumer work.
+
+### Unpublished transform-flags21 continuation
+
+The bounded next probe retires only `CRYPT_XML_TRANSFORM_FLAGS` from JSON,
+defines its unscoped UInt32 flags group in `cryptxml.h` and associates the native
+DWORD `CRYPT_XML_TRANSFORM_INFO.dwFlags`. The SDK query-string flag is `4`, not
+the former JSON `3`. Native x86/x64/ARM64 C and C++ controls preserve the complete
+record's size, offsets, field width and independent bits.
+
+One actual owner refresh and complete emission from the accepted hosted
+materialization produce WinMD `32523FCE...` and dump `7922EFE1...`.
+The complete unmasked API difference is exactly that native-value correction
+and enum-projected-field to UInt32-plus-association change. Their exact two-block
+inverse reconstructs the complete accepted `30D9...` dump. Every raw producer
+change is accounted separately and all three cold pointer maps are unchanged.
+No new production reader fix or legacy fallback is required.
+
+The original focused report preserves three passes and six native fixture
+include-path failures. A fixture-local `/I` correction exposes the already
+staged SAL dependency without changing declarations or assertions. The corrected
+nine cases plus six existing native controls pass; the six new ABI cases retain
+twelve COFFs in six byte-identical pairs. The separate actual-candidate/current-
+asset integrity run passes 54 cases and is not rerun after this test-only repair.
+All original execution inputs and restoration evidence remain retained.
+
+The native/scientific cohort is independently accepted. The approved
+algorithm-error documentation correction is applied without rerunning that
+science; original frozen evidence is preserved. Transform-only totals are **65 whole
+JSON retirements / 106 emitter rows / 290 enums**, distinct from publication.
+The continuation now uses large coherent batches, bounded semantic/source
+checks and progress reports rather than a separate one-enum publication gate.
+Staging, commit and push still require the next substantial scope report/review.
+
+### Large result-policy batch: separately attributable local checkpoints
+
+The selected family is **151 result-policy emitter rows: 52 exports and 99 COM
+selectors**. The first internal checkpoint moved 52 exports into 17 directly
+consumed native headers. The next settled slice adds 55 IDL-backed and ten
+shipped-method policies, using 13 authoritative IDLs and 12 regenerated headers.
+All 35 selected SDK patches (13 pre-MIDL and 22 post-MIDL) replay from the original
+SDK inputs to the authored sources.
+
+Together these slices introduce **117 native policies and retire 119 RSP rows**:
+116 effective old-policy replacements, one corrected `IDXGIFactory::EnumAdapters`
+selector, one redundant inherited `IMoniker::IsDirty` row and one absent
+`IDXGIDecodeSwapChainPartner::PresentBuffer` row. Correcting `DXGIFactory` activates
+an ineffective selector; the absent partner is retired, not recreated or counted
+as a transfer. Result-policy rows are **151 -> 32** and total member-remap rows
+**1592 -> 1473**. These units count RSP rows, not whole JSON records.
+
+Fresh scraping of 22 actual producers and full emission produce local candidate
+`360738F6...` and complete dump `F8AFFB39...`, retaining 35,385 types. Relative to
+the separately qualified 52-export checkpoint, the complete difference is exactly
+64 legacy result-attribute removals and 65 `PreserveSig` additions, with all 65
+native method identities checked. Signatures, parameter/SAL facts, namespace
+placement, LastError and DLL selection are unchanged. This is intentional policy
+transport to native result preservation, not custom-attribute byte equivalence.
+
+The bounded engineering fixes are qualified after preserving their original
+failures: MIDL carriers must follow completed interfaces and use qualified method
+names; IUnknown's fallback carrier must exclude its hand-written overloaded
+branch. A declaration annotation also exposed a real first-parameter MIDL retval
+reader defect on `IADsPropertyList::Next`. Starting FunctionDecl parameter-token
+inspection at the native declarator preserves the genuine `[retval][out]` fact;
+callback typedef/field ranges are unchanged. The current result/carrier/transform
+controls pass 70 cases, existing native retval controls pass six, six real SDK
+families pass, and this actual candidate passes all 54 integrity cases with the
+six current authoritative assets. Previous runtime assets and root WinMD are
+restored. The earlier integrity failure used a stale runtime delegate allowlist;
+its missing RPC row was already present in the committed source asset.
+
+The broader combined tooling/SDK run retains **1117 passes and five failures
+among 1122 cases**. Three explicit-availability MIDL fixtures lacked the helper;
+two old SAL-only native-byte expectations omitted the newly qualified
+Audioclient/axextend/UrlMon result carriers. Fixture repairs retain full byte,
+SAL, encoding and newline assertions, add only those exact expected edits, and
+select the actual authored Read prototype rather than the first unrelated
+carrier. All five original failures pass in a separate six-case run, whose
+sixth case is an unchanged Imaging control. The original report is not rewritten
+or called an all-passed run. The additional metadata-utility and scraper suites
+pass 17 and 58 cases; the disjoint coverage is 1197 cases with every observed
+failure resolved separately. Production output is unchanged by these test-only
+repairs; ordinary exact-new-head CI remains required after publication release.
+
+One retained RSP dependency is maintained rather than counted as a migration:
+including the helper shifts d2d1.h's anonymous enum from line 89 to 90, so its
+existing positional remap must follow that line. A regression checks the actual
+native enum location. No enum JSON fallback or output mask is added.
+
+The separate **18-header / 90-method / 43-interface / 121-Optional-addition** SAL
+refresh is now approved and qualified as its own saved checkpoint against the
+settled result plus 905-route candidate: WinMD `4FF5A015...`, full API
+`E6025FC8...`. Its complete delta is exactly 121 Optional facts, four Out-to-InOut
+changes and SetItemChoices InOut-to-In plus CountParamIndex=1, on the intended
+90 methods/43 interfaces. The sole historical inventory-label correction is
+SetData's actual IOleCache owner, not IDataObject; its signature pair is unchanged.
+All 54 actual-candidate integrity identities are closed by the original 53
+passes plus one corrected scratch-log-backed rerun, not one fresh all-green
+54-case report. Six native C/C++ COFF pairs across all three architectures are
+identical for the three changed direction/count methods on two owners.
+The reviewed 98-source proposal, its `360738F6...`/`F8AFFB39...` outputs and all
+18 before-header copies remain preserved. Its 32 result policies are completed
+in the following separate result-only slice. This regeneration retires no sidecar rows and is
+neither result-row progress nor a reader blocker.
+NCRYPT provider/key `AlsoUsableFor` annotations remain as the user decided.
+
+The final result-only checkpoint moves the **32 remaining policies into 17
+authoritative IDLs and 17 owning pre-MIDL patches**. Their actual include closure
+regenerates **19 headers from 54 converted inputs**, not 17 direct headers alone:
+`PropIdl.h` and `strmif.h` also derive from included changed IDLs. All 19 MIDL
+roots pass and all 17 original-SDK patch replays match the authored input bytes.
+
+Fresh 15-partition scraping and complete production-order emission yield WinMD
+`D76C03B59E8AD319F790C23A98622D88AA280548D1EB7DE34D3F4E5A1B924079`
+and complete API
+`7FA8EA90214795C9C29C575A1016653A5D98250342477204DB40BFC7302523C1`,
+retaining all 35,385 types. Against accepted SAL dump `E6025FC8...`, the complete
+delta is exactly **32 CanReturnMultipleSuccessValues removals plus 32 PreserveSig
+additions**, on those exact 32 methods, with no additional SAL, parameter,
+namespace, signature or field changes. Actual final-candidate integrity passes
+54/54 using current assets and its real scratch logs. This slice changes result
+rows **32 -> 0** and member-remap rows **1473 -> 1441**.
+
+The original scrape failed six incomplete-owner carriers: five `IXmlReader`
+methods and `IMILBitmapEffectPrimitiveImpl::IsDirty`. Interface-local completion
+is insufficient inside a MIDL library, which hoists these quotes before generated
+interfaces. Moving only these six carriers after their complete enclosing
+libraries fixes actual scraping; no reader change or RSP fallback is needed.
+`WbemCli.Idl`'s saved authored input also now preserves the original SDK's CRLF;
+its earlier LF copy already matched normalized content and converted identically.
+Both original preparation failures and their corrections remain retained.
+
+The first private emission passed integrity but its temporary settings override
+changed response-file order, relocating nine existing attributes relative to
+documentation. The corrected override retains the exact production order and
+reuses the same fresh producers. Its complete diff needs no order normalization
+or known-difference mask. Original output, failed exact-diff checker and 54-pass
+report remain separate; native production was not rerun for this private ordering
+correction.
+
+Across the full selected family, **151 RSP rows retire and 149 native policies
+are added**: 148 effective replacements plus the one corrected DXGIFactory
+selector. The inherited and absent rows are not successful header transfers.
+Result-policy rows are **151 -> 0** and total member-remap rows **1592 -> 1441**.
+The original reviewed 98-source proposal, SAL refresh and final 32-result
+checkpoint retain separate source inventories and complete output comparisons.
+
+Combined unpublished totals are **65 whole JSON retirements / 257 manual
+emitter rows / 290 enums**, where 257 is the historical 106 plus all 151 result
+RSP retirements. Published totals remain **64 / 106 / 291**. The separately
+qualified 905-route cleanup below preserved its immediately preceding complete API.
+The unchanged 98-source proposal has passed normal substantial source/semantic
+review. Publication preparation still requires fresh actual branch/ref/stack
+preflight and its own ordinary new-head CI/output qualification. Separate SAL
+and remaining-result checkpoints retain their own scope and inventories; no
+merge, restack, base or consumer change is released.
+
+### Redundant namespace routes: separate qualified local slice
+
+Only the reviewed 905 redundant/inert routes are removed: **3164 -> 2259** active
+rows. The removal is 543 enums, 75 structs, 99 imports, two callbacks, 21 prewritten
+constants, 151 unconditionally non-emitting empty-import methods and 14 absent
+names. All 2141 active public-placement routes, 111 unresolved constant routes
+and seven wildcards remain. Comments and retained row order are unchanged.
+
+The researcher's accepted-parent comparison is not used as a proxy for this
+evolving candidate. Complete fresh emission from the immediately preceding
+qualified result producers yields the identical `360738F6...` WinMD and
+`F8AFFB39...` complete dump, including all 35,385 types. Its already run 54-case
+actual-candidate integrity therefore covers these same bytes; no reference
+regeneration or test rerun is needed. This cleanup retires namespace routes,
+not another 905 annotations or JSON/emitter records, and introduces no public
+namespace, SAL or result-policy change.
+
+## Historical major checkpoint: migrations through mixer19
+
+The following checkpoint descriptions preserve their then-current counts,
+qualification state and outputs. The current continuation baseline is the
+CryptXML20 hosted output above, not an earlier incremental or hosted artifact.
 
 This checkpoint publishes the complete, independently reviewed continuation
 through `MIXERLINE_COMPONENTTYPE`, above `7723abbadcb334feb2cb831c3f8533c54026d12e`.

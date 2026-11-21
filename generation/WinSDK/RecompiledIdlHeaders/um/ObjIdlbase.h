@@ -2100,6 +2100,15 @@ void __RPC_STUB IEnumUnknown_RemoteNext_Stub(
 #endif 	/* __IEnumUnknown_INTERFACE_DEFINED__ */
 
 
+/* interface __MIDL_itf_objidlbase_0000_0011 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_METHOD_(IEnumUnknown::Next, _Win32_PreserveResult_);
+
+
+extern RPC_IF_HANDLE __MIDL_itf_objidlbase_0000_0011_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_objidlbase_0000_0011_v0_0_s_ifspec;
+
 #ifndef __IEnumString_INTERFACE_DEFINED__
 #define __IEnumString_INTERFACE_DEFINED__
 
@@ -2248,6 +2257,16 @@ void __RPC_STUB IEnumString_RemoteNext_Stub(
 
 #endif 	/* __IEnumString_INTERFACE_DEFINED__ */
 
+
+/* interface __MIDL_itf_objidlbase_0000_0012 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_METHOD_(IEnumString::Next, _Win32_PreserveResult_);
+_WIN32META_ANNOTATE_METHOD_(IEnumString::Skip, _Win32_PreserveResult_);
+
+
+extern RPC_IF_HANDLE __MIDL_itf_objidlbase_0000_0012_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_objidlbase_0000_0012_v0_0_s_ifspec;
 
 #ifndef __ISequentialStream_INTERFACE_DEFINED__
 #define __ISequentialStream_INTERFACE_DEFINED__
@@ -2398,6 +2417,16 @@ void __RPC_STUB ISequentialStream_RemoteWrite_Stub(
 
 #endif 	/* __ISequentialStream_INTERFACE_DEFINED__ */
 
+
+/* interface __MIDL_itf_objidlbase_0000_0013 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_METHOD_(ISequentialStream::Read, _Win32_PreserveResult_);
+_WIN32META_ANNOTATE_METHOD_(ISequentialStream::Write, _Win32_PreserveResult_);
+
+
+extern RPC_IF_HANDLE __MIDL_itf_objidlbase_0000_0013_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_objidlbase_0000_0013_v0_0_s_ifspec;
 
 #ifndef __IStream_INTERFACE_DEFINED__
 #define __IStream_INTERFACE_DEFINED__

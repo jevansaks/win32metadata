@@ -410,6 +410,7 @@ extern "C"{
 /* interface __MIDL_itf_bdaiface_0000_0000 */
 /* [local] */ 
 
+#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -3851,7 +3852,7 @@ EXTERN_C const IID IID_ICCSubStreamFiltering;
     public:
         virtual /* [helpstring][propget] */ HRESULT STDMETHODCALLTYPE get_SubstreamTypes( 
             /* [annotation][retval][out] */ 
-            _Out_retval_  long *pTypes) = 0;
+            _Out_  long *pTypes) = 0;
         
         virtual /* [helpstring][propput] */ HRESULT STDMETHODCALLTYPE put_SubstreamTypes( 
             /* [annotation][in] */ 
@@ -3886,7 +3887,7 @@ EXTERN_C const IID IID_ICCSubStreamFiltering;
         /* [helpstring][propget] */ HRESULT ( STDMETHODCALLTYPE *get_SubstreamTypes )( 
             __RPC__in ICCSubStreamFiltering * This,
             /* [annotation][retval][out] */ 
-            _Out_retval_  long *pTypes);
+            _Out_  long *pTypes);
         
         DECLSPEC_XFGVIRT(ICCSubStreamFiltering, put_SubstreamTypes)
         /* [helpstring][propput] */ HRESULT ( STDMETHODCALLTYPE *put_SubstreamTypes )( 
@@ -4286,6 +4287,15 @@ EXTERN_C const IID IID_IEnumPIDMap;
 
 #endif 	/* __IEnumPIDMap_INTERFACE_DEFINED__ */
 
+
+/* interface __MIDL_itf_bdaiface_0000_0023 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_METHOD_(IEnumPIDMap::Next, _Win32_PreserveResult_);
+
+
+extern RPC_IF_HANDLE __MIDL_itf_bdaiface_0000_0023_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_bdaiface_0000_0023_v0_0_s_ifspec;
 
 #ifndef __IMPEG2PIDMap_INTERFACE_DEFINED__
 #define __IMPEG2PIDMap_INTERFACE_DEFINED__
@@ -5089,13 +5099,13 @@ EXTERN_C const IID IID_IBDA_DiagnosticProperties;
         
         DECLSPEC_XFGVIRT(IPropertyBag, Read)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Read )( 
-            IBDA_DiagnosticProperties * This,
+            __RPC__in IBDA_DiagnosticProperties * This,
             /* [annotation][in] */ 
             _In_  LPCOLESTR pszPropName,
             /* [annotation][out][in] */ 
             _Inout_  VARIANT *pVar,
             /* [annotation][unique][in] */ 
-            _In_  IErrorLog *pErrorLog);
+            _In_opt_  IErrorLog *pErrorLog);
         
         DECLSPEC_XFGVIRT(IPropertyBag, Write)
         HRESULT ( STDMETHODCALLTYPE *Write )( 
@@ -7937,11 +7947,11 @@ EXTERN_C const IID IID_IESEvent;
     public:
         virtual HRESULT STDMETHODCALLTYPE GetEventId( 
             /* [annotation][retval][out] */ 
-            _Out_retval_  DWORD *pdwEventId) = 0;
+            _Out_  DWORD *pdwEventId) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE GetEventType( 
             /* [annotation][retval][out] */ 
-            _Out_retval_  GUID *pguidEventType) = 0;
+            _Out_  GUID *pguidEventType) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE SetCompletionStatus( 
             /* [annotation][in] */ 
@@ -7949,11 +7959,11 @@ EXTERN_C const IID IID_IESEvent;
         
         virtual HRESULT STDMETHODCALLTYPE GetData( 
             /* [annotation][retval][out] */ 
-            _Out_retval_  SAFEARRAY * *pbData) = 0;
+            _Out_  SAFEARRAY * *pbData) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE GetStringData( 
             /* [annotation][retval][out] */ 
-            _Out_retval_  BSTR *pbstrData) = 0;
+            _Out_  BSTR *pbstrData) = 0;
         
     };
     
@@ -7984,13 +7994,13 @@ EXTERN_C const IID IID_IESEvent;
         HRESULT ( STDMETHODCALLTYPE *GetEventId )( 
             __RPC__in IESEvent * This,
             /* [annotation][retval][out] */ 
-            _Out_retval_  DWORD *pdwEventId);
+            _Out_  DWORD *pdwEventId);
         
         DECLSPEC_XFGVIRT(IESEvent, GetEventType)
         HRESULT ( STDMETHODCALLTYPE *GetEventType )( 
             __RPC__in IESEvent * This,
             /* [annotation][retval][out] */ 
-            _Out_retval_  GUID *pguidEventType);
+            _Out_  GUID *pguidEventType);
         
         DECLSPEC_XFGVIRT(IESEvent, SetCompletionStatus)
         HRESULT ( STDMETHODCALLTYPE *SetCompletionStatus )( 
@@ -8002,13 +8012,13 @@ EXTERN_C const IID IID_IESEvent;
         HRESULT ( STDMETHODCALLTYPE *GetData )( 
             __RPC__in IESEvent * This,
             /* [annotation][retval][out] */ 
-            _Out_retval_  SAFEARRAY * *pbData);
+            _Out_  SAFEARRAY * *pbData);
         
         DECLSPEC_XFGVIRT(IESEvent, GetStringData)
         HRESULT ( STDMETHODCALLTYPE *GetStringData )( 
             __RPC__in IESEvent * This,
             /* [annotation][retval][out] */ 
-            _Out_retval_  BSTR *pbstrData);
+            _Out_  BSTR *pbstrData);
         
         END_INTERFACE
     } IESEventVtbl;

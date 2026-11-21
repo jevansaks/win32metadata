@@ -1,9 +1,14 @@
 # SDK-Version: 10.0.28000.2705
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Audioclient.idl b/generation/WinSDK/RecompiledIdlHeaders/um/Audioclient.idl
-index 2b9a5aca..b9e8d249 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/Audioclient.idl
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/Audioclient.idl
-@@ -573,7 +573,7 @@ interface IAudioClient : IUnknown
+@@ -1,3 +1,5 @@
++cpp_quote("#include <win32metadata_annotations.h>")
++#include <win32metadata_annotations.h>
+ cpp_quote("#include <winapifamily.h>")
+ 
+ //
+@@ -573,10 +575,11 @@
      //  IAudioViewManagerService
      //  IAcousticEchoCancellationControl
      //
@@ -12,3 +17,7 @@ index 2b9a5aca..b9e8d249 100644
  
  
  }
++_Win32_AnnotateMethod_(IAudioClient::IsFormatSupported, _Win32_PreserveResult_)
+ 
+ //-----------------------------------------------------------------------------
+ // Description: IAudioClient2 interface

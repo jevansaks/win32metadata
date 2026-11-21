@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) 1996-1999 Microsoft Corporation
@@ -259,6 +260,7 @@ typedef ISceSvcAttachmentPersistInfo __RPC_FAR *LPSCESVCATTACHMENTPERSISTINFO;
             /* [out] */ PVOID *ppvData,
             /* [out] */ PBOOL pbOverwriteAll ) = 0;
 
+        _Win32_PreserveResult_
         virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE IsDirty(
             /* [in] */  LPTSTR lpTemplateName ) = 0;
 

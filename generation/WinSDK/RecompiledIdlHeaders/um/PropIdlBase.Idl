@@ -1,3 +1,5 @@
+cpp_quote("#include <win32metadata_annotations.h>")
+#include <win32metadata_annotations.h>
 cpp_quote("#include <winapifamily.h>")
 
 //+---------------------------------------------------------------------------
@@ -574,6 +576,8 @@ interface IEnumSTATPROPSTG : IUnknown
         [out]   IEnumSTATPROPSTG **     ppenum
         );
 }
+_Win32_AnnotateMethod_(IEnumSTATPROPSTG::Next, _Win32_PreserveResult_)
+_Win32_AnnotateMethod_(IEnumSTATPROPSTG::Skip, _Win32_PreserveResult_)
 
 
 [
@@ -614,6 +618,8 @@ interface IEnumSTATPROPSETSTG : IUnknown
         [out]   IEnumSTATPROPSETSTG **  ppenum
         );
 }
+_Win32_AnnotateMethod_(IEnumSTATPROPSETSTG::Next, _Win32_PreserveResult_)
+_Win32_AnnotateMethod_(IEnumSTATPROPSETSTG::Skip, _Win32_PreserveResult_)
 
 typedef [unique] IPropertyStorage * LPPROPERTYSTORAGE;
 

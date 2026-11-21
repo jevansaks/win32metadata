@@ -1,3 +1,5 @@
+cpp_quote("#include <win32metadata_annotations.h>")
+#include <win32metadata_annotations.h>
 //+-------------------------------------------------------------------------
 //
 //  Microsoft Windows
@@ -1152,6 +1154,8 @@ interface IDropSource : IUnknown
         [in, annotation("_In_")] DWORD dwEffect
     );
 }
+_Win32_AnnotateMethod_(IDropSource::QueryContinueDrag, _Win32_PreserveResult_)
+_Win32_AnnotateMethod_(IDropSource::GiveFeedback, _Win32_PreserveResult_)
 
 [
     object,

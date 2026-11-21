@@ -224,7 +224,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/usp10.h b/generation/WinS
      UINT                                    uOptions,       //In  ExtTextOut options
      _In_reads_opt_(1) const RECT           *prc,           //In  Clipping rectangle (iff ETO_CLIPPED)
      int                                     iMinSel,        //In  Logical selection. Set iMinSel>=iMaxSel for no selection
-@@ -1764,7 +1791,7 @@
+@@ -1761,10 +1788,11 @@
+ //                       side from left to right.
+ 
+ 
++_Win32_PreserveResult_
  _Check_return_ HRESULT WINAPI ScriptIsComplex(
      _In_reads_(cInChars) const WCHAR   *pwcInChars,    //In  String to be tested
      int                                 cInChars,       //In  Length in characters
@@ -233,7 +237,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/usp10.h b/generation/WinS
  
  
  
-@@ -1783,6 +1810,7 @@
+@@ -1783,6 +1811,7 @@
      DWORD  DigitSubstitute          :8;    // Substitution type
      DWORD  dwReserved;                     // Reserved
  } SCRIPT_DIGITSUBSTITUTE;
@@ -241,7 +245,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/usp10.h b/generation/WinS
  //
  //
  //p     NationalDigitLanguage: Standard digits for the selected locale as
-@@ -1870,6 +1898,7 @@
+@@ -1870,6 +1899,7 @@
  #define SCRIPT_DIGITSUBSTITUTE_NONE         1  // No substitution
  #define SCRIPT_DIGITSUBSTITUTE_NATIONAL     2  // Substitute with official national digits
  #define SCRIPT_DIGITSUBSTITUTE_TRADITIONAL  3  // Substitute with traditional digits of the locale
@@ -249,7 +253,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/usp10.h b/generation/WinS
  //
  //
  //p     SCRIPT_DIGITSUBSTITUTE_CONTEXT: Digits U+0030 - U+0039 will be
-@@ -2068,6 +2097,7 @@
+@@ -2068,6 +2098,7 @@
      _Out_writes_all_(cGlyphs) int                     *piAdvance,      // Out   Advance widths
      _Out_writes_all_(cGlyphs) GOFFSET                 *pGoffset,       // Out   x,y offset for combining glyph
      _Out_opt_                  ABC                    *pABC);          // Out   Composite ABC for the whole run (Optional)
@@ -257,7 +261,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/usp10.h b/generation/WinS
  
  //
  // ScriptItemizeOpenType
-@@ -2231,3 +2261,8 @@
+@@ -2231,3 +2262,8 @@
  #pragma endregion
  
  #endif

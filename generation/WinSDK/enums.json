@@ -7663,30 +7663,6 @@
     ]
   },
   {
-    "name": "CRYPT_XML_TRANSFORM_FLAGS",
-    "flags": true,
-    "members": [
-      {
-        "name": "CRYPT_XML_TRANSFORM_ON_STREAM",
-        "value": "1"
-      },
-      {
-        "name": "CRYPT_XML_TRANSFORM_ON_NODESET",
-        "value": "2"
-      },
-      {
-        "name": "CRYPT_XML_TRANSFORM_URI_QUERY_STRING",
-        "value": "3"
-      }
-    ],
-    "uses": [
-      {
-        "struct": "CRYPT_XML_TRANSFORM_INFO",
-        "field": "dwFlags"
-      }
-    ]
-  },
-  {
     "name": "DRAWITEMSTRUCT_CTL_TYPE",
     "members": [
       {

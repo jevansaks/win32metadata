@@ -1,3 +1,5 @@
+cpp_quote("#include <win32metadata_annotations.h>")
+#include <win32metadata_annotations.h>
 //
 // copyright information moved after library declaration
 //
@@ -845,6 +847,9 @@ interface IEnumWbemClassObject : IUnknown
         [in] ULONG nCount
         );
 };
+_Win32_AnnotateMethod_(IEnumWbemClassObject::Next, _Win32_PreserveResult_)
+_Win32_AnnotateMethod_(IEnumWbemClassObject::NextAsync, _Win32_PreserveResult_)
+_Win32_AnnotateMethod_(IEnumWbemClassObject::Skip, _Win32_PreserveResult_)
 
 /////////////////////////////////////////////////////////////////////////
 

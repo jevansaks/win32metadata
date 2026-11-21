@@ -8,7 +8,23 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ocidl.Idl b/generation/Wi
  cpp_quote("#include <winapifamily.h>")
  
  //+---------------------------------------------------------------------------
-@@ -369,7 +371,7 @@
+@@ -230,6 +232,7 @@
+                 [out] IEnumConnections ** ppEnum
+             );
+ }
++_Win32_AnnotateMethod_(IEnumConnections::Next, _Win32_PreserveResult_)
+ 
+ 
+ [
+@@ -305,6 +308,7 @@
+                 [out] IEnumConnectionPoints ** ppEnum
+             );
+ }
++_Win32_AnnotateMethod_(IEnumConnectionPoints::Next, _Win32_PreserveResult_)
+ 
+ 
+ [
+@@ -369,7 +373,7 @@
                  [in, annotation("_Reserved_")] IUnknown * pUnkReserved,
                  [in, annotation("__RPC__in")] REFIID riid,
                  [in, annotation("__RPC__in")] BSTR bstrKey,
@@ -17,7 +33,39 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ocidl.Idl b/generation/Wi
              );
  
      [call_as(CreateInstanceLic)]
-@@ -1620,6 +1622,8 @@
+@@ -761,6 +765,7 @@
+                 void
+             );
+ }
++_Win32_AnnotateMethod_(IPersistMemory::IsDirty, _Win32_PreserveResult_)
+ 
+ 
+ [
+@@ -794,6 +799,7 @@
+                 void
+             );
+ }
++_Win32_AnnotateMethod_(IPersistStreamInit::IsDirty, _Win32_PreserveResult_)
+ 
+ 
+ [
+@@ -1520,6 +1526,7 @@
+                 [out] IEnumOleUndoUnits ** ppEnum
+             );
+ }
++_Win32_AnnotateMethod_(IEnumOleUndoUnits::Next, _Win32_PreserveResult_)
+ 
+ 
+ [
+@@ -1583,6 +1590,7 @@
+                 [in] BOOL fEnable
+             );
+ }
++_Win32_AnnotateMethod_(IOleUndoManager::Close, _Win32_PreserveResult_)
+ 
+ 
+ [
+@@ -1620,6 +1628,8 @@
                  [in] BOOL fSetAlways
              );
  }
@@ -26,3 +74,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ocidl.Idl b/generation/Wi
  
  
  [
+@@ -1810,6 +1820,7 @@
+                 void
+             );
+ }
++_Win32_AnnotateMethod_(IPersistPropertyBag2::IsDirty, _Win32_PreserveResult_)
+ 
+ cpp_quote("#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM) */")
+ #pragma endregion

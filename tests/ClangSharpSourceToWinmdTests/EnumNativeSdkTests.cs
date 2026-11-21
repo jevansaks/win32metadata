@@ -1422,6 +1422,97 @@ typedef char CheckUnchangedHighInfoFlag[(CRYPT_XML_STATUS_OPENED_TO_ENCODE == 0x
             }
         }
 
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void XmlTransformGroup_PreservesNativeFlagBitsAndUnsignedStorage(string target)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(XmlTransformDeclarations(), target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            Save(Path.Combine(fixture.DirectoryPath, "input.h"), "xml-transform-" + target);
+            Save(fixture.GeneratedSource, "xml-transform-" + target);
+            string path = fixture.Emit();
+            Save(path, "xml-transform-" + target);
+            using var pe = new PEReader(File.OpenRead(path));
+            var reader = pe.GetMetadataReader();
+            var owner = NativeTypedefHeaderTests.Type(reader, "CRYPT_XML_TRANSFORM_INFO");
+            var field = owner.GetFields().Select(reader.GetFieldDefinition)
+                .Single(candidate => reader.GetString(candidate.Name) == "dwFlags");
+            EnumAssociationHeaderTests.AssertSignature(reader, field.Signature, 0, SignatureTypeCode.UInt32);
+            CollectionAssert.AreEqual(new[] { "CRYPT_XML_TRANSFORM_FLAGS" },
+                EnumAssociationHeaderTests.StringAttributes(reader, field.GetCustomAttributes(), "AssociatedEnumAttribute"));
+            var type = NativeTypedefHeaderTests.Type(reader, "CRYPT_XML_TRANSFORM_FLAGS");
+            var fields = type.GetFields().Select(reader.GetFieldDefinition).ToArray();
+            EnumAssociationHeaderTests.AssertSignature(reader,
+                fields.Single(candidate => reader.GetString(candidate.Name) == "value__").Signature, 0, SignatureTypeCode.UInt32);
+            var members = fields.Where(candidate => !candidate.GetDefaultValue().IsNil).ToArray();
+            CollectionAssert.AreEqual(new[]
+            {
+                "CRYPT_XML_TRANSFORM_ON_STREAM", "CRYPT_XML_TRANSFORM_ON_NODESET", "CRYPT_XML_TRANSFORM_URI_QUERY_STRING",
+            }, members.Select(member => reader.GetString(member.Name)).ToArray());
+            CollectionAssert.AreEqual(new uint[] { 1, 2, 4 },
+                members.Select(member => reader.GetBlobReader(reader.GetConstant(member.GetDefaultValue()).Value).ReadUInt32()).ToArray());
+            var attributes = type.GetCustomAttributes().Select(reader.GetCustomAttribute)
+                .Select(attribute => ParameterHeaderTests.AttributeName(reader, attribute)).ToArray();
+            Assert.IsTrue(attributes.Contains("FlagsAttribute"));
+            Assert.IsFalse(attributes.Contains("ScopedEnumAttribute"));
+        }
+
+        [DataTestMethod]
+        [DataRow("x86", 4, "/TC")]
+        [DataRow("x64", 8, "/TC")]
+        [DataRow("arm64", 8, "/TC")]
+        [DataRow("x86", 4, "/TP")]
+        [DataRow("x64", 8, "/TP")]
+        [DataRow("arm64", 8, "/TP")]
+        public void XmlTransformGroup_PreservesCompleteNativeCAndCppRecordAndMasks(string arch, int pointerSize, string language)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            string source = XmlTransformDeclarations() + @"
+typedef char CheckTransformSize[(sizeof(CRYPT_XML_TRANSFORM_INFO) == (sizeof(void*) == 4 ? 20 : 32)) ? 1 : -1];
+typedef char CheckSizeOffset[(((unsigned __int64)&(((CRYPT_XML_TRANSFORM_INFO*)0)->cbSize)) == 0) ? 1 : -1];
+typedef char CheckAlgorithmOffset[(((unsigned __int64)&(((CRYPT_XML_TRANSFORM_INFO*)0)->wszAlgorithm)) == (sizeof(void*) == 4 ? 4 : 8)) ? 1 : -1];
+typedef char CheckBufferOffset[(((unsigned __int64)&(((CRYPT_XML_TRANSFORM_INFO*)0)->cbBufferSize)) == (sizeof(void*) == 4 ? 8 : 16)) ? 1 : -1];
+typedef char CheckFlagsOffset[(((unsigned __int64)&(((CRYPT_XML_TRANSFORM_INFO*)0)->dwFlags)) == (sizeof(void*) == 4 ? 12 : 20)) ? 1 : -1];
+typedef char CheckCallbackOffset[(((unsigned __int64)&(((CRYPT_XML_TRANSFORM_INFO*)0)->pfnCreateTransform)) == (sizeof(void*) == 4 ? 16 : 24)) ? 1 : -1];
+typedef char CheckFlagsWidth[(sizeof(((CRYPT_XML_TRANSFORM_INFO*)0)->dwFlags) == 4) ? 1 : -1];
+typedef char CheckNativeTransformMask[((CRYPT_XML_TRANSFORM_ON_STREAM | CRYPT_XML_TRANSFORM_ON_NODESET |
+    CRYPT_XML_TRANSFORM_URI_QUERY_STRING) == 7) ? 1 : -1];
+typedef char CheckNativeQueryStringBit[(CRYPT_XML_TRANSFORM_URI_QUERY_STRING == 4 &&
+    (CRYPT_XML_TRANSFORM_URI_QUERY_STRING & (CRYPT_XML_TRANSFORM_ON_STREAM | CRYPT_XML_TRANSFORM_ON_NODESET)) == 0) ? 1 : -1];
+";
+            fixture.AssertNativeAbi(arch, pointerSize, language, source);
+            Save(Path.Combine(fixture.DirectoryPath, "abi.c"), "xml-transform-" + arch + "-" + language.TrimStart('/'));
+            foreach (var original in new[] { fixture.OrdinaryNativeObject, fixture.MetadataNativeObject })
+            {
+                string path = Path.Combine(TestContext.ResultsDirectory,
+                    "xml-transform-" + arch + "-" + language.TrimStart('/') + "-" + Path.GetFileName(original));
+                File.Copy(original, path, true);
+                TestContext.AddResultFile(path);
+            }
+        }
+
+        private static string XmlTransformDeclarations()
+        {
+            string header = File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
+                "generation", "WinSDK", "RecompiledIdlHeaders", "um", "cryptxml.h"));
+            return @"
+#include ""sal.h""
+#define CALLBACK __stdcall
+typedef unsigned long DWORD;
+typedef unsigned long ULONG;
+typedef long HRESULT;
+typedef const unsigned short *LPCWSTR;
+typedef struct _CRYPT_XML_ALGORITHM CRYPT_XML_ALGORITHM;
+typedef struct _CRYPT_XML_DATA_PROVIDER CRYPT_XML_DATA_PROVIDER;
+" + Slice(header, @"typedef\s+_Success_\( return == 0 \)\s+HRESULT\s+\(CALLBACK \*PFN_CRYPT_XML_CREATE_TRANSFORM\)[\s\S]+?;") + "\n" +
+                Slice(header, @"typedef struct _CRYPT_XML_TRANSFORM_INFO\{[\s\S]+?\}CRYPT_XML_TRANSFORM_INFO[^;]+;") + "\n" +
+                Slice(header, @"(?m)^#define CRYPT_XML_TRANSFORM_ON_STREAM[\s\S]+?^#define CRYPT_XML_TRANSFORM_URI_QUERY_STRING[^\r\n]+") + "\n" +
+                Regex.Match(header, @"(?m)^_Win32_FlagsEnum_\(CRYPT_XML_TRANSFORM_FLAGS,[^\r\n]+").Value + "\n";
+        }
+
         private static string XmlSignatureStatusDeclarations()
         {
             string header = File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),

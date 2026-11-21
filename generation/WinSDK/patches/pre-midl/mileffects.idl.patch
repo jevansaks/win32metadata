@@ -1,0 +1,18 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/mileffects.idl b/generation/WinSDK/RecompiledIdlHeaders/um/mileffects.idl
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/mileffects.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/mileffects.idl
+@@ -1,3 +1,5 @@
++cpp_quote("#include <win32metadata_annotations.h>")
++#include <win32metadata_annotations.h>
+ /*++ BUILD Version: 0001    // Increment this if a change has global effects
+ 
+ Copyright (c) 2004 Microsoft Corporation
+@@ -482,6 +484,7 @@
+ 
+ 
+ };
++_Win32_AnnotateMethod_(IMILBitmapEffectPrimitiveImpl::IsDirty, _Win32_PreserveResult_)
+ 
+ cpp_quote("#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */")
+ #pragma endregion

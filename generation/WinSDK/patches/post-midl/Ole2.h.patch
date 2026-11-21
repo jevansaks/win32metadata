@@ -90,7 +90,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Ole2.h b/generation/WinSD
  
  _Check_return_
  WINOLEAPI  OleCreateFromFileEx(IN REFCLSID rclsid, IN LPCOLESTR lpszFileName, IN REFIID riid,
-@@ -184,50 +197,64 @@
+@@ -184,50 +197,65 @@
              IN LPFORMATETC rgFormatEtc, IN IAdviseSink FAR* lpAdviseSink,
              OUT DWORD FAR* rgdwConnection, IN LPOLECLIENTSITE pClientSite,
              IN LPSTORAGE pStg, OUT LPVOID FAR* ppvObj);
@@ -118,6 +118,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Ole2.h b/generation/WinSD
  WINOLEAPI  RegisterDragDrop(IN HWND hwnd, IN LPDROPTARGET pDropTarget);
 +_Win32_SupportedOS_Windows2000_
  WINOLEAPI  RevokeDragDrop(IN HWND hwnd);
++_Win32_PreserveResult_
  WINOLEAPI  DoDragDrop(IN LPDATAOBJECT pDataObj, IN LPDROPSOURCE pDropSource,
              IN DWORD dwOKEffects, OUT LPDWORD pdwEffect);
 +_Win32_SupportedOS_Windows2000_
@@ -156,7 +157,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Ole2.h b/generation/WinSD
  
  WINOLEAPI              OleTranslateAccelerator (IN LPOLEINPLACEFRAME lpFrame,
                              IN LPOLEINPLACEFRAMEINFO lpFrameInfo, IN LPMSG lpmsg);
-@@ -235,8 +262,8 @@
+@@ -235,8 +263,8 @@
  
  /* Helper APIs */
  
@@ -167,7 +168,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Ole2.h b/generation/WinSD
  
  
  
-@@ -245,27 +272,37 @@
+@@ -245,27 +273,37 @@
  
  _Check_return_ WINOLEAPI          OleRun(IN LPUNKNOWN pUnknown);
  WINOLEAPI_(BOOL)   OleIsRunning(IN LPOLEOBJECT pObject);
@@ -208,7 +209,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Ole2.h b/generation/WinSD
  
  WINOLEAPI_(HGLOBAL) OleMetafilePictFromIconAndLabel(IN HICON hIcon, _In_ LPOLESTR lpszLabel,
                                          _In_ LPOLESTR lpszSourceFile, IN UINT iIconIndex);
-@@ -276,12 +313,15 @@
+@@ -276,12 +314,15 @@
  
  _Check_return_ WINOLEAPI                  OleRegGetUserType (IN REFCLSID clsid, IN DWORD dwFormOfType,
                                          _Outptr_ LPOLESTR FAR* pszUserType);
@@ -224,7 +225,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Ole2.h b/generation/WinSD
  
  WINOLEAPI OleRegEnumVerbs (IN REFCLSID clsid, _Outptr_ LPENUMOLEVERB FAR* ppenum);
  
-@@ -312,6 +352,7 @@
+@@ -312,6 +353,7 @@
      _In_opt_ LPOLESTR   szUNCName,
      _In_opt_ ULONG      linkUpdatingOption,
      _In_opt_ PVOID      pvContext);
@@ -232,7 +233,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Ole2.h b/generation/WinSD
  
  WINOLEAPI OleConvertOLESTREAMToIStorage
      (IN LPOLESTREAM                lpolestream,
-@@ -325,19 +366,25 @@
+@@ -325,19 +367,25 @@
      _In_opt_ DWORD                      opt,
      _In_opt_ PVOID                      pvCallbackContext,
      _In_opt_ OLESTREAMQUERYCONVERTOLELINKCALLBACK pQueryConvertOLELinkCallback);
@@ -258,7 +259,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Ole2.h b/generation/WinSD
  
  
  WINOLEAPI OleConvertIStorageToOLESTREAMEx
-@@ -349,6 +396,7 @@
+@@ -349,6 +397,7 @@
       IN DWORD              dwSize,     //      size in bytes
       IN LPSTGMEDIUM        pmedium,    //      bits
       OUT LPOLESTREAM        polestm);
@@ -266,7 +267,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Ole2.h b/generation/WinSD
  
  WINOLEAPI OleConvertOLESTREAMToIStorageEx
      (IN LPOLESTREAM        polestm,
-@@ -387,3 +435,7 @@
+@@ -387,3 +436,7 @@
  #pragma warning(pop)
  #endif
  

@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //---------------------------------------------------------------------------
 // Copyright (c) Microsoft Corporation.  All rights reserved.
 //
@@ -2766,6 +2767,7 @@ interface DX_DECLARE_INTERFACE("2cd90694-12e2-11dc-9fed-001143a055f9") ID2D1Rend
     /// Ends drawing on the render target, error results can be retrieved at this time,
     /// or when calling flush.
     /// </summary>
+    _Win32_PreserveResult_
     STDMETHOD(EndDraw)(
         _Out_opt_ D2D1_TAG *tag1 = NULL,
         _Out_opt_ D2D1_TAG *tag2 = NULL 

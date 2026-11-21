@@ -908,7 +908,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Create a certificate context from the encoded certificate. The created
-@@ -11571,10 +11726,11 @@
+@@ -11567,14 +11722,16 @@
+ //  CertSetCertificateContextProperty and CertGetCertificateContextProperty can be called
+ //  to store properties for the certificate.
+ //--------------------------------------------------------------------------
++_Win32_PreserveResult_
+ WINCRYPT32API
  PCCERT_CONTEXT
  WINAPI
  CertCreateCertificateContext(
@@ -921,7 +926,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Free a certificate context
-@@ -11588,6 +11744,8 @@
+@@ -11588,6 +11745,8 @@
  CertFreeCertificateContext(
      _In_opt_ PCCERT_CONTEXT pCertContext
      );
@@ -930,7 +935,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Set the property for the specified certificate context.
-@@ -11746,6 +11904,8 @@
+@@ -11746,6 +11905,8 @@
  
  // Set this flag to inhibit the persisting of this property
  #define CERT_SET_PROPERTY_INHIBIT_PERSIST_FLAG          0x40000000
@@ -939,7 +944,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Get the property for the specified certificate context.
-@@ -11813,9 +11973,10 @@
+@@ -11813,9 +11974,10 @@
  CertGetCertificateContextProperty(
      _In_ PCCERT_CONTEXT pCertContext,
      _In_ DWORD dwPropId,
@@ -951,7 +956,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Enumerate the properties for the specified certificate context.
-@@ -11844,6 +12005,8 @@
+@@ -11844,6 +12006,8 @@
  
  #pragma region Desktop Family or OneCore or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP|WINAPI_PARTITION_PHONE_RESTRICTED | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
@@ -960,7 +965,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Creates a CTL entry whose attributes are the certificate context's
-@@ -11871,13 +12034,15 @@
+@@ -11871,13 +12035,15 @@
      _In_reads_opt_(cOptAttr) PCRYPT_ATTRIBUTE rgOptAttr,
      _In_ DWORD dwFlags,
      _Reserved_ void *pvReserved,
@@ -977,7 +982,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  
  //+-------------------------------------------------------------------------
-@@ -11904,6 +12069,8 @@
+@@ -11904,6 +12070,8 @@
  
  #pragma region Application Family or OneCore or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
@@ -986,7 +991,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Get the first or next CRL context from the store for the specified
-@@ -11966,6 +12133,8 @@
+@@ -11966,6 +12134,8 @@
      _In_opt_ PCCRL_CONTEXT pPrevCrlContext,
      _Inout_ DWORD *pdwFlags
      );
@@ -995,7 +1000,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Enumerate the CRL contexts in the store.
-@@ -11990,6 +12159,8 @@
+@@ -11990,6 +12160,8 @@
      _In_ HCERTSTORE hCertStore,
      _In_opt_ PCCRL_CONTEXT pPrevCrlContext
      );
@@ -1004,7 +1009,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Find the first or next CRL context in the store.
-@@ -12019,7 +12190,7 @@
+@@ -12019,7 +12191,7 @@
  WINAPI
  CertFindCRLInStore(
      _In_ HCERTSTORE hCertStore,
@@ -1013,7 +1018,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _In_ DWORD dwFindFlags,
      _In_ DWORD dwFindType,
      _In_opt_ const void *pvFindPara,
-@@ -12114,6 +12285,7 @@
+@@ -12114,6 +12286,7 @@
  //    - CERT_ISSUER_PUB_KEY_BIT_LENGTH_PROP_ID
  //
  #define CRL_FIND_ISSUED_FOR_SET_STRONG_PROPERTIES_FLAG        0x10
@@ -1021,7 +1026,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Duplicate a CRL context
-@@ -12124,6 +12296,8 @@
+@@ -12124,6 +12297,8 @@
  CertDuplicateCRLContext(
      _In_opt_ PCCRL_CONTEXT pCrlContext
      );
@@ -1030,7 +1035,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Create a CRL context from the encoded CRL. The created
-@@ -12143,10 +12317,11 @@
+@@ -12143,10 +12318,11 @@
  PCCRL_CONTEXT
  WINAPI
  CertCreateCRLContext(
@@ -1043,7 +1048,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Free a CRL context
-@@ -12160,6 +12335,8 @@
+@@ -12160,6 +12336,8 @@
  CertFreeCRLContext(
      _In_opt_ PCCRL_CONTEXT pCrlContext
      );
@@ -1052,7 +1057,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Set the property for the specified CRL context.
-@@ -12175,6 +12352,8 @@
+@@ -12175,6 +12353,8 @@
      _In_ DWORD dwFlags,
      _In_opt_ const void *pvData
      );
@@ -1061,7 +1066,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Get the property for the specified CRL context.
-@@ -12193,6 +12372,7 @@
+@@ -12193,6 +12373,7 @@
      _Out_writes_bytes_to_opt_(*pcbData, *pcbData) void *pvData,
      _Inout_ DWORD *pcbData
      );
@@ -1069,7 +1074,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Enumerate the properties for the specified CRL context.
-@@ -12211,6 +12391,7 @@
+@@ -12211,6 +12392,7 @@
      _In_ PCCRL_CONTEXT pCrlContext,
      _In_ DWORD dwPropId
      );
@@ -1077,7 +1082,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  
  //+-------------------------------------------------------------------------
-@@ -12235,6 +12416,7 @@
+@@ -12235,6 +12417,7 @@
      _Reserved_ void *pvReserved,
      _Outptr_result_maybenull_ PCRL_ENTRY *ppCrlEntry
      );
@@ -1085,7 +1090,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Is the specified CRL valid for the certificate.
-@@ -12269,6 +12451,8 @@
+@@ -12269,6 +12452,8 @@
  #define CERT_STORE_ADD_REPLACE_EXISTING_INHERIT_PROPERTIES  5
  #define CERT_STORE_ADD_NEWER                                6
  #define CERT_STORE_ADD_NEWER_INHERIT_PROPERTIES             7
@@ -1094,7 +1099,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  
  //+-------------------------------------------------------------------------
-@@ -12322,12 +12506,14 @@
+@@ -12322,12 +12507,14 @@
  WINAPI
  CertAddEncodedCertificateToStore(
      _In_opt_ HCERTSTORE hCertStore,
@@ -1110,7 +1115,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Add the certificate context to the store according to the specified
-@@ -12414,6 +12600,8 @@
+@@ -12414,6 +12601,8 @@
                  (1 << CERT_STORE_CRL_CONTEXT)
  #define CERT_STORE_CTL_CONTEXT_FLAG             \
                  (1 << CERT_STORE_CTL_CONTEXT)
@@ -1119,7 +1124,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Add the serialized certificate or CRL element to the store.
-@@ -12454,6 +12642,8 @@
+@@ -12454,6 +12643,8 @@
      _Out_opt_ DWORD *pdwContextType,
      _Outptr_opt_ const void **ppvContext
      );
@@ -1128,7 +1133,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Delete the specified certificate from the store.
-@@ -12476,6 +12666,8 @@
+@@ -12476,6 +12667,8 @@
  CertDeleteCertificateFromStore(
      _In_ PCCERT_CONTEXT pCertContext
      );
@@ -1137,7 +1142,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Add the encoded CRL to the store according to the specified
-@@ -12499,12 +12691,14 @@
+@@ -12499,12 +12692,14 @@
  WINAPI
  CertAddEncodedCRLToStore(
      _In_opt_ HCERTSTORE hCertStore,
@@ -1153,7 +1158,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Add the CRL context to the store according to the specified
-@@ -12536,6 +12730,8 @@
+@@ -12536,6 +12731,8 @@
      _In_ DWORD dwAddDisposition,
      _Outptr_opt_ PCCRL_CONTEXT *ppStoreContext
      );
@@ -1162,7 +1167,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Delete the specified CRL from the store.
-@@ -12555,6 +12751,8 @@
+@@ -12555,6 +12752,8 @@
  CertDeleteCRLFromStore(
      _In_ PCCRL_CONTEXT pCrlContext
      );
@@ -1171,7 +1176,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Serialize the certificate context's encoded certificate and its
-@@ -12569,6 +12767,8 @@
+@@ -12569,6 +12768,8 @@
      _Out_writes_bytes_to_opt_(*pcbElement, *pcbElement) BYTE *pbElement,
      _Inout_ DWORD *pcbElement
      );
@@ -1180,7 +1185,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  
  //+-------------------------------------------------------------------------
-@@ -12583,6 +12783,7 @@
+@@ -12583,6 +12784,7 @@
      _Out_writes_bytes_to_opt_(*pcbElement, *pcbElement) BYTE *pbElement,
      _Inout_ DWORD *pcbElement
      );
@@ -1188,7 +1193,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  
  
-@@ -12599,6 +12800,8 @@
+@@ -12599,6 +12801,8 @@
  CertDuplicateCTLContext(
      _In_opt_ PCCTL_CONTEXT pCtlContext
      );
@@ -1197,7 +1202,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Create a CTL context from the encoded CTL. The created
-@@ -12622,6 +12825,7 @@
+@@ -12622,6 +12826,7 @@
      _In_reads_bytes_(cbCtlEncoded) const BYTE *pbCtlEncoded,
      _In_ DWORD cbCtlEncoded
      );
@@ -1205,7 +1210,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Free a CTL context
-@@ -12635,6 +12839,8 @@
+@@ -12635,6 +12840,8 @@
  CertFreeCTLContext(
      _In_opt_ PCCTL_CONTEXT pCtlContext
      );
@@ -1214,7 +1219,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Set the property for the specified CTL context.
-@@ -12650,6 +12856,8 @@
+@@ -12650,6 +12857,8 @@
      _In_ DWORD dwFlags,
      _In_opt_ const void *pvData
      );
@@ -1223,7 +1228,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Get the property for the specified CTL context.
-@@ -12668,6 +12876,7 @@
+@@ -12668,6 +12877,7 @@
      _Out_writes_bytes_to_opt_(*pcbData, *pcbData) void *pvData,
      _Inout_ DWORD *pcbData
      );
@@ -1231,7 +1236,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Enumerate the properties for the specified CTL context.
-@@ -12679,6 +12888,8 @@
+@@ -12679,6 +12889,8 @@
      _In_ PCCTL_CONTEXT pCtlContext,
      _In_ DWORD dwPropId
      );
@@ -1240,7 +1245,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Enumerate the CTL contexts in the store.
-@@ -12703,6 +12914,8 @@
+@@ -12703,6 +12915,8 @@
      _In_ HCERTSTORE hCertStore,
      _In_opt_ PCCTL_CONTEXT pPrevCtlContext
      );
@@ -1249,7 +1254,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Attempt to find the specified subject in the CTL.
-@@ -12743,6 +12956,8 @@
+@@ -12743,6 +12957,8 @@
      CRYPT_ALGORITHM_IDENTIFIER  SubjectAlgorithm;
      CRYPT_DATA_BLOB             SubjectIdentifier;
  } CTL_ANY_SUBJECT_INFO, *PCTL_ANY_SUBJECT_INFO;
@@ -1258,7 +1263,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Find the first or next CTL context in the store.
-@@ -12774,7 +12989,7 @@
+@@ -12774,7 +12990,7 @@
      _In_ HCERTSTORE hCertStore,
      _In_ DWORD dwMsgAndCertEncodingType,
      _In_ DWORD dwFindFlags,
@@ -1267,7 +1272,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _In_opt_ const void *pvFindPara,
      _In_opt_ PCCTL_CONTEXT pPrevCtlContext
      );
-@@ -12805,6 +13020,8 @@
+@@ -12805,6 +13021,8 @@
      DWORD                   dwSubjectType;
      void                    *pvSubject;
  } CTL_FIND_SUBJECT_PARA, *PCTL_FIND_SUBJECT_PARA;
@@ -1276,7 +1281,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  CTL_FIND_ANY
-@@ -12878,12 +13095,14 @@
+@@ -12878,12 +13096,14 @@
  WINAPI
  CertAddEncodedCTLToStore(
      _In_opt_ HCERTSTORE hCertStore,
@@ -1292,7 +1297,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Add the CTL context to the store according to the specified
-@@ -12915,6 +13134,8 @@
+@@ -12915,6 +13135,8 @@
      _In_ DWORD dwAddDisposition,
      _Outptr_opt_ PCCTL_CONTEXT *ppStoreContext
      );
@@ -1301,7 +1306,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Serialize the CTL context's encoded CTL and its properties.
-@@ -12928,6 +13149,8 @@
+@@ -12928,6 +13150,8 @@
      _Out_writes_bytes_to_opt_(*pcbElement, *pcbElement) BYTE *pbElement,
      _Inout_ DWORD *pcbElement
      );
@@ -1310,7 +1315,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Delete the specified CTL from the store.
-@@ -12947,6 +13170,8 @@
+@@ -12947,6 +13171,8 @@
  CertDeleteCTLFromStore(
      _In_ PCCTL_CONTEXT pCtlContext
      );
@@ -1319,7 +1324,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  
  WINCRYPT32API
-@@ -12959,6 +13184,8 @@
+@@ -12959,6 +13185,8 @@
      _In_ DWORD dwAddDisposition,
      _Outptr_opt_ PCCERT_CONTEXT *ppStoreContext
      );
@@ -1328,7 +1333,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  WINCRYPT32API
  _Success_(return != FALSE)
-@@ -12970,6 +13197,8 @@
+@@ -12970,6 +13198,8 @@
      _In_ DWORD dwAddDisposition,
      _Outptr_opt_ PCCRL_CONTEXT *ppStoreContext
      );
@@ -1337,7 +1342,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  WINCRYPT32API
  _Success_(return != FALSE)
-@@ -12981,6 +13210,7 @@
+@@ -12981,6 +13211,7 @@
      _In_ DWORD dwAddDisposition,
      _Outptr_opt_ PCCTL_CONTEXT *ppStoreContext
      );
@@ -1345,7 +1350,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  WINCRYPT32API
  BOOL
-@@ -12991,6 +13221,7 @@
+@@ -12991,6 +13222,7 @@
      _In_ DWORD dwUpdateFlags,
      _In_ DWORD dwPriority
      );
@@ -1353,7 +1358,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  WINCRYPT32API
  void
-@@ -12999,6 +13230,8 @@
+@@ -12999,6 +13231,8 @@
      _In_ HCERTSTORE hCollectionStore,
      _In_ HCERTSTORE hSiblingStore
      );
@@ -1362,7 +1367,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  
  WINCRYPT32API
-@@ -13006,7 +13239,7 @@
+@@ -13006,7 +13240,7 @@
  WINAPI
  CertControlStore(
      _In_ HCERTSTORE hCertStore,
@@ -1371,7 +1376,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _In_ DWORD dwCtrlType,
      _In_opt_ void const *pvCtrlPara
      );
-@@ -13121,6 +13354,7 @@
+@@ -13121,6 +13355,7 @@
  //--------------------------------------------------------------------------
  // certenrolld_begin -- CERT_*_PROP_ID
  #define CERT_STORE_LOCALIZED_NAME_PROP_ID   0x1000
@@ -1379,7 +1384,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  // certenrolld_end
  
  //+-------------------------------------------------------------------------
-@@ -13146,6 +13380,8 @@
+@@ -13146,6 +13381,8 @@
      _In_ DWORD dwFlags,
      _In_opt_ const void *pvData
      );
@@ -1388,7 +1393,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Get a store property.
-@@ -13199,6 +13435,8 @@
+@@ -13199,6 +13436,8 @@
      PFN_CERT_CREATE_CONTEXT_SORT_FUNC   pfnSort;    // OPTIONAL
      void                                *pvSort;    // OPTIONAL
  } CERT_CREATE_CONTEXT_PARA, *PCERT_CREATE_CONTEXT_PARA;
@@ -1397,7 +1402,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Creates the specified context from the encoded bytes. The created
-@@ -13363,6 +13601,7 @@
+@@ -13363,6 +13602,7 @@
  
  #pragma region Desktop Family or OneCore or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP|WINAPI_PARTITION_PHONE_RESTRICTED | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
@@ -1405,7 +1410,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Register a system store.
-@@ -13400,6 +13639,7 @@
+@@ -13400,6 +13640,7 @@
      _In_opt_ PCERT_SYSTEM_STORE_INFO pStoreInfo,
      _Reserved_ void *pvReserved
      );
@@ -1413,7 +1418,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Register a physical store for the specified system store.
-@@ -13427,6 +13667,7 @@
+@@ -13427,6 +13668,7 @@
      _In_ PCERT_PHYSICAL_STORE_INFO pStoreInfo,
      _Reserved_ void *pvReserved
      );
@@ -1421,7 +1426,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Unregister the specified system store.
-@@ -13450,6 +13691,7 @@
+@@ -13450,6 +13692,7 @@
      _In_ const void *pvSystemStore,
      _In_ DWORD dwFlags
      );
@@ -1429,7 +1434,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Unregister the physical store from the specified system store.
-@@ -13507,7 +13749,7 @@
+@@ -13507,7 +13750,7 @@
  
  typedef BOOL (WINAPI *PFN_CERT_ENUM_SYSTEM_STORE)(
      _In_ const void *pvSystemStore,
@@ -1438,7 +1443,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _In_ PCERT_SYSTEM_STORE_INFO pStoreInfo,
      _Reserved_ void *pvReserved,
      _Inout_opt_ void *pvArg
-@@ -13537,6 +13779,7 @@
+@@ -13537,6 +13780,7 @@
  #define CERT_PHYSICAL_STORE_ENTERPRISE_NAME         L".Enterprise"
  #define CERT_PHYSICAL_STORE_AUTH_ROOT_NAME          L".AuthRoot"
  #define CERT_PHYSICAL_STORE_SMART_CARD_NAME         L".SmartCard"
@@ -1446,7 +1451,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Enumerate the system store locations.
-@@ -13549,6 +13792,7 @@
+@@ -13549,6 +13793,7 @@
      _Inout_opt_ void *pvArg,
      __callback PFN_CERT_ENUM_SYSTEM_STORE_LOCATION pfnEnum
      );
@@ -1454,7 +1459,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Enumerate the system stores.
-@@ -13590,6 +13834,8 @@
+@@ -13590,6 +13835,8 @@
      _Inout_opt_ void *pvArg,
      __callback PFN_CERT_ENUM_SYSTEM_STORE pfnEnum
      );
@@ -1463,7 +1468,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Enumerate the physical stores for the specified system store.
-@@ -13650,6 +13896,8 @@
+@@ -13650,6 +13897,8 @@
  // The "SystemStoreLocation" REG_SZ value must also be set for registered
  // CertDllEnumSystemStore OID functions.
  #define CRYPT_OID_SYSTEM_STORE_LOCATION_VALUE_NAME  L"SystemStoreLocation"
@@ -1472,7 +1477,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  // The remaining Register, Enum and Unregister OID installable functions
  // have the same signature as their Cert Store API counterpart.
-@@ -13675,7 +13923,7 @@
+@@ -13675,7 +13924,7 @@
  CertGetEnhancedKeyUsage(
      _In_ PCCERT_CONTEXT pCertContext,
      _In_ DWORD dwFlags,
@@ -1481,7 +1486,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _Inout_ DWORD *pcbUsage
      );
  
-@@ -13684,6 +13932,8 @@
+@@ -13684,6 +13933,8 @@
  
  #pragma region Desktop Family or OneCore or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP|WINAPI_PARTITION_PHONE_RESTRICTED | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
@@ -1490,7 +1495,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Set the enhanced key usage property for the certificate.
-@@ -13695,6 +13945,8 @@
+@@ -13695,6 +13946,8 @@
      _In_ PCCERT_CONTEXT pCertContext,
      _In_opt_ PCERT_ENHKEY_USAGE pUsage
      );
@@ -1499,7 +1504,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Add the usage identifier to the certificate's enhanced key usage property.
-@@ -13706,6 +13958,8 @@
+@@ -13706,6 +13959,8 @@
      _In_ PCCERT_CONTEXT pCertContext,
      _In_ LPCSTR pszUsageIdentifier
      );
@@ -1508,7 +1513,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  
  //+-------------------------------------------------------------------------
-@@ -13725,6 +13979,8 @@
+@@ -13725,6 +13980,8 @@
  
  #pragma region Application Family or OneCore or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
@@ -1517,7 +1522,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+---------------------------------------------------------------------------
  //
-@@ -13744,6 +14000,8 @@
+@@ -13744,6 +14001,8 @@
      _Out_ int *cNumOIDs,
      _Out_writes_bytes_to_opt_(*pcbOIDs, *pcbOIDs) LPSTR *rghOIDs,
      _Inout_ DWORD *pcbOIDs);
@@ -1526,7 +1531,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+=========================================================================
  //  Cryptographic Message helper functions for verifying and signing a
-@@ -13796,6 +14054,8 @@
+@@ -13796,6 +14055,8 @@
  
  #pragma region Desktop Family or OneCore or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP|WINAPI_PARTITION_PHONE_RESTRICTED | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
@@ -1535,7 +1540,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Sign an encoded CTL.
-@@ -13821,6 +14081,8 @@
+@@ -13821,6 +14082,8 @@
  
  // When set, CTL inner content is encapsulated within an OCTET STRING
  #define CMSG_CMS_ENCAPSULATED_CTL_FLAG  0x00008000
@@ -1544,7 +1549,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Encode the CTL and create a signed message containing the encoded CTL.
-@@ -13856,6 +14118,7 @@
+@@ -13856,6 +14119,7 @@
  //  be set if the identifier for the TrustedSubjects is a hash,
  //  such as, MD5 or SHA1.
  #define CMSG_ENCODE_HASHED_SUBJECT_IDENTIFIER_FLAG      0x2
@@ -1552,7 +1557,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  
  //+-------------------------------------------------------------------------
-@@ -13872,6 +14135,7 @@
+@@ -13872,6 +14136,7 @@
      _Reserved_ void *pvReserved,
      _Out_opt_ PCRYPT_DER_BLOB pEncodedAttributes
      );
@@ -1560,7 +1565,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Enumerates through the sequence of TrustedSubjects in a CTL context
-@@ -13938,6 +14202,8 @@
+@@ -13938,6 +14203,8 @@
  
  #pragma region Desktop Family or OneCore or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP|WINAPI_PARTITION_PHONE_RESTRICTED | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
@@ -1569,7 +1574,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Verify that a subject is trusted for the specified usage by finding a
-@@ -14141,6 +14407,8 @@
+@@ -14141,6 +14408,8 @@
  
  #pragma region Desktop Family or OneCore or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP|WINAPI_PARTITION_PHONE_RESTRICTED | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
@@ -1578,7 +1583,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Verifies the array of contexts for revocation. The dwRevType parameter
-@@ -14281,6 +14549,8 @@
+@@ -14281,6 +14550,8 @@
  //  When the following flag is set, only wire retrieval for OCSP responses.
  //--------------------------------------------------------------------------
  #define CERT_VERIFY_REV_SERVER_OCSP_WIRE_ONLY_FLAG      0x00000020
@@ -1587,7 +1592,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  
  //+-------------------------------------------------------------------------
-@@ -14313,6 +14583,7 @@
+@@ -14313,6 +14584,7 @@
      _In_ PCRYPT_INTEGER_BLOB pInt1,
      _In_ PCRYPT_INTEGER_BLOB pInt2
      );
@@ -1595,7 +1600,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Compare two certificates to see if they are identical.
-@@ -14326,10 +14597,11 @@
+@@ -14326,10 +14598,11 @@
  BOOL
  WINAPI
  CertCompareCertificate(
@@ -1608,7 +1613,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Compare two certificate names to see if they are identical.
-@@ -14340,7 +14612,7 @@
+@@ -14340,7 +14613,7 @@
  BOOL
  WINAPI
  CertCompareCertificateName(
@@ -1617,7 +1622,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _In_ PCERT_NAME_BLOB pCertName1,
      _In_ PCERT_NAME_BLOB pCertName2
      );
-@@ -14350,6 +14622,8 @@
+@@ -14350,6 +14623,8 @@
  
  #pragma region Desktop Family or OneCore or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP|WINAPI_PARTITION_PHONE_RESTRICTED | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
@@ -1626,7 +1631,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Compare the attributes in the certificate name with the specified
-@@ -14373,7 +14647,7 @@
+@@ -14373,7 +14648,7 @@
  BOOL
  WINAPI
  CertIsRDNAttrsInCertificateName(
@@ -1635,7 +1640,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _In_ DWORD dwFlags,
      _In_ PCERT_NAME_BLOB pCertName,
      _In_ PCERT_RDN pRDN
-@@ -14381,6 +14655,7 @@
+@@ -14381,6 +14656,7 @@
  
  #define CERT_UNICODE_IS_RDN_ATTRS_FLAG              0x1
  #define CERT_CASE_INSENSITIVE_IS_RDN_ATTRS_FLAG     0x2
@@ -1643,7 +1648,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Compare two public keys to see if they are identical.
-@@ -14391,7 +14666,7 @@
+@@ -14391,7 +14667,7 @@
  BOOL
  WINAPI
  CertComparePublicKeyInfo(
@@ -1652,7 +1657,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _In_ PCERT_PUBLIC_KEY_INFO pPublicKey1,
      _In_ PCERT_PUBLIC_KEY_INFO pPublicKey2
      );
-@@ -14401,6 +14676,8 @@
+@@ -14401,6 +14677,8 @@
  
  #pragma region Application Family or OneCore or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
@@ -1661,7 +1666,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Get the public/private key's bit length.
-@@ -14411,7 +14688,7 @@
+@@ -14411,7 +14689,7 @@
  DWORD
  WINAPI
  CertGetPublicKeyLength(
@@ -1670,7 +1675,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _In_ PCERT_PUBLIC_KEY_INFO pPublicKey
      );
  
-@@ -14420,6 +14697,8 @@
+@@ -14420,6 +14698,8 @@
  
  #pragma region Desktop Family or OneCore or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP|WINAPI_PARTITION_PHONE_RESTRICTED | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
@@ -1679,7 +1684,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Verify the signature of a subject certificate or a CRL using the
-@@ -14436,11 +14715,13 @@
+@@ -14436,11 +14716,13 @@
  WINAPI
  CryptVerifyCertificateSignature(
      _In_opt_ HCRYPTPROV_LEGACY hCryptProv,
@@ -1694,7 +1699,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Verify the signature of a subject certificate, CRL, certificate request
-@@ -14473,12 +14754,12 @@
+@@ -14473,12 +14755,12 @@
  WINAPI
  CryptVerifyCertificateSignatureEx(
      _In_opt_ HCRYPTPROV_LEGACY hCryptProv,
@@ -1709,7 +1714,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _Inout_opt_ void *pvExtra
      );
  
-@@ -14572,6 +14853,8 @@
+@@ -14572,6 +14854,8 @@
  
  #pragma region Desktop Family or OneCore or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP|WINAPI_PARTITION_PHONE_RESTRICTED | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
@@ -1718,7 +1723,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Checks if the specified hash algorithm and the signing certificate's
-@@ -14597,6 +14880,8 @@
+@@ -14597,6 +14881,8 @@
      _In_ LPCWSTR pwszCNGHashAlgid,
      _In_opt_ PCCERT_CONTEXT pSigningCert
      );
@@ -1727,7 +1732,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Compute the hash of the "to be signed" information in the encoded
-@@ -14610,12 +14895,14 @@
+@@ -14610,12 +14896,14 @@
  WINAPI
  CryptHashToBeSigned(
      _In_opt_ HCRYPTPROV_LEGACY hCryptProv,
@@ -1743,7 +1748,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Hash the encoded content.
-@@ -14646,6 +14933,8 @@
+@@ -14646,6 +14934,8 @@
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
  #if (NTDDI_VERSION >= NTDDI_VISTA)
@@ -1752,7 +1757,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Hash the encoded content using the CNG hash algorithm provider.
-@@ -14671,6 +14960,8 @@
+@@ -14671,6 +14961,8 @@
  
  #pragma region Desktop Family or OneCore or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP|WINAPI_PARTITION_PHONE_RESTRICTED | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
@@ -1761,7 +1766,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Sign the "to be signed" information in the encoded signed content.
-@@ -14693,7 +14984,7 @@
+@@ -14693,7 +14985,7 @@
      _In_opt_ HCRYPTPROV_OR_NCRYPT_KEY_HANDLE hCryptProvOrNCryptKey,
  #endif
      _In_opt_ DWORD dwKeySpec,       // not applicable for NCRYPT_KEY_HANDLE
@@ -1770,7 +1775,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _In_reads_bytes_(cbEncodedToBeSigned) const BYTE *pbEncodedToBeSigned,
      _In_ DWORD cbEncodedToBeSigned,
      _In_ PCRYPT_ALGORITHM_IDENTIFIER pSignatureAlgorithm,
-@@ -14701,6 +14992,8 @@
+@@ -14701,6 +14993,8 @@
      _Out_writes_bytes_to_opt_(*pcbSignature, *pcbSignature) BYTE *pbSignature,
      _Inout_ DWORD *pcbSignature
      );
@@ -1779,7 +1784,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Encode the "to be signed" information. Sign the encoded "to be signed".
-@@ -14723,8 +15016,8 @@
+@@ -14723,8 +15017,8 @@
  #else
      _In_opt_ HCRYPTPROV_OR_NCRYPT_KEY_HANDLE hCryptProvOrNCryptKey,
  #endif
@@ -1790,7 +1795,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _In_ LPCSTR lpszStructType,       // "to be signed"
      _In_ const void *pvStructInfo,
      _In_ PCRYPT_ALGORITHM_IDENTIFIER pSignatureAlgorithm,
-@@ -14759,7 +15052,7 @@
+@@ -14759,7 +15053,7 @@
  #define CRYPT_OID_EXTRACT_ENCODED_SIGNATURE_PARAMETERS_FUNC \
      "CryptDllExtractEncodedSignatureParameters"
  typedef BOOL (WINAPI *PFN_CRYPT_EXTRACT_ENCODED_SIGNATURE_PARAMETERS_FUNC)(
@@ -1799,7 +1804,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _In_ PCRYPT_ALGORITHM_IDENTIFIER pSignatureAlgorithm,
      _Outptr_result_maybenull_ void **ppvDecodedSignPara, // LocalFree()
      _Outptr_ LPWSTR *ppwszCNGHashAlgid      // LocalFree()
-@@ -14770,7 +15063,7 @@
+@@ -14770,7 +15064,7 @@
      "CryptDllSignAndEncodeHash"
  typedef BOOL (WINAPI *PFN_CRYPT_SIGN_AND_ENCODE_HASH_FUNC)(
      _In_ NCRYPT_KEY_HANDLE hKey,
@@ -1808,7 +1813,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _In_ PCRYPT_ALGORITHM_IDENTIFIER pSignatureAlgorithm,
      _In_opt_ void *pvDecodedSignPara,
      _In_ LPCWSTR pwszCNGPubKeyAlgid,    // obtained from signature OID
-@@ -14786,7 +15079,7 @@
+@@ -14786,7 +15080,7 @@
  #define CRYPT_OID_VERIFY_ENCODED_SIGNATURE_FUNC \
      "CryptDllVerifyEncodedSignature"
  typedef BOOL (WINAPI *PFN_CRYPT_VERIFY_ENCODED_SIGNATURE_FUNC)(
@@ -1817,7 +1822,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _In_ PCERT_PUBLIC_KEY_INFO pPubKeyInfo,
      _In_ PCRYPT_ALGORITHM_IDENTIFIER pSignatureAlgorithm,
      _In_opt_ void *pvDecodedSignPara,
-@@ -14797,6 +15090,7 @@
+@@ -14797,6 +15091,7 @@
      _In_reads_bytes_(cbSignature) BYTE *pbSignature,
      _In_ DWORD cbSignature
      );
@@ -1825,7 +1830,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  
  //+-------------------------------------------------------------------------
-@@ -14820,6 +15114,7 @@
+@@ -14820,6 +15115,7 @@
  
  #pragma region Desktop Family or OneCore or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP|WINAPI_PARTITION_PHONE_RESTRICTED | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
@@ -1833,7 +1838,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Verify the time validity of a CRL.
-@@ -14836,6 +15131,7 @@
+@@ -14836,6 +15132,7 @@
      _In_opt_ LPFILETIME pTimeToVerify,
      _In_ PCRL_INFO pCrlInfo
      );
@@ -1841,7 +1846,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Verify that the subject's time validity nests within the issuer's time
-@@ -14850,6 +15146,7 @@
+@@ -14850,6 +15147,7 @@
      _In_ PCERT_INFO pSubjectInfo,
      _In_ PCERT_INFO pIssuerInfo
      );
@@ -1849,7 +1854,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Verify that the subject certificate isn't on its issuer CRL.
-@@ -14860,12 +15157,13 @@
+@@ -14860,12 +15158,13 @@
  BOOL
  WINAPI
  CertVerifyCRLRevocation(
@@ -1864,7 +1869,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Convert the CAPI AlgId to the ASN.1 Object Identifier string
-@@ -14878,6 +15176,7 @@
+@@ -14878,6 +15177,7 @@
  CertAlgIdToOID(
      _In_ DWORD dwAlgId
      );
@@ -1872,7 +1877,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Convert the ASN.1 Object Identifier string to the CAPI AlgId.
-@@ -14901,6 +15200,7 @@
+@@ -14901,6 +15201,7 @@
  
  #pragma region Application Family or OneCore or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
@@ -1880,7 +1885,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  WINCRYPT32API
  PCERT_EXTENSION
-@@ -14910,6 +15210,7 @@
+@@ -14910,6 +15211,7 @@
      _In_ DWORD cExtensions,
      _In_reads_(cExtensions) CERT_EXTENSION rgExtensions[]
      );
@@ -1888,7 +1893,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Find the first attribute identified by its Object Identifier.
-@@ -14924,6 +15225,7 @@
+@@ -14924,6 +15226,7 @@
      _In_ DWORD cAttr,
      _In_reads_(cAttr) CRYPT_ATTRIBUTE rgAttr[]
      );
@@ -1896,7 +1901,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Find the first CERT_RDN attribute identified by its Object Identifier in
-@@ -14938,6 +15240,8 @@
+@@ -14938,6 +15241,8 @@
      _In_ LPCSTR pszObjId,
      _In_ PCERT_NAME_INFO pName
      );
@@ -1905,7 +1910,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Get the intended key usage bytes from the certificate.
-@@ -14951,7 +15255,7 @@
+@@ -14951,7 +15256,7 @@
  BOOL
  WINAPI
  CertGetIntendedKeyUsage(
@@ -1914,7 +1919,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _In_ PCERT_INFO pCertInfo,
      _Out_writes_bytes_all_(cbKeyUsage) BYTE *pbKeyUsage,
      _In_ DWORD cbKeyUsage
-@@ -14964,6 +15268,8 @@
+@@ -14964,6 +15269,8 @@
  
  #pragma region Desktop Family or OneCore or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP|WINAPI_PARTITION_PHONE_RESTRICTED | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
@@ -1923,7 +1928,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Install a previously CryptAcquiredContext'ed HCRYPTPROV to be used as
-@@ -14997,9 +15303,9 @@
+@@ -14997,9 +15304,9 @@
  WINAPI
  CryptInstallDefaultContext(
      _In_ HCRYPTPROV hCryptProv,
@@ -1935,7 +1940,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _Reserved_ void *pvReserved,
      _Out_ HCRYPTDEFAULTCONTEXT *phDefaultContext
      );
-@@ -15036,6 +15342,8 @@
+@@ -15036,6 +15343,8 @@
      DWORD               cOID;
      LPSTR               *rgpszOID;
  } CRYPT_DEFAULT_CONTEXT_MULTI_OID_PARA, *PCRYPT_DEFAULT_CONTEXT_MULTI_OID_PARA;
@@ -1944,7 +1949,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Uninstall a default context previously installed by
-@@ -15053,6 +15361,8 @@
+@@ -15053,6 +15362,8 @@
      _In_ DWORD dwFlags,
      _Reserved_ void *pvReserved
      );
@@ -1953,7 +1958,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Export the public key info associated with the provider's corresponding
-@@ -15067,10 +15377,12 @@
+@@ -15067,10 +15378,12 @@
  CryptExportPublicKeyInfo(
      _In_ HCRYPTPROV_OR_NCRYPT_KEY_HANDLE hCryptProvOrNCryptKey,
      _In_opt_ DWORD dwKeySpec,       // not applicable for NCRYPT_KEY_HANDLE
@@ -1968,7 +1973,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Export the public key info associated with the provider's corresponding
-@@ -15107,11 +15419,11 @@
+@@ -15107,11 +15420,11 @@
  CryptExportPublicKeyInfoEx(
      _In_ HCRYPTPROV_OR_NCRYPT_KEY_HANDLE hCryptProvOrNCryptKey,
      _In_opt_ DWORD dwKeySpec,       // not applicable for NCRYPT_KEY_HANDLE
@@ -1982,7 +1987,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _Inout_ DWORD *pcbInfo
      );
  
-@@ -15126,7 +15438,7 @@
+@@ -15126,7 +15439,7 @@
      "CryptDllExportPublicKeyInfoEx2"
  typedef BOOL (WINAPI *PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_EX2_FUNC) (
      _In_ NCRYPT_KEY_HANDLE hNCryptKey,
@@ -1991,7 +1996,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _In_ LPSTR pszPublicKeyObjId,
      _In_ DWORD dwFlags,
      _In_opt_ void *pvAuxInfo,
-@@ -15135,6 +15447,7 @@
+@@ -15135,6 +15448,7 @@
      );
  
  #if (NTDDI_VERSION >= NTDDI_WIN7)
@@ -1999,7 +2004,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Export the public key info associated with the provider's corresponding
-@@ -15161,11 +15474,11 @@
+@@ -15161,11 +15475,11 @@
  WINAPI
  CryptExportPublicKeyInfoFromBCryptKeyHandle(
      _In_ BCRYPT_KEY_HANDLE hBCryptKey,
@@ -2013,7 +2018,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _Inout_ DWORD *pcbInfo
      );
  
-@@ -15178,7 +15491,7 @@
+@@ -15178,7 +15492,7 @@
      "CryptDllExportPublicKeyInfoFromBCryptKeyHandle"
  typedef BOOL (WINAPI *PFN_CRYPT_EXPORT_PUBLIC_KEY_INFO_FROM_BCRYPT_HANDLE_FUNC) (
      _In_ BCRYPT_KEY_HANDLE hBCryptKey,
@@ -2022,7 +2027,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _In_ LPSTR pszPublicKeyObjId,
      _In_ DWORD dwFlags,
      _In_opt_ void *pvAuxInfo,
-@@ -15187,6 +15500,8 @@
+@@ -15187,6 +15501,8 @@
      );
  
  #endif // (NTDDI_VERSION >= NTDDI_WIN7)
@@ -2031,7 +2036,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Convert and import the public key info into the provider and return a
-@@ -15200,7 +15515,7 @@
+@@ -15200,7 +15516,7 @@
  WINAPI
  CryptImportPublicKeyInfo(
      _In_ HCRYPTPROV hCryptProv,
@@ -2040,7 +2045,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _In_ PCERT_PUBLIC_KEY_INFO pInfo,
      _Out_ HCRYPTKEY *phKey
      );
-@@ -15220,13 +15535,15 @@
+@@ -15220,13 +15536,15 @@
  //  Defaults to CALG_RSA_KEYX. The dwFlags and pvAuxInfo aren't used.
  //--------------------------------------------------------------------------
  #define CRYPT_OID_IMPORT_PUBLIC_KEY_INFO_FUNC   "CryptDllImportPublicKeyInfoEx"
@@ -2057,7 +2062,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _In_ PCERT_PUBLIC_KEY_INFO pInfo,
      _In_ ALG_ID aiKeyAlg,
      _In_ DWORD dwFlags,
-@@ -15241,6 +15558,8 @@
+@@ -15241,6 +15559,8 @@
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
  
  #if (NTDDI_VERSION >= NTDDI_VISTA)
@@ -2066,7 +2071,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Convert and import the public key info into the CNG asymmetric or
-@@ -15261,9 +15580,9 @@
+@@ -15261,9 +15581,9 @@
  BOOL
  WINAPI
  CryptImportPublicKeyInfoEx2(
@@ -2078,7 +2083,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _In_opt_ void *pvAuxInfo,
      _Out_ BCRYPT_KEY_HANDLE *phKey
      );
-@@ -15274,7 +15593,7 @@
+@@ -15274,7 +15594,7 @@
  #define CRYPT_OID_IMPORT_PUBLIC_KEY_INFO_EX2_FUNC \
      "CryptDllImportPublicKeyInfoEx2"
  typedef BOOL (WINAPI *PFN_IMPORT_PUBLIC_KEY_INFO_EX2_FUNC) (
@@ -2087,7 +2092,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _In_ PCERT_PUBLIC_KEY_INFO pInfo,
      _In_ DWORD dwFlags,
      _In_opt_ void *pvAuxInfo,
-@@ -15372,16 +15691,18 @@
+@@ -15372,16 +15692,18 @@
  
  #pragma region Application Family or OneCore or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
@@ -2108,7 +2113,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _Out_opt_ BOOL *pfCallerFreeProvOrNCryptKey
      );
  
-@@ -15404,6 +15725,8 @@
+@@ -15404,6 +15726,8 @@
  
  #pragma region Desktop Family or OneCore or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP|WINAPI_PARTITION_PHONE_RESTRICTED | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
@@ -2117,7 +2122,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Enumerates the cryptographic providers and their containers to find the
-@@ -15432,7 +15755,7 @@
+@@ -15432,7 +15756,7 @@
  WINAPI
  CryptFindCertificateKeyProvInfo(
      _In_ PCCERT_CONTEXT pCert,
@@ -2126,7 +2131,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _Reserved_ void *pvReserved
      );
  
-@@ -15463,6 +15786,8 @@
+@@ -15463,6 +15787,8 @@
      );
  
  #define CRYPT_OID_IMPORT_PRIVATE_KEY_INFO_FUNC   "CryptDllImportPrivateKeyInfoEx"
@@ -2135,7 +2140,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  // Convert (from PKCS8 format) and import the private key into a provider
-@@ -15486,7 +15811,7 @@
+@@ -15486,7 +15812,7 @@
  BOOL
  WINAPI
  CryptImportPKCS8(
@@ -2144,7 +2149,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _In_ DWORD dwFlags,                                     // in
      _Out_opt_ HCRYPTPROV *phCryptProv,                      // out, optional
      _In_opt_ void* pvAuxInfo                                // in, optional
-@@ -15508,6 +15833,8 @@
+@@ -15508,6 +15834,8 @@
  #define CRYPT_OID_EXPORT_PRIVATE_KEY_INFO_FUNC   "CryptDllExportPrivateKeyInfoEx"
  
  #define CRYPT_DELETE_KEYSET CRYPT_DELETEKEYSET
@@ -2153,7 +2158,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  //+-------------------------------------------------------------------------
  //  CryptExportPKCS8 -- superseded by CryptExportPKCS8Ex
  //
-@@ -15531,6 +15858,8 @@
+@@ -15531,6 +15859,8 @@
  
  #pragma region Desktop or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PHONE_RESTRICTED | WINAPI_PARTITION_GAMES)
@@ -2162,7 +2167,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  // CryptExportPKCS8Ex
-@@ -15570,6 +15899,8 @@
+@@ -15570,6 +15900,8 @@
  
  #pragma region Application Family or OneCore or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
@@ -2171,7 +2176,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Compute the hash of the encoded public key info.
-@@ -15583,11 +15914,12 @@
+@@ -15583,11 +15915,12 @@
      _In_opt_ HCRYPTPROV_LEGACY hCryptProv,
      _In_ ALG_ID Algid,
      _In_ DWORD dwFlags,
@@ -2185,7 +2190,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Convert a Name Value to a null terminated char string
-@@ -15609,6 +15941,7 @@
+@@ -15609,6 +15942,7 @@
      _Out_writes_to_opt_(csz, return) LPSTR psz,
      _In_ DWORD csz
      );
@@ -2193,7 +2198,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  //+-------------------------------------------------------------------------
  //  Convert a Name Value to a null terminated char string
  //
-@@ -15634,6 +15967,7 @@
+@@ -15634,6 +15968,7 @@
  #else
  #define CertRDNValueToStr  CertRDNValueToStrA
  #endif // !UNICODE
@@ -2201,7 +2206,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Convert the certificate name blob to a null terminated char string.
-@@ -15736,19 +16070,20 @@
+@@ -15736,19 +16071,20 @@
  DWORD
  WINAPI
  CertNameToStrA(
@@ -2226,7 +2231,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _Out_writes_to_opt_(csz, return) LPWSTR psz,
      _In_ DWORD csz
      );
-@@ -15784,6 +16119,8 @@
+@@ -15784,6 +16120,8 @@
  #define CERT_NAME_STR_FORCE_UTF8_DIR_STR_FLAG   0x00080000
  #define CERT_NAME_STR_DISABLE_UTF8_DIR_STR_FLAG 0x00100000
  #define CERT_NAME_STR_ENABLE_PUNYCODE_FLAG      0x00200000
@@ -2235,7 +2240,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  //#define CERT_NAME_STR_RESERVED00800000          0x00800000
  // certenrolld_end
  
-@@ -15902,23 +16239,25 @@
+@@ -15902,23 +16240,25 @@
  BOOL
  WINAPI
  CertStrToNameA(
@@ -2265,7 +2270,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _Reserved_ void *pvReserved,
      _Out_writes_bytes_to_opt_(*pcbEncoded, *pcbEncoded) BYTE *pbEncoded,
      _Inout_ DWORD *pcbEncoded,
-@@ -15929,6 +16268,7 @@
+@@ -15929,6 +16269,7 @@
  #else
  #define CertStrToName  CertStrToNameA
  #endif // !UNICODE
@@ -2273,7 +2278,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  
  //+-------------------------------------------------------------------------
-@@ -16034,6 +16374,7 @@
+@@ -16034,6 +16375,7 @@
      _Out_writes_to_opt_(cchNameString, return) LPSTR pszNameString,
      _In_ DWORD cchNameString
      );
@@ -2281,7 +2286,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  //+-------------------------------------------------------------------------
  //--------------------------------------------------------------------------
  WINCRYPT32API
-@@ -16133,7 +16474,7 @@
+@@ -16133,7 +16475,7 @@
  //--------------------------------------------------------------------------
  typedef PCCERT_CONTEXT (WINAPI *PFN_CRYPT_GET_SIGNER_CERTIFICATE)(
      _Inout_opt_ void *pvGetArg,
@@ -2290,7 +2295,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _In_ PCERT_INFO pSignerId,    // Only the Issuer and SerialNumber
                                  // fields have been updated
      _In_ HCERTSTORE hMsgCertStore
-@@ -16424,6 +16765,8 @@
+@@ -16424,6 +16766,8 @@
  
  #pragma region Desktop Family or OneCore or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP|WINAPI_PARTITION_PHONE_RESTRICTED | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
@@ -2299,7 +2304,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Sign the message.
-@@ -16443,6 +16786,8 @@
+@@ -16443,6 +16787,8 @@
      _Out_writes_bytes_to_opt_(*pcbSignedBlob, *pcbSignedBlob) BYTE *pbSignedBlob,
      _Inout_ DWORD *pcbSignedBlob
      );
@@ -2308,7 +2313,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Verify a signed message.
-@@ -16492,6 +16837,8 @@
+@@ -16492,6 +16838,8 @@
      _Inout_opt_ DWORD *pcbDecoded,
      _Outptr_opt_result_maybenull_ PCCERT_CONTEXT *ppSignerCert
      );
@@ -2317,7 +2322,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Returns the count of signers in the signed message. For no signers, returns
-@@ -16505,6 +16852,8 @@
+@@ -16505,6 +16853,8 @@
      _In_reads_bytes_(cbSignedBlob) const BYTE *pbSignedBlob,
      _In_ DWORD cbSignedBlob
      );
@@ -2326,7 +2331,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Returns the cert store containing the message's certs and CRLs.
-@@ -16520,6 +16869,8 @@
+@@ -16520,6 +16870,8 @@
      _In_reads_bytes_(cbSignedBlob) const BYTE *pbSignedBlob,
      _In_ DWORD cbSignedBlob
      );
@@ -2335,7 +2340,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Verify a signed message containing detached signature(s).
-@@ -16539,6 +16890,8 @@
+@@ -16539,6 +16891,8 @@
      _In_reads_(cToBeSigned) DWORD rgcbToBeSigned[],
      _Outptr_opt_result_maybenull_ PCCERT_CONTEXT *ppSignerCert
      );
@@ -2344,7 +2349,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Encrypts the message for the recipient(s).
-@@ -16555,6 +16908,8 @@
+@@ -16555,6 +16909,8 @@
      _Out_writes_bytes_to_opt_(*pcbEncryptedBlob, *pcbEncryptedBlob) BYTE *pbEncryptedBlob,
      _Inout_ DWORD *pcbEncryptedBlob
      );
@@ -2353,7 +2358,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Decrypts the message.
-@@ -16581,6 +16936,8 @@
+@@ -16581,6 +16937,8 @@
      _Inout_opt_ DWORD *pcbDecrypted,
      _Outptr_opt_result_maybenull_ PCCERT_CONTEXT *ppXchgCert
      );
@@ -2362,7 +2367,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Sign the message and encrypt for the recipient(s). Does a CryptSignMessage
-@@ -16602,6 +16959,8 @@
+@@ -16602,6 +16960,8 @@
      _Out_writes_bytes_to_opt_(*pcbSignedAndEncryptedBlob, *pcbSignedAndEncryptedBlob) BYTE *pbSignedAndEncryptedBlob,
      _Inout_ DWORD *pcbSignedAndEncryptedBlob
      );
@@ -2371,7 +2376,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Decrypts the message and verifies the signer. Does a CryptDecryptMessage
-@@ -16644,6 +17003,8 @@
+@@ -16644,6 +17004,8 @@
      _Outptr_opt_result_maybenull_ PCCERT_CONTEXT *ppXchgCert,
      _Outptr_opt_result_maybenull_ PCCERT_CONTEXT *ppSignerCert
      );
@@ -2380,7 +2385,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Decodes a cryptographic message which may be one of the following types:
-@@ -16695,6 +17056,8 @@
+@@ -16695,6 +17057,8 @@
      _Outptr_opt_result_maybenull_ PCCERT_CONTEXT *ppXchgCert,
      _Outptr_opt_result_maybenull_ PCCERT_CONTEXT *ppSignerCert
      );
@@ -2389,7 +2394,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Hash the message.
-@@ -16720,6 +17083,8 @@
+@@ -16720,6 +17084,8 @@
      _Out_writes_bytes_to_opt_(*pcbComputedHash, *pcbComputedHash) BYTE *pbComputedHash,
      _Inout_opt_ DWORD *pcbComputedHash
      );
@@ -2398,7 +2403,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Verify a hashed message.
-@@ -16739,6 +17104,8 @@
+@@ -16739,6 +17105,8 @@
      _Out_writes_bytes_to_opt_(*pcbComputedHash, *pcbComputedHash) BYTE *pbComputedHash,
      _Inout_opt_ DWORD *pcbComputedHash
      );
@@ -2407,7 +2412,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Verify a hashed message containing a detached hash.
-@@ -16761,6 +17128,8 @@
+@@ -16761,6 +17129,8 @@
      _Out_writes_bytes_to_opt_(*pcbComputedHash, *pcbComputedHash) BYTE *pbComputedHash,
      _Inout_opt_ DWORD *pcbComputedHash
      );
@@ -2416,7 +2421,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Sign the message using the provider's private key specified in the
-@@ -16778,6 +17147,8 @@
+@@ -16778,6 +17148,8 @@
      _Out_writes_bytes_to_opt_(*pcbSignedBlob, *pcbSignedBlob) BYTE *pbSignedBlob,
      _Inout_ DWORD *pcbSignedBlob
      );
@@ -2425,7 +2430,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Verify a signed message using the specified public key info.
-@@ -16809,6 +17180,8 @@
+@@ -16809,6 +17181,8 @@
  
  #pragma region Application Family or Wintrust Package or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_PHONE_RESTRICTED | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
@@ -2434,7 +2439,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+=========================================================================
  //  System Certificate Store Data Structures and APIs
-@@ -16843,6 +17216,8 @@
+@@ -16843,6 +17217,8 @@
      _In_opt_ HCRYPTPROV_LEGACY      hProv,
      _In_ LPCSTR            szSubsystemProtocol
      );
@@ -2443,7 +2448,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  WINCRYPT32API
  HCERTSTORE
  WINAPI
-@@ -16861,6 +17236,8 @@
+@@ -16861,6 +17237,8 @@
  
  #pragma region Desktop Family or OneCore or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP|WINAPI_PARTITION_PHONE_RESTRICTED | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
@@ -2452,7 +2457,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  WINCRYPT32API
  BOOL
-@@ -16870,6 +17247,8 @@
+@@ -16870,6 +17248,8 @@
      _In_reads_bytes_(cbCertEncoded) const BYTE *    pbCertEncoded,
      _In_ DWORD           cbCertEncoded
      );
@@ -2461,7 +2466,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  WINCRYPT32API
  BOOL
  WINAPI
-@@ -17054,6 +17433,8 @@
+@@ -17054,6 +17434,8 @@
  //
  //                      If the content type is CERT_QUERY_CONTENT_CTL or
  //                      CERT_QUERY_CONTENT_SERIALIZED_CTL, it is a PCCTL_CONTEXT;
@@ -2470,7 +2475,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  //                      Caller should free the pContext via CertFreeCTLContext.
  //
  //  If the *pbObject is of type CERT_QUERY_CONTENT_PKCS10 or CERT_QUERY_CONTENT_PFX, CryptQueryObject
-@@ -17063,14 +17444,14 @@
+@@ -17063,14 +17445,14 @@
  BOOL
  WINAPI
  CryptQueryObject(
@@ -2491,7 +2496,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _Out_opt_ HCERTSTORE          *phCertStore,
      _Out_opt_ HCRYPTMSG           *phMsg,
      _Outptr_opt_result_maybenull_ const void **ppvContext
-@@ -17239,6 +17620,7 @@
+@@ -17239,6 +17621,7 @@
  
  #pragma region Desktop Family or OneCore or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP|WINAPI_PARTITION_PHONE_RESTRICTED | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
@@ -2499,7 +2504,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //
  // Crypt32 Memory Management Routines.  All Crypt32 API which return allocated
-@@ -17252,6 +17634,7 @@
+@@ -17252,6 +17635,7 @@
  CryptMemAlloc (
      _In_ ULONG cbSize
      );
@@ -2507,7 +2512,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  WINCRYPT32API
  LPVOID
-@@ -17260,6 +17643,7 @@
+@@ -17260,6 +17644,7 @@
      _In_opt_ LPVOID pv,
      _In_ ULONG cbSize
      );
@@ -2515,7 +2520,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  WINCRYPT32API
  VOID
-@@ -17742,6 +18126,7 @@
+@@ -17742,6 +18127,7 @@
  
  #pragma region Desktop Family or OneCore or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP|WINAPI_PARTITION_PHONE_RESTRICTED | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
@@ -2523,7 +2528,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  WINCRYPT32API
  _Success_(return == TRUE)
-@@ -17758,6 +18143,7 @@
+@@ -17758,6 +18144,7 @@
      _In_opt_ LPVOID pvVerify,
      _Inout_opt_ PCRYPT_RETRIEVE_AUX_INFO pAuxInfo
      );
@@ -2531,7 +2536,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  WINCRYPT32API
  _Success_(return == TRUE)
  BOOL
-@@ -17901,6 +18287,8 @@
+@@ -17901,6 +18288,8 @@
      DWORD   cGroup;
      DWORD   *rgcGroupEntry;
  } CRYPT_URL_INFO, *PCRYPT_URL_INFO;
@@ -2540,7 +2545,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  WINCRYPT32API
  BOOL
-@@ -17908,8 +18296,8 @@
+@@ -17908,8 +18297,8 @@
  CryptGetObjectUrl (
      _In_ LPCSTR pszUrlOid,
      _In_ LPVOID pvPara,
@@ -2551,7 +2556,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _Inout_ DWORD* pcbUrlArray,
      _Out_writes_bytes_to_opt_(*pcbUrlInfo, *pcbUrlInfo) PCRYPT_URL_INFO pUrlInfo,
      _Inout_opt_ DWORD* pcbUrlInfo,
-@@ -18090,6 +18478,8 @@
+@@ -18090,6 +18479,8 @@
  
  } CRYPT_GET_TIME_VALID_OBJECT_EXTRA_INFO,
      *PCRYPT_GET_TIME_VALID_OBJECT_EXTRA_INFO;
@@ -2560,7 +2565,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  WINCRYPT32API
  _Success_(return == TRUE)
-@@ -18194,6 +18584,8 @@
+@@ -18194,6 +18585,8 @@
  
  #pragma region Application Family or OneCore or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
@@ -2569,7 +2574,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+=========================================================================
  //  Helper functions to build certificates
-@@ -18241,7 +18633,7 @@
+@@ -18241,7 +18634,7 @@
  CertCreateSelfSignCertificate(
      _In_opt_  HCRYPTPROV_OR_NCRYPT_KEY_HANDLE hCryptProvOrNCryptKey,
      _In_      PCERT_NAME_BLOB             pSubjectIssuerBlob,
@@ -2578,7 +2583,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _In_opt_  PCRYPT_KEY_PROV_INFO        pKeyProvInfo,
      _In_opt_  PCRYPT_ALGORITHM_IDENTIFIER pSignatureAlgorithm,
      _In_opt_  PSYSTEMTIME                 pStartTime,
-@@ -18257,6 +18649,8 @@
+@@ -18257,6 +18650,8 @@
  
  #pragma region Desktop Family or OneCore or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP|WINAPI_PARTITION_PHONE_RESTRICTED | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
@@ -2587,7 +2592,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+=========================================================================
  //  Key Identifier Property Data Structures and APIs
-@@ -18307,6 +18701,8 @@
+@@ -18307,6 +18702,8 @@
  // When the following flag is set, *pvData is updated with a pointer to
  // allocated memory. LocalFree() must be called to free the allocated memory.
  #define CRYPT_KEYID_ALLOC_FLAG          0x00008000
@@ -2596,7 +2601,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  
  //+-------------------------------------------------------------------------
-@@ -18365,6 +18761,8 @@
+@@ -18365,6 +18762,8 @@
      _In_reads_(cProp) void **rgpvData,
      _In_reads_(cProp) DWORD *rgcbData
      );
@@ -2605,7 +2610,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Enumerate the Key Identifiers.
-@@ -18392,6 +18790,8 @@
+@@ -18392,6 +18791,8 @@
      _Inout_opt_ void *pvArg,
      __callback PFN_CRYPT_ENUM_KEYID_PROP pfnEnum
      );
@@ -2614,7 +2619,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Create a KeyIdentifier from the CSP Public Key Blob.
-@@ -18408,7 +18808,7 @@
+@@ -18408,7 +18809,7 @@
  BOOL
  WINAPI
  CryptCreateKeyIdentifierFromCSP(
@@ -2623,7 +2628,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _In_opt_ LPCSTR pszPubKeyOID,
      _In_reads_bytes_(cbPubKeyStruc) const PUBLICKEYSTRUC *pPubKeyStruc,
      _In_ DWORD cbPubKeyStruc,
-@@ -19535,6 +19935,8 @@
+@@ -19535,6 +19936,8 @@
  // can terminate in a trusted CA certificate.
  #define CERT_CHAIN_EXCLUSIVE_ENABLE_CA_FLAG                 0x00000001
  #endif
@@ -2632,7 +2637,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  WINCRYPT32API
  _Success_(return != FALSE)
-@@ -19544,6 +19946,7 @@
+@@ -19544,6 +19947,7 @@
      _In_ PCERT_CHAIN_ENGINE_CONFIG pConfig,
      _Out_ HCERTCHAINENGINE* phChainEngine
      );
@@ -2640,7 +2645,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //
  // Free a certificate trust engine
-@@ -19555,6 +19958,8 @@
+@@ -19555,6 +19959,8 @@
  CertFreeCertificateChainEngine (
      _In_opt_ HCERTCHAINENGINE hChainEngine
      );
@@ -2649,7 +2654,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //
  // Resync the certificate chain engine.  This resync's the stores backing
-@@ -20000,6 +20405,8 @@
+@@ -20000,6 +20406,8 @@
  // CERT_TRUST_BEFORE_DISALLOWED_CA_FILETIME is set in the
  // dwInfoStatus.
  #define CERT_CHAIN_ENABLE_DISALLOWED_CA             0x00020000
@@ -2658,7 +2663,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  WINCRYPT32API
  _Success_(return != FALSE)
-@@ -20015,6 +20422,7 @@
+@@ -20015,6 +20423,7 @@
      _Reserved_ LPVOID pvReserved,
      _Out_ PCCERT_CHAIN_CONTEXT* ppChainContext
      );
@@ -2666,7 +2671,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //
  // Free a certificate chain
-@@ -20026,6 +20434,7 @@
+@@ -20026,6 +20435,7 @@
  CertFreeCertificateChain (
      _In_ PCCERT_CHAIN_CONTEXT pChainContext
      );
@@ -2674,7 +2679,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //
  // Duplicate (add a reference to) a certificate chain
-@@ -20089,6 +20498,7 @@
+@@ -20089,6 +20499,7 @@
  
  #pragma region Desktop Family or OneCore or Games Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP|WINAPI_PARTITION_PHONE_RESTRICTED | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
@@ -2682,7 +2687,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Find the first or next certificate chain context in the store.
-@@ -20116,8 +20526,8 @@
+@@ -20116,8 +20527,8 @@
  WINAPI
  CertFindChainInStore(
      _In_ HCERTSTORE hCertStore,
@@ -2693,7 +2698,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _In_ DWORD dwFindType,
      _In_opt_ const void *pvFindPara,
      _In_opt_ PCCERT_CHAIN_CONTEXT pPrevChainContext
-@@ -20321,6 +20731,7 @@
+@@ -20321,6 +20732,7 @@
  #define CERT_CHAIN_POLICY_IGNORE_NOT_SUPPORTED_CRITICAL_EXT_FLAG    0x00002000
  #define CERT_CHAIN_POLICY_IGNORE_PEER_TRUST_FLAG                    0x00001000
  #define CERT_CHAIN_POLICY_IGNORE_WEAK_SIGNATURE_FLAG                0x08000000
@@ -2701,7 +2706,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  
  //+-------------------------------------------------------------------------
-@@ -20832,6 +21243,8 @@
+@@ -20832,6 +21244,8 @@
  
  // OpenSSL Warnings
  #define CERT_CHAIN_POLICY_CT_WARNING_CANNOT_CREATE_POLICY                    300
@@ -2710,7 +2715,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  //+-------------------------------------------------------------------------
  // convert formatted string to binary
  // If cchString is 0, then pszString is NULL terminated and
-@@ -20850,7 +21263,7 @@
+@@ -20850,7 +21264,7 @@
      _When_(dwFlags == CRYPT_STRING_BINARY, _In_reads_bytes_(cchString))
          LPCSTR pszString,
      _In_ DWORD cchString,
@@ -2719,7 +2724,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _Out_writes_bytes_to_opt_(*pcbBinary, *pcbBinary) BYTE *pbBinary,
      _Inout_ DWORD  *pcbBinary,
      _Out_opt_ DWORD *pdwSkip,
-@@ -20858,6 +21271,8 @@
+@@ -20858,6 +21272,8 @@
      );
  // OpenSSL Warnings
  #define CERT_CHAIN_POLICY_CT_WARNING_CANNOT_CREATE_POLICY                    300
@@ -2728,7 +2733,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  //+-------------------------------------------------------------------------
  // convert formatted string to binary
  // If cchString is 0, then pszString is NULL terminated and
-@@ -20876,7 +21291,7 @@
+@@ -20876,7 +21292,7 @@
      _When_(dwFlags == CRYPT_STRING_BINARY, _In_reads_bytes_(cchString))
          LPCWSTR pszString,
      _In_ DWORD cchString,
@@ -2737,7 +2742,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _Out_writes_bytes_to_opt_(*pcbBinary, *pcbBinary) BYTE *pbBinary,
      _Inout_ DWORD  *pcbBinary,
      _Out_opt_ DWORD *pdwSkip,
-@@ -20887,6 +21302,7 @@
+@@ -20887,6 +21303,7 @@
  #else
  #define CryptStringToBinary  CryptStringToBinaryA
  #endif // !UNICODE
@@ -2745,7 +2750,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  // convert binary to formatted string
-@@ -20901,10 +21317,11 @@
+@@ -20901,10 +21318,11 @@
  CryptBinaryToStringA(
      _In_reads_bytes_(cbBinary) CONST BYTE *pbBinary,
      _In_ DWORD cbBinary,
@@ -2758,7 +2763,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  //+-------------------------------------------------------------------------
  // convert binary to formatted string
  // dwFlags defines string format
-@@ -20918,7 +21335,7 @@
+@@ -20918,7 +21336,7 @@
  CryptBinaryToStringW(
      _In_reads_bytes_(cbBinary) CONST BYTE *pbBinary,
      _In_ DWORD cbBinary,
@@ -2767,7 +2772,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _Out_writes_to_opt_(*pcchString, *pcchString) LPWSTR pszString,
      _Inout_ DWORD *pcchString
      );
-@@ -21018,6 +21435,8 @@
+@@ -21018,6 +21436,8 @@
      ULONG               cbSalt;             /* byte size of the salt        */
  }
  CRYPT_PKCS12_PBE_PARAMS;
@@ -2776,7 +2781,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //      PFXImportCertStore
-@@ -21073,7 +21492,7 @@
+@@ -21073,7 +21493,7 @@
  PFXImportCertStore(
      _In_ CRYPT_DATA_BLOB* pPFX,
      _In_ LPCWSTR szPassword,
@@ -2785,7 +2790,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  // dwFlags definitions for PFXImportCertStore
  //#define CRYPT_EXPORTABLE          0x00000001  // CryptImportKey dwFlags
-@@ -21102,6 +21521,7 @@
+@@ -21102,6 +21522,7 @@
  #define PKCS12_ONLY_CERTIFICATES_PROVIDER_TYPE  0
  #define PKCS12_ONLY_CERTIFICATES_PROVIDER_NAME  L"PfxProvider"
  #define PKCS12_ONLY_CERTIFICATES_CONTAINER_NAME L"PfxContainer"
@@ -2793,7 +2798,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //      PFXIsPFXBlob
-@@ -21115,6 +21535,7 @@
+@@ -21115,6 +21536,7 @@
  WINAPI
  PFXIsPFXBlob(
      _In_ CRYPT_DATA_BLOB* pPFX);
@@ -2801,7 +2806,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //      PFXVerifyPassword
-@@ -21133,6 +21554,8 @@
+@@ -21133,6 +21555,8 @@
      _In_ CRYPT_DATA_BLOB* pPFX,
      _In_ LPCWSTR szPassword,
      _In_ DWORD dwFlags);
@@ -2810,7 +2815,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //      PFXExportCertStoreEx
-@@ -21255,6 +21678,8 @@
+@@ -21255,6 +21679,8 @@
  // to change the default to enable encrypting the certificates.
  #define PKCS12_ENCRYPT_CERTIFICATES_VALUE_NAME \
      L"EncryptCertificates"
@@ -2819,7 +2824,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //      PFXExportCertStore
-@@ -21358,6 +21783,8 @@
+@@ -21358,6 +21784,8 @@
  // pwszOcspDirectory.
  #define CERT_SERVER_OCSP_RESPONSE_OPEN_PARA_READ_FLAG       0x00000001
  #define CERT_SERVER_OCSP_RESPONSE_OPEN_PARA_WRITE_FLAG      0x00000002
@@ -2828,7 +2833,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Open a handle to an OCSP response associated with a server certificate
-@@ -21395,6 +21822,7 @@
+@@ -21395,6 +21823,7 @@
  // Set this flag to return immediately without making the initial
  // synchronous retrieval
  #define CERT_SERVER_OCSP_RESPONSE_ASYNC_FLAG        0x00000001
@@ -2836,7 +2841,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  AddRef a HCERT_SERVER_OCSP_RESPONSE returned by
-@@ -21407,6 +21835,7 @@
+@@ -21407,6 +21836,7 @@
  CertAddRefServerOcspResponse(
      _In_opt_ HCERT_SERVER_OCSP_RESPONSE hServerOcspResponse
      );
@@ -2844,7 +2849,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Close the handle returned by CertOpenServerOcspResponse() or AddRef'ed
-@@ -21421,6 +21850,7 @@
+@@ -21421,6 +21851,7 @@
      _In_opt_ HCERT_SERVER_OCSP_RESPONSE hServerOcspResponse,
      _In_ DWORD dwFlags
      );
@@ -2852,7 +2857,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  
  //+-------------------------------------------------------------------------
-@@ -21443,6 +21873,7 @@
+@@ -21443,6 +21874,7 @@
      _In_ DWORD dwFlags,
      _Reserved_ LPVOID pvReserved
      );
@@ -2860,7 +2865,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  AddRef a PCCERT_SERVER_OCSP_RESPONSE_CONTEXT returned by
-@@ -21455,6 +21886,7 @@
+@@ -21455,6 +21887,7 @@
  CertAddRefServerOcspResponseContext(
      _In_opt_ PCCERT_SERVER_OCSP_RESPONSE_CONTEXT pServerOcspResponseContext
      );
@@ -2868,7 +2873,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Free the OCSP response context returned by
-@@ -21468,6 +21900,7 @@
+@@ -21468,6 +21901,7 @@
      );
  
  #endif // (NTDDI_VERSION >= NTDDI_VISTA)
@@ -2876,7 +2881,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  
  //+-------------------------------------------------------------------------
-@@ -21574,7 +22007,7 @@
+@@ -21574,7 +22008,7 @@
  
  typedef struct _CERT_SELECT_CRITERIA
  {
@@ -2885,7 +2890,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      DWORD                           cPara;
      _Field_size_(cPara) void**    ppPara;
  }
-@@ -21603,6 +22036,7 @@
+@@ -21603,6 +22037,7 @@
  
  #define CERT_SELECT_LAST                    CERT_SELECT_BY_TLS_SIGNATURES
  #define CERT_SELECT_MAX                     (CERT_SELECT_LAST * 3)
@@ -2893,7 +2898,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  // Selection Flags
  
-@@ -21615,6 +22049,8 @@
+@@ -21615,6 +22050,8 @@
  #define CERT_SELECT_HARDWARE_ONLY                   0x00000040
  #define CERT_SELECT_ALLOW_DUPLICATES                0x00000080
  #define CERT_SELECT_IGNORE_AUTOSELECT               0x00000100
@@ -2902,7 +2907,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Build certificate chains from the certificates in the store and select
-@@ -21635,6 +22071,7 @@
+@@ -21635,6 +22072,7 @@
      _Out_ PDWORD pcSelection,
      _Outptr_result_buffer_(*pcSelection) PCCERT_CHAIN_CONTEXT** pprgpSelection
      );
@@ -2910,7 +2915,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  Free the array of pointers to chain contexts.
-@@ -21777,6 +22214,8 @@
+@@ -21777,6 +22215,8 @@
      _Field_size_(cExtension)
      PCERT_EXTENSION             rgExtension;                // OPTIONAL
  } CRYPT_TIMESTAMP_PARA, *PCRYPT_TIMESTAMP_PARA;
@@ -2919,7 +2924,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  //  CryptRetrieveTimeStamp
-@@ -21847,6 +22286,8 @@
+@@ -21847,6 +22287,8 @@
  // Set this flag to inhibit automatic authentication handling. See the
  // wininet flag, INTERNET_FLAG_NO_AUTH, for more details.
  #define TIMESTAMP_NO_AUTH_RETRIEVAL             0x00020000  //  CRYPT_NO_AUTH_RETRIEVAL
@@ -2928,7 +2933,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
  
  //+-------------------------------------------------------------------------
  // CryptVerifyTimeStampSignature
-@@ -22023,7 +22464,7 @@
+@@ -22023,7 +22465,7 @@
  //    it is initialized. 
  //--------------------------------------------------------------------------
  typedef void (WINAPI * PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_RELEASE)(
@@ -2937,7 +2942,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wincrypt.h b/generation/W
      _In_opt_ LPVOID pPluginContext);
  
  
-@@ -22217,3 +22658,84 @@
+@@ -22217,3 +22659,84 @@
  #pragma endregion
  
  #endif // __WINCRYPT_H__

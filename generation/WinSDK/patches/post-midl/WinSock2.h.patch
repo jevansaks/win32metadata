@@ -489,7 +489,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinSock2.h b/generation/W
  WINSOCK_API_LINKAGE
  BOOL
  WSAAPI
-@@ -3519,6 +3576,7 @@
+@@ -3482,6 +3539,7 @@
+ #endif /* INCL_WINSOCK_API_TYPEDEFS */
+ 
+ #if INCL_WINSOCK_API_PROTOTYPES
++_Win32_PreserveResult_
+ WINSOCK_API_LINKAGE
+ DWORD
+ WSAAPI
+@@ -3519,6 +3577,7 @@
      _Out_writes_to_(*lpdwAddressStringLength,*lpdwAddressStringLength) LPSTR lpszAddressString,
      _Inout_  LPDWORD             lpdwAddressStringLength
      );
@@ -497,7 +505,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinSock2.h b/generation/W
  
  WINSOCK_API_LINKAGE
  INT
-@@ -3578,6 +3636,7 @@
+@@ -3578,6 +3637,7 @@
      _Out_writes_bytes_to_(*lpAddressLength,*lpAddressLength) LPSOCKADDR lpAddress,
      _Inout_ LPINT               lpAddressLength
      );
@@ -505,7 +513,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinSock2.h b/generation/W
  
  WINSOCK_API_LINKAGE
  INT
-@@ -3638,6 +3697,7 @@
+@@ -3638,6 +3698,7 @@
      _In_ DWORD          dwControlFlags,
      _Out_ LPHANDLE       lphLookup
      );
@@ -513,7 +521,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinSock2.h b/generation/W
  
  WINSOCK_API_LINKAGE
  INT
-@@ -3688,8 +3748,9 @@
+@@ -3688,8 +3749,9 @@
      _In_ HANDLE           hLookup,
      _In_ DWORD            dwControlFlags,
      _Inout_ LPDWORD       lpdwBufferLength,
@@ -525,7 +533,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinSock2.h b/generation/W
  
  WINSOCK_API_LINKAGE
  INT
-@@ -3698,7 +3759,7 @@
+@@ -3698,7 +3760,7 @@
      _In_ HANDLE           hLookup,
      _In_ DWORD            dwControlFlags,
      _Inout_ LPDWORD       lpdwBufferLength,
@@ -534,7 +542,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinSock2.h b/generation/W
      );
  #ifdef UNICODE
  #define WSALookupServiceNext  WSALookupServiceNextW
-@@ -3735,6 +3796,7 @@
+@@ -3735,6 +3797,7 @@
  
  #if(_WIN32_WINNT >= 0x0501)
  #if INCL_WINSOCK_API_PROTOTYPES
@@ -542,7 +550,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinSock2.h b/generation/W
  WINSOCK_API_LINKAGE
  INT
  WSAAPI
-@@ -3767,6 +3829,7 @@
+@@ -3767,6 +3830,7 @@
  #endif //(_WIN32_WINNT >= 0x0501)
  
  #if INCL_WINSOCK_API_PROTOTYPES
@@ -550,7 +558,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinSock2.h b/generation/W
  WINSOCK_API_LINKAGE
  INT
  WSAAPI
-@@ -3794,6 +3857,7 @@
+@@ -3794,6 +3858,7 @@
  WSAInstallServiceClassA(
      _In_  LPWSASERVICECLASSINFOA   lpServiceClassInfo
      );
@@ -558,7 +566,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinSock2.h b/generation/W
  WINSOCK_API_LINKAGE
  INT
  WSAAPI
-@@ -3826,6 +3890,7 @@
+@@ -3826,6 +3891,7 @@
  #endif /* INCL_WINSOCK_API_TYPEDEFS */
  
  #if INCL_WINSOCK_API_PROTOTYPES
@@ -566,7 +574,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinSock2.h b/generation/W
  WINSOCK_API_LINKAGE
  INT
  WSAAPI
-@@ -3860,6 +3925,7 @@
+@@ -3860,6 +3926,7 @@
      );
  #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM) */
  #pragma endregion
@@ -574,7 +582,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinSock2.h b/generation/W
  
  WINSOCK_API_LINKAGE
  INT
-@@ -3913,15 +3979,16 @@
+@@ -3913,15 +3980,16 @@
  WSAAPI
  WSAEnumNameSpaceProvidersA(
      _Inout_ LPDWORD             lpdwBufferLength,
@@ -594,7 +602,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinSock2.h b/generation/W
      );
  
  #ifdef UNICODE
-@@ -3937,15 +4004,16 @@
+@@ -3937,15 +4005,16 @@
  WSAAPI
  WSAEnumNameSpaceProvidersExA(
      _Inout_ LPDWORD             lpdwBufferLength,
@@ -614,7 +622,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinSock2.h b/generation/W
      );
  
  #ifdef UNICODE
-@@ -4017,6 +4085,7 @@
+@@ -4017,6 +4086,7 @@
      );
  #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM) */
  #pragma endregion
@@ -622,7 +630,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinSock2.h b/generation/W
  
  WINSOCK_API_LINKAGE
  _Success_(return == 0) INT
-@@ -4070,6 +4139,7 @@
+@@ -4070,6 +4140,7 @@
      _In_ WSAESETSERVICEOP essoperation,
      _In_ DWORD dwControlFlags
      );
@@ -630,7 +638,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinSock2.h b/generation/W
  
  WINSOCK_API_LINKAGE
  INT
-@@ -4110,6 +4180,7 @@
+@@ -4110,6 +4181,7 @@
  #endif /* INCL_WINSOCK_API_TYPEDEFS */
  
  #if INCL_WINSOCK_API_PROTOTYPES
@@ -638,7 +646,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinSock2.h b/generation/W
  WINSOCK_API_LINKAGE
  INT
  WSAAPI
-@@ -4132,6 +4203,7 @@
+@@ -4132,6 +4204,7 @@
  
  #if(_WIN32_WINNT >= 0x0600)
  #if INCL_WINSOCK_API_PROTOTYPES
@@ -646,7 +654,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WinSock2.h b/generation/W
  WINSOCK_API_LINKAGE
  int
  WSAAPI
-@@ -4332,3 +4404,12 @@
+@@ -4332,3 +4405,12 @@
  
  #endif  /* _WINSOCK2API_ */
  

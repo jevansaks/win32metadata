@@ -1709,6 +1709,7 @@ _Win32_SupportedOS_WindowsXP_
 ///
 ////////////////////////////////////////////////////////////////////////
 
+_Win32_PreserveResult_
 KSECDDDECLSPEC
 SECURITY_STATUS SEC_ENTRY
 InitializeSecurityContextW(
@@ -1751,6 +1752,7 @@ typedef SECURITY_STATUS
 
 // end_ntifs
 
+_Win32_PreserveResult_
 SECURITY_STATUS SEC_ENTRY
 InitializeSecurityContextA(
     _In_opt_    PCredHandle phCredential,               // Cred to base context
@@ -1793,6 +1795,7 @@ _Win32_SupportedOS_WindowsVista_
 
 // begin_ntifs
 
+_Win32_PreserveResult_
 KSECDDDECLSPEC
 SECURITY_STATUS SEC_ENTRY
 AcceptSecurityContext(
@@ -2224,6 +2227,7 @@ typedef SECURITY_STATUS
 #define SECQOP_WRAP_NO_ENCRYPT      0x80000001
 #define SECQOP_WRAP_OOB_DATA        0x40000000
 
+_Win32_PreserveResult_
 SECURITY_STATUS SEC_ENTRY
 EncryptMessage( _In_    PCtxtHandle         phContext,
                 _In_    unsigned long       fQOP,
@@ -2235,6 +2239,7 @@ typedef SECURITY_STATUS
     PCtxtHandle, unsigned long, PSecBufferDesc, unsigned long);
 
 
+_Win32_PreserveResult_
 SECURITY_STATUS SEC_ENTRY
 DecryptMessage( _In_      PCtxtHandle         phContext,
                 _In_      PSecBufferDesc      pMessage,
@@ -2834,6 +2839,7 @@ SaslIdentifyPackageW(
 #endif
 _Win32_SupportedOS_Server2003_
 
+_Win32_PreserveResult_
 SECURITY_STATUS
 SEC_ENTRY
 SaslInitializeSecurityContextW(
@@ -2852,6 +2858,7 @@ SaslInitializeSecurityContextW(
     );
 _Win32_SupportedOS_Server2003_
 
+_Win32_PreserveResult_
 SECURITY_STATUS
 SEC_ENTRY
 SaslInitializeSecurityContextA(
@@ -2877,6 +2884,7 @@ SaslInitializeSecurityContextA(
 _Win32_SupportedOS_Server2003_
 
 
+_Win32_PreserveResult_
 SECURITY_STATUS
 SEC_ENTRY
 SaslAcceptSecurityContext(

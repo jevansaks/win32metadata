@@ -11722,6 +11722,7 @@ _Win32_SupportedOS_WindowsXP_
 //  CertSetCertificateContextProperty and CertGetCertificateContextProperty can be called
 //  to store properties for the certificate.
 //--------------------------------------------------------------------------
+_Win32_PreserveResult_
 WINCRYPT32API
 PCCERT_CONTEXT
 WINAPI

@@ -234,7 +234,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/synchapi.h b/generation/W
  
  WINBASEAPI
  BOOL
-@@ -353,6 +392,7 @@
+@@ -346,6 +385,7 @@
+     _In_ HANDLE hMutex
+     );
+ 
++_Win32_PreserveResult_
+ WINBASEAPI
+ DWORD
+ WINAPI
+@@ -353,6 +393,7 @@
      _In_ HANDLE hHandle,
      _In_ DWORD dwMilliseconds
      );
@@ -242,7 +250,23 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/synchapi.h b/generation/W
  
  WINBASEAPI
  DWORD
-@@ -388,6 +428,8 @@
+@@ -362,6 +403,7 @@
+     _In_ BOOL bAlertable
+     );
+ 
++_Win32_PreserveResult_
+ WINBASEAPI
+ DWORD
+ WINAPI
+@@ -371,6 +413,7 @@
+     _In_ BOOL bAlertable
+     );
+ 
++_Win32_PreserveResult_
+ WINBASEAPI
+ DWORD
+ WINAPI
+@@ -388,6 +431,8 @@
  
  #define MUTEX_MODIFY_STATE  MUTANT_QUERY_STATE
  #define MUTEX_ALL_ACCESS    MUTANT_ALL_ACCESS
@@ -251,7 +275,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/synchapi.h b/generation/W
  
  WINBASEAPI
  _Ret_maybenull_
-@@ -398,6 +440,8 @@
+@@ -398,6 +443,8 @@
      _In_ BOOL bInitialOwner,
      _In_opt_ LPCSTR lpName
      );
@@ -260,7 +284,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/synchapi.h b/generation/W
  
  WINBASEAPI
  _Ret_maybenull_
-@@ -414,6 +458,8 @@
+@@ -414,6 +461,8 @@
  #else
  #define CreateMutex  CreateMutexA
  #endif // !UNICODE
@@ -269,7 +293,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/synchapi.h b/generation/W
  
  WINBASEAPI
  _Ret_maybenull_
-@@ -428,6 +474,8 @@
+@@ -428,6 +477,8 @@
  #ifdef UNICODE
  #define OpenMutex  OpenMutexW
  #endif
@@ -278,7 +302,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/synchapi.h b/generation/W
  
  WINBASEAPI
  _Ret_maybenull_
-@@ -439,6 +487,8 @@
+@@ -439,6 +490,8 @@
      _In_ BOOL bInitialState,
      _In_opt_ LPCSTR lpName
      );
@@ -287,7 +311,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/synchapi.h b/generation/W
  
  WINBASEAPI
  _Ret_maybenull_
-@@ -456,6 +506,8 @@
+@@ -456,6 +509,8 @@
  #else
  #define CreateEvent  CreateEventA
  #endif // !UNICODE
@@ -296,7 +320,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/synchapi.h b/generation/W
  
  WINBASEAPI
  _Ret_maybenull_
-@@ -466,6 +518,8 @@
+@@ -466,6 +521,8 @@
      _In_ BOOL bInheritHandle,
      _In_ LPCSTR lpName
      );
@@ -305,7 +329,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/synchapi.h b/generation/W
  
  WINBASEAPI
  _Ret_maybenull_
-@@ -482,6 +536,8 @@
+@@ -482,6 +539,8 @@
  #else
  #define OpenEvent  OpenEventA
  #endif // !UNICODE
@@ -314,7 +338,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/synchapi.h b/generation/W
  
  WINBASEAPI
  _Ret_maybenull_
-@@ -506,6 +562,8 @@
+@@ -506,6 +565,8 @@
      _In_     DWORD dwTimerLowValue,
      _In_     DWORD dwTimerHighValue
      );
@@ -323,7 +347,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/synchapi.h b/generation/W
  
  WINBASEAPI
  _Ret_maybenull_
-@@ -522,6 +580,8 @@
+@@ -522,6 +583,8 @@
  #endif
  
  #if (_WIN32_WINNT >= _WIN32_WINNT_WIN7)
@@ -332,7 +356,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/synchapi.h b/generation/W
  
  BOOL
  WINAPI
-@@ -536,6 +596,8 @@
+@@ -536,6 +599,8 @@
      );
  
  #endif // (_WIN32_WINNT >= _WIN32_WINNT_WIN7)
@@ -341,7 +365,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/synchapi.h b/generation/W
  
  WINBASEAPI
  BOOL
-@@ -548,6 +610,8 @@
+@@ -548,6 +613,8 @@
      _In_opt_ LPVOID lpArgToCompletionRoutine,
      _In_ BOOL fResume
      );
@@ -350,7 +374,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/synchapi.h b/generation/W
  
  WINBASEAPI
  BOOL
-@@ -559,6 +623,8 @@
+@@ -559,6 +626,8 @@
  #if (_WIN32_WINNT >= 0x0600)
  
  #define CREATE_MUTEX_INITIAL_OWNER  0x00000001
@@ -359,7 +383,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/synchapi.h b/generation/W
  
  WINBASEAPI
  _Ret_maybenull_
-@@ -570,6 +636,8 @@
+@@ -570,6 +639,8 @@
      _In_ DWORD dwFlags,
      _In_ DWORD dwDesiredAccess
      );
@@ -368,7 +392,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/synchapi.h b/generation/W
  
  WINBASEAPI
  _Ret_maybenull_
-@@ -590,6 +658,8 @@
+@@ -590,6 +661,8 @@
  
  #define CREATE_EVENT_MANUAL_RESET   0x00000001
  #define CREATE_EVENT_INITIAL_SET    0x00000002
@@ -377,7 +401,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/synchapi.h b/generation/W
  
  WINBASEAPI
  _Ret_maybenull_
-@@ -598,9 +668,11 @@
+@@ -598,9 +671,11 @@
  CreateEventExA(
      _In_opt_ LPSECURITY_ATTRIBUTES lpEventAttributes,
      _In_opt_ LPCSTR lpName,
@@ -390,7 +414,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/synchapi.h b/generation/W
  
  WINBASEAPI
  _Ret_maybenull_
-@@ -609,7 +681,7 @@
+@@ -609,7 +684,7 @@
  CreateEventExW(
      _In_opt_ LPSECURITY_ATTRIBUTES lpEventAttributes,
      _In_opt_ LPCWSTR lpName,
@@ -399,7 +423,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/synchapi.h b/generation/W
      _In_ DWORD dwDesiredAccess
      );
  
-@@ -618,6 +690,8 @@
+@@ -618,6 +693,8 @@
  #else
  #define CreateEventEx  CreateEventExA
  #endif // !UNICODE
@@ -408,7 +432,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/synchapi.h b/generation/W
  
  WINBASEAPI
  _Ret_maybenull_
-@@ -640,6 +714,8 @@
+@@ -640,6 +717,8 @@
  #if (_WIN32_WINNT >= _NT_TARGET_VERSION_WIN10_RS4)
  #define CREATE_WAITABLE_TIMER_HIGH_RESOLUTION 0x00000002
  #endif
@@ -417,7 +441,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/synchapi.h b/generation/W
  
  WINBASEAPI
  _Ret_maybenull_
-@@ -667,6 +743,7 @@
+@@ -667,6 +746,7 @@
  #define SYNCHRONIZATION_BARRIER_FLAGS_SPIN_ONLY  0x01
  #define SYNCHRONIZATION_BARRIER_FLAGS_BLOCK_ONLY 0x02
  #define SYNCHRONIZATION_BARRIER_FLAGS_NO_DELETE  0x04
@@ -425,7 +449,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/synchapi.h b/generation/W
  
  BOOL
  WINAPI
-@@ -674,6 +751,8 @@
+@@ -674,6 +754,8 @@
      _Inout_ LPSYNCHRONIZATION_BARRIER lpBarrier,
      _In_ DWORD dwFlags
      );
@@ -434,7 +458,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/synchapi.h b/generation/W
  
  BOOL
  WINAPI
-@@ -682,12 +761,14 @@
+@@ -682,12 +764,14 @@
      _In_ LONG lTotalThreads,
      _In_ LONG lSpinCount
      );
@@ -449,7 +473,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/synchapi.h b/generation/W
  
  WINBASEAPI
  VOID
-@@ -695,6 +776,8 @@
+@@ -695,6 +779,8 @@
  Sleep(
      _In_ DWORD dwMilliseconds
      );
@@ -458,7 +482,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/synchapi.h b/generation/W
  
  BOOL
  WINAPI
-@@ -704,12 +787,14 @@
+@@ -704,12 +790,14 @@
      _In_ SIZE_T AddressSize,
      _In_opt_ DWORD dwMilliseconds
      );
@@ -473,7 +497,23 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/synchapi.h b/generation/W
  
  VOID
  WINAPI
-@@ -752,6 +837,8 @@
+@@ -725,6 +813,7 @@
+ 
+ #ifndef MIDL_PASS
+ 
++_Win32_PreserveResult_
+ WINBASEAPI
+ DWORD
+ WINAPI
+@@ -743,6 +832,7 @@
+ #pragma region Application or OneCore Family or Games Partition
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+ 
++_Win32_PreserveResult_
+ WINBASEAPI
+ DWORD
+ WINAPI
+@@ -752,6 +842,8 @@
      _In_ BOOL bWaitAll,
      _In_ DWORD dwMilliseconds
      );
@@ -482,7 +522,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/synchapi.h b/generation/W
  
  WINBASEAPI
  HANDLE
-@@ -766,6 +853,8 @@
+@@ -766,6 +858,8 @@
  #ifdef UNICODE
  #define CreateSemaphore  CreateSemaphoreW
  #endif
@@ -491,7 +531,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/synchapi.h b/generation/W
  
  WINBASEAPI
  _Ret_maybenull_
-@@ -789,3 +878,8 @@
+@@ -789,3 +883,8 @@
  #endif
  
  #endif // _SYNCHAPI_H_
