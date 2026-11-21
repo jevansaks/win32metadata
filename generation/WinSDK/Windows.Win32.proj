@@ -69,6 +69,7 @@
     <SdkHeaderPatch Include="patches\pre-midl\SyncMgr.idl.patch"/>
     <SdkHeaderPatch Include="patches\pre-midl\WbemCli.Idl.patch"/>
     <SdkHeaderPatch Include="patches\pre-midl\xmllite.idl.patch"/>
+    <SdkHeaderPatch Include="patches\pre-midl\amsi.idl.patch"/>
     <ScraperRsp Include="scraper.settings.rsp"/>
     <ScraperRsp Include="libMappings.rsp"/>
     <ScraperRsp Include="libMappingsManual.rsp"/>

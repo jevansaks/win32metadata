@@ -329,7 +329,7 @@ HANDLE (WINAPI *verifyAdd)(LPCWSTR, DWORD, LPBYTE) = &AddPrinterW;
         [DataRow("i686-pc-windows-msvc")]
         [DataRow("x86_64-pc-windows-msvc")]
         [DataRow("aarch64-pc-windows-msvc")]
-        public void WlanCleanup_ReservedNullArgumentIsDistinctFromContextualOwnership(string target)
+        public void WlanCleanup_ReservedNullArgumentPreservesTheLegacyCleanupFact(string target)
         {
             string header = File.ReadAllText(Sdk("RecompiledIdlHeaders/um/wlanapi.h"));
             string producer = Regex.Match(header, @"DWORD WINAPI\s+WlanOpenHandle\([^;]+;").Value;
@@ -337,17 +337,102 @@ HANDLE (WINAPI *verifyAdd)(LPCWSTR, DWORD, LPBYTE) = &AddPrinterW;
             Assert.IsFalse(string.IsNullOrEmpty(producer));
             Assert.IsFalse(string.IsNullOrEmpty(cleanup));
             StringAssert.Contains(cleanup, "_Reserved_ PVOID pReserved");
+            producer = producer.Replace("_Win32_RAIIFree_(WlanCloseHandle) ", string.Empty, StringComparison.Ordinal);
+            StringAssert.Contains(producer, "_Out_ PHANDLE phClientHandle");
             using var fixture = new LastErrorHeaderTests.Fixture();
             var result = fixture.Scrape(NextProducerDependencies + cleanup + producer, target, sal: true);
             Assert.AreEqual(0, result.ExitCode, result.Output);
+            string expected = EnumHeaderTests.Decompile(fixture.Emit(new Dictionary<string, string>
+            {
+                ["WlanOpenHandle::phClientHandle"] = "[RAIIFree(\"WlanCloseHandle\")]",
+            }));
             string annotated = producer.Replace("_Out_ PHANDLE phClientHandle",
                 "_Out_ _Win32_RAIIFree_(WlanCloseHandle) PHANDLE phClientHandle", StringComparison.Ordinal);
             Assert.AreNotEqual(producer, annotated);
             result = fixture.Scrape(NextProducerDependencies + cleanup + annotated, target, sal: true);
             TestContext.WriteLine(result.Output);
-            Assert.AreNotEqual(0, result.ExitCode);
-            StringAssert.Contains(result.Output,
-                "RAIIFree cleanup must resolve to one declared non-member, non-variadic native function accepting exactly the produced resource type.");
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            string output = fixture.Emit();
+            Assert.AreEqual(expected, EnumHeaderTests.Decompile(output));
+            using var pe = new PEReader(File.OpenRead(output));
+            var reader = pe.GetMetadataReader();
+            ProducerHeaderTests.AssertFacts(reader, "WlanOpenHandle", 4, "WlanCloseHandle");
+            ProducerHeaderTests.AssertNoOwnership(reader, "WlanCloseHandle");
+            foreach (var method in reader.MethodDefinitions.Select(reader.GetMethodDefinition))
+                foreach (var parameter in method.GetParameters().Select(reader.GetParameter))
+                    if (reader.GetString(method.Name) != "WlanOpenHandle" || parameter.SequenceNumber != 4)
+                        Assert.IsFalse(parameter.GetCustomAttributes().Select(reader.GetCustomAttribute)
+                            .Any(attribute => ProducerHeaderTests.Name(reader, attribute) is
+                                "RAIIFreeAttribute" or "InvalidHandleValueAttribute"));
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void WlanCleanup_OptionalUnannotatedAndNonPointerArgumentsRemainRejected(string target)
+        {
+            string header = File.ReadAllText(Sdk("RecompiledIdlHeaders/um/wlanapi.h"));
+            string producer = Regex.Match(header, @"DWORD WINAPI\s+WlanOpenHandle\([^;]+;").Value;
+            string cleanup = Regex.Match(header, @"DWORD WINAPI\s+WlanCloseHandle\([^;]+;").Value;
+            Assert.IsFalse(string.IsNullOrEmpty(producer));
+            Assert.IsFalse(string.IsNullOrEmpty(cleanup));
+            producer = producer.Replace("_Win32_RAIIFree_(WlanCloseHandle) ", string.Empty, StringComparison.Ordinal);
+            string annotated = producer.Replace("_Out_ PHANDLE phClientHandle",
+                "_Out_ _Win32_RAIIFree_(WlanCloseHandle) PHANDLE phClientHandle", StringComparison.Ordinal);
+            Assert.AreNotEqual(producer, annotated);
+            foreach (string replacement in new[]
+            {
+                "_In_opt_ PVOID", "PVOID", "_Reserved_ DWORD",
+                "__attribute__((annotate(\"Name=SAL_name; p1=\\\"_Reserved_\\\"; p2=\\\"\\\"; p3=\\\"2\\\"\"))) PVOID",
+            })
+            {
+                using var fixture = new LastErrorHeaderTests.Fixture();
+                string changed = cleanup.Replace("_Reserved_ PVOID", replacement, StringComparison.Ordinal);
+                Assert.AreNotEqual(cleanup, changed);
+                var result = fixture.Scrape(NextProducerDependencies + changed + annotated, target, sal: true);
+                Assert.AreNotEqual(0, result.ExitCode, replacement);
+                StringAssert.Contains(result.Output,
+                    "RAIIFree cleanup must resolve to one declared non-member, non-variadic native function accepting exactly the produced resource type.");
+            }
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void ContextualResourceUpdateAndPrivateNamespaceCleanupRemainRejected(string target)
+        {
+            foreach (var site in new[]
+            {
+                (Header: "WinBase.h", Producer: "BeginUpdateResourceA", CleanupHeader: "WinBase.h", Cleanup: "EndUpdateResourceA"),
+                (Header: "WinBase.h", Producer: "BeginUpdateResourceW", CleanupHeader: "WinBase.h", Cleanup: "EndUpdateResourceW"),
+                (Header: "WinBase.h", Producer: "CreatePrivateNamespaceA", CleanupHeader: "namespaceapi.h", Cleanup: "ClosePrivateNamespace"),
+                (Header: "namespaceapi.h", Producer: "CreatePrivateNamespaceW", CleanupHeader: "namespaceapi.h", Cleanup: "ClosePrivateNamespace"),
+                (Header: "WinBase.h", Producer: "OpenPrivateNamespaceA", CleanupHeader: "namespaceapi.h", Cleanup: "ClosePrivateNamespace"),
+                (Header: "namespaceapi.h", Producer: "OpenPrivateNamespaceW", CleanupHeader: "namespaceapi.h", Cleanup: "ClosePrivateNamespace"),
+            })
+            {
+                string dependencies = NextProducerDependencies + @"
+#define WINBASEAPI
+typedef unsigned char BOOLEAN;
+typedef const char* LPCSTR;
+typedef const wchar_t* LPCWSTR;
+typedef struct _SECURITY_ATTRIBUTES* LPSECURITY_ATTRIBUTES;
+";
+                string cleanup = Declaration(File.ReadAllText(Sdk("RecompiledIdlHeaders/um/" + site.CleanupHeader)),
+                    site.Cleanup, "WINBASEAPI");
+                string producer = Declaration(File.ReadAllText(Sdk("RecompiledIdlHeaders/um/" + site.Header)),
+                    site.Producer, "WINBASEAPI");
+                using var fixture = new LastErrorHeaderTests.Fixture();
+                var result = fixture.Scrape(dependencies + cleanup + producer, target, sal: true);
+                Assert.AreEqual(0, result.ExitCode, result.Output);
+                result = fixture.Scrape(dependencies + cleanup +
+                    "\n_Win32_RAIIFree_(" + site.Cleanup + ")\n" + producer, target, sal: true);
+                Assert.AreNotEqual(0, result.ExitCode, site.Cleanup);
+                StringAssert.Contains(result.Output,
+                    "RAIIFree cleanup must resolve to one declared non-member, non-variadic native function accepting exactly the produced resource type.");
+            }
         }
 
         private static string PrinterDeclarations()

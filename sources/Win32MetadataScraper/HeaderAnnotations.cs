@@ -513,10 +513,11 @@ namespace Win32MetadataScraper
                 address.Opcode != CXUnaryOperatorKind.CXUnaryOperator_AddrOf ||
                 StripParens(address.SubExpr) is not DeclRefExpr reference ||
                 reference.Decl is not FunctionDecl cleanup || cleanup is CXXMethodDecl ||
-                cleanup.HasBody || cleanup.Parameters.Count != 1 ||
+                cleanup.HasBody || cleanup.Parameters.Count == 0 ||
                 cleanup.Type.CanonicalType is not FunctionProtoType prototype || prototype.IsVariadic ||
                 !IsResourceType(cleanup.Parameters[0].Type.CanonicalType) ||
-                !cleanup.Parameters[0].Type.CanonicalType.Equals(resource))
+                !cleanup.Parameters[0].Type.CanonicalType.Equals(resource) ||
+                cleanup.Parameters.Skip(1).Any(parameter => !IsReservedNullPointer(parameter)))
                 throw Error(attribute, "RAIIFree cleanup must resolve to one declared non-member, non-variadic native function accepting exactly the produced resource type.");
             string cleanupName = QualifiedName(cleanup);
             var invalidExpressions = new List<Expr>();
@@ -534,6 +535,17 @@ namespace Win32MetadataScraper
             type is PointerType pointer ? pointer.PointeeType.CanonicalType is not FunctionType :
             type.Kind is CXTypeKind.CXType_Int or CXTypeKind.CXType_UInt or CXTypeKind.CXType_Long or
                 CXTypeKind.CXType_ULong or CXTypeKind.CXType_LongLong or CXTypeKind.CXType_ULongLong;
+
+        private static bool IsReservedNullPointer(ParmVarDecl parameter)
+        {
+            // Native _Reserved_ pointers require NULL; optional/context parameters do not.
+            var attributes = parameter.Attrs.Where(a => a.Kind == CX_AttrKind.CX_AttrKind_Annotate).ToArray();
+            return parameter.Type.CanonicalType is PointerType pointer &&
+                pointer.PointeeType.CanonicalType is not FunctionType &&
+                attributes.Any(a => Regex.IsMatch(a.Spelling, @"\AName=SAL_name;\s*p1=""_Reserved_""(?:;|\z)")) &&
+                attributes.Any(a => a.Spelling == "Name=SAL_pre") &&
+                attributes.Any(a => a.Spelling == "Name=SAL_null");
+        }
 
         private static Expr StripParens(Expr expression) =>
             expression is ParenExpr parens ? StripParens(parens.SubExpr) : expression;

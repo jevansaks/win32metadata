@@ -103,9 +103,14 @@ that producer site (return sequence zero, or the actual output parameter). An em
 value list emits no invalid values. The shorthand emits exactly `-1, 0`.
 Unannotated and borrowed returns remain unowned.
 
-Cleanup must be a declared non-member, non-variadic function accepting exactly the
-produced canonical resource type; integer and non-callback pointer resources are
-supported. Wrong sites, placement, bodies, duplicates/conflicts, unresolved/excluded
+Cleanup must be a declared non-member, non-variadic function whose first parameter
+accepts exactly the produced canonical resource type; integer and non-callback
+pointer resources are supported. Additional cleanup parameters are supported only
+when each is a non-function pointer carrying the native `_Reserved_` SAL name,
+precondition, and NULL facts. These reserved arguments require NULL; optional,
+unannotated, scalar, or name-only parameters do not qualify. Meaningful context
+arguments still have no default cleanup policy.
+Wrong sites, placement, bodies, duplicates/conflicts, unresolved/excluded
 or incompatible cleanup declarations, unsupported overloads, and late-only
 redeclarations are source-located errors. Invalid expressions must be compiler
 integer constants of at most 64 bits, or integer-to-pointer casts with supported

@@ -552,6 +552,7 @@ interface IOleControlSite : IUnknown
                 void
             );
 }
+_Win32_AnnotateParameter_(IOleControlSite::TransformCoords, dwFlags, _Win32_AssociatedEnum_(XFORMCOORDS))
 
 
 [
@@ -672,6 +673,7 @@ interface IPropertyPageSite : IUnknown
                 [in] MSG * pMsg
             );
 }
+_Win32_AnnotateParameter_(IPropertyPageSite::OnStatusChange, dwFlags, _Win32_AssociatedEnum_(PROPPAGESTATUS))
 
 
 [

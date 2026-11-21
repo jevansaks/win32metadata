@@ -260,6 +260,7 @@ interface IOleContainer : IParseDisplayName
         [in] BOOL fLock
     );
 }
+_Win32_AnnotateParameter_(IOleContainer::EnumObjects, grfFlags, _Win32_AssociatedEnum_(OLECONTF))
 
 [
     object,
@@ -305,6 +306,8 @@ interface IOleClientSite : IUnknown
     );
 
 }
+_Win32_AnnotateParameter_(IOleClientSite::GetMoniker, dwAssign, _Win32_AssociatedEnum_(OLEGETMONIKER))
+_Win32_AnnotateParameter_(IOleClientSite::GetMoniker, dwWhichMoniker, _Win32_AssociatedEnum_(OLEWHICHMK))
 
 [
     object,
@@ -496,6 +499,11 @@ interface IOleObject : IUnknown
         [in] LOGPALETTE *pLogpal
     );
 }
+_Win32_AnnotateParameter_(IOleObject::Close, dwSaveOption, _Win32_AssociatedEnum_(OLECLOSE))
+_Win32_AnnotateParameter_(IOleObject::SetMoniker, dwWhichMoniker, _Win32_AssociatedEnum_(OLEWHICHMK))
+_Win32_AnnotateParameter_(IOleObject::GetMoniker, dwAssign, _Win32_AssociatedEnum_(OLEGETMONIKER))
+_Win32_AnnotateParameter_(IOleObject::GetMoniker, dwWhichMoniker, _Win32_AssociatedEnum_(OLEWHICHMK))
+_Win32_AnnotateParameter_(IOleObject::GetUserType, dwFormOfType, _Win32_AssociatedEnum_(USERCLASSTYPE))
 
 [uuid(B0916C84-7416-101A-BCEA-08002B2B79EF)]
 interface IOLETypes

@@ -1225,12 +1225,15 @@ typedef struct _WFD_GROUP_ID
 
 
 // public APIs
+#if defined(WIN32METADATA) && defined(__clang__)
+DWORD WINAPI WlanCloseHandle(_In_ HANDLE hClientHandle, _Reserved_ PVOID pReserved);
+#endif
 DWORD WINAPI
 WlanOpenHandle(
     _In_ DWORD dwClientVersion,
     _Reserved_ PVOID pReserved,
     _Out_ PDWORD pdwNegotiatedVersion,
-    _Out_ PHANDLE phClientHandle
+    _Out_ _Win32_RAIIFree_(WlanCloseHandle) PHANDLE phClientHandle
 );
 
 DWORD WINAPI

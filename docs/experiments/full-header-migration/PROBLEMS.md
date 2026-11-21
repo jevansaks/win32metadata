@@ -12,16 +12,16 @@ RECOVERY.md. A rejected trial is not migrated coverage.
 
 ## Accepted continuation and remaining boundaries
 
-Published `da076219` is independently qualified by its own ordinary ten-job
+Published `e03d840e` is independently qualified by its own ordinary ten-job
 CI/output gate, including 175 SDK cases and 54 integrity cases. Its complete API
-is `7FA8EA90...`. Published totals are **65 whole JSON retirements / 257 manual
+is `8E46DB91...`. Published totals are **65 whole JSON retirements / 331 manual
 emitter rows / 290 enums remaining**, with **zero selected result-policy rows**
 and **2259 namespace routes** remaining. Transform21, the 151 result-row
 retirements, the separately qualified native SAL refresh and the 905 reviewed
-route removals are included. The previous `b24738dc` failed attempts are not
-retroactively accepted by this fixture-repair publication.
+route removals are included. The two 1032-case tooling cohorts overlap.
+The previous `b24738dc` failed attempts are not retroactively accepted.
 
-The unpublished producer-lifetime family is separate. Core26 and DeviceQuery6
+The published producer-lifetime family is separately attributable. Core26 and DeviceQuery6
 transfer 32 native cleanup facts with full semantic preservation; a separate
 38-fact/20-owner direct-header checkpoint also closes full output qualification.
 Its only complete API changes are the four approved GDI return-attribute
@@ -29,16 +29,34 @@ removals and ordering of identical cleanup declarations. All 27 selected
 cleanup blocks preserve their signatures, attributes and namespaces.
 Four reviewed GDI rows remove incorrect DeleteMetaFile/DeleteEnhMetaFile
 associations from recording HDC producers: zero transfer credit and no
-replacement Close function. The staged 74-row delta leaves exactly eight
+replacement Close function. The published 74-row delta leaves exactly eight
 standalone cleanup rows and does not change whole JSON, enum or nominal-type
 counts. The six contextual selectors are BeginUpdateResourceA/W,
 CreatePrivateNamespaceA/W and OpenPrivateNamespaceA/W. They remain separate
-from AmsiInitialize's authoritative IDL preparation and WlanOpenHandle's
-reserved-NULL second cleanup argument; arity alone is not an ownership policy.
-An actual-SDK three-target Wlan repro passes without the proposed annotation
-and fails with the current reader's exactly-one-cleanup-parameter diagnostic.
-The existing RSP row and native declarations remain unchanged while that
-specific reserved-argument support is considered.
+from the accepted AMSI1 and Wlan1 contributions in the next combined candidate.
+Wlan's native Reserved/pre/NULL non-function-pointer exception is now narrowly
+implemented and recorded in the shift-left spec. Its original real-SDK arity
+failures remain retained. Optional, unannotated, scalar, name-only and meaningful
+context arguments still do not qualify; context arguments have no default policy.
+
+The unpublished combined candidate adds 25 OLE parameter associations to those
+two lifetime contributions, retiring 27 exact RSP rows with no additions or
+fallbacks. Eight existing native enum definitions and their sidecar type facts
+are unchanged. Complete `F781562F...` API and `3F5883A2...` WinMD equal the
+accepted saved Wlan checkpoint byte-for-byte; OLE adds no public API delta.
+Combined local totals are **65/358/290**, not hosted acceptance. Exactly the six
+contextual cleanup selectors remain. The four earlier GDI defects retain zero
+transfer credit. Existing association controls pass 47/47 and actual-candidate
+integrity passes 54/54 with the six unchanged authoritative source assets. The
+original 53/1 stale runtime RPC allowlist failure and restored image/assets
+remain separate evidence, not a candidate regression or new allowlist entry.
+
+The OLE private evaluation also preserves setup failures separately from reader
+findings: imported wtypes belongs to shared, MIDL input casing must match the
+production recipe, mixed physical SDK roots disturb include guards, and SDK SAL
+must not shadow the repository's existing SAL extension. Uniform current headers
+with production include priority resolve the owning scrape without a product
+change, sidecar fallback or global-constant rescrape.
 
 | Finding | Accepted correction / retained evidence | Remaining boundary |
 |---|---|---|

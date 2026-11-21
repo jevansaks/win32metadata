@@ -301,8 +301,7 @@ EXTERN_C const IID IID_IOleAdviseHolder;
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             __RPC__in IOleAdviseHolder * This,
-            /* [annotation][in] */ 
-            _In_  REFIID riid,
+            /* [in] */ __RPC__in REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppvObject);
         
@@ -469,8 +468,7 @@ EXTERN_C const IID IID_IOleCache;
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             __RPC__in IOleCache * This,
-            /* [annotation][in] */ 
-            _In_  REFIID riid,
+            /* [in] */ __RPC__in REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppvObject);
         
@@ -635,8 +633,7 @@ EXTERN_C const IID IID_IOleCache2;
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             __RPC__in IOleCache2 * This,
-            /* [annotation][in] */ 
-            _In_  REFIID riid,
+            /* [in] */ __RPC__in REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppvObject);
         
@@ -821,8 +818,7 @@ EXTERN_C const IID IID_IOleCacheControl;
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             __RPC__in IOleCacheControl * This,
-            /* [annotation][in] */ 
-            _In_  REFIID riid,
+            /* [in] */ __RPC__in REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppvObject);
         
@@ -922,8 +918,7 @@ EXTERN_C const IID IID_IParseDisplayName;
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             __RPC__in IParseDisplayName * This,
-            /* [annotation][in] */ 
-            _In_  REFIID riid,
+            /* [in] */ __RPC__in REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppvObject);
         
@@ -1023,8 +1018,7 @@ EXTERN_C const IID IID_IOleContainer;
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             __RPC__in IOleContainer * This,
-            /* [annotation][in] */ 
-            _In_  REFIID riid,
+            /* [in] */ __RPC__in REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppvObject);
         
@@ -1106,6 +1100,15 @@ EXTERN_C const IID IID_IOleContainer;
 #endif 	/* __IOleContainer_INTERFACE_DEFINED__ */
 
 
+/* interface __MIDL_itf_oleidl_0000_0006 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_PARAMETER_(IOleContainer::EnumObjects, grfFlags, _Win32_AssociatedEnum_(OLECONTF));
+
+
+extern RPC_IF_HANDLE __MIDL_itf_oleidl_0000_0006_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_oleidl_0000_0006_v0_0_s_ifspec;
+
 #ifndef __IOleClientSite_INTERFACE_DEFINED__
 #define __IOleClientSite_INTERFACE_DEFINED__
 
@@ -1157,8 +1160,7 @@ EXTERN_C const IID IID_IOleClientSite;
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             __RPC__in IOleClientSite * This,
-            /* [annotation][in] */ 
-            _In_  REFIID riid,
+            /* [in] */ __RPC__in REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppvObject);
         
@@ -1255,6 +1257,16 @@ EXTERN_C const IID IID_IOleClientSite;
 
 #endif 	/* __IOleClientSite_INTERFACE_DEFINED__ */
 
+
+/* interface __MIDL_itf_oleidl_0000_0007 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_PARAMETER_(IOleClientSite::GetMoniker, dwAssign, _Win32_AssociatedEnum_(OLEGETMONIKER));
+_WIN32META_ANNOTATE_PARAMETER_(IOleClientSite::GetMoniker, dwWhichMoniker, _Win32_AssociatedEnum_(OLEWHICHMK));
+
+
+extern RPC_IF_HANDLE __MIDL_itf_oleidl_0000_0007_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_oleidl_0000_0007_v0_0_s_ifspec;
 
 #ifndef __IOleObject_INTERFACE_DEFINED__
 #define __IOleObject_INTERFACE_DEFINED__
@@ -1459,8 +1471,7 @@ EXTERN_C const IID IID_IOleObject;
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             __RPC__in IOleObject * This,
-            /* [annotation][in] */ 
-            _In_  REFIID riid,
+            /* [in] */ __RPC__in REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppvObject);
         
@@ -1725,6 +1736,19 @@ EXTERN_C const IID IID_IOleObject;
 #endif 	/* __IOleObject_INTERFACE_DEFINED__ */
 
 
+/* interface __MIDL_itf_oleidl_0000_0008 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_PARAMETER_(IOleObject::Close, dwSaveOption, _Win32_AssociatedEnum_(OLECLOSE));
+_WIN32META_ANNOTATE_PARAMETER_(IOleObject::SetMoniker, dwWhichMoniker, _Win32_AssociatedEnum_(OLEWHICHMK));
+_WIN32META_ANNOTATE_PARAMETER_(IOleObject::GetMoniker, dwAssign, _Win32_AssociatedEnum_(OLEGETMONIKER));
+_WIN32META_ANNOTATE_PARAMETER_(IOleObject::GetMoniker, dwWhichMoniker, _Win32_AssociatedEnum_(OLEWHICHMK));
+_WIN32META_ANNOTATE_PARAMETER_(IOleObject::GetUserType, dwFormOfType, _Win32_AssociatedEnum_(USERCLASSTYPE));
+
+
+extern RPC_IF_HANDLE __MIDL_itf_oleidl_0000_0008_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_oleidl_0000_0008_v0_0_s_ifspec;
+
 #ifndef __IOLETypes_INTERFACE_DEFINED__
 #define __IOLETypes_INTERFACE_DEFINED__
 
@@ -1807,8 +1831,7 @@ EXTERN_C const IID IID_IOleWindow;
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             __RPC__in IOleWindow * This,
-            /* [annotation][in] */ 
-            _In_  REFIID riid,
+            /* [in] */ __RPC__in REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppvObject);
         
@@ -1962,8 +1985,7 @@ EXTERN_C const IID IID_IOleLink;
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             __RPC__in IOleLink * This,
-            /* [annotation][in] */ 
-            _In_  REFIID riid,
+            /* [in] */ __RPC__in REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppvObject);
         
@@ -2181,8 +2203,7 @@ EXTERN_C const IID IID_IOleItemContainer;
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             __RPC__in IOleItemContainer * This,
-            /* [annotation][in] */ 
-            _In_  REFIID riid,
+            /* [in] */ __RPC__in REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppvObject);
         
@@ -2359,8 +2380,7 @@ EXTERN_C const IID IID_IOleInPlaceUIWindow;
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             __RPC__in IOleInPlaceUIWindow * This,
-            /* [annotation][in] */ 
-            _In_  REFIID riid,
+            /* [in] */ __RPC__in REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppvObject);
         
@@ -2516,8 +2536,7 @@ EXTERN_C const IID IID_IOleInPlaceActiveObject;
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             __RPC__in IOleInPlaceActiveObject * This,
-            /* [annotation][in] */ 
-            _In_  REFIID riid,
+            /* [in] */ __RPC__in REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppvObject);
         
@@ -2742,8 +2761,7 @@ EXTERN_C const IID IID_IOleInPlaceFrame;
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             __RPC__in IOleInPlaceFrame * This,
-            /* [annotation][in] */ 
-            _In_  REFIID riid,
+            /* [in] */ __RPC__in REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppvObject);
         
@@ -2950,8 +2968,7 @@ EXTERN_C const IID IID_IOleInPlaceObject;
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             __RPC__in IOleInPlaceObject * This,
-            /* [annotation][in] */ 
-            _In_  REFIID riid,
+            /* [in] */ __RPC__in REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppvObject);
         
@@ -3113,8 +3130,7 @@ EXTERN_C const IID IID_IOleInPlaceSite;
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             __RPC__in IOleInPlaceSite * This,
-            /* [annotation][in] */ 
-            _In_  REFIID riid,
+            /* [in] */ __RPC__in REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppvObject);
         
@@ -3294,8 +3310,7 @@ EXTERN_C const IID IID_IContinue;
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             __RPC__in IContinue * This,
-            /* [annotation][in] */ 
-            _In_  REFIID riid,
+            /* [in] */ __RPC__in REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppvObject);
         
@@ -3444,8 +3459,7 @@ EXTERN_C const IID IID_IViewObject;
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             __RPC__in IViewObject * This,
-            /* [annotation][in] */ 
-            _In_  REFIID riid,
+            /* [in] */ __RPC__in REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppvObject);
         
@@ -3715,8 +3729,7 @@ EXTERN_C const IID IID_IViewObject2;
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             __RPC__in IViewObject2 * This,
-            /* [annotation][in] */ 
-            _In_  REFIID riid,
+            /* [in] */ __RPC__in REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppvObject);
         
@@ -3914,8 +3927,7 @@ EXTERN_C const IID IID_IDropSource;
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             __RPC__in IDropSource * This,
-            /* [annotation][in] */ 
-            _In_  REFIID riid,
+            /* [in] */ __RPC__in REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppvObject);
         
@@ -4091,8 +4103,7 @@ EXTERN_C const IID IID_IDropTarget;
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             __RPC__in IDropTarget * This,
-            /* [annotation][in] */ 
-            _In_  REFIID riid,
+            /* [in] */ __RPC__in REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppvObject);
         
@@ -4221,8 +4232,7 @@ EXTERN_C const IID IID_IDropSourceNotify;
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             __RPC__in IDropSourceNotify * This,
-            /* [annotation][in] */ 
-            _In_  REFIID riid,
+            /* [in] */ __RPC__in REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppvObject);
         
@@ -4319,8 +4329,7 @@ EXTERN_C const IID IID_IEnterpriseDropTarget;
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             __RPC__in IEnterpriseDropTarget * This,
-            /* [annotation][in] */ 
-            _In_  REFIID riid,
+            /* [in] */ __RPC__in REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppvObject);
         
@@ -4461,8 +4470,7 @@ EXTERN_C const IID IID_IEnumOLEVERB;
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             __RPC__in IEnumOLEVERB * This,
-            /* [annotation][in] */ 
-            _In_  REFIID riid,
+            /* [in] */ __RPC__in REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppvObject);
         

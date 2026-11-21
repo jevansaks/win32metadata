@@ -8,7 +8,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ocidl.Idl b/generation/Wi
  cpp_quote("#include <winapifamily.h>")
  
  //+---------------------------------------------------------------------------
-@@ -230,6 +232,7 @@
+@@ -230,6 +232,7 @@ interface IEnumConnections : IUnknown
                  [out] IEnumConnections ** ppEnum
              );
  }
@@ -16,7 +16,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ocidl.Idl b/generation/Wi
  
  
  [
-@@ -305,6 +308,7 @@
+@@ -305,6 +308,7 @@ interface IEnumConnectionPoints : IUnknown
                  [out] IEnumConnectionPoints ** ppEnum
              );
  }
@@ -24,7 +24,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ocidl.Idl b/generation/Wi
  
  
  [
-@@ -369,7 +373,7 @@
+@@ -369,7 +373,7 @@ interface IClassFactory2 : IClassFactory
                  [in, annotation("_Reserved_")] IUnknown * pUnkReserved,
                  [in, annotation("__RPC__in")] REFIID riid,
                  [in, annotation("__RPC__in")] BSTR bstrKey,
@@ -33,7 +33,23 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ocidl.Idl b/generation/Wi
              );
  
      [call_as(CreateInstanceLic)]
-@@ -761,6 +765,7 @@
+@@ -548,6 +552,7 @@ interface IOleControlSite : IUnknown
+                 void
+             );
+ }
++_Win32_AnnotateParameter_(IOleControlSite::TransformCoords, dwFlags, _Win32_AssociatedEnum_(XFORMCOORDS))
+ 
+ 
+ [
+@@ -668,6 +673,7 @@ interface IPropertyPageSite : IUnknown
+                 [in] MSG * pMsg
+             );
+ }
++_Win32_AnnotateParameter_(IPropertyPageSite::OnStatusChange, dwFlags, _Win32_AssociatedEnum_(PROPPAGESTATUS))
+ 
+ 
+ [
+@@ -761,6 +767,7 @@ interface IPersistMemory : IPersist
                  void
              );
  }
@@ -41,7 +57,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ocidl.Idl b/generation/Wi
  
  
  [
-@@ -794,6 +799,7 @@
+@@ -794,6 +801,7 @@ interface IPersistStreamInit : IPersist
                  void
              );
  }
@@ -49,7 +65,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ocidl.Idl b/generation/Wi
  
  
  [
-@@ -1520,6 +1526,7 @@
+@@ -1520,6 +1528,7 @@ interface IEnumOleUndoUnits : IUnknown
                  [out] IEnumOleUndoUnits ** ppEnum
              );
  }
@@ -57,7 +73,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ocidl.Idl b/generation/Wi
  
  
  [
-@@ -1583,6 +1590,7 @@
+@@ -1583,6 +1592,7 @@ cpp_quote("#define SID_SOleUndoManager IID_IOleUndoManager")
                  [in] BOOL fEnable
              );
  }
@@ -65,7 +81,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ocidl.Idl b/generation/Wi
  
  
  [
-@@ -1620,6 +1628,8 @@
+@@ -1620,6 +1630,8 @@ interface IPointerInactive : IUnknown
                  [in] BOOL fSetAlways
              );
  }
@@ -74,7 +90,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ocidl.Idl b/generation/Wi
  
  
  [
-@@ -1810,6 +1820,7 @@
+@@ -1810,6 +1822,7 @@ interface IPersistPropertyBag2 : IPersist
                  void
              );
  }

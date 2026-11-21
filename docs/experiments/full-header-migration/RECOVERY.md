@@ -1,24 +1,24 @@
 # Working-first recovery and sidecar reduction
 
-## Current published checkpoint: result, SAL, routes and SDK fixture repair
+## Current published checkpoint: native70 producer cleanup and GDI corrections
 
-Published head `da076219b3f99bcfe28357e28e53862d33da646d` is independently
+Published head `e03d840e8636b4f9e096d5457d7f34bdee760557` is independently
 qualified by ordinary
-[run 44892431198](https://github.com/jevansaks/win32metadata/actions/runs/44892431198).
+[run 44906926151](https://github.com/jevansaks/win32metadata/actions/runs/44906926151).
 All ten jobs passed, including the 175 SDK cases and 54 integrity cases.
 The actual standalone/comparison/packaged WinMD is
-`A04654E652D649BBA802451F286984812EA04F993003A0FFB623FE99AFA6C852`;
+`83272BFF5C2C361918E2542AE0836643B986DC113CFC0473808271DF67B8E354`;
 its complete API dump is
-`7FA8EA90214795C9C29C575A1016653A5D98250342477204DB40BFC7302523C1`.
-The two 1022-case tooling cohorts overlap; they are not disjoint coverage.
+`8E46DB9145A4AA9F8D48C501EAAC83D059F8EC2569EF03ACF03D4C9E7FDA4C1F`.
+The two 1032-case tooling cohorts overlap; they are not disjoint coverage.
 The earlier `b24738dc` cancelled/failed attempts remain unaccepted.
 
-Published totals are **65 whole JSON retirements / 257 manual emitter rows /
+Published totals are **65 whole JSON retirements / 331 manual emitter rows /
 290 enums remaining**. The 151 result-row retirements, 90-method native SAL
 refresh and 905 redundant/inert namespace-route removals remain separately
 attributable. All 2259 remaining routes and 436 autoTypes records are retained.
 
-### Unpublished producer-lifetime continuation
+### Separately attributable published producer-lifetime checkpoints
 
 The next owning family contains 82 standalone producer-cleanup RSP rows.
 Separate core26 and DeviceQuery6 checkpoints move 32 cleanup facts to their
@@ -40,16 +40,55 @@ by DeleteMetaFile/DeleteEnhMetaFile, whose parameters are different resources.
 These are **four defect retirements and zero header transfers**; neither native
 Close function is substituted and HDC type-level facts remain unchanged.
 
-The local row delta is **74 removals = 70 qualified native transfers + four
-approved defect retirements**, not a publication or entire-migration claim.
-Local manual-row totals are 331; whole JSON and enum counts remain 65/290.
-Exactly eight producer rows remain: AmsiInitialize (separate authoritative IDL
-preparation), BeginUpdateResourceA/W, CreatePrivateNamespaceA/W,
-OpenPrivateNamespaceA/W, and WlanOpenHandle. The six contextual resource/namespace
-choices and Wlan's reserved-NULL cleanup argument are distinct cases.
-The real Wlan declarations reproduce the current exactly-one-cleanup-parameter
-reader rejection on all three targets; the unannotated controls pass. This is a
-specific reserved-argument engineering gap, not an inferred ownership decision.
+The published row delta is **74 removals = 70 qualified native transfers + four
+approved defect retirements**, not an entire-migration claim.
+Exactly eight standalone producer rows remained at this checkpoint. The next
+combined candidate handles AmsiInitialize and WlanOpenHandle separately from the
+six contextual resource/namespace choices below.
+
+### Unpublished combined candidate: AMSI1, Wlan1 and OLE25
+
+The two accepted lifetime contributions retain their separate source/output
+checkpoints. AmsiInitialize uses its authoritative IDL `cpp_quote` declaration,
+metadata-only cleanup forward declaration and registered pre-MIDL patch.
+WlanOpenHandle uses its real WlanCloseHandle declaration: only additional
+non-function pointers with native Reserved-name, precondition and NULL facts
+qualify. Optional, unannotated, scalar and name-only arguments remain rejected.
+Meaningful context arguments have no default cleanup policy. The existing
+shift-left specification records this bounded exception.
+
+The next coherent owning family moves **25 parameter AssociatedEnum facts**
+onto 14 Ole2 export parameters and 11 COM parameters owned by OleIdl, ocidl and
+vbinterf. All eight existing native enum definitions, identities, storage and
+sidecar type facts remain unchanged. Generated headers derive their carriers
+from authoritative pre-MIDL IDL; directly shipped Ole2/vbinterf headers retain
+their post-MIDL patches. No whole enum JSON record is retired for these uses.
+
+Actual combined WinMD `3F5883A2...` and complete API `F781562F...` are
+byte-identical to the accepted saved Wlan checkpoint. Thus the entire OLE-only
+API delta is empty. Relative to published native70, the combined complete delta
+only reorders the identical AMSI and Wlan producer/cleanup declarations; all
+declarations and attributes are preserved. The combined row delta is
+**27 native transfers = AMSI1 + Wlan1 + OLE25**, with local totals
+**65 whole JSON retirements / 358 manual emitter rows / 290 enums remaining**.
+The earlier four GDI defect retirements are not recounted as transfers.
+
+Owning SDK patches replay whole-source equality, the existing 47 association
+regressions and actual-candidate 54 integrity cases pass, and only ComOle is
+freshly scraped over the accepted complete
+AMSI/Wlan producers. Private preparation failures remain retained: shared IDL
+imports must resolve to their real owners, MIDL input names follow production
+lowercase spelling, and a uniform SDK header root must retain the repository
+SAL/include priority. These are evaluation-input corrections, not new reader
+fixes or RSP fallbacks; no global constants are rescraped.
+The first integrity run retains 53 passes and one stale runtime delegate-
+allowlist failure. The already committed RPC dispatch-table row is present in
+the source asset; copying the six unchanged authoritative assets closes 54/54.
+The original root image and runtime assets are restored afterward.
+
+Exactly six standalone cleanup rows remain: BeginUpdateResourceA/W,
+CreatePrivateNamespaceA/W and OpenPrivateNamespaceA/W. Their meaningful context
+arguments remain held; neither AMSI nor Wlan establishes a policy for them.
 NCRYPT associations, active/unresolved routes, stack, bases and consumers are
 unchanged. Further publication requires bounded source/semantic review and its
 own ordinary exact-head gate.
