@@ -1,5 +1,6 @@
 # SDK-Version: 10.0.28000.2705
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h b/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h
+index 2ce29c891a271b9b952b3531c2efc316094dde84..beec7d353861f46816a2e62d7c3bc7c30a25769c 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h
 @@ -1,3 +1,4 @@
@@ -7,7 +8,17 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h b/generation/Wi
  //---------------------------------------------------------------------------
  //
  // uxtheme.h - theming API header file.
-@@ -399,7 +400,7 @@
+@@ -16,6 +17,9 @@
+ 
+ #include <commctrl.h>
+ #include <SpecStrings.h>
++#if defined(WIN32METADATA) && defined(__clang__)
++#include <vssym32.h>
++#endif
+ 
+ #ifndef THEMEAPI
+ #if !defined(_UXTHEME_)
+@@ -399,7 +403,7 @@
  OpenThemeDataEx(
      _In_opt_ HWND hwnd,
      _In_ LPCWSTR pszClassList,
@@ -16,7 +27,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h b/generation/Wi
      );
  
  //---------------------------------------------------------------------------
-@@ -541,7 +542,7 @@
+@@ -541,7 +545,7 @@
      _In_ int iStateId,
      _In_reads_(cchText) LPCWSTR pszText,
      _In_ int cchText,
@@ -25,7 +36,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h b/generation/Wi
      _In_ DWORD dwTextFlags2,
      _In_ LPCRECT pRect
      );
-@@ -667,7 +668,7 @@
+@@ -667,7 +671,7 @@
      _In_ int iStateId,
      _In_reads_(cchCharCount) LPCWSTR pszText,
      _In_ int cchCharCount,
@@ -34,7 +45,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h b/generation/Wi
      _In_opt_ LPCRECT pBoundingRect,
      _Out_ LPRECT pExtentRect
      );
-@@ -756,7 +757,7 @@
+@@ -756,7 +760,7 @@
      _In_opt_ HDC hdc,
      _In_ int iPartId,
      _In_ int iStateId,
@@ -43,7 +54,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h b/generation/Wi
      _In_ LPCRECT pRect,
      _In_opt_ HRGN hrgn,
      _In_ POINT ptTest,
-@@ -782,8 +783,8 @@
+@@ -782,8 +786,8 @@
      _In_ int iPartId,
      _In_ int iStateId,
      _In_ LPCRECT pDestRect,
@@ -54,7 +65,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h b/generation/Wi
      _Out_opt_ LPRECT pContentRect
      );
  
-@@ -873,7 +874,7 @@
+@@ -873,7 +877,7 @@
      _In_ HTHEME hTheme,
      _In_ int iPartId,
      _In_ int iStateId,
@@ -63,7 +74,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h b/generation/Wi
      _Out_ COLORREF *pColor
      );
  
-@@ -894,7 +895,7 @@
+@@ -894,7 +898,7 @@
      _In_opt_ HDC hdc,
      _In_ int iPartId,
      _In_ int iStateId,
@@ -72,7 +83,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h b/generation/Wi
      _Out_ int *piVal
      );
  
-@@ -932,7 +933,7 @@
+@@ -932,7 +936,7 @@
      _In_ HTHEME hTheme,
      _In_ int iPartId,
      _In_ int iStateId,
@@ -81,7 +92,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h b/generation/Wi
      _Out_ BOOL *pfVal
      );
  
-@@ -950,7 +951,7 @@
+@@ -950,7 +954,7 @@
      _In_ HTHEME hTheme,
      _In_ int iPartId,
      _In_ int iStateId,
@@ -90,7 +101,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h b/generation/Wi
      _Out_ int *piVal
      );
  
-@@ -968,7 +969,7 @@
+@@ -968,7 +972,7 @@
      _In_ HTHEME hTheme,
      _In_ int iPartId,
      _In_ int iStateId,
@@ -99,7 +110,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h b/generation/Wi
      _Out_ int *piVal
      );
  
-@@ -987,7 +988,7 @@
+@@ -987,7 +991,7 @@
      _In_ HTHEME hTheme,
      _In_ int iPartId,
      _In_ int iStateId,
@@ -108,7 +119,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h b/generation/Wi
      _Out_ POINT *pPoint
      );
  
-@@ -1056,7 +1057,7 @@
+@@ -1056,7 +1060,7 @@
      _In_opt_ HDC hdc,
      _In_ int iPartId,
      _In_ int iStateId,
@@ -117,7 +128,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h b/generation/Wi
      _In_opt_ LPCRECT prc,
      _Out_ MARGINS *pMargins
      );
-@@ -1087,7 +1088,7 @@
+@@ -1087,7 +1091,7 @@
      _In_ HTHEME hTheme,
      _In_ int iPartId,
      _In_ int iStateId,
@@ -126,7 +137,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h b/generation/Wi
      _Out_ INTLIST *pIntList
      );
  
-@@ -1172,7 +1173,7 @@
+@@ -1172,7 +1176,7 @@
      _In_ HTHEME hTheme,
      _In_ int iPartId,
      _In_ int iStateId,
@@ -135,7 +146,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h b/generation/Wi
      _Out_writes_(cchMaxBuffChars) LPWSTR pszThemeFileName,
      _In_ int cchMaxBuffChars
      );
-@@ -1222,7 +1223,7 @@
+@@ -1222,7 +1226,7 @@
  THEMEAPI_(BOOL)
  GetThemeSysBool(
      _In_opt_ HTHEME hTheme,
@@ -144,7 +155,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h b/generation/Wi
      );
  
  //---------------------------------------------------------------------------
-@@ -1272,7 +1273,7 @@
+@@ -1272,7 +1276,7 @@
  THEMEAPI
  GetThemeSysFont(
      _In_opt_ HTHEME hTheme,
@@ -153,7 +164,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h b/generation/Wi
      _Out_ LOGFONTW *plf
      );
  
-@@ -1293,7 +1294,7 @@
+@@ -1293,7 +1297,7 @@
  THEMEAPI
  GetThemeSysString(
      _In_ HTHEME hTheme,
@@ -162,7 +173,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h b/generation/Wi
      _Out_writes_(cchMaxStringChars) LPWSTR pszStringBuff,
      _In_ int cchMaxStringChars
      );
-@@ -1314,7 +1315,7 @@
+@@ -1314,7 +1318,7 @@
  THEMEAPI
  GetThemeSysInt(
      _In_ HTHEME hTheme,
@@ -171,7 +182,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h b/generation/Wi
      _Out_ int *piValue
      );
  
-@@ -1413,10 +1414,20 @@
+@@ -1413,10 +1417,20 @@
                                   STAP_ALLOW_CONTROLS | \
                                   STAP_ALLOW_WEBCONTENT)
  
@@ -192,7 +203,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h b/generation/Wi
  THEMEAPI_(DWORD)
  GetThemeAppProperties(
      VOID
-@@ -1430,7 +1441,7 @@
+@@ -1430,7 +1444,7 @@
  //---------------------------------------------------------------------------
  THEMEAPI_(void)
  SetThemeAppProperties(
@@ -201,7 +212,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h b/generation/Wi
      );
  
  //---------------------------------------------------------------------------
-@@ -1563,7 +1574,7 @@
+@@ -1563,7 +1577,7 @@
  DrawThemeParentBackgroundEx(
      _In_ HWND hwnd,
      _In_ HDC hdc,
@@ -210,7 +221,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h b/generation/Wi
      _In_opt_ const RECT* prc
      );
  
-@@ -1685,7 +1696,7 @@
+@@ -1685,7 +1699,7 @@
      _In_ int iStateId,
      _In_reads_(cchText) LPCWSTR pszText,
      _In_ int cchText,
@@ -219,7 +230,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h b/generation/Wi
      _Inout_ LPRECT pRect,
      _In_opt_ const DTTOPTS *pOptions
      );
-@@ -1709,8 +1720,8 @@
+@@ -1709,8 +1723,8 @@
      _In_ HTHEME hTheme,
      _In_ int iPartId,
      _In_ int iStateId,
@@ -230,7 +241,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h b/generation/Wi
      _Out_ HBITMAP* phBitmap
      );
  
-@@ -1816,6 +1827,7 @@
+@@ -1816,6 +1830,7 @@
      const RECT *                prcExclude;
      const BLENDFUNCTION *       pBlendFunction;
  } BP_PAINTPARAMS, *PBP_PAINTPARAMS;
@@ -238,7 +249,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h b/generation/Wi
  
  THEMEAPI_(_Success_(return != NULL) HPAINTBUFFER)
  BeginBufferedPaint(
-@@ -1988,4 +2000,14 @@
+@@ -1988,4 +2003,14 @@
  
  #endif /* _UXTHEME_H_ */
  

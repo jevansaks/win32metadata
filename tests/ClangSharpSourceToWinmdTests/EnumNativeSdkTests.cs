@@ -269,6 +269,96 @@ typedef char VerifySignedInt[(sizeof(int) == 4 && (int)-1 < 0) ? 1 : -1];
             }
         }
 
+        [DataTestMethod]
+        [DataRow("Dwm", "common")]
+        [DataRow("WinTouch", "common")]
+        [DataRow("Controls", "x86")]
+        public void ThemePropertyDependency_ScrapesUnchangedProductionConsumer(string partition, string arch)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            string root = LastErrorHeaderTests.RepositoryRoot();
+            string output = Path.Combine(fixture.DirectoryPath, "consumer");
+            string command = ". " + ThemeDependencyQuote(Path.Combine(root, "scripts", "CommonUtils.ps1")) +
+                "; Install-VsDevShell; & dotnet build " + ThemeDependencyQuote(Path.Combine(root, "generation", "WinSDK")) +
+                " -c Release --no-restore -t:ScrapeHeaders -p:ScanArch=crossarch " +
+                ThemeDependencyQuote("-p:PartitionFilter=" + partition) + " " +
+                ThemeDependencyQuote("-p:ObjDir=" + output) + "; exit $LASTEXITCODE";
+            var result = LastErrorHeaderTests.Run("pwsh", "-NoProfile", "-NonInteractive", "-Command", command);
+            string log = Path.Combine(fixture.DirectoryPath, "consumer.log");
+            File.WriteAllText(log, result.Output);
+            Save(log, "theme-dependency-" + partition + "-consumer");
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            string generated = Path.Combine(output, "generated", arch, partition + ".cs");
+            Assert.IsTrue(File.Exists(generated), "Missing actual production consumer: " + generated);
+            string rsp = Path.Combine(output, "scratch", arch, partition + ".settings.rsp");
+            string settings = File.ReadAllText(rsp);
+            Assert.IsTrue(settings.Contains(Path.Combine(root, "generation", "WinSDK", "partitions",
+                partition, "main.cpp"), StringComparison.OrdinalIgnoreCase));
+            Assert.AreEqual(partition == "Controls",
+                settings.Contains("/um/vssym32.h", StringComparison.OrdinalIgnoreCase),
+                "The header dependency must preserve the existing consumer traversal.");
+            foreach (string path in new[] { generated, rsp })
+                Save(path, "theme-dependency-" + partition + "-" + Path.GetFileName(path));
+        }
+
+        [DataTestMethod]
+        [DataRow("x86", 4, "/TC")]
+        [DataRow("x64", 8, "/TC")]
+        [DataRow("arm64", 8, "/TC")]
+        [DataRow("x86", 4, "/TP")]
+        [DataRow("x64", 8, "/TP")]
+        [DataRow("arm64", 8, "/TP")]
+        public void ThemePropertyDependency_PreservesNativeConsumerCompatibility(string arch, int pointerSize, string language)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            string root = LastErrorHeaderTests.RepositoryRoot();
+            string headers = Path.Combine(root, "generation", "WinSDK", "RecompiledIdlHeaders");
+            foreach (string partition in new[] { "Dwm", "WinTouch", "Controls" })
+            {
+                string source = Path.Combine(fixture.DirectoryPath, partition + ".c");
+                File.WriteAllText(source, "#include \"" + Path.Combine(root, "generation", "WinSDK", "partitions",
+                    partition, "main.cpp").Replace("\\", "/") + "\"\n" +
+                    $"typedef char VerifyPointerSize[(sizeof(void*) == {pointerSize}) ? 1 : -1];\n" +
+                    "typedef HRESULT (WINAPI *ExpectedThemeColor)(HTHEME, int, int, int, COLORREF*);\n" +
+                    "ExpectedThemeColor verifyThemeColor = &GetThemeColor;\n");
+                string ordinary = Path.Combine(fixture.DirectoryPath, partition + "-ordinary.obj");
+                string metadata = Path.Combine(fixture.DirectoryPath, partition + "-metadata.obj");
+                string compiled = Path.Combine(fixture.DirectoryPath, partition + ".obj");
+                string includes = string.Join(", ", new[] {
+                    Path.Combine(root, "generation", "WinSDK", "inc"),
+                    Path.Combine(headers, "um"), Path.Combine(headers, "shared"),
+                    Path.Combine(headers, "ucrt"), Path.Combine(headers, "winrt"),
+                }.Select(path => ThemeDependencyQuote("/I" + path)));
+                string command = ". " + ThemeDependencyQuote(Path.Combine(root, "scripts", "CommonUtils.ps1")) +
+                    "; Install-VsDevShell; $compiler = Join-Path (Get-VcDirPath -Arch " + ThemeDependencyQuote(arch) +
+                    " -HostArch x64) 'cl.exe'; foreach ($mode in 'ordinary', 'metadata') { " +
+                    "$arguments = @('/nologo', '/c', " + ThemeDependencyQuote(language) + ", " +
+                    ThemeDependencyQuote(source) + ", " + includes + "); " +
+                    "$arguments += " + ThemeDependencyQuote("/Fo" + compiled) + "; " +
+                    "if ($mode -eq 'metadata') { $arguments += '/DWIN32METADATA' }; " +
+                    "& $compiler @arguments; if ($LASTEXITCODE) { exit $LASTEXITCODE }; " +
+                    "Copy-Item -LiteralPath " + ThemeDependencyQuote(compiled) +
+                    " -Destination $(if ($mode -eq 'ordinary') { " + ThemeDependencyQuote(ordinary) +
+                    " } else { " + ThemeDependencyQuote(metadata) + " }) }";
+                var result = LastErrorHeaderTests.Run("pwsh", "-NoProfile", "-NonInteractive", "-Command", command);
+                Assert.AreEqual(0, result.ExitCode, result.Output);
+                string proof = "theme-dependency-" + partition + "-" + arch + "-" + language.TrimStart('/');
+                Save(source, proof);
+                Save(ordinary, proof + "-ordinary");
+                Save(metadata, proof + "-metadata");
+                byte[] before = File.ReadAllBytes(ordinary);
+                byte[] after = File.ReadAllBytes(metadata);
+                int machine = arch == "x86" ? 0x14c : arch == "x64" ? 0x8664 : 0xaa64;
+                Assert.AreEqual(machine, BitConverter.ToUInt16(before, 0));
+                Assert.AreEqual(machine, BitConverter.ToUInt16(after, 0));
+                Array.Clear(before, 4, 4);
+                Array.Clear(after, 4, 4);
+                CollectionAssert.AreEqual(before, after, partition + ": ordinary/metadata native consumer.");
+            }
+        }
+
+        private static string ThemeDependencyQuote(string value) => "'" + value.Replace("'", "''") + "'";
+
         private static Dictionary<string, string> ThemePropertyFacts()
         {
             var facts = new Dictionary<string, string>();

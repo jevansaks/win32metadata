@@ -17,6 +17,9 @@
 
 #include <commctrl.h>
 #include <SpecStrings.h>
+#if defined(WIN32METADATA) && defined(__clang__)
+#include <vssym32.h>
+#endif
 
 #ifndef THEMEAPI
 #if !defined(_UXTHEME_)
