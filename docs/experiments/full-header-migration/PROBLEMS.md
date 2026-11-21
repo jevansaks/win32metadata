@@ -12,14 +12,14 @@ RECOVERY.md. A rejected trial is not migrated coverage.
 
 ## Accepted continuation and remaining boundaries
 
-Published `e03d840e` is independently qualified by its own ordinary ten-job
+Published `78090f60` is independently qualified by its own ordinary ten-job
 CI/output gate, including 175 SDK cases and 54 integrity cases. Its complete API
-is `8E46DB91...`. Published totals are **65 whole JSON retirements / 331 manual
+is `F781562F...`. Published totals are **65 whole JSON retirements / 358 manual
 emitter rows / 290 enums remaining**, with **zero selected result-policy rows**
 and **2259 namespace routes** remaining. Transform21, the 151 result-row
 retirements, the separately qualified native SAL refresh and the 905 reviewed
-route removals are included. The two 1032-case tooling cohorts overlap.
-The previous `b24738dc` failed attempts are not retroactively accepted.
+route removals are included. The two 1038-case tooling cohorts overlap.
+The previous `b24738dc` and `16ec4e88` failed attempts are not retroactively accepted.
 
 The published producer-lifetime family is separately attributable. Core26 and DeviceQuery6
 transfer 32 native cleanup facts with full semantic preservation; a separate
@@ -33,18 +33,18 @@ replacement Close function. The published 74-row delta leaves exactly eight
 standalone cleanup rows and does not change whole JSON, enum or nominal-type
 counts. The six contextual selectors are BeginUpdateResourceA/W,
 CreatePrivateNamespaceA/W and OpenPrivateNamespaceA/W. They remain separate
-from the accepted AMSI1 and Wlan1 contributions in the next combined candidate.
+from the accepted published AMSI1 and Wlan1 contributions.
 Wlan's native Reserved/pre/NULL non-function-pointer exception is now narrowly
 implemented and recorded in the shift-left spec. Its original real-SDK arity
 failures remain retained. Optional, unannotated, scalar, name-only and meaningful
 context arguments still do not qualify; context arguments have no default policy.
 
-The unpublished combined candidate adds 25 OLE parameter associations to those
+The published combined candidate adds 25 OLE parameter associations to those
 two lifetime contributions, retiring 27 exact RSP rows with no additions or
 fallbacks. Eight existing native enum definitions and their sidecar type facts
 are unchanged. Complete `F781562F...` API and `3F5883A2...` WinMD equal the
 accepted saved Wlan checkpoint byte-for-byte; OLE adds no public API delta.
-Combined local totals are **65/358/290**, not hosted acceptance. Exactly the six
+Combined qualified totals are **65/358/290**. Exactly the six
 contextual cleanup selectors remain. The four earlier GDI defects retain zero
 transfer credit. Existing association controls pass 47/47 and actual-candidate
 integrity passes 54/54 with the six unchanged authoritative source assets. The
@@ -57,6 +57,46 @@ production recipe, mixed physical SDK roots disturb include guards, and SDK SAL
 must not shadow the repository's existing SAL extension. Uniform current headers
 with production include priority resolve the owning scrape without a product
 change, sidecar fallback or global-constant rescrape.
+
+The first combined ordinary run failed strict whole-ocidl replay because the
+saved conversion omitted preprocessor-IDL includes. Complete import-plus-include
+conversion reproduces all three affected ocidl/oleidl/amsi headers. The reviewed
+three-header-only repair earns zero transfer credit; its successful new-head
+ordinary gate does not erase that preparation failure or change the comparer.
+
+The next MSI owner proposal independently transfers 16 integer parameter
+associations without changing the four native enum definitions or storage.
+Its four reserved-scalar contributions remain sidecars rather than blocking
+the supported associations. The saved actual 20-site trial contains only four
+In-to-Optional changes, with Reserved retained, in two complete method lines.
+`sal.h:291-292` documents `_Reserved_` as pointer/NULL-oriented;
+`MetadataSyntaxTreeCleaner.cs:1308-1311,1433-1440` recognizes it and emits
+Optional for every Reserved parameter, without a scalar-storage distinction.
+Retain these four exact MsiDatabaseGenerateTransformA/W selectors until the
+scalar-zero transport and direction/optionality semantics are qualified.
+There is no cleanup-context, blanket-default or new annotation policy change.
+
+The next current Theme slice qualifies 14 signed-int use sites of the unchanged
+unsigned THEME_PROPERTY_SYMBOL_ID group. All 22 focused cases and 54 actual
+integrity cases pass; the complete combined MSI16/Theme14 API and local image
+remain `F781562F...`/`3F5883A2...`, with zero-byte unmasked semantic delta.
+The older width/signedness rejection is not a current blanket limitation.
+
+GetThemeSysColorBrush::iColorId remains individually retained. The SDK comment
+names winuser.h system-color indices, but the current official documentation
+lists TMT_* values; COLOR_SCROLLBAR=0 and TMT_SCROLLBAR=1601 are distinct native
+definitions. A separate saved deletion-only variant exposes the proposed
+one-row retirement for bounded semantic adjudication, not transfer credit.
+Neither a replacement enum nor a main-candidate removal is selected.
+
+The fresh owner also exposed a local pipeline-stage preparation boundary:
+ScrapeHeaders companions carry the scraper header, not the final constants
+header with System imports. The original full compile rejected unqualified
+Flags attributes. All six Controls companion namespace bodies exactly match
+the accepted final pipeline producers, so retaining those unchanged files and
+overlaying the fresh methods preserves the complete actual API without a
+global constants rescrape or tooling/metadata mask. The original failure and
+both missing-dependency fixture runs remain saved, not relabeled as passes.
 
 | Finding | Accepted correction / retained evidence | Remaining boundary |
 |---|---|---|
@@ -305,7 +345,7 @@ source/output supersedes that restoration; the failed trial is not rewritten.
 | Demonstrated native-reader boundary | Six genuine DiagnosticDataQuery `DECLARE_HANDLE` aliases expand to pointers to complete dummy records. Actual native selection fails at DiagnosticDataQuery.h:8 with `Unsupported native typedef pointer shape; expected void or an incomplete opaque record`. | All six original storage/NativeTypedef selections retained. No nominal handle is removed or claimed fictitious. | Qualify the SDK's exact `DECLARE_HANDLE` shape without flattening arbitrary pointers to complete records. |
 | Native-alias projection policy | Selecting BOOLEAN native storage changes `CrediUnmarshalandDecodeStringFn.Invoke::IsFailureFatal` and `PKSEC_DEREFERENCE_LIST_ENTRY.Invoke::Delete` from `Byte*` to `BOOLEAN*` in the actual three-primitive output. These are distinct from the earlier callback aggregation differences. | BOOLEAN's byte storage and NativeTypedef flag restored; COLORREF remains native. The earlier bounded BOOL pass is superseded by the broader bitfield qualification below. | Decide whether these two genuine native-alias signature changes are intended before accepting them; no blanket callback suppression or fictitious-handle classification. |
 | Demonstrated native-alias/bitfield boundary | Broader owner refresh changes ten backing fields in MENUBARINFO, TOUCHPAD_PARAMETERS_V1/V2, CABINETSTATE and SHELLFLAGSTATE/SHELLSTATEA/W from Int32 to BOOL. An actual SDK MENUBARINFO control isolates legacy int versus native BOOL backing on all three targets; all six scrapes succeed. | BOOL's exact int storage and NativeTypedef flag restored. The fresh 65-partition 92-group output and accepted 91-group union preserve all ten original fields. | Qualify primitive bitfield backing storage for native aliases in the owning tooling layer. This is not a fictitious handle or an accepted enum use-site change. |
-| AssociatedEnum storage contract/policy | Actual CreateFontW::iCharSet is DWORD while FONT_CHARSET is byte; GetThemeInt::iPropId is signed int while THEME_PROPERTY_SYMBOL_ID is uint. Six native controls pass; the six corresponding association variants reject `AssociatedEnum storage conflicts` across x86/x64/ARM64. | Both exact parameter RSP facts retained and individually labeled. Other related selectors are not falsely counted as individually tested. | Decide a compatible group/use-site storage contract under the spec's storage-match rule; do not silently widen enum groups or erase facts. |
+| Historical AssociatedEnum storage diagnostic | Actual CreateFontW::iCharSet is DWORD while FONT_CHARSET is byte; GetThemeInt::iPropId is signed int while THEME_PROPERTY_SYMBOL_ID is uint. The preserved earlier reader rejected six association variants across x86/x64/ARM64. | Those original failures and both exact RSP facts remain saved. The current contract/reader preserves native integer storage independently of enum width and signedness; the MSI slice exercises DWORD uses of unchanged native enums. | Font/theme owner sites still need current individual qualification. The earlier storage-match prohibition is not a current blanket reader limitation; do not widen enum definitions or silently erase facts. |
 | Generated configuration dependency | The independent six-producer ownership retry changes callback pointer depth/direction in `SpGetRemoteCredGuardLogonBufferFn` and `SpGetRemoteCredGuardSupplementalCredsFn`; an untouched-header filtered scrape regenerates that same changed reduction RSP. The later rejected 93-group filtered refresh repeats eight callback differences, while the fresh complete 91-group source union preserves all eight facts. | Complete six-handle/producer closure remains restored; no producer retirement counted. The complete 91-group union is accepted without editing generated RSP. | Qualify complete global function-pointer aggregation for filtered refresh before retrying the producer closure. Current full-union equality does not by itself accept that distinct trial. |
 | Wrapper-storage policy | Four Cloudapi hydration/population policy bindings: C++ `DEFINE_USHORT_ENUM` creates wrapper structs. Three-target controls reject AssociatedEnum on non-integer/non-enum storage. | All four bindings retained. | Define wrapper flattening/storage policy explicitly; do not silently change native layout. |
 | Unqualified residual effect | Genuine EApiCategories is already the native parameter type. The redundant SetProtectedCategories selector was removed with exact output equality, but the separate legacy `flags: true` effect has not been qualified. | Flags-only record retained, not added to CLR exceptions. | Inspect raw flag metadata/intent before retiring or transporting that request. |

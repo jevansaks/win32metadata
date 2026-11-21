@@ -1,22 +1,114 @@
 # Working-first recovery and sidecar reduction
 
-## Current published checkpoint: native70 producer cleanup and GDI corrections
+## Current published checkpoint: AMSI1, Wlan1, OLE25 and generated-owner repair
 
-Published head `e03d840e8636b4f9e096d5457d7f34bdee760557` is independently
+Published head `78090f608a9dfd6824016d3e049be51a9d5c3fb4` is independently
 qualified by ordinary
-[run 44906926151](https://github.com/jevansaks/win32metadata/actions/runs/44906926151).
-All ten jobs passed, including the 175 SDK cases and 54 integrity cases.
+[run 44925013568](https://github.com/jevansaks/win32metadata/actions/runs/44925013568).
+All ten jobs passed, including all 175 SDK cases and 54 integrity cases.
 The actual standalone/comparison/packaged WinMD is
-`83272BFF5C2C361918E2542AE0836643B986DC113CFC0473808271DF67B8E354`;
+`CE6E001187B63FD8AE16D19400F09B24CD1043E44FA96FB0548232CDA95FEA3C`;
 its complete API dump is
-`8E46DB9145A4AA9F8D48C501EAAC83D059F8EC2569EF03ACF03D4C9E7FDA4C1F`.
-The two 1032-case tooling cohorts overlap; they are not disjoint coverage.
-The earlier `b24738dc` cancelled/failed attempts remain unaccepted.
+`F781562FA67BCBEDA63572343132C368260EF2A7D6A4255090055B7FEBC83821`.
+The two 1038-case tooling cohorts overlap; they are not disjoint coverage.
+The earlier `b24738dc` attempts and failed `16ec4e88` ordinary run
+44915705850 remain unaccepted. The three-header repair has zero transfer credit.
 
-Published totals are **65 whole JSON retirements / 331 manual emitter rows /
+Published totals are **65 whole JSON retirements / 358 manual emitter rows /
 290 enums remaining**. The 151 result-row retirements, 90-method native SAL
 refresh and 905 redundant/inert namespace-route removals remain separately
 attributable. All 2259 remaining routes and 436 autoTypes records are retained.
+
+### Unpublished MSI parameter owner continuation
+
+A fresh recount at accepted `78090f60` finds 1340 emitter member-remap rows and
+187 AssociatedEnum contributions, including 92 remaining parameter selectors.
+The next coherent MSI owner slice transfers 16 associations to four unchanged
+native enums in directly consumed Msi.h and its owning post-MIDL patch.
+Its exact 16-row RSP deletion leaves four reserved-scalar rows individually
+retained. No generated IDL output, whole JSON record or sidecar type fact is
+selected. Whole-header replay and the isolated fresh Setup refresh are
+complete, and all 60 focused cases pass: 13 MSI cases plus the existing 47
+association cases. The final complete actual WinMD is `3F5883A2...`; its
+`F781562F...` complete API and the image itself equal the accepted saved local
+checkpoint, with a zero-byte unmasked API delta. The hosted `CE6E0011...`
+image has a different build identity but the same complete API.
+Actual-candidate integrity passes 54/54.
+The original private 53/1 stale runtime-allowlist failure remains saved; the
+passing run uses the unchanged current tracked asset, not a new allowance.
+MSI source/semantic review is accepted as an internal checkpoint at frozen
+inventory `B02EF2B1...`; its immutable source bundle and accepted science remain
+separate from the next combined proposal. MSI-only publication remains held.
+Candidate row totals are 65/374/290, not hosted acceptance.
+The fresh proposed-RSP recount is 1324 member-remap rows, 171 AssociatedEnum
+contributions and 76 remaining parameter-associated-enum selectors.
+
+The saved 20-site trial proves a separate scalar transport gap: `_Reserved_`
+on MsiDatabaseGenerateTransformA/W::iReserved1/iReserved2 retains Reserved but
+adds Optional and loses In in the complete actual API. Standard SAL's macro
+is pointer/NULL-oriented, and the current emitter makes every Reserved
+parameter Optional without examining storage. The four original rows,
+MsiQuery.h and its patch are restored exactly; the trial image, complete
+unmasked delta and sources remain saved. This is not the Wlan reserved-NULL
+cleanup exception, and no scalar/nullability policy or reader repair is
+invented here.
+
+The six remaining standalone return-cleanup selectors are exactly
+BeginUpdateResourceA/W, CreatePrivateNamespaceA/W and OpenPrivateNamespaceA/W.
+They remain held meaningful-context choices, not blockers for MSI parameters.
+The separate 30 FreeWith output facts, type/JSON facts, NCRYPT relationships,
+active/unresolved namespace routes, lower stack members and consumers are not
+changed by this proposal. Published totals remain 65/358/290 until a separately
+reviewed new-head ordinary/output gate accepts a later publication.
+
+### Combined parameter milestone: accepted MSI16 plus supported Theme14
+
+Fourteen current Theme property-identifier associations now move from exact RSP
+rows to signed native `int` parameters in directly shipped Uxtheme.h and its
+owning post-MIDL patch. The existing unsigned THEME_PROPERTY_SYMBOL_ID group,
+its complete native constants and the GetThemeBitmap::dwFlags association are
+unchanged. This qualifies current width/signedness-independent association
+handling rather than repeating the old storage-conflict diagnosis.
+
+All 22 focused cases pass: 13 new Theme cases and nine unchanged Theme controls.
+The six C/C++ native pairs preserve the existing strict timestamp-excluded
+object comparison and correct machines. Both entire owning Uxtheme/vssym32
+headers replay exactly. A fresh three-target Controls refresh, accepted complete
+MSI producers/maps and the actual combined emission produce the same
+`3F5883A2...` local image and complete `F781562F...` API, with zero-byte full
+unmasked delta. Actual-candidate integrity passes 54/54. Accepted MSI16's
+60-case cohort remains preserved, not rerun or added as disjoint coverage.
+
+The first new fixtures lacked native FAR/NEAR qualifiers and truncated the
+multiline GBF_VALIDBITS dependency. Their original 10/12 and 16/6 outcomes remain
+saved; the final fixtures retain complete native dependency definitions.
+The first full filtered emission also preserved a separate preparation failure:
+raw ScrapeHeaders enum companions use the scraper header, while accepted final
+pipeline companions use the constants header with System imports. All six
+fresh/accepted Controls enum/constant namespace declaration bodies are identical.
+Retaining those exact accepted companions and overlaying only fresh Controls
+methods closes the bounded retry without producer edits, a global constants
+rescrape, a reader fix or an assertion/metadata mask.
+
+One of the selected 15 rows remains held individually:
+GetThemeSysColorBrush::iColorId. The native SDK comment specifies winuser.h
+system-color indices (COLOR_SCROLLBAR is 0), while the current official
+[documentation](https://learn.microsoft.com/en-us/windows/win32/api/uxtheme/nf-uxtheme-getthemesyscolorbrush)
+lists TMT_* values (TMT_SCROLLBAR is 1601). This is a concrete documentation/
+native-source conflict, not a demonstrated reader limitation or adjudicated
+incorrect association. The main candidate keeps the exact original RSP fact
+and leaves the declaration unannotated. A separate saved one-row deletion-only
+variant is reserved for bounded semantic review, with no substitute enum and
+zero native transfer credit; it is not incorporated into this candidate.
+
+The combined main proposal contains **30 native transfers = MSI16 + Theme14**,
+zero new defect retirements and local totals **65/388/290**. A direct recount
+finds 1310 member-remap rows, 157 AssociatedEnum contributions and 62 remaining
+parameter selectors. Published totals remain **65/358/290**. The four MSI
+scalar facts, six meaningful cleanup choices, all type/JSON/NCRYPT/routes,
+lower stack/bases/consumers and unrelated tooling remain unchanged.
+Combined source review and a later ordinary exact-new-head/output gate are
+still required before publication.
 
 ### Separately attributable published producer-lifetime checkpoints
 
@@ -46,7 +138,7 @@ Exactly eight standalone producer rows remained at this checkpoint. The next
 combined candidate handles AmsiInitialize and WlanOpenHandle separately from the
 six contextual resource/namespace choices below.
 
-### Unpublished combined candidate: AMSI1, Wlan1 and OLE25
+### Published combined candidate: AMSI1, Wlan1 and OLE25
 
 The two accepted lifetime contributions retain their separate source/output
 checkpoints. AmsiInitialize uses its authoritative IDL `cpp_quote` declaration,
@@ -69,9 +161,18 @@ byte-identical to the accepted saved Wlan checkpoint. Thus the entire OLE-only
 API delta is empty. Relative to published native70, the combined complete delta
 only reorders the identical AMSI and Wlan producer/cleanup declarations; all
 declarations and attributes are preserved. The combined row delta is
-**27 native transfers = AMSI1 + Wlan1 + OLE25**, with local totals
+**27 native transfers = AMSI1 + Wlan1 + OLE25**, with qualified published totals
 **65 whole JSON retirements / 358 manual emitter rows / 290 enums remaining**.
 The earlier four GDI defect retirements are not recounted as transfers.
+
+Its first `16ec4e88` ordinary attempt failed the strict CoreCom whole-owner
+fixture. The saved preparation had converted import dependencies but omitted
+preprocessor-IDL includes. The unchanged converter's complete 15-owner,
+31-edge closure, including four such includes, reproduces all three complete
+ocidl.h, oleidl.h and amsi.h outputs. The approved repair updates only those
+three generated headers, preserving all 27 transfers and the complete API.
+Ordinary `78090f60` qualifies the repaired preparation; it does not
+retroactively accept the original failed run or weaken any fixture/comparer.
 
 Owning SDK patches replay whole-source equality, the existing 47 association
 regressions and actual-candidate 54 integrity cases pass, and only ComOle is

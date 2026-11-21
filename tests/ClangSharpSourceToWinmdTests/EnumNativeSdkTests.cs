@@ -21,6 +21,305 @@ namespace ClangSharpSourceToWinmdTests
         public TestContext TestContext { get; set; } = null!;
 
         [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc", "c")]
+        [DataRow("x86_64-pc-windows-msvc", "c")]
+        [DataRow("aarch64-pc-windows-msvc", "c")]
+        [DataRow("i686-pc-windows-msvc", "c++")]
+        [DataRow("x86_64-pc-windows-msvc", "c++")]
+        [DataRow("aarch64-pc-windows-msvc", "c++")]
+        public void InstallerParameters_PreserveNativeStorageAndIndividualLegacyFacts(string target, string language)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            string source = InstallerDeclarations();
+            string legacySource = Regex.Replace(source,
+                @"_Win32_AssociatedEnum_\((INSTALLMODE|INSTALLLOGMODE|MSIINSTALLCONTEXT|REINSTALLMODE)\)\s*", "");
+            legacySource = Regex.Replace(legacySource, @"UINT WINAPI MsiDatabaseGenerateTransform[AW]\([^;]+;",
+                match => match.Value.Replace("_Reserved_ ", "", StringComparison.Ordinal));
+            var result = fixture.Scrape(legacySource, target, sal: true, language: language);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            byte[] expected = File.ReadAllBytes(fixture.Emit(InstallerFacts()));
+            result = fixture.Scrape(source, target, sal: true, language: language);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            var retainedReserved = InstallerFacts().Where(fact => fact.Value == "[Reserved]")
+                .ToDictionary(fact => fact.Key, fact => fact.Value);
+            string path = fixture.Emit(retainedReserved);
+            using (var pe = new PEReader(File.OpenRead(path)))
+            {
+                var reader = pe.GetMetadataReader();
+                var methods = NativeTypedefHeaderTests.Type(reader, "Apis").GetMethods().Select(reader.GetMethodDefinition)
+                    .ToDictionary(method => reader.GetString(method.Name));
+                foreach (var fact in InstallerFacts())
+                {
+                    string[] selector = fact.Key.Split("::");
+                    var parameter = methods[selector[0]].GetParameters().Select(reader.GetParameter)
+                        .Single(parameter => reader.GetString(parameter.Name) == selector[1]);
+                    string[] associations = EnumAssociationHeaderTests.StringAttributes(reader,
+                        parameter.GetCustomAttributes(), "AssociatedEnumAttribute");
+                    if (fact.Value == "[Reserved]")
+                    {
+                        Assert.AreEqual(0, associations.Length);
+                        Assert.AreEqual(1, parameter.GetCustomAttributes().Select(reader.GetCustomAttribute)
+                            .Count(attribute => ParameterHeaderTests.AttributeName(reader, attribute) == "ReservedAttribute"));
+                    }
+                    else
+                        CollectionAssert.AreEqual(new[] { fact.Value.Split('"')[1] }, associations, fact.Key);
+                }
+                foreach (string name in new[] { "MsiProvideAssemblyA", "MsiProvideAssemblyW" })
+                {
+                    var neighbor = methods[name].GetParameters().Select(reader.GetParameter)
+                        .Single(parameter => reader.GetString(parameter.Name) == "dwAssemblyInfo");
+                    CollectionAssert.AreEqual(new[] { "MSIASSEMBLYINFO" },
+                        EnumAssociationHeaderTests.StringAttributes(reader, neighbor.GetCustomAttributes(), "AssociatedEnumAttribute"));
+                }
+            }
+            CollectionAssert.AreEqual(expected, File.ReadAllBytes(path),
+                "Sixteen native enum transfers plus four retained reserved-scalar sidecars must preserve every declaration and attribute.");
+            Save(Path.Combine(fixture.DirectoryPath, "input.h"), "installer-parameters-" + target + "-" + language);
+            Save(fixture.GeneratedSource, "installer-parameters-" + target + "-" + language);
+            Save(path, "installer-parameters-" + target + "-" + language);
+        }
+
+        [DataTestMethod]
+        [DataRow("x86", 4, "/TC")]
+        [DataRow("x64", 8, "/TC")]
+        [DataRow("arm64", 8, "/TC")]
+        [DataRow("x86", 4, "/TP")]
+        [DataRow("x64", 8, "/TP")]
+        [DataRow("arm64", 8, "/TP")]
+        public void InstallerParameters_AreNativeAbiNoOps(string arch, int pointerSize, string language)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            fixture.AssertNativeAbi(arch, pointerSize, language,
+                "#define _In_\n#define _In_opt_\n#define _Out_opt_\n#define _Inout_opt_\n" +
+                "#define _Out_writes_opt_(count)\n#define _Reserved_\n" + InstallerDeclarations() + @"
+typedef UINT (WINAPI *ExpectedReinstall)(LPCSTR, DWORD);
+typedef UINT (WINAPI *ExpectedTransform)(MSIHANDLE, MSIHANDLE, LPCWSTR, int, int);
+ExpectedReinstall verifyReinstall = &MsiReinstallProductA;
+ExpectedTransform verifyTransform = &MsiDatabaseGenerateTransformW;
+typedef char VerifyScalarStorage[(sizeof(DWORD) == 4 && sizeof(int) == 4) ? 1 : -1];
+");
+            Save(fixture.OrdinaryNativeObject, "installer-ordinary-" + arch + "-" + language.TrimStart('/'));
+            Save(fixture.MetadataNativeObject, "installer-metadata-" + arch + "-" + language.TrimStart('/'));
+        }
+
+        [TestMethod]
+        public void InstallerOwningPatches_ReplayBothEntireShippedHeaders()
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            string headers = Path.Combine(fixture.DirectoryPath, "headers");
+            Directory.CreateDirectory(Path.Combine(headers, "um"));
+            foreach (string name in new[] { "Msi.h", "MsiQuery.h" })
+            {
+                string output = Path.Combine(headers, "um", name);
+                File.Copy(Sdk("um", name), output);
+                var result = LastErrorHeaderTests.Run("pwsh", "-NoProfile", "-NonInteractive", "-File",
+                    Path.Combine(LastErrorHeaderTests.RepositoryRoot(), "scripts", "ApplySDKPatches.ps1"),
+                    "-Phase", "post-midl", "-HeaderRoot", headers, "-SdkVersion", "10.0.28000.2705",
+                    "-MidlInputRoot", Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0"),
+                    "-SelectedPatches", "post-midl/" + name + ".patch");
+                Assert.AreEqual(0, result.ExitCode, result.Output);
+                CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
+                    "generation", "WinSDK", "RecompiledIdlHeaders", "um", name)), File.ReadAllBytes(output));
+                Save(output, "installer-whole-owner-" + name);
+            }
+        }
+
+        private static Dictionary<string, string> InstallerFacts()
+        {
+            var facts = new Dictionary<string, string>();
+            foreach (string suffix in new[] { "A", "W" })
+            {
+                facts.Add("MsiEnableLog" + suffix + "::dwLogMode", "[AssociatedEnum(\"INSTALLLOGMODE\")]");
+                facts.Add("MsiEnumClientsEx" + suffix + "::dwContext", "[AssociatedEnum(\"MSIINSTALLCONTEXT\")]");
+                foreach (string name in new[] { "MsiProvideAssembly", "MsiProvideComponent",
+                    "MsiProvideQualifiedComponent", "MsiProvideQualifiedComponentEx" })
+                    facts.Add(name + suffix + "::dwInstallMode", "[AssociatedEnum(\"INSTALLMODE\")]");
+                facts.Add("MsiReinstallFeature" + suffix + "::dwReinstallMode", "[AssociatedEnum(\"REINSTALLMODE\")]");
+                facts.Add("MsiReinstallProduct" + suffix + "::szReinstallMode", "[AssociatedEnum(\"REINSTALLMODE\")]");
+                foreach (string name in new[] { "iReserved1", "iReserved2" })
+                    facts.Add("MsiDatabaseGenerateTransform" + suffix + "::" + name, "[Reserved]");
+            }
+            return facts;
+        }
+
+        private static string InstallerDeclarations()
+        {
+            string headers = Path.Combine(LastErrorHeaderTests.RepositoryRoot(), "generation", "WinSDK", "RecompiledIdlHeaders", "um");
+            string msi = File.ReadAllText(Path.Combine(headers, "Msi.h"));
+            string query = File.ReadAllText(Path.Combine(headers, "MsiQuery.h"));
+            string source = "#define WINAPI __stdcall\n#define _WIN32_MSI 500\n#define MAX_GUID_CHARS 38\n" +
+                "typedef unsigned int UINT; typedef unsigned long DWORD; typedef DWORD* LPDWORD;\n" +
+                "typedef char CHAR; typedef const CHAR* LPCSTR; typedef CHAR* LPSTR;\n" +
+                "#ifdef __cplusplus\ntypedef wchar_t WCHAR;\n#else\ntypedef unsigned short WCHAR;\n#endif\n" +
+                "typedef const WCHAR* LPCWSTR; typedef WCHAR* LPWSTR; typedef unsigned long MSIHANDLE;\n";
+            foreach (string name in new[] { "INSTALLMESSAGE", "REINSTALLMODE", "INSTALLLOGMODE", "INSTALLMODE", "MSIINSTALLCONTEXT" })
+                source += Slice(msi, @"typedef enum [^{}]+\{[^}]+\}\s*" + name + ";") + "\n";
+            foreach (string name in new[] { "MSIASSEMBLYINFO_NETASSEMBLY", "MSIASSEMBLYINFO_WIN32ASSEMBLY" })
+                source += Slice(msi, @"(?m)^#define " + name + @"[^\r\n]+") + "\n";
+            source += Slice(msi, @"_Win32_Enum_\(MSIASSEMBLYINFO,[^;]+;") + "\n";
+            foreach (string name in InstallerFacts().Keys.Select(selector => selector.Split("::")[0]).Distinct())
+                source += Slice(name.StartsWith("MsiDatabase", StringComparison.Ordinal) ? query : msi,
+                    @"UINT WINAPI " + name + @"\s*\([^;]+;") + "\n";
+            return source;
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc", "c")]
+        [DataRow("x86_64-pc-windows-msvc", "c")]
+        [DataRow("aarch64-pc-windows-msvc", "c")]
+        [DataRow("i686-pc-windows-msvc", "c++")]
+        [DataRow("x86_64-pc-windows-msvc", "c++")]
+        [DataRow("aarch64-pc-windows-msvc", "c++")]
+        public void ThemePropertyParameters_PreserveSignedStorageAndIndividualLegacyFacts(string target, string language)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            string source = ThemePropertyDeclarations();
+            string legacySource = Regex.Replace(source, @"_Win32_AssociatedEnum_\(THEME_PROPERTY_SYMBOL_ID\)\s*", "");
+            var result = fixture.Scrape(legacySource, target, sal: true, language: language);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            byte[] expected = File.ReadAllBytes(fixture.Emit(ThemePropertyFacts()));
+            result = fixture.Scrape(source, target, sal: true, language: language);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            string path = fixture.Emit(new Dictionary<string, string>
+            {
+                ["GetThemeSysColorBrush::iColorId"] = "[AssociatedEnum(\"THEME_PROPERTY_SYMBOL_ID\")]",
+            });
+            using (var pe = new PEReader(File.OpenRead(path)))
+            {
+                var reader = pe.GetMetadataReader();
+                var methods = NativeTypedefHeaderTests.Type(reader, "Apis").GetMethods().Select(reader.GetMethodDefinition)
+                    .ToDictionary(method => reader.GetString(method.Name));
+                foreach (var fact in ThemePropertyFacts())
+                {
+                    string[] selector = fact.Key.Split("::");
+                    var method = methods[selector[0]];
+                    var parameter = method.GetParameters().Select(reader.GetParameter)
+                        .Single(parameter => reader.GetString(parameter.Name) == selector[1]);
+                    CollectionAssert.AreEqual(new[] { "THEME_PROPERTY_SYMBOL_ID" },
+                        EnumAssociationHeaderTests.StringAttributes(reader, parameter.GetCustomAttributes(), "AssociatedEnumAttribute"),
+                        fact.Key);
+                    var signature = reader.GetBlobReader(method.Signature);
+                    signature.ReadSignatureHeader();
+                    Assert.IsTrue(signature.ReadCompressedInteger() >= parameter.SequenceNumber);
+                    SkipThemeFixtureType(ref signature);
+                    for (int sequence = 1; sequence < parameter.SequenceNumber; sequence++)
+                        SkipThemeFixtureType(ref signature);
+                    Assert.AreEqual(SignatureTypeCode.Int32, signature.ReadSignatureTypeCode(), fact.Key);
+                }
+                var group = NativeTypedefHeaderTests.Type(reader, "THEME_PROPERTY_SYMBOL_ID");
+                var backing = group.GetFields().Select(reader.GetFieldDefinition)
+                    .Single(field => reader.GetString(field.Name) == "value__");
+                var storage = reader.GetBlobReader(backing.Signature);
+                storage.ReadSignatureHeader();
+                Assert.AreEqual(SignatureTypeCode.UInt32, storage.ReadSignatureTypeCode());
+                var neighbor = methods["GetThemeBitmap"].GetParameters().Select(reader.GetParameter)
+                    .Single(parameter => reader.GetString(parameter.Name) == "dwFlags");
+                CollectionAssert.AreEqual(new[] { "GET_THEME_BITMAP_FLAGS" },
+                    EnumAssociationHeaderTests.StringAttributes(reader, neighbor.GetCustomAttributes(), "AssociatedEnumAttribute"));
+            }
+            CollectionAssert.AreEqual(expected, File.ReadAllBytes(path),
+                "Fourteen native property associations and the retained system-color fact must preserve every declaration and attribute.");
+            Save(Path.Combine(fixture.DirectoryPath, "input.h"), "theme-properties-" + target + "-" + language);
+            Save(fixture.GeneratedSource, "theme-properties-" + target + "-" + language);
+            Save(path, "theme-properties-" + target + "-" + language);
+        }
+
+        [DataTestMethod]
+        [DataRow("x86", 4, "/TC")]
+        [DataRow("x64", 8, "/TC")]
+        [DataRow("arm64", 8, "/TC")]
+        [DataRow("x86", 4, "/TP")]
+        [DataRow("x64", 8, "/TP")]
+        [DataRow("arm64", 8, "/TP")]
+        public void ThemePropertyParameters_AreNativeAbiNoOps(string arch, int pointerSize, string language)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            fixture.AssertNativeAbi(arch, pointerSize, language,
+                "#define _In_\n#define _In_opt_\n#define _Out_\n#define _Out_writes_(count)\n" +
+                ThemePropertyDeclarations() + @"
+typedef HRESULT (__stdcall *ExpectedThemeInt)(HTHEME, int, int, int, int*);
+typedef HRESULT (__stdcall *ExpectedThemeSysInt)(HTHEME, int, int*);
+ExpectedThemeInt verifyThemeInt = &GetThemeInt;
+ExpectedThemeSysInt verifyThemeSysInt = &GetThemeSysInt;
+typedef char VerifySignedInt[(sizeof(int) == 4 && (int)-1 < 0) ? 1 : -1];
+");
+            Save(fixture.OrdinaryNativeObject, "theme-properties-ordinary-" + arch + "-" + language.TrimStart('/'));
+            Save(fixture.MetadataNativeObject, "theme-properties-metadata-" + arch + "-" + language.TrimStart('/'));
+        }
+
+        [TestMethod]
+        public void ThemePropertyOwningPatches_ReplayBothEntireShippedHeaders()
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            string headers = Path.Combine(fixture.DirectoryPath, "headers");
+            Directory.CreateDirectory(Path.Combine(headers, "um"));
+            foreach (string name in new[] { "Uxtheme.h", "vssym32.h" })
+            {
+                string output = Path.Combine(headers, "um", name);
+                File.Copy(Sdk("um", name), output);
+                var result = LastErrorHeaderTests.Run("pwsh", "-NoProfile", "-NonInteractive", "-File",
+                    Path.Combine(LastErrorHeaderTests.RepositoryRoot(), "scripts", "ApplySDKPatches.ps1"),
+                    "-Phase", "post-midl", "-HeaderRoot", headers, "-SdkVersion", "10.0.28000.2705",
+                    "-MidlInputRoot", Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0"),
+                    "-SelectedPatches", "post-midl/" + name + ".patch");
+                Assert.AreEqual(0, result.ExitCode, result.Output);
+                CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
+                    "generation", "WinSDK", "RecompiledIdlHeaders", "um", name)), File.ReadAllBytes(output));
+                Save(output, "theme-properties-whole-owner-" + name);
+            }
+        }
+
+        private static Dictionary<string, string> ThemePropertyFacts()
+        {
+            var facts = new Dictionary<string, string>();
+            foreach (string name in new[] { "GetThemeBitmap", "GetThemeBool", "GetThemeColor", "GetThemeEnumValue",
+                "GetThemeFilename", "GetThemeInt", "GetThemeIntList", "GetThemeMargins", "GetThemeMetric", "GetThemePosition" })
+                facts.Add(name + "::iPropId", "[AssociatedEnum(\"THEME_PROPERTY_SYMBOL_ID\")]");
+            foreach (var selector in new[] { ("GetThemeSysBool", "iBoolId"), ("GetThemeSysColorBrush", "iColorId"),
+                ("GetThemeSysFont", "iFontId"), ("GetThemeSysInt", "iIntId"), ("GetThemeSysString", "iStringId") })
+                facts.Add(selector.Item1 + "::" + selector.Item2, "[AssociatedEnum(\"THEME_PROPERTY_SYMBOL_ID\")]");
+            return facts;
+        }
+
+        private static string ThemePropertyDeclarations()
+        {
+            string headers = Path.Combine(LastErrorHeaderTests.RepositoryRoot(), "generation", "WinSDK", "RecompiledIdlHeaders", "um");
+            string theme = File.ReadAllText(Path.Combine(headers, "Uxtheme.h"));
+            string symbols = File.ReadAllText(Path.Combine(headers, "vssym32.h"));
+            string windef = File.ReadAllText(Sdk("shared", "windef.h"));
+            string wingdi = File.ReadAllText(Sdk("um", "wingdi.h"));
+            string source = "#define THEMEAPI HRESULT __stdcall\n#define THEMEAPI_(type) type __stdcall\n" +
+                "#define FAR\n#define NEAR\n" +
+                "typedef long HRESULT; typedef long LONG; typedef int BOOL; typedef unsigned char BYTE;\n" +
+                "typedef unsigned long DWORD; typedef unsigned long ULONG; typedef unsigned long COLORREF;\n" +
+                "typedef void* HTHEME; typedef void* HDC; typedef void* HBRUSH; typedef void* HBITMAP;\n" +
+                "#ifdef __cplusplus\ntypedef wchar_t WCHAR;\n#else\ntypedef unsigned short WCHAR;\n#endif\n" +
+                "typedef WCHAR* LPWSTR;\n" +
+                Slice(windef, @"typedef struct tagPOINT\s*\{[^}]+\}[^;]+;") + "\n" +
+                Slice(windef, @"typedef struct tagRECT\s*\{[^}]+\}[^;]+;") + "\ntypedef const RECT* LPCRECT;\n" +
+                Slice(wingdi, @"(?m)^#define LF_FACESIZE[^\r\n]+") + "\n" +
+                Slice(wingdi, @"typedef struct tagLOGFONTW\s*\{[^}]+\}[^;]+;") + "\n" +
+                Slice(theme, @"typedef struct _MARGINS\s*\{[^}]+\}[^;]+;") + "\n" +
+                Slice(theme, @"(?m)^#define MAX_INTLIST_COUNT[^\r\n]+") + "\n" +
+                Slice(theme, @"typedef struct _INTLIST\s*\{[^}]+\}[^;]+;") + "\n" +
+                string.Join("\n", Regex.Matches(symbols, @"(?m)^#define TMT_\w+[^\r\n]+").Select(match => match.Value)) + "\n" +
+                Slice(symbols, @"_Win32_Enum_\(THEME_PROPERTY_SYMBOL_ID,[^;]+;") + "\n" +
+                Slice(theme, @"(?m)^#define GBF_DIRECT[\s\S]+?GBF_COPY\)") + "\n" +
+                Slice(theme, @"_Win32_Enum_\(GET_THEME_BITMAP_FLAGS,[^;]+;") + "\n";
+            foreach (string name in ThemePropertyFacts().Keys.Select(selector => selector.Split("::")[0]))
+                source += Slice(theme, @"THEMEAPI(?:_\([^)]*\))?\s+" + name + @"\s*\([^;]+;") + "\n";
+            return source;
+        }
+
+        private static void SkipThemeFixtureType(ref BlobReader signature)
+        {
+            SignatureTypeCode code;
+            do code = signature.ReadSignatureTypeCode();
+            while (code == SignatureTypeCode.Pointer);
+            if (code == SignatureTypeCode.TypeHandle) signature.ReadTypeHandle();
+        }
+
+        [DataTestMethod]
         [DataRow("i686-pc-windows-msvc")]
         [DataRow("x86_64-pc-windows-msvc")]
         [DataRow("aarch64-pc-windows-msvc")]

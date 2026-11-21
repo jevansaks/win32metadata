@@ -874,7 +874,7 @@ GetThemeColor(
     _In_ HTHEME hTheme,
     _In_ int iPartId,
     _In_ int iStateId,
-    _In_ int iPropId,
+    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
     _Out_ COLORREF *pColor
     );
 
@@ -895,7 +895,7 @@ GetThemeMetric(
     _In_opt_ HDC hdc,
     _In_ int iPartId,
     _In_ int iStateId,
-    _In_ int iPropId,
+    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
     _Out_ int *piVal
     );
 
@@ -933,7 +933,7 @@ GetThemeBool(
     _In_ HTHEME hTheme,
     _In_ int iPartId,
     _In_ int iStateId,
-    _In_ int iPropId,
+    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
     _Out_ BOOL *pfVal
     );
 
@@ -951,7 +951,7 @@ GetThemeInt(
     _In_ HTHEME hTheme,
     _In_ int iPartId,
     _In_ int iStateId,
-    _In_ int iPropId,
+    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
     _Out_ int *piVal
     );
 
@@ -969,7 +969,7 @@ GetThemeEnumValue(
     _In_ HTHEME hTheme,
     _In_ int iPartId,
     _In_ int iStateId,
-    _In_ int iPropId,
+    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
     _Out_ int *piVal
     );
 
@@ -988,7 +988,7 @@ GetThemePosition(
     _In_ HTHEME hTheme,
     _In_ int iPartId,
     _In_ int iStateId,
-    _In_ int iPropId,
+    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
     _Out_ POINT *pPoint
     );
 
@@ -1057,7 +1057,7 @@ GetThemeMargins(
     _In_opt_ HDC hdc,
     _In_ int iPartId,
     _In_ int iStateId,
-    _In_ int iPropId,
+    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
     _In_opt_ LPCRECT prc,
     _Out_ MARGINS *pMargins
     );
@@ -1088,7 +1088,7 @@ GetThemeIntList(
     _In_ HTHEME hTheme,
     _In_ int iPartId,
     _In_ int iStateId,
-    _In_ int iPropId,
+    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
     _Out_ INTLIST *pIntList
     );
 
@@ -1173,7 +1173,7 @@ GetThemeFilename(
     _In_ HTHEME hTheme,
     _In_ int iPartId,
     _In_ int iStateId,
-    _In_ int iPropId,
+    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
     _Out_writes_(cchMaxBuffChars) LPWSTR pszThemeFileName,
     _In_ int cchMaxBuffChars
     );
@@ -1223,7 +1223,7 @@ GetThemeSysColorBrush(
 THEMEAPI_(BOOL)
 GetThemeSysBool(
     _In_opt_ HTHEME hTheme,
-    _In_ int iBoolId
+    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iBoolId
     );
 
 //---------------------------------------------------------------------------
@@ -1273,7 +1273,7 @@ GetThemeSysSize(
 THEMEAPI
 GetThemeSysFont(
     _In_opt_ HTHEME hTheme,
-    _In_ int iFontId,
+    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iFontId,
     _Out_ LOGFONTW *plf
     );
 
@@ -1294,7 +1294,7 @@ GetThemeSysFont(
 THEMEAPI
 GetThemeSysString(
     _In_ HTHEME hTheme,
-    _In_ int iStringId,
+    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iStringId,
     _Out_writes_(cchMaxStringChars) LPWSTR pszStringBuff,
     _In_ int cchMaxStringChars
     );
@@ -1315,7 +1315,7 @@ GetThemeSysString(
 THEMEAPI
 GetThemeSysInt(
     _In_ HTHEME hTheme,
-    _In_ int iIntId,
+    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iIntId,
     _Out_ int *piValue
     );
 
@@ -1720,7 +1720,7 @@ GetThemeBitmap(
     _In_ HTHEME hTheme,
     _In_ int iPartId,
     _In_ int iStateId,
-    _In_ int iPropId,
+    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
     _Win32_AssociatedEnum_(GET_THEME_BITMAP_FLAGS) _In_ ULONG dwFlags,
     _Out_ HBITMAP* phBitmap
     );

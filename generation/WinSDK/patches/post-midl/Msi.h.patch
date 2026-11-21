@@ -54,7 +54,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Msi.h b/generation/WinSDK
  
  UINT WINAPI MsiSetExternalUIRecord(
  	_In_opt_ INSTALLUI_HANDLER_RECORD puiHandler,         // for progress and error handling 
-@@ -558,6 +565,7 @@
+@@ -558,17 +565,19 @@
  	_Out_opt_ PINSTALLUI_HANDLER_RECORD ppuiPrevHandler); // pointer to the previously set handler
  	
  #endif // (_WIN32_MSI >= 310)
@@ -62,14 +62,20 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Msi.h b/generation/WinSDK
  
  // Enable logging to a file for all install sessions for the client process,
  // with control over which log messages are passed to the specified log file.
-@@ -567,6 +575,7 @@
- 	_In_ DWORD     dwLogMode,           // bit flags designating operations to report
+ // Messages are designated with a combination of bits from INSTALLLOGMODE enum.
+ 
+ UINT WINAPI MsiEnableLogA(
+-	_In_ DWORD     dwLogMode,           // bit flags designating operations to report
++	_In_ _Win32_AssociatedEnum_(INSTALLLOGMODE) DWORD     dwLogMode,           // bit flags designating operations to report
  	_In_opt_ LPCSTR  szLogFile,       // log file, or NULL to disable logging
  	_In_ DWORD     dwLogAttributes);    // INSTALLLOGATTRIBUTES flags
 +_Win32_SupportedOS_Windows8_
  UINT WINAPI MsiEnableLogW(
- 	_In_ DWORD     dwLogMode,           // bit flags designating operations to report
+-	_In_ DWORD     dwLogMode,           // bit flags designating operations to report
++	_In_ _Win32_AssociatedEnum_(INSTALLLOGMODE) DWORD     dwLogMode,           // bit flags designating operations to report
  	_In_opt_ LPCWSTR  szLogFile,       // log file, or NULL to disable logging
+ 	_In_ DWORD     dwLogAttributes);    // INSTALLLOGATTRIBUTES flags
+ #ifdef UNICODE
 @@ -576,6 +585,7 @@
  #else
  #define MsiEnableLog  MsiEnableLogA
@@ -178,7 +184,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Msi.h b/generation/WinSDK
  	_In_ INSTALLSTATE eInstallState,         // local/source/default/absent/lock/uncache
  	_In_opt_ LPCWSTR      szCommandLine);   // command line <property settings>
  #ifdef UNICODE
-@@ -685,6 +706,7 @@
+@@ -685,15 +706,16 @@
  #else
  #define MsiConfigureProductEx  MsiConfigureProductExA
  #endif // !UNICODE
@@ -186,6 +192,17 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Msi.h b/generation/WinSDK
  
  // Reinstall product, used to validate or correct problems
  
+ UINT WINAPI MsiReinstallProductA(
+ 	_In_ LPCSTR      szProduct,        // product code
+-	_In_ DWORD         szReinstallMode); // one or more REINSTALLMODE modes
++	_In_ _Win32_AssociatedEnum_(REINSTALLMODE) DWORD         szReinstallMode); // one or more REINSTALLMODE modes
+ UINT WINAPI MsiReinstallProductW(
+ 	_In_ LPCWSTR      szProduct,        // product code
+-	_In_ DWORD         szReinstallMode); // one or more REINSTALLMODE modes
++	_In_ _Win32_AssociatedEnum_(REINSTALLMODE) DWORD         szReinstallMode); // one or more REINSTALLMODE modes
+ #ifdef UNICODE
+ #define MsiReinstallProduct  MsiReinstallProductW
+ #else
 @@ -701,6 +723,7 @@
  #endif // !UNICODE
  
@@ -575,7 +592,19 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Msi.h b/generation/WinSDK
  
  
  // Reinstall feature, used to validate or correct problems
-@@ -1216,6 +1287,7 @@
+@@ -1206,16 +1277,17 @@
+ UINT WINAPI MsiReinstallFeatureA(
+ 	_In_ LPCSTR      szProduct,        // product code
+ 	_In_ LPCSTR      szFeature,        // feature ID, NULL for entire product
+-	_In_ DWORD         dwReinstallMode); // one or more REINSTALLMODE modes
++	_In_ _Win32_AssociatedEnum_(REINSTALLMODE) DWORD         dwReinstallMode); // one or more REINSTALLMODE modes
+ UINT WINAPI MsiReinstallFeatureW(
+ 	_In_ LPCWSTR      szProduct,        // product code
+ 	_In_ LPCWSTR      szFeature,        // feature ID, NULL for entire product
+-	_In_ DWORD         dwReinstallMode); // one or more REINSTALLMODE modes
++	_In_ _Win32_AssociatedEnum_(REINSTALLMODE) DWORD         dwReinstallMode); // one or more REINSTALLMODE modes
+ #ifdef UNICODE
+ #define MsiReinstallFeature  MsiReinstallFeatureW
  #else
  #define MsiReinstallFeature  MsiReinstallFeatureA
  #endif // !UNICODE
@@ -583,14 +612,24 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Msi.h b/generation/WinSDK
  
  // --------------------------------------------------------------------------
  // Functions to query a component. For functions that return a path to
-@@ -1235,6 +1307,7 @@
- 	_In_ DWORD        dwInstallMode,                           // either of type INSTALLMODE or a combination of the REINSTALLMODE flags
+@@ -1232,14 +1304,15 @@
+ 	_In_ LPCSTR     szProduct,                               // product code in case install required
+ 	_In_ LPCSTR     szFeature,                               // feature ID in case install required
+ 	_In_ LPCSTR     szComponent,                             // component ID
+-	_In_ DWORD        dwInstallMode,                           // either of type INSTALLMODE or a combination of the REINSTALLMODE flags
++	_In_ _Win32_AssociatedEnum_(INSTALLMODE) DWORD        dwInstallMode,                           // either of type INSTALLMODE or a combination of the REINSTALLMODE flags
  	_Out_writes_opt_(*pcchPathBuf)  LPSTR      lpPathBuf,    // returned path, NULL if not desired
  	_Inout_opt_                     LPDWORD      pcchPathBuf); // in/out buffer character count
 +_Win32_SupportedOS_Windows8_
  UINT WINAPI MsiProvideComponentW(
  	_In_ LPCWSTR     szProduct,                               // product code in case install required
  	_In_ LPCWSTR     szFeature,                               // feature ID in case install required
+ 	_In_ LPCWSTR     szComponent,                             // component ID
+-	_In_ DWORD        dwInstallMode,                           // either of type INSTALLMODE or a combination of the REINSTALLMODE flags
++	_In_ _Win32_AssociatedEnum_(INSTALLMODE) DWORD        dwInstallMode,                           // either of type INSTALLMODE or a combination of the REINSTALLMODE flags
+ 	_Out_writes_opt_(*pcchPathBuf)  LPWSTR      lpPathBuf,    // returned path, NULL if not desired
+ 	_Inout_opt_                     LPDWORD      pcchPathBuf); // in/out buffer character count
+ #ifdef UNICODE
 @@ -1247,6 +1320,7 @@
  #else
  #define MsiProvideComponent  MsiProvideComponentA
@@ -599,14 +638,23 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Msi.h b/generation/WinSDK
  
  // Return full component path for a qualified component, performing any necessary installation. 
  // Prompts for source if necessary and increments the usage count for the feature.
-@@ -1257,6 +1331,7 @@
- 	_In_ DWORD        dwInstallMode,                        // either of type INSTALLMODE or a combination of the REINSTALLMODE flags
+@@ -1254,13 +1328,14 @@
+ UINT WINAPI MsiProvideQualifiedComponentA(
+ 	_In_ LPCSTR     szCategory,                           // component category ID
+ 	_In_ LPCSTR     szQualifier,                          // specifies which component to access
+-	_In_ DWORD        dwInstallMode,                        // either of type INSTALLMODE or a combination of the REINSTALLMODE flags
++	_In_ _Win32_AssociatedEnum_(INSTALLMODE) DWORD        dwInstallMode,                        // either of type INSTALLMODE or a combination of the REINSTALLMODE flags
  	_Out_writes_opt_(*pcchPathBuf)  LPSTR  lpPathBuf,     // returned path, NULL if not desired
  	_Inout_opt_                     LPDWORD  pcchPathBuf);  // in/out buffer character count
 +_Win32_SupportedOS_Windows8_
  UINT WINAPI MsiProvideQualifiedComponentW(
  	_In_ LPCWSTR     szCategory,                           // component category ID
  	_In_ LPCWSTR     szQualifier,                          // specifies which component to access
+-	_In_ DWORD        dwInstallMode,                        // either of type INSTALLMODE or a combination of the REINSTALLMODE flags
++	_In_ _Win32_AssociatedEnum_(INSTALLMODE) DWORD        dwInstallMode,                        // either of type INSTALLMODE or a combination of the REINSTALLMODE flags
+ 	_Out_writes_opt_(*pcchPathBuf)  LPWSTR  lpPathBuf,     // returned path, NULL if not desired
+ 	_Inout_opt_                     LPDWORD  pcchPathBuf);  // in/out buffer character count
+ #ifdef UNICODE
 @@ -1268,6 +1343,7 @@
  #else
  #define MsiProvideQualifiedComponent  MsiProvideQualifiedComponentA
@@ -615,7 +663,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Msi.h b/generation/WinSDK
  
  // Return full component path for a qualified component, performing any necessary installation. 
  // Prompts for source if necessary and increments the usage count for the feature.
-@@ -1283,6 +1359,7 @@
+@@ -1277,16 +1353,17 @@
+ UINT WINAPI MsiProvideQualifiedComponentExA(
+ 	_In_ LPCSTR     szCategory,                           // component category ID
+ 	_In_ LPCSTR     szQualifier,                          // specifies which component to access
+-	_In_ DWORD        dwInstallMode,                        // either of type INSTALLMODE or a combination of the REINSTALLMODE flags
++	_In_ _Win32_AssociatedEnum_(INSTALLMODE) DWORD        dwInstallMode,                        // either of type INSTALLMODE or a combination of the REINSTALLMODE flags
+ 	_In_opt_ LPCSTR     szProduct,                        // the product code 
+ 	_Reserved_ DWORD        dwUnused1,                      // not used, must be zero
  	_Reserved_ DWORD        dwUnused2,                      // not used, must be zero
  	_Out_writes_opt_(*pcchPathBuf)  LPSTR  lpPathBuf,     // returned path, NULL if not desired
  	_Inout_opt_                     LPDWORD  pcchPathBuf);  // in/out buffer character count
@@ -623,6 +678,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Msi.h b/generation/WinSDK
  UINT WINAPI MsiProvideQualifiedComponentExW(
  	_In_ LPCWSTR     szCategory,                           // component category ID
  	_In_ LPCWSTR     szQualifier,                          // specifies which component to access
+-	_In_ DWORD        dwInstallMode,                        // either of type INSTALLMODE or a combination of the REINSTALLMODE flags
++	_In_ _Win32_AssociatedEnum_(INSTALLMODE) DWORD        dwInstallMode,                        // either of type INSTALLMODE or a combination of the REINSTALLMODE flags
+ 	_In_opt_ LPCWSTR     szProduct,                        // the product code 
+ 	_Reserved_ DWORD        dwUnused1,                      // not used, must be zero
+ 	_Reserved_ DWORD        dwUnused2,                      // not used, must be zero
 @@ -1297,6 +1374,7 @@
  #else
  #define MsiProvideQualifiedComponentEx  MsiProvideQualifiedComponentExA
@@ -668,7 +728,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Msi.h b/generation/WinSDK
  	_In_ LPCSTR    szAssemblyName,                       // stringized assembly name
  	_In_opt_ LPCSTR    szAppContext,                     // specifies the full path to the parent asm's .cfg file, null for global assemblies
 -	_In_ DWORD       dwInstallMode,                        // either of type INSTALLMODE or a combination of the REINSTALLMODE flags
-+	_In_ DWORD       dwInstallMode,                        _Win32_AssociatedEnum_(MSIASSEMBLYINFO) // either of type INSTALLMODE or a combination of the REINSTALLMODE flags
++	_In_ _Win32_AssociatedEnum_(INSTALLMODE) DWORD       dwInstallMode,                        _Win32_AssociatedEnum_(MSIASSEMBLYINFO) // either of type INSTALLMODE or a combination of the REINSTALLMODE flags
  	_In_ DWORD       dwAssemblyInfo,                       // assembly info, including assembly type
  	_Out_writes_opt_(*pcchPathBuf)  LPSTR  lpPathBuf,    // returned path, NULL if not desired
  	_Inout_opt_                     LPDWORD  pcchPathBuf); // in/out buffer character count
@@ -677,7 +737,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Msi.h b/generation/WinSDK
  	_In_ LPCWSTR    szAssemblyName,                       // stringized assembly name
  	_In_opt_ LPCWSTR    szAppContext,                     // specifies the full path to the parent asm's .cfg file, null for global assemblies
 -	_In_ DWORD       dwInstallMode,                        // either of type INSTALLMODE or a combination of the REINSTALLMODE flags
-+	_In_ DWORD       dwInstallMode,                        _Win32_AssociatedEnum_(MSIASSEMBLYINFO) // either of type INSTALLMODE or a combination of the REINSTALLMODE flags
++	_In_ _Win32_AssociatedEnum_(INSTALLMODE) DWORD       dwInstallMode,                        _Win32_AssociatedEnum_(MSIASSEMBLYINFO) // either of type INSTALLMODE or a combination of the REINSTALLMODE flags
  	_In_ DWORD       dwAssemblyInfo,                       // assembly info, including assembly type
  	_Out_writes_opt_(*pcchPathBuf)  LPWSTR  lpPathBuf,    // returned path, NULL if not desired
  	_Inout_opt_                     LPDWORD  pcchPathBuf); // in/out buffer character count
@@ -808,7 +868,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Msi.h b/generation/WinSDK
  UINT WINAPI MsiEnumClientsW(
  	_In_ LPCWSTR  szComponent,
  	_In_ DWORD     iProductIndex,                               // 0-based index into client products
-@@ -1546,6 +1645,7 @@
+@@ -1546,22 +1645,24 @@
  #endif // !UNICODE
  
  #if (_WIN32_MSI >=  500)
@@ -816,7 +876,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Msi.h b/generation/WinSDK
  // Enumerate the client products for a component for a given users 
  // and context
  
-@@ -1558,6 +1658,7 @@
+ UINT WINAPI MsiEnumClientsExA (	
+ 	_In_					LPCSTR		szComponent,		// ComponentCode for enumeration
+ 	_In_opt_				LPCSTR		szUserSid,		// Account for enumeration
+-	_In_					DWORD			dwContext,		// Contexts for enumeration
++	_In_ _Win32_AssociatedEnum_(MSIINSTALLCONTEXT)	DWORD			dwContext,		// Contexts for enumeration
+ 	_In_					DWORD			dwProductIndex,		// 0-based index into component clients
+ 	_Out_writes_opt_(MAX_GUID_CHARS+1)	CHAR			szProductBuf[39],	// Enumerated component's client ProductCode
  	_Out_opt_				MSIINSTALLCONTEXT	*pdwInstalledContext,	// Enumerated component's client product's context
  	_Out_writes_opt_(*pcchSid)		LPSTR			szSid,			// Enumerated user account
  	_Inout_opt_				LPDWORD			pcchSid);		// in/out character count of szSid 
@@ -824,6 +890,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Msi.h b/generation/WinSDK
  UINT WINAPI MsiEnumClientsExW (	
  	_In_					LPCWSTR		szComponent,		// ComponentCode for enumeration
  	_In_opt_				LPCWSTR		szUserSid,		// Account for enumeration
+-	_In_					DWORD			dwContext,		// Contexts for enumeration
++	_In_ _Win32_AssociatedEnum_(MSIINSTALLCONTEXT)	DWORD			dwContext,		// Contexts for enumeration
+ 	_In_					DWORD			dwProductIndex,		// 0-based index into component clients
+ 	_Out_writes_opt_(MAX_GUID_CHARS+1)	WCHAR			szProductBuf[39],	// Enumerated component's client ProductCode
+ 	_Out_opt_				MSIINSTALLCONTEXT	*pdwInstalledContext,	// Enumerated component's client product's context
 @@ -1573,6 +1674,7 @@
  #define MsiEnumClientsEx  MsiEnumClientsExA
  #endif // !UNICODE

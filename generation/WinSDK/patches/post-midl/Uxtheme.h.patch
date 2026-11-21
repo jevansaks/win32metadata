@@ -54,6 +54,123 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h b/generation/Wi
      _Out_opt_ LPRECT pContentRect
      );
  
+@@ -873,7 +874,7 @@
+     _In_ HTHEME hTheme,
+     _In_ int iPartId,
+     _In_ int iStateId,
+-    _In_ int iPropId,
++    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
+     _Out_ COLORREF *pColor
+     );
+ 
+@@ -894,7 +895,7 @@
+     _In_opt_ HDC hdc,
+     _In_ int iPartId,
+     _In_ int iStateId,
+-    _In_ int iPropId,
++    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
+     _Out_ int *piVal
+     );
+ 
+@@ -932,7 +933,7 @@
+     _In_ HTHEME hTheme,
+     _In_ int iPartId,
+     _In_ int iStateId,
+-    _In_ int iPropId,
++    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
+     _Out_ BOOL *pfVal
+     );
+ 
+@@ -950,7 +951,7 @@
+     _In_ HTHEME hTheme,
+     _In_ int iPartId,
+     _In_ int iStateId,
+-    _In_ int iPropId,
++    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
+     _Out_ int *piVal
+     );
+ 
+@@ -968,7 +969,7 @@
+     _In_ HTHEME hTheme,
+     _In_ int iPartId,
+     _In_ int iStateId,
+-    _In_ int iPropId,
++    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
+     _Out_ int *piVal
+     );
+ 
+@@ -987,7 +988,7 @@
+     _In_ HTHEME hTheme,
+     _In_ int iPartId,
+     _In_ int iStateId,
+-    _In_ int iPropId,
++    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
+     _Out_ POINT *pPoint
+     );
+ 
+@@ -1056,7 +1057,7 @@
+     _In_opt_ HDC hdc,
+     _In_ int iPartId,
+     _In_ int iStateId,
+-    _In_ int iPropId,
++    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
+     _In_opt_ LPCRECT prc,
+     _Out_ MARGINS *pMargins
+     );
+@@ -1087,7 +1088,7 @@
+     _In_ HTHEME hTheme,
+     _In_ int iPartId,
+     _In_ int iStateId,
+-    _In_ int iPropId,
++    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
+     _Out_ INTLIST *pIntList
+     );
+ 
+@@ -1172,7 +1173,7 @@
+     _In_ HTHEME hTheme,
+     _In_ int iPartId,
+     _In_ int iStateId,
+-    _In_ int iPropId,
++    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
+     _Out_writes_(cchMaxBuffChars) LPWSTR pszThemeFileName,
+     _In_ int cchMaxBuffChars
+     );
+@@ -1222,7 +1223,7 @@
+ THEMEAPI_(BOOL)
+ GetThemeSysBool(
+     _In_opt_ HTHEME hTheme,
+-    _In_ int iBoolId
++    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iBoolId
+     );
+ 
+ //---------------------------------------------------------------------------
+@@ -1272,7 +1273,7 @@
+ THEMEAPI
+ GetThemeSysFont(
+     _In_opt_ HTHEME hTheme,
+-    _In_ int iFontId,
++    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iFontId,
+     _Out_ LOGFONTW *plf
+     );
+ 
+@@ -1293,7 +1294,7 @@
+ THEMEAPI
+ GetThemeSysString(
+     _In_ HTHEME hTheme,
+-    _In_ int iStringId,
++    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iStringId,
+     _Out_writes_(cchMaxStringChars) LPWSTR pszStringBuff,
+     _In_ int cchMaxStringChars
+     );
+@@ -1314,7 +1315,7 @@
+ THEMEAPI
+ GetThemeSysInt(
+     _In_ HTHEME hTheme,
+-    _In_ int iIntId,
++    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iIntId,
+     _Out_ int *piValue
+     );
+ 
 @@ -1413,10 +1414,20 @@
                                   STAP_ALLOW_CONTROLS | \
                                   STAP_ALLOW_WEBCONTENT)
@@ -102,11 +219,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Uxtheme.h b/generation/Wi
      _Inout_ LPRECT pRect,
      _In_opt_ const DTTOPTS *pOptions
      );
-@@ -1710,7 +1721,7 @@
+@@ -1709,8 +1720,8 @@
+     _In_ HTHEME hTheme,
      _In_ int iPartId,
      _In_ int iStateId,
-     _In_ int iPropId,
+-    _In_ int iPropId,
 -    _In_ ULONG dwFlags,
++    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
 +    _Win32_AssociatedEnum_(GET_THEME_BITMAP_FLAGS) _In_ ULONG dwFlags,
      _Out_ HBITMAP* phBitmap
      );
