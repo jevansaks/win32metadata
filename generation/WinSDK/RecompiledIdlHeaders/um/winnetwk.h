@@ -529,6 +529,13 @@ WNetDisconnectDialog1W(
 #define WNetDisconnectDialog1  WNetDisconnectDialog1A
 #endif // !UNICODE
 #endif /* WINVER >= 0x0400 */
+#if defined(WIN32METADATA) && defined(__clang__)
+_Check_return_
+DWORD APIENTRY
+WNetCloseEnum(
+    _In_ HANDLE   hEnum
+    );
+#endif
 _Win32_SupportedOS_Windows2000_
 
 //
@@ -542,7 +549,7 @@ WNetOpenEnumA(
     _Win32_AssociatedEnum_(NET_RESOURCE_TYPE) _In_  DWORD          dwType,
     _In_  DWORD          dwUsage,
     _In_opt_ LPNETRESOURCEA lpNetResource,
-    _Out_ LPHANDLE       lphEnum
+    _Out_ _Win32_RAIIFree_(WNetCloseEnum) LPHANDLE       lphEnum
     );
 _Check_return_
 DWORD APIENTRY
@@ -551,7 +558,7 @@ WNetOpenEnumW(
     _Win32_AssociatedEnum_(NET_RESOURCE_TYPE) _In_  DWORD          dwType,
     _In_  DWORD          dwUsage,
     _In_opt_ LPNETRESOURCEW lpNetResource,
-    _Out_ LPHANDLE       lphEnum
+    _Out_ _Win32_RAIIFree_(WNetCloseEnum) LPHANDLE       lphEnum
     );
 #ifdef UNICODE
 #define WNetOpenEnum  WNetOpenEnumW

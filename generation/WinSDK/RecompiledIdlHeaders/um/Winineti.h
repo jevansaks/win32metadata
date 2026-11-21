@@ -691,11 +691,17 @@ typedef enum  _HTTP_PUSH_WAIT_TYPE
     HttpPushWaitSendComplete
 } HTTP_PUSH_WAIT_TYPE;
 
+#if defined(WIN32METADATA) && defined(__clang__)
+INTERNETAPI_(VOID)
+HttpPushClose(
+    _In_ HTTP_PUSH_WAIT_HANDLE hWait
+);
+#endif
 INTERNETAPI_(DWORD)
 HttpPushEnable(
     _In_ HINTERNET hRequest,
     _In_ HTTP_PUSH_TRANSPORT_SETTING *pTransportSetting,
-    _Out_ HTTP_PUSH_WAIT_HANDLE *phWait
+    _Out_ _Win32_RAIIFree_(HttpPushClose) HTTP_PUSH_WAIT_HANDLE *phWait
 );
 
 INTERNETAPI_(DWORD)

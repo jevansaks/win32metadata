@@ -49,12 +49,18 @@ typedef struct _HEAP_SUMMARY {
     SIZE_T cbMaxReserve;
 } HEAP_SUMMARY, *PHEAP_SUMMARY;
 typedef PHEAP_SUMMARY LPHEAP_SUMMARY;
+#if defined(WIN32METADATA) && defined(__clang__)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
+WINBASEAPI BOOL WINAPI HeapDestroy(_In_ HANDLE hHeap);
+#endif
 _Win32_SetLastError_
 
 //
 // Prototypes
 //
 
+_Win32_RAIIFree_(HeapDestroy)
 WINBASEAPI
 _Ret_maybenull_
 HANDLE

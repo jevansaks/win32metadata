@@ -1227,6 +1227,16 @@ WTSWaitSystemEvent(
 
 /*------------------------------------------------*/
 
+#if defined(WIN32METADATA) && defined(__clang__)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
+BOOL
+WINAPI
+WTSVirtualChannelClose(
+    IN HANDLE hChannelHandle
+    );
+#endif
+_Win32_RAIIFree_(WTSVirtualChannelClose)
 HANDLE
 WINAPI
 WTSVirtualChannelOpen(
@@ -1242,6 +1252,7 @@ WTSVirtualChannelOpen(
 #define WTS_CHANNEL_OPTION_DYNAMIC_PRI_REAL 0x00000006
 #define WTS_CHANNEL_OPTION_DYNAMIC_NO_COMPRESS 0x00000008
 
+_Win32_RAIIFree_(WTSVirtualChannelClose)
 HANDLE
 WINAPI
 WTSVirtualChannelOpenEx(

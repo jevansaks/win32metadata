@@ -2255,6 +2255,10 @@ typedef enum
     SCNRT_DISABLE = 1,
 } SCNRT_STATUS;
 
+#if defined(WIN32METADATA) && defined(__clang__)
+SHSTDAPI_(BOOL) SHChangeNotification_Unlock(_In_ HANDLE hLock);
+#endif
+_Win32_RAIIFree_(SHChangeNotification_Unlock)
 SHSTDAPI_(HANDLE) SHChangeNotification_Lock(_In_ HANDLE hChange, DWORD dwProcId, _Outptr_opt_result_buffer_(2) PIDLIST_ABSOLUTE **pppidl, _Out_opt_ LONG *plEvent);
 SHSTDAPI_(BOOL) SHChangeNotification_Unlock(_In_ HANDLE hLock);
 _Win32_SupportedOS_WindowsXP_

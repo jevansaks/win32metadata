@@ -6073,6 +6073,7 @@ CheckNameLegalDOS8Dot3W(
 
 #if _WIN32_WINNT >= 0x0600
 
+_Win32_RAIIFree_(FindClose)
 WINBASEAPI
 HANDLE
 WINAPI
@@ -6085,6 +6086,7 @@ FindFirstFileTransactedA(
     _In_       DWORD dwAdditionalFlags,
     _In_       HANDLE hTransaction
     );
+_Win32_RAIIFree_(FindClose)
 WINBASEAPI
 HANDLE
 WINAPI
@@ -6830,6 +6832,7 @@ CreateHardLinkTransactedW(
 
 #if _WIN32_WINNT >= 0x0600
 
+_Win32_RAIIFree_(FindClose)
 WINBASEAPI
 HANDLE
 WINAPI
@@ -6841,6 +6844,7 @@ FindFirstStreamTransactedW (
     _In_       HANDLE hTransaction
     );
 
+_Win32_RAIIFree_(FindClose)
 WINBASEAPI
 HANDLE
 WINAPI
@@ -7210,6 +7214,7 @@ GetOldestEventLogRecord (
     );
 
 _Success_(return != FALSE)
+_Win32_RAIIFree_(CloseEventLog)
 WINADVAPI
 HANDLE
 WINAPI
@@ -7218,6 +7223,7 @@ OpenEventLogA (
     _In_     LPCSTR lpSourceName
     );
 _Success_(return != FALSE)
+_Win32_RAIIFree_(CloseEventLog)
 WINADVAPI
 HANDLE
 WINAPI
@@ -7238,6 +7244,7 @@ OpenEventLogW (
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP)
 
 _Success_(return != FALSE)
+_Win32_RAIIFree_(DeregisterEventSource)
 WINADVAPI
 HANDLE
 WINAPI
@@ -7246,6 +7253,7 @@ RegisterEventSourceA (
     _In_     LPCSTR lpSourceName
     );
 _Success_(return != FALSE)
+_Win32_RAIIFree_(DeregisterEventSource)
 WINADVAPI
 HANDLE
 WINAPI
@@ -7266,6 +7274,7 @@ RegisterEventSourceW (
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 
 _Success_(return != FALSE)
+_Win32_RAIIFree_(CloseEventLog)
 WINADVAPI
 HANDLE
 WINAPI
@@ -7274,6 +7283,7 @@ OpenBackupEventLogA (
     _In_     LPCSTR lpFileName
     );
 _Success_(return != FALSE)
+_Win32_RAIIFree_(CloseEventLog)
 WINADVAPI
 HANDLE
 WINAPI
@@ -8708,6 +8718,7 @@ OpenPrivateNamespaceA(
 //  Boundary descriptors support
 //
 
+_Win32_RAIIFree_(DeleteBoundaryDescriptor)
 WINBASEAPI
 _Ret_maybenull_
 HANDLE
@@ -9004,6 +9015,7 @@ CreateJobSet (
 #pragma region Application Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
 
+_Win32_RAIIFree_(FindVolumeClose)
 WINBASEAPI
 HANDLE
 WINAPI
@@ -9034,8 +9046,14 @@ FindNextVolumeA(
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+#if defined(WIN32METADATA) && defined(__clang__)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
+WINBASEAPI BOOL WINAPI FindVolumeMountPointClose(_In_ HANDLE hFindVolumeMountPoint);
+#endif
 _Win32_SupportedOS_WindowsXP_
 
+_Win32_RAIIFree_(FindVolumeMountPointClose)
 WINBASEAPI
 HANDLE
 WINAPI
@@ -9045,6 +9063,7 @@ FindFirstVolumeMountPointA(
     _In_ DWORD cchBufferLength
     );
 _Win32_SupportedOS_WindowsXP_
+_Win32_RAIIFree_(FindVolumeMountPointClose)
 WINBASEAPI
 HANDLE
 WINAPI
@@ -9253,10 +9272,15 @@ typedef PCACTCTXW PCACTCTX;
 #else
 typedef PCACTCTXA PCACTCTX;
 #endif // UNICODE
+#if defined(WIN32METADATA) && defined(__clang__)
+_Win32_SupportedOS_WindowsXP_
+WINBASEAPI VOID WINAPI ReleaseActCtx(_Inout_ HANDLE hActCtx);
+#endif
 _Win32_SupportedOS_WindowsXP_
 
 
 
+_Win32_RAIIFree_(ReleaseActCtx)
 WINBASEAPI
 HANDLE
 WINAPI
@@ -9264,6 +9288,7 @@ CreateActCtxA(
     _In_ PCACTCTXA pActCtx
     );
 _Win32_SupportedOS_WindowsXP_
+_Win32_RAIIFree_(ReleaseActCtx)
 WINBASEAPI
 HANDLE
 WINAPI

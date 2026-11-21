@@ -79,6 +79,15 @@ RoActivateInstance(
     _In_ HSTRING activatableClassId,
     _COM_Outptr_ IInspectable** instance
     );
+#if defined(WIN32METADATA) && defined(__clang__)
+_Win32_SupportedOS_Windows8_
+ROAPI
+void
+WINAPI
+RoRevokeActivationFactories(
+    _In_ RO_REGISTRATION_COOKIE cookie
+    );
+#endif
 _Win32_SupportedOS_Windows8_
 
 ROAPI
@@ -89,7 +98,7 @@ RoRegisterActivationFactories(
     _In_reads_(count) HSTRING* activatableClassIds,
     _In_reads_(count) PFNGETACTIVATIONFACTORY* activationFactoryCallbacks,
     _In_ UINT32 count,
-    _Out_ RO_REGISTRATION_COOKIE* cookie
+    _Out_ _Win32_RAIIFree_(RoRevokeActivationFactories) RO_REGISTRATION_COOKIE* cookie
     );
 _Win32_SupportedOS_Windows8_
 
@@ -113,6 +122,16 @@ RoGetActivationFactory(
 
 typedef interface IApartmentShutdown IApartmentShutdown;
 DECLARE_HANDLE(APARTMENT_SHUTDOWN_REGISTRATION_COOKIE);
+#if defined(WIN32METADATA) && defined(__clang__)
+_Win32_SupportedOS_Windows8_
+ROAPI
+_Check_return_
+HRESULT
+WINAPI
+RoUnregisterForApartmentShutdown(
+    _In_ APARTMENT_SHUTDOWN_REGISTRATION_COOKIE regCookie
+    );
+#endif
 _Win32_SupportedOS_Windows8_
 
 ROAPI
@@ -122,7 +141,7 @@ WINAPI
 RoRegisterForApartmentShutdown(
     _In_ IApartmentShutdown* callbackObject,
     _Out_ UINT64* apartmentIdentifier,
-    _Out_ APARTMENT_SHUTDOWN_REGISTRATION_COOKIE* regCookie
+    _Out_ _Win32_RAIIFree_(RoUnregisterForApartmentShutdown) APARTMENT_SHUTDOWN_REGISTRATION_COOKIE* regCookie
     );
 _Win32_SupportedOS_Windows8_
 

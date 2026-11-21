@@ -7,7 +7,101 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/fltUser.h b/generation/Wi
  /*++
  
  Copyright (c) 1989-2002  Microsoft Corporation
-@@ -429,6 +430,7 @@
+@@ -225,6 +226,14 @@ FilterDetach (
+ //  Functions for iterating through Filters
+ //
+ 
++#if defined(WIN32METADATA) && defined(__clang__)
++_Must_inspect_result_
++HRESULT
++WINAPI
++FilterFindClose(
++    _In_ HANDLE hFilterFind
++    );
++#endif
+ _Must_inspect_result_
+ HRESULT
+ WINAPI
+@@ -233,7 +242,7 @@ FilterFindFirst (
+     _Out_writes_bytes_to_(dwBufferSize,*lpBytesReturned) LPVOID lpBuffer,
+     _In_ DWORD dwBufferSize,
+     _Out_ LPDWORD lpBytesReturned,
+-    _Out_ LPHANDLE lpFilterFind
++    _Out_ _Win32_RAIIFree_(FilterFindClose) LPHANDLE lpFilterFind
+     );
+ 
+ _Must_inspect_result_
+@@ -255,6 +264,13 @@ FilterFindClose(
+     );
+ 
+ 
++#if defined(WIN32METADATA) && defined(__clang__)
++HRESULT
++WINAPI
++FilterVolumeFindClose(
++    _In_ HANDLE hVolumeFind
++    );
++#endif
+ _Must_inspect_result_
+ HRESULT
+ WINAPI
+@@ -263,7 +279,7 @@ FilterVolumeFindFirst (
+     _Out_writes_bytes_to_(dwBufferSize,*lpBytesReturned) LPVOID lpBuffer,
+     _In_ DWORD dwBufferSize,
+     _Out_ LPDWORD lpBytesReturned,
+-    _Out_ PHANDLE lpVolumeFind
++    _Out_ _Win32_RAIIFree_(FilterVolumeFindClose) PHANDLE lpVolumeFind
+     );
+ 
+ _Must_inspect_result_
+@@ -287,6 +303,14 @@ FilterVolumeFindClose(
+ //  Functions for iterating through FilterInstances
+ //
+ 
++#if defined(WIN32METADATA) && defined(__clang__)
++_Must_inspect_result_
++HRESULT
++WINAPI
++FilterInstanceFindClose(
++    _In_ HANDLE hFilterInstanceFind
++    );
++#endif
+ _Must_inspect_result_
+ HRESULT
+ WINAPI
+@@ -296,7 +320,7 @@ FilterInstanceFindFirst (
+     _Out_writes_bytes_to_(dwBufferSize,*lpBytesReturned) LPVOID lpBuffer,
+     _In_ DWORD dwBufferSize,
+     _Out_ LPDWORD lpBytesReturned,
+-    _Out_ LPHANDLE lpFilterInstanceFind
++    _Out_ _Win32_RAIIFree_(FilterInstanceFindClose) LPHANDLE lpFilterInstanceFind
+     );
+ 
+ _Must_inspect_result_
+@@ -322,6 +346,13 @@ FilterInstanceFindClose(
+ //  Functions for iterating through VolumeInstances
+ //
+ 
++#if defined(WIN32METADATA) && defined(__clang__)
++HRESULT
++WINAPI
++FilterVolumeInstanceFindClose(
++    _In_ HANDLE hVolumeInstanceFind
++    );
++#endif
+ _Must_inspect_result_
+ HRESULT
+ WINAPI
+@@ -331,7 +362,7 @@ FilterVolumeInstanceFindFirst (
+     _Out_writes_bytes_to_(dwBufferSize,*lpBytesReturned) LPVOID lpBuffer,
+     _In_ DWORD dwBufferSize,
+     _Out_ LPDWORD lpBytesReturned,
+-    _Out_ LPHANDLE lpVolumeInstanceFind
++    _Out_ _Win32_RAIIFree_(FilterVolumeInstanceFindClose) LPHANDLE lpVolumeInstanceFind
+     );
+ 
+ _Must_inspect_result_
+@@ -429,6 +460,7 @@ FilterGetMessage (
      _In_ DWORD dwMessageBufferSize,
      _Inout_opt_ LPOVERLAPPED lpOverlapped
      );

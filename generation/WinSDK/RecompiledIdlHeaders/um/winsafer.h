@@ -644,6 +644,15 @@ SaferSetPolicyInformation(
     _In_reads_bytes_(InfoBufferSize) PVOID   InfoBuffer,
     _Reserved_ LPVOID                   lpReserved
     );
+#if defined(WIN32METADATA) && defined(__clang__)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
+WINADVAPI
+BOOL WINAPI
+SaferCloseLevel(
+    _In_ SAFER_LEVEL_HANDLE hLevelHandle
+    );
+#endif
 _Win32_SetLastError_
 _Win32_SupportedOS_WindowsXP_
 
@@ -657,7 +666,7 @@ SaferCreateLevel(
     _In_ DWORD                dwScopeId,
     _In_ DWORD                dwLevelId,
     _In_ DWORD                OpenFlags,
-    _Outptr_ SAFER_LEVEL_HANDLE * pLevelHandle,
+    _Outptr_ _Win32_RAIIFree_(SaferCloseLevel) SAFER_LEVEL_HANDLE * pLevelHandle,
     _Reserved_ LPVOID               lpReserved
     );
 _Win32_SetLastError_
@@ -676,7 +685,7 @@ BOOL WINAPI
 SaferIdentifyLevel(
     _In_ DWORD              dwNumProperties,
     _In_reads_opt_(dwNumProperties) PSAFER_CODE_PROPERTIES pCodeProperties,
-    _Outptr_ SAFER_LEVEL_HANDLE  * pLevelHandle,
+    _Outptr_ _Win32_RAIIFree_(SaferCloseLevel) SAFER_LEVEL_HANDLE  * pLevelHandle,
     _In_opt_ LPVOID         lpReserved
     );
 _Win32_SetLastError_

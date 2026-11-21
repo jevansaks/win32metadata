@@ -12,17 +12,33 @@ RECOVERY.md. A rejected trial is not migrated coverage.
 
 ## Accepted continuation and remaining boundaries
 
-The published, hosted-qualified CryptXML20 continuation retires 41 complete enum
-records, 23 complete callback-fixup records and 106 manual emitter rows. It retains
-291 enum records, four callback selectors and all 436 autoTypes records.
-The separate local transform-flags21 cohort below is independently accepted but
-unpublished and is not included in these counts.
+Published `da076219` is independently qualified by its own ordinary ten-job
+CI/output gate, including 175 SDK cases and 54 integrity cases. Its complete API
+is `7FA8EA90...`. Published totals are **65 whole JSON retirements / 257 manual
+emitter rows / 290 enums remaining**, with **zero selected result-policy rows**
+and **2259 namespace routes** remaining. Transform21, the 151 result-row
+retirements, the separately qualified native SAL refresh and the 905 reviewed
+route removals are included. The previous `b24738dc` failed attempts are not
+retroactively accepted by this fixture-repair publication.
 
-The current unpublished large checkpoint completes all 151 selected result-row
-retirements, preserves the separately qualified native SAL refresh, and removes
-only the 905 reviewed namespace routes. Its totals are **65 whole JSON retirements
-/ 257 manual emitter rows / 290 enums**, with **zero selected result-policy rows**
-and **2259 namespace routes** remaining. The published totals above are unchanged.
+The unpublished producer-lifetime family is separate. Core26 and DeviceQuery6
+transfer 32 native cleanup facts with full semantic preservation; a separate
+38-fact/20-owner direct-header checkpoint also closes full output qualification.
+Its only complete API changes are the four approved GDI return-attribute
+removals and ordering of identical cleanup declarations. All 27 selected
+cleanup blocks preserve their signatures, attributes and namespaces.
+Four reviewed GDI rows remove incorrect DeleteMetaFile/DeleteEnhMetaFile
+associations from recording HDC producers: zero transfer credit and no
+replacement Close function. The staged 74-row delta leaves exactly eight
+standalone cleanup rows and does not change whole JSON, enum or nominal-type
+counts. The six contextual selectors are BeginUpdateResourceA/W,
+CreatePrivateNamespaceA/W and OpenPrivateNamespaceA/W. They remain separate
+from AmsiInitialize's authoritative IDL preparation and WlanOpenHandle's
+reserved-NULL second cleanup argument; arity alone is not an ownership policy.
+An actual-SDK three-target Wlan repro passes without the proposed annotation
+and fails with the current reader's exactly-one-cleanup-parameter diagnostic.
+The existing RSP row and native declarations remain unchanged while that
+specific reserved-argument support is considered.
 
 | Finding | Accepted correction / retained evidence | Remaining boundary |
 |---|---|---|

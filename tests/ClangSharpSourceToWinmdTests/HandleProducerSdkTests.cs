@@ -21,6 +21,144 @@ namespace ClangSharpSourceToWinmdTests
 
         public TestContext TestContext { get; set; } = null!;
 
+        [TestMethod]
+        public void RemainingProducerCleanupSdkPatches_ReplayCompleteOwners()
+        {
+            string[] owners = {
+                "um/appmodel.h", "um/namespaceapi.h", "um/packagevirtualizationcontext.h",
+                "um/WinDNS.h", "um/DsGetDC.h", "um/fltUser.h", "shared/hidsdi.h",
+                "um/Winineti.h", "um/IcmpAPI.h", "um/ncryptprotect.h", "um/perflib.h",
+                "um/projectedfslib.h", "um/appnotify.h", "winrt/roapi.h", "um/winsafer.h",
+                "um/ShlObj_core.h", "um/winsvc.h", "um/winnetwk.h", "um/WtsApi32.h", "um/cfapi.h",
+            };
+            string directory = Path.Combine(Path.GetTempPath(), "producer-cleanup-sdk-" + Guid.NewGuid().ToString("N"));
+            string include = Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0");
+            Directory.CreateDirectory(directory);
+            try
+            {
+                foreach (string owner in owners)
+                {
+                    string destination = Path.Combine(directory, owner);
+                    Directory.CreateDirectory(Path.GetDirectoryName(destination)!);
+                    File.Copy(Path.Combine(include, owner), destination);
+                }
+                string patches = string.Join(",", owners.Select(owner =>
+                    Quote("post-midl/" + Path.GetFileName(owner) + ".patch")));
+                var apply = LastErrorHeaderTests.Run("pwsh", "-NoProfile", "-NonInteractive", "-Command",
+                    "& " + Quote(Path.Combine(LastErrorHeaderTests.RepositoryRoot(), "scripts", "ApplySDKPatches.ps1")) +
+                    " -Phase post-midl -HeaderRoot " + Quote(directory) + " -MidlInputRoot " + Quote(include) +
+                    " -SdkVersion '10.0.28000.2705' -SelectedPatches @(" + patches + ")");
+                Assert.AreEqual(0, apply.ExitCode, apply.Output);
+                foreach (string owner in owners)
+                    CollectionAssert.AreEqual(File.ReadAllBytes(Sdk("RecompiledIdlHeaders/" + owner)),
+                        File.ReadAllBytes(Path.Combine(directory, owner)), owner);
+            }
+            finally { Directory.Delete(directory, true); }
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void CoreKernelCleanup_ForwardDeclarationsPreserveOnlyProducerOwnership(string target)
+        {
+            var sites = new[]
+            {
+                (Header: "heapapi.h", Producer: "HeapCreate", Cleanup: "HeapDestroy"),
+                (Header: "fileapi.h", Producer: "FindFirstVolumeW", Cleanup: "FindVolumeClose"),
+                (Header: "WinBase.h", Producer: "FindFirstVolumeMountPointW", Cleanup: "FindVolumeMountPointClose"),
+                (Header: "WinBase.h", Producer: "CreateActCtxW", Cleanup: "ReleaseActCtx"),
+            };
+            string declarations = NextProducerDependencies + @"
+#define WINBASEAPI
+typedef void VOID;
+typedef __SIZE_TYPE__ SIZE_T;
+typedef wchar_t* LPWSTR;
+typedef const wchar_t* LPCWSTR;
+typedef struct _ACTCTXW ACTCTXW;
+typedef const ACTCTXW* PCACTCTXW;
+";
+            foreach (var site in sites)
+            {
+                string header = File.ReadAllText(Sdk("RecompiledIdlHeaders/um/" + site.Header));
+                var forward = Regex.Match(header,
+                    @"(?m)^#if defined\(WIN32METADATA\) && defined\(__clang__\)\r?\n(?:(?!#endif)[\s\S])*?\b" +
+                    site.Cleanup + @"\([^;]*\);\r?\n#endif");
+                Assert.IsTrue(forward.Success, site.Cleanup);
+                declarations += forward.Value + "\n" + Declaration(header, site.Producer, "WINBASEAPI") +
+                    "\n" + Declaration(header, site.Cleanup, "WINBASEAPI") + "\n";
+            }
+
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(declarations, target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            using var pe = new PEReader(File.OpenRead(fixture.Emit()));
+            var reader = pe.GetMetadataReader();
+            foreach (var site in sites)
+            {
+                ProducerHeaderTests.AssertFacts(reader, site.Producer, 0, site.Cleanup);
+                ProducerHeaderTests.AssertNoOwnership(reader, site.Cleanup);
+            }
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void DeviceQueryCleanup_OwnsSixOutputsButNotCallbackOrCleanupInputs(string target)
+        {
+            string header = File.ReadAllText(Sdk("RecompiledIdlHeaders/um/devquery.h"));
+            var outputs = new Dictionary<string, int>
+            {
+                ["DevCreateObjectQuery"] = 9,
+                ["DevCreateObjectQueryEx"] = 11,
+                ["DevCreateObjectQueryFromId"] = 10,
+                ["DevCreateObjectQueryFromIdEx"] = 12,
+                ["DevCreateObjectQueryFromIds"] = 10,
+                ["DevCreateObjectQueryFromIdsEx"] = 12,
+            };
+            string forward = Regex.Match(header,
+                @"(?m)^#if defined\(WIN32METADATA\) && defined\(__clang__\)\r?\nVOID WINAPI DevCloseObjectQuery\([^;]*\);\r?\n#endif").Value;
+            string callback = Regex.Match(header,
+                @"typedef VOID \(WINAPI \*PDEV_QUERY_RESULT_CALLBACK\)\([^;]*;").Value;
+            Assert.IsFalse(string.IsNullOrEmpty(forward));
+            Assert.IsFalse(string.IsNullOrEmpty(callback));
+            string declarations = NextProducerDependencies + @"
+typedef void VOID;
+typedef long HRESULT;
+typedef struct HDEVQUERY__* HDEVQUERY;
+typedef HDEVQUERY* PHDEVQUERY;
+typedef const wchar_t* PCWSTR;
+typedef const wchar_t* PCZZWSTR;
+typedef enum { DevObjectTypeUnknown } DEV_OBJECT_TYPE;
+typedef struct DEVPROPCOMPKEY DEVPROPCOMPKEY;
+typedef struct DEVPROP_FILTER_EXPRESSION DEVPROP_FILTER_EXPRESSION;
+typedef struct DEV_QUERY_PARAMETER DEV_QUERY_PARAMETER;
+typedef struct DEV_QUERY_RESULT_ACTION_DATA DEV_QUERY_RESULT_ACTION_DATA;
+" + forward + "\n" + callback + "\n" +
+                string.Join("\n", outputs.Keys.Select(name => Declaration(header, name, "_Check_return_ HRESULT WINAPI"))) +
+                "\n" + Declaration(header, "DevCloseObjectQuery", "VOID WINAPI");
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(declarations, target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            using var pe = new PEReader(File.OpenRead(fixture.Emit()));
+            var reader = pe.GetMetadataReader();
+            foreach (var output in outputs)
+                ProducerHeaderTests.AssertFacts(reader, output.Key, output.Value, "DevCloseObjectQuery");
+            foreach (var method in reader.MethodDefinitions.Select(reader.GetMethodDefinition))
+            {
+                string name = reader.GetString(method.Name);
+                foreach (var parameter in method.GetParameters().Select(reader.GetParameter))
+                {
+                    if (outputs.TryGetValue(name, out int sequence) && parameter.SequenceNumber == sequence)
+                        continue;
+                    Assert.IsFalse(parameter.GetCustomAttributes().Select(reader.GetCustomAttribute)
+                        .Any(attribute => ProducerHeaderTests.Name(reader, attribute) is
+                            "RAIIFreeAttribute" or "InvalidHandleValueAttribute"), name);
+                }
+            }
+        }
+
         [DataTestMethod]
         [DataRow("i686-pc-windows-msvc")]
         [DataRow("x86_64-pc-windows-msvc")]
@@ -181,6 +319,31 @@ HANDLE (WINAPI *verifyAdd)(LPCWSTR, DWORD, LPBYTE) = &AddPrinterW;
             Assert.AreEqual(0, result.ExitCode, result.Output);
             result = fixture.Scrape(dependencies + cleanup +
                 "\n_Win32_RAIIFree_(UnmapViewOfFile, 0)\n" + producer, target, sal: true);
+            TestContext.WriteLine(result.Output);
+            Assert.AreNotEqual(0, result.ExitCode);
+            StringAssert.Contains(result.Output,
+                "RAIIFree cleanup must resolve to one declared non-member, non-variadic native function accepting exactly the produced resource type.");
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void WlanCleanup_ReservedNullArgumentIsDistinctFromContextualOwnership(string target)
+        {
+            string header = File.ReadAllText(Sdk("RecompiledIdlHeaders/um/wlanapi.h"));
+            string producer = Regex.Match(header, @"DWORD WINAPI\s+WlanOpenHandle\([^;]+;").Value;
+            string cleanup = Regex.Match(header, @"DWORD WINAPI\s+WlanCloseHandle\([^;]+;").Value;
+            Assert.IsFalse(string.IsNullOrEmpty(producer));
+            Assert.IsFalse(string.IsNullOrEmpty(cleanup));
+            StringAssert.Contains(cleanup, "_Reserved_ PVOID pReserved");
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(NextProducerDependencies + cleanup + producer, target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            string annotated = producer.Replace("_Out_ PHANDLE phClientHandle",
+                "_Out_ _Win32_RAIIFree_(WlanCloseHandle) PHANDLE phClientHandle", StringComparison.Ordinal);
+            Assert.AreNotEqual(producer, annotated);
+            result = fixture.Scrape(NextProducerDependencies + cleanup + annotated, target, sal: true);
             TestContext.WriteLine(result.Output);
             Assert.AreNotEqual(0, result.ExitCode);
             StringAssert.Contains(result.Output,
@@ -462,14 +625,14 @@ typedef struct { unsigned long a; unsigned short b, c; unsigned char d[8]; } GUI
             string include = Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0");
             try
             {
-                foreach (string owner in new[] { "WinBase.h", "winspool.h", "heapapi.h", "minwinbase.h" })
+                foreach (string owner in new[] { "WinBase.h", "winspool.h", "heapapi.h", "minwinbase.h", "fileapi.h", "devquery.h" })
                     File.Copy(Path.Combine(include, "um", owner), Path.Combine(directory, "um", owner));
                 var apply = LastErrorHeaderTests.Run("pwsh", "-NoProfile", "-NonInteractive", "-Command",
                     "& " + Quote(Path.Combine(LastErrorHeaderTests.RepositoryRoot(), "scripts", "ApplySDKPatches.ps1")) +
                     " -Phase post-midl -HeaderRoot " + Quote(directory) + " -MidlInputRoot " + Quote(include) +
-                    " -SdkVersion '10.0.28000.2705' -SelectedPatches @('post-midl/WinBase.h.patch','post-midl/winspool.h.patch','post-midl/heapapi.h.patch','post-midl/minwinbase.h.patch')");
+                    " -SdkVersion '10.0.28000.2705' -SelectedPatches @('post-midl/WinBase.h.patch','post-midl/winspool.h.patch','post-midl/heapapi.h.patch','post-midl/minwinbase.h.patch','post-midl/fileapi.h.patch','post-midl/devquery.h.patch')");
                 Assert.AreEqual(0, apply.ExitCode, apply.Output);
-                foreach (string owner in new[] { "WinBase.h", "winspool.h", "heapapi.h", "minwinbase.h" })
+                foreach (string owner in new[] { "WinBase.h", "winspool.h", "heapapi.h", "minwinbase.h", "fileapi.h", "devquery.h" })
                     CollectionAssert.AreEqual(File.ReadAllBytes(Sdk("RecompiledIdlHeaders/um/" + owner)),
                         File.ReadAllBytes(Path.Combine(directory, "um", owner)), owner + ": complete native bytes, including EOF and CRLF");
 
@@ -523,7 +686,7 @@ typedef struct { unsigned long a; unsigned short b, c; unsigned char d[8]; } GUI
             Directory.CreateDirectory(directory);
             try
             {
-                foreach (string owner in new[] { "WinBase.h", "winspool.h" })
+                foreach (string owner in new[] { "WinBase.h", "winspool.h", "heapapi.h", "fileapi.h", "devquery.h" })
                     File.Copy(Sdk("RecompiledIdlHeaders/um/" + owner), Path.Combine(directory, owner));
                 File.Copy(Sdk("RecompiledIdlHeaders/shared/win32metadata_annotations.h"),
                     Path.Combine(directory, "win32metadata_annotations.h"));
@@ -531,6 +694,7 @@ typedef struct { unsigned long a; unsigned short b, c; unsigned char d[8]; } GUI
                 File.WriteAllText(source, @"
 #include <windows.h>
 #include <winspool.h>
+#include <devquery.h>
 typedef char PointerWidth[(sizeof(HANDLE) == " + pointerSize + @") ? 1 : -1];
 typedef char LocalWidth[(sizeof(HLOCAL) == sizeof(void*)) ? 1 : -1];
 typedef char OutputWidth[(sizeof(*((LPHANDLE)0)) == sizeof(void*)) ? 1 : -1];
@@ -539,6 +703,16 @@ BOOL (WINAPI *closePrinter)(void*) = &ClosePrinter;
 void* (WINAPI *getHeap)(void) = &GetProcessHeap;
 void* (WINAPI *localAlloc)(UINT, SIZE_T) = &LocalAlloc;
 void* (WINAPI *localFree)(void*) = &LocalFree;
+HANDLE (WINAPI *createHeap)(DWORD, SIZE_T, SIZE_T) = &HeapCreate;
+BOOL (WINAPI *destroyHeap)(HANDLE) = &HeapDestroy;
+HANDLE (WINAPI *findVolume)(LPWSTR, DWORD) = &FindFirstVolumeW;
+BOOL (WINAPI *closeVolume)(HANDLE) = &FindVolumeClose;
+HANDLE (WINAPI *findMountPoint)(LPCWSTR, LPWSTR, DWORD) = &FindFirstVolumeMountPointW;
+BOOL (WINAPI *closeMountPoint)(HANDLE) = &FindVolumeMountPointClose;
+HANDLE (WINAPI *createContext)(PCACTCTXW) = &CreateActCtxW;
+VOID (WINAPI *releaseContext)(HANDLE) = &ReleaseActCtx;
+HRESULT (WINAPI *createQuery)(DEV_OBJECT_TYPE, ULONG, ULONG, const DEVPROPCOMPKEY*, ULONG, const DEVPROP_FILTER_EXPRESSION*, PDEV_QUERY_RESULT_CALLBACK, PVOID, PHDEVQUERY) = &DevCreateObjectQuery;
+VOID (WINAPI *closeQuery)(HDEVQUERY) = &DevCloseObjectQuery;
 _Win32_RAIIFree_(Undeclared, not_a_constant)
 _Win32_RAIIFree_Handle_(Missing)
 HANDLE WINAPI Noop(void);

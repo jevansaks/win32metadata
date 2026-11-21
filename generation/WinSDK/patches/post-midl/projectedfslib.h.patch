@@ -7,17 +7,27 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/projectedfslib.h b/genera
  /*++    
  
  Copyright (c) Microsoft Corporation.  All rights reserved.
-@@ -139,6 +140,7 @@
+@@ -139,6 +140,14 @@ typedef struct PRJ_STARTVIRTUALIZING_OPTIONS
      PRJ_NOTIFICATION_MAPPING* NotificationMappings;
      UINT32 NotificationMappingsCount;
  } PRJ_STARTVIRTUALIZING_OPTIONS;
++#if defined(WIN32METADATA) && defined(__clang__)
++_Win32_SupportedOS_17763_
++STDAPI_(void)
++PrjStopVirtualizing(
++    _In_ PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT namespaceVirtualizationContext
++    );
++#endif
 +_Win32_SupportedOS_17763_
  
  STDAPI
  PrjStartVirtualizing(
-@@ -148,11 +150,13 @@
+@@ -146,13 +155,15 @@ PrjStartVirtualizing(
+     _In_ const PRJ_CALLBACKS* callbacks,
+     _In_opt_ const void* instanceContext,
      _In_opt_ const PRJ_STARTVIRTUALIZING_OPTIONS* options,
-     _Outptr_ PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT* namespaceVirtualizationContext
+-    _Outptr_ PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT* namespaceVirtualizationContext
++    _Outptr_ _Win32_RAIIFree_(PrjStopVirtualizing) PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT* namespaceVirtualizationContext
      );
 +_Win32_SupportedOS_17763_
  
@@ -29,7 +39,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/projectedfslib.h b/genera
  
  STDAPI
  PrjClearNegativePathCache(
-@@ -165,6 +169,7 @@
+@@ -165,6 +176,7 @@ typedef struct PRJ_VIRTUALIZATION_INSTANCE_INFO
      GUID InstanceID;
      UINT32 WriteAlignment;
  } PRJ_VIRTUALIZATION_INSTANCE_INFO;
@@ -37,7 +47,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/projectedfslib.h b/genera
  
  STDAPI
  PrjGetVirtualizationInstanceInfo(
-@@ -186,6 +191,7 @@
+@@ -186,6 +198,7 @@ typedef struct PRJ_PLACEHOLDER_VERSION_INFO
      UINT8 ProviderID[PRJ_PLACEHOLDER_ID_LENGTH];
      UINT8 ContentID[PRJ_PLACEHOLDER_ID_LENGTH];
  } PRJ_PLACEHOLDER_VERSION_INFO;
@@ -45,7 +55,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/projectedfslib.h b/genera
  
  STDAPI
  PrjMarkDirectoryAsPlaceholder(
-@@ -230,6 +236,7 @@
+@@ -230,6 +243,7 @@ typedef struct PRJ_PLACEHOLDER_INFO
      PRJ_PLACEHOLDER_VERSION_INFO VersionInfo;
      UINT8 VariableData[1];
  } PRJ_PLACEHOLDER_INFO;
@@ -53,7 +63,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/projectedfslib.h b/genera
  
  STDAPI
  PrjWritePlaceholderInfo(
-@@ -238,6 +245,7 @@
+@@ -238,6 +252,7 @@ PrjWritePlaceholderInfo(
      _In_reads_bytes_(placeholderInfoSize) const PRJ_PLACEHOLDER_INFO* placeholderInfo,
      _In_ UINT32 placeholderInfoSize
      );
@@ -61,7 +71,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/projectedfslib.h b/genera
  
  STDAPI
  PrjWritePlaceholderInfo2(
-@@ -272,6 +280,7 @@
+@@ -272,6 +287,7 @@ typedef enum PRJ_UPDATE_FAILURE_CAUSES
  } PRJ_UPDATE_FAILURE_CAUSES;
  
  DEFINE_ENUM_FLAG_OPERATORS(PRJ_UPDATE_FAILURE_CAUSES);
@@ -69,7 +79,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/projectedfslib.h b/genera
  
  STDAPI
  PrjUpdateFileIfNeeded(
-@@ -282,6 +291,7 @@
+@@ -282,6 +298,7 @@ PrjUpdateFileIfNeeded(
      _In_opt_ PRJ_UPDATE_TYPES updateFlags,
      _Out_opt_ PRJ_UPDATE_FAILURE_CAUSES* failureReason
      );
@@ -77,7 +87,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/projectedfslib.h b/genera
  
  STDAPI
  PrjDeleteFile(
-@@ -290,6 +300,7 @@
+@@ -290,6 +307,7 @@ PrjDeleteFile(
      _In_opt_ PRJ_UPDATE_TYPES updateFlags,
      _Out_opt_ PRJ_UPDATE_FAILURE_CAUSES* failureReason
     );
@@ -85,7 +95,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/projectedfslib.h b/genera
  
  STDAPI
  PrjWriteFileData(
-@@ -310,18 +321,21 @@
+@@ -310,18 +328,21 @@ typedef enum PRJ_FILE_STATE
  } PRJ_FILE_STATE;
  
  DEFINE_ENUM_FLAG_OPERATORS(PRJ_FILE_STATE);
@@ -107,7 +117,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/projectedfslib.h b/genera
  
  STDAPI_(void)
  PrjFreeAlignedBuffer (
-@@ -468,6 +482,7 @@
+@@ -468,6 +489,7 @@ typedef struct PRJ_COMPLETE_COMMAND_EXTENDED_PARAMETERS {
      } DUMMYUNIONNAME;
  
  } PRJ_COMPLETE_COMMAND_EXTENDED_PARAMETERS;
@@ -115,7 +125,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/projectedfslib.h b/genera
  
  STDAPI
  PrjCompleteCommand(
-@@ -480,6 +495,7 @@
+@@ -480,6 +502,7 @@ PrjCompleteCommand(
  #pragma endregion
  
  #pragma region Enumeration APIs
@@ -123,7 +133,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/projectedfslib.h b/genera
  
  STDAPI
  PrjFillDirEntryBuffer(
-@@ -487,6 +503,7 @@
+@@ -487,6 +510,7 @@ PrjFillDirEntryBuffer(
      _In_opt_ PRJ_FILE_BASIC_INFO* fileBasicInfo,
      _In_ PRJ_DIR_ENTRY_BUFFER_HANDLE dirEntryBufferHandle
      );
@@ -131,7 +141,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/projectedfslib.h b/genera
  
  STDAPI
  PrjFillDirEntryBuffer2(
-@@ -495,18 +512,21 @@
+@@ -495,18 +519,21 @@ PrjFillDirEntryBuffer2(
      _In_opt_ PRJ_FILE_BASIC_INFO* fileBasicInfo,
      _In_opt_ PRJ_EXTENDED_INFO* extendedInfo
      );

@@ -7,7 +7,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/namespaceapi.h b/generati
  /********************************************************************************
  *                                                                               *
  * consoleapi.h -- ApiSet Contract for api-ms-win-core-namespace-l1              *
-@@ -43,6 +44,8 @@
+@@ -43,6 +44,8 @@ OpenPrivateNamespaceW(
      _In_ LPVOID lpBoundaryDescriptor,
      _In_ LPCWSTR lpAliasPrefix
      );
@@ -16,7 +16,24 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/namespaceapi.h b/generati
  
  WINBASEAPI
  BOOLEAN
-@@ -59,6 +62,8 @@
+@@ -52,6 +55,16 @@ ClosePrivateNamespace(
+     _In_ ULONG Flags
+     );
+ 
++#if defined(WIN32METADATA) && defined(__clang__)
++_Win32_SupportedOS_WindowsVista_
++WINBASEAPI
++VOID
++WINAPI
++DeleteBoundaryDescriptor(
++    _In_ HANDLE BoundaryDescriptor
++    );
++#endif
++_Win32_RAIIFree_(DeleteBoundaryDescriptor)
+ WINBASEAPI
+ HANDLE
+ WINAPI
+@@ -59,6 +72,8 @@ CreateBoundaryDescriptorW(
      _In_ LPCWSTR Name,
      _In_ ULONG Flags
      );
@@ -25,7 +42,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/namespaceapi.h b/generati
  
  WINBASEAPI
  BOOL
-@@ -67,6 +72,7 @@
+@@ -67,6 +82,7 @@ AddSIDToBoundaryDescriptor(
      _Inout_ HANDLE* BoundaryDescriptor,
      _In_ PSID RequiredSid
      );

@@ -1,0 +1,58 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/appnotify.h b/generation/WinSDK/RecompiledIdlHeaders/um/appnotify.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/appnotify.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/appnotify.h
+@@ -9,6 +9,7 @@
+ #ifndef _APISET_PSMAPPNOTIFY_H_
+ #define _APISET_PSMAPPNOTIFY_H_
+ 
++#include <win32metadata_annotations.h>
+ #include <apiset.h>
+ #include <apisetcconv.h>
+ 
+@@ -41,13 +42,21 @@ VOID
+ 
+ typedef struct _APPSTATE_REGISTRATION *PAPPSTATE_REGISTRATION;
+ 
++#if defined(WIN32METADATA) && defined(__clang__)
++APICONTRACT
++VOID
++NTAPI
++UnregisterAppStateChangeNotification(
++    _Inout_ PAPPSTATE_REGISTRATION Registration
++    );
++#endif
+ APICONTRACT
+ ULONG
+ NTAPI
+ RegisterAppStateChangeNotification(
+     _In_ PAPPSTATE_CHANGE_ROUTINE Routine,
+     _In_opt_ PVOID Context,
+-    _Out_ PAPPSTATE_REGISTRATION* Registration
++    _Out_ _Win32_RAIIFree_(UnregisterAppStateChangeNotification) PAPPSTATE_REGISTRATION* Registration
+     );
+ 
+ APICONTRACT
+@@ -66,13 +75,21 @@ VOID
+ 
+ typedef struct _APPCONSTRAIN_REGISTRATION *PAPPCONSTRAIN_REGISTRATION;
+ 
++#if defined(WIN32METADATA) && defined(__clang__)
++APICONTRACT
++VOID
++NTAPI
++UnregisterAppConstrainedChangeNotification(
++    _Inout_ PAPPCONSTRAIN_REGISTRATION Registration
++    );
++#endif
+ APICONTRACT
+ ULONG
+ NTAPI
+ RegisterAppConstrainedChangeNotification(
+     _In_ PAPPCONSTRAIN_CHANGE_ROUTINE Routine,
+     _In_opt_ PVOID Context,
+-    _Out_ PAPPCONSTRAIN_REGISTRATION* Registration
++    _Out_ _Win32_RAIIFree_(UnregisterAppConstrainedChangeNotification) PAPPCONSTRAIN_REGISTRATION* Registration
+     );
+ 
+ APICONTRACT

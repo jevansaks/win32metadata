@@ -900,6 +900,14 @@ DeletePackageDependency(
 /// @param packageDependencyContext valid until passed to RemovePackageDependency()
 /// @param packageFullName allocated via HeapAlloc; use HeapFree to deallocate
 /// @see AddPackageDependency2()
+#if defined(WIN32METADATA) && defined(__clang__)
+WINBASEAPI
+HRESULT
+WINAPI
+RemovePackageDependency(
+    _In_ PACKAGEDEPENDENCY_CONTEXT packageDependencyContext
+    );
+#endif
 WINBASEAPI
 HRESULT
 WINAPI
@@ -907,7 +915,7 @@ AddPackageDependency(
     _In_ PCWSTR packageDependencyId,
     INT32 rank,
     AddPackageDependencyOptions options,
-    _Out_ PACKAGEDEPENDENCY_CONTEXT* packageDependencyContext,
+    _Out_ _Win32_RAIIFree_(RemovePackageDependency) PACKAGEDEPENDENCY_CONTEXT* packageDependencyContext,
     _Outptr_opt_result_maybenull_ PWSTR* packageFullName
     );
 
@@ -960,7 +968,7 @@ AddPackageDependency2(
     _In_ PCWSTR packageDependencyId,
     INT32 rank,
     AddPackageDependencyOptions2 options,
-    _Out_ PACKAGEDEPENDENCY_CONTEXT* packageDependencyContext,
+    _Out_ _Win32_RAIIFree_(RemovePackageDependency) PACKAGEDEPENDENCY_CONTEXT* packageDependencyContext,
     _Outptr_opt_result_maybenull_ PWSTR* packageFullName
     );
 

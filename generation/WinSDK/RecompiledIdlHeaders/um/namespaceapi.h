@@ -55,6 +55,16 @@ ClosePrivateNamespace(
     _In_ ULONG Flags
     );
 
+#if defined(WIN32METADATA) && defined(__clang__)
+_Win32_SupportedOS_WindowsVista_
+WINBASEAPI
+VOID
+WINAPI
+DeleteBoundaryDescriptor(
+    _In_ HANDLE BoundaryDescriptor
+    );
+#endif
+_Win32_RAIIFree_(DeleteBoundaryDescriptor)
 WINBASEAPI
 HANDLE
 WINAPI

@@ -7,7 +7,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  /*********************************************************************
  *
  * WTSAPI32.H
-@@ -794,6 +795,8 @@
+@@ -794,6 +795,8 @@ typedef struct _WTS_SESSION_ADDRESS {
      DWORD AddressFamily;  // AF_INET only.
      BYTE  Address[20];    // client network address
  } WTS_SESSION_ADDRESS, * PWTS_SESSION_ADDRESS;
@@ -16,7 +16,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  
  /*=====================================================================
-@@ -804,6 +807,8 @@
+@@ -804,6 +807,8 @@ BOOL WINAPI
  WTSStopRemoteControlSession(
      IN ULONG   LogonId
      );
@@ -25,7 +25,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  BOOL WINAPI
  WTSStartRemoteControlSessionW(
-@@ -812,6 +817,8 @@
+@@ -812,6 +817,8 @@ WTSStartRemoteControlSessionW(
      IN BYTE    HotkeyVk,
      IN USHORT  HotkeyModifiers
      );
@@ -34,7 +34,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  BOOL WINAPI
  WTSStartRemoteControlSessionA(
-@@ -826,6 +833,8 @@
+@@ -826,6 +833,8 @@ WTSStartRemoteControlSessionA(
  #else
  #define WTSStartRemoteControlSession WTSStartRemoteControlSessionA
  #endif /* UNICODE */
@@ -43,7 +43,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  BOOL
  WINAPI
-@@ -835,6 +844,8 @@
+@@ -835,6 +844,8 @@ WTSConnectSessionA(
      _In_ PSTR pPassword,
      IN BOOL bWait
      );
@@ -52,7 +52,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  BOOL
  WINAPI
-@@ -850,6 +861,8 @@
+@@ -850,6 +861,8 @@ WTSConnectSessionW(
  #else
  #define WTSConnectSession WTSConnectSessionA
  #endif
@@ -61,7 +61,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  BOOL
  WINAPI
-@@ -860,6 +873,8 @@
+@@ -860,6 +873,8 @@ WTSEnumerateServersW(
      _Outptr_result_buffer_(*pCount) PWTS_SERVER_INFOW * ppServerInfo,
      _Out_ DWORD * pCount
      );
@@ -70,7 +70,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  BOOL
  WINAPI
-@@ -876,6 +891,7 @@
+@@ -876,6 +891,7 @@ WTSEnumerateServersA(
  #else
  #define WTSEnumerateServers WTSEnumerateServersA
  #endif
@@ -78,7 +78,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  /*------------------------------------------------*/
  
-@@ -884,18 +900,21 @@
+@@ -884,18 +900,21 @@ WINAPI
  WTSOpenServerW(
      _In_ LPWSTR pServerName
      );
@@ -100,7 +100,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  HANDLE
  WINAPI
-@@ -910,6 +929,7 @@
+@@ -910,6 +929,7 @@ WTSOpenServerExA(
  #define WTSOpenServer WTSOpenServerA
  #define WTSOpenServerEx WTSOpenServerExA
  #endif
@@ -108,7 +108,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  /*------------------------------------------------*/
  
-@@ -918,6 +938,8 @@
+@@ -918,6 +938,8 @@ WINAPI
  WTSCloseServer(
      IN HANDLE hServer
      );
@@ -117,7 +117,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  /*------------------------------------------------*/
  
-@@ -930,6 +952,8 @@
+@@ -930,6 +952,8 @@ WTSEnumerateSessionsW(
      _Outptr_result_buffer_(*pCount) PWTS_SESSION_INFOW * ppSessionInfo,
      _Out_ DWORD * pCount
      );
@@ -126,7 +126,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  BOOL
  WINAPI
-@@ -940,20 +964,24 @@
+@@ -940,20 +964,24 @@ WTSEnumerateSessionsA(
      _Outptr_result_buffer_(*pCount)  PWTS_SESSION_INFOA * ppSessionInfo,
      _Out_ DWORD * pCount
      );
@@ -153,7 +153,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
      _Inout_ DWORD *pLevel,
      _In_ DWORD Filter,
      _Outptr_result_buffer_(*pCount) PWTS_SESSION_INFO_1A * ppSessionInfo,
-@@ -966,6 +994,8 @@
+@@ -966,6 +994,8 @@ WTSEnumerateSessionsExA(
  #define WTSEnumerateSessions WTSEnumerateSessionsA
  #define WTSEnumerateSessionsEx WTSEnumerateSessionsExA
  #endif
@@ -162,7 +162,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  /*------------------------------------------------*/
  
-@@ -978,6 +1008,8 @@
+@@ -978,6 +1008,8 @@ WTSEnumerateProcessesW(
      OUT PWTS_PROCESS_INFOW * ppProcessInfo,
      OUT DWORD * pCount
      );
@@ -171,7 +171,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  BOOL
  WINAPI
-@@ -994,6 +1026,8 @@
+@@ -994,6 +1026,8 @@ WTSEnumerateProcessesA(
  #else
  #define WTSEnumerateProcesses WTSEnumerateProcessesA
  #endif
@@ -180,7 +180,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  /*------------------------------------------------*/
  
-@@ -1004,6 +1038,8 @@
+@@ -1004,6 +1038,8 @@ WTSTerminateProcess(
      IN DWORD ProcessId,
      IN DWORD ExitCode
      );
@@ -189,7 +189,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  
  /*------------------------------------------------*/
-@@ -1017,6 +1053,8 @@
+@@ -1017,6 +1053,8 @@ WTSQuerySessionInformationW(
      _Outptr_result_bytebuffer_(*pBytesReturned) LPWSTR * ppBuffer,
      _Out_ DWORD * pBytesReturned
      );
@@ -198,7 +198,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  BOOL
  WINAPI
-@@ -1033,6 +1071,8 @@
+@@ -1033,6 +1071,8 @@ WTSQuerySessionInformationA(
  #else
  #define WTSQuerySessionInformation WTSQuerySessionInformationA
  #endif
@@ -207,7 +207,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  /*------------------------------------------------*/
  
-@@ -1045,6 +1085,8 @@
+@@ -1045,6 +1085,8 @@ WTSQueryUserConfigW(
      _Outptr_result_bytebuffer_(*pBytesReturned) LPWSTR * ppBuffer,
      _Out_ DWORD * pBytesReturned
      );
@@ -216,7 +216,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  BOOL
  WINAPI
-@@ -1061,6 +1103,8 @@
+@@ -1061,6 +1103,8 @@ WTSQueryUserConfigA(
  #else
  #define WTSQueryUserConfig WTSQueryUserConfigA
  #endif
@@ -225,7 +225,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  /*------------------------------------------------*/
  
-@@ -1073,6 +1117,8 @@
+@@ -1073,6 +1117,8 @@ WTSSetUserConfigW(
      _In_reads_bytes_(DataLength) LPWSTR pBuffer,
      IN DWORD DataLength
      );
@@ -234,7 +234,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  BOOL
  WINAPI
-@@ -1089,6 +1135,8 @@
+@@ -1089,6 +1135,8 @@ WTSSetUserConfigA(
  #else
  #define WTSSetUserConfig WTSSetUserConfigA
  #endif
@@ -243,7 +243,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  /*------------------------------------------------*/
  
-@@ -1101,11 +1149,13 @@
+@@ -1101,11 +1149,13 @@ WTSSendMessageW(
      IN DWORD TitleLength,
      _In_reads_bytes_(MessageLength) LPWSTR pMessage,
      IN DWORD MessageLength,
@@ -258,7 +258,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  BOOL
  WINAPI
-@@ -1116,7 +1166,7 @@
+@@ -1116,7 +1166,7 @@ WTSSendMessageA(
      IN DWORD TitleLength,
      _In_reads_bytes_(MessageLength) LPSTR pMessage,
      IN DWORD MessageLength,
@@ -267,7 +267,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
      IN DWORD Timeout,
      _Out_ DWORD * pResponse,
      IN BOOL bWait
-@@ -1127,6 +1177,8 @@
+@@ -1127,6 +1177,8 @@ WTSSendMessageA(
  #else
  #define WTSSendMessage WTSSendMessageA
  #endif
@@ -276,7 +276,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  /*------------------------------------------------*/
  
-@@ -1137,6 +1189,8 @@
+@@ -1137,6 +1189,8 @@ WTSDisconnectSession(
      IN DWORD SessionId,
      IN BOOL bWait
      );
@@ -285,7 +285,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  /*------------------------------------------------*/
  
-@@ -1147,6 +1201,8 @@
+@@ -1147,6 +1201,8 @@ WTSLogoffSession(
      IN DWORD SessionId,
      IN BOOL bWait
      );
@@ -294,7 +294,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  /*------------------------------------------------*/
  
-@@ -1156,6 +1212,8 @@
+@@ -1156,6 +1212,8 @@ WTSShutdownSystem(
      IN HANDLE hServer,
      IN DWORD ShutdownFlag
      );
@@ -303,7 +303,32 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  /*------------------------------------------------*/
  
-@@ -1191,12 +1249,16 @@
+@@ -1169,6 +1227,16 @@ WTSWaitSystemEvent(
+ 
+ /*------------------------------------------------*/
+ 
++#if defined(WIN32METADATA) && defined(__clang__)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
++BOOL
++WINAPI
++WTSVirtualChannelClose(
++    IN HANDLE hChannelHandle
++    );
++#endif
++_Win32_RAIIFree_(WTSVirtualChannelClose)
+ HANDLE
+ WINAPI
+ WTSVirtualChannelOpen(
+@@ -1184,6 +1252,7 @@ WTSVirtualChannelOpen(
+ #define WTS_CHANNEL_OPTION_DYNAMIC_PRI_REAL 0x00000006
+ #define WTS_CHANNEL_OPTION_DYNAMIC_NO_COMPRESS 0x00000008
+ 
++_Win32_RAIIFree_(WTSVirtualChannelClose)
+ HANDLE
+ WINAPI
+ WTSVirtualChannelOpenEx(
+@@ -1191,12 +1260,16 @@ WTSVirtualChannelOpenEx(
                       _In_ LPSTR pVirtualName,   /* ascii name */
                       IN DWORD flags
                       );
@@ -320,7 +345,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  BOOL
  WINAPI
-@@ -1207,6 +1269,8 @@
+@@ -1207,6 +1280,8 @@ WTSVirtualChannelRead(
      IN ULONG BufferSize,
      _Out_ PULONG pBytesRead
      );
@@ -329,7 +354,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  BOOL
  WINAPI
-@@ -1216,18 +1280,24 @@
+@@ -1216,18 +1291,24 @@ WTSVirtualChannelWrite(
      IN ULONG Length,
      _Out_ PULONG pBytesWritten
      );
@@ -354,7 +379,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  
  BOOL
-@@ -1238,6 +1308,7 @@
+@@ -1238,6 +1319,7 @@ WTSVirtualChannelQuery(
      OUT PVOID *ppBuffer,
      OUT DWORD *pBytesReturned
      );
@@ -362,7 +387,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  /*------------------------------------------------*/
  
-@@ -1252,6 +1323,8 @@
+@@ -1252,6 +1334,8 @@ WTSFreeMemory(
  
  #define NOTIFY_FOR_ALL_SESSIONS     1
  #define NOTIFY_FOR_THIS_SESSION     0
@@ -371,7 +396,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  
  BOOL
-@@ -1260,12 +1333,16 @@
+@@ -1260,12 +1344,16 @@ WTSRegisterSessionNotification(
      HWND hWnd,
      DWORD dwFlags
      );
@@ -388,7 +413,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  
  BOOL
-@@ -1275,6 +1352,8 @@
+@@ -1275,6 +1363,8 @@ WTSRegisterSessionNotificationEx(
      IN HWND hWnd,
      IN DWORD dwFlags
      );
@@ -397,7 +422,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  BOOL
  WINAPI
-@@ -1282,6 +1361,8 @@
+@@ -1282,6 +1372,8 @@ WTSUnRegisterSessionNotificationEx(
      IN HANDLE hServer,
      IN HWND hWnd
      );
@@ -406,7 +431,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  BOOL
  WINAPI
-@@ -1346,6 +1427,8 @@
+@@ -1346,6 +1438,8 @@ typedef enum _WTS_TYPE_CLASS {
      WTSTypeSerializedUserCredential
  #endif
  } WTS_TYPE_CLASS;
@@ -415,7 +440,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  BOOL WINAPI
  WTSFreeMemoryExW(
-@@ -1353,6 +1436,8 @@
+@@ -1353,6 +1447,8 @@ WTSFreeMemoryExW(
      _In_ PVOID   pMemory,
      _In_ ULONG   NumberOfEntries
  );
@@ -424,7 +449,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
  
  BOOL WINAPI
  WTSFreeMemoryExA(
-@@ -1366,23 +1451,27 @@
+@@ -1366,23 +1462,27 @@ WTSFreeMemoryExA(
  #else
  #define WTSFreeMemoryEx WTSFreeMemoryExA
  #endif
@@ -454,7 +479,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
      _Inout_ DWORD *pLevel,
      _In_ DWORD SessionId,
      _Out_ LPSTR *ppProcessInfo,
-@@ -1411,19 +1500,23 @@
+@@ -1411,19 +1511,23 @@ typedef WTSLISTENERNAMEA *PWTSLISTENERNAMEA;
  #define WTSLISTENERNAME WTSLISTENERNAMEA
  #define PWTSLISTENERNAME PWTSLISTENERNAMEA
  #endif
@@ -480,7 +505,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
    _In_                  PVOID pReserved,
    _In_                  DWORD Reserved,
    _Out_writes_opt_(*pCount) PWTSLISTENERNAMEA pListeners,
-@@ -1520,59 +1613,73 @@
+@@ -1520,59 +1624,73 @@ typedef struct _WTSLISTENERCONFIGA{
      CHAR WorkDirectory[ MAX_PATH + 1 ];
      CHAR InitialProgram[ MAX_PATH + 1 ];
  } WTSLISTENERCONFIGA, *PWTSLISTENERCONFIGA;
@@ -561,7 +586,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
    _In_          PVOID pReserved,
    _In_          DWORD Reserved,
    _In_          LPWSTR pListenerName, 
-@@ -1580,10 +1687,12 @@
+@@ -1580,10 +1698,12 @@ BOOL WINAPI WTSGetListenerSecurityW(
    _Out_opt_     PSECURITY_DESCRIPTOR pSecurityDescriptor,
    _In_          DWORD nLength,
    _Out_         LPDWORD lpnLengthNeeded);
@@ -575,7 +600,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/WtsApi32.h b/generation/W
    _In_          PVOID pReserved,
    _In_          DWORD Reserved,
    _In_          LPSTR pListenerName,
-@@ -1645,16 +1754,19 @@
+@@ -1645,16 +1765,19 @@ BOOL WINAPI WTSCloudAuthDuplicateSerializedUserCredential(
  #define WTSSetListenerSecurity WTSSetListenerSecurityA
  #define WTSGetListenerSecurity WTSGetListenerSecurityA
  #endif

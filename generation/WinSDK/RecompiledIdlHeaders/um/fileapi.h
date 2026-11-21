@@ -232,6 +232,7 @@ FindCloseChangeNotification(
     _In_ HANDLE hChangeHandle
     );
 
+_Win32_RAIIFree_(FindCloseChangeNotification)
 WINBASEAPI
 HANDLE
 WINAPI
@@ -241,6 +242,7 @@ FindFirstChangeNotificationA(
     _Win32_AssociatedEnum_(FILE_NOTIFY_CHANGE) _In_ DWORD dwNotifyFilter
     );
 
+_Win32_RAIIFree_(FindCloseChangeNotification)
 WINBASEAPI
 HANDLE
 WINAPI
@@ -262,6 +264,7 @@ FindFirstChangeNotificationW(
 #pragma region Application Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
+_Win32_RAIIFree_(FindClose)
 WINBASEAPI
 HANDLE
 WINAPI
@@ -270,6 +273,7 @@ FindFirstFileA(
     _Out_ LPWIN32_FIND_DATAA lpFindFileData
     );
 
+_Win32_RAIIFree_(FindClose)
 WINBASEAPI
 HANDLE
 WINAPI
@@ -286,6 +290,7 @@ FindFirstFileW(
 
 #if (_WIN32_WINNT >= 0x0400)
 
+_Win32_RAIIFree_(FindClose)
 WINBASEAPI
 HANDLE
 WINAPI
@@ -298,6 +303,7 @@ FindFirstFileExA(
     _In_ DWORD dwAdditionalFlags
     );
 
+_Win32_RAIIFree_(FindClose)
 WINBASEAPI
 HANDLE
 WINAPI
@@ -324,6 +330,12 @@ FindFirstFileExW(
 #pragma region Application Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
 
+#if defined(WIN32METADATA) && defined(__clang__)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
+WINBASEAPI BOOL WINAPI FindVolumeClose(_In_ HANDLE hFindVolume);
+#endif
+_Win32_RAIIFree_(FindVolumeClose)
 WINBASEAPI
 HANDLE
 WINAPI
@@ -1467,6 +1479,7 @@ typedef struct _WIN32_FIND_STREAM_DATA {
 
 } WIN32_FIND_STREAM_DATA, *PWIN32_FIND_STREAM_DATA;
 
+_Win32_RAIIFree_(FindClose)
 WINBASEAPI
 HANDLE
 WINAPI
@@ -1531,6 +1544,7 @@ GetTempPathA(
 
 #if _WIN32_WINNT >= 0x0600
 
+_Win32_RAIIFree_(FindClose)
 WINBASEAPI
 HANDLE
 WINAPI

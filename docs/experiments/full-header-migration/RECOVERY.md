@@ -1,6 +1,60 @@
 # Working-first recovery and sidecar reduction
 
-## Current published checkpoint: CryptXML20
+## Current published checkpoint: result, SAL, routes and SDK fixture repair
+
+Published head `da076219b3f99bcfe28357e28e53862d33da646d` is independently
+qualified by ordinary
+[run 44892431198](https://github.com/jevansaks/win32metadata/actions/runs/44892431198).
+All ten jobs passed, including the 175 SDK cases and 54 integrity cases.
+The actual standalone/comparison/packaged WinMD is
+`A04654E652D649BBA802451F286984812EA04F993003A0FFB623FE99AFA6C852`;
+its complete API dump is
+`7FA8EA90214795C9C29C575A1016653A5D98250342477204DB40BFC7302523C1`.
+The two 1022-case tooling cohorts overlap; they are not disjoint coverage.
+The earlier `b24738dc` cancelled/failed attempts remain unaccepted.
+
+Published totals are **65 whole JSON retirements / 257 manual emitter rows /
+290 enums remaining**. The 151 result-row retirements, 90-method native SAL
+refresh and 905 redundant/inert namespace-route removals remain separately
+attributable. All 2259 remaining routes and 436 autoTypes records are retained.
+
+### Unpublished producer-lifetime continuation
+
+The next owning family contains 82 standalone producer-cleanup RSP rows.
+Separate core26 and DeviceQuery6 checkpoints move 32 cleanup facts to their
+native declarations, preserving the complete semantic API. Their only dump
+differences are five identical cleanup declarations moving before producers.
+Core and DeviceQuery focused checks each close 12 distinct cases, retaining
+the original missing-dependency fixture failures separately.
+
+The next direct-header slice moves 38 further cleanup facts across 20 owners.
+Its original-SDK patch replay preserves every complete authored header. Fresh
+scraping of 18 actual producer partitions and full emission produce WinMD
+`1D101D89...` and complete dump `8E46DB91...`. The entire API delta against the
+preceding native32 checkpoint is only the four approved GDI return-attribute
+removals and unchanged cleanup declaration ordering. All 27 selected cleanup
+declarations retain identical signatures, attributes and namespace placement.
+Four independently reviewed
+GDI rows retire incorrect associations: recording HDC returns cannot be freed
+by DeleteMetaFile/DeleteEnhMetaFile, whose parameters are different resources.
+These are **four defect retirements and zero header transfers**; neither native
+Close function is substituted and HDC type-level facts remain unchanged.
+
+The local row delta is **74 removals = 70 qualified native transfers + four
+approved defect retirements**, not a publication or entire-migration claim.
+Local manual-row totals are 331; whole JSON and enum counts remain 65/290.
+Exactly eight producer rows remain: AmsiInitialize (separate authoritative IDL
+preparation), BeginUpdateResourceA/W, CreatePrivateNamespaceA/W,
+OpenPrivateNamespaceA/W, and WlanOpenHandle. The six contextual resource/namespace
+choices and Wlan's reserved-NULL cleanup argument are distinct cases.
+The real Wlan declarations reproduce the current exactly-one-cleanup-parameter
+reader rejection on all three targets; the unannotated controls pass. This is a
+specific reserved-argument engineering gap, not an inferred ownership decision.
+NCRYPT associations, active/unresolved routes, stack, bases and consumers are
+unchanged. Further publication requires bounded source/semantic review and its
+own ordinary exact-head gate.
+
+## Historical published checkpoint: CryptXML20
 
 Published head `78652d934715afefec83ec8d3febab054195d220` is independently
 hosted-qualified by its own ordinary
@@ -22,7 +76,7 @@ the former JSON `5`. The exact-head hosted gate includes raw 1010-case tooling,
 175 SDK-patch, 44 workflow and 54 integrity scope plus actual output qualification.
 It does not release another publication, merging, restacking or consumer work.
 
-### Unpublished transform-flags21 continuation
+### Historical transform-flags21 continuation
 
 The bounded next probe retires only `CRYPT_XML_TRANSFORM_FLAGS` from JSON,
 defines its unscoped UInt32 flags group in `cryptxml.h` and associates the native

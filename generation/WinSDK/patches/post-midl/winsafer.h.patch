@@ -7,7 +7,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winsafer.h b/generation/W
  /*++
  
  Copyright (c) 1997-2001  Microsoft Corporation
-@@ -612,6 +613,8 @@
+@@ -612,6 +613,8 @@ typedef struct _SAFER_URLZONE_IDENTIFICATION
  
  
  #include <poppack.h>
@@ -16,7 +16,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winsafer.h b/generation/W
  
  //
  // Functions related to querying and setting the global policy
-@@ -629,6 +632,8 @@
+@@ -629,6 +632,8 @@ SaferGetPolicyInformation(
      _Out_ PDWORD                 InfoBufferRetSize,
      _Reserved_ LPVOID            lpReserved
      );
@@ -25,17 +25,30 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winsafer.h b/generation/W
  
  WINADVAPI
  BOOL WINAPI
-@@ -639,6 +644,8 @@
+@@ -639,6 +644,17 @@ SaferSetPolicyInformation(
      _In_reads_bytes_(InfoBufferSize) PVOID   InfoBuffer,
      _Reserved_ LPVOID                   lpReserved
      );
++#if defined(WIN32METADATA) && defined(__clang__)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
++WINADVAPI
++BOOL WINAPI
++SaferCloseLevel(
++    _In_ SAFER_LEVEL_HANDLE hLevelHandle
++    );
++#endif
 +_Win32_SetLastError_
 +_Win32_SupportedOS_WindowsXP_
  
  //
  // Functions to open or close a handle to a Safer Level.
-@@ -653,12 +660,16 @@
-     _Outptr_ SAFER_LEVEL_HANDLE * pLevelHandle,
+@@ -650,24 +666,30 @@ SaferCreateLevel(
+     _In_ DWORD                dwScopeId,
+     _In_ DWORD                dwLevelId,
+     _In_ DWORD                OpenFlags,
+-    _Outptr_ SAFER_LEVEL_HANDLE * pLevelHandle,
++    _Outptr_ _Win32_RAIIFree_(SaferCloseLevel) SAFER_LEVEL_HANDLE * pLevelHandle,
      _Reserved_ LPVOID               lpReserved
      );
 +_Win32_SetLastError_
@@ -51,8 +64,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winsafer.h b/generation/W
  
  WINADVAPI
  BOOL WINAPI
-@@ -668,6 +679,8 @@
-     _Outptr_ SAFER_LEVEL_HANDLE  * pLevelHandle,
+ SaferIdentifyLevel(
+     _In_ DWORD              dwNumProperties,
+     _In_reads_opt_(dwNumProperties) PSAFER_CODE_PROPERTIES pCodeProperties,
+-    _Outptr_ SAFER_LEVEL_HANDLE  * pLevelHandle,
++    _Outptr_ _Win32_RAIIFree_(SaferCloseLevel) SAFER_LEVEL_HANDLE  * pLevelHandle,
      _In_opt_ LPVOID         lpReserved
      );
 +_Win32_SetLastError_
@@ -60,7 +76,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winsafer.h b/generation/W
  
  WINADVAPI
  BOOL WINAPI
-@@ -675,9 +688,11 @@
+@@ -675,9 +697,11 @@ SaferComputeTokenFromLevel(
      _In_ SAFER_LEVEL_HANDLE LevelHandle,
      _In_opt_ HANDLE         InAccessToken,
      _Out_ PHANDLE           OutAccessToken,
@@ -73,7 +89,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winsafer.h b/generation/W
  
  WINADVAPI
  BOOL WINAPI
-@@ -688,6 +703,8 @@
+@@ -688,6 +712,8 @@ SaferGetLevelInformation(
          _In_ DWORD                              dwInBufferSize,
          _Out_ LPDWORD                           lpdwOutBufferSize
          );
@@ -82,7 +98,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winsafer.h b/generation/W
  
  WINADVAPI
  BOOL WINAPI
-@@ -697,6 +714,8 @@
+@@ -697,6 +723,8 @@ SaferSetLevelInformation(
      _In_reads_bytes_(dwInBufferSize) LPVOID  lpQueryBuffer,
      _In_ DWORD                          dwInBufferSize
      );
@@ -91,7 +107,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winsafer.h b/generation/W
  
  //
  // This function performs logging of messages to the Application
-@@ -711,6 +730,7 @@
+@@ -711,6 +739,7 @@ SaferRecordEventLogEntry(
      _In_ LPCWSTR            szTargetPath,
      _Reserved_ LPVOID       lpReserved
      );
@@ -99,7 +115,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winsafer.h b/generation/W
  
  
  WINADVAPI
-@@ -740,3 +760,8 @@
+@@ -740,3 +769,8 @@ SaferiIsExecutableFileType(
  #pragma endregion
  
  #endif

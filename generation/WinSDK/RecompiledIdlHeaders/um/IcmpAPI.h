@@ -50,6 +50,17 @@ Notes:
 #ifdef __cplusplus
 extern "C" {
 #endif
+#if defined(WIN32METADATA) && defined(__clang__)
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
+IPHLPAPI_DLL_LINKAGE
+BOOL
+WINAPI
+IcmpCloseHandle(
+    _In_ HANDLE  IcmpHandle
+    );
+#endif
+_Win32_RAIIFree_(IcmpCloseHandle)
 _Win32_SetLastError_
 
 //
@@ -85,6 +96,7 @@ IcmpCreateFile(
     );
 
 #if (NTDDI_VERSION >= NTDDI_WINXP)
+_Win32_RAIIFree_(IcmpCloseHandle)
 _Win32_SetLastError_
 _Win32_SupportedOS_WindowsXP_
 //++

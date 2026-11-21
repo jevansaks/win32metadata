@@ -7,7 +7,26 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Winineti.h b/generation/W
  
  #include <winapifamily.h>
  
-@@ -1041,6 +1042,8 @@
+@@ -690,11 +691,17 @@ typedef enum  _HTTP_PUSH_WAIT_TYPE
+     HttpPushWaitSendComplete
+ } HTTP_PUSH_WAIT_TYPE;
+ 
++#if defined(WIN32METADATA) && defined(__clang__)
++INTERNETAPI_(VOID)
++HttpPushClose(
++    _In_ HTTP_PUSH_WAIT_HANDLE hWait
++);
++#endif
+ INTERNETAPI_(DWORD)
+ HttpPushEnable(
+     _In_ HINTERNET hRequest,
+     _In_ HTTP_PUSH_TRANSPORT_SETTING *pTransportSetting,
+-    _Out_ HTTP_PUSH_WAIT_HANDLE *phWait
++    _Out_ _Win32_RAIIFree_(HttpPushClose) HTTP_PUSH_WAIT_HANDLE *phWait
+ );
+ 
+ INTERNETAPI_(DWORD)
+@@ -1041,6 +1048,8 @@ URLCACHEAPI_(DWORD) CommitUrlCacheEntryBinaryBlob(
  #define INTERNET_CACHE_CONTAINER_BLOOM_FILTER (0x20)
  #define INTERNET_CACHE_CONTAINER_SHARE_READ (0x100)
  #define INTERNET_CACHE_CONTAINER_SHARE_READ_WRITE (0x300)
@@ -16,7 +35,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Winineti.h b/generation/W
  
  BOOLAPI CreateUrlCacheContainerA(
      _In_ LPCSTR Name,
-@@ -1052,6 +1055,8 @@
+@@ -1052,6 +1061,8 @@ BOOLAPI CreateUrlCacheContainerA(
      _Reserved_ LPVOID pvBuffer,
      _Reserved_ LPDWORD cbBuffer
      );
@@ -25,7 +44,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Winineti.h b/generation/W
  BOOLAPI CreateUrlCacheContainerW(
      _In_ LPCWSTR Name,
      _In_ LPCWSTR lpCachePrefix,
-@@ -1067,11 +1072,15 @@
+@@ -1067,11 +1078,15 @@ BOOLAPI CreateUrlCacheContainerW(
  #else
  #define CreateUrlCacheContainer  CreateUrlCacheContainerA
  #endif // !UNICODE
@@ -41,7 +60,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Winineti.h b/generation/W
  BOOLAPI DeleteUrlCacheContainerW(
      _In_ LPCWSTR Name,
      _In_ DWORD dwOptions
-@@ -1159,6 +1168,8 @@
+@@ -1159,6 +1174,8 @@ typedef enum {
      WININET_SYNC_MODE_AUTOMATIC,
      WININET_SYNC_MODE_DEFAULT = WININET_SYNC_MODE_AUTOMATIC
  } WININET_SYNC_MODE;
@@ -50,7 +69,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Winineti.h b/generation/W
  
  
  BOOLAPI FreeUrlCacheSpaceA(
-@@ -1166,6 +1177,8 @@
+@@ -1166,6 +1183,8 @@ BOOLAPI FreeUrlCacheSpaceA(
      _In_ DWORD dwSize,
      _In_ DWORD dwFilter
      );
@@ -59,7 +78,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Winineti.h b/generation/W
  BOOLAPI FreeUrlCacheSpaceW(
      _In_opt_ LPCWSTR lpszCachePath,
      _In_ DWORD dwSize,
-@@ -1228,6 +1241,8 @@
+@@ -1228,6 +1247,8 @@ DWORD UrlCacheGetGlobalCacheSize(
  #define CACHE_CONFIG_USER_MODE_FC                                    0x00001000
  #define CACHE_CONFIG_CONTENT_USAGE_FC                                0x00002000
  #define CACHE_CONFIG_STICKY_CONTENT_USAGE_FC                         0x00004000
@@ -68,7 +87,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Winineti.h b/generation/W
  
  BOOLAPI
  GetUrlCacheConfigInfoA(
-@@ -1732,6 +1747,7 @@
+@@ -1732,6 +1753,7 @@ UrlCacheServer(
  #define CACHE_CONFIG_TOTAL_CONTENT_QUOTA_FC                          0x00010000
  #define CACHE_CONFIG_APPCONTAINER_CONTENT_QUOTA_FC                   0x00020000
  #define CACHE_CONFIG_APPCONTAINER_TOTAL_CONTENT_QUOTA_FC             0x00040000
@@ -76,7 +95,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Winineti.h b/generation/W
  
  //
  // Autodial APIs
-@@ -1759,6 +1775,7 @@
+@@ -1759,6 +1781,7 @@ INTERNETAPI_(DWORD) InternetDialW(
  #ifdef _WINX32_
  #define InternetDial  InternetDialA
  #else
@@ -84,7 +103,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Winineti.h b/generation/W
  INTERNETAPI_(DWORD) InternetDial(
      _In_ HWND     hwndParent,
      _In_opt_ LPSTR   lpszConnectoid,
-@@ -1782,12 +1799,16 @@
+@@ -1782,12 +1805,16 @@ INTERNETAPI_(DWORD) InternetHangUp(
  #define INTERENT_GOONLINE_REFRESH  0x00000001
  #define INTERENT_GOONLINE_NOPROMPT 0x00000002
  #define INTERENT_GOONLINE_MASK     0x00000003
@@ -101,7 +120,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Winineti.h b/generation/W
  
  BOOLAPI InternetGoOnlineW(
      _In_opt_ LPCWSTR lpszURL,
-@@ -1801,6 +1822,8 @@
+@@ -1801,6 +1828,8 @@ BOOLAPI InternetGoOnlineW(
  #ifdef _WINX32_
  #define InternetGoOnline  InternetGoOnlineA
  #else
@@ -110,7 +129,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Winineti.h b/generation/W
  BOOLAPI InternetGoOnline(
      _In_opt_ LPSTR   lpszURL,
      _In_ HWND     hwndParent,
-@@ -1808,6 +1831,8 @@
+@@ -1808,6 +1837,8 @@ BOOLAPI InternetGoOnline(
      );
  #endif // _WINX32_
  #endif // !UNICODE
@@ -119,7 +138,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Winineti.h b/generation/W
  
  BOOLAPI InternetAutodial(
      _In_       DWORD  dwFlags,
-@@ -1821,12 +1846,18 @@
+@@ -1821,12 +1852,18 @@ BOOLAPI InternetAutodial(
  
  
  #define INTERNET_AUTODIAL_FLAGS_MASK (INTERNET_AUTODIAL_FORCE_ONLINE | INTERNET_AUTODIAL_FORCE_UNATTENDED | INTERNET_AUTODIAL_FAILIFSECURITYCHECK | INTERNET_AUTODIAL_OVERRIDE_NET_PRESENT)
@@ -138,7 +157,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Winineti.h b/generation/W
  
  BOOLAPI
  InternetGetConnectedStateExA(
-@@ -1835,6 +1866,8 @@
+@@ -1835,6 +1872,8 @@ InternetGetConnectedStateExA(
      _In_ DWORD cchNameLen,
      _Reserved_ DWORD dwReserved
  );
@@ -147,7 +166,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Winineti.h b/generation/W
  
  BOOLAPI
  InternetGetConnectedStateExW(
-@@ -1878,17 +1911,22 @@
+@@ -1878,17 +1917,22 @@ ReadGuidsForConnectedNetworks(
  #define INTERNET_AUTOPROXY_INIT_ONLYQUERY 0x8
  
  #define INTERNET_AUTOPROXY_INIT_MASK (INTERNET_AUTOPROXY_INIT_DEFAULT|INTERNET_AUTOPROXY_INIT_DOWNLOADSYNC|INTERNET_AUTOPROXY_INIT_QUERYSTATE|INTERNET_AUTOPROXY_INIT_ONLYQUERY)
@@ -170,7 +189,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Winineti.h b/generation/W
  
  BOOLAPI CreateMD5SSOHash (
      _In_ PWSTR    pszChallengeInfo,
-@@ -1903,6 +1941,8 @@
+@@ -1903,6 +1947,8 @@ BOOLAPI CreateMD5SSOHash (
  #ifdef _WINX32_
  #define InternetGetConnectedStateEx  InternetGetConnectedStateExA
  #else
@@ -179,7 +198,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Winineti.h b/generation/W
  BOOLAPI InternetGetConnectedStateEx(
      _Out_ LPDWORD lpdwFlags,
      _Out_writes_opt_(dwNameLen) LPSTR lpszConnectionName,
-@@ -2105,6 +2145,7 @@
+@@ -2105,6 +2151,7 @@ BOOLAPI IsDomainLegalCookieDomainW(    // in "wininet\http\cookie.cxx"
  #else
  #define IsDomainLegalCookieDomain  IsDomainLegalCookieDomainA
  #endif // !UNICODE
@@ -187,7 +206,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Winineti.h b/generation/W
  
  
  BOOLAPI InternetEnumPerSiteCookieDecisionA(
-@@ -2113,6 +2154,7 @@
+@@ -2113,6 +2160,7 @@ BOOLAPI InternetEnumPerSiteCookieDecisionA(
      _Out_ unsigned long *pdwDecision,
      _In_ unsigned long dwIndex
  );
@@ -195,7 +214,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Winineti.h b/generation/W
  BOOLAPI InternetEnumPerSiteCookieDecisionW(
      _Out_writes_to_(*pcSiteNameSize, *pcSiteNameSize) LPWSTR pszSiteName,
      _Inout_ unsigned long *pcSiteNameSize,
-@@ -2144,6 +2186,7 @@
+@@ -2144,6 +2192,7 @@ BOOLAPI InternetEnumPerSiteCookieDecisionW(
  
  #define PRIVACY_TYPE_FIRST_PARTY        0
  #define PRIVACY_TYPE_THIRD_PARTY        1
@@ -203,7 +222,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Winineti.h b/generation/W
  
  INTERNETAPI_(DWORD)
  PrivacySetZonePreferenceW(
-@@ -2152,6 +2195,7 @@
+@@ -2152,6 +2201,7 @@ PrivacySetZonePreferenceW(
      _In_ DWORD       dwTemplate,
      _In_opt_ LPCWSTR     pszPreference
      );

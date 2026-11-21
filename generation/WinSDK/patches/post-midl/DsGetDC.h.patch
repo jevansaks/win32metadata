@@ -7,7 +7,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/DsGetDC.h b/generation/Wi
  /*++ BUILD Version: 0001    // Increment this if a change has global effects
  
  Copyright (c) 1996-1999  Microsoft Corporation
-@@ -218,6 +219,7 @@
+@@ -218,6 +219,7 @@ typedef struct _DOMAIN_CONTROLLER_INFOW {
  #define DS_DNS_CONTROLLER_FLAG 0x20000000    // DomainControllerName is a DNS name
  #define DS_DNS_DOMAIN_FLAG     0x40000000    // DomainName is a DNS name
  #define DS_DNS_FOREST_FLAG     0x80000000    // DnsForestName is a DNS name
@@ -15,7 +15,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/DsGetDC.h b/generation/Wi
  
  
  //
-@@ -236,6 +238,7 @@
+@@ -236,6 +238,7 @@ DsGetDcNameA(
      _In_ ULONG Flags,
      _Outptr_result_nullonfailure_ PDOMAIN_CONTROLLER_INFOA *DomainControllerInfo
      );
@@ -23,7 +23,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/DsGetDC.h b/generation/Wi
  
  _Success_(return == ERROR_SUCCESS)
  DSGETDCAPI
-@@ -255,6 +258,7 @@
+@@ -255,6 +258,7 @@ DsGetDcNameW(
  #else
  #define DsGetDcName DsGetDcNameA
  #endif // !UNICODE
@@ -31,7 +31,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/DsGetDC.h b/generation/Wi
  
  _Success_(return == ERROR_SUCCESS)
  DSGETDCAPI
-@@ -264,6 +268,7 @@
+@@ -264,6 +268,7 @@ DsGetSiteNameA(
      _In_opt_ LPCSTR ComputerName,
      _Outptr_result_nullonfailure_ LPSTR *SiteName
      );
@@ -39,7 +39,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/DsGetDC.h b/generation/Wi
  
  _Success_(return == ERROR_SUCCESS)
  DSGETDCAPI
-@@ -279,6 +284,7 @@
+@@ -279,6 +284,7 @@ DsGetSiteNameW(
  #else
  #define DsGetSiteName DsGetSiteNameA
  #endif // !UNICODE
@@ -47,7 +47,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/DsGetDC.h b/generation/Wi
  
  DSGETDCAPI
  DWORD
-@@ -286,6 +292,7 @@
+@@ -286,6 +292,7 @@ WINAPI
  DsValidateSubnetNameW(
      _In_ LPCWSTR SubnetName
      );
@@ -55,7 +55,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/DsGetDC.h b/generation/Wi
  
  DSGETDCAPI
  DWORD
-@@ -305,6 +312,7 @@
+@@ -305,6 +312,7 @@ DsValidateSubnetNameA(
  // Only include if winsock2.h has been included
  //
  #ifdef _WINSOCK2API_
@@ -63,7 +63,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/DsGetDC.h b/generation/Wi
  
  _Success_(return == ERROR_SUCCESS)
  DSGETDCAPI
-@@ -316,6 +324,7 @@
+@@ -316,6 +324,7 @@ DsAddressToSiteNamesW(
      _In_reads_(EntryCount) PSOCKET_ADDRESS SocketAddresses,
      _Outptr_result_nullonfailure_ _Outptr_result_buffer_(EntryCount) LPWSTR **SiteNames
      );
@@ -71,7 +71,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/DsGetDC.h b/generation/Wi
  
  _Success_(return == ERROR_SUCCESS)
  DSGETDCAPI
-@@ -333,6 +342,7 @@
+@@ -333,6 +342,7 @@ DsAddressToSiteNamesA(
  #else
  #define DsAddressToSiteNames DsAddressToSiteNamesA
  #endif // !UNICODE
@@ -79,7 +79,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/DsGetDC.h b/generation/Wi
  
  _Success_(return == ERROR_SUCCESS)
  DSGETDCAPI
-@@ -345,6 +355,7 @@
+@@ -345,6 +355,7 @@ DsAddressToSiteNamesExW(
      _Outptr_result_nullonfailure_ _Outptr_result_buffer_(EntryCount) LPWSTR **SiteNames,
      _Outptr_result_nullonfailure_ _Outptr_result_buffer_(EntryCount) LPWSTR **SubnetNames
      );
@@ -87,7 +87,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/DsGetDC.h b/generation/Wi
  
  _Success_(return == ERROR_SUCCESS)
  DSGETDCAPI
-@@ -458,6 +469,7 @@
+@@ -458,6 +469,7 @@ typedef struct _DS_DOMAIN_TRUSTSA {
  #define DS_DOMAIN_TRUSTS DS_DOMAIN_TRUSTSA
  #define PDS_DOMAIN_TRUSTS PDS_DOMAIN_TRUSTSA
  #endif // !UNICODE
@@ -95,7 +95,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/DsGetDC.h b/generation/Wi
  
  _Success_(return == ERROR_SUCCESS)
  DSGETDCAPI
-@@ -469,6 +481,7 @@
+@@ -469,6 +481,7 @@ DsEnumerateDomainTrustsW (
      _Outptr_result_nullonfailure_ _Outptr_result_buffer_(*DomainCount) PDS_DOMAIN_TRUSTSW *Domains,
      _Out_ PULONG DomainCount
      );
@@ -103,7 +103,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/DsGetDC.h b/generation/Wi
  
  _Success_(return == ERROR_SUCCESS)
  DSGETDCAPI
-@@ -493,6 +506,7 @@
+@@ -493,6 +506,7 @@ DsEnumerateDomainTrustsA (
  //
  
  #if defined(_NTLSA_) || defined(_NTSECAPI_)
@@ -111,7 +111,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/DsGetDC.h b/generation/Wi
  
  _Success_(return == ERROR_SUCCESS)
  DSGETDCAPI
-@@ -507,6 +521,7 @@
+@@ -507,6 +521,7 @@ DsGetForestTrustInformationW (
  
  #define DS_GFTI_UPDATE_TDO      0x1     // Update TDO with information returned
  #define DS_GFTI_VALID_FLAGS     0x1     // All valid flags to DsGetForestTrustInformation
@@ -119,7 +119,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/DsGetDC.h b/generation/Wi
  
  _Success_(return == ERROR_SUCCESS)
  DSGETDCAPI
-@@ -520,6 +535,7 @@
+@@ -520,6 +535,7 @@ DsMergeForestTrustInformationW(
      );
  
  #endif // _NTLSA_ || _NTSECAPI_
@@ -127,7 +127,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/DsGetDC.h b/generation/Wi
  
  _Success_(return == ERROR_SUCCESS)
  DSGETDCAPI
-@@ -530,6 +546,7 @@
+@@ -530,6 +546,7 @@ DsGetDcSiteCoverageW(
      _Out_ PULONG EntryCount,
      _Outptr_result_nullonfailure_ _Outptr_result_buffer_(*EntryCount) LPWSTR **SiteNames
      );
@@ -135,7 +135,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/DsGetDC.h b/generation/Wi
  
  _Success_(return == ERROR_SUCCESS)
  DSGETDCAPI
-@@ -546,6 +563,7 @@
+@@ -546,6 +563,7 @@ DsGetDcSiteCoverageA(
  #else
  #define DsGetDcSiteCoverage DsGetDcSiteCoverageA
  #endif // !UNICODE
@@ -143,7 +143,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/DsGetDC.h b/generation/Wi
  
  DSGETDCAPI
  DWORD
-@@ -557,6 +575,7 @@
+@@ -557,6 +575,7 @@ DsDeregisterDnsHostRecordsW (
      _In_opt_ GUID   *DsaGuid,
      _In_ LPWSTR DnsHostName
      );
@@ -151,7 +151,41 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/DsGetDC.h b/generation/Wi
  
  DSGETDCAPI
  DWORD
-@@ -632,6 +651,7 @@
+@@ -601,6 +620,15 @@ DsDeregisterDnsHostRecordsA (
+             DS_WRITABLE_REQUIRED )
+ 
+ 
++#if defined(WIN32METADATA) && defined(__clang__)
++_Win32_SupportedOS_WindowsVista_
++DSGETDCAPI
++VOID
++WINAPI
++DsGetDcCloseW(
++    _In_ HANDLE GetDcContextHandle
++    );
++#endif
+ DSGETDCAPI
+ DWORD
+ WINAPI
+@@ -611,7 +639,7 @@ DsGetDcOpenW(
+     _In_opt_ GUID *DomainGuid,
+     _In_opt_ LPCWSTR DnsForestName,
+     _In_ ULONG DcFlags,
+-    _Out_ PHANDLE RetGetDcContext
++    _Out_ _Win32_RAIIFree_(DsGetDcCloseW) PHANDLE RetGetDcContext
+     );
+ 
+ DSGETDCAPI
+@@ -624,7 +652,7 @@ DsGetDcOpenA(
+     _In_opt_ GUID *DomainGuid,
+     _In_opt_ LPCSTR DnsForestName,
+     _In_ ULONG DcFlags,
+-    _Out_ PHANDLE RetGetDcContext
++    _Out_ _Win32_RAIIFree_(DsGetDcCloseW) PHANDLE RetGetDcContext
+     );
+ 
+ #ifdef UNICODE
+@@ -632,6 +660,7 @@ DsGetDcOpenA(
  #else
  #define DsGetDcOpen DsGetDcOpenA
  #endif // !UNICODE
@@ -159,7 +193,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/DsGetDC.h b/generation/Wi
  
  _Success_(return == ERROR_SUCCESS)
  DSGETDCAPI
-@@ -643,6 +663,7 @@
+@@ -643,6 +672,7 @@ DsGetDcNextW(
      _Outptr_opt_result_buffer_(*SockAddressCount) LPSOCKET_ADDRESS *SockAddresses,
      _Outptr_opt_result_nullonfailure_ LPWSTR *DnsHostName
      );
@@ -167,7 +201,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/DsGetDC.h b/generation/Wi
  
  _Success_(return == ERROR_SUCCESS)
  DSGETDCAPI
-@@ -660,6 +681,7 @@
+@@ -660,6 +690,7 @@ DsGetDcNextA(
  #else
  #define DsGetDcNext DsGetDcNextA
  #endif // !UNICODE

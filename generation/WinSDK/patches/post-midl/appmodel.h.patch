@@ -7,7 +7,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/appmodel.h b/generation/W
  /***************************************************
  *                                                  *
  *   Copyright (C) Microsoft. All rights reserved.  *
-@@ -85,7 +86,7 @@
+@@ -85,7 +86,7 @@ LONG
  WINAPI
  GetCurrentPackageId(
      _Inout_ UINT32* bufferLength,
@@ -16,7 +16,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/appmodel.h b/generation/W
      );
  
  WINBASEAPI
-@@ -122,7 +123,7 @@
+@@ -122,7 +123,7 @@ WINAPI
  GetPackageId(
      _In_ HANDLE hProcess,
      _Inout_ UINT32* bufferLength,
@@ -25,7 +25,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/appmodel.h b/generation/W
      );
  
  WINBASEAPI
-@@ -244,7 +245,7 @@
+@@ -244,7 +245,7 @@ GetCurrentPackageInfo2(
      _In_ const UINT32 flags,
      _In_ PackagePathType packagePathType,
      _Inout_ UINT32* bufferLength,
@@ -34,7 +34,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/appmodel.h b/generation/W
      _Out_opt_ UINT32* count
      );
  
-@@ -358,7 +359,7 @@
+@@ -358,7 +359,7 @@ PackageIdFromFullName(
      _In_ PCWSTR packageFullName,
      _In_ const UINT32 flags,
      _Inout_ UINT32* bufferLength,
@@ -43,7 +43,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/appmodel.h b/generation/W
      );
  
  WINBASEAPI
-@@ -431,6 +432,7 @@
+@@ -431,6 +432,7 @@ ParseApplicationUserModelId(
      _Inout_ UINT32* packageRelativeApplicationIdLength,
      _Out_writes_opt_(*packageRelativeApplicationIdLength) PWSTR packageRelativeApplicationId
      );
@@ -51,7 +51,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/appmodel.h b/generation/W
  
  /* ---------------------------------------------------------------- */
  
-@@ -450,6 +452,7 @@
+@@ -450,6 +452,7 @@ GetPackagesByPackageFamily(
      _Inout_ UINT32* bufferLength,
      _Out_writes_opt_(*bufferLength) WCHAR* buffer
      );
@@ -59,7 +59,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/appmodel.h b/generation/W
  
  /* Any combination of PACKAGE_FILTER_* */
  WINBASEAPI
-@@ -590,7 +593,7 @@
+@@ -590,7 +593,7 @@ WINAPI
  GetCurrentPackageInfo(
      _In_ const UINT32 flags,
      _Inout_ UINT32* bufferLength,
@@ -68,7 +68,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/appmodel.h b/generation/W
      _Out_opt_ UINT32* count
      );
  
-@@ -633,7 +636,7 @@
+@@ -633,7 +636,7 @@ GetPackageInfo(
      _In_ PACKAGE_INFO_REFERENCE packageInfoReference,
      _In_ const UINT32 flags,
      _Inout_ UINT32* bufferLength,
@@ -77,7 +77,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/appmodel.h b/generation/W
      _Out_opt_ UINT32* count
      );
  
-@@ -644,7 +647,7 @@
+@@ -644,7 +647,7 @@ WINAPI
  GetPackageApplicationIds(
      _In_ PACKAGE_INFO_REFERENCE packageInfoReference,
      _Inout_ UINT32* bufferLength,
@@ -86,12 +86,45 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/appmodel.h b/generation/W
      _Out_opt_ UINT32* count
      );
  
-@@ -658,7 +661,7 @@
+@@ -658,7 +661,7 @@ GetPackageInfo2(
      _In_ const UINT32 flags,
      _In_ PackagePathType packagePathType,
      _Inout_ UINT32* bufferLength,
 -    _Out_writes_bytes_opt_(*bufferLength) BYTE* buffer,
 +    _Out_writes_bytes_opt_(*bufferLength) _Win32_ContainsInteriorPointers_ BYTE* buffer,
      _Out_opt_ UINT32* count
+     );
+ 
+@@ -897,6 +900,14 @@ DeletePackageDependency(
+ /// @param packageDependencyContext valid until passed to RemovePackageDependency()
+ /// @param packageFullName allocated via HeapAlloc; use HeapFree to deallocate
+ /// @see AddPackageDependency2()
++#if defined(WIN32METADATA) && defined(__clang__)
++WINBASEAPI
++HRESULT
++WINAPI
++RemovePackageDependency(
++    _In_ PACKAGEDEPENDENCY_CONTEXT packageDependencyContext
++    );
++#endif
+ WINBASEAPI
+ HRESULT
+ WINAPI
+@@ -904,7 +915,7 @@ AddPackageDependency(
+     _In_ PCWSTR packageDependencyId,
+     INT32 rank,
+     AddPackageDependencyOptions options,
+-    _Out_ PACKAGEDEPENDENCY_CONTEXT* packageDependencyContext,
++    _Out_ _Win32_RAIIFree_(RemovePackageDependency) PACKAGEDEPENDENCY_CONTEXT* packageDependencyContext,
+     _Outptr_opt_result_maybenull_ PWSTR* packageFullName
+     );
+ 
+@@ -957,7 +968,7 @@ AddPackageDependency2(
+     _In_ PCWSTR packageDependencyId,
+     INT32 rank,
+     AddPackageDependencyOptions2 options,
+-    _Out_ PACKAGEDEPENDENCY_CONTEXT* packageDependencyContext,
++    _Out_ _Win32_RAIIFree_(RemovePackageDependency) PACKAGEDEPENDENCY_CONTEXT* packageDependencyContext,
+     _Outptr_opt_result_maybenull_ PWSTR* packageFullName
      );
  

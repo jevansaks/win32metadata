@@ -140,6 +140,13 @@ typedef struct PRJ_STARTVIRTUALIZING_OPTIONS
     PRJ_NOTIFICATION_MAPPING* NotificationMappings;
     UINT32 NotificationMappingsCount;
 } PRJ_STARTVIRTUALIZING_OPTIONS;
+#if defined(WIN32METADATA) && defined(__clang__)
+_Win32_SupportedOS_17763_
+STDAPI_(void)
+PrjStopVirtualizing(
+    _In_ PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT namespaceVirtualizationContext
+    );
+#endif
 _Win32_SupportedOS_17763_
 
 STDAPI
@@ -148,7 +155,7 @@ PrjStartVirtualizing(
     _In_ const PRJ_CALLBACKS* callbacks,
     _In_opt_ const void* instanceContext,
     _In_opt_ const PRJ_STARTVIRTUALIZING_OPTIONS* options,
-    _Outptr_ PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT* namespaceVirtualizationContext
+    _Outptr_ _Win32_RAIIFree_(PrjStopVirtualizing) PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT* namespaceVirtualizationContext
     );
 _Win32_SupportedOS_17763_
 

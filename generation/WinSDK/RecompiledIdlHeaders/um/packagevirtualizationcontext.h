@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include <win32metadata_annotations.h>
 #include <apiset.h>
 #include <apisetcconv.h>
 
@@ -28,10 +29,16 @@ DECLARE_HANDLE(PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE);
 
 #if NTDDI_VERSION >= NTDDI_WIN10_CO
 
+#if defined(WIN32METADATA) && defined(__clang__)
+STDAPI_(VOID)
+ReleasePackageVirtualizationContext(
+    _In_ PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE context
+    );
+#endif
 STDAPI
 CreatePackageVirtualizationContext(
     _In_opt_ PCWSTR packageFamilyName,
-    _Out_ PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE* context
+    _Out_ _Win32_RAIIFree_(ReleasePackageVirtualizationContext) PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE* context
     );
 
 STDAPI
@@ -53,7 +60,7 @@ DeactivatePackageVirtualizationContext(
 STDAPI
 DuplicatePackageVirtualizationContext(
     _In_ PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE sourceContext,
-    _Out_ PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE* destContext
+    _Out_ _Win32_RAIIFree_(ReleasePackageVirtualizationContext) PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE* destContext
     );
 
 STDAPI_(PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE)

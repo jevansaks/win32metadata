@@ -7,7 +7,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winnetwk.h b/generation/W
  #include <winapifamily.h>
  
  /*++
-@@ -188,7 +189,7 @@
+@@ -188,7 +189,7 @@ WNetAddConnection2A(
      _In_     LPNETRESOURCEA lpNetResource,
      _In_opt_ LPCSTR       lpPassword,
      _In_opt_ LPCSTR       lpUserName,
@@ -16,7 +16,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winnetwk.h b/generation/W
      );
  _Check_return_
  DWORD APIENTRY
-@@ -196,7 +197,7 @@
+@@ -196,7 +197,7 @@ WNetAddConnection2W(
      _In_     LPNETRESOURCEW lpNetResource,
      _In_opt_ LPCWSTR       lpPassword,
      _In_opt_ LPCWSTR       lpUserName,
@@ -25,7 +25,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winnetwk.h b/generation/W
      );
  #ifdef UNICODE
  #define WNetAddConnection2  WNetAddConnection2W
-@@ -211,7 +212,7 @@
+@@ -211,7 +212,7 @@ WNetAddConnection3A(
      _In_     LPNETRESOURCEA lpNetResource,
      _In_opt_ LPCSTR       lpPassword,
      _In_opt_ LPCSTR       lpUserName,
@@ -34,7 +34,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winnetwk.h b/generation/W
      );
  _Check_return_
  DWORD APIENTRY
-@@ -220,7 +221,7 @@
+@@ -220,7 +221,7 @@ WNetAddConnection3W(
      _In_     LPNETRESOURCEW lpNetResource,
      _In_opt_ LPCWSTR       lpPassword,
      _In_opt_ LPCWSTR       lpUserName,
@@ -43,7 +43,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winnetwk.h b/generation/W
      );
  #ifdef UNICODE
  #define WNetAddConnection3  WNetAddConnection3W
-@@ -236,7 +237,7 @@
+@@ -236,7 +237,7 @@ WNetAddConnection4A(
      _In_     LPNETRESOURCEA lpNetResource,
      _In_reads_bytes_(cbAuthBuffer) PVOID  pAuthBuffer,
      _In_     DWORD          cbAuthBuffer,
@@ -52,7 +52,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winnetwk.h b/generation/W
      _In_reads_bytes_(cbUseOptions)     PBYTE          lpUseOptions,
      _In_     DWORD          cbUseOptions
      );
-@@ -247,7 +248,7 @@
+@@ -247,7 +248,7 @@ WNetAddConnection4W(
      _In_     LPNETRESOURCEW lpNetResource,
      _In_reads_bytes_(cbAuthBuffer) PVOID  pAuthBuffer,
      _In_     DWORD          cbAuthBuffer,
@@ -61,7 +61,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winnetwk.h b/generation/W
      _In_reads_bytes_(cbUseOptions)     PBYTE          lpUseOptions,
      _In_     DWORD          cbUseOptions
      );
-@@ -280,14 +281,14 @@
+@@ -280,14 +281,14 @@ _Check_return_
  DWORD APIENTRY
  WNetCancelConnection2A(
      _In_ LPCSTR lpName,
@@ -78,7 +78,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winnetwk.h b/generation/W
      _In_ BOOL     fForce
      );
  #ifdef UNICODE
-@@ -333,6 +334,7 @@
+@@ -333,6 +334,7 @@ WNetRestoreSingleConnectionW(
      );
  
  #else
@@ -86,7 +86,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winnetwk.h b/generation/W
  _Check_return_
  DWORD APIENTRY
  WNetRestoreConnectionW(
-@@ -356,7 +358,7 @@
+@@ -356,7 +358,7 @@ WNetUseConnectionA(
      _In_     LPNETRESOURCEA  lpNetResource,
      _In_opt_ LPCSTR        lpPassword,
      _In_opt_ LPCSTR        lpUserId,
@@ -95,7 +95,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winnetwk.h b/generation/W
      _Out_writes_opt_(*lpBufferSize) LPSTR lpAccessName,
      _Inout_opt_ LPDWORD lpBufferSize,
      _Out_opt_ LPDWORD   lpResult
-@@ -368,7 +370,7 @@
+@@ -368,7 +370,7 @@ WNetUseConnectionW(
      _In_     LPNETRESOURCEW  lpNetResource,
      _In_opt_ LPCWSTR        lpPassword,
      _In_opt_ LPCWSTR        lpUserId,
@@ -104,15 +104,22 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winnetwk.h b/generation/W
      _Out_writes_opt_(*lpBufferSize) LPWSTR lpAccessName,
      _Inout_opt_ LPDWORD lpBufferSize,
      _Out_opt_ LPDWORD   lpResult
-@@ -527,6 +529,7 @@
+@@ -527,6 +529,14 @@ WNetDisconnectDialog1W(
  #define WNetDisconnectDialog1  WNetDisconnectDialog1A
  #endif // !UNICODE
  #endif /* WINVER >= 0x0400 */
++#if defined(WIN32METADATA) && defined(__clang__)
++_Check_return_
++DWORD APIENTRY
++WNetCloseEnum(
++    _In_ HANDLE   hEnum
++    );
++#endif
 +_Win32_SupportedOS_Windows2000_
  
  //
  //  Network Browsing.
-@@ -535,8 +538,8 @@
+@@ -535,20 +545,20 @@ WNetDisconnectDialog1W(
  _Check_return_
  DWORD APIENTRY
  WNetOpenEnumA(
@@ -122,8 +129,9 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winnetwk.h b/generation/W
 +    _Win32_AssociatedEnum_(NET_RESOURCE_TYPE) _In_  DWORD          dwType,
      _In_  DWORD          dwUsage,
      _In_opt_ LPNETRESOURCEA lpNetResource,
-     _Out_ LPHANDLE       lphEnum
-@@ -544,8 +547,8 @@
+-    _Out_ LPHANDLE       lphEnum
++    _Out_ _Win32_RAIIFree_(WNetCloseEnum) LPHANDLE       lphEnum
+     );
  _Check_return_
  DWORD APIENTRY
  WNetOpenEnumW(
@@ -133,8 +141,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winnetwk.h b/generation/W
 +    _Win32_AssociatedEnum_(NET_RESOURCE_TYPE) _In_  DWORD          dwType,
      _In_  DWORD          dwUsage,
      _In_opt_ LPNETRESOURCEW lpNetResource,
-     _Out_ LPHANDLE       lphEnum
-@@ -561,7 +564,7 @@
+-    _Out_ LPHANDLE       lphEnum
++    _Out_ _Win32_RAIIFree_(WNetCloseEnum) LPHANDLE       lphEnum
+     );
+ #ifdef UNICODE
+ #define WNetOpenEnum  WNetOpenEnumW
+@@ -561,7 +571,7 @@ DWORD APIENTRY
  WNetEnumResourceA(
      _In_    HANDLE  hEnum,
      _Inout_ LPDWORD lpcCount,
@@ -143,7 +155,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winnetwk.h b/generation/W
      _Inout_ LPDWORD lpBufferSize
      );
  _Check_return_
-@@ -569,7 +572,7 @@
+@@ -569,7 +579,7 @@ DWORD APIENTRY
  WNetEnumResourceW(
      _In_    HANDLE  hEnum,
      _Inout_ LPDWORD lpcCount,
@@ -152,7 +164,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winnetwk.h b/generation/W
      _Inout_ LPDWORD lpBufferSize
      );
  #ifdef UNICODE
-@@ -589,14 +592,14 @@
+@@ -589,14 +599,14 @@ _Check_return_
  DWORD APIENTRY
  WNetGetResourceParentA(
      _In_ LPNETRESOURCEA lpNetResource,
@@ -169,7 +181,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winnetwk.h b/generation/W
      _Inout_ LPDWORD lpcbBuffer
      );
  #ifdef UNICODE
-@@ -609,7 +612,7 @@
+@@ -609,7 +619,7 @@ _Check_return_
  DWORD APIENTRY
  WNetGetResourceInformationA(
      _In_ LPNETRESOURCEA  lpNetResource,
@@ -178,7 +190,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winnetwk.h b/generation/W
      _Inout_ LPDWORD lpcbBuffer,
      _Outptr_ LPSTR *lplpSystem
      );
-@@ -617,7 +620,7 @@
+@@ -617,7 +627,7 @@ _Check_return_
  DWORD APIENTRY
  WNetGetResourceInformationW(
      _In_ LPNETRESOURCEW  lpNetResource,
@@ -187,7 +199,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winnetwk.h b/generation/W
      _Inout_ LPDWORD lpcbBuffer,
      _Outptr_ LPWSTR *lplpSystem
      );
-@@ -671,16 +674,16 @@
+@@ -671,16 +681,16 @@ _Check_return_
  DWORD APIENTRY
  WNetGetUniversalNameA(
      _In_ LPCSTR lpLocalPath,
@@ -208,7 +220,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winnetwk.h b/generation/W
      _Inout_ LPDWORD lpBufferSize
      );
  #ifdef UNICODE
-@@ -784,6 +787,7 @@
+@@ -784,6 +794,7 @@ WNetGetNetworkInformationW(
  #endif // !UNICODE
  
  #endif /* WINVER >= 0x0400 */
@@ -216,7 +228,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winnetwk.h b/generation/W
  
  //
  //  Error handling.
-@@ -798,6 +802,7 @@
+@@ -798,6 +809,7 @@ WNetGetLastErrorA(
      _Out_writes_(nNameBufSize) LPSTR  lpNameBuf,
      _In_ DWORD      nNameBufSize
      );
@@ -224,7 +236,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winnetwk.h b/generation/W
  _Check_return_
  DWORD APIENTRY
  WNetGetLastErrorW(
-@@ -930,3 +935,28 @@
+@@ -930,3 +942,28 @@ MultinetGetConnectionPerformanceW(
  
  #endif  // _WINNETWK_
  

@@ -620,6 +620,15 @@ DsDeregisterDnsHostRecordsA (
             DS_WRITABLE_REQUIRED )
 
 
+#if defined(WIN32METADATA) && defined(__clang__)
+_Win32_SupportedOS_WindowsVista_
+DSGETDCAPI
+VOID
+WINAPI
+DsGetDcCloseW(
+    _In_ HANDLE GetDcContextHandle
+    );
+#endif
 DSGETDCAPI
 DWORD
 WINAPI
@@ -630,7 +639,7 @@ DsGetDcOpenW(
     _In_opt_ GUID *DomainGuid,
     _In_opt_ LPCWSTR DnsForestName,
     _In_ ULONG DcFlags,
-    _Out_ PHANDLE RetGetDcContext
+    _Out_ _Win32_RAIIFree_(DsGetDcCloseW) PHANDLE RetGetDcContext
     );
 
 DSGETDCAPI
@@ -643,7 +652,7 @@ DsGetDcOpenA(
     _In_opt_ GUID *DomainGuid,
     _In_opt_ LPCSTR DnsForestName,
     _In_ ULONG DcFlags,
-    _Out_ PHANDLE RetGetDcContext
+    _Out_ _Win32_RAIIFree_(DsGetDcCloseW) PHANDLE RetGetDcContext
     );
 
 #ifdef UNICODE

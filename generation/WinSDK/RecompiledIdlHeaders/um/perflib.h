@@ -199,6 +199,12 @@ WINAPI
     IN PVOID  Buffer,
     IN ULONG  BufferSize
 );
+#if defined(WIN32METADATA) && defined(__clang__)
+ULONG WINAPI
+PerfStopProvider(
+    _In_ HANDLE ProviderHandle
+    );
+#endif
 _Win32_SupportedOS_WindowsVista_
 
 // Usually PerfSetCounterSetInfo() calls is automatically generated PerfAutoStartUp() function (generated
@@ -208,7 +214,7 @@ ULONG WINAPI
 PerfStartProvider(
     _In_     LPGUID          ProviderGuid,
     _In_opt_ PERFLIBREQUEST  ControlCallback,
-    _Out_    HANDLE        * phProvider
+    _Out_    _Win32_RAIIFree_(PerfStopProvider) HANDLE        * phProvider
 );
 
 // Start PERFLIB V2 provider with customized memory allocation/free routines.
@@ -230,7 +236,7 @@ ULONG WINAPI
 PerfStartProviderEx(
     _In_ LPGUID ProviderGuid,
     _In_opt_ PPERF_PROVIDER_CONTEXT ProviderContext,
-    _Out_ PHANDLE Provider
+    _Out_ _Win32_RAIIFree_(PerfStopProvider) PHANDLE Provider
     );
 
 ULONG WINAPI
@@ -825,12 +831,21 @@ phQuery:
 Receives the query handle. The handle should be closed with
 PerfCloseQueryHandle when it is no longer needed.
 */
+#if defined(WIN32METADATA) && defined(__clang__)
+_Win32_SupportedOS_14393_
+_Success_(return == ERROR_SUCCESS)
+ULONG
+WINAPI
+PerfCloseQueryHandle(
+    _In_ HANDLE hQuery
+    );
+#endif
 _Success_(return == ERROR_SUCCESS)
 ULONG
 WINAPI
 PerfOpenQueryHandle(
     _In_opt_z_ LPCWSTR szMachine,
-    _Out_ HANDLE * phQuery
+    _Out_ _Win32_RAIIFree_(PerfCloseQueryHandle) HANDLE * phQuery
     );
 _Win32_SupportedOS_14393_
 

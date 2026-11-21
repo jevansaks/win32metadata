@@ -7,7 +7,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/winrt/roapi.h b/generation/W
  // Copyright (c) Microsoft Corporation. All rights reserved.
  
  #ifndef __ROAPI_H_
-@@ -53,6 +54,7 @@
+@@ -53,6 +54,7 @@ typedef HRESULT (STDAPICALLTYPE * PFNGETACTIVATIONFACTORY)(HSTRING, IActivationF
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
  
  // forward declarations of the dllexport'd versions
@@ -15,7 +15,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/winrt/roapi.h b/generation/W
  ROAPI
  _Check_return_
  HRESULT
-@@ -60,12 +62,14 @@
+@@ -60,12 +62,14 @@ WINAPI
  RoInitialize(
      _In_ RO_INIT_TYPE initType
      );
@@ -30,23 +30,35 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/winrt/roapi.h b/generation/W
  
  ROAPI
  _Check_return_
-@@ -75,6 +79,7 @@
+@@ -75,6 +79,16 @@ RoActivateInstance(
      _In_ HSTRING activatableClassId,
      _COM_Outptr_ IInspectable** instance
      );
++#if defined(WIN32METADATA) && defined(__clang__)
++_Win32_SupportedOS_Windows8_
++ROAPI
++void
++WINAPI
++RoRevokeActivationFactories(
++    _In_ RO_REGISTRATION_COOKIE cookie
++    );
++#endif
 +_Win32_SupportedOS_Windows8_
  
  ROAPI
  _Check_return_
-@@ -86,6 +91,7 @@
+@@ -84,8 +98,9 @@ RoRegisterActivationFactories(
+     _In_reads_(count) HSTRING* activatableClassIds,
+     _In_reads_(count) PFNGETACTIVATIONFACTORY* activationFactoryCallbacks,
      _In_ UINT32 count,
-     _Out_ RO_REGISTRATION_COOKIE* cookie
+-    _Out_ RO_REGISTRATION_COOKIE* cookie
++    _Out_ _Win32_RAIIFree_(RoRevokeActivationFactories) RO_REGISTRATION_COOKIE* cookie
      );
 +_Win32_SupportedOS_Windows8_
  
  ROAPI
  void
-@@ -93,6 +99,7 @@
+@@ -93,6 +108,7 @@ WINAPI
  RoRevokeActivationFactories(
      _In_ RO_REGISTRATION_COOKIE cookie
      );
@@ -54,23 +66,36 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/winrt/roapi.h b/generation/W
  
  ROAPI
  _Check_return_
-@@ -106,6 +113,7 @@
+@@ -106,6 +122,17 @@ RoGetActivationFactory(
  
  typedef interface IApartmentShutdown IApartmentShutdown;
  DECLARE_HANDLE(APARTMENT_SHUTDOWN_REGISTRATION_COOKIE);
++#if defined(WIN32METADATA) && defined(__clang__)
++_Win32_SupportedOS_Windows8_
++ROAPI
++_Check_return_
++HRESULT
++WINAPI
++RoUnregisterForApartmentShutdown(
++    _In_ APARTMENT_SHUTDOWN_REGISTRATION_COOKIE regCookie
++    );
++#endif
 +_Win32_SupportedOS_Windows8_
  
  ROAPI
  _Check_return_
-@@ -116,6 +124,7 @@
+@@ -114,8 +141,9 @@ WINAPI
+ RoRegisterForApartmentShutdown(
+     _In_ IApartmentShutdown* callbackObject,
      _Out_ UINT64* apartmentIdentifier,
-     _Out_ APARTMENT_SHUTDOWN_REGISTRATION_COOKIE* regCookie
+-    _Out_ APARTMENT_SHUTDOWN_REGISTRATION_COOKIE* regCookie
++    _Out_ _Win32_RAIIFree_(RoUnregisterForApartmentShutdown) APARTMENT_SHUTDOWN_REGISTRATION_COOKIE* regCookie
      );
 +_Win32_SupportedOS_Windows8_
  
  ROAPI
  _Check_return_
-@@ -124,6 +133,7 @@
+@@ -124,6 +152,7 @@ WINAPI
  RoUnregisterForApartmentShutdown(
      _In_ APARTMENT_SHUTDOWN_REGISTRATION_COOKIE regCookie
      );

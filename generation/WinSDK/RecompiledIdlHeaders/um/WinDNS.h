@@ -1112,12 +1112,19 @@ DnsCancelQueryRaw(
 //  the future.
 //
 
+#if defined(WIN32METADATA) && defined(__clang__)
+VOID
+WINAPI
+DnsReleaseContextHandle(
+    _In_        HANDLE          hContext
+    );
+#endif
 DNS_STATUS
 WINAPI
 DnsAcquireContextHandle_W(
     _In_            DWORD           CredentialFlags,
     _In_opt_        PVOID           Credentials,
-    _Outptr_     PHANDLE         pContext
+    _Outptr_     _Win32_RAIIFree_(DnsReleaseContextHandle) PHANDLE         pContext
     );
 
 DNS_STATUS
@@ -1125,7 +1132,7 @@ WINAPI
 DnsAcquireContextHandle_A(
     _In_            DWORD           CredentialFlags,
     _In_opt_        PVOID           Credentials,
-    _Outptr_     PHANDLE         pContext
+    _Outptr_     _Win32_RAIIFree_(DnsReleaseContextHandle) PHANDLE         pContext
     );
 
 #ifdef UNICODE

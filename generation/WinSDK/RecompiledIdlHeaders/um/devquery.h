@@ -13,6 +13,7 @@ Abstract:
 #ifndef _DEVQUERY_H_
 #define _DEVQUERY_H_
 
+#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 
 #pragma region Desktop Family or OneCore Family
@@ -28,6 +29,10 @@ extern "C" {
 
 DECLARE_HANDLE(HDEVQUERY);
 typedef HDEVQUERY *PHDEVQUERY;
+
+#if defined(WIN32METADATA) && defined(__clang__)
+VOID WINAPI DevCloseObjectQuery(_In_ HDEVQUERY hDevQuery);
+#endif
 
 typedef VOID (WINAPI *PDEV_QUERY_RESULT_CALLBACK)(
     _In_ HDEVQUERY hDevQuery,
@@ -45,7 +50,7 @@ DevCreateObjectQuery(
     _In_reads_opt_(cFilterExpressionCount) const DEVPROP_FILTER_EXPRESSION *pFilter,
     _In_ PDEV_QUERY_RESULT_CALLBACK pCallback,
     _In_opt_ PVOID pContext,
-    _Out_ PHDEVQUERY phDevQuery);
+    _Out_ _Win32_RAIIFree_(DevCloseObjectQuery) PHDEVQUERY phDevQuery);
 
 #if (NTDDI_VERSION >= NTDDI_WINBLUE)
 
@@ -61,7 +66,7 @@ DevCreateObjectQueryEx(
     _In_reads_opt_(cExtendedParameterCount) const DEV_QUERY_PARAMETER *pExtendedParameters,
     _In_ PDEV_QUERY_RESULT_CALLBACK pCallback,
     _In_opt_ PVOID pContext,
-    _Out_ PHDEVQUERY phDevQuery);
+    _Out_ _Win32_RAIIFree_(DevCloseObjectQuery) PHDEVQUERY phDevQuery);
 
 #endif
 
@@ -76,7 +81,7 @@ DevCreateObjectQueryFromId(
     _In_reads_opt_(cFilterExpressionCount) const DEVPROP_FILTER_EXPRESSION *pFilter,
     _In_ PDEV_QUERY_RESULT_CALLBACK pCallback,
     _In_opt_ PVOID pContext,
-    _Out_ PHDEVQUERY phDevQuery);
+    _Out_ _Win32_RAIIFree_(DevCloseObjectQuery) PHDEVQUERY phDevQuery);
 
 #if (NTDDI_VERSION >= NTDDI_WINBLUE)
 
@@ -93,7 +98,7 @@ DevCreateObjectQueryFromIdEx(
     _In_reads_opt_(cExtendedParameterCount) const DEV_QUERY_PARAMETER *pExtendedParameters,
     _In_ PDEV_QUERY_RESULT_CALLBACK pCallback,
     _In_opt_ PVOID pContext,
-    _Out_ PHDEVQUERY phDevQuery);
+    _Out_ _Win32_RAIIFree_(DevCloseObjectQuery) PHDEVQUERY phDevQuery);
 
 #endif
 
@@ -108,7 +113,7 @@ DevCreateObjectQueryFromIds(
     _In_reads_opt_(cFilterExpressionCount) const DEVPROP_FILTER_EXPRESSION *pFilter,
     _In_ PDEV_QUERY_RESULT_CALLBACK pCallback,
     _In_opt_ PVOID pContext,
-    _Out_ PHDEVQUERY phDevQuery);
+    _Out_ _Win32_RAIIFree_(DevCloseObjectQuery) PHDEVQUERY phDevQuery);
 
 #if (NTDDI_VERSION >= NTDDI_WINBLUE)
 
@@ -125,7 +130,7 @@ DevCreateObjectQueryFromIdsEx(
     _In_reads_opt_(cExtendedParameterCount) const DEV_QUERY_PARAMETER *pExtendedParameters,
     _In_ PDEV_QUERY_RESULT_CALLBACK pCallback,
     _In_opt_ PVOID pContext,
-    _Out_ PHDEVQUERY phDevQuery);
+    _Out_ _Win32_RAIIFree_(DevCloseObjectQuery) PHDEVQUERY phDevQuery);
 
 #endif
 

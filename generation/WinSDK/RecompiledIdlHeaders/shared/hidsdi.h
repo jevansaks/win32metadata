@@ -20,6 +20,7 @@ Environment:
 
 #ifndef _HIDSDI_H
 #define _HIDSDI_H
+#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 
 #pragma region Desktop Family
@@ -76,12 +77,19 @@ HidD_GetHidGuid (
    _Out_  LPGUID   HidGuid
    );
 
+#if defined(WIN32METADATA) && defined(__clang__)
+_Success_(return==TRUE)
+BOOLEAN __stdcall
+HidD_FreePreparsedData (
+   _In_ __drv_freesMem(Mem) PHIDP_PREPARSED_DATA PreparsedData
+   );
+#endif
 _Must_inspect_result_
 _Success_(return==TRUE)
 BOOLEAN __stdcall
 HidD_GetPreparsedData (
    _In_   HANDLE                  HidDeviceObject,
-   _Out_ _When_(return!=0, __drv_allocatesMem(Mem))  PHIDP_PREPARSED_DATA  * PreparsedData
+   _Out_ _Win32_RAIIFree_(HidD_FreePreparsedData) _When_(return!=0, __drv_allocatesMem(Mem))  PHIDP_PREPARSED_DATA  * PreparsedData
    );
 /*++
 Routine Description:

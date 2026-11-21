@@ -1853,6 +1853,14 @@ typedef SC_NOTIFICATION_CALLBACK* PSC_NOTIFICATION_CALLBACK;
 
 typedef struct _SC_NOTIFICATION_REGISTRATION* PSC_NOTIFICATION_REGISTRATION;
 
+#if defined(WIN32METADATA) && defined(__clang__)
+WINADVAPI
+VOID
+WINAPI
+UnsubscribeServiceChangeNotifications (
+    _In_      PSC_NOTIFICATION_REGISTRATION pSubscription
+    );
+#endif
 WINADVAPI
 DWORD
 WINAPI
@@ -1861,7 +1869,7 @@ SubscribeServiceChangeNotifications (
     _In_      SC_EVENT_TYPE                  eEventType,
     _In_      PSC_NOTIFICATION_CALLBACK      pCallback,
     _In_opt_  PVOID                          pCallbackContext,
-    _Out_     PSC_NOTIFICATION_REGISTRATION* pSubscription
+    _Out_     _Win32_RAIIFree_(UnsubscribeServiceChangeNotifications) PSC_NOTIFICATION_REGISTRATION* pSubscription
     );
 
 WINADVAPI

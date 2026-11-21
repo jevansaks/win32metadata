@@ -7,24 +7,36 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/IcmpAPI.h b/generation/Wi
  /*++
  
  Copyright (c) 1991-1999  Microsoft Corporation
-@@ -49,6 +50,7 @@
+@@ -49,6 +50,18 @@ Notes:
  #ifdef __cplusplus
  extern "C" {
  #endif
++#if defined(WIN32METADATA) && defined(__clang__)
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
++IPHLPAPI_DLL_LINKAGE
++BOOL
++WINAPI
++IcmpCloseHandle(
++    _In_ HANDLE  IcmpHandle
++    );
++#endif
++_Win32_RAIIFree_(IcmpCloseHandle)
 +_Win32_SetLastError_
  
  //
  // Exported Routines.
-@@ -83,6 +85,8 @@
+@@ -83,6 +96,9 @@ IcmpCreateFile(
      );
  
  #if (NTDDI_VERSION >= NTDDI_WINXP)
++_Win32_RAIIFree_(IcmpCloseHandle)
 +_Win32_SetLastError_
 +_Win32_SupportedOS_WindowsXP_
  //++
  //
  // Routine Name:
-@@ -111,6 +115,8 @@
+@@ -111,6 +127,8 @@ Icmp6CreateFile(
      VOID
      );
  #endif
@@ -33,7 +45,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/IcmpAPI.h b/generation/Wi
  
  //++
  //
-@@ -193,6 +199,8 @@
+@@ -193,6 +211,8 @@ IcmpCloseHandle(
  
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
@@ -42,7 +54,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/IcmpAPI.h b/generation/Wi
  
  IPHLPAPI_DLL_LINKAGE
  DWORD
-@@ -203,7 +211,7 @@
+@@ -203,7 +223,7 @@ IcmpSendEcho(
      _In_reads_bytes_(RequestSize)   LPVOID                   RequestData,
      _In_                       WORD                     RequestSize,
      _In_opt_                   PIP_OPTION_INFORMATION   RequestOptions,
@@ -51,7 +63,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/IcmpAPI.h b/generation/Wi
      _In_range_(>=, sizeof(ICMP_ECHO_REPLY) + RequestSize + 8)
      DWORD                    ReplySize,
      _In_                       DWORD                    Timeout
-@@ -282,6 +290,8 @@
+@@ -282,6 +302,8 @@ IcmpSendEcho(
  
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
@@ -60,7 +72,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/IcmpAPI.h b/generation/Wi
  
  IPHLPAPI_DLL_LINKAGE
  DWORD
-@@ -299,7 +309,7 @@
+@@ -299,7 +321,7 @@ IcmpSendEcho2(
      _In_reads_bytes_(RequestSize)    LPVOID                   RequestData,
      _In_                        WORD                     RequestSize,
      _In_opt_                    PIP_OPTION_INFORMATION   RequestOptions,
@@ -69,7 +81,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/IcmpAPI.h b/generation/Wi
      _In_range_(>=, sizeof(ICMP_ECHO_REPLY) + RequestSize + 8)
      DWORD                    ReplySize,
      _In_                        DWORD                    Timeout
-@@ -312,6 +322,8 @@
+@@ -312,6 +334,8 @@ IcmpSendEcho2(
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
  
  #if (NTDDI_VERSION >= NTDDI_VISTASP1)
@@ -78,7 +90,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/IcmpAPI.h b/generation/Wi
  IPHLPAPI_DLL_LINKAGE
  DWORD
  WINAPI
-@@ -329,7 +341,7 @@
+@@ -329,7 +353,7 @@ IcmpSendEcho2Ex(
      _In_reads_bytes_(RequestSize)   LPVOID                   RequestData,
      _In_                       WORD                     RequestSize,
      _In_opt_                   PIP_OPTION_INFORMATION   RequestOptions,
@@ -87,7 +99,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/IcmpAPI.h b/generation/Wi
      _In_range_(>=, sizeof(ICMP_ECHO_REPLY) + RequestSize + 8)
      DWORD                    ReplySize,
      _In_                       DWORD                    Timeout
-@@ -343,6 +355,8 @@
+@@ -343,6 +367,8 @@ IcmpSendEcho2Ex(
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
  
  #if (NTDDI_VERSION >= NTDDI_WINXP)
@@ -96,7 +108,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/IcmpAPI.h b/generation/Wi
  IPHLPAPI_DLL_LINKAGE
  DWORD
  WINAPI
-@@ -396,17 +410,21 @@
+@@ -396,17 +422,21 @@ Icmp6SendEcho2(
  
  #pragma region Desktop Family or OneCore Family
  #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)

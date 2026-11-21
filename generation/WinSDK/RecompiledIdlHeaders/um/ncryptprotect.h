@@ -230,6 +230,14 @@ NCryptQueryProtectionDescriptorName(
     _Inout_         SIZE_T                              *pcDescriptorString,
                     DWORD                               dwFlags
     );
+#if defined(WIN32METADATA) && defined(__clang__)
+_Win32_SupportedOS_Windows8_
+SECURITY_STATUS
+WINAPI
+NCryptCloseProtectionDescriptor(
+    _In_            NCRYPT_DESCRIPTOR_HANDLE             hDescriptor
+    );
+#endif
 _Win32_SupportedOS_Windows8_
 
 
@@ -270,7 +278,7 @@ WINAPI
 NCryptCreateProtectionDescriptor(
     _In_            LPCWSTR                             pwszDescriptorString,
                     DWORD                               dwFlags,
-    _Out_           NCRYPT_DESCRIPTOR_HANDLE            *phDescriptor
+    _Out_           _Win32_RAIIFree_(NCryptCloseProtectionDescriptor) NCRYPT_DESCRIPTOR_HANDLE            *phDescriptor
     );
 
 //
@@ -595,6 +603,14 @@ typedef struct NCRYPT_PROTECT_STREAM_INFO {
     PFNCryptStreamOutputCallback        pfnStreamOutput;
     void                                *pvCallbackCtxt;
 } NCRYPT_PROTECT_STREAM_INFO;
+#if defined(WIN32METADATA) && defined(__clang__)
+_Win32_SupportedOS_Windows8_
+SECURITY_STATUS
+WINAPI
+NCryptStreamClose(
+    _In_            NCRYPT_STREAM_HANDLE                hStream
+    );
+#endif
 _Win32_SupportedOS_Windows8_
 
 /****************************************************************************
@@ -643,7 +659,7 @@ NCryptStreamOpenToProtect(
                     DWORD                               dwFlags,
     _In_opt_        HWND                    hWnd,
     _In_            NCRYPT_PROTECT_STREAM_INFO          *pStreamInfo,
-    _Out_           NCRYPT_STREAM_HANDLE                *phStream
+    _Out_           _Win32_RAIIFree_(NCryptStreamClose) NCRYPT_STREAM_HANDLE                *phStream
     );
 _Win32_SupportedOS_Windows8_
 
@@ -688,7 +704,7 @@ NCryptStreamOpenToUnprotect(
     _In_            NCRYPT_PROTECT_STREAM_INFO          *pStreamInfo,
                     DWORD                               dwFlags,
     _In_opt_        HWND                hWnd,
-    _Out_           NCRYPT_STREAM_HANDLE                *phStream
+    _Out_           _Win32_RAIIFree_(NCryptStreamClose) NCRYPT_STREAM_HANDLE                *phStream
     );
 
 #if (NTDDI_VERSION >= NTDDI_WINTHRESHOLD)
@@ -805,7 +821,7 @@ NCryptStreamOpenToUnprotectEx(
     _In_            NCRYPT_PROTECT_STREAM_INFO_EX       *pStreamInfo,
                     DWORD                               dwFlags,
     _In_opt_        HWND                                hWnd,
-    _Out_           NCRYPT_STREAM_HANDLE                *phStream
+    _Out_           _Win32_RAIIFree_(NCryptStreamClose) NCRYPT_STREAM_HANDLE                *phStream
 );
 
 #endif

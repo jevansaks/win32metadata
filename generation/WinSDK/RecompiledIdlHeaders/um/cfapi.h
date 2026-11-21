@@ -772,13 +772,20 @@ typedef enum CF_OPEN_FILE_FLAGS {
 } CF_OPEN_FILE_FLAGS;
 
 DEFINE_ENUM_FLAG_OPERATORS( CF_OPEN_FILE_FLAGS );
+#if defined(WIN32METADATA) && defined(__clang__)
+_Win32_SupportedOS_16299_
+STDAPI_(VOID)
+CfCloseHandle(
+    _In_ HANDLE FileHandle
+    );
+#endif
 _Win32_SupportedOS_16299_
 
 STDAPI
 CfOpenFileWithOplock (
     _In_ LPCWSTR FilePath,
     _In_ CF_OPEN_FILE_FLAGS Flags,
-    _Out_ PHANDLE ProtectedHandle
+    _Out_ _Win32_RAIIFree_(CfCloseHandle) PHANDLE ProtectedHandle
     );
 
 STDAPI_( BOOLEAN )
