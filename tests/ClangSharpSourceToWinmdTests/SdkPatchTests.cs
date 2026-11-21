@@ -1324,7 +1324,7 @@ struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID iid, _COM_Outp
                 "#else\nreturn ITransferSource_OpenItem(source, item, 0, riid, output) + ITransferDestination_CreateItem(destination, 0, 0, 0, 0, riid, output, riid, resources);\n" +
                 "#endif\n}\n");
             string obj = Path.Combine(fixture.Path, "native.obj");
-            // Use identical include paths for old/new headers; MSVC orders UUID COMDATs by header identity.
+            // Keep include paths identical and package independent fixture globals as COMDATs.
             string replacements = string.Join("; ", new[] { "ShObjIdl_core.h", "ShlObj_core.h",
                 "propsys.h", "shellapi.h", "Shlwapi.h" }.Select(owner =>
                 "Copy-Item -LiteralPath " + Quote(Path.Combine(Root(), "generation", "WinSDK", "RecompiledIdlHeaders", "um", owner)) +
@@ -1333,7 +1333,7 @@ struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID iid, _COM_Outp
                 "; $vc = Get-VcDirPath -Arch " + Quote(arch) + " -HostArch x64; " +
                 "$compiler = Join-Path $vc 'cl.exe'; $vcInclude = Join-Path $vc '..\\..\\..\\include'; " +
                 "foreach ($mode in 'baseline', 'ordinary', 'metadata') { if ($mode -eq 'ordinary') { " + replacements + " }; " +
-                "& $compiler /nologo /c " + language + " " + Quote(source) + " " + Quote("/Fo" + obj) +
+                "& $compiler /nologo /c /Gw " + language + " " + Quote(source) + " " + Quote("/Fo" + obj) +
                 " " + Quote("/I" + Path.Combine(fixture.Headers, "um")) + " " + Quote("/I" + fixture.Headers) +
                 " \"/I$vcInclude\" " + Quote("/I" + Path.Combine(include, "um")) +
                 " " + Quote("/I" + Path.Combine(include, "shared")) + " " + Quote("/I" + Path.Combine(include, "ucrt")) +
@@ -1349,8 +1349,8 @@ struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID iid, _COM_Outp
                 Assert.AreEqual(arch == "x86" ? 0x14c : arch == "x64" ? 0x8664 : 0xaa64, BitConverter.ToUInt16(bytes, 0));
                 Array.Clear(bytes, 4, 4);
             }
-            CollectionAssert.AreEqual(outputs[0], outputs[1]);
-            CollectionAssert.AreEqual(outputs[1], outputs[2]);
+            NativeCoffAssertions.CodeDataAndLinkageEqual(outputs[0], outputs[1]);
+            NativeCoffAssertions.CodeDataAndLinkageEqual(outputs[1], outputs[2]);
         }
 
         [TestMethod]
@@ -2189,7 +2189,7 @@ struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID iid, _COM_Outp
         public void AudioOutput_RealSdkPatchesAndMidlReplayEveryPhysicalOwner()
         {
             using var fixture = new Fixture();
-            var idls = AudioComOutputHeaderTests.Idls.Concat(new[] { "axcore.idl", "axextend.idl", "dyngraph.idl" })
+            var idls = AudioComOutputHeaderTests.Idls.Concat(new[] { "axcore.idl", "axextend.idl", "dyngraph.idl", "icodecapi.idl" })
                 .Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
             string sdk = LastErrorHeaderTests.SdkPackagePath();
             string include = Path.Combine(sdk, "c", "include", "10.0.28000.0");
