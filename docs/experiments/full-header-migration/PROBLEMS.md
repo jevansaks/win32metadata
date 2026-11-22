@@ -12,20 +12,20 @@ RECOVERY.md. A rejected trial is not migrated coverage.
 
 ## Accepted continuation and remaining boundaries
 
-Published `e8813871` is independently qualified by its own ordinary ten-job
+Published `a74c977d` is independently qualified by its own ordinary ten-job
 CI/output gate, including 175 SDK cases and 54 integrity cases. Its complete API
-is `F781562F...`. Published totals are **65 whole JSON retirements / 388 manual
+is `F781562F...`. Published totals are **65 whole JSON retirements / 424 manual
 emitter rows / 290 enums remaining**, with **zero selected result-policy rows**
 and **2259 namespace routes** remaining. Transform21, the 151 result-row
 retirements, the separately qualified native SAL refresh and the 905 reviewed
-route removals are included. The two 1073-case tooling cohorts overlap.
-The previous `b24738dc`, `16ec4e88`, `d68f08f2` and `aa10b8a9` failed attempts
-are not retroactively accepted. The current published total is **65/388/290**;
+route removals are included. The two 1107-case tooling cohorts overlap.
+The previous `b24738dc`, `16ec4e88`, `d68f08f2`, `aa10b8a9` and `f156cc0d`
+failed attempts are not retroactively accepted. The current published total is **65/424/290**;
 the older 65/358 checkpoint and its evidence below remain historical.
 
-The saved stage1 native36 proposal adds 35 parameter associations and one return
+The qualified stage1 native36 milestone adds 35 parameter associations and one return
 association without changing native enum identities, storage or the complete
-accepted API. It remains unpublished and pending bounded source review. Its
+accepted API. Its own repaired-head hosted gate is accepted, not its failed original attempt. Its
 five retained GDI prerequisite rows do not establish a storage limitation:
 the actual failed producer names missing FONT_CHARSET, while supported
 FONT_OUTPUT_PRECISION and FONT_QUALITY retain their byte enum definitions and
@@ -41,6 +41,38 @@ XML IDLs are now prepared, with every existing full-byte assertion preserved.
 No native group, validator exception, sidecar fallback or new transfer credit
 is introduced by this fixture correction. Setup failures and unprobed
 FreeWith/canonical-enum-name slices remain separately classified.
+
+The next saved Debug LastError family retires 176 exact RSP facts through
+352 first-declaration annotations in the two real Debug owners. An initial
+trial correctly failed because eight markers followed DBHLP_DEPRECIATED;
+placing them before that native prefix is an input correction, not a reader
+exception. New real-owner fixtures also require the already annotated Winnt.h
+dependency for IMAGE_DIRECTORY_ENTRY. Omitting it is a fixture-context error,
+not a missing-enum limitation. All discarded runs remain failures.
+Whole-owning-header native ABI proof uses unchanged pinned SDK dependencies;
+stock SAL cannot compile unrelated older prepared msxml.h _Out_retval_ input.
+That discarded broad-context setup is retained without changing held sources.
+The existing same-output-path COFF comparison avoids compiler-generated object
+path differences; only timestamp bytes are excluded, never metadata/API output.
+The first complete union copied ScrapeHeaders-only preambles over accepted
+post-constants preambles, dropping System imports required by native Flags
+groups. Retaining the unchanged accepted compilation preambles while replacing
+all 19 fresh complete namespace bodies restores the existing pipeline contract.
+The resulting fresh full emission has zero unmasked delta against the entire
+36,304,784-byte F781 API. No global-using, reader or workflow fix was added.
+Private integrity setup failures (missing assets/tooling and the diagnostic
+scratch-root layout) and a private evidence-helper grouping mistake are retained
+separately; they do not establish metadata-reader or native ABI limitations.
+The complete integrated cohort passes 1288 cases (1113 tooling plus 175 SDK).
+Accepted Clang/SDK and scraper case-name multisets remain intact. Three existing
+MetadataUtils LibScraper labels contain machine-specific truncated absolute
+paths; their unchanged source and actual library/expected-data bytes bind the
+three-case cohort. Raw labels are preserved, and no individual architecture is
+inferred from those collapsed labels. The historical WinHttp whole-RSP
+control still uses its unchanged frozen recovery source, not the evolving
+candidate RSP, so no assertion alignment or relaxation was necessary. The
+candidate's 176 deletions are independently checked against both actual owners.
+No FreeWith/public-name probe, policy change or publication is implied.
 
 The published producer-lifetime family is separately attributable. Core26 and DeviceQuery6
 transfer 32 native cleanup facts with full semantic preservation; a separate

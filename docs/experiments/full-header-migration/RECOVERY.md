@@ -1,33 +1,76 @@
 # Working-first recovery and sidecar reduction
 
-## Current published checkpoint: MSI16, Theme14 and bounded repairs
+## Current published checkpoint: native36 and genuine HtmlHelp fixture repair
 
-Published head `e8813871d93add5067780feebaa290e8125ef8e0` is independently
+Published head `a74c977df4e00c92ca4914d3f97b450b9efaaf4f` is independently
 qualified by ordinary
-[run 44969313803](https://github.com/jevansaks/win32metadata/actions/runs/44969313803).
+[run 44995937734](https://github.com/jevansaks/win32metadata/actions/runs/44995937734).
 All ten jobs passed, including all 175 SDK cases and 54 integrity cases.
 The actual standalone/comparison/packaged WinMD is
-`90BC77823986342D27FAD1BD80215578BAA8B04543C93D730FB1419BE3DFF01E`;
+`9123673024D7682A36C550F2D819F6929714C91750D1E68E362EA04B7987F732`;
 its complete API dump is
 `F781562FA67BCBEDA63572343132C368260EF2A7D6A4255090055B7FEBC83821`.
-The two 1073-case tooling cohorts overlap; they are not disjoint coverage.
-The earlier `b24738dc`, `16ec4e88`, `d68f08f2` and `aa10b8a9` failures remain
-unaccepted. Both subsequent bounded repairs have zero transfer credit.
+The two 1107-case tooling cohorts overlap; they are not disjoint coverage.
+The earlier `b24738dc`, `16ec4e88`, `d68f08f2`, `aa10b8a9` and
+`f156cc0d` failures remain unaccepted. Subsequent bounded repairs have zero
+transfer credit.
 
-Published totals are **65 whole JSON retirements / 388 manual emitter rows /
+Published totals are **65 whole JSON retirements / 424 manual emitter rows /
 290 enums remaining**. The 151 result-row retirements, 90-method native SAL
 refresh and 905 redundant/inert namespace-route removals remain separately
 attributable. All 2259 remaining routes and 436 autoTypes records are retained.
 
-### Saved stage1 native36 proposal: source review pending
+### Saved native Debug LastError family: bounded review required
 
-The next saved-only milestone retires exactly 36 association rows: 35 parameter
+The next saved-only family moves exactly 176 existing LastError facts out of
+`WithSetLastError.rsp`, decreasing its residual inventory from 468 to 292.
+The same facts annotate the first real export declarations in both DbgHelp.h
+and ImageHlp.h: 352 new native marker sites. The 23 existing ImageHlp markers
+are unchanged. No native type, enum, signature,
+library, SDK pin, reader, production main/settings/traversal or held policy
+changes. These are LastError retirements, not additional JSON/enum/emitter-row
+credit; the independently qualified **65/424/290** quantities stay separate.
+
+The genuine before-transfer six-owner cohort fails the required SymCleanup
+LastError flag, with its unchanged C control passing. The same seven cases
+pass after source correction. Both paths parse the complete real owning
+header and unchanged annotated Winnt.h dependency, but generate only the three
+exact extracted declarations. The legacy owner and wrapper remove only
+LastError markers and use explicit mappings; the native path has no mappings.
+Module, entrypoint, native parameter counts and complete-byte assertions remain.
+
+Eight initial markers followed DBHLP_DEPRECIATED and were correctly rejected:
+the markers must precede that existing complete-declaration prefix. The failed
+trial is retained; moving those eight markers fixes migration input placement,
+not the reader. Fixture/dependency/native proof setup mistakes remain separately
+attributed. FreeWith and public-name slices remain unprobed, not limitations.
+Actual Debug, FileHistory and WinProg producers are refreshed under unchanged
+production inputs. All 19 fresh complete namespace bodies replace their union
+bodies; unchanged post-constants compilation preambles are retained. Copying
+the earlier ScrapeHeaders-only preambles first produced missing Flags imports,
+not a reader failure. The corrected complete 987-source emission is
+`F651B5B24111DFF6151337409343AF081650D0953C0784B87BF5BDFA5873313B`;
+its entire 36,304,784-byte API is the accepted `F781562F...`, with zero
+unmasked delta. Actual-candidate integrity passes all 54 cases. Twelve actual
+real-owner images and their complete dumps are identical in each legacy/native
+pair. The complete integrated three-suite run passes 1288 cases: 1113 tooling
+cases, including the six new real-owner cases, plus all 175 existing SDK cases.
+The accepted Clang/SDK and scraper name multisets are conserved. Three existing
+MetadataUtils LibScraper rows render different truncated absolute asset paths
+on hosted/private machines; their raw labels and unchanged source/actual asset
+bindings are retained, not rewritten. These are fresh saved executions, not a
+hosted ordinary qualification.
+No publication, CI retry, new reference, merge or Agent merge resume is released.
+
+### Qualified stage1 native36 milestone
+
+The independently qualified milestone retires exactly 36 association rows: 35 parameter
 facts and one return fact. Contributions are GDI8, DWM2, HtmlHelp2, FlatSB1,
 Verifier1, Debug4, LDAP1, SNMP1, task-dialog callback1, known-folder-path1,
 Authorization1, parental-controls1, Shell COM5 and DXGI7. Existing native enums
 and use-site storage are unchanged. The member-remap/association/exact-parameter
-inventory decreases from **1310/157/62 to 1274/121/27**. Local proposal totals
-are **65/424/290**, not published or independently accepted totals.
+inventory decreases from **1310/157/62 to 1274/121/27**. Qualified totals
+are **65/424/290**; inherited/fixture alignment earns zero credit.
 
 Six authoritative IDLs and twelve directly shipped headers carry the new
 facts; eight derived headers are regenerated over the complete import/include

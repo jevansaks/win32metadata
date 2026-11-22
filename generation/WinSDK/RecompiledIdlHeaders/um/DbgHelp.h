@@ -156,6 +156,7 @@ typedef BOOL
     _In_ PVOID  CallerData
     );
 
+_Win32_SetLastError_
 HANDLE
 IMAGEAPI
 SymFindDebugInfoFileW(
@@ -166,6 +167,7 @@ SymFindDebugInfoFileW(
     _In_opt_ PVOID CallerData
     );
 
+_Win32_SetLastError_
 HANDLE
 IMAGEAPI
 FindDebugInfoFile (
@@ -174,6 +176,7 @@ FindDebugInfoFile (
     _Out_writes_(MAX_PATH + 1) PSTR DebugFilePath
     );
 
+_Win32_SetLastError_
 HANDLE
 IMAGEAPI
 FindDebugInfoFileEx (
@@ -184,6 +187,7 @@ FindDebugInfoFileEx (
     _In_opt_ PVOID CallerData
     );
 
+_Win32_SetLastError_
 HANDLE
 IMAGEAPI
 FindDebugInfoFileExW (
@@ -200,6 +204,7 @@ typedef BOOL
     _In_ PVOID context
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymFindFileInPath(
@@ -221,6 +226,7 @@ typedef BOOL
     _In_ PVOID context
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymFindFileInPathW(
@@ -243,6 +249,7 @@ typedef BOOL
     _In_opt_ PVOID CallerData
     );
 
+_Win32_SetLastError_
 HANDLE
 IMAGEAPI
 SymFindExecutableImage(
@@ -260,6 +267,7 @@ typedef BOOL
     _In_opt_ PVOID CallerData
     );
 
+_Win32_SetLastError_
 HANDLE
 IMAGEAPI
 SymFindExecutableImageW(
@@ -270,6 +278,7 @@ SymFindExecutableImageW(
     _In_ PVOID CallerData
     );
 
+_Win32_SetLastError_
 HANDLE
 IMAGEAPI
 FindExecutableImage(
@@ -278,6 +287,7 @@ FindExecutableImage(
     _Out_writes_(MAX_PATH + 1) PSTR ImageFilePath
     );
 
+_Win32_SetLastError_
 HANDLE
 IMAGEAPI
 FindExecutableImageEx(
@@ -288,6 +298,7 @@ FindExecutableImageEx(
     _In_opt_ PVOID CallerData
     );
 
+_Win32_SetLastError_
 HANDLE
 IMAGEAPI
 FindExecutableImageExW(
@@ -304,6 +315,7 @@ ImageNtHeader (
     _In_ PVOID Base
     );
 
+_Win32_SetLastError_
 PVOID
 IMAGEAPI
 ImageDirectoryEntryToDataEx (
@@ -314,6 +326,7 @@ ImageDirectoryEntryToDataEx (
     _Out_opt_ PIMAGE_SECTION_HEADER *FoundHeader
     );
 
+_Win32_SetLastError_
 PVOID
 IMAGEAPI
 ImageDirectoryEntryToData (
@@ -323,6 +336,7 @@ ImageDirectoryEntryToData (
     _Out_ PULONG Size
     );
 
+_Win32_SetLastError_
 PIMAGE_SECTION_HEADER
 IMAGEAPI
 ImageRvaToSection(
@@ -331,6 +345,7 @@ ImageRvaToSection(
     _In_ ULONG Rva
     );
 
+_Win32_SetLastError_
 PVOID
 IMAGEAPI
 ImageRvaToVa(
@@ -390,6 +405,7 @@ typedef struct _IMAGE_DEBUG_INFORMATION {
 } IMAGE_DEBUG_INFORMATION, *PIMAGE_DEBUG_INFORMATION;
 
 
+_Win32_SetLastError_
 PIMAGE_DEBUG_INFORMATION
 IMAGEAPI
 MapDebugInformation(
@@ -399,6 +415,7 @@ MapDebugInformation(
     _In_ ULONG ImageBase
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 UnmapDebugInformation(
@@ -407,6 +424,7 @@ UnmapDebugInformation(
 
 #endif
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SearchTreeForFile(
@@ -415,6 +433,7 @@ SearchTreeForFile(
     _Out_writes_(MAX_PATH + 1) PSTR OutputPathBuffer
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SearchTreeForFileW(
@@ -429,6 +448,7 @@ typedef BOOL
     _In_opt_ PVOID CallerData
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 EnumDirTree(
@@ -446,6 +466,7 @@ typedef BOOL
     _In_opt_ PVOID CallerData
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 EnumDirTreeW(
@@ -457,6 +478,7 @@ EnumDirTreeW(
     _In_opt_ PVOID data
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 MakeSureDirectoryPathExists(
@@ -1056,6 +1078,7 @@ ImagehlpApiVersionEx(
     _In_ LPAPI_VERSION AppVersion
     );
 
+_Win32_SetLastError_
 DWORD
 IMAGEAPI
 GetTimestampForLoadedLibrary(
@@ -1709,6 +1732,7 @@ typedef struct _IMAGEHLP_JIT_SYMBOL_MAP {
 
 // If dbghelp ever needs to display graphical UI, it will use this as the parent window.
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymSetParentWindow(
@@ -1721,6 +1745,7 @@ SymGetParentWindow(
     _Out_ HWND * pHwnd
     );
 
+_Win32_SetLastError_
 PCHAR
 IMAGEAPI
 SymSetHomeDirectory(
@@ -1728,6 +1753,7 @@ SymSetHomeDirectory(
     _In_opt_ PCSTR dir
     );
 
+_Win32_SetLastError_
 PWSTR
 IMAGEAPI
 SymSetHomeDirectoryW(
@@ -1735,6 +1761,7 @@ SymSetHomeDirectoryW(
     _In_opt_ PCWSTR dir
     );
 
+_Win32_SetLastError_
 PCHAR
 IMAGEAPI
 SymGetHomeDirectory(
@@ -1743,6 +1770,7 @@ SymGetHomeDirectory(
     _In_ size_t size
     );
 
+_Win32_SetLastError_
 PWSTR
 IMAGEAPI
 SymGetHomeDirectoryW(
@@ -1763,6 +1791,7 @@ typedef struct _OMAP {
     ULONG  rvaTo;
 } OMAP, *POMAP;
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetOmaps(
@@ -1851,6 +1880,7 @@ SymGetOptions(
     VOID
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymCleanup(
@@ -1879,6 +1909,7 @@ SymSetExtendedOption(_In_ IMAGEHLP_EXTENDED_OPTIONS option, _In_ BOOL value);
 #pragma region Desktop Family or Games Family
 #if WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS | WINAPI_PARTITION_GAMES)
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymMatchString(
@@ -1895,6 +1926,7 @@ SymMatchStringA(
     _In_ BOOL fCase
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymMatchStringW(
@@ -1912,6 +1944,7 @@ typedef BOOL
 // for backwards compatibility - don't use this
 #define PSYM_ENUMSOURCFILES_CALLBACK PSYM_ENUMSOURCEFILES_CALLBACK
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymEnumSourceFiles(
@@ -1928,6 +1961,7 @@ typedef BOOL
     _In_opt_ PVOID UserContext
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymEnumSourceFilesW(
@@ -1938,6 +1972,7 @@ SymEnumSourceFilesW(
     _In_opt_ PVOID UserContext
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymEnumerateModules64(
@@ -1946,6 +1981,7 @@ SymEnumerateModules64(
     _In_opt_ PVOID UserContext
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymEnumerateModulesW64(
@@ -1957,6 +1993,7 @@ SymEnumerateModulesW64(
 #if !defined(_IMAGEHLP_SOURCE_) && defined(_IMAGEHLP64)
 #define SymEnumerateModules SymEnumerateModules64
 #else
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymEnumerateModules(
@@ -1966,6 +2003,7 @@ SymEnumerateModules(
     );
 #endif
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 EnumerateLoadedModulesEx(
@@ -1974,6 +2012,7 @@ EnumerateLoadedModulesEx(
     _In_opt_ PVOID UserContext
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 EnumerateLoadedModulesExW(
@@ -1982,6 +2021,7 @@ EnumerateLoadedModulesExW(
     _In_opt_ PVOID UserContext
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 EnumerateLoadedModules64(
@@ -1990,6 +2030,7 @@ EnumerateLoadedModules64(
     _In_opt_ PVOID UserContext
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 EnumerateLoadedModulesW64(
@@ -2001,6 +2042,7 @@ EnumerateLoadedModulesW64(
 #if !defined(_IMAGEHLP_SOURCE_) && defined(_IMAGEHLP64)
 #define EnumerateLoadedModules EnumerateLoadedModules64
 #else
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 EnumerateLoadedModules(
@@ -2010,6 +2052,7 @@ EnumerateLoadedModules(
     );
 #endif
 
+_Win32_SetLastError_
 PVOID
 IMAGEAPI
 SymFunctionTableAccess64(
@@ -2035,6 +2078,7 @@ SymFunctionTableAccess64AccessRoutines(
 #if !defined(_IMAGEHLP_SOURCE_) && defined(_IMAGEHLP64)
 #define SymFunctionTableAccess SymFunctionTableAccess64
 #else
+_Win32_SetLastError_
 PVOID
 IMAGEAPI
 SymFunctionTableAccess(
@@ -2058,6 +2102,7 @@ SymGetUnwindInfo(
 #pragma region Desktop Family or Games Family
 #if WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS | WINAPI_PARTITION_GAMES)
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetModuleInfo64(
@@ -2066,6 +2111,7 @@ SymGetModuleInfo64(
     _Out_ PIMAGEHLP_MODULE64 ModuleInfo
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetModuleInfoW64(
@@ -2078,6 +2124,7 @@ SymGetModuleInfoW64(
 #define SymGetModuleInfo   SymGetModuleInfo64
 #define SymGetModuleInfoW  SymGetModuleInfoW64
 #else
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetModuleInfo(
@@ -2086,6 +2133,7 @@ SymGetModuleInfo(
     _Out_ PIMAGEHLP_MODULE ModuleInfo
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetModuleInfoW(
@@ -2095,6 +2143,7 @@ SymGetModuleInfoW(
     );
 #endif
 
+_Win32_SetLastError_
 DWORD64
 IMAGEAPI
 SymGetModuleBase64(
@@ -2105,6 +2154,7 @@ SymGetModuleBase64(
 #if !defined(_IMAGEHLP_SOURCE_) && defined(_IMAGEHLP64)
 #define SymGetModuleBase SymGetModuleBase64
 #else
+_Win32_SetLastError_
 DWORD
 IMAGEAPI
 SymGetModuleBase(
@@ -2145,6 +2195,7 @@ typedef BOOL
     _In_opt_ PVOID UserContext
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymEnumLines(
@@ -2162,6 +2213,7 @@ typedef BOOL
     _In_opt_ PVOID UserContext
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymEnumLinesW(
@@ -2179,6 +2231,7 @@ SymEnumLinesW(
 #pragma region Desktop Family or Games Family
 #if WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS | WINAPI_PARTITION_GAMES)
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetLineFromAddr64(
@@ -2194,6 +2247,7 @@ SymGetLineFromAddr64(
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS)
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetLineFromAddrW64(
@@ -2203,6 +2257,7 @@ SymGetLineFromAddrW64(
     _Out_ PIMAGEHLP_LINEW64 Line
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetLineFromInlineContext(
@@ -2214,6 +2269,7 @@ SymGetLineFromInlineContext(
     _Out_ PIMAGEHLP_LINE64 Line64
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetLineFromInlineContextW(
@@ -2225,6 +2281,7 @@ SymGetLineFromInlineContextW(
     _Out_ PIMAGEHLP_LINEW64 Line
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymEnumSourceLines(
@@ -2238,6 +2295,7 @@ SymEnumSourceLines(
     _In_opt_ PVOID UserContext
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymEnumSourceLinesW(
@@ -2279,6 +2337,7 @@ SymCompareInlineTrace(
     _In_ DWORD64 RetAddress2
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymQueryInlineTrace(
@@ -2303,6 +2362,7 @@ SymQueryInlineTrace(
 #define SymGetLineFromAddr SymGetLineFromAddr64
 #define SymGetLineFromAddrW SymGetLineFromAddrW64
 #else
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetLineFromAddr(
@@ -2322,6 +2382,7 @@ SymGetLineFromAddrW(
     );
 #endif
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetLineFromName64(
@@ -2333,6 +2394,7 @@ SymGetLineFromName64(
     _Inout_ PIMAGEHLP_LINE64 Line
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetLineFromNameW64(
@@ -2347,6 +2409,7 @@ SymGetLineFromNameW64(
 #if !defined(_IMAGEHLP_SOURCE_) && defined(_IMAGEHLP64)
 #define SymGetLineFromName SymGetLineFromName64
 #else
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetLineFromName(
@@ -2359,6 +2422,7 @@ SymGetLineFromName(
     );
 #endif
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetLineNext64(
@@ -2366,6 +2430,7 @@ SymGetLineNext64(
     _Inout_ PIMAGEHLP_LINE64 Line
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetLineNextW64(
@@ -2376,6 +2441,7 @@ SymGetLineNextW64(
 #if !defined(_IMAGEHLP_SOURCE_) && defined(_IMAGEHLP64)
 #define SymGetLineNext SymGetLineNext64
 #else
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetLineNext(
@@ -2391,6 +2457,7 @@ SymGetLineNextW(
     );
 #endif
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetLinePrev64(
@@ -2398,6 +2465,7 @@ SymGetLinePrev64(
     _Inout_ PIMAGEHLP_LINE64 Line
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetLinePrevW64(
@@ -2408,6 +2476,7 @@ SymGetLinePrevW64(
 #if !defined(_IMAGEHLP_SOURCE_) && defined(_IMAGEHLP64)
 #define SymGetLinePrev SymGetLinePrev64
 #else
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetLinePrev(
@@ -2423,6 +2492,7 @@ SymGetLinePrevW(
     );
 #endif
 
+_Win32_SetLastError_
 ULONG
 IMAGEAPI
 SymGetFileLineOffsets64(
@@ -2433,6 +2503,7 @@ SymGetFileLineOffsets64(
     _In_ ULONG BufferLines
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymMatchFileName(
@@ -2442,6 +2513,7 @@ SymMatchFileName(
     _Outptr_opt_ PSTR *MatchStop
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymMatchFileNameW(
@@ -2451,6 +2523,7 @@ SymMatchFileNameW(
     _Outptr_opt_ PWSTR *MatchStop
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetSourceFile(
@@ -2462,6 +2535,7 @@ SymGetSourceFile(
     _In_ DWORD Size
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetSourceFileW(
@@ -2473,6 +2547,7 @@ SymGetSourceFileW(
     _In_ DWORD Size
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetSourceFileToken(
@@ -2495,6 +2570,7 @@ SymGetSourceFileTokenByTokenName(
     _Out_ DWORD *Size
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetSourceFileChecksumW(
@@ -2507,6 +2583,7 @@ SymGetSourceFileChecksumW(
     _Out_ DWORD *pActualBytesWritten
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetSourceFileChecksum(
@@ -2519,6 +2596,7 @@ SymGetSourceFileChecksum(
     _Out_ DWORD *pActualBytesWritten
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetSourceFileTokenW(
@@ -2541,6 +2619,7 @@ SymGetSourceFileTokenByTokenNameW(
     _Out_ DWORD *Size
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetSourceFileFromToken(
@@ -2562,6 +2641,7 @@ SymGetSourceFileFromTokenByTokenName(
     _In_ DWORD Size
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetSourceFileFromTokenW(
@@ -2583,6 +2663,7 @@ SymGetSourceFileFromTokenByTokenNameW(
     _In_ DWORD Size
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetSourceVarFromToken(
@@ -2594,6 +2675,7 @@ SymGetSourceVarFromToken(
     _In_ DWORD Size
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetSourceVarFromTokenW(
@@ -2607,6 +2689,7 @@ SymGetSourceVarFromTokenW(
 
 typedef BOOL (CALLBACK *PENUMSOURCEFILETOKENSCALLBACK)(_In_ PVOID token,  _In_ size_t size);
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymEnumSourceFileTokens(
@@ -2621,6 +2704,7 @@ SymEnumSourceFileTokens(
 #pragma region Desktop Family or Games Family
 #if WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS | WINAPI_PARTITION_GAMES)
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymInitialize(
@@ -2629,6 +2713,7 @@ SymInitialize(
     _In_ BOOL fInvadeProcess
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymInitializeW(
@@ -2649,6 +2734,7 @@ SymInitializeW(
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS)
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetSearchPath(
@@ -2657,6 +2743,7 @@ SymGetSearchPath(
     _In_ DWORD SearchPathLength
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetSearchPathW(
@@ -2665,6 +2752,7 @@ SymGetSearchPathW(
     _In_ DWORD SearchPathLength
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymSetSearchPath(
@@ -2678,6 +2766,7 @@ SymSetSearchPath(
 #pragma region Desktop Family or Games Family
 #if WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS | WINAPI_PARTITION_GAMES)
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymSetSearchPathW(
@@ -2702,6 +2791,7 @@ _Win32_FlagsEnum_(SYM_LOAD_FLAGS, unsigned int,
     SLMFLAG_NONE, SLMFLAG_VIRTUAL, SLMFLAG_ALT_INDEX, SLMFLAG_NO_SYMBOLS);
 #endif
 
+_Win32_SetLastError_
 DWORD64
 IMAGEAPI
 SymLoadModuleEx(
@@ -2721,6 +2811,7 @@ SymLoadModuleEx(
 #pragma region Desktop Family or Games Family
 #if WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS | WINAPI_PARTITION_GAMES)
 
+_Win32_SetLastError_
 DWORD64
 IMAGEAPI
 SymLoadModuleExW(
@@ -2740,6 +2831,7 @@ SymLoadModuleExW(
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS)
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymUnloadModule64(
@@ -2750,6 +2842,7 @@ SymUnloadModule64(
 #if !defined(_IMAGEHLP_SOURCE_) && defined(_IMAGEHLP64)
 #define SymUnloadModule SymUnloadModule64
 #else
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymUnloadModule(
@@ -2758,6 +2851,7 @@ SymUnloadModule(
     );
 #endif
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymUnDName64(
@@ -2769,6 +2863,7 @@ SymUnDName64(
 #if !defined(_IMAGEHLP_SOURCE_) && defined(_IMAGEHLP64)
 #define SymUnDName SymUnDName64
 #else
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymUnDName(
@@ -2778,6 +2873,7 @@ SymUnDName(
     );
 #endif
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymRegisterCallback64(
@@ -2786,6 +2882,7 @@ SymRegisterCallback64(
     _In_ ULONG64 UserContext
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymRegisterCallbackW64(
@@ -2794,6 +2891,7 @@ SymRegisterCallbackW64(
     _In_ ULONG64 UserContext
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymRegisterFunctionEntryCallback64(
@@ -2806,6 +2904,7 @@ SymRegisterFunctionEntryCallback64(
 #define SymRegisterCallback SymRegisterCallback64
 #define SymRegisterFunctionEntryCallback SymRegisterFunctionEntryCallback64
 #else
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymRegisterCallback(
@@ -2814,6 +2913,7 @@ SymRegisterCallback(
     _In_opt_ PVOID UserContext
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymRegisterFunctionEntryCallback(
@@ -2911,6 +3011,7 @@ typedef struct _IMAGEHLP_STACK_FRAME
 typedef VOID IMAGEHLP_CONTEXT, *PIMAGEHLP_CONTEXT;
 
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymSetContext(
@@ -2919,6 +3020,7 @@ SymSetContext(
     _In_opt_ PIMAGEHLP_CONTEXT Context
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymSetScopeFromAddr(
@@ -2926,6 +3028,7 @@ SymSetScopeFromAddr(
     _In_ ULONG64 Address
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymSetScopeFromInlineContext(
@@ -2934,6 +3037,7 @@ SymSetScopeFromInlineContext(
     _In_ ULONG InlineContext
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymSetScopeFromIndex(
@@ -2948,6 +3052,7 @@ typedef BOOL
     _In_ PVOID UserContext
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymEnumProcesses(
@@ -2961,6 +3066,7 @@ SymEnumProcesses(
 #pragma region Desktop Family or Games Family
 #if WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS | WINAPI_PARTITION_GAMES)
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymFromAddr(
@@ -2970,6 +3076,7 @@ SymFromAddr(
     _Inout_ PSYMBOL_INFO Symbol
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymFromAddrW(
@@ -2985,6 +3092,7 @@ SymFromAddrW(
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS)
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymFromInlineContext(
@@ -2995,6 +3103,7 @@ SymFromInlineContext(
     _Inout_ PSYMBOL_INFO Symbol
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymFromInlineContextW(
@@ -3005,6 +3114,7 @@ SymFromInlineContextW(
     _Inout_ PSYMBOL_INFOW Symbol
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymFromToken(
@@ -3014,6 +3124,7 @@ SymFromToken(
     _Inout_ PSYMBOL_INFO Symbol
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymFromTokenW(
@@ -3023,6 +3134,7 @@ SymFromTokenW(
     _Inout_ PSYMBOL_INFOW Symbol
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymNext(
@@ -3030,6 +3142,7 @@ SymNext(
     _Inout_ PSYMBOL_INFO si
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymNextW(
@@ -3037,6 +3150,7 @@ SymNextW(
     _Inout_ PSYMBOL_INFOW siw
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymPrev(
@@ -3044,6 +3158,7 @@ SymPrev(
     _Inout_ PSYMBOL_INFO si
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymPrevW(
@@ -3057,6 +3172,7 @@ SymPrevW(
 // expressions.  That way you can search across modules
 // and differentiate between identically named symbols.
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymFromName(
@@ -3065,6 +3181,7 @@ SymFromName(
     _Inout_ PSYMBOL_INFO Symbol
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymFromNameW(
@@ -3083,6 +3200,7 @@ typedef BOOL
     _In_opt_ PVOID UserContext
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymEnumSymbols(
@@ -3093,6 +3211,7 @@ SymEnumSymbols(
     _In_opt_ PVOID UserContext
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymEnumSymbolsEx(
@@ -3111,6 +3230,7 @@ typedef BOOL
     _In_opt_ PVOID UserContext
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymEnumSymbolsW(
@@ -3121,6 +3241,7 @@ SymEnumSymbolsW(
     _In_opt_ PVOID UserContext
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymEnumSymbolsExW(
@@ -3132,6 +3253,7 @@ SymEnumSymbolsExW(
     _In_ DWORD Options
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymEnumSymbolsForAddr(
@@ -3141,6 +3263,7 @@ SymEnumSymbolsForAddr(
     _In_opt_ PVOID UserContext
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymEnumSymbolsForAddrW(
@@ -3155,6 +3278,7 @@ SymEnumSymbolsForAddrW(
 #define SYMSEARCH_GLOBALSONLY   0X04    // search only for global symbols
 #define SYMSEARCH_ALLITEMS      0X08    // search for everything in the pdb, not just normal scoped symbols
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymSearch(
@@ -3169,6 +3293,7 @@ SymSearch(
     _In_ DWORD Options
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymSearchW(
@@ -3183,6 +3308,7 @@ SymSearchW(
     _In_ DWORD Options
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetScope(
@@ -3192,6 +3318,7 @@ SymGetScope(
     _Inout_ PSYMBOL_INFO Symbol
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetScopeW(
@@ -3201,6 +3328,7 @@ SymGetScopeW(
     _Inout_ PSYMBOL_INFOW Symbol
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymFromIndex(
@@ -3210,6 +3338,7 @@ SymFromIndex(
     _Inout_ PSYMBOL_INFO Symbol
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymFromIndexW(
@@ -3279,6 +3408,7 @@ typedef struct _TI_GET_DISCRIMINATEDUNION_TAG_RANGES_PARAMS {
     DISCRIMINATEDUNION_TAG_VALUE Range[1];
 } TI_GET_DISCRIMINATEDUNION_TAG_RANGES_PARAMS;
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetTypeInfo(
@@ -3313,6 +3443,7 @@ typedef struct _IMAGEHLP_GET_TYPE_INFO_PARAMS {
     OUT PULONG64 ReqsValid OPTIONAL;
 } IMAGEHLP_GET_TYPE_INFO_PARAMS, *PIMAGEHLP_GET_TYPE_INFO_PARAMS;
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetTypeInfoEx(
@@ -3321,6 +3452,7 @@ SymGetTypeInfoEx(
     _Inout_ PIMAGEHLP_GET_TYPE_INFO_PARAMS Params
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymEnumTypes(
@@ -3330,6 +3462,7 @@ SymEnumTypes(
     _In_opt_ PVOID UserContext
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymEnumTypesW(
@@ -3339,6 +3472,7 @@ SymEnumTypesW(
     _In_opt_ PVOID UserContext
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymEnumTypesByName(
@@ -3349,6 +3483,7 @@ SymEnumTypesByName(
     _In_opt_ PVOID UserContext
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymEnumTypesByNameW(
@@ -3359,6 +3494,7 @@ SymEnumTypesByNameW(
     _In_opt_ PVOID UserContext
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetTypeFromName(
@@ -3368,6 +3504,7 @@ SymGetTypeFromName(
     _Inout_ PSYMBOL_INFO Symbol
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetTypeFromNameW(
@@ -3377,6 +3514,7 @@ SymGetTypeFromNameW(
     _Inout_ PSYMBOL_INFOW Symbol
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymAddSymbol(
@@ -3388,6 +3526,7 @@ SymAddSymbol(
     _In_ DWORD Flags
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymAddSymbolW(
@@ -3399,6 +3538,7 @@ SymAddSymbolW(
     _In_ DWORD Flags
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymDeleteSymbol(
@@ -3409,6 +3549,7 @@ SymDeleteSymbol(
     _In_ DWORD Flags
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymDeleteSymbolW(
@@ -3425,6 +3566,7 @@ SymDeleteSymbolW(
 #pragma region Desktop Family or Games Family
 #if WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS | WINAPI_PARTITION_GAMES)
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymRefreshModuleList(
@@ -3437,6 +3579,7 @@ SymRefreshModuleList(
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS)
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymAddSourceStream(
@@ -3461,6 +3604,7 @@ SymAddSourceStreamA(
 
 typedef BOOL (WINAPI *SYMADDSOURCESTREAMA)(HANDLE, ULONG64, PCSTR, PBYTE, size_t);
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymAddSourceStreamW(
@@ -3471,6 +3615,7 @@ SymAddSourceStreamW(
     _In_ size_t Size
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymSrvIsStoreW(
@@ -3478,6 +3623,7 @@ SymSrvIsStoreW(
     _In_ PCWSTR path
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymSrvIsStore(
@@ -3485,6 +3631,7 @@ SymSrvIsStore(
     _In_ PCSTR path
     );
 
+_Win32_SetLastError_
 PCSTR
 IMAGEAPI
 SymSrvDeltaName(
@@ -3495,6 +3642,7 @@ SymSrvDeltaName(
     _In_ PCSTR File2
     );
 
+_Win32_SetLastError_
 PCWSTR
 IMAGEAPI
 SymSrvDeltaNameW(
@@ -3505,6 +3653,7 @@ SymSrvDeltaNameW(
     _In_ PCWSTR File2
     );
 
+_Win32_SetLastError_
 PCSTR
 IMAGEAPI
 SymSrvGetSupplement(
@@ -3514,6 +3663,7 @@ SymSrvGetSupplement(
     _In_ PCSTR File
     );
 
+_Win32_SetLastError_
 PCWSTR
 IMAGEAPI
 SymSrvGetSupplementW(
@@ -3523,6 +3673,7 @@ SymSrvGetSupplementW(
     _In_ PCWSTR File
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymSrvGetFileIndexes(
@@ -3533,6 +3684,7 @@ SymSrvGetFileIndexes(
     _In_ DWORD Flags
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymSrvGetFileIndexesW(
@@ -3543,6 +3695,7 @@ SymSrvGetFileIndexesW(
     _In_ DWORD Flags
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymSrvGetFileIndexStringW(
@@ -3554,6 +3707,7 @@ SymSrvGetFileIndexStringW(
     _In_ DWORD Flags
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymSrvGetFileIndexString(
@@ -3591,6 +3745,7 @@ typedef struct {
     DWORD age;
 } SYMSRV_INDEX_INFOW, *PSYMSRV_INDEX_INFOW;
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymSrvGetFileIndexInfo(
@@ -3599,6 +3754,7 @@ SymSrvGetFileIndexInfo(
     _In_ DWORD Flags
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymSrvGetFileIndexInfoW(
@@ -3607,6 +3763,7 @@ SymSrvGetFileIndexInfoW(
     _In_ DWORD Flags
     );
 
+_Win32_SetLastError_
 PCSTR
 IMAGEAPI
 SymSrvStoreSupplement(
@@ -3617,6 +3774,7 @@ SymSrvStoreSupplement(
     _In_ DWORD Flags
     );
 
+_Win32_SetLastError_
 PCWSTR
 IMAGEAPI
 SymSrvStoreSupplementW(
@@ -3627,6 +3785,7 @@ SymSrvStoreSupplementW(
     _In_ DWORD Flags
     );
 
+_Win32_SetLastError_
 PCSTR
 IMAGEAPI
 SymSrvStoreFile(
@@ -3642,6 +3801,7 @@ SymSrvStoreFile(
 #pragma region Desktop Family or Games Family
 #if WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS | WINAPI_PARTITION_GAMES)
 
+_Win32_SetLastError_
 PCWSTR
 IMAGEAPI
 SymSrvStoreFileW(
@@ -3667,6 +3827,7 @@ typedef enum {
     sfMax
 } IMAGEHLP_SF_TYPE;
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetSymbolFile(
@@ -3680,6 +3841,7 @@ SymGetSymbolFile(
     _In_ size_t cDbgFile
     );
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetSymbolFileW(
@@ -3731,6 +3893,7 @@ DbgHelpCreateUserDumpW(
 #pragma region Desktop Family or Games Family
 #if WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS | WINAPI_PARTITION_GAMES)
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetSymFromAddr64(
@@ -3744,6 +3907,7 @@ SymGetSymFromAddr64(
 #if !defined(_IMAGEHLP_SOURCE_) && defined(_IMAGEHLP64)
 #define SymGetSymFromAddr SymGetSymFromAddr64
 #else
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetSymFromAddr(
@@ -3766,6 +3930,7 @@ SymGetSymFromAddr(
 // expressions.  That way you can search across modules
 // and differentiate between identically named symbols.
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetSymFromName64(
@@ -3777,6 +3942,7 @@ SymGetSymFromName64(
 #if !defined(_IMAGEHLP_SOURCE_) && defined(_IMAGEHLP64)
 #define SymGetSymFromName SymGetSymFromName64
 #else
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetSymFromName(
@@ -4076,6 +4242,7 @@ SymEnumSym(
     _In_opt_ PVOID UserContext
     );
 
+_Win32_SetLastError_
 DBHLP_DEPRECIATED
 BOOL
 IMAGEAPI
@@ -4086,6 +4253,7 @@ SymEnumerateSymbols64(
     _In_opt_ PVOID UserContext
     );
 
+_Win32_SetLastError_
 DBHLP_DEPRECIATED
 BOOL
 IMAGEAPI
@@ -4101,6 +4269,7 @@ SymEnumerateSymbolsW64(
 #define SymEnumerateSymbols SymEnumerateSymbols64
 #define SymEnumerateSymbolsW SymEnumerateSymbolsW64
 #else
+_Win32_SetLastError_
 DBHLP_DEPRECIATED
 BOOL
 IMAGEAPI
@@ -4111,6 +4280,7 @@ SymEnumerateSymbols(
     _In_opt_ PVOID UserContext
     );
 
+_Win32_SetLastError_
 DBHLP_DEPRECIATED
 BOOL
 IMAGEAPI
@@ -4124,6 +4294,7 @@ SymEnumerateSymbolsW(
 
 // use SymLoadModuleEx
 
+_Win32_SetLastError_
 DWORD64
 IMAGEAPI
 SymLoadModule64(
@@ -4138,6 +4309,7 @@ SymLoadModule64(
 #if !defined(_IMAGEHLP_SOURCE_) && defined(_IMAGEHLP64)
 #define SymLoadModule SymLoadModule64
 #else
+_Win32_SetLastError_
 DWORD
 IMAGEAPI
 SymLoadModule(
@@ -4150,6 +4322,7 @@ SymLoadModule(
     );
 #endif
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetSymNext64(
@@ -4168,6 +4341,7 @@ SymGetSymNextW64(
 #define SymGetSymNext SymGetSymNext64
 #define SymGetSymNextW SymGetSymNextW64
 #else
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetSymNext(
@@ -4183,6 +4357,7 @@ SymGetSymNextW(
     );
 #endif
 
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetSymPrev64(
@@ -4201,6 +4376,7 @@ SymGetSymPrevW64(
 #define SymGetSymPrev SymGetSymPrev64
 #define SymGetSymPrevW SymGetSymPrevW64
 #else
+_Win32_SetLastError_
 BOOL
 IMAGEAPI
 SymGetSymPrev(

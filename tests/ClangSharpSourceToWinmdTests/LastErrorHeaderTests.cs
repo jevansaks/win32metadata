@@ -8,6 +8,7 @@ using System.Reflection.Metadata;
 using System.Reflection.PortableExecutable;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using ClangSharpSourceToWinmd;
 using Microsoft.CodeAnalysis;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -18,6 +19,83 @@ namespace ClangSharpSourceToWinmdTests
     public class LastErrorHeaderTests
     {
         private const string Declaration = "int __stdcall Example(void* buffer, unsigned long count);";
+
+        public TestContext TestContext { get; set; } = null!;
+
+        [DataTestMethod]
+        [DataRow("DbgHelp.h", "i686-pc-windows-msvc")]
+        [DataRow("DbgHelp.h", "x86_64-pc-windows-msvc")]
+        [DataRow("DbgHelp.h", "aarch64-pc-windows-msvc")]
+        [DataRow("ImageHlp.h", "i686-pc-windows-msvc")]
+        [DataRow("ImageHlp.h", "x86_64-pc-windows-msvc")]
+        [DataRow("ImageHlp.h", "aarch64-pc-windows-msvc")]
+        public void DebugCompleteOwners_PreserveLastErrorImportsWithoutTheSidecar(string owner, string target)
+        {
+            string root = RepositoryRoot();
+            string include = Path.Combine(SdkPackagePath(), "c", "include", "10.0.28000.0");
+            string header = File.ReadAllText(Path.Combine(root, "generation", "WinSDK", "RecompiledIdlHeaders", "um", owner));
+            string winnt = File.ReadAllText(Path.Combine(root, "generation", "WinSDK", "RecompiledIdlHeaders", "um", "winnt.h"));
+            string[] names = { "SymCleanup", "SymGetModuleBase64", "SymGetHomeDirectoryW" };
+            var declarations = Regex.Matches(header,
+                @"(?m)^(?:_Win32_SetLastError_\r?\n)?(?:BOOL|DWORD64|PWSTR)\r?\nIMAGEAPI\r?\n(?:SymCleanup|SymGetModuleBase64|SymGetHomeDirectoryW)\s*\([^;]*\);")
+                .Cast<Match>().Select(match => match.Value).ToArray();
+            Assert.AreEqual(names.Length, declarations.Length);
+            string wrapper = "#include <windows.h>\n#include \"" + owner + "\"\n" + string.Join("\n", declarations);
+            var compilerInclude = Run("pwsh", "-NoProfile", "-NonInteractive", "-Command",
+                ". '" + Path.Combine(root, "scripts", "CommonUtils.ps1").Replace("'", "''") +
+                "'; [IO.Path]::GetFullPath((Join-Path (Get-VcDirPath -Arch x64 -HostArch x64) '..\\..\\..\\include'))");
+            Assert.AreEqual(0, compilerInclude.ExitCode, compilerInclude.Output);
+            string settings = "--include-directory\n" + string.Join("\n",
+                new[] { "um", "shared", "ucrt", "winrt" }.Select(folder => Path.Combine(include, folder))) +
+                "\n" + compilerInclude.Output.Trim() +
+                "\n--remap\nHANDLE__=void\n--additional\n-DWINVER=0x0A00\n-D_WIN32_WINNT=0x0A00\n-DNTDDI_VERSION=0x0A00000C";
+            using var fixture = new Fixture();
+            byte[]? expected = null;
+            foreach (bool native in new[] { false, true })
+            {
+                string mode = owner + "-" + target + (native ? "-native" : "-legacy");
+                var result = fixture.Scrape(native ? wrapper : wrapper.Replace("_Win32_SetLastError_", ""),
+                    target, sal: true, libraryPath: "dbghelp.dll",
+                    extraSettings: settings + (native ? "" : "\n--with-setlasterror\n" + string.Join("\n", names)),
+                    headers: new Dictionary<string, string>
+                    {
+                        [owner] = native ? header : header.Replace("_Win32_SetLastError_", ""),
+                        ["winnt.h"] = winnt,
+                    });
+                SaveDebugEvidence(Path.Combine(fixture.DirectoryPath, owner), mode);
+                SaveDebugEvidence(Path.Combine(fixture.DirectoryPath, "winnt.h"), mode);
+                SaveDebugEvidence(Path.Combine(fixture.DirectoryPath, "input.h"), mode);
+                SaveDebugEvidence(Path.Combine(fixture.DirectoryPath, "settings.rsp"), mode);
+                Assert.AreEqual(0, result.ExitCode, result.Output);
+                SaveDebugEvidence(fixture.GeneratedSource, mode);
+                string output = fixture.Emit();
+                SaveDebugEvidence(output, mode);
+                using var pe = new PEReader(File.OpenRead(output));
+                var reader = pe.GetMetadataReader();
+                var imports = ImportedMethods(reader);
+                Assert.AreEqual(names.Length, imports.Length);
+                foreach (string name in names)
+                {
+                    var method = imports.Single(method => reader.GetString(method.Name) == name);
+                    var import = method.GetImport();
+                    Assert.IsTrue(import.Attributes.HasFlag(MethodImportAttributes.SetLastError), name);
+                    Assert.AreEqual("dbghelp.dll", reader.GetString(reader.GetModuleReference(import.Module).Name));
+                    Assert.AreEqual(name, reader.GetString(import.Name));
+                    Assert.AreEqual(name == "SymCleanup" ? 1 : name == "SymGetModuleBase64" ? 2 : 3,
+                        method.GetParameters().Count(parameter => reader.GetParameter(parameter).SequenceNumber != 0));
+                }
+                byte[] bytes = File.ReadAllBytes(output);
+                if (!native) expected = bytes;
+                else CollectionAssert.AreEqual(expected!, bytes, "The entire legacy/native winmd must be identical.");
+            }
+        }
+
+        private void SaveDebugEvidence(string path, string name)
+        {
+            string destination = Path.Combine(TestContext.ResultsDirectory!, name + "-" + Path.GetFileName(path));
+            File.Copy(path, destination, overwrite: true);
+            TestContext.AddResultFile(destination);
+        }
 
         [DataTestMethod]
         [DataRow("i686-pc-windows-msvc")]
