@@ -2303,6 +2303,7 @@ EXTERN_C const IID IID_IDXGIOutput3;
 /* interface __MIDL_itf_dxgi1_3_0000_0008 */
 /* [local] */ 
 
+_WIN32META_ANNOTATE_PARAMETER_(IDXGIOutput3::CheckOverlaySupport, pFlags, _Win32_AssociatedEnum_(DXGI_OVERLAY_SUPPORT_FLAG));
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES) */
 #pragma endregion
 DEFINE_GUID(IID_IDXGIDevice3,0x6007896c,0x3244,0x4afd,0xbf,0x18,0xa6,0xd3,0xbe,0xda,0x50,0x23);

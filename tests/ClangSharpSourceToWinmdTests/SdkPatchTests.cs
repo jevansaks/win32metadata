@@ -1361,15 +1361,15 @@ struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID iid, _COM_Outp
             string include = Path.Combine(sdk, "c", "include", "10.0.28000.0");
             string patches = Path.Combine(Root(), "generation", "WinSDK", "patches");
             foreach (string owner in new[] { "ShObjIdl_core.idl", "ShObjIdl.idl", "ShlObj_core.h", "ShlObj.h",
-                "propsys.idl", "shellapi.h", "Shlwapi.h", "shdeprecated.h" })
+                "propsys.idl", "shellapi.h", "Shlwapi.h", "shdeprecated.h", "ObjIdlbase.Idl" })
                 fixture.Header(owner, File.ReadAllBytes(Path.Combine(include, "um", owner)));
             const string selections = "pre-midl/ShObjIdl_core.idl.patch','post-midl/ShlObj_core.h.patch'," +
                 "'pre-midl/propsys.idl.patch','post-midl/shellapi.h.patch','post-midl/Shlwapi.h.patch'," +
-                "'pre-midl/ShObjIdl.idl.patch','post-midl/ShlObj.h.patch','post-midl/shdeprecated.h.patch";
+                "'pre-midl/ShObjIdl.idl.patch','post-midl/ShlObj.h.patch','post-midl/shdeprecated.h.patch','pre-midl/ObjIdlbase.Idl.patch";
             fixture.Apply("pre-midl", selections, true, patchRoot: patches, midlInputRoot: include);
             fixture.Apply("post-midl", selections, true, patchRoot: patches, midlInputRoot: include);
             foreach (string owner in new[] { "ShObjIdl_core.idl", "ShObjIdl.idl", "ShlObj_core.h", "ShlObj.h",
-                "propsys.idl", "shellapi.h", "Shlwapi.h", "shdeprecated.h" })
+                "propsys.idl", "shellapi.h", "Shlwapi.h", "shdeprecated.h", "ObjIdlbase.Idl" })
                 CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK",
                     "RecompiledIdlHeaders", "um", owner)), File.ReadAllBytes(Path.Combine(fixture.Headers, "um", owner)), owner);
 
@@ -1381,9 +1381,11 @@ struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID iid, _COM_Outp
             foreach (string dependency in new[] { "wtypesbase.idl", "wtypes.idl", "unknwnbase.idl", "unknwn.idl",
                 "objidlbase.idl", "objidl.idl", "oaidl.idl", "oleidl.idl", "servprov.idl", "urlmon.idl", "ocidl.idl",
                 "msxml.idl", "propidlbase.idl", "propidl.idl", "StructuredQueryCondition.idl", "shtypes.idl",
-                "comcat.idl", "propsys.idl", "ObjectArray.idl", "shobjidl_core.idl", "docobj.idl", "prsht.idl", "shobjidl.idl" })
+                "comcat.idl", "propsys.idl", "ObjectArray.idl", "shobjidl_core.idl", "docobj.idl", "prsht.idl", "shobjidl.idl",
+                "xmldom.idl", "xmldso.idl" })
             {
-                string input = dependency == "shobjidl_core.idl" || dependency == "shobjidl.idl" || dependency == "propsys.idl" ? Path.Combine(fixture.Headers, "um", dependency) :
+                string input = dependency == "shobjidl_core.idl" || dependency == "shobjidl.idl" ||
+                    dependency == "propsys.idl" || dependency == "objidlbase.idl" ? Path.Combine(fixture.Headers, "um", dependency) :
                     Path.Combine(include, dependency.StartsWith("wtypes", StringComparison.Ordinal) ? "shared" : "um", dependency);
                 command += "& " + Quote(Script("ConvertMidlAttributesToSalAnnotations.ps1")) + " " +
                     Quote(input) + " " + Quote(Path.Combine(converted, dependency)) + "; ";

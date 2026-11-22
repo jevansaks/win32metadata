@@ -7,7 +7,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wpcapi.h b/generation/Win
  
  
  /* this ALWAYS GENERATED file contains the definitions for the interfaces */
-@@ -431,6 +432,8 @@
+@@ -300,6 +301,7 @@
+             /* [in] */ DWORD dwFlags) = 0;
+         
+     };
++_Win32_AnnotateParameter_(IWPCProviderConfig::RequestOverride, dwFlags, _Win32_AssociatedEnum_(WPCFLAG_RESTRICTION));
+     
+     
+ #else 	/* C style interface */
+@@ -431,6 +433,8 @@
              /* [out] */ __RPC__out DWORD *pdwRestrictions) = 0;
          
      };
@@ -16,7 +24,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/wpcapi.h b/generation/Win
      
      
  #else 	/* C style interface */
-@@ -664,6 +667,8 @@
+@@ -664,6 +668,8 @@
              /* [out] */ __RPC__out BOOL *pfChanged) = 0;
          
      };

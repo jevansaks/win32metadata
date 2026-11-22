@@ -8791,6 +8791,7 @@ EXTERN_C const IID IID_IAzClientContext3;
             /* [retval][out] */ __RPC__out VARIANT *pStringSidArray) = 0;
         
     };
+_Win32_AnnotateParameter_(IAzClientContext3::GetGroups, ulOptions, _Win32_AssociatedEnum_(AZ_PROP_CONSTANTS));
     
     
 #else 	/* C style interface */

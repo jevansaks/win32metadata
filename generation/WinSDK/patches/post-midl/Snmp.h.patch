@@ -227,7 +227,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Snmp.h b/generation/WinSD
  
  LPSTR
  SNMP_FUNC_TYPE
-@@ -508,28 +537,32 @@
+@@ -508,34 +537,38 @@
      IN UINT *Ids,
      IN UINT IdLength
      );
@@ -261,6 +261,13 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Snmp.h b/generation/WinSD
      );
  
  VOID
+ SNMP_FUNC_TYPE
+ SnmpSvcSetLogType(
+-    INT nLogType
++    _Win32_AssociatedEnum_(SNMP_OUTPUT_LOG_TYPE) INT nLogType
+     );
+ 
+ ///////////////////////////////////////////////////////////////////////////////
 @@ -555,6 +588,7 @@
  #define SNMP_OUTPUT_TO_LOGFILE          0x2
  #define SNMP_OUTPUT_TO_EVENTLOG         0x4  // no longer supported

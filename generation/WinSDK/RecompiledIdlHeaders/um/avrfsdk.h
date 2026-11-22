@@ -145,7 +145,7 @@ ULONG NTAPI
 VerifierEnumerateResource(
     HANDLE Process,
     _Win32_AssociatedEnum_(VERIFIER_ENUM_RESOURCE_FLAGS) ULONG  Flags,    
-    ULONG  ResourceType,
+    _Win32_AssociatedEnum_(eAvrfResourceTypes) ULONG  ResourceType,
     AVRF_RESOURCE_ENUMERATE_CALLBACK ResourceCallback,
     PVOID  EnumerationContext
     );

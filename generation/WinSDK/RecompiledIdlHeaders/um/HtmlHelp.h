@@ -376,7 +376,7 @@ WINAPI
 HtmlHelpA(
     _In_opt_ HWND hwndCaller,
     _In_ LPCSTR pszFile,
-    _In_ UINT uCommand,
+    _Win32_AssociatedEnum_(HTML_HELP_COMMAND) _In_ UINT uCommand,
     _In_ DWORD_PTR dwData
     );
 
@@ -385,7 +385,7 @@ WINAPI
 HtmlHelpW(
     _In_opt_ HWND hwndCaller,
     _In_ LPCWSTR pszFile,
-    _In_ UINT uCommand,
+    _Win32_AssociatedEnum_(HTML_HELP_COMMAND) _In_ UINT uCommand,
     _In_ DWORD_PTR dwData
     );
 #ifdef UNICODE

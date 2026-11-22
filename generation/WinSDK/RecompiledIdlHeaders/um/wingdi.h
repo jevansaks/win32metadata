@@ -3962,12 +3962,12 @@ _Win32_SupportedOS_Windows2000_
 #endif // !UNICODE
 _Win32_SupportedOS_Windows2000_
 WINGDIAPI HFONT   WINAPI CreateFontA( _In_ int cHeight, _In_ int cWidth, _In_ int cEscapement, _In_ int cOrientation, _In_ int cWeight, _In_ DWORD bItalic,
-                             _In_ DWORD bUnderline, _In_ DWORD bStrikeOut, _In_ DWORD iCharSet, _In_ DWORD iOutPrecision, _In_ DWORD iClipPrecision,
-                             _In_ DWORD iQuality, _In_ DWORD iPitchAndFamily, _In_opt_ LPCSTR pszFaceName);
+                             _In_ DWORD bUnderline, _In_ DWORD bStrikeOut, _In_ DWORD iCharSet, _Win32_AssociatedEnum_(FONT_OUTPUT_PRECISION) _In_ DWORD iOutPrecision, _In_ DWORD iClipPrecision,
+                             _Win32_AssociatedEnum_(FONT_QUALITY) _In_ DWORD iQuality, _In_ DWORD iPitchAndFamily, _In_opt_ LPCSTR pszFaceName);
 _Win32_SupportedOS_Windows2000_
 WINGDIAPI HFONT   WINAPI CreateFontW( _In_ int cHeight, _In_ int cWidth, _In_ int cEscapement, _In_ int cOrientation, _In_ int cWeight, _In_ DWORD bItalic,
-                             _In_ DWORD bUnderline, _In_ DWORD bStrikeOut, _In_ DWORD iCharSet, _In_ DWORD iOutPrecision, _In_ DWORD iClipPrecision,
-                             _In_ DWORD iQuality, _In_ DWORD iPitchAndFamily, _In_opt_ LPCWSTR pszFaceName);
+                             _In_ DWORD bUnderline, _In_ DWORD bStrikeOut, _In_ DWORD iCharSet, _Win32_AssociatedEnum_(FONT_OUTPUT_PRECISION) _In_ DWORD iOutPrecision, _In_ DWORD iClipPrecision,
+                             _Win32_AssociatedEnum_(FONT_QUALITY) _In_ DWORD iQuality, _In_ DWORD iPitchAndFamily, _In_opt_ LPCWSTR pszFaceName);
 #ifdef UNICODE
 #define CreateFont  CreateFontW
 #else
@@ -4237,6 +4237,7 @@ WINGDIAPI COLORREF WINAPI GetDCPenColor( _In_ HDC hdc);
 #endif
 _Win32_SupportedOS_Windows2000_
 
+_Win32_AssociatedEnum_(BACKGROUND_MODE)
 WINGDIAPI
 int
 WINAPI
@@ -4325,7 +4326,7 @@ WINGDIAPI HGDIOBJ WINAPI GetCurrentObject( _In_ HDC hdc, _In_ UINT type);
 _Win32_SupportedOS_Windows2000_
 WINGDIAPI BOOL  WINAPI GetCurrentPositionEx( _In_ HDC hdc,  _Out_ LPPOINT lppt);
 _Win32_SupportedOS_Windows2000_
-WINGDIAPI int   WINAPI GetDeviceCaps( _In_opt_ HDC hdc, _In_ int index);
+WINGDIAPI int   WINAPI GetDeviceCaps( _In_opt_ HDC hdc, _Win32_AssociatedEnum_(GET_DEVICE_CAPS_INDEX) _In_ int index);
 _Win32_SupportedOS_Windows2000_
 WINGDIAPI int   WINAPI GetDIBits( _In_ HDC hdc, _In_ HBITMAP hbm, _In_ UINT start, _In_ UINT cLines,
     _Out_opt_ LPVOID lpvBits, _At_((LPBITMAPINFOHEADER)lpbmi, _Inout_) LPBITMAPINFO lpbmi, _Win32_AssociatedEnum_(DIB_USAGE) _In_ UINT usage);  // SAL actual size of lpbmi is computed from structure elements
@@ -4867,7 +4868,7 @@ WINGDIAPI COLORREF WINAPI SetDCPenColor(_In_ HDC hdc, _In_ COLORREF color);
 #endif
 _Win32_SupportedOS_Windows2000_
 
- WINGDIAPI int   WINAPI SetBkMode(_In_ HDC hdc, _In_ int mode);
+ WINGDIAPI int   WINAPI SetBkMode(_In_ HDC hdc, _Win32_AssociatedEnum_(BACKGROUND_MODE) _In_ int mode);
 _Win32_SupportedOS_Windows2000_
 
 WINGDIAPI
@@ -5452,7 +5453,7 @@ WINGDIAPI BOOL WINAPI StrokePath(_In_ HDC hdc);
 _Win32_SupportedOS_Windows2000_
 WINGDIAPI BOOL WINAPI WidenPath(_In_ HDC hdc);
 _Win32_SupportedOS_Windows2000_
-WINGDIAPI HPEN WINAPI ExtCreatePen( _In_ DWORD iPenStyle,
+WINGDIAPI HPEN WINAPI ExtCreatePen( _Win32_AssociatedEnum_(PEN_STYLE) _In_ DWORD iPenStyle,
                                     _In_ DWORD cWidth,
                                     _In_ CONST LOGBRUSH *plbrush,
                                     _In_ DWORD cStyle,

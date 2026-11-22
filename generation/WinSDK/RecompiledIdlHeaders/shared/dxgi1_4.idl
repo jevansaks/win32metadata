@@ -1,4 +1,6 @@
 // Copyright (c) Microsoft Corporation.  All Rights Reserved
+cpp_quote("#include <win32metadata_annotations.h>")
+#include <win32metadata_annotations.h>
 
 import "dxgi1_3.idl";
 
@@ -44,6 +46,8 @@ interface IDXGISwapChain3 :
         );
 
 };
+_Win32_AnnotateParameter_(IDXGISwapChain3::CheckColorSpaceSupport, pColorSpaceSupport, _Win32_AssociatedEnum_(DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG))
+_Win32_AnnotateParameter_(IDXGISwapChain3::ResizeBuffers1, SwapChainFlags, _Win32_AssociatedEnum_(DXGI_SWAP_CHAIN_FLAG))
 
 //+-----------------------------------------------------------------------------
 //
@@ -69,6 +73,7 @@ interface IDXGIOutput4 :
 {
     HRESULT CheckOverlayColorSpaceSupport( [in, annotation("_In_")] DXGI_FORMAT Format, [in, annotation("_In_")] DXGI_COLOR_SPACE_TYPE ColorSpace, [in, annotation("_In_")] IUnknown *pConcernedDevice, [out, annotation("_Out_")] UINT *pFlags );
 };
+_Win32_AnnotateParameter_(IDXGIOutput4::CheckOverlayColorSpaceSupport, pFlags, _Win32_AssociatedEnum_(DXGI_OVERLAY_COLOR_SPACE_SUPPORT_FLAG))
 
 
 //--------------------------------------------------------------------------------------------------------

@@ -441,7 +441,7 @@ _Win32_SupportedOS_WindowsVista_
 DWMAPI
 DwmGetWindowAttribute(
     HWND hwnd,
-    DWORD dwAttribute,
+    _Win32_AssociatedEnum_(DWMWINDOWATTRIBUTE) DWORD dwAttribute,
     _Out_writes_bytes_(cbAttribute) PVOID pvAttribute,
     DWORD cbAttribute
     );
@@ -493,7 +493,7 @@ _Win32_SupportedOS_WindowsVista_
 DWMAPI
 DwmSetWindowAttribute(
     HWND hwnd,
-    DWORD dwAttribute,
+    _Win32_AssociatedEnum_(DWMWINDOWATTRIBUTE) DWORD dwAttribute,
     _In_reads_bytes_(cbAttribute) LPCVOID pvAttribute,
     DWORD cbAttribute
     );

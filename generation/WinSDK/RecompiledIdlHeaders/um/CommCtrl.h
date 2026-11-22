@@ -7668,7 +7668,7 @@ typedef struct NMSEARCHWEB
 #include <pshpack1.h>
 #endif
 
-typedef HRESULT (CALLBACK *PFTASKDIALOGCALLBACK)(_In_ HWND hwnd, _In_ UINT msg, _In_ WPARAM wParam, _In_ LPARAM lParam, _In_ LONG_PTR lpRefData);
+typedef HRESULT (CALLBACK *PFTASKDIALOGCALLBACK)(_In_ HWND hwnd, _Win32_AssociatedEnum_(TASKDIALOG_NOTIFICATIONS) _In_ UINT msg, _In_ WPARAM wParam, _In_ LPARAM lParam, _In_ LONG_PTR lpRefData);
 
 enum _TASKDIALOG_FLAGS
 {
@@ -7937,7 +7937,7 @@ WINCOMMCTRLAPI int WINAPI FlatSB_SetScrollInfo(HWND, _Win32_AssociatedEnum_(SCRO
 
 
 WINCOMMCTRLAPI int WINAPI FlatSB_SetScrollRange(HWND, _Win32_AssociatedEnum_(SCROLLBAR_CONSTANTS) int code, int min, int max, BOOL fRedraw);
-WINCOMMCTRLAPI BOOL WINAPI FlatSB_SetScrollProp(HWND, UINT index, INT_PTR newValue, BOOL);
+WINCOMMCTRLAPI BOOL WINAPI FlatSB_SetScrollProp(HWND, _Win32_AssociatedEnum_(WSB_PROP) UINT index, INT_PTR newValue, BOOL);
 #define FlatSB_SetScrollPropPtr FlatSB_SetScrollProp
 _Win32_SupportedOS_WindowsVista_
 

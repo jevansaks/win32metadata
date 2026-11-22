@@ -25,6 +25,24 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/DbgHelp.h b/generation/Wi
      _Out_ PULONG Size
      );
  
+@@ -1737,7 +1738,7 @@
+ PCHAR
+ IMAGEAPI
+ SymGetHomeDirectory(
+-    _In_ DWORD type,
++    _Win32_AssociatedEnum_(IMAGEHLP_HD_TYPE) _In_ DWORD type,
+     _Out_writes_(size) PSTR dir,
+     _In_ size_t size
+     );
+@@ -1745,7 +1746,7 @@
+ PWSTR
+ IMAGEAPI
+ SymGetHomeDirectoryW(
+-    _In_ DWORD type,
++    _Win32_AssociatedEnum_(IMAGEHLP_HD_TYPE) _In_ DWORD type,
+     _Out_writes_(size) PWSTR dir,
+     _In_ size_t size
+     );
 @@ -2694,6 +2695,13 @@
  #define SLMFLAG_ALT_INDEX   0x2
  #define SLMFLAG_NO_SYMBOLS  0x4
@@ -57,3 +75,21 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/DbgHelp.h b/generation/Wi
      );
  
  #endif /* WINAPI_FAMILY_PARTITION(NONGAMESPARTITIONS | WINAPI_PARTITION_GAMES) */
+@@ -3665,7 +3673,7 @@
+     _In_opt_ HANDLE hProcess,
+     _In_opt_ PCSTR SymPath,
+     _In_ PCSTR ImageFile,
+-    _In_ DWORD Type,
++    _Win32_AssociatedEnum_(IMAGEHLP_SF_TYPE) _In_ DWORD Type,
+     _Out_writes_(cSymbolFile) PSTR SymbolFile,
+     _In_ size_t cSymbolFile,
+     _Out_writes_(cDbgFile) PSTR DbgFile,
+@@ -3678,7 +3686,7 @@
+     _In_opt_ HANDLE hProcess,
+     _In_opt_ PCWSTR SymPath,
+     _In_ PCWSTR ImageFile,
+-    _In_ DWORD Type,
++    _Win32_AssociatedEnum_(IMAGEHLP_SF_TYPE) _In_ DWORD Type,
+     _Out_writes_(cSymbolFile) PWSTR SymbolFile,
+     _In_ size_t cSymbolFile,
+     _Out_writes_(cDbgFile) PWSTR DbgFile,

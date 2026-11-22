@@ -433,6 +433,7 @@ interface IDXGISwapChain :
     HRESULT GetLastPresentCount( [out, annotation("_Out_")] UINT *pLastPresentCount );
 };
 _Win32_AnnotateMethod_(IDXGISwapChain::Present, _Win32_PreserveResult_)
+_Win32_AnnotateParameter_(IDXGISwapChain::ResizeBuffers, SwapChainFlags, _Win32_AssociatedEnum_(DXGI_SWAP_CHAIN_FLAG))
 
 //--------------------------------------------------------------------------------------------------------
 // The DXGIFactory

@@ -1544,6 +1544,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Winldap.h b/generation/Wi
  //
  
  WINLDAPAPI ULONG LDAPAPI LdapGetLastError( VOID );
+@@ -3231,7 +3466,7 @@
+ //  Translate from LdapError to closest Win32 error code.
+ //
+ 
+-WINLDAPAPI ULONG LDAPAPI LdapMapErrorToWin32( ULONG LdapError );
++WINLDAPAPI ULONG LDAPAPI LdapMapErrorToWin32( _Win32_AssociatedEnum_(LDAP_RETCODE) ULONG LdapError );
+ 
+ //
+ // This is an arrangement for specifying client certificates while establishing
 @@ -3283,6 +3518,7 @@
       PLDAP Connection,
       PCCERT_CONTEXT* pServerCert

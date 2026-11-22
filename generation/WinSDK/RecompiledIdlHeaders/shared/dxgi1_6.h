@@ -87,6 +87,7 @@ extern "C"{
 /* [local] */ 
 
 // Copyright (c) Microsoft Corporation.  All Rights Reserved
+#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 #pragma region App Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES)
@@ -788,6 +789,7 @@ EXTERN_C const IID IID_IDXGIOutput6;
 /* interface __MIDL_itf_dxgi1_6_0000_0002 */
 /* [local] */ 
 
+_WIN32META_ANNOTATE_PARAMETER_(IDXGIOutput6::CheckHardwareCompositionSupport, pFlags, _Win32_AssociatedEnum_(DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS));
 typedef 
 enum DXGI_GPU_PREFERENCE
     {

@@ -249,6 +249,7 @@ interface IDXGIOutput3 :
 {
     HRESULT CheckOverlaySupport( [in, annotation("_In_")] DXGI_FORMAT EnumFormat, [out, annotation("_In_")] IUnknown *pConcernedDevice, [out, annotation("_Out_")] UINT *pFlags );
 };
+_Win32_AnnotateParameter_(IDXGIOutput3::CheckOverlaySupport, pFlags, _Win32_AssociatedEnum_(DXGI_OVERLAY_SUPPORT_FLAG))
 
 cpp_quote("#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_GAMES) */")
 #pragma endregion

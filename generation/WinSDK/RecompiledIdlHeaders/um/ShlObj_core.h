@@ -1093,7 +1093,7 @@ STDAPI SHSetKnownFolderPath(_In_ REFKNOWNFOLDERID rfid,
 _Win32_SupportedOS_WindowsVista_
 
 STDAPI SHGetKnownFolderPath(_In_ REFKNOWNFOLDERID rfid,
-                            _In_ DWORD /* KNOWN_FOLDER_FLAG */ dwFlags,
+                            _Win32_AssociatedEnum_(KNOWN_FOLDER_FLAG) _In_ DWORD /* KNOWN_FOLDER_FLAG */ dwFlags,
                             _In_opt_ HANDLE hToken,
                             _Outptr_ PWSTR *ppszPath); // free *ppszPath with CoTaskMemFree
 

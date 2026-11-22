@@ -1657,6 +1657,7 @@ interface IShellView : IOleWindow
 typedef IShellView *LPSHELLVIEW;
 }
 _Win32_AnnotateMethod_(IShellView::TranslateAccelerator, _Win32_PreserveResult_)
+_Win32_AnnotateParameter_(IShellView::GetItemObject, uItem, _Win32_AssociatedEnum_(_SVGIO))
 
 [
     uuid(88E39E80-3578-11CF-AE69-08002B2E1262),
@@ -1770,6 +1771,8 @@ interface IFolderView : IUnknown
         [in] DWORD /* SVSIF */ dwFlags);
 }
 cpp_quote("#define SID_SFolderView IID_IFolderView    // folder view, usually IFolderView")
+_Win32_AnnotateParameter_(IFolderView::ItemCount, uFlags, _Win32_AssociatedEnum_(_SVGIO))
+_Win32_AnnotateParameter_(IFolderView::Items, uFlags, _Win32_AssociatedEnum_(_SVGIO))
 
 cpp_quote("#if (NTDDI_VERSION >= NTDDI_VISTA) || (_WIN32_IE >= _WIN32_IE_IE70)")
 
@@ -7602,6 +7605,8 @@ interface IExplorerCommand : IUnknown
     // If GetFlags() returned ECF_HASSUBCOMMANDS this will be used to discover the sub commands.
     HRESULT EnumSubCommands([out] IEnumExplorerCommand **ppEnum);
 }
+_Win32_AnnotateParameter_(IExplorerCommand::GetState, pCmdState, _Win32_AssociatedEnum_(_EXPCMDSTATE))
+_Win32_AnnotateParameter_(IExplorerCommand::GetFlags, pFlags, _Win32_AssociatedEnum_(_EXPCMDFLAGS))
 
 [
     uuid(bddacb60-7657-47ae-8445-d23e1acf82ae),

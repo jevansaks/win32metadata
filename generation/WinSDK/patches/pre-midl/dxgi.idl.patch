@@ -47,7 +47,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/dxgi.idl b/generation
      HRESULT GetDisplayModeList(
          [in] DXGI_FORMAT EnumFormat,
          [in] UINT Flags,
-@@ -422,13 +425,14 @@
+@@ -422,13 +425,15 @@
      HRESULT GetFullscreenState(
          [out, annotation("_Out_opt_")] BOOL *pFullscreen,
          [out, annotation("_COM_Outptr_opt_result_maybenull_")] IDXGIOutput **ppTarget );
@@ -60,10 +60,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/dxgi.idl b/generation
      HRESULT GetLastPresentCount( [out, annotation("_Out_")] UINT *pLastPresentCount );
  };
 +_Win32_AnnotateMethod_(IDXGISwapChain::Present, _Win32_PreserveResult_)
++_Win32_AnnotateParameter_(IDXGISwapChain::ResizeBuffers, SwapChainFlags, _Win32_AssociatedEnum_(DXGI_SWAP_CHAIN_FLAG))
  
  //--------------------------------------------------------------------------------------------------------
  // The DXGIFactory
-@@ -461,6 +465,8 @@
+@@ -461,6 +466,8 @@
          [in] HMODULE Module,
          [out, annotation("_COM_Outptr_")] IDXGIAdapter **ppAdapter );
  };
@@ -72,7 +73,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/dxgi.idl b/generation
  
  //--------------------------------------------------------------------------------------------------------
  // DXGI instantiation
-@@ -565,6 +571,7 @@
+@@ -565,6 +572,7 @@
          [out, annotation("_COM_Outptr_")] IDXGIAdapter1 **ppAdapter );
      BOOL IsCurrent();
  };
@@ -80,7 +81,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/dxgi.idl b/generation
  
  //--------------------------------------------------------------------------------------------------------
  // The DXGIAdapter1
-@@ -578,7 +585,7 @@
+@@ -578,7 +586,7 @@
  interface IDXGIAdapter1 :
      IDXGIAdapter
  {

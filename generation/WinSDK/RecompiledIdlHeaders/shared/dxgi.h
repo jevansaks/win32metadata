@@ -2140,6 +2140,7 @@ EXTERN_C const IID IID_IDXGISwapChain;
 /* [local] */ 
 
 _WIN32META_ANNOTATE_METHOD_(IDXGISwapChain::Present, _Win32_PreserveResult_);
+_WIN32META_ANNOTATE_PARAMETER_(IDXGISwapChain::ResizeBuffers, SwapChainFlags, _Win32_AssociatedEnum_(DXGI_SWAP_CHAIN_FLAG));
 #define DXGI_MWA_NO_WINDOW_CHANGES      ( 1 << 0 )
 #define DXGI_MWA_NO_ALT_ENTER           ( 1 << 1 )
 #define DXGI_MWA_NO_PRINT_SCREEN        ( 1 << 2 )

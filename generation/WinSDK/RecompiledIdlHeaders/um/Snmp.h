@@ -568,7 +568,7 @@ SnmpSvcSetLogLevel(
 VOID
 SNMP_FUNC_TYPE
 SnmpSvcSetLogType(
-    INT nLogType
+    _Win32_AssociatedEnum_(SNMP_OUTPUT_LOG_TYPE) INT nLogType
     );
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -12,14 +12,35 @@ RECOVERY.md. A rejected trial is not migrated coverage.
 
 ## Accepted continuation and remaining boundaries
 
-Published `78090f60` is independently qualified by its own ordinary ten-job
+Published `e8813871` is independently qualified by its own ordinary ten-job
 CI/output gate, including 175 SDK cases and 54 integrity cases. Its complete API
-is `F781562F...`. Published totals are **65 whole JSON retirements / 358 manual
+is `F781562F...`. Published totals are **65 whole JSON retirements / 388 manual
 emitter rows / 290 enums remaining**, with **zero selected result-policy rows**
 and **2259 namespace routes** remaining. Transform21, the 151 result-row
 retirements, the separately qualified native SAL refresh and the 905 reviewed
-route removals are included. The two 1038-case tooling cohorts overlap.
-The previous `b24738dc` and `16ec4e88` failed attempts are not retroactively accepted.
+route removals are included. The two 1073-case tooling cohorts overlap.
+The previous `b24738dc`, `16ec4e88`, `d68f08f2` and `aa10b8a9` failed attempts
+are not retroactively accepted. The current published total is **65/388/290**;
+the older 65/358 checkpoint and its evidence below remain historical.
+
+The saved stage1 native36 proposal adds 35 parameter associations and one return
+association without changing native enum identities, storage or the complete
+accepted API. It remains unpublished and pending bounded source review. Its
+five retained GDI prerequisite rows do not establish a storage limitation:
+the actual failed producer names missing FONT_CHARSET, while supported
+FONT_OUTPUT_PRECISION and FONT_QUALITY retain their byte enum definitions and
+DWORD use-site storage. The first four Debug losses came from annotating only
+DbgHelp.h when the unchanged actual production main includes ImageHlp.h.
+Mirroring the four native facts fixes the input ownership, not the reader.
+
+Generated-owner replay also requires the real annotated dependency closure.
+The existing Shell fixture used stock ObjIdlbase rather than its selected
+owning patch, omitting three existing IStream associations in inherited
+IStreamAsync C-vtable slots. That dependency and the two preprocessor-included
+XML IDLs are now prepared, with every existing full-byte assertion preserved.
+No native group, validator exception, sidecar fallback or new transfer credit
+is introduced by this fixture correction. Setup failures and unprobed
+FreeWith/canonical-enum-name slices remain separately classified.
 
 The published producer-lifetime family is separately attributable. Core26 and DeviceQuery6
 transfer 32 native cleanup facts with full semantic preservation; a separate

@@ -301,6 +301,7 @@ EXTERN_C const IID IID_IWPCProviderConfig;
             /* [in] */ DWORD dwFlags) = 0;
         
     };
+_Win32_AnnotateParameter_(IWPCProviderConfig::RequestOverride, dwFlags, _Win32_AssociatedEnum_(WPCFLAG_RESTRICTION));
     
     
 #else 	/* C style interface */

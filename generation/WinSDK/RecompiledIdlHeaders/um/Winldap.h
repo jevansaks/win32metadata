@@ -3466,7 +3466,7 @@ WINLDAPAPI ULONG LDAPAPI LdapGetLastError( VOID );
 //  Translate from LdapError to closest Win32 error code.
 //
 
-WINLDAPAPI ULONG LDAPAPI LdapMapErrorToWin32( ULONG LdapError );
+WINLDAPAPI ULONG LDAPAPI LdapMapErrorToWin32( _Win32_AssociatedEnum_(LDAP_RETCODE) ULONG LdapError );
 
 //
 // This is an arrangement for specifying client certificates while establishing

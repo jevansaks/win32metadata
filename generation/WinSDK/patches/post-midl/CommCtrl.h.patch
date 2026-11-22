@@ -221,6 +221,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/CommCtrl.h b/generation/W
  
  WINCOMMCTRLAPI HWND WINAPI CreateUpDownControl(DWORD dwStyle, int x, int y, int cx, int cy,
                                  HWND hParent, int nID, HINSTANCE hInst,
+@@ -7624,7 +7668,7 @@
+ #include <pshpack1.h>
+ #endif
+ 
+-typedef HRESULT (CALLBACK *PFTASKDIALOGCALLBACK)(_In_ HWND hwnd, _In_ UINT msg, _In_ WPARAM wParam, _In_ LPARAM lParam, _In_ LONG_PTR lpRefData);
++typedef HRESULT (CALLBACK *PFTASKDIALOGCALLBACK)(_In_ HWND hwnd, _Win32_AssociatedEnum_(TASKDIALOG_NOTIFICATIONS) _In_ UINT msg, _In_ WPARAM wParam, _In_ LPARAM lParam, _In_ LONG_PTR lpRefData);
+ 
+ enum _TASKDIALOG_FLAGS
+ {
 @@ -7760,9 +7804,11 @@
      LONG_PTR    lpCallbackData;
      UINT        cxWidth;                                // width of the Task Dialog's client area in DLU's. If 0, Task Dialog will calculate the ideal width.
@@ -259,22 +268,18 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/CommCtrl.h b/generation/W
  
  WINCOMMCTRLAPI BOOL WINAPI FlatSB_EnableScrollBar(HWND, int, UINT);
 -WINCOMMCTRLAPI BOOL WINAPI FlatSB_ShowScrollBar(HWND, int code, BOOL);
--
++WINCOMMCTRLAPI BOOL WINAPI FlatSB_ShowScrollBar(HWND, _Win32_AssociatedEnum_(SCROLLBAR_CONSTANTS) int code, BOOL);
+ 
 -WINCOMMCTRLAPI BOOL WINAPI FlatSB_GetScrollRange(HWND, int code, LPINT, LPINT);
 -WINCOMMCTRLAPI BOOL WINAPI FlatSB_GetScrollInfo(HWND, int code, LPSCROLLINFO);
--
--WINCOMMCTRLAPI int WINAPI FlatSB_GetScrollPos(HWND, int code);
--
--
--WINCOMMCTRLAPI BOOL WINAPI FlatSB_GetScrollProp(HWND, int propIndex, LPINT);
-+WINCOMMCTRLAPI BOOL WINAPI FlatSB_ShowScrollBar(HWND, _Win32_AssociatedEnum_(SCROLLBAR_CONSTANTS) int code, BOOL);
-+
 +WINCOMMCTRLAPI BOOL WINAPI FlatSB_GetScrollRange(HWND, _Win32_AssociatedEnum_(SCROLLBAR_CONSTANTS) int code, LPINT, LPINT);
 +WINCOMMCTRLAPI BOOL WINAPI FlatSB_GetScrollInfo(HWND, _Win32_AssociatedEnum_(SCROLLBAR_CONSTANTS) int code, LPSCROLLINFO);
-+
+ 
+-WINCOMMCTRLAPI int WINAPI FlatSB_GetScrollPos(HWND, int code);
 +WINCOMMCTRLAPI int WINAPI FlatSB_GetScrollPos(HWND, _Win32_AssociatedEnum_(SCROLLBAR_CONSTANTS) int code);
-+
-+
+ 
+ 
+-WINCOMMCTRLAPI BOOL WINAPI FlatSB_GetScrollProp(HWND, int propIndex, LPINT);
 +WINCOMMCTRLAPI BOOL WINAPI FlatSB_GetScrollProp(HWND, _Win32_AssociatedEnum_(WSB_PROP) int propIndex, LPINT);
  #ifdef _WIN64
 -WINCOMMCTRLAPI BOOL WINAPI FlatSB_GetScrollPropPtr(HWND, int propIndex, PINT_PTR);
@@ -285,18 +290,16 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/CommCtrl.h b/generation/W
  
  
 -WINCOMMCTRLAPI int WINAPI FlatSB_SetScrollPos(HWND, int code, int pos, BOOL fRedraw);
--
--WINCOMMCTRLAPI int WINAPI FlatSB_SetScrollInfo(HWND, int code, LPSCROLLINFO psi, BOOL fRedraw);
--
--
--WINCOMMCTRLAPI int WINAPI FlatSB_SetScrollRange(HWND, int code, int min, int max, BOOL fRedraw);
 +WINCOMMCTRLAPI int WINAPI FlatSB_SetScrollPos(HWND, _Win32_AssociatedEnum_(SCROLLBAR_CONSTANTS) int code, int pos, BOOL fRedraw);
-+
+ 
+-WINCOMMCTRLAPI int WINAPI FlatSB_SetScrollInfo(HWND, int code, LPSCROLLINFO psi, BOOL fRedraw);
 +WINCOMMCTRLAPI int WINAPI FlatSB_SetScrollInfo(HWND, _Win32_AssociatedEnum_(SCROLLBAR_CONSTANTS) int code, LPSCROLLINFO psi, BOOL fRedraw);
-+
-+
+ 
+ 
+-WINCOMMCTRLAPI int WINAPI FlatSB_SetScrollRange(HWND, int code, int min, int max, BOOL fRedraw);
+-WINCOMMCTRLAPI BOOL WINAPI FlatSB_SetScrollProp(HWND, UINT index, INT_PTR newValue, BOOL);
 +WINCOMMCTRLAPI int WINAPI FlatSB_SetScrollRange(HWND, _Win32_AssociatedEnum_(SCROLLBAR_CONSTANTS) int code, int min, int max, BOOL fRedraw);
- WINCOMMCTRLAPI BOOL WINAPI FlatSB_SetScrollProp(HWND, UINT index, INT_PTR newValue, BOOL);
++WINCOMMCTRLAPI BOOL WINAPI FlatSB_SetScrollProp(HWND, _Win32_AssociatedEnum_(WSB_PROP) UINT index, INT_PTR newValue, BOOL);
  #define FlatSB_SetScrollPropPtr FlatSB_SetScrollProp
 +_Win32_SupportedOS_WindowsVista_
  

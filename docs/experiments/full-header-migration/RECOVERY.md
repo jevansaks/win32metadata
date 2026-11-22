@@ -1,25 +1,72 @@
 # Working-first recovery and sidecar reduction
 
-## Current published checkpoint: AMSI1, Wlan1, OLE25 and generated-owner repair
+## Current published checkpoint: MSI16, Theme14 and bounded repairs
 
-Published head `78090f608a9dfd6824016d3e049be51a9d5c3fb4` is independently
+Published head `e8813871d93add5067780feebaa290e8125ef8e0` is independently
 qualified by ordinary
-[run 44925013568](https://github.com/jevansaks/win32metadata/actions/runs/44925013568).
+[run 44969313803](https://github.com/jevansaks/win32metadata/actions/runs/44969313803).
 All ten jobs passed, including all 175 SDK cases and 54 integrity cases.
 The actual standalone/comparison/packaged WinMD is
-`CE6E001187B63FD8AE16D19400F09B24CD1043E44FA96FB0548232CDA95FEA3C`;
+`90BC77823986342D27FAD1BD80215578BAA8B04543C93D730FB1419BE3DFF01E`;
 its complete API dump is
 `F781562FA67BCBEDA63572343132C368260EF2A7D6A4255090055B7FEBC83821`.
-The two 1038-case tooling cohorts overlap; they are not disjoint coverage.
-The earlier `b24738dc` attempts and failed `16ec4e88` ordinary run
-44915705850 remain unaccepted. The three-header repair has zero transfer credit.
+The two 1073-case tooling cohorts overlap; they are not disjoint coverage.
+The earlier `b24738dc`, `16ec4e88`, `d68f08f2` and `aa10b8a9` failures remain
+unaccepted. Both subsequent bounded repairs have zero transfer credit.
 
-Published totals are **65 whole JSON retirements / 358 manual emitter rows /
+Published totals are **65 whole JSON retirements / 388 manual emitter rows /
 290 enums remaining**. The 151 result-row retirements, 90-method native SAL
 refresh and 905 redundant/inert namespace-route removals remain separately
 attributable. All 2259 remaining routes and 436 autoTypes records are retained.
 
-### Unpublished MSI parameter owner continuation
+### Saved stage1 native36 proposal: source review pending
+
+The next saved-only milestone retires exactly 36 association rows: 35 parameter
+facts and one return fact. Contributions are GDI8, DWM2, HtmlHelp2, FlatSB1,
+Verifier1, Debug4, LDAP1, SNMP1, task-dialog callback1, known-folder-path1,
+Authorization1, parental-controls1, Shell COM5 and DXGI7. Existing native enums
+and use-site storage are unchanged. The member-remap/association/exact-parameter
+inventory decreases from **1310/157/62 to 1274/121/27**. Local proposal totals
+are **65/424/290**, not published or independently accepted totals.
+
+Six authoritative IDLs and twelve directly shipped headers carry the new
+facts; eight derived headers are regenerated over the complete import/include
+closure. New DXGI1_4 and DXGI1_5 pre-MIDL selections supply their own helper
+includes. All 22 affected actual production owners are refreshed under their
+unchanged mains/settings/traversals and existing architecture policy. The
+complete actual emission has the entire accepted `F781562F...` API with zero
+unmasked delta. Separate constants, manual sources and enum corpora are retained;
+fresh complete native namespace payloads replace affected bodies.
+
+The first GDI13 producer failed because FONT_CHARSET is not an existing native
+group. Five rows are individually retained for FONT_CHARSET,
+FONT_CLIP_PRECISION and OBJ_TYPE prerequisites; only FONT_CHARSET has a
+reproduced failure. The supported GDI8 includes byte-backed font groups on
+native DWORD parameters, so old width/signedness rejection is not a current
+limitation. An initial full emission also exposed four missing Debug
+associations: the production main consumes ImageHlp.h, not its DbgHelp.h
+mirror. Both shipped declarations now carry the same facts; no main or sidecar
+fallback is changed.
+
+Whole Shell replay exposed an existing fixture's use of the unpatched
+ObjIdlbase dependency, losing three already accepted IStream associations in
+inherited C-vtable slots. The fixture now applies that existing owning patch
+and converts the two preprocessor-included XML IDLs. Strict full-byte
+assertions remain unchanged. These inherited replay corrections earn no new
+transfer credit. Original wrong-owner output and setup/fixture failures remain
+separate evidence.
+
+All 83 cases in the final focused cohort pass: 34 new native declaration,
+storage, ABI, callback and whole-owner replay cases, 47 existing association
+cases and two existing owning replay controls. The actual candidate also passes
+all 54 integrity cases. These local checks are not a hosted ordinary/output gate.
+
+No type/JSON, FreeWith, NCRYPT, namespace-route, brush, four MSI scalar or six
+meaningful cleanup-context policy is selected. Unprobed selectors remain
+unprobed, not declared reader limitations. Publication, stack/base changes,
+new-reference generation and Agent merge resume are not authorized.
+
+### Previously qualified MSI parameter owner continuation
 
 A fresh recount at accepted `78090f60` finds 1340 emitter member-remap rows and
 187 AssociatedEnum contributions, including 92 remaining parameter selectors.

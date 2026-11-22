@@ -17,3 +17,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/azroles.h b/generation/Wi
      
      
  #else 	/* C style interface */
+@@ -8787,6 +8791,7 @@
+             /* [retval][out] */ __RPC__out VARIANT *pStringSidArray) = 0;
+         
+     };
++_Win32_AnnotateParameter_(IAzClientContext3::GetGroups, ulOptions, _Win32_AssociatedEnum_(AZ_PROP_CONSTANTS));
+     
+     
+ #else 	/* C style interface */

@@ -5838,6 +5838,7 @@ EXTERN_C const IID IID_IShellView;
 /* [local] */ 
 
 _WIN32META_ANNOTATE_METHOD_(IShellView::TranslateAccelerator, _Win32_PreserveResult_);
+_WIN32META_ANNOTATE_PARAMETER_(IShellView::GetItemObject, uItem, _Win32_AssociatedEnum_(_SVGIO));
 
 
 extern RPC_IF_HANDLE __MIDL_itf_shobjidl_core_0000_0020_v0_0_c_ifspec;
@@ -6436,6 +6437,8 @@ EXTERN_C const IID IID_IFolderView;
 /* [local] */ 
 
 #define SID_SFolderView IID_IFolderView    // folder view, usually IFolderView
+_WIN32META_ANNOTATE_PARAMETER_(IFolderView::ItemCount, uFlags, _Win32_AssociatedEnum_(_SVGIO));
+_WIN32META_ANNOTATE_PARAMETER_(IFolderView::Items, uFlags, _Win32_AssociatedEnum_(_SVGIO));
 #if (NTDDI_VERSION >= NTDDI_VISTA) || (_WIN32_IE >= _WIN32_IE_IE70)
 #ifndef NO_SHOBJIDL_SORTDIRECTION
 /* [v1_enum] */ 
@@ -28650,6 +28653,16 @@ EXTERN_C const IID IID_IExplorerCommand;
 
 #endif 	/* __IExplorerCommand_INTERFACE_DEFINED__ */
 
+
+/* interface __MIDL_itf_shobjidl_core_0000_0142 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_PARAMETER_(IExplorerCommand::GetState, pCmdState, _Win32_AssociatedEnum_(_EXPCMDSTATE));
+_WIN32META_ANNOTATE_PARAMETER_(IExplorerCommand::GetFlags, pFlags, _Win32_AssociatedEnum_(_EXPCMDFLAGS));
+
+
+extern RPC_IF_HANDLE __MIDL_itf_shobjidl_core_0000_0142_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_shobjidl_core_0000_0142_v0_0_s_ifspec;
 
 #ifndef __IExplorerCommandState_INTERFACE_DEFINED__
 #define __IExplorerCommandState_INTERFACE_DEFINED__

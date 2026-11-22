@@ -2117,7 +2117,7 @@ SymSetHomeDirectoryW(
 PCHAR
 IMAGEAPI
 SymGetHomeDirectory(
-    _In_ DWORD type,
+    _Win32_AssociatedEnum_(IMAGEHLP_HD_TYPE) _In_ DWORD type,
     _Out_writes_(size) PSTR dir,
     _In_ size_t size
     );
@@ -2125,7 +2125,7 @@ SymGetHomeDirectory(
 PWSTR
 IMAGEAPI
 SymGetHomeDirectoryW(
-    _In_ DWORD type,
+    _Win32_AssociatedEnum_(IMAGEHLP_HD_TYPE) _In_ DWORD type,
     _Out_writes_(size) PWSTR dir,
     _In_ size_t size
     );
@@ -4052,7 +4052,7 @@ SymGetSymbolFile(
     _In_opt_ HANDLE hProcess,
     _In_opt_ PCSTR SymPath,
     _In_ PCSTR ImageFile,
-    _In_ DWORD Type,
+    _Win32_AssociatedEnum_(IMAGEHLP_SF_TYPE) _In_ DWORD Type,
     _Out_writes_(cSymbolFile) PSTR SymbolFile,
     _In_ size_t cSymbolFile,
     _Out_writes_(cDbgFile) PSTR DbgFile,
@@ -4065,7 +4065,7 @@ SymGetSymbolFileW(
     _In_opt_ HANDLE hProcess,
     _In_opt_ PCWSTR SymPath,
     _In_ PCWSTR ImageFile,
-    _In_ DWORD Type,
+    _Win32_AssociatedEnum_(IMAGEHLP_SF_TYPE) _In_ DWORD Type,
     _Out_writes_(cSymbolFile) PWSTR SymbolFile,
     _In_ size_t cSymbolFile,
     _Out_writes_(cDbgFile) PWSTR DbgFile,
