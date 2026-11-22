@@ -1,6 +1,58 @@
 # Working-first recovery and sidecar reduction
 
-## Current published checkpoint: native36 and genuine HtmlHelp fixture repair
+## Current qualified checkpoint and saved PSAPI LastError27 proposal
+
+Published `e1a0266332fd9b40b696d694591d1c6c574b8fe4` is independently
+qualified through ordinary
+[run 45012681244](https://github.com/jevansaks/win32metadata/actions/runs/45012681244),
+attempt 1, and the recovered unchanged final guard. The original failed owner
+exit and approval-drift receipts remain failed evidence; they were not overwritten
+or relabeled. Debug LastError176 is qualified, taking the separate LastError
+inventory from 468 to 292. **65/424/290** and zero repair credit remain separate.
+
+The next saved-only proposal retires all 27 existing PSAPI LastError rows,
+292 to 265, through 27 first-declaration annotations in the complete real
+Psapi.h owner and its pinned post-MIDL patch. The unchanged actual producers
+select PSAPI_VERSION 1 and 2. Annotation blocks are conditional on
+`PSAPI_VERSION <= 1`: existing PSAPI.dll exports keep LastError, while the
+existing K32/KERNEL32.dll aliases keep their no-LastError policy. No RSP
+fallback, new import policy, type/JSON retirement or reader change is needed.
+
+Genuine original-owner controls fail the three PSAPI1 LastError assertions and
+pass the three PSAPI2 controls. An unconditional-marker trial instead fails
+the three K32 policy assertions. Two initial conditional markers followed
+the complete SAL prefix and were correctly rejected; moving them before
+`_Success_`/`_Ret_range_` corrects migration input placement. Whole-owner native
+compilation then exposed a missing owning-header helper include. Adding the
+existing canonical helper makes the new owner self-contained; no helper or
+reader implementation changed. All discarded inputs and runs remain retained.
+
+The final six real-owner cases preserve exact module, entrypoint, native
+parameter-count and full legacy/native byte assertions. Legacy owner and
+wrapper remove only LastError markers; the native path has no mappings.
+All twelve actual owner images have complete matching pairwise dumps. Twelve
+C/C++ native pairs cover both PSAPI versions and all three architectures,
+excluding only COFF timestamp bytes 4-7. The complete pinned SDK patch replays
+through the unchanged runner; the reused actual 403-output MIDL inventory
+proves Psapi.h is a directly consumed owner, not a generated-header exception.
+
+Both actual production owners are refreshed. Their complete namespace bodies
+retain the accepted post-constants preambles; 985 other compiler inputs and
+all complete accepted maps remain unchanged. Twelve additional partition-local
+auto-remaps are genuine Psapi.h typedef discoveries without conflicts, not
+extra migration credit or new global remap rows. The final fresh 987-input
+emission has the entire 36,304,784-byte `F781562F...` API with zero unmasked
+delta. Its image can be byte-identical to accepted saved output without being
+reused emission evidence; the new command, inputs, output and dump are bound.
+
+The saved proposal is not published or hosted-qualified. LastError27 remains
+pending independent review; live LastError292 and **65/424/290** remain unchanged.
+All GDI/brush/MSI-scalar/contextual-cleanup/type-JSON/NCRYPT/route/lower-stack/
+base/external-consumer holds and the Agent merge pause remain. No CI retry,
+new reference, merge, restack or next live payload is released. The earlier
+checkpoint text below is preserved historical evidence.
+
+## Historical a74 checkpoint: native36 and genuine HtmlHelp fixture repair
 
 Published head `a74c977df4e00c92ca4914d3f97b450b9efaaf4f` is independently
 qualified by ordinary
@@ -20,7 +72,7 @@ Published totals are **65 whole JSON retirements / 424 manual emitter rows /
 refresh and 905 redundant/inert namespace-route removals remain separately
 attributable. All 2259 remaining routes and 436 autoTypes records are retained.
 
-### Saved native Debug LastError family: bounded review required
+### Historical saved native Debug LastError family (subsequently qualified)
 
 The next saved-only family moves exactly 176 existing LastError facts out of
 `WithSetLastError.rsp`, decreasing its residual inventory from 468 to 292.

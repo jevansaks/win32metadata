@@ -10,7 +10,44 @@ historical repros and raw diagnostics are retained in [README.md](README.md)
 and [RECOVERY.md](RECOVERY.md); the current counts are at the top of
 RECOVERY.md. A rejected trial is not migrated coverage.
 
-## Accepted continuation and remaining boundaries
+## Saved PSAPI LastError27: input corrections, not reader limitations
+
+The separate saved proposal above qualified `e1a02663` moves 27 existing
+PSAPI LastError facts without changing the accepted API or held policies.
+The real header expands original export names into K32 aliases for
+PSAPI_VERSION 2. Unconditional markers change that alias policy: three genuine
+controls fail with expected false/actual true. Version-conditional markers
+conserve the existing policy rather than introducing K32 LastError support.
+
+The validator also correctly rejects markers after `_Success_`/`_Ret_range_`
+on GetModuleFileNameExA/W. They must precede that complete native declaration
+prefix. A real C/C++ owner compilation exposed an independent source omission:
+the newly annotated header must include the existing canonical helper itself,
+not rely on the scraper fixture's earlier helper include. Those bounded input
+corrections need no reader, helper, SDK-pin, assertion or workflow change.
+
+The final six unchanged owner cases, twelve full image/dump pairs and twelve
+native C/C++ pairs preserve the version-specific imports and ABI. Fresh actual
+PsApi1/PsApi2 namespace bodies and complete 987-input emission preserve the
+entire F781 API, with no known-diff mask. Source-location-derived anonymous
+record names shift when the helper include is added; final actual whole bodies
+are retained and emitted, not normalized back to older generated source.
+Twelve newly observed partition-local remappings are backed by real native
+typedefs and do not conflict with the preserved complete accepted maps.
+
+Cold missing NuGet assets, a non-executing `--no-restore` test invocation,
+an omitted fixture using, diagnostic/deployment-path and runtime-assembly-path
+setup mistakes remain separately attributed failures. A generated patch briefly
+landed as our untracked live file because relative .NET I/O used process cwd;
+it was moved into the saved scope, with no tracked live/index change. It is not
+reader evidence. Prior passing pre-helper owner/emission evidence is superseded
+where it lacks final source binding, not relabeled as final qualification.
+
+LastError27 is saved and unqualified; qualified Debug LastError176 and
+**65/424/290** remain unchanged. FreeWith/public-name slices remain unprobed,
+not established limitations. Earlier continuation text below is historical.
+
+## Historical accepted continuation and remaining boundaries
 
 Published `a74c977d` is independently qualified by its own ordinary ten-job
 CI/output gate, including 175 SDK cases and 54 integrity cases. Its complete API
