@@ -279,7 +279,10 @@ typedef char VerifySignedInt[(sizeof(int) == 4 && (int)-1 < 0) ? 1 : -1];
             string root = LastErrorHeaderTests.RepositoryRoot();
             string output = Path.Combine(fixture.DirectoryPath, "consumer");
             string command = ". " + ThemeDependencyQuote(Path.Combine(root, "scripts", "CommonUtils.ps1")) +
-                "; Install-VsDevShell; & dotnet build " + ThemeDependencyQuote(Path.Combine(root, "generation", "WinSDK")) +
+                "; Install-VsDevShell; & dotnet restore " + ThemeDependencyQuote(Path.Combine(root, "generation", "WinSDK")) +
+                " --configfile " + ThemeDependencyQuote(Path.Combine(root, "nuget.config")) +
+                " --verbosity quiet; if ($LASTEXITCODE) { exit $LASTEXITCODE }; & dotnet build " +
+                ThemeDependencyQuote(Path.Combine(root, "generation", "WinSDK")) +
                 " -c Release --no-restore -t:ScrapeHeaders -p:ScanArch=crossarch " +
                 ThemeDependencyQuote("-p:PartitionFilter=" + partition) + " " +
                 ThemeDependencyQuote("-p:ObjDir=" + output) + "; exit $LASTEXITCODE";
