@@ -10,7 +10,78 @@ historical repros and raw diagnostics are retained in [README.md](README.md)
 and [RECOVERY.md](RECOVERY.md); the current counts are at the top of
 RECOVERY.md. A rejected trial is not migrated coverage.
 
-## Saved PSAPI LastError27: input corrections, not reader limitations
+## Saved network correction: 33 transfers and one wrong legacy getter flag
+
+The original 669ABE50 proposal is not accepted. WSAGetLastError retrieves
+the thread's existing error; it must not request the runtime's pre-call
+error clearing. Its pre-existing sidecar SetLastError=true is wrong native
+semantics, even though the original proposal preserved the accepted API.
+On .NET 10.0.15/X64, false getters return and preserve seeded 10022/10035/10061;
+true getters return zero and clear both native and cached error to zero.
+This is pre-existing metadata wrongness, not a new runtime regression.
+
+The separate amended proposal removes only the two newly proposed getter
+markers. The other 33 facts transfer at 46 real declaration sites; the
+getter's RSP retirement is separately classified as one semantic correction.
+All 34 rows still retire, 265 to candidate 231. Qualified LastError203 and
+65/424/290 remain unchanged. No native getter replacement, new helper,
+reader fix, sidecar fallback or held-policy change is introduced.
+
+Each of the same six cases explicitly retains original-legacy true, corrected
+legacy false and native false paths. Corrected legacy/native full-image
+equality remains exact. Original legacy differs by only the getter flag plus
+the writer's derived MVID/timestamp: the original identity is verified, the
+single flag is toggled and identities are recomputed, then every final byte
+must match. The first one-byte-only assertion failed on these 21 actual
+file-byte changes and remains setup failure evidence, not a getter repro.
+The final fixture independently reproduces six false/true getter failures
+against the old proposal and passes six corrected owner cases.
+
+Fresh complete production metadata changes only that getter's flag. The
+entire unmasked API changes from F781 to 93793909, 36,304,784 to 36,304,763
+bytes; the fresh image is 2223A9A9, 24,204,288 bytes. All other complete API
+bytes and all imports, entrypoints, parameters, controls and held native
+contracts remain exact. Original proposal sources, runs and failures stay
+immutable and superseded, not accepted by this correction.
+
+## Historical superseded network LastError34: bounded inputs and retained diagnostics
+
+Above qualified `33797f41`, 34 existing LastError facts move to 48 native
+declarations in the complete WinSock2.h/winsock.h owners. Genuine legacy/native
+fixtures and actual complete production emission preserve the accepted F781
+API. The legacy path uses the qualified source and explicit legacy mappings,
+not the newly annotated native owner. No reader or held-policy expansion is
+needed for this candidate.
+
+The first legacy fixture extraction matched the WSAGetLastError prose comment,
+not its declaration. Its three setup failures remain separate from the six
+genuine original-owner missing-LastError failures. Requiring PASCAL FAR uses
+the real declaration spelling without broadening input-only traversal.
+Generated patch metadata/target omissions and a missing integrity image-path
+setup are also preserved failures, not successful intermediate evidence.
+An in-memory dictionary-grouping mistake rejected ten otherwise matching
+focused dumps; the corrected JSON-bound comparison does not rerun the images
+or rewrite the failed helper's disposition.
+
+Actual x86 scraping reports four remap inconsistencies for in6_addr, in_addr,
+sockaddr and timeval. The suggested production includes are already present.
+Keep the diagnostics and complete accepted maps; changing mains to repeat
+existing includes or treating this alone as new reader failure is unwarranted.
+Fresh complete bodies and the entire unmasked API are the semantic evidence.
+
+P2P is not a supported pinned-owner import family: SDK 10.0.28000.2705 lacks
+p2p.h. All 149 existing mappings remain; four mapping names are additionally
+absent from the retained legacy header. Do not resurrect that SDK surface or
+credit it as a native migration. Unprobed public-name/FreeWith slices remain
+unprobed, not established limitations.
+
+The focused six-case TRX has 50 actual ResultFiles and ten original-name images;
+its final ARM64 legacy-owner execution has none. A genuine complete-cohort
+pair may supplement it with explicit execution/ResultFile provenance, never
+by changing the original TRX or calling focused capture complete.
+Qualified LastError203/residual265 and **65/424/290** remain unchanged.
+
+## Historical saved PSAPI LastError27: input corrections, subsequently qualified
 
 The separate saved proposal above qualified `e1a02663` moves 27 existing
 PSAPI LastError facts without changing the accepted API or held policies.

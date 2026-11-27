@@ -7,7 +7,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winsock.h b/generation/Wi
  #include <winapifamily.h>
  
  
-@@ -740,11 +741,13 @@
+@@ -736,15 +737,18 @@ struct  linger {
+ extern "C" {
+ #endif
+ 
++_Win32_SetLastError_
+ SOCKET PASCAL FAR accept (
                            _In_ SOCKET s,
                            _Out_writes_bytes_opt_(*addrlen) struct sockaddr FAR *addr,
                            _Inout_opt_ int FAR *addrlen);
@@ -21,7 +26,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winsock.h b/generation/Wi
  
  int PASCAL FAR closesocket ( IN SOCKET s);
  
-@@ -752,21 +755,25 @@
+@@ -752,21 +756,25 @@ int PASCAL FAR connect (
                          _In_ SOCKET s,
                          _In_reads_bytes_(namelen) const struct sockaddr FAR *name,
                          _In_ int namelen);
@@ -47,7 +52,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winsock.h b/generation/Wi
  
  int PASCAL FAR getsockopt (
                             _In_ SOCKET s,
-@@ -774,8 +781,10 @@
+@@ -774,28 +782,36 @@ int PASCAL FAR getsockopt (
                             _In_ int optname,
                             _Out_writes_bytes_(*optlen) char FAR * optval,
                             _Inout_ int FAR *optlen);
@@ -58,7 +63,12 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winsock.h b/generation/Wi
  
  u_short PASCAL FAR htons (_In_ u_short hostshort);
  
-@@ -786,16 +795,20 @@
++_Win32_SetLastError_
+ unsigned long PASCAL FAR inet_addr (_In_z_ const char FAR * cp);
+ 
++_Win32_SetLastError_
+ char FAR * PASCAL FAR inet_ntoa (_In_ struct in_addr in);
+ 
  int PASCAL FAR listen (
                         _In_ SOCKET s,
                         _In_ int backlog);
@@ -79,7 +89,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winsock.h b/generation/Wi
  
  int PASCAL FAR recvfrom (
                           _In_ SOCKET s,
-@@ -825,6 +838,7 @@
+@@ -818,6 +834,7 @@ int PASCAL FAR send (
+                      _In_ int len,
+                      _In_ int flags);
+ 
++_Win32_SetLastError_
+ int PASCAL FAR sendto (
+                        _In_ SOCKET s,
+                        _In_reads_bytes_(len) const char FAR * buf,
+@@ -825,6 +842,7 @@ int PASCAL FAR sendto (
                         _In_ int flags,
                         _In_reads_bytes_opt_(tolen) const struct sockaddr FAR *to,
                         _In_ int tolen);
@@ -87,7 +105,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winsock.h b/generation/Wi
  
  int PASCAL FAR setsockopt (
                             _In_ SOCKET s,
-@@ -832,6 +846,7 @@
+@@ -832,11 +850,13 @@ int PASCAL FAR setsockopt (
                             _In_ int optname,
                             _In_reads_bytes_opt_(optlen) const char FAR * optval,
                             _In_ int optlen);
@@ -95,9 +113,23 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winsock.h b/generation/Wi
  
  int PASCAL FAR shutdown (
                           _In_ SOCKET s,
-@@ -850,30 +865,38 @@
+                          _In_ int how);
+ 
++_Win32_SetLastError_
+ SOCKET PASCAL FAR socket (
+                           _In_ int af,
+                           _In_ int type,
+@@ -844,36 +864,46 @@ SOCKET PASCAL FAR socket (
+ 
+ /* Database function prototypes */
+ 
++_Win32_SetLastError_
+ struct hostent FAR * PASCAL FAR gethostbyaddr(
+                                               _In_reads_bytes_(len) const char FAR * addr,
+                                               _In_ int len,
                                                _In_ int type);
  
++_Win32_SetLastError_
  struct hostent FAR * PASCAL FAR gethostbyname(_In_z_ const char FAR * name);
 +_Win32_SetLastError_
  
@@ -134,7 +166,38 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winsock.h b/generation/Wi
  
  void PASCAL FAR WSASetLastError(_In_ int iError);
  
-@@ -916,6 +939,7 @@
+@@ -887,6 +917,7 @@ FARPROC PASCAL FAR WSASetBlockingHook(_In_ FARPROC lpBlockFunc);
+ 
+ int PASCAL FAR WSACancelBlockingCall(void);
+ 
++_Win32_SetLastError_
+ HANDLE PASCAL FAR WSAAsyncGetServByName(
+                                         _In_ HWND hWnd,
+                                         _In_ u_int wMsg,
+@@ -895,6 +926,7 @@ HANDLE PASCAL FAR WSAAsyncGetServByName(
+                                         _Out_writes_bytes_(buflen) char FAR * buf,
+                                         _In_ int buflen);
+ 
++_Win32_SetLastError_
+ HANDLE PASCAL FAR WSAAsyncGetServByPort(
+                                         _In_ HWND hWnd,
+                                         _In_ u_int wMsg,
+@@ -903,6 +935,7 @@ HANDLE PASCAL FAR WSAAsyncGetServByPort(
+                                         _Out_writes_bytes_(buflen) char FAR * buf,
+                                         _In_ int buflen);
+ 
++_Win32_SetLastError_
+ HANDLE PASCAL FAR WSAAsyncGetProtoByName(
+                                          _In_ HWND hWnd,
+                                          _In_ u_int wMsg,
+@@ -910,12 +943,14 @@ HANDLE PASCAL FAR WSAAsyncGetProtoByName(
+                                          _Out_writes_bytes_(buflen) char FAR * buf,
+                                          _In_ int buflen);
+ 
++_Win32_SetLastError_
+ HANDLE PASCAL FAR WSAAsyncGetProtoByNumber(
+                                            _In_ HWND hWnd,
+                                            _In_ u_int wMsg,
                                             _In_ int number,
                                             _Out_writes_bytes_(buflen) char FAR * buf,
                                             _In_ int buflen);
@@ -142,7 +205,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winsock.h b/generation/Wi
  
  HANDLE PASCAL FAR WSAAsyncGetHostByName(
                                          _In_ HWND hWnd,
-@@ -932,6 +956,7 @@
+@@ -924,6 +959,7 @@ HANDLE PASCAL FAR WSAAsyncGetHostByName(
+                                         _Out_writes_bytes_(buflen) char FAR * buf,
+                                         _In_ int buflen);
+ 
++_Win32_SetLastError_
+ HANDLE PASCAL FAR WSAAsyncGetHostByAddr(
+                                         _In_ HWND hWnd,
+                                         _In_ u_int wMsg,
+@@ -932,9 +968,11 @@ HANDLE PASCAL FAR WSAAsyncGetHostByAddr(
                                          _In_ int type,
                                          _Out_writes_bytes_(buflen) char FAR * buf,
                                          _In_ int buflen);
@@ -150,3 +221,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/winsock.h b/generation/Wi
  
  int PASCAL FAR WSACancelAsyncRequest(_In_ HANDLE hAsyncTaskHandle);
  
++_Win32_SetLastError_
+ int PASCAL FAR WSAAsyncSelect(
+                               _In_ SOCKET s,
+                               _In_ HWND hWnd,

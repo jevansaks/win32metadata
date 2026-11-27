@@ -737,6 +737,7 @@ struct  linger {
 extern "C" {
 #endif
 
+_Win32_SetLastError_
 SOCKET PASCAL FAR accept (
                           _In_ SOCKET s,
                           _Out_writes_bytes_opt_(*addrlen) struct sockaddr FAR *addr,
@@ -788,8 +789,10 @@ _Win32_SetLastError_
 
 u_short PASCAL FAR htons (_In_ u_short hostshort);
 
+_Win32_SetLastError_
 unsigned long PASCAL FAR inet_addr (_In_z_ const char FAR * cp);
 
+_Win32_SetLastError_
 char FAR * PASCAL FAR inet_ntoa (_In_ struct in_addr in);
 
 int PASCAL FAR listen (
@@ -831,6 +834,7 @@ int PASCAL FAR send (
                      _In_ int len,
                      _In_ int flags);
 
+_Win32_SetLastError_
 int PASCAL FAR sendto (
                        _In_ SOCKET s,
                        _In_reads_bytes_(len) const char FAR * buf,
@@ -852,6 +856,7 @@ int PASCAL FAR shutdown (
                          _In_ SOCKET s,
                          _In_ int how);
 
+_Win32_SetLastError_
 SOCKET PASCAL FAR socket (
                           _In_ int af,
                           _In_ int type,
@@ -859,11 +864,13 @@ SOCKET PASCAL FAR socket (
 
 /* Database function prototypes */
 
+_Win32_SetLastError_
 struct hostent FAR * PASCAL FAR gethostbyaddr(
                                               _In_reads_bytes_(len) const char FAR * addr,
                                               _In_ int len,
                                               _In_ int type);
 
+_Win32_SetLastError_
 struct hostent FAR * PASCAL FAR gethostbyname(_In_z_ const char FAR * name);
 _Win32_SetLastError_
 
@@ -910,6 +917,7 @@ FARPROC PASCAL FAR WSASetBlockingHook(_In_ FARPROC lpBlockFunc);
 
 int PASCAL FAR WSACancelBlockingCall(void);
 
+_Win32_SetLastError_
 HANDLE PASCAL FAR WSAAsyncGetServByName(
                                         _In_ HWND hWnd,
                                         _In_ u_int wMsg,
@@ -918,6 +926,7 @@ HANDLE PASCAL FAR WSAAsyncGetServByName(
                                         _Out_writes_bytes_(buflen) char FAR * buf,
                                         _In_ int buflen);
 
+_Win32_SetLastError_
 HANDLE PASCAL FAR WSAAsyncGetServByPort(
                                         _In_ HWND hWnd,
                                         _In_ u_int wMsg,
@@ -926,6 +935,7 @@ HANDLE PASCAL FAR WSAAsyncGetServByPort(
                                         _Out_writes_bytes_(buflen) char FAR * buf,
                                         _In_ int buflen);
 
+_Win32_SetLastError_
 HANDLE PASCAL FAR WSAAsyncGetProtoByName(
                                          _In_ HWND hWnd,
                                          _In_ u_int wMsg,
@@ -933,6 +943,7 @@ HANDLE PASCAL FAR WSAAsyncGetProtoByName(
                                          _Out_writes_bytes_(buflen) char FAR * buf,
                                          _In_ int buflen);
 
+_Win32_SetLastError_
 HANDLE PASCAL FAR WSAAsyncGetProtoByNumber(
                                            _In_ HWND hWnd,
                                            _In_ u_int wMsg,
@@ -948,6 +959,7 @@ HANDLE PASCAL FAR WSAAsyncGetHostByName(
                                         _Out_writes_bytes_(buflen) char FAR * buf,
                                         _In_ int buflen);
 
+_Win32_SetLastError_
 HANDLE PASCAL FAR WSAAsyncGetHostByAddr(
                                         _In_ HWND hWnd,
                                         _In_ u_int wMsg,
@@ -960,6 +972,7 @@ _Win32_SetLastError_
 
 int PASCAL FAR WSACancelAsyncRequest(_In_ HANDLE hAsyncTaskHandle);
 
+_Win32_SetLastError_
 int PASCAL FAR WSAAsyncSelect(
                               _In_ SOCKET s,
                               _In_ HWND hWnd,

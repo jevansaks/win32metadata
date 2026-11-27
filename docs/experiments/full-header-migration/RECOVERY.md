@@ -1,6 +1,94 @@
 # Working-first recovery and sidecar reduction
 
-## Current qualified checkpoint and saved PSAPI LastError27 proposal
+## Current qualified checkpoint and amended saved network proposal
+
+Qualified live head remains 33797f414fd9f3448db2711cfda627297d1a884e:
+LastError203/residual265 and separate 65/424/290, repair credit zero.
+The original Network34 source669ABE50/diff91F5 and its full evidence are
+preserved but unaccepted. The separate saved correction retires 34 rows:
+33 genuine annotation transfers at 46 native sites, plus one independently
+classified WSAGetLastError semantic correction. Residual candidate231 is
+not qualification of either category.
+
+Both complete real WinSock owners omit the newly proposed getter marker.
+Legacy-original owner/wrapper and explicit mappings retain its original
+true contract; corrected legacy omits that mapping; native uses the exact
+amended owner without mappings. The same six final cases assert false for
+the native getter, true for the original legacy getter, unchanged policies
+for the other exports, and full corrected-legacy/native image equality.
+Exact deterministic identity recomputation proves the original image differs
+only by the intended getter flag and its derived identity, without ignoring
+any final bytes or using an API mask.
+
+Fresh three-owner production scrape, whole namespace overlays and the complete
+987-source emission yield image2223A9A9 and entire API93793909. The full
+unmasked F781 comparison is exactly one intended import flag correction,
+with every other byte conserved. Runtime reproduction on .NET10.0.15/X64
+binds seeds10022/10035/10061 to preserved false-getter returns and cleared
+true-getter returns. All12 fresh C/C++ native pairs/24 objects and both
+whole pinned SDK replays pass; actual-image integrity passes54 cases.
+
+The original one-byte-only fixture proof failed on derived identity bytes;
+the final identity-verified fixture gives six genuine old-proposal failures
+and six amended passes. Fresh-clone missing NuGet props and no-execution
+--no-build setup outputs remain failed setup evidence, with zero cohort
+credit. The amended source/API/fixture proposal requires independent review;
+no live incorporation, publication, CI, reference, consumer, merge/restack
+or held-policy release and no Agent merge resume is authorized.
+
+## Historical superseded saved network LastError34 proposal
+
+Published `33797f414fd9f3448db2711cfda627297d1a884e` is independently
+qualified by ordinary
+[run 45031800397](https://github.com/jevansaks/win32metadata/actions/runs/45031800397),
+attempt 1. PSAPI27 adds to qualified Debug176: 203 LastError facts are
+qualified and 265 remain. **65/424/290** and zero repair credit remain separate.
+Immutable source approvals, hosted closures and original failed-owner evidence
+are unchanged.
+
+The separate saved network proposal retires 34 existing LastError rows,
+265 to candidate 231, through 34 first declarations in WinSock2.h and 14
+matching legacy declarations in winsock.h. Both complete directly consumed
+owners replay from SDK 10.0.28000.2705 through the unchanged patch runner.
+Existing helpers, SAL/deprecation/preserve-result prefixes, import policy,
+native signatures, SDK pins, readers and production traversal are unchanged.
+
+The same six real-owner cases originally fail genuine missing-LastError
+assertions and then pass with native markers. The legacy included owner and
+wrapper use the qualified parent's actual source plus explicit legacy mappings;
+the native owner and wrapper use the exact candidate without LastError mappings.
+Four exports per case retain exact module, entrypoint, parameter-count and
+full-image assertions, including the owner-specific unchanged WSAIsBlocking
+control. Twelve native C/C++ pairs preserve the ABI apart from COFF timestamps.
+
+All three actual WinSock namespace bodies are refreshed in the complete
+987-source compilation union; 984 other sources, accepted post-constants
+preambles and complete accepted maps are conserved. Fresh emission preserves
+the entire 36,304,784-byte F781 API with zero unmasked delta, and all 54
+actual-candidate integrity cases pass. Four x86 remap warnings are retained;
+their suggested includes already exist in the production main. Neither a
+diagnostic warning nor a partial-map observation establishes a reader limitation.
+
+The initial legacy extraction matched a prose comment and produced three setup
+failures; requiring the real PASCAL FAR declaration spelling fixes only that
+extraction. A generated patch omitted mandatory SDK metadata/target headers;
+the original rejected patches and runner failure are preserved. Initial
+integrity execution targeted the missing default image path and failed all
+54 cases; the corrected execution binds the actual emitted image. Original
+focused capture contains 50 attachments and ten images, not twelve; any
+additional image pair must retain its genuine complete-cohort provenance.
+
+P2P import selection is deferred: the pinned SDK has no p2p.h owner. All
+149 manual mappings and the retained legacy header stay unchanged. This is
+a removed-owner boundary, not an established reader limitation.
+
+Network34 is saved and unqualified. No live incorporation, publication,
+CI retry, watcher, reference, merge, restack, base or consumer change is
+released. All held GDI/brush/MSI-scalar/contextual-cleanup/type-JSON/NCRYPT/
+route/lower-stack policies and the Agent merge pause remain. Earlier proposals
+below are preserved historical evidence, not current pending counters.
+
+## Historical saved PSAPI LastError27 proposal (subsequently qualified)
 
 Published `e1a0266332fd9b40b696d694591d1c6c574b8fe4` is independently
 qualified through ordinary
