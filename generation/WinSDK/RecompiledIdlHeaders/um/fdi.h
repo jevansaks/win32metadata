@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /***    fdi_int.h - Diamond File Decompression Interface definitions
  *                      
  *      Copyright (C) Microsoft Corporation 1993-1997
@@ -928,6 +929,7 @@ typedef FDISPILLFILE *PFDISPILLFILE; /* pfdisf */
 #define     cpuUNKNOWN         (-1)    /* FDI does detection */
 #define     cpu80286           (0)     /* '286 opcodes only */
 #define     cpu80386           (1)     /* '386 opcodes used */
+_Win32_SupportedOS_Windows2000_
 
 
 /***    FDICreate - Create an FDI context
@@ -970,6 +972,7 @@ HFDI FAR DIAMONDAPI FDICreate(__callback PFNALLOC pfnalloc,
                               __callback PFNSEEK  pfnseek,
                               int                 cpuType,
                               _Inout_    PERF     perf);
+_Win32_SupportedOS_Windows2000_
 
 
 /***    FDIIsCabinet - Determines if file is a cabinet, returns info if it is

@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 
 /*++
@@ -38,6 +39,7 @@ typedef void __RPC_FAR * RPC_NS_HANDLE;
 #define RPC_C_PROFILE_MATCH_BY_BOTH 4
 
 #define RPC_C_NS_DEFAULT_EXP_AGE -1
+_Win32_SupportedOS_Windows2000_
 
 /* Server APIs */
 
@@ -49,6 +51,7 @@ RpcNsBindingExportA(
     _In_opt_ RPC_BINDING_VECTOR __RPC_FAR *BindingVec,
     _In_opt_ UUID_VECTOR __RPC_FAR *ObjectUuidVec
     );
+_Win32_SupportedOS_Windows2000_
 
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
@@ -60,6 +63,7 @@ RpcNsBindingUnexportA(
     );
 
 #ifdef RPC_UNICODE_SUPPORTED
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsBindingExportW(
@@ -69,6 +73,7 @@ RpcNsBindingExportW(
     _In_opt_ RPC_BINDING_VECTOR __RPC_FAR *BindingVec,
     _In_opt_ UUID_VECTOR __RPC_FAR *ObjectUuidVec
     );
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsBindingUnexportW(
@@ -79,6 +84,7 @@ RpcNsBindingUnexportW(
     );
 
 #endif
+_Win32_SupportedOS_Windows2000_
 
 /* Server PnP APIs */
 
@@ -89,6 +95,7 @@ RpcNsBindingExportPnPA(
     _In_opt_ RPC_IF_HANDLE IfSpec,
     _In_opt_ UUID_VECTOR *ObjectVector
     );
+_Win32_SupportedOS_Windows2000_
 
 RPC_STATUS RPC_ENTRY
 RpcNsBindingUnexportPnPA(
@@ -99,6 +106,7 @@ RpcNsBindingUnexportPnPA(
     );
 
 #ifdef RPC_UNICODE_SUPPORTED
+_Win32_SupportedOS_Windows2000_
 
 RPC_STATUS RPC_ENTRY
 RpcNsBindingExportPnPW(
@@ -107,6 +115,7 @@ RpcNsBindingExportPnPW(
     _In_opt_ RPC_IF_HANDLE IfSpec,
     _In_opt_ UUID_VECTOR *ObjectVector
     );
+_Win32_SupportedOS_Windows2000_
 
 RPC_STATUS RPC_ENTRY
 RpcNsBindingUnexportPnPW(
@@ -117,6 +126,7 @@ RpcNsBindingUnexportPnPW(
     );
 
 #endif
+_Win32_SupportedOS_Windows2000_
 
 /* Client APIs */
 
@@ -131,6 +141,7 @@ RpcNsBindingLookupBeginA(
     );
 
 #ifdef RPC_UNICODE_SUPPORTED
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsBindingLookupBeginW(
@@ -142,17 +153,20 @@ RpcNsBindingLookupBeginW(
     _Out_ RPC_NS_HANDLE __RPC_FAR *LookupContext
     );
 #endif
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsBindingLookupNext(
     IN  RPC_NS_HANDLE LookupContext,
     OUT RPC_BINDING_VECTOR __RPC_FAR * __RPC_FAR * BindingVec
     );
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsBindingLookupDone(
     IN OUT RPC_NS_HANDLE __RPC_FAR * LookupContext
     );
+_Win32_SupportedOS_Windows2000_
 
 /* Group APIs */
 
@@ -161,6 +175,7 @@ RpcNsGroupDeleteA(
     _In_ unsigned long GroupNameSyntax,
     _In_opt_ RPC_CSTR GroupName
     );
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsGroupMbrAddA(
@@ -169,6 +184,7 @@ RpcNsGroupMbrAddA(
     _In_ unsigned long MemberNameSyntax,
     _In_ RPC_CSTR MemberName
     );
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsGroupMbrRemoveA(
@@ -177,6 +193,7 @@ RpcNsGroupMbrRemoveA(
     _In_ unsigned long MemberNameSyntax,
     _In_ RPC_CSTR MemberName
     );
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsGroupMbrInqBeginA(
@@ -185,6 +202,7 @@ RpcNsGroupMbrInqBeginA(
     _In_ unsigned long MemberNameSyntax,
     _Out_ RPC_NS_HANDLE __RPC_FAR *InquiryContext
     );
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsGroupMbrInqNextA(
@@ -193,12 +211,14 @@ RpcNsGroupMbrInqNextA(
     );
 
 #ifdef RPC_UNICODE_SUPPORTED
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsGroupDeleteW(
     _In_ unsigned long GroupNameSyntax,
     _In_opt_ RPC_WSTR GroupName
     );
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsGroupMbrAddW(
@@ -207,6 +227,7 @@ RpcNsGroupMbrAddW(
     _In_ unsigned long MemberNameSyntax,
     _In_ RPC_WSTR MemberName
     );
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsGroupMbrRemoveW(
@@ -215,6 +236,7 @@ RpcNsGroupMbrRemoveW(
     _In_ unsigned long MemberNameSyntax,
     _In_ RPC_WSTR MemberName
     );
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsGroupMbrInqBeginW(
@@ -223,6 +245,7 @@ RpcNsGroupMbrInqBeginW(
     _In_ unsigned long MemberNameSyntax,
     _Out_ RPC_NS_HANDLE __RPC_FAR *InquiryContext
     );
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsGroupMbrInqNextW(
@@ -231,11 +254,13 @@ RpcNsGroupMbrInqNextW(
     );
 
 #endif
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsGroupMbrInqDone(
     IN OUT RPC_NS_HANDLE __RPC_FAR * InquiryContext
     );
+_Win32_SupportedOS_Windows2000_
 
 /* Profile APIs */
 
@@ -244,6 +269,7 @@ RpcNsProfileDeleteA(
     _In_ unsigned long ProfileNameSyntax,
     _In_ RPC_CSTR ProfileName
     );
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsProfileEltAddA(
@@ -255,6 +281,7 @@ RpcNsProfileEltAddA(
     _In_ unsigned long Priority,
     _In_opt_ RPC_CSTR Annotation
     );
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsProfileEltRemoveA(
@@ -264,6 +291,7 @@ RpcNsProfileEltRemoveA(
     _In_ unsigned long MemberNameSyntax,
     _In_ RPC_CSTR MemberName
     );
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsProfileEltInqBeginA(
@@ -276,6 +304,7 @@ RpcNsProfileEltInqBeginA(
     _In_opt_ RPC_CSTR MemberName,
     _Out_ RPC_NS_HANDLE __RPC_FAR *InquiryContext
     );
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsProfileEltInqNextA(
@@ -287,12 +316,14 @@ RpcNsProfileEltInqNextA(
     );
 
 #ifdef RPC_UNICODE_SUPPORTED
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsProfileDeleteW(
     _In_ unsigned long ProfileNameSyntax,
     _In_ RPC_WSTR ProfileName
     );
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsProfileEltAddW(
@@ -304,6 +335,7 @@ RpcNsProfileEltAddW(
     _In_ unsigned long Priority,
     _In_opt_ RPC_WSTR Annotation
     );
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsProfileEltRemoveW(
@@ -313,6 +345,7 @@ RpcNsProfileEltRemoveW(
     _In_ unsigned long MemberNameSyntax,
     _In_ RPC_WSTR MemberName
     );
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsProfileEltInqBeginW(
@@ -325,6 +358,7 @@ RpcNsProfileEltInqBeginW(
     _In_opt_ RPC_WSTR MemberName,
     _Out_ RPC_NS_HANDLE __RPC_FAR *InquiryContext
     );
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsProfileEltInqNextW(
@@ -336,11 +370,13 @@ RpcNsProfileEltInqNextW(
     );
 
 #endif
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsProfileEltInqDone(
     IN OUT RPC_NS_HANDLE __RPC_FAR * InquiryContext
     );
+_Win32_SupportedOS_Windows2000_
 
 /* Entry object APIs */
 
@@ -352,6 +388,7 @@ RpcNsEntryObjectInqBeginA(
     );
 
 #ifdef RPC_UNICODE_SUPPORTED
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsEntryObjectInqBeginW(
@@ -361,17 +398,20 @@ RpcNsEntryObjectInqBeginW(
     );
 
 #endif
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsEntryObjectInqNext(
     IN  RPC_NS_HANDLE InquiryContext,
     OUT UUID __RPC_FAR * ObjUuid
     );
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsEntryObjectInqDone(
     IN OUT RPC_NS_HANDLE __RPC_FAR * InquiryContext
     );
+_Win32_SupportedOS_Windows2000_
 
 /* Management and MISC APIs */
 
@@ -381,6 +421,7 @@ RpcNsEntryExpandNameA(
     _In_ RPC_CSTR EntryName,
     _Out_ RPC_CSTR __RPC_FAR *ExpandedName
     );
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsMgmtBindingUnexportA(
@@ -390,18 +431,21 @@ RpcNsMgmtBindingUnexportA(
     _In_ unsigned long VersOption,
     _In_opt_ UUID_VECTOR __RPC_FAR *ObjectUuidVec
     );
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsMgmtEntryCreateA(
     _In_ unsigned long EntryNameSyntax,
     _In_ RPC_CSTR EntryName
     );
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsMgmtEntryDeleteA(
     _In_ unsigned long EntryNameSyntax,
     _In_ RPC_CSTR EntryName
     );
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsMgmtEntryInqIfIdsA(
@@ -409,17 +453,20 @@ RpcNsMgmtEntryInqIfIdsA(
     _In_ RPC_CSTR EntryName,
     _Out_ RPC_IF_ID_VECTOR __RPC_FAR * __RPC_FAR *IfIdVec
     );
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsMgmtHandleSetExpAge(
     IN RPC_NS_HANDLE NsHandle,
     IN unsigned long ExpirationAge
     );
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsMgmtInqExpAge(
     OUT unsigned long __RPC_FAR * ExpirationAge
     );
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsMgmtSetExpAge(
@@ -427,6 +474,7 @@ RpcNsMgmtSetExpAge(
     );
 
 #ifdef RPC_UNICODE_SUPPORTED
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsEntryExpandNameW(
@@ -434,6 +482,7 @@ RpcNsEntryExpandNameW(
     _In_ RPC_WSTR EntryName,
     _Out_ RPC_WSTR __RPC_FAR *ExpandedName
     );
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsMgmtBindingUnexportW(
@@ -443,18 +492,21 @@ RpcNsMgmtBindingUnexportW(
     _In_ unsigned long VersOption,
     _In_opt_ UUID_VECTOR __RPC_FAR *ObjectUuidVec
     );
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsMgmtEntryCreateW(
     _In_ unsigned long EntryNameSyntax,
     _In_ RPC_WSTR EntryName
     );
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsMgmtEntryDeleteW(
     _In_ unsigned long EntryNameSyntax,
     _In_ RPC_WSTR EntryName
     );
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsMgmtEntryInqIfIdsW(
@@ -464,6 +516,7 @@ RpcNsMgmtEntryInqIfIdsW(
     );
 
 #endif
+_Win32_SupportedOS_Windows2000_
 
 /* Client API's implemented in wrappers. */
 
@@ -477,6 +530,7 @@ RpcNsBindingImportBeginA(
     );
 
 #ifdef RPC_UNICODE_SUPPORTED
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsBindingImportBeginW(
@@ -488,17 +542,20 @@ RpcNsBindingImportBeginW(
     );
 
 #endif
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsBindingImportNext(
     IN RPC_NS_HANDLE ImportContext,
     OUT RPC_BINDING_HANDLE  __RPC_FAR * Binding
     );
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsBindingImportDone(
     IN OUT RPC_NS_HANDLE __RPC_FAR * ImportContext
     );
+_Win32_SupportedOS_Windows2000_
 
 RPCNSAPI RPC_STATUS RPC_ENTRY
 RpcNsBindingSelect(

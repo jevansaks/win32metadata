@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /****************************************************************************
  *
  *  Copyright (C) 1996-2002 Microsoft Corporation.  All Rights Reserved.
@@ -4341,6 +4342,7 @@ extern "C" {
  * driver instead of doing a poll.
  */
 #define JOY_PASSDRIVERDATA          0x10000000l
+_Win32_SupportedOS_Windows2000_
 
 /*
  * Informs the joystick driver that the configuration has been changed

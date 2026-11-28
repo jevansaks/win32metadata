@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //============================================================================
 // Copyright (c) Microsoft Corporation. All rights reserved.
 //
@@ -302,6 +303,7 @@ typedef struct _SOURCE_GROUP_ENTRY {
     DWORD                           dwGroupMask;
 
 } SOURCE_GROUP_ENTRY, *PSOURCE_GROUP_ENTRY;
+_Win32_SupportedOS_Server2000_
 
 
 
@@ -322,11 +324,13 @@ MgmRegisterMProtocol(
     IN          DWORD                       dwComponentId,
     OUT         HANDLE  *                   phProtocol
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 MgmDeRegisterMProtocol(
     IN          HANDLE                      hProtocol
 );
+_Win32_SupportedOS_Server2000_
 
 
 //============================================================================
@@ -339,6 +343,7 @@ MgmTakeInterfaceOwnership(
     IN          DWORD                       dwIfIndex,
     IN          DWORD                       dwIfNextHopAddr
 );
+_Win32_SupportedOS_Server2000_
 
 
 DWORD
@@ -347,6 +352,7 @@ MgmReleaseInterfaceOwnership(
     IN          DWORD                       dwIfIndex,
     IN          DWORD                       dwIfNextHopAddr
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 MgmGetProtocolOnInterface(
@@ -363,6 +369,7 @@ MgmGetProtocolOnInterface(
 
 #define         MGM_JOIN_STATE_FLAG         0x00000001
 #define         MGM_FORWARD_STATE_FLAG      0x00000002
+_Win32_SupportedOS_Server2000_
 
 DWORD
 MgmAddGroupMembershipEntry(
@@ -375,6 +382,7 @@ MgmAddGroupMembershipEntry(
     IN              DWORD                   dwIfNextHopIPAddr,
     IN              DWORD                   dwFlags
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 MgmDeleteGroupMembershipEntry(
@@ -387,6 +395,7 @@ MgmDeleteGroupMembershipEntry(
     IN              DWORD                   dwIfNextHopIPAddr,
     IN              DWORD                   dwFlags
 );
+_Win32_SupportedOS_Server2000_
 
 //============================================================================
 //
@@ -405,6 +414,7 @@ MgmGetMfe(
     IN  OUT         PDWORD                  pdwBufferSize,
     IN  OUT         PBYTE                   pbBuffer
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 MgmGetFirstMfe(
@@ -412,6 +422,7 @@ MgmGetFirstMfe(
     IN  OUT         PBYTE                   pbBuffer,
     IN  OUT         PDWORD                  pdwNumEntries
 );
+_Win32_SupportedOS_Server2000_
 
 
 DWORD
@@ -434,6 +445,7 @@ MgmGetNextMfe(
 //
 
 #define         MGM_MFE_STATS_1             0x00000002
+_Win32_SupportedOS_Server2000_
 
 
 DWORD
@@ -443,6 +455,7 @@ MgmGetMfeStats(
     IN  OUT         PBYTE                   pbBuffer,
     IN              DWORD                   dwFlags
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 MgmGetFirstMfeStats(
@@ -451,6 +464,7 @@ MgmGetFirstMfeStats(
     IN  OUT         PDWORD                  pdwNumEntries,
     IN              DWORD                   dwFlags
 );
+_Win32_SupportedOS_Server2000_
 
 
 DWORD
@@ -461,6 +475,7 @@ MgmGetNextMfeStats(
     IN  OUT         PDWORD                  pdwNumEntries,
     IN              DWORD                   dwFlags
 );
+_Win32_SupportedOS_Server2000_
 
 //----------------------------------------------------------------------------
 // Group menbership entry enumeration API
@@ -472,6 +487,7 @@ MgmGroupEnumerationStart(
     IN              MGM_ENUM_TYPES          metEnumType,
     OUT             HANDLE *                phEnumHandle
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 MgmGroupEnumerationGetNext(
@@ -480,11 +496,13 @@ MgmGroupEnumerationGetNext(
     IN  OUT         PBYTE                   pbBuffer,
     IN  OUT         PDWORD                  pdwNumEntries
 );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 MgmGroupEnumerationEnd(
     IN              HANDLE                  hEnum
 );
+_Win32_SupportedOS_Server2000_
 
 
 

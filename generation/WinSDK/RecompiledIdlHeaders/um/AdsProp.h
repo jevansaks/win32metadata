@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //+----------------------------------------------------------------------------
 //
 //  Windows NT Active Directory Service Property Pages
@@ -71,6 +72,7 @@ typedef struct _ADSPROPERROR {
                                         // pszError will be ignored
     PWSTR              pszError;        // An error message.  Used only if hr is zero
 } ADSPROPERROR, * PADSPROPERROR;
+_Win32_SupportedOS_WindowsVista_
 
 //+----------------------------------------------------------------------------
 //
@@ -89,6 +91,7 @@ typedef struct _ADSPROPERROR {
 STDAPI
 ADsPropCreateNotifyObj(LPDATAOBJECT pAppThdDataObj, _In_ PWSTR pwzADsObjName,
                        HWND * phNotifyObj);
+_Win32_SupportedOS_WindowsVista_
 
 //+----------------------------------------------------------------------------
 //
@@ -112,6 +115,7 @@ ADsPropCreateNotifyObj(LPDATAOBJECT pAppThdDataObj, _In_ PWSTR pwzADsObjName,
 //-----------------------------------------------------------------------------
 STDAPI_(BOOL)
 ADsPropGetInitInfo(HWND hNotifyObj, PADSPROPINITPARAMS pInitParams);
+_Win32_SupportedOS_WindowsVista_
 
 //+----------------------------------------------------------------------------
 //
@@ -133,6 +137,7 @@ ADsPropGetInitInfo(HWND hNotifyObj, PADSPROPINITPARAMS pInitParams);
 //-----------------------------------------------------------------------------
 STDAPI_(BOOL)
 ADsPropSetHwndWithTitle(HWND hNotifyObj, HWND hPage, _In_ PTSTR ptzTitle);
+_Win32_SupportedOS_WindowsVista_
 
 //+----------------------------------------------------------------------------
 //
@@ -152,6 +157,7 @@ ADsPropSetHwndWithTitle(HWND hNotifyObj, HWND hPage, _In_ PTSTR ptzTitle);
 //-----------------------------------------------------------------------------
 STDAPI_(BOOL)
 ADsPropSetHwnd(HWND hNotifyObj, HWND hPage);
+_Win32_SupportedOS_WindowsVista_
 
 //+----------------------------------------------------------------------------
 //
@@ -169,6 +175,7 @@ ADsPropSetHwnd(HWND hNotifyObj, HWND hPage);
 //-----------------------------------------------------------------------------
 STDAPI_(BOOL)
 ADsPropCheckIfWritable(_In_ const PWSTR pwzAttr, const PADS_ATTR_INFO pWritableAttrs);
+_Win32_SupportedOS_WindowsVista_
 
 //+----------------------------------------------------------------------------
 //
@@ -185,6 +192,7 @@ ADsPropCheckIfWritable(_In_ const PWSTR pwzAttr, const PADS_ATTR_INFO pWritableA
 //-----------------------------------------------------------------------------
 STDAPI_(BOOL)
 ADsPropSendErrorMessage(HWND hNotifyObj, PADSPROPERROR pError);
+_Win32_SupportedOS_WindowsVista_
 
 //+----------------------------------------------------------------------------
 //

@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 Copyright (c) Microsoft Corporation.  All rights reserved.
 
@@ -56,24 +57,28 @@ InstallPerfDllA(
     _In_     LPCSTR    lpIniFile,
     _In_     ULONG_PTR dwFlags         
 );
+_Win32_SupportedOS_WindowsXP_
 
 LOADPERF_FUNCTION
 LoadPerfCounterTextStringsA(
     _In_ LPSTR     lpCommandLine,
     _In_ BOOL      bQuietModeArg
 );
+_Win32_SupportedOS_WindowsXP_
 
 LOADPERF_FUNCTION
 LoadPerfCounterTextStringsW(
     _In_ LPWSTR    lpCommandLine,
     _In_ BOOL      bQuietModeArg
 );
+_Win32_SupportedOS_WindowsXP_
 
 LOADPERF_FUNCTION
 UnloadPerfCounterTextStringsW(
     _In_ LPWSTR    lpCommandLine,
     _In_ BOOL      bQuietModeArg
 );
+_Win32_SupportedOS_WindowsXP_
 
 LOADPERF_FUNCTION
 UnloadPerfCounterTextStringsA(

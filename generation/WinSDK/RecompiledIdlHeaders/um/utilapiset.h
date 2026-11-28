@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /********************************************************************************
 *                                                                               *
 * UtilApiSet.h -- ApiSet Contract for api-ms-win-core-util-l1-1-0               *
@@ -85,6 +86,8 @@ DecodeRemotePointer(
 
 #pragma region PC Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_PC_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINBASEAPI
 BOOL

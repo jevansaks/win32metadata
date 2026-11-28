@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0000     Increment this if a change has global effects
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -368,6 +369,7 @@ typedef struct
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
 
 #if (NTDDI_VERSION >= NTDDI_WINBLUE)
+_Win32_SupportedOS_Windows81_
 
 // Win32 APIs.
 _Success_(return == ERROR_SUCCESS)
@@ -378,6 +380,7 @@ PssCaptureSnapshot(
     _In_opt_ DWORD ThreadContextFlags,
     _Out_ HPSS* SnapshotHandle
     );
+_Win32_SupportedOS_Windows81_
 
 _Success_(return == ERROR_SUCCESS)
 STDAPI_(DWORD)
@@ -385,6 +388,7 @@ PssFreeSnapshot(
     _In_ HANDLE ProcessHandle,
     _In_ HPSS SnapshotHandle
     );
+_Win32_SupportedOS_Windows81_
 
 _Success_(return == ERROR_SUCCESS)
 STDAPI_(DWORD)
@@ -394,6 +398,7 @@ PssQuerySnapshot(
     _Out_writes_bytes_(BufferLength) void* Buffer,
     _In_ DWORD BufferLength
     );
+_Win32_SupportedOS_Windows81_
 
 _Success_(return == ERROR_SUCCESS)
 STDAPI_(DWORD)
@@ -404,6 +409,7 @@ PssWalkSnapshot(
     _Out_writes_opt_(BufferLength) void* Buffer,
     _In_ DWORD BufferLength
     );
+_Win32_SupportedOS_Windows81_
 
 _Success_(return == ERROR_SUCCESS)
 STDAPI_(DWORD)
@@ -435,6 +441,7 @@ PssWalkMarkerGetPosition(
     _In_ HPSSWALK WalkMarkerHandle,
     _Out_ ULONG_PTR *Position
     );
+_Win32_SupportedOS_Windows81_
 
 _Success_(return == ERROR_SUCCESS)
 STDAPI_(DWORD)
@@ -442,6 +449,7 @@ PssWalkMarkerSetPosition(
     _In_ HPSSWALK WalkMarkerHandle,
     _In_ ULONG_PTR Position
     );
+_Win32_SupportedOS_Windows81_
 
 _Success_(return == ERROR_SUCCESS)
 STDAPI_(DWORD)

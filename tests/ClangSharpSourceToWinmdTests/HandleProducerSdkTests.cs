@@ -21,6 +21,651 @@ namespace ClangSharpSourceToWinmdTests
 
         public TestContext TestContext { get; set; } = null!;
 
+        [TestMethod]
+        public void RemainingProducerCleanupSdkPatches_ReplayCompleteOwners()
+        {
+            string[] owners = {
+                "um/appmodel.h", "um/namespaceapi.h", "um/packagevirtualizationcontext.h",
+                "um/WinDNS.h", "um/DsGetDC.h", "um/fltUser.h", "shared/hidsdi.h",
+                "um/Winineti.h", "um/IcmpAPI.h", "um/ncryptprotect.h", "um/perflib.h",
+                "um/projectedfslib.h", "um/appnotify.h", "winrt/roapi.h", "um/winsafer.h",
+                "um/ShlObj_core.h", "um/winsvc.h", "um/winnetwk.h", "um/WtsApi32.h", "um/cfapi.h",
+            };
+            string directory = Path.Combine(Path.GetTempPath(), "producer-cleanup-sdk-" + Guid.NewGuid().ToString("N"));
+            string include = Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0");
+            Directory.CreateDirectory(directory);
+            try
+            {
+                foreach (string owner in owners)
+                {
+                    string destination = Path.Combine(directory, owner);
+                    Directory.CreateDirectory(Path.GetDirectoryName(destination)!);
+                    File.Copy(Path.Combine(include, owner), destination);
+                }
+                string patches = string.Join(",", owners.Select(owner =>
+                    Quote("post-midl/" + Path.GetFileName(owner) + ".patch")));
+                var apply = LastErrorHeaderTests.Run("pwsh", "-NoProfile", "-NonInteractive", "-Command",
+                    "& " + Quote(Path.Combine(LastErrorHeaderTests.RepositoryRoot(), "scripts", "ApplySDKPatches.ps1")) +
+                    " -Phase post-midl -HeaderRoot " + Quote(directory) + " -MidlInputRoot " + Quote(include) +
+                    " -SdkVersion '10.0.28000.2705' -SelectedPatches @(" + patches + ")");
+                Assert.AreEqual(0, apply.ExitCode, apply.Output);
+                foreach (string owner in owners)
+                    CollectionAssert.AreEqual(File.ReadAllBytes(Sdk("RecompiledIdlHeaders/" + owner)),
+                        File.ReadAllBytes(Path.Combine(directory, owner)), owner);
+            }
+            finally { Directory.Delete(directory, true); }
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void CoreKernelCleanup_ForwardDeclarationsPreserveOnlyProducerOwnership(string target)
+        {
+            var sites = new[]
+            {
+                (Header: "heapapi.h", Producer: "HeapCreate", Cleanup: "HeapDestroy"),
+                (Header: "fileapi.h", Producer: "FindFirstVolumeW", Cleanup: "FindVolumeClose"),
+                (Header: "WinBase.h", Producer: "FindFirstVolumeMountPointW", Cleanup: "FindVolumeMountPointClose"),
+                (Header: "WinBase.h", Producer: "CreateActCtxW", Cleanup: "ReleaseActCtx"),
+            };
+            string declarations = NextProducerDependencies + @"
+#define WINBASEAPI
+typedef void VOID;
+typedef __SIZE_TYPE__ SIZE_T;
+typedef wchar_t* LPWSTR;
+typedef const wchar_t* LPCWSTR;
+typedef struct _ACTCTXW ACTCTXW;
+typedef const ACTCTXW* PCACTCTXW;
+";
+            foreach (var site in sites)
+            {
+                string header = File.ReadAllText(Sdk("RecompiledIdlHeaders/um/" + site.Header));
+                var forward = Regex.Match(header,
+                    @"(?m)^#if defined\(WIN32METADATA\) && defined\(__clang__\)\r?\n(?:(?!#endif)[\s\S])*?\b" +
+                    site.Cleanup + @"\([^;]*\);\r?\n#endif");
+                Assert.IsTrue(forward.Success, site.Cleanup);
+                declarations += forward.Value + "\n" + Declaration(header, site.Producer, "WINBASEAPI") +
+                    "\n" + Declaration(header, site.Cleanup, "WINBASEAPI") + "\n";
+            }
+
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(declarations, target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            string output = fixture.Emit();
+            string evidence = Path.Combine(TestContext.ResultsDirectory!, nameof(HandleProducerSdkTests), target);
+            Directory.CreateDirectory(evidence);
+            foreach (string path in new[] { Path.Combine(fixture.DirectoryPath, "input.h"),
+                Path.Combine(fixture.DirectoryPath, "settings.rsp"), fixture.GeneratedSource, output })
+            {
+                string destination = Path.Combine(evidence, Path.GetFileName(path));
+                File.Copy(path, destination, overwrite: false);
+                TestContext.AddResultFile(destination);
+            }
+            using var pe = new PEReader(File.OpenRead(output));
+            var reader = pe.GetMetadataReader();
+            foreach (var site in sites)
+            {
+                ProducerHeaderTests.AssertFacts(reader, site.Producer, 0, site.Cleanup);
+                ProducerHeaderTests.AssertNoOwnership(reader, site.Cleanup);
+            }
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void DeviceQueryCleanup_OwnsSixOutputsButNotCallbackOrCleanupInputs(string target)
+        {
+            string header = File.ReadAllText(Sdk("RecompiledIdlHeaders/um/devquery.h"));
+            var outputs = new Dictionary<string, int>
+            {
+                ["DevCreateObjectQuery"] = 9,
+                ["DevCreateObjectQueryEx"] = 11,
+                ["DevCreateObjectQueryFromId"] = 10,
+                ["DevCreateObjectQueryFromIdEx"] = 12,
+                ["DevCreateObjectQueryFromIds"] = 10,
+                ["DevCreateObjectQueryFromIdsEx"] = 12,
+            };
+            string forward = Regex.Match(header,
+                @"(?m)^#if defined\(WIN32METADATA\) && defined\(__clang__\)\r?\nVOID WINAPI DevCloseObjectQuery\([^;]*\);\r?\n#endif").Value;
+            string callback = Regex.Match(header,
+                @"typedef VOID \(WINAPI \*PDEV_QUERY_RESULT_CALLBACK\)\([^;]*;").Value;
+            Assert.IsFalse(string.IsNullOrEmpty(forward));
+            Assert.IsFalse(string.IsNullOrEmpty(callback));
+            string declarations = NextProducerDependencies + @"
+typedef void VOID;
+typedef long HRESULT;
+typedef struct HDEVQUERY__* HDEVQUERY;
+typedef HDEVQUERY* PHDEVQUERY;
+typedef const wchar_t* PCWSTR;
+typedef const wchar_t* PCZZWSTR;
+typedef enum { DevObjectTypeUnknown } DEV_OBJECT_TYPE;
+typedef struct DEVPROPCOMPKEY DEVPROPCOMPKEY;
+typedef struct DEVPROP_FILTER_EXPRESSION DEVPROP_FILTER_EXPRESSION;
+typedef struct DEV_QUERY_PARAMETER DEV_QUERY_PARAMETER;
+typedef struct DEV_QUERY_RESULT_ACTION_DATA DEV_QUERY_RESULT_ACTION_DATA;
+" + forward + "\n" + callback + "\n" +
+                string.Join("\n", outputs.Keys.Select(name => Declaration(header, name, "_Check_return_ HRESULT WINAPI"))) +
+                "\n" + Declaration(header, "DevCloseObjectQuery", "VOID WINAPI");
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(declarations, target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            using var pe = new PEReader(File.OpenRead(fixture.Emit()));
+            var reader = pe.GetMetadataReader();
+            foreach (var output in outputs)
+                ProducerHeaderTests.AssertFacts(reader, output.Key, output.Value, "DevCloseObjectQuery");
+            foreach (var method in reader.MethodDefinitions.Select(reader.GetMethodDefinition))
+            {
+                string name = reader.GetString(method.Name);
+                foreach (var parameter in method.GetParameters().Select(reader.GetParameter))
+                {
+                    if (outputs.TryGetValue(name, out int sequence) && parameter.SequenceNumber == sequence)
+                        continue;
+                    Assert.IsFalse(parameter.GetCustomAttributes().Select(reader.GetCustomAttribute)
+                        .Any(attribute => ProducerHeaderTests.Name(reader, attribute) is
+                            "RAIIFreeAttribute" or "InvalidHandleValueAttribute"), name);
+                }
+            }
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void NCryptKeyProducers_OwnAllFourPublicOutputsWithoutOwningInputs(string target)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(NCryptKeyDeclarations(), target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            using var pe = new PEReader(File.OpenRead(fixture.Emit()));
+            var reader = pe.GetMetadataReader();
+            var outputs = new Dictionary<string, int>
+            {
+                ["NCryptOpenKey"] = 2,
+                ["NCryptCreatePersistedKey"] = 2,
+                ["NCryptImportKey"] = 5,
+                ["NCryptTranslateHandle"] = 2,
+            };
+            foreach (var output in outputs)
+            {
+                ProducerHeaderTests.AssertFacts(reader, output.Key, output.Value, "NCryptFreeObject", 0);
+                var method = reader.MethodDefinitions.Select(reader.GetMethodDefinition)
+                    .Single(method => reader.GetString(method.Name) == output.Key);
+                foreach (var parameter in method.GetParameters().Select(reader.GetParameter)
+                    .Where(parameter => parameter.SequenceNumber != output.Value))
+                    Assert.IsFalse(parameter.GetCustomAttributes().Select(reader.GetCustomAttribute)
+                        .Any(attribute => ProducerHeaderTests.Name(reader, attribute) is
+                            "RAIIFreeAttribute" or "InvalidHandleValueAttribute"));
+            }
+            foreach (string name in new[] { "NCryptFreeObject", "NCryptDeleteKey", "NCryptIsKeyHandle" })
+                ProducerHeaderTests.AssertNoOwnership(reader, name);
+            var key = NativeTypedefHeaderTests.Type(reader, "NCRYPT_KEY_HANDLE");
+            Assert.IsFalse(key.GetCustomAttributes().Select(reader.GetCustomAttribute)
+                .Any(attribute => ProducerHeaderTests.Name(reader, attribute) is
+                    "RAIIFreeAttribute" or "InvalidHandleValueAttribute"));
+            string declarations = EnumHeaderTests.Decompile(Path.Combine(fixture.DirectoryPath, "Test.winmd"));
+            StringAssert.Contains(declarations, "NCRYPT_KEY_HANDLE* phKey");
+            StringAssert.Contains(declarations, "NCRYPT_KEY_HANDLE hImportKey");
+        }
+
+        [DataTestMethod]
+        [DataRow("x86", 4, "/TC")]
+        [DataRow("x64", 8, "/TC")]
+        [DataRow("arm64", 8, "/TC")]
+        [DataRow("x86", 4, "/TP")]
+        [DataRow("x64", 8, "/TP")]
+        [DataRow("arm64", 8, "/TP")]
+        public void NCryptKeyProducers_PreserveNativeSignatures(string arch, int pointerSize, string language)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            fixture.AssertNativeAbi(arch, pointerSize, language, @"
+#define _In_
+#define _Out_
+#define _In_opt_
+#define _Out_opt_
+#define _Check_return_
+#define _In_reads_bytes_(...)
+" + NCryptKeyDeclarations() + @"
+SECURITY_STATUS (WINAPI *verifyOpen)(NCRYPT_PROV_HANDLE, NCRYPT_KEY_HANDLE*, LPCWSTR, DWORD, DWORD) = &NCryptOpenKey;
+SECURITY_STATUS (WINAPI *verifyCreate)(NCRYPT_PROV_HANDLE, NCRYPT_KEY_HANDLE*, LPCWSTR, LPCWSTR, DWORD, DWORD) = &NCryptCreatePersistedKey;
+SECURITY_STATUS (WINAPI *verifyImport)(NCRYPT_PROV_HANDLE, NCRYPT_KEY_HANDLE, LPCWSTR, NCryptBufferDesc*, NCRYPT_KEY_HANDLE*, PBYTE, DWORD, DWORD) = &NCryptImportKey;
+SECURITY_STATUS (WINAPI *verifyTranslate)(NCRYPT_PROV_HANDLE*, NCRYPT_KEY_HANDLE*, HCRYPTPROV, HCRYPTKEY, DWORD, DWORD) = &NCryptTranslateHandle;
+SECURITY_STATUS (WINAPI *verifyFree)(NCRYPT_HANDLE) = &NCryptFreeObject;
+");
+        }
+
+        private static string NCryptKeyDeclarations()
+        {
+            string header = File.ReadAllText(Sdk("RecompiledIdlHeaders/um/ncrypt.h"));
+            var names = new HashSet<string> { "NCryptFreeObject", "NCryptOpenKey", "NCryptCreatePersistedKey",
+                "NCryptImportKey", "NCryptTranslateHandle", "NCryptDeleteKey", "NCryptIsKeyHandle" };
+            var declarations = Regex.Matches(header,
+                @"(?m)^(?:SECURITY_STATUS|BOOL)\s+WINAPI\s+(NCrypt\w+)\s*\([^;]+;")
+                .Cast<Match>().Where(match => names.Contains(match.Groups[1].Value)).ToArray();
+            Assert.AreEqual(names.Count, declarations.Length);
+            Assert.AreEqual("NCryptFreeObject", declarations[0].Groups[1].Value,
+                "The typed cleanup must precede every first public producer declaration.");
+            string handles = Regex.Match(header,
+                @"typedef ULONG_PTR NCRYPT_HANDLE;[\s\S]*?typedef ULONG_PTR NCRYPT_KEY_HANDLE;").Value;
+            Assert.IsFalse(string.IsNullOrEmpty(handles));
+            return @"
+#define WINAPI __stdcall
+#ifdef _WIN64
+typedef unsigned long long ULONG_PTR;
+#else
+typedef unsigned long ULONG_PTR;
+#endif
+typedef long SECURITY_STATUS;
+typedef unsigned long DWORD;
+typedef int BOOL;
+typedef const unsigned short* LPCWSTR;
+typedef unsigned char* PBYTE;
+typedef struct _NCryptBufferDesc NCryptBufferDesc;
+typedef ULONG_PTR HCRYPTPROV;
+typedef ULONG_PTR HCRYPTKEY;
+" + handles + "\n" + string.Join("\n", declarations.Select(match =>
+                match.Value.Replace("_Win32_AssociatedEnum_(CERT_KEY_SPEC) ", "", StringComparison.Ordinal)));
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void PrinterClosure_OwnsOnlyOpenAndAddProducers(string target)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(PrinterDeclarations(), target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            using var pe = new PEReader(File.OpenRead(fixture.Emit()));
+            var reader = pe.GetMetadataReader();
+            foreach (string name in new[] { "OpenPrinterA", "OpenPrinterW", "OpenPrinter2A", "OpenPrinter2W" })
+                ProducerHeaderTests.AssertFacts(reader, name, 2, "ClosePrinter", -1, 0);
+            foreach (string name in new[] { "AddPrinterA", "AddPrinterW" })
+                ProducerHeaderTests.AssertFacts(reader, name, 0, "ClosePrinter", -1, 0);
+            ProducerHeaderTests.AssertNoOwnership(reader, "ClosePrinter");
+        }
+
+        [DataTestMethod]
+        [DataRow("x86", 4, "/TC")]
+        [DataRow("x64", 8, "/TC")]
+        [DataRow("arm64", 8, "/TC")]
+        [DataRow("x86", 4, "/TP")]
+        [DataRow("x64", 8, "/TP")]
+        [DataRow("arm64", 8, "/TP")]
+        public void PrinterClosure_PreservesNativeAbi(string arch, int pointerSize, string language)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            fixture.AssertNativeAbi(arch, pointerSize, language, @"
+#define _In_
+#define _Out_
+#define _In_opt_
+#define _In_range_(...)
+#define _When_(...)
+#define _In_reads_bytes_(...)
+" + PrinterDeclarations() + @"
+BOOL (WINAPI *verifyOpen)(LPCSTR, LPHANDLE, LPPRINTER_DEFAULTSA) = &OpenPrinterA;
+BOOL (WINAPI *verifyOpen2)(LPCWSTR, LPHANDLE, PPRINTER_DEFAULTSW, PPRINTER_OPTIONSW) = &OpenPrinter2W;
+HANDLE (WINAPI *verifyAdd)(LPCWSTR, DWORD, LPBYTE) = &AddPrinterW;
+");
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void MappedViewCleanup_ConstPointeeRequiresAnExplicitContractDecision(string target)
+        {
+            string text = File.ReadAllText(Path.Combine(LastErrorHeaderTests.SdkPackagePath(),
+                "c", "include", "10.0.28000.0", "um", "memoryapi.h"));
+            string cleanup = Regex.Match(text, @"BOOL\s+WINAPI\s+UnmapViewOfFile\([^;]+;").Value;
+            string producer = Regex.Match(text, @"LPVOID\s+WINAPI\s+MapViewOfFile\([^;]+;").Value;
+            Assert.IsFalse(string.IsNullOrEmpty(cleanup));
+            Assert.IsFalse(string.IsNullOrEmpty(producer));
+            string dependencies = NextProducerDependencies +
+                "\ntypedef __SIZE_TYPE__ SIZE_T;\ntypedef const void* LPCVOID;\n";
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(dependencies + cleanup + producer, target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            result = fixture.Scrape(dependencies + cleanup +
+                "\n_Win32_RAIIFree_(UnmapViewOfFile, 0)\n" + producer, target, sal: true);
+            TestContext.WriteLine(result.Output);
+            Assert.AreNotEqual(0, result.ExitCode);
+            StringAssert.Contains(result.Output,
+                "RAIIFree cleanup must resolve to one declared non-member, non-variadic native function accepting exactly the produced resource type.");
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void WlanCleanup_ReservedNullArgumentPreservesTheLegacyCleanupFact(string target)
+        {
+            string header = File.ReadAllText(Sdk("RecompiledIdlHeaders/um/wlanapi.h"));
+            string producer = Regex.Match(header, @"DWORD WINAPI\s+WlanOpenHandle\([^;]+;").Value;
+            string cleanup = Regex.Match(header, @"DWORD WINAPI\s+WlanCloseHandle\([^;]+;").Value;
+            Assert.IsFalse(string.IsNullOrEmpty(producer));
+            Assert.IsFalse(string.IsNullOrEmpty(cleanup));
+            StringAssert.Contains(cleanup, "_Reserved_ PVOID pReserved");
+            producer = producer.Replace("_Win32_RAIIFree_(WlanCloseHandle) ", string.Empty, StringComparison.Ordinal);
+            StringAssert.Contains(producer, "_Out_ PHANDLE phClientHandle");
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(NextProducerDependencies + cleanup + producer, target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            string expected = EnumHeaderTests.Decompile(fixture.Emit(new Dictionary<string, string>
+            {
+                ["WlanOpenHandle::phClientHandle"] = "[RAIIFree(\"WlanCloseHandle\")]",
+            }));
+            string annotated = producer.Replace("_Out_ PHANDLE phClientHandle",
+                "_Out_ _Win32_RAIIFree_(WlanCloseHandle) PHANDLE phClientHandle", StringComparison.Ordinal);
+            Assert.AreNotEqual(producer, annotated);
+            result = fixture.Scrape(NextProducerDependencies + cleanup + annotated, target, sal: true);
+            TestContext.WriteLine(result.Output);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            string output = fixture.Emit();
+            Assert.AreEqual(expected, EnumHeaderTests.Decompile(output));
+            using var pe = new PEReader(File.OpenRead(output));
+            var reader = pe.GetMetadataReader();
+            ProducerHeaderTests.AssertFacts(reader, "WlanOpenHandle", 4, "WlanCloseHandle");
+            ProducerHeaderTests.AssertNoOwnership(reader, "WlanCloseHandle");
+            foreach (var method in reader.MethodDefinitions.Select(reader.GetMethodDefinition))
+                foreach (var parameter in method.GetParameters().Select(reader.GetParameter))
+                    if (reader.GetString(method.Name) != "WlanOpenHandle" || parameter.SequenceNumber != 4)
+                        Assert.IsFalse(parameter.GetCustomAttributes().Select(reader.GetCustomAttribute)
+                            .Any(attribute => ProducerHeaderTests.Name(reader, attribute) is
+                                "RAIIFreeAttribute" or "InvalidHandleValueAttribute"));
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void WlanCleanup_OptionalUnannotatedAndNonPointerArgumentsRemainRejected(string target)
+        {
+            string header = File.ReadAllText(Sdk("RecompiledIdlHeaders/um/wlanapi.h"));
+            string producer = Regex.Match(header, @"DWORD WINAPI\s+WlanOpenHandle\([^;]+;").Value;
+            string cleanup = Regex.Match(header, @"DWORD WINAPI\s+WlanCloseHandle\([^;]+;").Value;
+            Assert.IsFalse(string.IsNullOrEmpty(producer));
+            Assert.IsFalse(string.IsNullOrEmpty(cleanup));
+            producer = producer.Replace("_Win32_RAIIFree_(WlanCloseHandle) ", string.Empty, StringComparison.Ordinal);
+            string annotated = producer.Replace("_Out_ PHANDLE phClientHandle",
+                "_Out_ _Win32_RAIIFree_(WlanCloseHandle) PHANDLE phClientHandle", StringComparison.Ordinal);
+            Assert.AreNotEqual(producer, annotated);
+            foreach (string replacement in new[]
+            {
+                "_In_opt_ PVOID", "PVOID", "_Reserved_ DWORD",
+                "__attribute__((annotate(\"Name=SAL_name; p1=\\\"_Reserved_\\\"; p2=\\\"\\\"; p3=\\\"2\\\"\"))) PVOID",
+            })
+            {
+                using var fixture = new LastErrorHeaderTests.Fixture();
+                string changed = cleanup.Replace("_Reserved_ PVOID", replacement, StringComparison.Ordinal);
+                Assert.AreNotEqual(cleanup, changed);
+                var result = fixture.Scrape(NextProducerDependencies + changed + annotated, target, sal: true);
+                Assert.AreNotEqual(0, result.ExitCode, replacement);
+                StringAssert.Contains(result.Output,
+                    "RAIIFree cleanup must resolve to one declared non-member, non-variadic native function accepting exactly the produced resource type.");
+            }
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void ContextualResourceUpdateAndPrivateNamespaceCleanupRemainRejected(string target)
+        {
+            foreach (var site in new[]
+            {
+                (Header: "WinBase.h", Producer: "BeginUpdateResourceA", CleanupHeader: "WinBase.h", Cleanup: "EndUpdateResourceA"),
+                (Header: "WinBase.h", Producer: "BeginUpdateResourceW", CleanupHeader: "WinBase.h", Cleanup: "EndUpdateResourceW"),
+                (Header: "WinBase.h", Producer: "CreatePrivateNamespaceA", CleanupHeader: "namespaceapi.h", Cleanup: "ClosePrivateNamespace"),
+                (Header: "namespaceapi.h", Producer: "CreatePrivateNamespaceW", CleanupHeader: "namespaceapi.h", Cleanup: "ClosePrivateNamespace"),
+                (Header: "WinBase.h", Producer: "OpenPrivateNamespaceA", CleanupHeader: "namespaceapi.h", Cleanup: "ClosePrivateNamespace"),
+                (Header: "namespaceapi.h", Producer: "OpenPrivateNamespaceW", CleanupHeader: "namespaceapi.h", Cleanup: "ClosePrivateNamespace"),
+            })
+            {
+                string dependencies = NextProducerDependencies + @"
+#define WINBASEAPI
+typedef unsigned char BOOLEAN;
+typedef const char* LPCSTR;
+typedef const wchar_t* LPCWSTR;
+typedef struct _SECURITY_ATTRIBUTES* LPSECURITY_ATTRIBUTES;
+";
+                string cleanup = Declaration(File.ReadAllText(Sdk("RecompiledIdlHeaders/um/" + site.CleanupHeader)),
+                    site.Cleanup, "WINBASEAPI");
+                string producer = Declaration(File.ReadAllText(Sdk("RecompiledIdlHeaders/um/" + site.Header)),
+                    site.Producer, "WINBASEAPI");
+                using var fixture = new LastErrorHeaderTests.Fixture();
+                var result = fixture.Scrape(dependencies + cleanup + producer, target, sal: true);
+                Assert.AreEqual(0, result.ExitCode, result.Output);
+                result = fixture.Scrape(dependencies + cleanup +
+                    "\n_Win32_RAIIFree_(" + site.Cleanup + ")\n" + producer, target, sal: true);
+                Assert.AreNotEqual(0, result.ExitCode, site.Cleanup);
+                StringAssert.Contains(result.Output,
+                    "RAIIFree cleanup must resolve to one declared non-member, non-variadic native function accepting exactly the produced resource type.");
+            }
+        }
+
+        private static string PrinterDeclarations()
+        {
+            string header = File.ReadAllText(Sdk("RecompiledIdlHeaders/um/winspool.h"));
+            string[] names = { "ClosePrinter", "OpenPrinterA", "OpenPrinterW", "OpenPrinter2A",
+                "OpenPrinter2W", "AddPrinterA", "AddPrinterW" };
+            return NextProducerDependencies + @"
+typedef HANDLE* LPHANDLE;
+typedef const char* LPCSTR;
+typedef const unsigned short* LPCWSTR;
+typedef unsigned char* LPBYTE;
+typedef void* LPPRINTER_DEFAULTSA;
+typedef void* LPPRINTER_DEFAULTSW;
+typedef void* PPRINTER_DEFAULTSA;
+typedef void* PPRINTER_DEFAULTSW;
+typedef void* PPRINTER_OPTIONSA;
+typedef void* PPRINTER_OPTIONSW;
+" + string.Join("\n", names.Select(name =>
+                Regex.Match(header,
+                    @"(?m)(?:^_Win32_RAIIFree_Handle_\([^\r\n]*\)\r?\n)?^\s*(?:BOOL|HANDLE)\s+WINAPI\s+" +
+                    name + @"\([^;]+;").Value));
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void HttpFilteringAndPrinterProducers_RetireOnlyProjectionHandles(string target)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(NextProducerDeclarations(), target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            using var pe = new PEReader(File.OpenRead(fixture.Emit()));
+            var reader = pe.GetMetadataReader();
+            ProducerHeaderTests.AssertFacts(reader, "HttpCreateRequestQueue", 5, "HttpCloseRequestQueue", 0);
+            ProducerHeaderTests.AssertFacts(reader, "FwpmEngineOpen0", 5, "FwpmEngineClose0", -1, 0);
+            ProducerHeaderTests.AssertFacts(reader, "FindFirstPrinterChangeNotification", 0,
+                "FindClosePrinterChangeNotification", -1, 0);
+            foreach (string name in new[] { "HttpCloseRequestQueue", "HttpCreateHttpHandle", "FwpmEngineClose0",
+                "FindNextPrinterChangeNotification", "FindClosePrinterChangeNotification" })
+                ProducerHeaderTests.AssertNoOwnership(reader, name);
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void FilteringEnumerationCleanup_RequiresEngineContextBeyondOneArgumentContract(string target)
+        {
+            string declarations = NextProducerDependencies +
+                CurrentProducerDeclaration("fwpmu.h", "FwpmFilterDestroyEnumHandle0") + "\n" +
+                CurrentProducerDeclaration("fwpmu.h", "FwpmFilterCreateEnumHandle0");
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(declarations, target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            result = fixture.Scrape(declarations.Replace("_Out_ HANDLE* enumHandle",
+                "_Out_ _Win32_RAIIFree_Handle_(FwpmFilterDestroyEnumHandle0) HANDLE* enumHandle",
+                StringComparison.Ordinal), target, sal: true);
+            TestContext.WriteLine(result.Output);
+            Assert.AreNotEqual(0, result.ExitCode);
+            StringAssert.Contains(result.Output,
+                "RAIIFree cleanup must resolve to one declared non-member, non-variadic native function accepting exactly the produced resource type.");
+        }
+
+        [DataTestMethod]
+        [DataRow("x86", 4, "/TC")]
+        [DataRow("x64", 8, "/TC")]
+        [DataRow("arm64", 8, "/TC")]
+        [DataRow("x86", 4, "/TP")]
+        [DataRow("x64", 8, "/TP")]
+        [DataRow("arm64", 8, "/TP")]
+        public void HttpFilteringAndPrinterProducers_PreserveNativeAbi(string arch, int pointerSize, string language)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            fixture.AssertNativeAbi(arch, pointerSize, language, @"
+#define _In_
+#define _Out_
+#define _Inout_
+#define _In_opt_
+#define _Out_opt_
+#define _Reserved_
+" + NextProducerDeclarations() + @"
+ULONG (WINAPI *verifyHttp)(HTTPAPI_VERSION, PCWSTR, PSECURITY_ATTRIBUTES, ULONG, PHANDLE) = &HttpCreateRequestQueue;
+DWORD (WINAPI *verifyEngine)(const wchar_t*, UINT32, SEC_WINNT_AUTH_IDENTITY_W*, const FWPM_SESSION0*, HANDLE*) = &FwpmEngineOpen0;
+HANDLE (WINAPI *verifyPrinter)(HANDLE, DWORD, DWORD, PVOID) = &FindFirstPrinterChangeNotification;
+");
+        }
+
+        private const string NextProducerDependencies = @"
+#define WINAPI __stdcall
+#define HTTPAPI_LINKAGE __declspec(dllimport)
+#define IN
+#define OUT
+#define OPTIONAL
+typedef void* HANDLE;
+typedef HANDLE* PHANDLE;
+typedef int BOOL;
+typedef unsigned long DWORD;
+typedef unsigned long ULONG;
+typedef unsigned int UINT32;
+#ifndef __cplusplus
+typedef unsigned short wchar_t;
+#endif
+typedef const wchar_t* PCWSTR;
+typedef void* PVOID;
+typedef void* LPVOID;
+typedef DWORD* PDWORD;
+typedef struct { unsigned short major, minor; } HTTPAPI_VERSION;
+typedef struct SECURITY_ATTRIBUTES { DWORD length; } SECURITY_ATTRIBUTES, *PSECURITY_ATTRIBUTES;
+typedef struct SEC_WINNT_AUTH_IDENTITY_W { DWORD flags; } SEC_WINNT_AUTH_IDENTITY_W;
+typedef struct FWPM_SESSION0 { DWORD flags; } FWPM_SESSION0;
+typedef struct FWPM_FILTER_ENUM_TEMPLATE0 { DWORD flags; } FWPM_FILTER_ENUM_TEMPLATE0;
+";
+
+        private static string NextProducerDeclarations() => NextProducerDependencies + string.Join("\n", new[] {
+            CurrentProducerDeclaration("http.h", "HttpCloseRequestQueue"),
+            CurrentProducerDeclaration("http.h", "HttpCreateRequestQueue"),
+            CurrentProducerDeclaration("http.h", "HttpCreateHttpHandle"),
+            CurrentProducerDeclaration("fwpmu.h", "FwpmEngineClose0"),
+            CurrentProducerDeclaration("fwpmu.h", "FwpmEngineOpen0"),
+            CurrentProducerDeclaration("winspool.h", "FindClosePrinterChangeNotification"),
+            CurrentProducerDeclaration("winspool.h", "FindFirstPrinterChangeNotification"),
+            CurrentProducerDeclaration("winspool.h", "FindNextPrinterChangeNotification"),
+        });
+
+        private static string CurrentProducerDeclaration(string header, string name)
+        {
+            var match = Regex.Match(File.ReadAllText(Sdk("RecompiledIdlHeaders/um/" + header)),
+                @"(?m)(?:^_Win32_RAIIFree_(?:Handle_)?\([^\r\n]*\)\r?\n)?^(?:HTTPAPI_LINKAGE\s+)?(?:DWORD|ULONG|BOOL|HANDLE)\s+WINAPI\s+" +
+                name + @"\s*\([^;]+;");
+            Assert.IsTrue(match.Success, name);
+            return match.Value;
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc")]
+        [DataRow("x86_64-pc-windows-msvc")]
+        [DataRow("aarch64-pc-windows-msvc")]
+        public void AvrtNativeProducers_ReplaceFictitiousTypesAndDistinguishJoinCleanup(string target)
+        {
+            string declarations = AvrtDeclarations();
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            var result = fixture.Scrape(declarations, target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            string path = fixture.Emit();
+            using (var pe = new PEReader(File.OpenRead(path)))
+            {
+                var reader = pe.GetMetadataReader();
+                foreach (string name in new[] { "AvSetMmThreadCharacteristicsA", "AvSetMmThreadCharacteristicsW",
+                    "AvSetMmMaxThreadCharacteristicsA", "AvSetMmMaxThreadCharacteristicsW" })
+                    ProducerHeaderTests.AssertFacts(reader, name, 0, "AvRevertMmThreadCharacteristics", 0);
+                foreach (string name in new[] { "AvRtCreateThreadOrderingGroup", "AvRtCreateThreadOrderingGroupExA",
+                    "AvRtCreateThreadOrderingGroupExW" })
+                    ProducerHeaderTests.AssertFacts(reader, name, 1, "AvRtDeleteThreadOrderingGroup", 0);
+                ProducerHeaderTests.AssertFacts(reader, "AvRtJoinThreadOrderingGroup", 1, "AvRtLeaveThreadOrderingGroup", 0);
+                foreach (string name in new[] { "AvRevertMmThreadCharacteristics", "AvSetMmThreadPriority",
+                    "AvRtWaitOnThreadOrderingGroup", "AvRtLeaveThreadOrderingGroup",
+                    "AvRtDeleteThreadOrderingGroup", "AvQuerySystemResponsiveness" })
+                    ProducerHeaderTests.AssertNoOwnership(reader, name);
+                Assert.IsFalse(reader.TypeDefinitions.Select(reader.GetTypeDefinition).Any(type =>
+                    reader.GetString(type.Name).StartsWith("AVRT_", StringComparison.Ordinal) &&
+                    reader.GetString(type.Name).EndsWith("_HANDLE", StringComparison.Ordinal)));
+                var method = reader.MethodDefinitions.Select(reader.GetMethodDefinition)
+                    .Single(method => reader.GetString(method.Name) == "AvSetMmThreadPriority");
+                var signature = reader.GetBlobReader(method.Signature);
+                signature.ReadSignatureHeader();
+                Assert.AreEqual(2, signature.ReadCompressedInteger());
+                Assert.AreEqual(SignatureTypeCode.Int32, signature.ReadSignatureTypeCode());
+                Assert.AreEqual(SignatureTypeCode.Pointer, signature.ReadSignatureTypeCode());
+                Assert.AreEqual(SignatureTypeCode.Void, signature.ReadSignatureTypeCode());
+                Assert.AreEqual(SignatureTypeCode.TypeHandle, signature.ReadSignatureTypeCode());
+                Assert.AreEqual("AVRT_PRIORITY", EnumHeaderTests.TypeName(reader, signature.ReadTypeHandle()));
+                Assert.AreEqual(0, signature.RemainingBytes);
+            }
+            result = fixture.Scrape(Regex.Replace(declarations, @"_Win32_RAIIFree_\([^)]*\)", ""), target, sal: true);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            using var original = new PEReader(File.OpenRead(fixture.Emit()));
+            ProducerHeaderTests.AssertNoOwnership(original.GetMetadataReader(), "AvRtJoinThreadOrderingGroup");
+        }
+
+        [DataTestMethod]
+        [DataRow("x86", 4, "/TC")]
+        [DataRow("x64", 8, "/TC")]
+        [DataRow("arm64", 8, "/TC")]
+        [DataRow("x86", 4, "/TP")]
+        [DataRow("x64", 8, "/TP")]
+        [DataRow("arm64", 8, "/TP")]
+        public void AvrtNativeProducers_AnnotationsPreserveRawAbi(string arch, int pointerSize, string language)
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            fixture.AssertNativeAbi(arch, pointerSize, language, @"
+#define _In_
+#define _Out_
+#define _Inout_
+#define _In_opt_
+#define _Success_(value)
+" + AvrtDeclarations() + @"
+HANDLE (WINAPI *verifyTask)(LPCWSTR, LPDWORD) = &AvSetMmThreadCharacteristicsW;
+BOOL (WINAPI *verifyCreate)(PHANDLE, PLARGE_INTEGER, GUID*, PLARGE_INTEGER) = &AvRtCreateThreadOrderingGroup;
+BOOL (WINAPI *verifyJoin)(PHANDLE, GUID*, BOOL) = &AvRtJoinThreadOrderingGroup;
+BOOL (WINAPI *verifyLeave)(HANDLE) = &AvRtLeaveThreadOrderingGroup;
+");
+        }
+
+        private static string AvrtDeclarations() => @"
+#define WINAPI __stdcall
+#define DECLSPEC_IMPORT __declspec(dllimport)
+#define WINAPI_FAMILY_PARTITION(...) 1
+typedef void* HANDLE;
+typedef HANDLE* PHANDLE;
+typedef int BOOL;
+typedef unsigned long DWORD;
+typedef DWORD* LPDWORD;
+typedef unsigned long* PULONG;
+typedef const char* LPCSTR;
+typedef const unsigned short* LPCWSTR;
+typedef struct { long long value; } LARGE_INTEGER, *PLARGE_INTEGER;
+typedef struct { unsigned long a; unsigned short b, c; unsigned char d[8]; } GUID;
+" + File.ReadAllText(Sdk("RecompiledIdlHeaders/um/avrt.h"))
+            .Replace("#include <win32metadata_annotations.h>", "", StringComparison.Ordinal)
+            .Replace("#include <winapifamily.h>", "", StringComparison.Ordinal);
+
         internal static string Parent()
         {
             string root = LastErrorHeaderTests.RepositoryRoot();
@@ -48,15 +693,16 @@ namespace ClangSharpSourceToWinmdTests
             string parent = Parent();
             string original = Encoding.Latin1.GetString(PropertyComOutputHeaderTests.ReadOriginalBytes("emitter.settings.rsp", parent))
                 .Replace("\r\n", "\n");
-            string current = File.ReadAllText(Sdk("emitter.settings.rsp")).Replace("\r\n", "\n");
+            string current = FullHeaderMigrationExperimentTests.ReadRecoveryText("emitter.settings.rsp").Replace("\r\n", "\n");
             Assert.AreEqual(ApplySidecarDelta(original), current);
             Assert.AreEqual(NativeTypedefSdkTests.ApplyAutoTypesDelta(Encoding.UTF8.GetString(
                 PropertyComOutputHeaderTests.ReadOriginalBytes("autoTypes.json", parent))),
-                File.ReadAllText(Sdk("autoTypes.json")).Replace("\r\n", "\n"));
+                FullHeaderMigrationExperimentTests.ReadRecoveryText("autoTypes.json").Replace("\r\n", "\n"));
             foreach (string path in new[] { "scraper.settings.rsp", "functionPointerFixups.json",
                 "RecompiledIdlHeaders/um/heapapi.h" })
                 CollectionAssert.AreEqual(PropertyComOutputHeaderTests.ReadOriginalBytes(path, parent),
-                    File.ReadAllBytes(Sdk(path)), "Unrelated legacy/native inputs must remain byte-exact: " + path);
+                    FullHeaderMigrationExperimentTests.ReadRecoveryBytes(path),
+                    "Unrelated legacy/native inputs must remain byte-exact: " + path);
             var ancestry = LastErrorHeaderTests.Run("git", "-C", root, "merge-base", "--is-ancestor", parent, "HEAD");
             Assert.AreEqual(0, ancestry.ExitCode, ancestry.Output);
             string helper = File.ReadAllText(Sdk("RecompiledIdlHeaders/shared/win32metadata_annotations.h"));
@@ -74,14 +720,14 @@ namespace ClangSharpSourceToWinmdTests
             string include = Path.Combine(LastErrorHeaderTests.SdkPackagePath(), "c", "include", "10.0.28000.0");
             try
             {
-                foreach (string owner in new[] { "WinBase.h", "winspool.h", "heapapi.h" })
+                foreach (string owner in new[] { "WinBase.h", "winspool.h", "heapapi.h", "minwinbase.h", "fileapi.h", "devquery.h" })
                     File.Copy(Path.Combine(include, "um", owner), Path.Combine(directory, "um", owner));
                 var apply = LastErrorHeaderTests.Run("pwsh", "-NoProfile", "-NonInteractive", "-Command",
                     "& " + Quote(Path.Combine(LastErrorHeaderTests.RepositoryRoot(), "scripts", "ApplySDKPatches.ps1")) +
                     " -Phase post-midl -HeaderRoot " + Quote(directory) + " -MidlInputRoot " + Quote(include) +
-                    " -SdkVersion '10.0.28000.2705' -SelectedPatches @('post-midl/WinBase.h.patch','post-midl/winspool.h.patch')");
+                    " -SdkVersion '10.0.28000.2705' -SelectedPatches @('post-midl/WinBase.h.patch','post-midl/winspool.h.patch','post-midl/heapapi.h.patch','post-midl/minwinbase.h.patch','post-midl/fileapi.h.patch','post-midl/devquery.h.patch')");
                 Assert.AreEqual(0, apply.ExitCode, apply.Output);
-                foreach (string owner in new[] { "WinBase.h", "winspool.h", "heapapi.h" })
+                foreach (string owner in new[] { "WinBase.h", "winspool.h", "heapapi.h", "minwinbase.h", "fileapi.h", "devquery.h" })
                     CollectionAssert.AreEqual(File.ReadAllBytes(Sdk("RecompiledIdlHeaders/um/" + owner)),
                         File.ReadAllBytes(Path.Combine(directory, "um", owner)), owner + ": complete native bytes, including EOF and CRLF");
 
@@ -90,7 +736,8 @@ namespace ClangSharpSourceToWinmdTests
                 string settings = "--include-directory\n" + Path.Combine(include, "shared") + "\n" + Path.Combine(include, "um");
                 var result = fixture.Scrape(declarations, target, sal: true, extraSettings: settings);
                 Assert.AreEqual(0, result.ExitCode, result.Output);
-                var remaps = File.ReadAllLines(Sdk("emitter.settings.rsp"))
+                var remaps = FullHeaderMigrationExperimentTests.ReadRecoveryText("emitter.settings.rsp")
+                    .Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)
                     .Where(line => ProjectionSites.Contains(line.Split('=')[0]))
                     .ToDictionary(line => line.Split('=')[0], line => line.Substring(line.IndexOf('=') + 1));
                 Assert.AreEqual(6, remaps.Count);
@@ -134,7 +781,7 @@ namespace ClangSharpSourceToWinmdTests
             Directory.CreateDirectory(directory);
             try
             {
-                foreach (string owner in new[] { "WinBase.h", "winspool.h" })
+                foreach (string owner in new[] { "WinBase.h", "winspool.h", "heapapi.h", "fileapi.h", "devquery.h" })
                     File.Copy(Sdk("RecompiledIdlHeaders/um/" + owner), Path.Combine(directory, owner));
                 File.Copy(Sdk("RecompiledIdlHeaders/shared/win32metadata_annotations.h"),
                     Path.Combine(directory, "win32metadata_annotations.h"));
@@ -142,14 +789,25 @@ namespace ClangSharpSourceToWinmdTests
                 File.WriteAllText(source, @"
 #include <windows.h>
 #include <winspool.h>
+#include <devquery.h>
 typedef char PointerWidth[(sizeof(HANDLE) == " + pointerSize + @") ? 1 : -1];
 typedef char LocalWidth[(sizeof(HLOCAL) == sizeof(void*)) ? 1 : -1];
 typedef char OutputWidth[(sizeof(*((LPHANDLE)0)) == sizeof(void*)) ? 1 : -1];
-BOOL (WINAPI *openPrinter)(LPWSTR, void**, LPPRINTER_DEFAULTSW) = &OpenPrinterW;
+BOOL (WINAPI *openPrinter)(LPCWSTR, void**, LPPRINTER_DEFAULTSW) = &OpenPrinterW;
 BOOL (WINAPI *closePrinter)(void*) = &ClosePrinter;
 void* (WINAPI *getHeap)(void) = &GetProcessHeap;
 void* (WINAPI *localAlloc)(UINT, SIZE_T) = &LocalAlloc;
 void* (WINAPI *localFree)(void*) = &LocalFree;
+HANDLE (WINAPI *createHeap)(DWORD, SIZE_T, SIZE_T) = &HeapCreate;
+BOOL (WINAPI *destroyHeap)(HANDLE) = &HeapDestroy;
+HANDLE (WINAPI *findVolume)(LPWSTR, DWORD) = &FindFirstVolumeW;
+BOOL (WINAPI *closeVolume)(HANDLE) = &FindVolumeClose;
+HANDLE (WINAPI *findMountPoint)(LPCWSTR, LPWSTR, DWORD) = &FindFirstVolumeMountPointW;
+BOOL (WINAPI *closeMountPoint)(HANDLE) = &FindVolumeMountPointClose;
+HANDLE (WINAPI *createContext)(PCACTCTXW) = &CreateActCtxW;
+VOID (WINAPI *releaseContext)(HANDLE) = &ReleaseActCtx;
+HRESULT (WINAPI *createQuery)(DEV_OBJECT_TYPE, ULONG, ULONG, const DEVPROPCOMPKEY*, ULONG, const DEVPROP_FILTER_EXPRESSION*, PDEV_QUERY_RESULT_CALLBACK, PVOID, PHDEVQUERY) = &DevCreateObjectQuery;
+VOID (WINAPI *closeQuery)(HDEVQUERY) = &DevCloseObjectQuery;
 _Win32_RAIIFree_(Undeclared, not_a_constant)
 _Win32_RAIIFree_Handle_(Missing)
 HANDLE WINAPI Noop(void);
@@ -180,6 +838,16 @@ HANDLE WINAPI Noop(void);
             string printer = File.ReadAllText(Path.Combine(include, "um", "winspool.h"));
             string memory = File.ReadAllText(Path.Combine(include, "um", "WinBase.h"));
             string heap = File.ReadAllText(Path.Combine(include, "um", "heapapi.h"));
+            string localFlags = string.Empty;
+            if (memory.Contains("_Win32_AssociatedEnum_(LOCAL_ALLOC_FLAGS)", StringComparison.Ordinal))
+            {
+                string header = File.ReadAllText(Path.Combine(include, "um", "minwinbase.h"));
+                var groups = Regex.Matches(header, @"(?m)^_Win32_FlagsEnum_\(LOCAL_ALLOC_FLAGS,[^\r\n]*\);");
+                Assert.AreEqual(1, groups.Count, "The sliced LocalAlloc declaration requires its actual SDK enum dependency.");
+                localFlags = string.Join("\n", Regex.Matches(header,
+                    @"(?m)^#define (?:LMEM_[A-Z_]+|LHND|LPTR|NONZEROLHND|NONZEROLPTR)\b[^\r\n]*")
+                    .Select(match => match.Value)) + "\n" + groups[0].Value + "\n";
+            }
             return @"
 #include <specstrings.h>
 #define WINAPI __stdcall
@@ -189,12 +857,13 @@ typedef void* HANDLE;
 typedef HANDLE HLOCAL;
 typedef HANDLE* LPHANDLE;
 typedef unsigned short* LPWSTR;
+typedef const unsigned short* LPCWSTR;
 typedef int BOOL;
 typedef unsigned int UINT;
 typedef __SIZE_TYPE__ SIZE_T;
 typedef void VOID;
 typedef struct _PRINTER_DEFAULTSW* LPPRINTER_DEFAULTSW;
-" + Declaration(printer, "ClosePrinter", "BOOL") + "\n" +
+" + localFlags + Declaration(printer, "ClosePrinter", "BOOL") + "\n" +
                 Declaration(printer, "OpenPrinterW", "BOOL") + "\n" +
                 Declaration(memory, "LocalFree", "WINBASEAPI") + "\n" +
                 Declaration(memory, "LocalAlloc", "WINBASEAPI") + "\n" +
@@ -203,7 +872,7 @@ typedef struct _PRINTER_DEFAULTSW* LPPRINTER_DEFAULTSW;
 
         private static string Declaration(string header, string name, string prefix)
         {
-            var declarations = Regex.Matches(header, @"(?m)^(?:_Win32_RAIIFree_\([^\r\n]*\)\r?\n)?" +
+            var declarations = Regex.Matches(header, @"(?m)^(?:(?:_Win32_RAIIFree_\([^\r\n]*\)|_Win32_SetLastError_)\r?\n)*" +
                 prefix + @"\r?\n[^;{}]*?\b" + name + @"\s*\([^;{}]*\);")
                 .Select(match => match.Value.Replace("\r\n", "\n")).Distinct().ToArray();
             Assert.AreEqual(1, declarations.Length, name);
@@ -226,7 +895,6 @@ typedef struct _PRINTER_DEFAULTSW* LPPRINTER_DEFAULTSW;
                 ["ClosePrinter"] = new[] { SignatureTypeCode.Int32, SignatureTypeCode.Pointer, SignatureTypeCode.Void },
                 ["LocalFree"] = new[] { SignatureTypeCode.Pointer, SignatureTypeCode.Void, SignatureTypeCode.Pointer, SignatureTypeCode.Void },
                 ["GetProcessHeap"] = new[] { SignatureTypeCode.Pointer, SignatureTypeCode.Void },
-                ["LocalAlloc"] = new[] { SignatureTypeCode.Pointer, SignatureTypeCode.Void, SignatureTypeCode.UInt32, SignatureTypeCode.UIntPtr },
             };
             foreach (var fact in signatures)
             {
@@ -234,10 +902,32 @@ typedef struct _PRINTER_DEFAULTSW* LPPRINTER_DEFAULTSW;
                     .Single(method => reader.GetString(method.Name) == fact.Key);
                 var signature = reader.GetBlobReader(method.Signature);
                 signature.ReadSignatureHeader();
-                Assert.AreEqual(fact.Key == "LocalAlloc" ? 2 : fact.Key == "GetProcessHeap" ? 0 : 1, signature.ReadCompressedInteger());
+                Assert.AreEqual(fact.Key == "GetProcessHeap" ? 0 : 1, signature.ReadCompressedInteger());
                 foreach (var code in fact.Value) Assert.AreEqual(code, signature.ReadSignatureTypeCode(), fact.Key);
                 Assert.AreEqual(0, signature.RemainingBytes);
             }
+            var localAlloc = reader.MethodDefinitions.Select(reader.GetMethodDefinition)
+                .Single(method => reader.GetString(method.Name) == "LocalAlloc");
+            var localSignature = reader.GetBlobReader(localAlloc.Signature);
+            localSignature.ReadSignatureHeader();
+            Assert.AreEqual(2, localSignature.ReadCompressedInteger());
+            Assert.AreEqual(SignatureTypeCode.Pointer, localSignature.ReadSignatureTypeCode());
+            Assert.AreEqual(SignatureTypeCode.Void, localSignature.ReadSignatureTypeCode());
+            Assert.AreEqual(SignatureTypeCode.UInt32, localSignature.ReadSignatureTypeCode());
+            Assert.AreEqual(SignatureTypeCode.UIntPtr, localSignature.ReadSignatureTypeCode());
+            Assert.AreEqual(0, localSignature.RemainingBytes);
+            var localFlagsParameter = localAlloc.GetParameters().Select(reader.GetParameter)
+                .Single(parameter => parameter.SequenceNumber == 1);
+            CollectionAssert.AreEqual(new[] { "LOCAL_ALLOC_FLAGS" },
+                EnumAssociationHeaderTests.StringAttributes(reader, localFlagsParameter.GetCustomAttributes(), "AssociatedEnumAttribute"));
+            var localFlags = reader.TypeDefinitions.Select(reader.GetTypeDefinition)
+                .Single(type => reader.GetString(type.Name) == "LOCAL_ALLOC_FLAGS");
+            var value = reader.GetFieldDefinition(localFlags.GetFields()
+                .Single(handle => reader.GetString(reader.GetFieldDefinition(handle).Name) == "value__"));
+            var storage = reader.GetBlobReader(value.Signature);
+            storage.ReadSignatureHeader();
+            Assert.AreEqual(SignatureTypeCode.UInt32, storage.ReadSignatureTypeCode());
+            Assert.AreEqual(0, storage.RemainingBytes);
             var open = reader.MethodDefinitions.Select(reader.GetMethodDefinition)
                 .Single(method => reader.GetString(method.Name) == "OpenPrinterW");
             var openSignature = reader.GetBlobReader(open.Signature);

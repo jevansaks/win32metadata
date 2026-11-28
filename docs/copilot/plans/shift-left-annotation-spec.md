@@ -103,9 +103,14 @@ that producer site (return sequence zero, or the actual output parameter). An em
 value list emits no invalid values. The shorthand emits exactly `-1, 0`.
 Unannotated and borrowed returns remain unowned.
 
-Cleanup must be a declared non-member, non-variadic function accepting exactly the
-produced canonical resource type; integer and non-callback pointer resources are
-supported. Wrong sites, placement, bodies, duplicates/conflicts, unresolved/excluded
+Cleanup must be a declared non-member, non-variadic function whose first parameter
+accepts exactly the produced canonical resource type; integer and non-callback
+pointer resources are supported. Additional cleanup parameters are supported only
+when each is a non-function pointer carrying the native `_Reserved_` SAL name,
+precondition, and NULL facts. These reserved arguments require NULL; optional,
+unannotated, scalar, or name-only parameters do not qualify. Meaningful context
+arguments still have no default cleanup policy.
+Wrong sites, placement, bodies, duplicates/conflicts, unresolved/excluded
 or incompatible cleanup declarations, unsupported overloads, and late-only
 redeclarations are source-located errors. Invalid expressions must be compiler
 integer constants of at most 64 bits, or integer-to-pointer casts with supported
@@ -256,18 +261,34 @@ typedef BOOL(WINAPI *PUBLIC_CALLBACK)(DWORD value);
 The C# callback recovery layer reads existing native typedef relationships in the
 same ClangSharp translation unit used for binding generation. A directly declared
 pointer-to-function typedef supplies the delegate name and complete signature.
-Its direct same-level aliases use that delegate only when an existing explicit
-alias remap selects it; unmigrated same-level aliases retain their public names.
-Pointer-adding aliases use
+Its global same-level aliases and alias chains recover the complete defining
+signature while retaining their public names unless an existing explicit remap
+selects another identity. Native use-site type names preserve the selected alias
+through parameters, fields, returns, and existing namespace placement. Native
+array element names also propagate into generated fixed-buffer slots, indexers,
+and fixed-pointer types; the existing emitter preserves the array bounds and
+any additional element indirection. Pointer-adding aliases use
 `DELEGATE*`, preserving the additional native indirection through final winmd
-emission. Existing explicit legacy renaming of the defining callback retains the
-legacy resolution path. Bare function typedef fixups are unchanged.
+emission. Direct uses such as `RPC_DISPATCH_FUNCTION*` likewise retain the address
+of an already-pointer callback; a manual reduction would incorrectly turn that
+dispatch-table address into a single callback. Existing explicit legacy renaming
+of the defining callback retains the legacy resolution path. A global bare
+function typedef with no aliases keeps its
+own name; its native address loses exactly the one pointer already represented
+by the generated delegate. Further pointer levels remain intact. This recovery
+does not select a different configured identity or recover excluded, non-global,
+same-level-aliased, or untraversed bare declarations. The existing unique
+bare-function/pointer-alias resolution remains unchanged.
 
-Recovery applies only when the defining callback is in the partition's explicit
-header traversal (or no traversal restriction is configured). A typedef reached
-only through a transitive include may belong to another partition; its existing
-projection is left alone rather than redirecting uses to a delegate that this
-partition cannot emit. The Enclave regression exercises `LPENCLAVE_ROUTINE` from
+Bare-function delegate selection applies only when the defining callback is in
+the partition's explicit header traversal (or no traversal restriction is
+configured). A defining typedef reached only through a transitive include may
+belong to another partition; its existing projection is left alone rather than
+redirecting uses to a delegate that this partition cannot emit. An emitted
+same-level pointer alias can still recover its signature from that native
+prototype when its defining delegate is not emitted locally. This fallback
+honors configured typedef and opaque-pointer remaps, pointer-sized carriers,
+and the native calling convention. The Enclave regression exercises `LPENCLAVE_ROUTINE` from
 an untraversed `minwinbase.h` owner through final winmd compilation.
 Self-remaps used to select a local delegate are not exported as global type
 renames in the existing generated remap sidecar.
@@ -295,8 +316,8 @@ Scalar typedef identity is not recovered by this callback layer. `VARTYPE` is
 from configuration; it is not an AST scalar-typedef transport. Recovering scalar
 identity and genuine `_Win32_AlsoUsableFor_` metadata on such typedefs therefore
 requires a separate emission capability. Those sidecars remain, and owned
-typedef annotations are still diagnosed rather than silently lost. Alias chains,
-namespace-qualified callback identity, annotated alias declarations, synthetic
+typedef annotations are still diagnosed rather than silently lost. C++
+namespace-qualified callback declarations, annotated alias declarations, synthetic
 enums, namespace coloring, and handle/producer representation are not claimed here.
 
 ## Attribute solution matrix
@@ -313,7 +334,7 @@ enums, namespace coloring, and handle/producer representation are not claimed he
 | `ContainsInteriorPointers` | `_Win32_ContainsInteriorPointers_`, expanding to `_WIN32META_ANNOTATION_("ContainsInteriorPointers")` | Caller-owned output/inout buffer parameter only. Emits `Windows.Win32.Foundation.Metadata.ContainsInteriorPointersAttribute()` with no arguments or values. Returned data may contain absolute native pointers borrowing storage within that same allocation. The allocation must remain alive and at a stable address continuously through native production and all pointer consumption/copying. Valueless, non-repeatable, not inherited. |
 | array count/capacity/byte size | Existing SAL and native array declarations | Use `_In_reads_`, `_Out_writes_`, `_Inout_updates_`, their byte-count variants, and related standard forms. Do not define parallel Win32 annotations. |
 | `AlsoUsableFor("TYPE")` | `_Win32_AlsoUsableFor_(TYPE)` | Typedef. |
-| `AssociatedEnum("TYPE")` | `_Win32_AssociatedEnum_(TYPE)` | Parameter, return value, or field when direct enum typing is impossible. `__typefix` is analyzer metadata, not a projection contract. |
+| `AssociatedEnum("TYPE")` | `_Win32_AssociatedEnum_(TYPE)` | Integer parameter, return value, or field, optionally through pointers. Emits the relationship without substituting the enum for native storage; enum width and signedness may differ. Projections own conversions. `__typefix` is analyzer metadata, not a projection contract. |
 | `AssociatedConstant("NAME")` | `_Win32_AssociatedConstant_(NAME)` | Enum. Associates a loose SDK constant with an enum without changing the constant's existing global spelling. Repeatable. |
 | input/output/optional/reserved | Existing SAL/MIDL | Use `_In_`, `_Out_`, `_Inout_`, `_Reserved_`, and their standard variants; no custom duplicates. |
 | `RetVal` | MIDL `[retval]` or existing direction SAL plus `_Win32_Retval_` | Parameter. windows-rs parses `[retval]` from MIDL-generated header comments; C/C++-only declarations use the custom annotation. |
@@ -542,10 +563,16 @@ Rules:
 - The projected enum is unscoped and preserves complete existing member names.
   Flags helpers emit `FlagsAttribute`; ordinary helpers do not.
 - `_Win32_AssociatedEnum_` on parameters, returns and fields identifies the group
-  without changing the native declaration's type. Its storage must match the
-  group. For these synthetic groups the C# emitter uses the group type, retaining
-  pointer depth and the former consumer signature; genuine native enum associations
-  keep their existing behavior. Conflicting legacy use-site types are errors.
+  or genuine native enum without changing the native declaration's type in either
+  generated bindings or final metadata. Emit `AssociatedEnumAttribute` on that
+  field, parameter or return value and retain native integer storage, pointer depth,
+  direction and layout. The enum and annotated integer/pointee may differ in both
+  width and signedness; even matching storage does not imply enum substitution.
+  Projections decide whether and how to convert values while preserving the native
+  ABI. Malformed annotations, unknown enum references and invalid targets remain
+  errors, as do legacy type remaps that replace the associated native storage.
+  A declaration genuinely typed as an enum remains enum-typed without this
+  annotation; annotating such a use redundantly is an error.
 - The scraper's per-partition `.headerEnums.cs` is generated from header facts and
   enters the existing architecture merge and final-winmd pipeline. Legacy-only
   groups still work. Exact matching legacy definitions are validated and not

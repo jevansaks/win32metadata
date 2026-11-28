@@ -52,7 +52,7 @@ namespace ClangSharpSourceToWinmdTests
                 .Where(line => !Selectors.Concat(ShellItemComOutputHeaderTests.Selectors).Concat(PropertyComOutputHeaderTests.Selectors)
                     .Concat(ShellComOutputHeaderTests.Selectors)
                     .Any(selector => line == selector + "=[ComOutPtr]")));
-            string current = File.ReadAllText(Path.Combine(root, "generation", "WinSDK", "emitter.settings.rsp"))
+            string current = FullHeaderMigrationExperimentTests.ReadRecoveryText("emitter.settings.rsp")
                 .Replace("\r\n", "\n");
             Assert.AreEqual(SyncComOutputHeaderTests.RetireRecords(ImagingComOutputHeaderTests.RetireRecords(AudioComOutputHeaderTests.RetireRecords(ClrComOutputHeaderTests.RetireRecords(ServiceComOutputHeaderTests.RetireRecords(MediaFoundationComOutputHeaderTests.RetireRecords(DirectXComOutputHeaderTests.RetireRecords(expected))))))), current);
             Assert.AreEqual(62, current.Split('\n').Count(line => line.Contains("[ComOutPtr]", StringComparison.Ordinal)));
@@ -82,10 +82,12 @@ namespace ClangSharpSourceToWinmdTests
                     .Replace(output, owner.EndsWith(".Idl", StringComparison.Ordinal)
                         ? "[out, annotation(\"_COM_Outptr_\")]   void                **ppvObj"
                         : "_COM_Outptr_  void **ppvObj");
+                if (!historical)
+                    expected = ResultHeaderTests.AddNativeIdlResultPolicy(expected, "IPersistMoniker::IsDirty");
                 CollectionAssert.AreEqual(Encoding.ASCII.GetBytes(expected),
                     historical ? ProductionSalLocalHeaderTests.ReadBeforeCutover("RecompiledIdlHeaders/um/" + owner) :
                         File.ReadAllBytes(Path.Combine(root, "generation", "WinSDK", "RecompiledIdlHeaders", "um", owner)),
-                    "No encoding, newline, or unrelated native changes: " + owner);
+                    "Only the exact SAL and selected result edits; preserve encoding and newlines: " + owner);
             }
         }
 

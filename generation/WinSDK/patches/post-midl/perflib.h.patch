@@ -1,0 +1,227 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/perflib.h b/generation/WinSDK/RecompiledIdlHeaders/um/perflib.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/perflib.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/perflib.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*++
+ Copyright (c) Microsoft Corporation.  All rights reserved.
+ 
+@@ -198,6 +199,13 @@ WINAPI
+     IN PVOID  Buffer,
+     IN ULONG  BufferSize
+ );
++#if defined(WIN32METADATA) && defined(__clang__)
++ULONG WINAPI
++PerfStopProvider(
++    _In_ HANDLE ProviderHandle
++    );
++#endif
++_Win32_SupportedOS_WindowsVista_
+ 
+ // Usually PerfSetCounterSetInfo() calls is automatically generated PerfAutoStartUp() function (generated
+ // by schema generation/parsing tool) to inform PERFLIB the layout of specific counterset.
+@@ -206,7 +214,7 @@ ULONG WINAPI
+ PerfStartProvider(
+     _In_     LPGUID          ProviderGuid,
+     _In_opt_ PERFLIBREQUEST  ControlCallback,
+-    _Out_    HANDLE        * phProvider
++    _Out_    _Win32_RAIIFree_(PerfStopProvider) HANDLE        * phProvider
+ );
+ 
+ // Start PERFLIB V2 provider with customized memory allocation/free routines.
+@@ -222,12 +230,13 @@ typedef struct _PROVIDER_CONTEXT {
+     PERF_MEM_FREE  MemFreeRoutine;
+     LPVOID         pMemContext;
+ } PERF_PROVIDER_CONTEXT, * PPERF_PROVIDER_CONTEXT;
++_Win32_SupportedOS_WindowsVista_
+ 
+ ULONG WINAPI
+ PerfStartProviderEx(
+     _In_ LPGUID ProviderGuid,
+     _In_opt_ PPERF_PROVIDER_CONTEXT ProviderContext,
+-    _Out_ PHANDLE Provider
++    _Out_ _Win32_RAIIFree_(PerfStopProvider) PHANDLE Provider
+     );
+ 
+ ULONG WINAPI
+@@ -241,6 +250,7 @@ ULONG WINAPI
+ PerfStopProvider(
+     _In_ HANDLE ProviderHandle
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ ULONG WINAPI
+ PerfSetCounterSetInfo(
+@@ -248,6 +258,8 @@ PerfSetCounterSetInfo(
+     _Inout_updates_bytes_(TemplateSize) PPERF_COUNTERSET_INFO Template,
+     _In_ ULONG TemplateSize
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ 
+ PPERF_COUNTERSET_INSTANCE WINAPI
+ PerfCreateInstance(
+@@ -256,12 +268,15 @@ PerfCreateInstance(
+     _In_ PCWSTR Name,
+     _In_ ULONG Id
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ ULONG WINAPI
+ PerfDeleteInstance(
+     _In_ HANDLE Provider,
+     _In_ PPERF_COUNTERSET_INSTANCE InstanceBlock
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ 
+ PPERF_COUNTERSET_INSTANCE WINAPI
+ PerfQueryInstance(
+@@ -270,6 +285,7 @@ PerfQueryInstance(
+     _In_ PCWSTR Name,
+     _In_ ULONG Id
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ ULONG WINAPI
+ PerfSetCounterRefValue(
+@@ -278,6 +294,7 @@ PerfSetCounterRefValue(
+     _In_ ULONG CounterId,
+     _In_ PVOID Address
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ ULONG WINAPI
+ PerfSetULongCounterValue(
+@@ -286,6 +303,7 @@ PerfSetULongCounterValue(
+     _In_ ULONG CounterId,
+     _In_ ULONG Value
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ ULONG WINAPI
+ PerfSetULongLongCounterValue(
+@@ -294,6 +312,7 @@ PerfSetULongLongCounterValue(
+     _In_ ULONG CounterId,
+     _In_ ULONGLONG Value
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ ULONG WINAPI
+ PerfIncrementULongCounterValue(
+@@ -302,6 +321,7 @@ PerfIncrementULongCounterValue(
+     _In_ ULONG CounterId,
+     _In_ ULONG Value
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ ULONG WINAPI
+ PerfIncrementULongLongCounterValue(
+@@ -310,6 +330,7 @@ PerfIncrementULongLongCounterValue(
+     _In_ ULONG CounterId,
+     _In_ ULONGLONG Value
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ ULONG WINAPI
+ PerfDecrementULongCounterValue(
+@@ -318,6 +339,7 @@ PerfDecrementULongCounterValue(
+     _In_ ULONG CounterId,
+     _In_ ULONG Value
+     );
++_Win32_SupportedOS_WindowsVista_
+ 
+ ULONG WINAPI
+ PerfDecrementULongLongCounterValue(
+@@ -643,6 +665,7 @@ typedef struct _PERF_COUNTER_DATA {
+     // BYTE Data[dwDataSize];
+     // BYTE Padding[];
+ } PERF_COUNTER_DATA, * PPERF_COUNTER_DATA;
++_Win32_SupportedOS_14393_
+ 
+ /*
+ PerfEnumerateCounterSet:
+@@ -680,6 +703,7 @@ PerfEnumerateCounterSet(
+     DWORD cCounterSetIds,
+     _Out_ LPDWORD pcCounterSetIdsActual
+     );
++_Win32_SupportedOS_14393_
+ 
+ /*
+ PerfEnumerateCounterSetInstances:
+@@ -729,6 +753,7 @@ PerfEnumerateCounterSetInstances(
+     DWORD cbInstances,
+     _Out_ LPDWORD pcbInstancesActual
+     );
++_Win32_SupportedOS_14393_
+ 
+ /*
+ PerfQueryCounterSetRegistrationInfo:
+@@ -806,13 +831,23 @@ phQuery:
+ Receives the query handle. The handle should be closed with
+ PerfCloseQueryHandle when it is no longer needed.
+ */
++#if defined(WIN32METADATA) && defined(__clang__)
++_Win32_SupportedOS_14393_
++_Success_(return == ERROR_SUCCESS)
++ULONG
++WINAPI
++PerfCloseQueryHandle(
++    _In_ HANDLE hQuery
++    );
++#endif
+ _Success_(return == ERROR_SUCCESS)
+ ULONG
+ WINAPI
+ PerfOpenQueryHandle(
+     _In_opt_z_ LPCWSTR szMachine,
+-    _Out_ HANDLE * phQuery
++    _Out_ _Win32_RAIIFree_(PerfCloseQueryHandle) HANDLE * phQuery
+     );
++_Win32_SupportedOS_14393_
+ 
+ /*
+ PerfCloseQueryHandle:
+@@ -828,6 +863,7 @@ WINAPI
+ PerfCloseQueryHandle(
+     _In_ HANDLE hQuery
+     );
++_Win32_SupportedOS_14393_
+ 
+ /*
+ PerfQueryCounterInfo:
+@@ -873,6 +909,7 @@ PerfQueryCounterInfo(
+     DWORD cbCounters,
+     _Out_ LPDWORD pcbCountersActual
+     );
++_Win32_SupportedOS_14393_
+ 
+ /*
+ PerfQueryCounterData:
+@@ -917,6 +954,7 @@ PerfQueryCounterData(
+     DWORD cbCounterBlock,
+     _Out_ LPDWORD pcbCounterBlockActual
+     );
++_Win32_SupportedOS_14393_
+ 
+ /*
+ PerfAddCounters:
+@@ -971,6 +1009,7 @@ PerfAddCounters(
+     _Inout_bytecount_(cbCounters) PPERF_COUNTER_IDENTIFIER pCounters,
+     DWORD cbCounters
+     );
++_Win32_SupportedOS_14393_
+ 
+ /*
+ PerfDeleteCounters:
+@@ -1016,3 +1055,9 @@ PerfDeleteCounters(
+ #pragma endregion
+ 
+ #endif /* _PERFLIB_H_ */
++
++#ifndef _WIN32METADATA_PERFLIB_SECURITY_SYSTEM_91_GROUPS_
++#define _WIN32METADATA_PERFLIB_SECURITY_SYSTEM_91_GROUPS_
++_Win32_Enum_(PERF_COUNTER_AGGREGATE_FUNC, unsigned int, PERF_AGGREGATE_UNDEFINED, PERF_AGGREGATE_TOTAL, PERF_AGGREGATE_AVG, PERF_AGGREGATE_MIN, PERF_AGGREGATE_MAX);
++_Win32_AnnotateField_(PERF_COUNTER_REG_INFO::AggregateFunc, _Win32_AssociatedEnum_(PERF_COUNTER_AGGREGATE_FUNC));
++#endif

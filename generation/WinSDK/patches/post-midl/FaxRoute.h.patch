@@ -1,0 +1,53 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/FaxRoute.h b/generation/WinSDK/RecompiledIdlHeaders/um/FaxRoute.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/FaxRoute.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/FaxRoute.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*++
+ 
+ Copyright (c) Microsoft Corporation.  All rights reserved.
+@@ -94,6 +95,8 @@
+     STATUS_DISABLE = 0,
+     STATUS_ENABLE = 1
+ };
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ 
+ 
+ //
+@@ -105,6 +108,8 @@
+     IN HANDLE HeapHandle,
+     IN PFAX_ROUTE_CALLBACKROUTINES FaxRouteCallbackRoutines
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ 
+ BOOL WINAPI
+ FaxRouteDeviceEnable(
+@@ -112,12 +117,16 @@
+     IN  DWORD DeviceId,
+     IN  LONG Enabled
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ 
+ BOOL WINAPI
+ FaxRouteDeviceChangeNotification(
+     IN  DWORD DeviceId,
+     IN  BOOL  NewDevice
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ 
+ BOOL WINAPI
+ FaxRouteGetRoutingInfo(
+@@ -126,6 +135,8 @@
+     IN  LPBYTE RoutingInfo,
+     OUT LPDWORD RoutingInfoSize
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ 
+ BOOL WINAPI
+ FaxRouteSetRoutingInfo(

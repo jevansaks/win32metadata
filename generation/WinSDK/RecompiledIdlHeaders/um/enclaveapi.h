@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /********************************************************************************
 *                                                                               *
 * enclaveapi.h -- ApiSet Contract for api-ms-win-core-enclave-l1-1-0            *
@@ -24,6 +25,8 @@ extern "C" {
 
 #pragma region Desktop Family or OneCore Or App Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_APP)
+_Win32_SetLastError_
+_Win32_SupportedOS_10240_
 
 WINBASEAPI
 _Success_(return != FALSE)
@@ -32,6 +35,8 @@ WINAPI
 IsEnclaveTypeSupported(
     _In_ DWORD flEnclaveType
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_10240_
 
 WINBASEAPI
 _Ret_maybenull_
@@ -48,6 +53,8 @@ CreateEnclave(
     _In_ DWORD dwInfoLength,
     _Out_opt_ LPDWORD lpEnclaveError
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_10240_
 
 WINBASEAPI
 _Success_(return != FALSE)
@@ -64,6 +71,8 @@ LoadEnclaveData(
     _Out_ PSIZE_T lpNumberOfBytesWritten,
     _Out_opt_ LPDWORD lpEnclaveError
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_10240_
 
 WINBASEAPI
 _Success_(return != FALSE)
@@ -91,6 +100,8 @@ LoadEnclaveImageA(
     _In_ LPVOID lpEnclaveAddress,
     _In_ LPCSTR lpImageName
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_16299_
 
 WINBASEAPI
 _Success_(return != FALSE)
@@ -106,6 +117,8 @@ LoadEnclaveImageW(
 #else
 #define LoadEnclaveImage  LoadEnclaveImageA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_16299_
 
 WINBASEAPI
 _Success_(return != FALSE)
@@ -117,6 +130,8 @@ CallEnclave(
     _In_ BOOL fWaitForThread,
     _Out_ LPVOID* lpReturnValue
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_16299_
 
 WINBASEAPI
 _Success_(return != FALSE)
@@ -126,6 +141,8 @@ TerminateEnclave(
     _In_ LPVOID lpAddress,
     _In_ BOOL fWait
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_16299_
 
 WINBASEAPI
 _Success_(return != FALSE)

@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //*****************************************************************************
 //  Copyright (C) 2007 Microsoft Corporation
 //  All rights reserved.
@@ -281,6 +282,7 @@ typedef struct WSMAN_API *WSMAN_API_HANDLE;
 //
 // -----------------------------------------------------------------------------
 // This API is used to initialize the WinRM client;
+_Win32_SupportedOS_Windows8_
 // It can be used by different clients on the same process, ie svchost.exe.
 // Returns a nonzero error code upon failure
 // -----------------------------------------------------------------------------
@@ -294,6 +296,7 @@ DWORD WINAPI WSManInitialize(
 // -----------------------------------------------------------------------------
 // This API deinitializes the Winrm client stack; all operations will 
 //  finish before this API will return; this is a sync call;
+_Win32_SupportedOS_Windows7_
 //  it is highly recommended that all operations are explictly cancelled 
 //  and all sessions are closed before calling this API
 // Returns non zero error code upon failure
@@ -303,6 +306,7 @@ DWORD WINAPI WSManDeinitialize(
     _Inout_opt_ WSMAN_API_HANDLE apiHandle,
     DWORD flags
     );
+_Win32_SupportedOS_Windows7_
 
 //
 // -----------------------------------------------------------------------------
@@ -373,6 +377,7 @@ typedef struct _WSMAN_PROXY_INFO
 // -----------------------------------------------------------------------------
 //
 typedef struct WSMAN_SESSION *WSMAN_SESSION_HANDLE;
+_Win32_SupportedOS_Windows7_
 
 //
 // -----------------------------------------------------------------------------
@@ -388,6 +393,7 @@ DWORD WINAPI WSManCreateSession(
     _In_opt_ WSMAN_PROXY_INFO *proxyInfo,
     _Out_ WSMAN_SESSION_HANDLE *session
     );
+_Win32_SupportedOS_Windows7_
 
 //
 // -----------------------------------------------------------------------------
@@ -462,6 +468,7 @@ enum WSManSessionOption
     WSMAN_OPTION_USE_INTEARACTIVE_TOKEN  = 34        // DWORD - When creating connection on local machine, use interactive token feature. 1 - default
 };
 typedef enum WSManSessionOption WSManSessionOption;
+_Win32_SupportedOS_Windows7_
 
 //
 // -----------------------------------------------------------------------------
@@ -474,6 +481,7 @@ DWORD WINAPI WSManSetSessionOption(
     WSManSessionOption option,
     _In_ WSMAN_DATA *data
     );
+_Win32_SupportedOS_Windows7_
 
 //
 // -----------------------------------------------------------------------------
@@ -486,6 +494,7 @@ DWORD WINAPI WSManGetSessionOptionAsDword(
     WSManSessionOption option,
     _Inout_ DWORD *value
     );
+_Win32_SupportedOS_Windows7_
 
 //
 // -----------------------------------------------------------------------------
@@ -553,6 +562,7 @@ enum WSManCallbackFlags
     // Flag that indicates for a receive operation that a delay stream request has been processed
     WSMAN_FLAG_CALLBACK_RECEIVE_DELAY_STREAM_REQUEST_PROCESSED = 0X2000
 };
+_Win32_SupportedOS_Windows7_
 
 //
 // -----------------------------------------------------------------------------
@@ -868,6 +878,7 @@ typedef struct _WSMAN_SHELL_ASYNC
     _In_opt_ PVOID operationContext;                         
     _In_ WSMAN_SHELL_COMPLETION_FUNCTION completionFunction;
 } WSMAN_SHELL_ASYNC;
+_Win32_SupportedOS_Windows7_
 
 //
 // -----------------------------------------------------------------------------
@@ -903,6 +914,7 @@ typedef struct _WSMAN_COMMAND_ARG_SET
     _In_reads_opt_(argsCount) PCWSTR *args;
 
 } WSMAN_COMMAND_ARG_SET;
+_Win32_SupportedOS_Windows7_
 
 void WINAPI WSManRunShellCommand(
 
@@ -929,6 +941,7 @@ void WINAPI WSManRunShellCommand(
 #define WSMAN_SIGNAL_SHELL_CODE_TERMINATE WSMAN_SHELL_NS L"/signal/terminate"
 #define WSMAN_SIGNAL_SHELL_CODE_CTRL_C WSMAN_SHELL_NS L"/signal/ctrl_c"
 #define WSMAN_SIGNAL_SHELL_CODE_CTRL_BREAK WSMAN_SHELL_NS L"/signal/ctrl_break"
+_Win32_SupportedOS_Windows7_
 
 void WINAPI WSManSignalShell(
 
@@ -939,6 +952,7 @@ void WINAPI WSManSignalShell(
     _In_ WSMAN_SHELL_ASYNC *async,
     _Out_ WSMAN_OPERATION_HANDLE *signalOperation  // should be closed using WSManCloseOperation
 );
+_Win32_SupportedOS_Windows7_
 
 //
 // -----------------------------------------------------------------------------
@@ -955,6 +969,7 @@ void WINAPI WSManReceiveShellOutput(
     _In_ WSMAN_SHELL_ASYNC *async,
     _Out_ WSMAN_OPERATION_HANDLE *receiveOperation // should be closed using WSManCloseOperation
 );
+_Win32_SupportedOS_Windows7_
 
 //
 // -----------------------------------------------------------------------------
@@ -973,6 +988,7 @@ void WINAPI WSManSendShellInput(
     _In_ WSMAN_SHELL_ASYNC *async,
     _Out_ WSMAN_OPERATION_HANDLE *sendOperation // should be closed using WSManCloseOperation
 );
+_Win32_SupportedOS_Windows7_
 
 //
 // -----------------------------------------------------------------------------
@@ -991,6 +1007,7 @@ void WINAPI WSManCloseCommand(
     DWORD flags,
     _In_ WSMAN_SHELL_ASYNC *async
     );
+_Win32_SupportedOS_Windows7_
 
 //
 // -----------------------------------------------------------------------------
@@ -1012,6 +1029,7 @@ void WINAPI WSManCloseShell(
 
 //New APIs defined for disconnect/reconnect
 #if defined(WSMAN_API_VERSION_1_1)
+_Win32_SupportedOS_Windows8_
 
 //
 // -----------------------------------------------------------------------------
@@ -1029,6 +1047,7 @@ void WINAPI WSManCreateShellEx(
     _In_ WSMAN_SHELL_ASYNC *async,
     _Out_ WSMAN_SHELL_HANDLE *shell // should be closed using WSManCloseShell
 );
+_Win32_SupportedOS_Windows8_
 
 //
 // -----------------------------------------------------------------------------
@@ -1046,6 +1065,7 @@ void WINAPI WSManRunShellCommandEx(
     _In_ WSMAN_SHELL_ASYNC *async,
     _Out_ WSMAN_COMMAND_HANDLE *command // should be closed using WSManCloseCommand
 );
+_Win32_SupportedOS_Windows8_
 
 //
 // -----------------------------------------------------------------------------
@@ -1058,6 +1078,7 @@ void WINAPI WSManDisconnectShell(
     _In_ WSMAN_SHELL_DISCONNECT_INFO* disconnectInfo,
     _In_ WSMAN_SHELL_ASYNC *async                                    
     );
+_Win32_SupportedOS_Windows8_
 
 //
 // -----------------------------------------------------------------------------
@@ -1069,6 +1090,7 @@ void WINAPI WSManReconnectShell(
     DWORD flags,  
     _In_ WSMAN_SHELL_ASYNC *async                                    
     );
+_Win32_SupportedOS_Windows8_
 
 //
 // -----------------------------------------------------------------------------
@@ -1083,6 +1105,7 @@ void WINAPI WSManReconnectShellCommand(
     DWORD flags,  
     _In_ WSMAN_SHELL_ASYNC *async                                    
     );
+_Win32_SupportedOS_Windows8_
 
 //
 // -----------------------------------------------------------------------------
@@ -1099,6 +1122,7 @@ void WINAPI WSManConnectShell(
     _In_ WSMAN_SHELL_ASYNC *async,
     _Out_ WSMAN_SHELL_HANDLE *shell // should be closed using WSManCloseShell
 );
+_Win32_SupportedOS_Windows8_
 
 //
 // -----------------------------------------------------------------------------
@@ -1172,6 +1196,7 @@ typedef struct _WSMAN_PLUGIN_REQUEST
     HANDLE shutdownNotificationHandle;
     PCWSTR dataLocale;
 } WSMAN_PLUGIN_REQUEST;
+_Win32_SupportedOS_Windows7_
 //
 // -----------------------------------------------------------------------------
 // This API is called by a plug-in that supports Shell commands.  When 
@@ -1234,6 +1259,7 @@ typedef VOID (WINAPI *WSMAN_PLUGIN_RELEASE_COMMAND_CONTEXT)(
 #define WSMAN_FLAG_RECEIVE_RESULT_NO_MORE_DATA 1
 #define WSMAN_FLAG_RECEIVE_FLUSH               2
 #define WSMAN_FLAG_RECEIVE_RESULT_DATA_BOUNDARY 4
+_Win32_SupportedOS_Windows7_
 
 DWORD WINAPI WSManPluginReceiveResult(
     _In_ WSMAN_PLUGIN_REQUEST *requestDetails,
@@ -1243,6 +1269,7 @@ DWORD WINAPI WSManPluginReceiveResult(
     _In_opt_ PCWSTR commandState,
     _In_ DWORD exitCode
     );
+_Win32_SupportedOS_Windows7_
 
 //
 // -----------------------------------------------------------------------------
@@ -1285,6 +1312,7 @@ DWORD WINAPI WSManPluginOperationComplete(
 #define WSMAN_PLUGIN_PARAMS_LARGEST_RESULT_SIZE 4
 #define WSMAN_PLUGIN_PARAMS_GET_REQUESTED_LOCALE 5 /* Returns WSMAN_DATA_TEXT */
 #define WSMAN_PLUGIN_PARAMS_GET_REQUESTED_DATA_LOCALE 6 /* Returns WSMAN_DATA_TEXT */
+_Win32_SupportedOS_Windows7_
 
 
 DWORD WINAPI WSManPluginGetOperationParameters ( 
@@ -1331,6 +1359,7 @@ DWORD WINAPI WSManPluginReportCompletion(
   _In_      PVOID pluginContext,
   _In_      DWORD flags
 );
+_Win32_SupportedOS_Windows7_
 
 
 //
@@ -1588,6 +1617,7 @@ typedef VOID (WINAPI * WSMAN_PLUGIN_AUTHORIZE_QUERY_QUOTA)(
 typedef VOID (WINAPI * WSMAN_PLUGIN_AUTHORIZE_RELEASE_CONTEXT)(
     _In_ PVOID userAuthorizationContext
     );
+_Win32_SupportedOS_Windows7_
 
 //
 // -----------------------------------------------------------------------------
@@ -1603,6 +1633,7 @@ DWORD WINAPI WSManPluginAuthzUserComplete (
     _In_ DWORD errorCode,
     _In_opt_ PCWSTR extendedErrorInformation
     );
+_Win32_SupportedOS_Windows7_
 
 DWORD WINAPI WSManPluginAuthzOperationComplete ( 
     _In_ WSMAN_SENDER_DETAILS *senderDetails,
@@ -1611,6 +1642,7 @@ DWORD WINAPI WSManPluginAuthzOperationComplete (
     _In_ DWORD errorCode,
     _In_opt_ PCWSTR extendedErrorInformation
     );
+_Win32_SupportedOS_Windows7_
 
 DWORD WINAPI WSManPluginAuthzQueryQuotaComplete ( 
     _In_ WSMAN_SENDER_DETAILS *senderDetails,

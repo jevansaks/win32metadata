@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*+--------------------------------------------------------------------------
 
 Microsoft Windows
@@ -66,11 +67,15 @@ typedef UINT32 TBS_HANDLE;
 #define TBS_COMMAND_PRIORITY_SYSTEM     400
 #define TBS_COMMAND_PRIORITY_MAX        0x80000000
 
+_Win32_Enum_(TBS_COMMAND_PRIORITY, unsigned int, TBS_COMMAND_PRIORITY_LOW, TBS_COMMAND_PRIORITY_NORMAL, TBS_COMMAND_PRIORITY_SYSTEM, TBS_COMMAND_PRIORITY_HIGH, TBS_COMMAND_PRIORITY_MAX);
+
 #define TBS_COMMAND_LOCALITY_ZERO       0
 #define TBS_COMMAND_LOCALITY_ONE        1
 #define TBS_COMMAND_LOCALITY_TWO        2
 #define TBS_COMMAND_LOCALITY_THREE      3
 #define TBS_COMMAND_LOCALITY_FOUR       4
+
+_Win32_Enum_(TBS_COMMAND_LOCALITY, unsigned int, TBS_COMMAND_LOCALITY_ZERO, TBS_COMMAND_LOCALITY_ONE, TBS_COMMAND_LOCALITY_TWO, TBS_COMMAND_LOCALITY_THREE, TBS_COMMAND_LOCALITY_FOUR);
 
 #define TBS_SUCCESS                     0
 
@@ -93,6 +98,7 @@ typedef struct tdTBS_CONTEXT_PARAMS
     UINT32 version;
 } TBS_CONTEXT_PARAMS, *PTBS_CONTEXT_PARAMS;
 typedef const TBS_CONTEXT_PARAMS *PCTBS_CONTEXT_PARAMS;
+_Win32_SupportedOS_WindowsVista_
 
 TBS_RESULT WINAPI
 Tbsi_Context_Create(
@@ -103,24 +109,28 @@ TBS_RESULT WINAPI
 Tbsi_Tpm_Vendor_Maintenance_Mode(
     _In_ PCTBS_CONTEXT_PARAMS pContextParams,
     _Out_ PTBS_HCONTEXT phContext);
+_Win32_SupportedOS_WindowsVista_
 
 TBS_RESULT WINAPI
 Tbsip_Context_Close(
     _In_ TBS_HCONTEXT   hContext);
+_Win32_SupportedOS_WindowsVista_
 
 TBS_RESULT WINAPI
 Tbsip_Submit_Command(
     _In_ TBS_HCONTEXT hContext,
-    _In_ TBS_COMMAND_LOCALITY Locality,
-    _In_ TBS_COMMAND_PRIORITY Priority,
+    _In_ _Win32_AssociatedEnum_(TBS_COMMAND_LOCALITY) TBS_COMMAND_LOCALITY Locality,
+    _In_ _Win32_AssociatedEnum_(TBS_COMMAND_PRIORITY) TBS_COMMAND_PRIORITY Priority,
     _In_reads_bytes_(cbCommand) PCBYTE pabCommand,
     _In_ UINT32 cbCommand,
     _Out_writes_bytes_(*pcbResult) PBYTE pabResult,
     _Inout_ PUINT32 pcbResult);
+_Win32_SupportedOS_WindowsVista_
 
 TBS_RESULT WINAPI
 Tbsip_Cancel_Commands(
     _In_ TBS_HCONTEXT hContext);
+_Win32_SupportedOS_WindowsVista_
 
 TBS_RESULT WINAPI
 Tbsi_Physical_Presence_Command(
@@ -212,11 +222,13 @@ typedef struct _TPM_DEVICE_INFO
 } TPM_DEVICE_INFO, *PTPM_DEVICE_INFO;
 typedef const TPM_DEVICE_INFO *PCTPM_DEVICE_INFO;
 #endif //TPM_VERSION_UNKNOWN
+_Win32_SupportedOS_Windows8_
 
 TBS_RESULT WINAPI
 Tbsi_GetDeviceInfo(
     _In_ UINT32 Size,
     _Out_writes_bytes_(Size) PVOID Info);
+_Win32_SupportedOS_Windows8_
 
 _Success_(return == TBS_SUCCESS)
 TBS_RESULT WINAPI
@@ -225,6 +237,7 @@ Tbsi_Get_OwnerAuth(
     _In_ TBS_OWNERAUTH_TYPE ownerauthType,
     _Out_writes_bytes_to_opt_(*pOutputBufLen, *pOutputBufLen) PBYTE pOutputBuf,
     _Inout_  PUINT32 pOutputBufLen);
+_Win32_SupportedOS_Windows8_
 
 TBS_RESULT WINAPI
 Tbsi_Revoke_Attestation();
@@ -280,6 +293,7 @@ Tbsi_Create_Windows_Key(
 #define TBS_TCGLOG_DRTM_BOOT        4
 // (User mode only) Returns the DRTM log associated with the most recent clean boot
 #define TBS_TCGLOG_DRTM_RESUME      5
+_Win32_SupportedOS_17134_
 // (User mode only) Returns the DRTM log associated with the current resume from hibernation
 
 _Success_(return == TBS_SUCCESS)

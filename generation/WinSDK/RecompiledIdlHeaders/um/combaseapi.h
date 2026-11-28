@@ -439,6 +439,7 @@ CoGetCurrentProcess(
 #pragma region Application or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
+_Win32_PreserveResult_
 _Check_return_
 _Win32_SupportedOS_Windows2000_
 WINOLEAPI
@@ -1396,6 +1397,7 @@ CoWaitForMultipleObjects(
 #pragma region Desktop or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
+_Win32_PreserveResult_
 _Check_return_
 _Win32_SupportedOS_Windows2000_
 WINOLEAPI
@@ -1460,7 +1462,7 @@ RoGetAgileReference(
  * the same time.
  */
 
-typedef HRESULT (STDAPICALLTYPE * LPFNGETCLASSOBJECT) (REFCLSID, REFIID, LPVOID *);
+typedef HRESULT (STDAPICALLTYPE * LPFNGETCLASSOBJECT) (REFCLSID, REFIID, _COM_Outptr_ LPVOID *);
 typedef HRESULT (STDAPICALLTYPE * LPFNCANUNLOADNOW)(void);
 
 _Check_return_

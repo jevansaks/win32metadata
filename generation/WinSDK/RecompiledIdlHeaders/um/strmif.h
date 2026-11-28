@@ -1176,6 +1176,7 @@ EXTERN_C const IID IID_ICreateDevEnum;
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
 #pragma endregion
+#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -1520,6 +1521,7 @@ EXTERN_C const IID IID_IPin;
 /* interface __MIDL_itf_strmif_0000_0002 */
 /* [local] */ 
 
+_WIN32META_ANNOTATE_METHOD_(IPin::QueryAccept, _Win32_PreserveResult_);
 typedef IPin *PPIN;
 
 
@@ -1660,6 +1662,7 @@ EXTERN_C const IID IID_IEnumPins;
 /* interface __MIDL_itf_strmif_0000_0003 */
 /* [local] */ 
 
+_WIN32META_ANNOTATE_METHOD_(IEnumPins::Next, _Win32_PreserveResult_);
 typedef IEnumPins *PENUMPINS;
 
 
@@ -1800,6 +1803,7 @@ EXTERN_C const IID IID_IEnumMediaTypes;
 /* interface __MIDL_itf_strmif_0000_0004 */
 /* [local] */ 
 
+_WIN32META_ANNOTATE_METHOD_(IEnumMediaTypes::Next, _Win32_PreserveResult_);
 typedef IEnumMediaTypes *PENUMMEDIATYPES;
 
 
@@ -2140,6 +2144,7 @@ EXTERN_C const IID IID_IEnumFilters;
 /* interface __MIDL_itf_strmif_0000_0006 */
 /* [local] */ 
 
+_WIN32META_ANNOTATE_METHOD_(IEnumFilters::Next, _Win32_PreserveResult_);
 typedef IEnumFilters *PENUMFILTERS;
 
 
@@ -3210,6 +3215,9 @@ EXTERN_C const IID IID_IMediaSample;
 /* interface __MIDL_itf_strmif_0000_0012 */
 /* [local] */ 
 
+_WIN32META_ANNOTATE_METHOD_(IMediaSample::IsDiscontinuity, _Win32_PreserveResult_);
+_WIN32META_ANNOTATE_METHOD_(IMediaSample::IsPreroll, _Win32_PreserveResult_);
+_WIN32META_ANNOTATE_METHOD_(IMediaSample::IsSyncPoint, _Win32_PreserveResult_);
 typedef IMediaSample *PMEDIASAMPLE;
 
 
@@ -4652,9 +4660,11 @@ enum tagAM_MEDIAEVENT_FLAGS
 };
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
 #pragma endregion
+#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 #pragma region Application Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP)
@@ -4996,6 +5006,7 @@ EXTERN_C const IID IID_ICodecAPI;
 /* interface __MIDL_itf_strmif_0000_0021 */
 /* [local] */ 
 
+_WIN32META_ANNOTATE_METHOD_(ICodecAPI::IsModifiable, _Win32_PreserveResult_);
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP) */
 #pragma endregion
 
@@ -5199,6 +5210,7 @@ EXTERN_C const IID IID_IEnumRegFilters;
 /* interface __MIDL_itf_strmif_0000_0022 */
 /* [local] */ 
 
+_WIN32META_ANNOTATE_METHOD_(IEnumRegFilters::Next, _Win32_PreserveResult_);
 typedef IEnumRegFilters *PENUMREGFILTERS;
 
 
@@ -19901,6 +19913,7 @@ EXTERN_C const IID IID_IAMPluginControl;
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
 #pragma endregion
+#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -20030,6 +20043,15 @@ EXTERN_C const IID IID_IPinConnection;
 
 #endif 	/* __IPinConnection_INTERFACE_DEFINED__ */
 
+
+/* interface __MIDL_itf_strmif_0000_0112 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_METHOD_(IPinConnection::IsEndPin, _Win32_PreserveResult_);
+
+
+extern RPC_IF_HANDLE __MIDL_itf_strmif_0000_0112_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_strmif_0000_0112_v0_0_s_ifspec;
 
 #ifndef __IPinFlowControl_INTERFACE_DEFINED__
 #define __IPinFlowControl_INTERFACE_DEFINED__

@@ -5,6 +5,7 @@
  *******************************************************/
 
 cpp_quote("#include <winapifamily.h>")
+cpp_quote("#include <win32metadata_annotations.h>")
 cpp_quote("")
 
 #pragma region Desktop Family
@@ -313,9 +314,14 @@ cpp_quote("")
 cpp_quote("DECLARE_HANDLE(HAMSICONTEXT);")
 cpp_quote("DECLARE_HANDLE(HAMSISESSION);")
 cpp_quote("")
+cpp_quote("#if defined(WIN32METADATA) && defined(__clang__)")
+cpp_quote("STDAPI_(VOID) AmsiUninitialize(")
+cpp_quote("    _In_  HAMSICONTEXT amsiContext);")
+cpp_quote("#endif")
+cpp_quote("")
 cpp_quote("STDAPI AmsiInitialize(")
 cpp_quote("    _In_  LPCWSTR appName,")
-cpp_quote("    _Outptr_ HAMSICONTEXT* amsiContext);")
+cpp_quote("    _Outptr_ _Win32_RAIIFree_(AmsiUninitialize) HAMSICONTEXT* amsiContext);")
 cpp_quote("")
 cpp_quote("STDAPI_(VOID) AmsiUninitialize(")
 cpp_quote("    _In_  HAMSICONTEXT amsiContext);")

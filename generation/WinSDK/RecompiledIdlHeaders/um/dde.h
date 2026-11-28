@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*****************************************************************************\
 *                                                                             *
 * dde.h -       Dynamic Data Exchange structures and definitions              *
@@ -171,6 +172,8 @@ typedef struct {
 	short	 cfFormat;
 	BYTE	 rgb[1];
 } DDEUP;
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 
 /*
@@ -183,19 +186,25 @@ DdeSetQualityOfService(
     HWND hwndClient,
     CONST SECURITY_QUALITY_OF_SERVICE *pqosNew,
     PSECURITY_QUALITY_OF_SERVICE pqosPrev);
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 BOOL
 WINAPI
 ImpersonateDdeClientWindow(
     HWND hWndClient,
     HWND hWndServer);
+_Win32_SupportedOS_Windows2000_
 
 /*
  * DDE message packing APIs
  */
 LPARAM APIENTRY PackDDElParam(_In_ UINT msg, _In_ UINT_PTR uiLo, _In_ UINT_PTR uiHi);
+_Win32_SupportedOS_Windows2000_
 BOOL   APIENTRY UnpackDDElParam(_In_ UINT msg, _In_ LPARAM lParam, _Out_ PUINT_PTR puiLo, _Out_ PUINT_PTR puiHi);
+_Win32_SupportedOS_Windows2000_
 BOOL   APIENTRY FreeDDElParam(_In_ UINT msg, _In_ LPARAM lParam);
+_Win32_SupportedOS_Windows2000_
 LPARAM APIENTRY ReuseDDElParam(LPARAM lParam, UINT msgIn, UINT msgOut, UINT_PTR uiLo, UINT_PTR uiHi);
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */

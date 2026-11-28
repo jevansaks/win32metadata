@@ -1,0 +1,28 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/OleAcc.idl b/generation/WinSDK/RecompiledIdlHeaders/um/OleAcc.idl
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/OleAcc.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/OleAcc.idl
+@@ -79,7 +79,7 @@
+ cpp_quote("STDAPI_(LRESULT) LresultFromObject(_In_ REFIID riid, _In_ WPARAM wParam, _In_ LPUNKNOWN punk);")
+ cpp_quote("STDAPI          ObjectFromLresult(_In_ LRESULT lResult, _In_ REFIID riid, _In_ WPARAM wParam, _Outptr_ void** ppvObject);")
+ cpp_quote("STDAPI          WindowFromAccessibleObject(_In_ IAccessible*, _Out_opt_ HWND* phwnd);")
+-cpp_quote("STDAPI          AccessibleObjectFromWindow(_In_ HWND hwnd, _In_ DWORD dwId, _In_ REFIID riid, _Outptr_ void **ppvObject);")
++cpp_quote("STDAPI          AccessibleObjectFromWindow(_In_ HWND hwnd, _In_ DWORD dwId, _In_ REFIID riid, _COM_Outptr_ void **ppvObject);")
+ cpp_quote("STDAPI          AccessibleObjectFromEvent(_In_ HWND hwnd, _In_ DWORD dwId, _In_ DWORD dwChildId, _Outptr_ IAccessible** ppacc, _Out_ VARIANT* pvarChild);")
+ cpp_quote("STDAPI          AccessibleObjectFromPoint(_In_ POINT ptScreen, _Outptr_ IAccessible ** ppacc, _Out_ VARIANT* pvarChild);")
+ cpp_quote("STDAPI          AccessibleChildren (_In_ IAccessible* paccContainer, _In_ LONG iChildStart, _In_ LONG cChildren, _Out_writes_(cChildren) VARIANT* rgvarChildren, _Out_ LONG* pcObtained);")
+@@ -103,10 +103,10 @@
+ cpp_quote("")
+ cpp_quote("STDAPI_(VOID)   GetOleaccVersionInfo(_Out_ DWORD* pVer, _Out_ DWORD* pBuild);")
+ cpp_quote("")
+-cpp_quote("STDAPI          CreateStdAccessibleObject(_In_ HWND hwnd, _In_ LONG idObject, _In_ REFIID riid, _Outptr_ void** ppvObject);")
+-cpp_quote("")
+-cpp_quote("STDAPI          CreateStdAccessibleProxyA(_In_ HWND hwnd, _In_ LPCSTR pClassName, _In_ LONG idObject, _In_ REFIID riid, _Outptr_ void** ppvObject);")
+-cpp_quote("STDAPI          CreateStdAccessibleProxyW(_In_ HWND hwnd, _In_ LPCWSTR pClassName, _In_ LONG idObject, _In_ REFIID riid, _Outptr_ void** ppvObject);")
++cpp_quote("STDAPI          CreateStdAccessibleObject(_In_ HWND hwnd, _In_ LONG idObject, _In_ REFIID riid, _COM_Outptr_ void** ppvObject);")
++cpp_quote("")
++cpp_quote("STDAPI          CreateStdAccessibleProxyA(_In_ HWND hwnd, _In_ LPCSTR pClassName, _In_ LONG idObject, _In_ REFIID riid, _COM_Outptr_ void** ppvObject);")
++cpp_quote("STDAPI          CreateStdAccessibleProxyW(_In_ HWND hwnd, _In_ LPCWSTR pClassName, _In_ LONG idObject, _In_ REFIID riid, _COM_Outptr_ void** ppvObject);")
+ cpp_quote("")
+ cpp_quote("#ifdef UNICODE")
+ cpp_quote("#define CreateStdAccessibleProxy     CreateStdAccessibleProxyW")

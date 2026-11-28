@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 
 /*++
 
@@ -26,6 +27,7 @@ Revision History:
 #ifdef __cplusplus
 extern "C" {
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 STDAPI
 GetNetScheduleAccountInformation(
@@ -33,6 +35,7 @@ GetNetScheduleAccountInformation(
     OUT   DWORD ccAccount,
     OUT _Out_writes_(ccAccount)  WCHAR wszAccount[]
     );
+_Win32_SupportedOS_WindowsVista_
 
 STDAPI
 SetNetScheduleAccountInformation(

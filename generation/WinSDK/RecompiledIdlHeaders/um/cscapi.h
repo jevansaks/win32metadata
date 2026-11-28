@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation.  All rights reserved.
@@ -28,6 +29,7 @@ Abstract:
 
 
 #include <specstrings.h>
+_Win32_SupportedOS_WindowsVista_
 
 //
 // Enable or disable the Offline Files feature. 
@@ -41,6 +43,7 @@ OfflineFilesEnable(
     );
 
 #if (NTDDI_VERSION >= NTDDI_WIN8)
+_Win32_SupportedOS_Windows8_
 //
 // Start Offline Files feature if it's available. 
 // If the feature is not available then a ERROR_NOT_SUPPORTED error is returned.
@@ -49,6 +52,7 @@ STDAPI_(DWORD)
 OfflineFilesStart(
     );
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 //
 // Query the active/inactive and enabled/disabled state of the Offline Files feature.
@@ -65,6 +69,7 @@ OfflineFilesQueryStatus(
     );
 
 #if (NTDDI_VERSION >= NTDDI_WIN8)
+_Win32_SupportedOS_Windows8_
 //
 // Query the active/inactive, enabled/disabled and available/unavailable state of the 
 // Offline Files feature.

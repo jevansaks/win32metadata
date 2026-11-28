@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 import "oaidl.idl";
 import "ocidl.idl";
 
@@ -293,7 +294,7 @@ const UINT DXGI_MAP_DISCARD = 4UL;
 interface IDXGISurface :
     IDXGIDeviceSubObject
 {
-    HRESULT GetDesc([out, annotation("_Out_")] DXGI_SURFACE_DESC *pDesc);
+    HRESULT GetDesc([out, annotation("_Out_"), retval] DXGI_SURFACE_DESC *pDesc);
     HRESULT Map(
         [out, annotation("_Out_")] DXGI_MAPPED_RECT *pLockedRect,
         [in] UINT MapFlags );
@@ -343,6 +344,7 @@ interface IDXGIAdapter : IDXGIObject
         [in, annotation("_In_")] REFGUID InterfaceName,
         [out, annotation("_Out_")] LARGE_INTEGER * pUMDVersion );
 };
+_Win32_AnnotateMethod_(IDXGIAdapter::EnumOutputs, _Win32_PreserveResult_)
 
 //--------------------------------------------------------------------------------------------------------
 const UINT DXGI_ENUM_MODES_INTERLACED = 1UL;
@@ -362,7 +364,7 @@ const UINT DXGI_ENUM_MODES_SCALING = 2UL;
 interface IDXGIOutput :
     IDXGIObject
 {
-    HRESULT GetDesc( [out,annotation("_Out_")] DXGI_OUTPUT_DESC *pDesc );
+    HRESULT GetDesc( [out,annotation("_Out_"), retval] DXGI_OUTPUT_DESC *pDesc );
     HRESULT GetDisplayModeList(
         [in] DXGI_FORMAT EnumFormat,
         [in] UINT Flags,
@@ -423,13 +425,15 @@ interface IDXGISwapChain :
     HRESULT GetFullscreenState(
         [out, annotation("_Out_opt_")] BOOL *pFullscreen,
         [out, annotation("_COM_Outptr_opt_result_maybenull_")] IDXGIOutput **ppTarget );
-    HRESULT GetDesc( [out, annotation("_Out_")] DXGI_SWAP_CHAIN_DESC *pDesc );
+    HRESULT GetDesc( [out, annotation("_Out_"), retval] DXGI_SWAP_CHAIN_DESC *pDesc );
     HRESULT ResizeBuffers( [in] UINT BufferCount, [in] UINT Width, [in] UINT Height, [in] DXGI_FORMAT NewFormat, [in] UINT SwapChainFlags );
     HRESULT ResizeTarget( [in, annotation("_In_")] const DXGI_MODE_DESC *pNewTargetParameters );
     HRESULT GetContainingOutput( [out, annotation("_COM_Outptr_")] IDXGIOutput **ppOutput );
     HRESULT GetFrameStatistics( [out, annotation("_Out_")] DXGI_FRAME_STATISTICS *pStats );
     HRESULT GetLastPresentCount( [out, annotation("_Out_")] UINT *pLastPresentCount );
 };
+_Win32_AnnotateMethod_(IDXGISwapChain::Present, _Win32_PreserveResult_)
+_Win32_AnnotateParameter_(IDXGISwapChain::ResizeBuffers, SwapChainFlags, _Win32_AssociatedEnum_(DXGI_SWAP_CHAIN_FLAG))
 
 //--------------------------------------------------------------------------------------------------------
 // The DXGIFactory
@@ -462,6 +466,8 @@ interface IDXGIFactory :
         [in] HMODULE Module,
         [out, annotation("_COM_Outptr_")] IDXGIAdapter **ppAdapter );
 };
+_Win32_AnnotateMethod_(IDXGIFactory::CreateSwapChain, _Win32_PreserveResult_)
+_Win32_AnnotateMethod_(IDXGIFactory::EnumAdapters, _Win32_PreserveResult_)
 
 //--------------------------------------------------------------------------------------------------------
 // DXGI instantiation
@@ -566,6 +572,7 @@ interface IDXGIFactory1 :
         [out, annotation("_COM_Outptr_")] IDXGIAdapter1 **ppAdapter );
     BOOL IsCurrent();
 };
+_Win32_AnnotateMethod_(IDXGIFactory1::EnumAdapters1, _Win32_PreserveResult_)
 
 //--------------------------------------------------------------------------------------------------------
 // The DXGIAdapter1
@@ -579,7 +586,7 @@ interface IDXGIFactory1 :
 interface IDXGIAdapter1 :
     IDXGIAdapter
 {
-    HRESULT GetDesc1( [out, annotation("_Out_")] DXGI_ADAPTER_DESC1 *pDesc );
+    HRESULT GetDesc1( [out, annotation("_Out_"), retval] DXGI_ADAPTER_DESC1 *pDesc );
 };
 
 //--------------------------------------------------------------------------------------------------------

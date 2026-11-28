@@ -1,9 +1,26 @@
 # SDK-Version: 10.0.28000.2705
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/dxcapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/dxcapi.h
-index 95cc56a0..987cc3f1 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/dxcapi.h
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/dxcapi.h
-@@ -73,7 +73,7 @@ typedef HRESULT(__stdcall *DxcCreateInstance2Proc)(_In_ IMalloc *pMalloc,
+@@ -46,7 +46,7 @@
+ /// This can be used with GetProcAddress to get the DxcCreateInstance function.
+ typedef HRESULT(__stdcall *DxcCreateInstanceProc)(_In_ REFCLSID rclsid,
+                                                   _In_ REFIID riid,
+-                                                  _Out_ LPVOID *ppv);
++                                                  _COM_Outptr_ LPVOID *ppv);
+ 
+ /// \brief Typedef for DxcCreateInstance2 function pointer.
+ ///
+@@ -54,7 +54,7 @@
+ typedef HRESULT(__stdcall *DxcCreateInstance2Proc)(_In_ IMalloc *pMalloc,
+                                                    _In_ REFCLSID rclsid,
+                                                    _In_ REFIID riid,
+-                                                   _Out_ LPVOID *ppv);
++                                                   _COM_Outptr_ LPVOID *ppv);
+ 
+ /// \brief Creates a single uninitialized object of the class associated with a
+ /// specified CLSID.
+@@ -73,7 +73,7 @@
  /// involvement.
  extern "C" DXC_API_IMPORT
      HRESULT __stdcall DxcCreateInstance(_In_ REFCLSID rclsid, _In_ REFIID riid,
@@ -12,7 +29,7 @@ index 95cc56a0..987cc3f1 100644
  
  /// \brief Version of DxcCreateInstance that takes an IMalloc interface.
  ///
-@@ -82,7 +82,7 @@ extern "C" DXC_API_IMPORT
+@@ -82,7 +82,7 @@
  extern "C" DXC_API_IMPORT
      HRESULT __stdcall DxcCreateInstance2(_In_ IMalloc *pMalloc,
                                           _In_ REFCLSID rclsid, _In_ REFIID riid,
@@ -21,7 +38,7 @@ index 95cc56a0..987cc3f1 100644
  
  // For convenience, equivalent definitions to CP_UTF8 and CP_UTF16.
  #define DXC_CP_UTF8 65001
-@@ -685,7 +685,7 @@ struct IDxcUtils : public IUnknown {
+@@ -685,7 +685,7 @@
    ///
    /// Use this with interfaces such as ID3D12ShaderReflection.
    virtual HRESULT STDMETHODCALLTYPE CreateReflection(
@@ -30,7 +47,7 @@ index 95cc56a0..987cc3f1 100644
  
    /// \brief Build arguments that can be passed to the Compile method.
    virtual HRESULT STDMETHODCALLTYPE BuildArguments(
-@@ -852,7 +852,7 @@ struct IDxcCompiler3 : public IUnknown {
+@@ -852,7 +852,7 @@
            *pIncludeHandler,  ///< user-provided interface to handle include
                               ///< directives (optional).
        _In_ REFIID riid,      ///< Interface ID for the result.
@@ -39,7 +56,7 @@ index 95cc56a0..987cc3f1 100644
        ) = 0;
  
    /// \brief Disassemble a program.
-@@ -860,7 +860,7 @@ struct IDxcCompiler3 : public IUnknown {
+@@ -860,7 +860,7 @@
        _In_ const DxcBuffer
            *pObject,     ///< Program to disassemble: dxil container or bitcode.
        _In_ REFIID riid, ///< Interface ID for the result.
@@ -48,7 +65,7 @@ index 95cc56a0..987cc3f1 100644
            *ppResult ///< IDxcResult: status, disassembly text, and errors.
        ) = 0;
  };
-@@ -1021,7 +1021,7 @@ struct IDxcContainerReflection : public IUnknown {
+@@ -1021,7 +1021,7 @@
    /// loaded using Load(), E_BOUND if idx is out of bounds, or other standard
    /// HRESULT error codes.
    virtual HRESULT STDMETHODCALLTYPE GetPartReflection(UINT32 idx, REFIID iid,

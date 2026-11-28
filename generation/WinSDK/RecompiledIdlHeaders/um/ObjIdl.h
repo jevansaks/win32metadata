@@ -2414,6 +2414,15 @@ void __RPC_STUB IEnumUnknown_RemoteNext_Stub(
 #endif 	/* __IEnumUnknown_INTERFACE_DEFINED__ */
 
 
+/* interface __MIDL_itf_objidl_0000_0011 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_METHOD_(IEnumUnknown::Next, _Win32_PreserveResult_);
+
+
+extern RPC_IF_HANDLE __MIDL_itf_objidl_0000_0011_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_objidl_0000_0011_v0_0_s_ifspec;
+
 #ifndef __IEnumString_INTERFACE_DEFINED__
 #define __IEnumString_INTERFACE_DEFINED__
 
@@ -2562,6 +2571,16 @@ void __RPC_STUB IEnumString_RemoteNext_Stub(
 
 #endif 	/* __IEnumString_INTERFACE_DEFINED__ */
 
+
+/* interface __MIDL_itf_objidl_0000_0012 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_METHOD_(IEnumString::Next, _Win32_PreserveResult_);
+_WIN32META_ANNOTATE_METHOD_(IEnumString::Skip, _Win32_PreserveResult_);
+
+
+extern RPC_IF_HANDLE __MIDL_itf_objidl_0000_0012_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_objidl_0000_0012_v0_0_s_ifspec;
 
 #ifndef __ISequentialStream_INTERFACE_DEFINED__
 #define __ISequentialStream_INTERFACE_DEFINED__
@@ -2712,6 +2731,16 @@ void __RPC_STUB ISequentialStream_RemoteWrite_Stub(
 
 #endif 	/* __ISequentialStream_INTERFACE_DEFINED__ */
 
+
+/* interface __MIDL_itf_objidl_0000_0013 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_METHOD_(ISequentialStream::Read, _Win32_PreserveResult_);
+_WIN32META_ANNOTATE_METHOD_(ISequentialStream::Write, _Win32_PreserveResult_);
+
+
+extern RPC_IF_HANDLE __MIDL_itf_objidl_0000_0013_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_objidl_0000_0013_v0_0_s_ifspec;
 
 #ifndef __IStream_INTERFACE_DEFINED__
 #define __IStream_INTERFACE_DEFINED__
@@ -10206,6 +10235,8 @@ void __RPC_STUB IEnumMoniker_RemoteNext_Stub(
 /* interface __MIDL_itf_objidl_0000_0065 */
 /* [local] */ 
 
+_WIN32META_ANNOTATE_METHOD_(IEnumMoniker::Next, _Win32_PreserveResult_);
+_WIN32META_ANNOTATE_METHOD_(IEnumMoniker::Skip, _Win32_PreserveResult_);
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES) */
 #pragma endregion
 #pragma region Desktop Family or OneCore Family
@@ -10797,6 +10828,15 @@ EXTERN_C const IID IID_IPersistStream;
 #endif 	/* __IPersistStream_INTERFACE_DEFINED__ */
 
 
+/* interface __MIDL_itf_objidl_0000_0069 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_METHOD_(IPersistStream::IsDirty, _Win32_PreserveResult_);
+
+
+extern RPC_IF_HANDLE __MIDL_itf_objidl_0000_0069_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_objidl_0000_0069_v0_0_s_ifspec;
+
 #ifndef __IMoniker_INTERFACE_DEFINED__
 #define __IMoniker_INTERFACE_DEFINED__
 
@@ -11276,6 +11316,7 @@ void __RPC_STUB IMoniker_RemoteBindToStorage_Stub(
 /* interface __MIDL_itf_objidl_0000_0070 */
 /* [local] */ 
 
+_WIN32META_ANNOTATE_METHOD_(IMoniker::IsEqual, _Win32_PreserveResult_);
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES) */
 #pragma endregion
 #pragma region Desktop Family or OneCore Family
@@ -12178,6 +12219,15 @@ EXTERN_C const IID IID_IPersistFile;
 #endif 	/* __IPersistFile_INTERFACE_DEFINED__ */
 
 
+/* interface __MIDL_itf_objidl_0000_0074 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_METHOD_(IPersistFile::IsDirty, _Win32_PreserveResult_);
+
+
+extern RPC_IF_HANDLE __MIDL_itf_objidl_0000_0074_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_objidl_0000_0074_v0_0_s_ifspec;
+
 #ifndef __IPersistStorage_INTERFACE_DEFINED__
 #define __IPersistStorage_INTERFACE_DEFINED__
 
@@ -12341,6 +12391,7 @@ EXTERN_C const IID IID_IPersistStorage;
 /* interface __MIDL_itf_objidl_0000_0075 */
 /* [local] */ 
 
+_WIN32META_ANNOTATE_METHOD_(IPersistStorage::IsDirty, _Win32_PreserveResult_);
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM) */
 #pragma endregion
 #pragma region Application Family or OneCore Family or Games Family
@@ -12768,6 +12819,15 @@ void __RPC_STUB IEnumFORMATETC_RemoteNext_Stub(
 
 #endif 	/* __IEnumFORMATETC_INTERFACE_DEFINED__ */
 
+
+/* interface __MIDL_itf_objidl_0000_0077 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_METHOD_(IEnumFORMATETC::Next, _Win32_PreserveResult_);
+
+
+extern RPC_IF_HANDLE __MIDL_itf_objidl_0000_0077_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_objidl_0000_0077_v0_0_s_ifspec;
 
 #ifndef __IEnumSTATDATA_INTERFACE_DEFINED__
 #define __IEnumSTATDATA_INTERFACE_DEFINED__
@@ -14324,6 +14384,8 @@ void __RPC_STUB IDataObject_RemoteSetData_Stub(
 /* interface __MIDL_itf_objidl_0000_0082 */
 /* [local] */ 
 
+_WIN32META_ANNOTATE_METHOD_(IDataObject::GetCanonicalFormatEtc, _Win32_PreserveResult_);
+_WIN32META_ANNOTATE_METHOD_(IDataObject::QueryGetData, _Win32_PreserveResult_);
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES) */
 #pragma endregion
 #pragma region Desktop Family or OneCore Family or Games Family

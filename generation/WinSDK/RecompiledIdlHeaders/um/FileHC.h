@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
     Copyright (c) 2002  Microsoft Corporation
@@ -631,6 +632,7 @@ FindSyncContextFromName(
 					//
 					OUT	struct FIO_CONTEXT**	ppContext
 					) ;
+_Win32_SetLastError_
 
 
 //

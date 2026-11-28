@@ -1,3 +1,5 @@
+cpp_quote("#include <win32metadata_annotations.h>")
+#include <win32metadata_annotations.h>
 cpp_quote("#include <winapifamily.h>")
 
 //+---------------------------------------------------------------------------
@@ -1181,6 +1183,8 @@ interface IEnumVARIANT : IUnknown
                 [out] IEnumVARIANT ** ppEnum
             );
 }
+_Win32_AnnotateMethod_(IEnumVARIANT::Next, _Win32_PreserveResult_)
+_Win32_AnnotateMethod_(IEnumVARIANT::Skip, _Win32_PreserveResult_)
 
 
 [

@@ -64,8 +64,7 @@ namespace ClangSharpSourceToWinmdTests
             Assert.AreEqual(11, Selectors.Length);
             Assert.IsFalse(records.Any(record => record.Split('=')[0].Contains('*')));
             foreach (string selector in Selectors) CollectionAssert.Contains(records, selector + "=[ComOutPtr]");
-            string current = File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
-                "generation", "WinSDK", "emitter.settings.rsp")).Replace("\r\n", "\n");
+            string current = FullHeaderMigrationExperimentTests.ReadRecoveryText("emitter.settings.rsp").Replace("\r\n", "\n");
             Assert.AreEqual(SyncComOutputHeaderTests.RetireRecords(ImagingComOutputHeaderTests.RetireRecords(RetireRecords(parent))), current, "Preserve the complete independent sidecar exactly.");
             CollectionAssert.AreEqual(SyncComOutputHeaderTests.RetireRecords(ImagingComOutputHeaderTests.RetireRecords(RetireRecords(parent))).Split('\n').Where(Contract).ToArray(),
                 current.Split('\n').Where(Contract).ToArray());
@@ -133,10 +132,19 @@ namespace ClangSharpSourceToWinmdTests
                     File.ReadAllBytes(Path.Combine(LastErrorHeaderTests.RepositoryRoot(), "generation", "WinSDK",
                         "RecompiledIdlHeaders", owner.Path.Replace('/', Path.DirectorySeparatorChar))), owner.Path);
             foreach (string idl in Idls)
-                CollectionAssert.AreEqual(Encoding.Latin1.GetBytes(PatchIdl(idl, Encoding.Latin1.GetString(
-                    ReadOriginalBytes("RecompiledIdlHeaders/um/" + idl)))),
+            {
+                string expected = PatchIdl(idl, Encoding.Latin1.GetString(
+                    ReadOriginalBytes("RecompiledIdlHeaders/um/" + idl)));
+                expected = idl switch
+                {
+                    "Audioclient.idl" => ResultHeaderTests.AddNativeIdlResultPolicy(expected, "IAudioClient::IsFormatSupported"),
+                    "axextend.idl" => ResultHeaderTests.AddNativeIdlResultPolicy(expected, "IEnumRegFilters::Next"),
+                    _ => expected,
+                };
+                CollectionAssert.AreEqual(Encoding.Latin1.GetBytes(expected),
                     File.ReadAllBytes(Path.Combine(LastErrorHeaderTests.RepositoryRoot(), "generation", "WinSDK",
                         "RecompiledIdlHeaders", "um", idl)), idl);
+            }
         }
 
         internal static string PatchIdl(string name, string text) => name switch

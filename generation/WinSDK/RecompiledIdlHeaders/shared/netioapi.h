@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //
 //    Copyright (C) Microsoft.  All rights reserved.
 //
@@ -224,6 +225,7 @@ typedef struct _MIB_IF_TABLE2 {
     ULONG NumEntries;
     MIB_IF_ROW2 Table[ANY_SIZE];
 } MIB_IF_TABLE2, *PMIB_IF_TABLE2;
+_Win32_SupportedOS_WindowsVista_
 
 _IRQL_requires_max_(PASSIVE_LEVEL)
 IPHLPAPI_DLL_LINKAGE
@@ -271,6 +273,7 @@ typedef enum _MIB_IF_ENTRY_LEVEL {
     MibIfEntryNormal = 0,
     MibIfEntryNormalWithoutStatistics = 2
 } MIB_IF_ENTRY_LEVEL, *PMIB_IF_ENTRY_LEVEL;
+_Win32_SupportedOS_15063_
 
 _IRQL_requires_max_(PASSIVE_LEVEL)
 IPHLPAPI_DLL_LINKAGE
@@ -313,6 +316,7 @@ Notes:
 
 --*/
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 _IRQL_requires_max_(PASSIVE_LEVEL)
 IPHLPAPI_DLL_LINKAGE
@@ -351,6 +355,7 @@ typedef enum _MIB_IF_TABLE_LEVEL {
     MibIfTableNormalWithoutStatistics
     #endif
 } MIB_IF_TABLE_LEVEL, *PMIB_IF_TABLE_LEVEL;
+_Win32_SupportedOS_WindowsVista_
 
 _IRQL_requires_max_(PASSIVE_LEVEL)
 IPHLPAPI_DLL_LINKAGE
@@ -497,6 +502,7 @@ typedef struct _MIB_IP_NETWORK_CONNECTION_BANDWIDTH_ESTIMATES {
     NL_BANDWIDTH_INFORMATION OutboundBandwidthInformation;
 } MIB_IP_NETWORK_CONNECTION_BANDWIDTH_ESTIMATES,
   *PMIB_IP_NETWORK_CONNECTION_BANDWIDTH_ESTIMATES;
+_Win32_SupportedOS_WindowsVista_
 
 _IRQL_requires_max_(PASSIVE_LEVEL)
 IPHLPAPI_DLL_LINKAGE
@@ -505,6 +511,7 @@ NETIOAPI_API
 GetIfStackTable(
     _Outptr_ PMIB_IFSTACK_TABLE *Table
     );
+_Win32_SupportedOS_WindowsVista_
 
 _IRQL_requires_max_(PASSIVE_LEVEL)
 IPHLPAPI_DLL_LINKAGE
@@ -513,6 +520,7 @@ NETIOAPI_API
 GetInvertedIfStackTable(
     _Outptr_ PMIB_INVERTEDIFSTACK_TABLE *Table
     );
+_Win32_SupportedOS_WindowsVista_
 
 _IRQL_requires_max_(PASSIVE_LEVEL)
 IPHLPAPI_DLL_LINKAGE
@@ -521,6 +529,7 @@ NETIOAPI_API
 GetIpInterfaceEntry(
     _Inout_ PMIB_IPINTERFACE_ROW Row
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 
 Routine Description:
@@ -557,6 +566,7 @@ GetIpInterfaceTable(
     _In_ ADDRESS_FAMILY Family,
     _Outptr_ PMIB_IPINTERFACE_TABLE *Table
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 
 Routine Description:
@@ -595,6 +605,7 @@ NETIOAPI_API_
 InitializeIpInterfaceEntry(
     _Inout_ PMIB_IPINTERFACE_ROW Row
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 
 Routine Description:
@@ -628,6 +639,7 @@ NotifyIpInterfaceChange(
     _In_ BOOLEAN InitialNotification,
     _Inout_ HANDLE *NotificationHandle
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 
 Routine Description:
@@ -676,6 +688,7 @@ NETIOAPI_API
 SetIpInterfaceEntry(
     _Inout_ PMIB_IPINTERFACE_ROW Row
     );
+_Win32_SupportedOS_Windows8_
 /*++
 
 Routine Description:
@@ -794,6 +807,7 @@ VOID
 
 #pragma region Desktop Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+_Win32_SupportedOS_WindowsVista_
 
 _IRQL_requires_max_(PASSIVE_LEVEL)
 IPHLPAPI_DLL_LINKAGE
@@ -802,6 +816,7 @@ NETIOAPI_API
 CreateUnicastIpAddressEntry(
     _In_ CONST MIB_UNICASTIPADDRESS_ROW *Row
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 
 Routine Description:
@@ -838,6 +853,7 @@ NETIOAPI_API
 DeleteUnicastIpAddressEntry(
     _In_ CONST MIB_UNICASTIPADDRESS_ROW *Row
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 
 Routine Description:
@@ -901,6 +917,7 @@ Notes:
 
 #pragma region Application Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+_Win32_SupportedOS_WindowsVista_
 
 _IRQL_requires_max_(PASSIVE_LEVEL)
 IPHLPAPI_DLL_LINKAGE
@@ -947,6 +964,7 @@ Notes:
 
 #pragma region Desktop Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+_Win32_SupportedOS_WindowsVista_
 
 _IRQL_requires_max_(PASSIVE_LEVEL)
 IPHLPAPI_DLL_LINKAGE
@@ -984,6 +1002,7 @@ Notes:
 
 #pragma region Application Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+_Win32_SupportedOS_WindowsVista_
 
 _IRQL_requires_max_(PASSIVE_LEVEL)
 IPHLPAPI_DLL_LINKAGE
@@ -1043,6 +1062,7 @@ VOID
     _In_ PVOID CallerContext,
     _In_ PMIB_UNICASTIPADDRESS_TABLE AddressTable
     );
+_Win32_SupportedOS_WindowsVista_
 
 _IRQL_requires_max_(PASSIVE_LEVEL)
 IPHLPAPI_DLL_LINKAGE
@@ -1061,6 +1081,7 @@ NotifyStableUnicastIpAddressTable(
 
 #pragma region Desktop Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+_Win32_SupportedOS_WindowsVista_
 
 _IRQL_requires_max_(PASSIVE_LEVEL)
 IPHLPAPI_DLL_LINKAGE
@@ -1120,6 +1141,7 @@ typedef struct _MIB_ANYCASTIPADDRESS_TABLE {
     ULONG NumEntries;
     MIB_ANYCASTIPADDRESS_ROW Table[ANY_SIZE];
 } MIB_ANYCASTIPADDRESS_TABLE, *PMIB_ANYCASTIPADDRESS_TABLE;
+_Win32_SupportedOS_WindowsVista_
 
 _IRQL_requires_max_(PASSIVE_LEVEL)
 IPHLPAPI_DLL_LINKAGE
@@ -1128,6 +1150,7 @@ NETIOAPI_API
 CreateAnycastIpAddressEntry(
     _In_ CONST MIB_ANYCASTIPADDRESS_ROW *Row
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 
 Routine Description:
@@ -1159,6 +1182,7 @@ NETIOAPI_API
 DeleteAnycastIpAddressEntry(
     _In_ CONST MIB_ANYCASTIPADDRESS_ROW *Row
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 
 Routine Description:
@@ -1190,6 +1214,7 @@ NETIOAPI_API
 GetAnycastIpAddressEntry(
     _Inout_ PMIB_ANYCASTIPADDRESS_ROW Row
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 
 Routine Description:
@@ -1279,6 +1304,7 @@ typedef struct _MIB_MULTICASTIPADDRESS_TABLE {
     ULONG NumEntries;
     MIB_MULTICASTIPADDRESS_ROW Table[ANY_SIZE];
 } MIB_MULTICASTIPADDRESS_TABLE, *PMIB_MULTICASTIPADDRESS_TABLE;
+_Win32_SupportedOS_WindowsVista_
 
 _IRQL_requires_max_(PASSIVE_LEVEL)
 IPHLPAPI_DLL_LINKAGE
@@ -1287,6 +1313,7 @@ NETIOAPI_API
 GetMulticastIpAddressEntry(
     _Inout_ PMIB_MULTICASTIPADDRESS_ROW Row
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 
 Routine Description:
@@ -1417,6 +1444,7 @@ VOID
     _In_opt_ PMIB_IPFORWARD_ROW2 Row,
     _In_ MIB_NOTIFICATION_TYPE NotificationType
     );
+_Win32_SupportedOS_WindowsVista_
 
 _IRQL_requires_max_(PASSIVE_LEVEL)
 IPHLPAPI_DLL_LINKAGE
@@ -1425,6 +1453,7 @@ NETIOAPI_API
 CreateIpForwardEntry2(
     _In_ CONST MIB_IPFORWARD_ROW2 *Row
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 
 Routine Description:
@@ -1492,6 +1521,7 @@ Notes:
 
 #pragma region Application Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+_Win32_SupportedOS_WindowsVista_
 
 _IRQL_requires_max_(PASSIVE_LEVEL)
 IPHLPAPI_DLL_LINKAGE
@@ -1549,6 +1579,7 @@ Notes:
 
 #pragma region Desktop Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+_Win32_SupportedOS_WindowsVista_
 
 _IRQL_requires_max_(PASSIVE_LEVEL)
 IPHLPAPI_DLL_LINKAGE
@@ -1591,6 +1622,7 @@ Notes:
 
 #pragma region Application Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+_Win32_SupportedOS_WindowsVista_
 
 _IRQL_requires_max_(PASSIVE_LEVEL)
 IPHLPAPI_DLL_LINKAGE
@@ -1636,6 +1668,7 @@ Notes:
 
 #pragma region Desktop Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+_Win32_SupportedOS_WindowsVista_
 
 _IRQL_requires_max_(PASSIVE_LEVEL)
 IPHLPAPI_DLL_LINKAGE
@@ -1644,6 +1677,7 @@ NETIOAPI_API_
 InitializeIpForwardEntry(
     _Out_ PMIB_IPFORWARD_ROW2 Row
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 
 Routine Description:
@@ -1677,6 +1711,7 @@ NotifyRouteChange2(
     _In_ BOOLEAN InitialNotification,
     _Inout_ HANDLE *NotificationHandle
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 
 Routine Description:
@@ -1809,6 +1844,7 @@ typedef struct _MIB_IPPATH_TABLE {
     ULONG NumEntries;
     MIB_IPPATH_ROW Table[ANY_SIZE];
 } MIB_IPPATH_TABLE, *PMIB_IPPATH_TABLE;
+_Win32_SupportedOS_WindowsVista_
 
 
 _IRQL_requires_max_(PASSIVE_LEVEL)
@@ -1818,6 +1854,7 @@ NETIOAPI_API
 FlushIpPathTable(
     _In_ ADDRESS_FAMILY Family
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 
 Routine Description:
@@ -1849,6 +1886,7 @@ NETIOAPI_API
 GetIpPathEntry(
     _Inout_ PMIB_IPPATH_ROW Row
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 
 Routine Description:
@@ -1956,6 +1994,7 @@ typedef struct _MIB_IPNET_TABLE2 {
     ULONG NumEntries;
     MIB_IPNET_ROW2 Table[ANY_SIZE];
 } MIB_IPNET_TABLE2, *PMIB_IPNET_TABLE2;
+_Win32_SupportedOS_WindowsVista_
 
 _IRQL_requires_max_(PASSIVE_LEVEL)
 IPHLPAPI_DLL_LINKAGE
@@ -1964,6 +2003,7 @@ NETIOAPI_API
 CreateIpNetEntry2(
     _In_ CONST MIB_IPNET_ROW2 *Row
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 
 Routine Description:
@@ -1996,6 +2036,7 @@ NETIOAPI_API
 DeleteIpNetEntry2(
     _In_ CONST MIB_IPNET_ROW2 *Row
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 
 Routine Description:
@@ -2029,6 +2070,7 @@ FlushIpNetTable2(
     _In_ ADDRESS_FAMILY Family,
     _In_ NET_IFINDEX InterfaceIndex
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 
 Routine Description:
@@ -2065,6 +2107,7 @@ NETIOAPI_API
 GetIpNetEntry2(
     _Inout_ PMIB_IPNET_ROW2 Row
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 
 Routine Description:
@@ -2100,6 +2143,7 @@ GetIpNetTable2(
     _In_ ADDRESS_FAMILY Family,
     _Outptr_ PMIB_IPNET_TABLE2 *Table
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 
 Routine Description:
@@ -2139,6 +2183,7 @@ ResolveIpNetEntry2(
     _Inout_ PMIB_IPNET_ROW2 Row,
     _In_opt_ CONST SOCKADDR_INET *SourceAddress
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 
 Routine Description:
@@ -2222,6 +2267,7 @@ VOID
     _In_ USHORT Port,
     _Inout_ MIB_NOTIFICATION_TYPE NotificationType
     );
+_Win32_SupportedOS_WindowsVista_
 
 _IRQL_requires_max_(PASSIVE_LEVEL)
 IPHLPAPI_DLL_LINKAGE
@@ -2233,6 +2279,7 @@ NotifyTeredoPortChange(
     _In_ BOOLEAN InitialNotification,
     _Inout_ HANDLE *NotificationHandle
     );
+_Win32_SupportedOS_WindowsVista_
 
 _IRQL_requires_max_(PASSIVE_LEVEL)
 IPHLPAPI_DLL_LINKAGE
@@ -2280,6 +2327,7 @@ Return Value:
 
 #pragma region Application Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+_Win32_SupportedOS_WindowsVista_
 
 _IRQL_requires_max_(PASSIVE_LEVEL)
 IPHLPAPI_DLL_LINKAGE
@@ -2287,6 +2335,7 @@ NETIOAPI_API
 CancelMibChangeNotify2(
     _In_ HANDLE NotificationHandle
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 
 Routine Description:
@@ -2337,6 +2386,7 @@ Return Value:
 
 #pragma region Desktop Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+_Win32_SupportedOS_WindowsVista_
 
 _IRQL_requires_max_(PASSIVE_LEVEL)
 IPHLPAPI_DLL_LINKAGE
@@ -2404,6 +2454,7 @@ Return Value:
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
 struct sockaddr;
+_Win32_SupportedOS_WindowsXP_
 
 IPHLPAPI_DLL_LINKAGE
 _NETIOAPI_SUCCESS_
@@ -2478,6 +2529,7 @@ ConvertCompartmentIdToGuid(
     _In_ NET_IF_COMPARTMENT_ID CompartmentId,
     _Out_ GUID *CompartmentGuid
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 
 Routine Description:
@@ -2506,6 +2558,7 @@ ConvertInterfaceNameToLuidA(
     _In_z_ CONST CHAR *InterfaceName,
     _Out_ NET_LUID *InterfaceLuid
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 
 Routine Description:
@@ -2534,6 +2587,7 @@ ConvertInterfaceNameToLuidW(
     _In_z_ CONST WCHAR *InterfaceName,
     _Out_ NET_LUID *InterfaceLuid
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 
 Routine Description:
@@ -2563,6 +2617,7 @@ ConvertInterfaceLuidToNameA(
     _Out_writes_(Length) PSTR InterfaceName,
     _In_ SIZE_T Length
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 
 Routine Description:
@@ -2594,6 +2649,7 @@ ConvertInterfaceLuidToNameW(
     _Out_writes_(Length) PWSTR InterfaceName,
     _In_ SIZE_T Length
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 
 Routine Description:
@@ -2624,6 +2680,7 @@ ConvertInterfaceLuidToIndex(
     _In_ CONST NET_LUID *InterfaceLuid,
     _Out_ PNET_IFINDEX InterfaceIndex
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 
 Routine Description:
@@ -2652,6 +2709,7 @@ ConvertInterfaceIndexToLuid(
     _In_ NET_IFINDEX InterfaceIndex,
     _Out_ PNET_LUID InterfaceLuid
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 
 Routine Description:
@@ -2681,6 +2739,7 @@ ConvertInterfaceLuidToAlias(
     _Out_writes_(Length) PWSTR InterfaceAlias,
     _In_ SIZE_T Length
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 
 Routine Description:
@@ -2711,6 +2770,7 @@ ConvertInterfaceAliasToLuid(
     _In_z_ CONST WCHAR *InterfaceAlias,
     _Out_ PNET_LUID InterfaceLuid
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 
 Routine Description:
@@ -2788,6 +2848,7 @@ Return Value:
 --*/
 
 #define IF_NAMESIZE NDIS_IF_MAX_STRING_SIZE
+_Win32_SupportedOS_WindowsVista_
 
 _IRQL_requires_max_(PASSIVE_LEVEL)
 IPHLPAPI_DLL_LINKAGE
@@ -2796,6 +2857,7 @@ NETIOAPI_API_
 if_nametoindex(
     _In_ PCSTR InterfaceName
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 
 Routine Description:
@@ -3151,6 +3213,7 @@ Return Value:
 --*/
 
 #pragma warning(pop)
+_Win32_SupportedOS_WindowsVista_
 
 IPHLPAPI_DLL_LINKAGE
 NETIOAPI_API
@@ -3158,6 +3221,7 @@ ConvertLengthToIpv4Mask(
     _In_ ULONG MaskLength,
     _Out_ PULONG Mask
     );
+_Win32_SupportedOS_WindowsVista_
 /*++
 
 Routine Description:
@@ -3537,6 +3601,7 @@ SetInterfaceDnsSettings(
     _In_ GUID Interface,
     _In_ const DNS_INTERFACE_SETTINGS *Settings
     );
+_Win32_SupportedOS_19041_
 /*++
 
 Routine Description:
@@ -3566,6 +3631,7 @@ NETIOAPI_API
 GetNetworkConnectivityHint(
     _Out_ NL_NETWORK_CONNECTIVITY_HINT *ConnectivityHint
     );
+_Win32_SupportedOS_19041_
 /*++
 
 Routine Description:
@@ -3622,6 +3688,7 @@ VOID
     _In_ PVOID CallerContext,
     _In_ NL_NETWORK_CONNECTIVITY_HINT ConnectivityHint
     );
+_Win32_SupportedOS_19041_
 
 _IRQL_requires_max_(PASSIVE_LEVEL)
 IPHLPAPI_DLL_LINKAGE

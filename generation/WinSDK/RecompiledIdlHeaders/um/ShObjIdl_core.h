@@ -1944,6 +1944,7 @@ extern "C"{
 /* interface __MIDL_itf_shobjidl_core_0000_0000 */
 /* [local] */ 
 
+#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -2363,6 +2364,7 @@ EXTERN_C const IID IID_IContextMenu;
 /* interface __MIDL_itf_shobjidl_core_0000_0001 */
 /* [local] */ 
 
+_WIN32META_ANNOTATE_METHOD_(IContextMenu::QueryContextMenu, _Win32_PreserveResult_);
 typedef IContextMenu *LPCONTEXTMENU;
 
 
@@ -3894,6 +3896,10 @@ void __RPC_STUB IEnumIDList_RemoteNext_Stub(
 /* interface __MIDL_itf_shobjidl_core_0000_0012 */
 /* [local] */ 
 
+_WIN32META_ANNOTATE_METHOD_(IEnumIDList::Next, _Win32_PreserveResult_);
+_WIN32META_ANNOTATE_METHOD_(IEnumIDList::Skip, _Win32_PreserveResult_);
+_WIN32META_ANNOTATE_METHOD_(IEnumIDList::Reset, _Win32_PreserveResult_);
+_WIN32META_ANNOTATE_METHOD_(IEnumIDList::Clone, _Win32_PreserveResult_);
 typedef IEnumIDList *LPENUMIDLIST;
 
 
@@ -4051,6 +4057,7 @@ void __RPC_STUB IEnumFullIDList_RemoteNext_Stub(
 /* interface __MIDL_itf_shobjidl_core_0000_0013 */
 /* [local] */ 
 
+_WIN32META_ANNOTATE_METHOD_(IEnumFullIDList::Next, _Win32_PreserveResult_);
 /* [v1_enum] */ 
 enum _SHGDNF
     {
@@ -4914,6 +4921,8 @@ void __RPC_STUB IShellFolder_RemoteSetNameOf_Stub(
 /* interface __MIDL_itf_shobjidl_core_0000_0017 */
 /* [local] */ 
 
+_WIN32META_ANNOTATE_METHOD_(IShellFolder::EnumObjects, _Win32_PreserveResult_);
+_WIN32META_ANNOTATE_METHOD_(IShellFolder::CompareIDs, _Win32_PreserveResult_);
 typedef IShellFolder *LPSHELLFOLDER;
 
 typedef struct EXTRASEARCH
@@ -5825,6 +5834,16 @@ EXTERN_C const IID IID_IShellView;
 #endif 	/* __IShellView_INTERFACE_DEFINED__ */
 
 
+/* interface __MIDL_itf_shobjidl_core_0000_0020 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_METHOD_(IShellView::TranslateAccelerator, _Win32_PreserveResult_);
+_WIN32META_ANNOTATE_PARAMETER_(IShellView::GetItemObject, uItem, _Win32_AssociatedEnum_(_SVGIO));
+
+
+extern RPC_IF_HANDLE __MIDL_itf_shobjidl_core_0000_0020_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_shobjidl_core_0000_0020_v0_0_s_ifspec;
+
 #ifndef __IShellView2_INTERFACE_DEFINED__
 #define __IShellView2_INTERFACE_DEFINED__
 
@@ -6418,6 +6437,8 @@ EXTERN_C const IID IID_IFolderView;
 /* [local] */ 
 
 #define SID_SFolderView IID_IFolderView    // folder view, usually IFolderView
+_WIN32META_ANNOTATE_PARAMETER_(IFolderView::ItemCount, uFlags, _Win32_AssociatedEnum_(_SVGIO));
+_WIN32META_ANNOTATE_PARAMETER_(IFolderView::Items, uFlags, _Win32_AssociatedEnum_(_SVGIO));
 #if (NTDDI_VERSION >= NTDDI_VISTA) || (_WIN32_IE >= _WIN32_IE_IE70)
 #ifndef NO_SHOBJIDL_SORTDIRECTION
 /* [v1_enum] */ 
@@ -13750,6 +13771,16 @@ EXTERN_C const IID IID_IShellLinkA;
 #endif 	/* __IShellLinkA_INTERFACE_DEFINED__ */
 
 
+/* interface __MIDL_itf_shobjidl_core_0000_0059 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_METHOD_(IShellLinkA::GetPath, _Win32_PreserveResult_);
+_WIN32META_ANNOTATE_METHOD_(IShellLinkA::GetIDList, _Win32_PreserveResult_);
+
+
+extern RPC_IF_HANDLE __MIDL_itf_shobjidl_core_0000_0059_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_shobjidl_core_0000_0059_v0_0_s_ifspec;
+
 #ifndef __IShellLinkW_INTERFACE_DEFINED__
 #define __IShellLinkW_INTERFACE_DEFINED__
 
@@ -14097,6 +14128,16 @@ EXTERN_C const IID IID_IShellLinkW;
 
 #endif 	/* __IShellLinkW_INTERFACE_DEFINED__ */
 
+
+/* interface __MIDL_itf_shobjidl_core_0000_0060 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_METHOD_(IShellLinkW::GetPath, _Win32_PreserveResult_);
+_WIN32META_ANNOTATE_METHOD_(IShellLinkW::GetIDList, _Win32_PreserveResult_);
+
+
+extern RPC_IF_HANDLE __MIDL_itf_shobjidl_core_0000_0060_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_shobjidl_core_0000_0060_v0_0_s_ifspec;
 
 #ifndef __IShellLinkDataList_INTERFACE_DEFINED__
 #define __IShellLinkDataList_INTERFACE_DEFINED__
@@ -28613,6 +28654,16 @@ EXTERN_C const IID IID_IExplorerCommand;
 #endif 	/* __IExplorerCommand_INTERFACE_DEFINED__ */
 
 
+/* interface __MIDL_itf_shobjidl_core_0000_0142 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_PARAMETER_(IExplorerCommand::GetState, pCmdState, _Win32_AssociatedEnum_(_EXPCMDSTATE));
+_WIN32META_ANNOTATE_PARAMETER_(IExplorerCommand::GetFlags, pFlags, _Win32_AssociatedEnum_(_EXPCMDFLAGS));
+
+
+extern RPC_IF_HANDLE __MIDL_itf_shobjidl_core_0000_0142_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_shobjidl_core_0000_0142_v0_0_s_ifspec;
+
 #ifndef __IExplorerCommandState_INTERFACE_DEFINED__
 #define __IExplorerCommandState_INTERFACE_DEFINED__
 
@@ -28945,6 +28996,15 @@ void __RPC_STUB IEnumExplorerCommand_RemoteNext_Stub(
 
 #endif 	/* __IEnumExplorerCommand_INTERFACE_DEFINED__ */
 
+
+/* interface __MIDL_itf_shobjidl_core_0000_0145 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_METHOD_(IEnumExplorerCommand::Next, _Win32_PreserveResult_);
+
+
+extern RPC_IF_HANDLE __MIDL_itf_shobjidl_core_0000_0145_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_shobjidl_core_0000_0145_v0_0_s_ifspec;
 
 #ifndef __IExplorerCommandProvider_INTERFACE_DEFINED__
 #define __IExplorerCommandProvider_INTERFACE_DEFINED__
@@ -32637,6 +32697,15 @@ EXTERN_C const IID IID_IAssocHandler;
 
 #endif 	/* __IAssocHandler_INTERFACE_DEFINED__ */
 
+
+/* interface __MIDL_itf_shobjidl_core_0000_0167 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_METHOD_(IAssocHandler::IsRecommended, _Win32_PreserveResult_);
+
+
+extern RPC_IF_HANDLE __MIDL_itf_shobjidl_core_0000_0167_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_shobjidl_core_0000_0167_v0_0_s_ifspec;
 
 #ifndef __IEnumAssocHandlers_INTERFACE_DEFINED__
 #define __IEnumAssocHandlers_INTERFACE_DEFINED__

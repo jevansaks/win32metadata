@@ -1,3 +1,5 @@
+cpp_quote("#include <win32metadata_annotations.h>")
+#include <win32metadata_annotations.h>
 //------------------------------------------------------------------------------
 // File: AXCore.idl
 //
@@ -292,6 +294,7 @@ interface IPin : IUnknown {
                 [in] REFERENCE_TIME tStop,
                 [in] double dRate);
 }
+_Win32_AnnotateMethod_(IPin::QueryAccept, _Win32_PreserveResult_)
 
 typedef IPin *PPIN;
 
@@ -327,6 +330,7 @@ interface IEnumPins : IUnknown {
         [out AM_ANNOTATION("_Out_")] IEnumPins **ppEnum
     );
 }
+_Win32_AnnotateMethod_(IEnumPins::Next, _Win32_PreserveResult_)
 
 typedef IEnumPins *PENUMPINS;
 
@@ -367,6 +371,7 @@ interface IEnumMediaTypes : IUnknown {
         [out AM_ANNOTATION("_Out_")] IEnumMediaTypes **ppEnum
     );
 }
+_Win32_AnnotateMethod_(IEnumMediaTypes::Next, _Win32_PreserveResult_)
 
 typedef IEnumMediaTypes *PENUMMEDIATYPES;
 
@@ -518,6 +523,7 @@ interface IEnumFilters : IUnknown {
         ( [out AM_ANNOTATION("_Out_")] IEnumFilters **ppEnum
         );
 }
+_Win32_AnnotateMethod_(IEnumFilters::Next, _Win32_PreserveResult_)
 
 typedef IEnumFilters *PENUMFILTERS;
 
@@ -871,6 +877,9 @@ interface IMediaSample : IUnknown {
         [in, annotation("_In_opt_")] LONGLONG * pTimeEnd
     );
 }
+_Win32_AnnotateMethod_(IMediaSample::IsDiscontinuity, _Win32_PreserveResult_)
+_Win32_AnnotateMethod_(IMediaSample::IsPreroll, _Win32_PreserveResult_)
+_Win32_AnnotateMethod_(IMediaSample::IsSyncPoint, _Win32_PreserveResult_)
 
 typedef IMediaSample *PMEDIASAMPLE;
 

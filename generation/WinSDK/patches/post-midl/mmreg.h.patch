@@ -1,0 +1,19 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/mmreg.h b/generation/WinSDK/RecompiledIdlHeaders/shared/mmreg.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/shared/mmreg.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/shared/mmreg.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ #include <winapifamily.h>
+ 
+ //*@@@+++@@@@******************************************************************
+@@ -3811,4 +3812,8 @@
+ 
+ #endif /* __midl */
+ 
+-
++#ifndef _WIN32METADATA_MMREG_SECURITY_SYSTEM_91_GROUPS_
++#define _WIN32METADATA_MMREG_SECURITY_SYSTEM_91_GROUPS_
++_Win32_Enum_(MPEGLAYER3WAVEFORMAT_FLAGS, unsigned int, MPEGLAYER3_FLAG_PADDING_ISO, MPEGLAYER3_FLAG_PADDING_ON, MPEGLAYER3_FLAG_PADDING_OFF);
++_Win32_AnnotateField_(MPEGLAYER3WAVEFORMAT::fdwFlags, _Win32_AssociatedEnum_(MPEGLAYER3WAVEFORMAT_FLAGS));
++#endif

@@ -1,0 +1,13 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/UIRibbon.idl b/generation/WinSDK/RecompiledIdlHeaders/um/UIRibbon.idl
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/UIRibbon.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/UIRibbon.idl
+@@ -274,7 +274,7 @@
+     UI_CHECKRETURN HRESULT LoadUI([in] HINSTANCE instance, [in] LPCWSTR resourceName);
+ 
+     // Retrieves a pointer to a view object
+-    UI_CHECKRETURN HRESULT GetView(UINT32 viewId, REFIID riid, [out, iid_is(riid), annotation("_Outptr_")] void** ppv);
++    UI_CHECKRETURN HRESULT GetView(UINT32 viewId, REFIID riid, [out, iid_is(riid), annotation("_Outptr_"), annotation("_COM_Outptr_")] void** ppv);
+ 
+     // Retrieves the current value of a property
+     UI_CHECKRETURN HRESULT GetUICommandProperty(UINT32 commandId, [in] REFPROPERTYKEY key, [out] PROPVARIANT* value);

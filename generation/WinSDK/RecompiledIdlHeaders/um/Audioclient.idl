@@ -1,3 +1,5 @@
+cpp_quote("#include <win32metadata_annotations.h>")
+#include <win32metadata_annotations.h>
 cpp_quote("#include <winapifamily.h>")
 
 //
@@ -577,6 +579,7 @@ interface IAudioClient : IUnknown
 
 
 }
+_Win32_AnnotateMethod_(IAudioClient::IsFormatSupported, _Win32_PreserveResult_)
 
 //-----------------------------------------------------------------------------
 // Description: IAudioClient2 interface

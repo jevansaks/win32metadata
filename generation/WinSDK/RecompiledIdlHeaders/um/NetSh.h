@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -309,6 +310,7 @@ DWORD
     );
 
 typedef NS_DLL_INIT_FN *PNS_DLL_INIT_FN;
+_Win32_SupportedOS_WindowsXP_
 
 DWORD WINAPI MatchEnumTag(
     IN  HANDLE             hModule,
@@ -317,11 +319,13 @@ DWORD WINAPI MatchEnumTag(
     IN  CONST TOKEN_VALUE *pEnumTable,
     OUT PDWORD             pdwValue
     );
+_Win32_SupportedOS_WindowsXP_
 
 BOOL WINAPI MatchToken(
     IN  LPCWSTR  pwszUserToken,
     IN  LPCWSTR  pwszCmdToken
     );
+_Win32_SupportedOS_WindowsXP_
 
 DWORD WINAPI PreprocessCommand(
     _In_opt_                   HANDLE    hModule,
@@ -334,27 +338,32 @@ DWORD WINAPI PreprocessCommand(
     _In_                       DWORD     dwMaxArgs,
     _Out_writes_opt_(dwArgCount-dwCurrentIndex)    DWORD    *pdwTagType
     );
+_Win32_SupportedOS_WindowsXP_
 
 DWORD PrintError(
     IN  HANDLE  hModule, OPTIONAL
     IN  DWORD   dwErrId,
     ...
     );
+_Win32_SupportedOS_WindowsXP_
 
 DWORD PrintMessageFromModule(
     IN  HANDLE  hModule,
     IN  DWORD   dwMsgId,
     ...
     );
+_Win32_SupportedOS_WindowsXP_
 
 DWORD PrintMessage(
     IN  LPCWSTR  pwszFormat,
     ...
     );
+_Win32_SupportedOS_WindowsXP_
 
 DWORD WINAPI RegisterContext(
     IN    CONST NS_CONTEXT_ATTRIBUTES *pChildContext
     );
+_Win32_SupportedOS_WindowsXP_
 
 DWORD WINAPI RegisterHelper(
     IN    CONST GUID                 *pguidParentContext,

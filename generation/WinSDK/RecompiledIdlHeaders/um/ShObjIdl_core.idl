@@ -1,3 +1,5 @@
+cpp_quote("#include <win32metadata_annotations.h>")
+#include <win32metadata_annotations.h>
 //
 //  Microsoft Windows
 //  Copyright (c) Microsoft Corporation. All rights reserved.
@@ -340,6 +342,7 @@ interface IContextMenu : IUnknown
         [in] UINT cchMax);
 #endif
 }
+_Win32_AnnotateMethod_(IContextMenu::QueryContextMenu, _Win32_PreserveResult_)
 
 typedef IContextMenu *LPCONTEXTMENU;
 
@@ -705,6 +708,10 @@ interface IEnumIDList : IUnknown
 
     HRESULT Clone([out] IEnumIDList **ppenum);
 }
+_Win32_AnnotateMethod_(IEnumIDList::Next, _Win32_PreserveResult_)
+_Win32_AnnotateMethod_(IEnumIDList::Skip, _Win32_PreserveResult_)
+_Win32_AnnotateMethod_(IEnumIDList::Reset, _Win32_PreserveResult_)
+_Win32_AnnotateMethod_(IEnumIDList::Clone, _Win32_PreserveResult_)
 
 typedef IEnumIDList *LPENUMIDLIST;
 
@@ -733,6 +740,7 @@ interface IEnumFullIDList : IUnknown
 
     HRESULT Clone([out] IEnumFullIDList **ppenum);
 }
+_Win32_AnnotateMethod_(IEnumFullIDList::Next, _Win32_PreserveResult_)
 
 // IShellFolder::GetDisplayNameOf/SetNameOf uFlags
 [v1_enum] enum _SHGDNF
@@ -1279,6 +1287,8 @@ midl_pragma warning (default: 2495)
         [in] SHGDNF uFlags,
         [out] PITEMID_CHILD *ppidlOut);
 }
+_Win32_AnnotateMethod_(IShellFolder::EnumObjects, _Win32_PreserveResult_)
+_Win32_AnnotateMethod_(IShellFolder::CompareIDs, _Win32_PreserveResult_)
 typedef IShellFolder * LPSHELLFOLDER;
 
 
@@ -1646,6 +1656,8 @@ interface IShellView : IOleWindow
 
 typedef IShellView *LPSHELLVIEW;
 }
+_Win32_AnnotateMethod_(IShellView::TranslateAccelerator, _Win32_PreserveResult_)
+_Win32_AnnotateParameter_(IShellView::GetItemObject, uItem, _Win32_AssociatedEnum_(_SVGIO))
 
 [
     uuid(88E39E80-3578-11CF-AE69-08002B2E1262),
@@ -1759,6 +1771,8 @@ interface IFolderView : IUnknown
         [in] DWORD /* SVSIF */ dwFlags);
 }
 cpp_quote("#define SID_SFolderView IID_IFolderView    // folder view, usually IFolderView")
+_Win32_AnnotateParameter_(IFolderView::ItemCount, uFlags, _Win32_AssociatedEnum_(_SVGIO))
+_Win32_AnnotateParameter_(IFolderView::Items, uFlags, _Win32_AssociatedEnum_(_SVGIO))
 
 cpp_quote("#if (NTDDI_VERSION >= NTDDI_VISTA) || (_WIN32_IE >= _WIN32_IE_IE70)")
 
@@ -3997,6 +4011,8 @@ interface IShellLinkA : IUnknown
     HRESULT SetPath(
         [in, string] LPCSTR pszFile);
 }
+_Win32_AnnotateMethod_(IShellLinkA::GetPath, _Win32_PreserveResult_)
+_Win32_AnnotateMethod_(IShellLinkA::GetIDList, _Win32_PreserveResult_)
 
 [
     uuid(000214F9-0000-0000-C000-000000000046),
@@ -4070,6 +4086,8 @@ interface IShellLinkW : IUnknown
     HRESULT SetPath(
         [in, string] LPCWSTR pszFile);
 }
+_Win32_AnnotateMethod_(IShellLinkW::GetPath, _Win32_PreserveResult_)
+_Win32_AnnotateMethod_(IShellLinkW::GetIDList, _Win32_PreserveResult_)
 [
     uuid(45e2b4ae-b1c3-11d0-b92f-00a0c90312e1),
     object,
@@ -7587,6 +7605,8 @@ interface IExplorerCommand : IUnknown
     // If GetFlags() returned ECF_HASSUBCOMMANDS this will be used to discover the sub commands.
     HRESULT EnumSubCommands([out] IEnumExplorerCommand **ppEnum);
 }
+_Win32_AnnotateParameter_(IExplorerCommand::GetState, pCmdState, _Win32_AssociatedEnum_(_EXPCMDSTATE))
+_Win32_AnnotateParameter_(IExplorerCommand::GetFlags, pFlags, _Win32_AssociatedEnum_(_EXPCMDFLAGS))
 
 [
     uuid(bddacb60-7657-47ae-8445-d23e1acf82ae),
@@ -7648,6 +7668,7 @@ interface IEnumExplorerCommand : IUnknown
 
     HRESULT Clone([out] IEnumExplorerCommand **ppenum);
 }
+_Win32_AnnotateMethod_(IEnumExplorerCommand::Next, _Win32_PreserveResult_)
 
 [
     uuid(64961751-0835-43c0-8ffe-d57686530e64),
@@ -8588,6 +8609,7 @@ interface IAssocHandler : IUnknown
         [in, annotation("_In_")] IDataObject *pdo,
         [out, annotation("_Outptr_")] IAssocHandlerInvoker **ppInvoker);
 }
+_Win32_AnnotateMethod_(IAssocHandler::IsRecommended, _Win32_PreserveResult_)
 
 // Enumerate handlers
 [

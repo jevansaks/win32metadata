@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -1743,6 +1744,7 @@ typedef struct _XLATEOBJ
     ULONG   cEntries;
     ULONG  *pulXlate;
 } XLATEOBJ;
+_Win32_SupportedOS_Windows2000_
 
 /*
  * BRUSHOBJ callbacks
@@ -1753,16 +1755,19 @@ PVOID APIENTRY BRUSHOBJ_pvAllocRbrush(
     BRUSHOBJ *pbo,
     ULONG     cj
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 PVOID APIENTRY BRUSHOBJ_pvGetRbrush(
     BRUSHOBJ *pbo
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 ULONG APIENTRY BRUSHOBJ_ulGetBrushColor(
     BRUSHOBJ *pbo
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 HANDLE APIENTRY BRUSHOBJ_hGetColorTransform(
@@ -1802,6 +1807,7 @@ typedef struct _ENUMRECTS
     ULONG       c;
     RECTL       arcl[1];
 } ENUMRECTS;
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 ULONG APIENTRY CLIPOBJ_cEnumStart(
@@ -1811,6 +1817,7 @@ ULONG APIENTRY CLIPOBJ_cEnumStart(
     __in_data_source(USER_MODE) ULONG    iDirection,
     __in_data_source(USER_MODE) ULONG    cLimit
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY CLIPOBJ_bEnum(
@@ -1818,6 +1825,7 @@ BOOL APIENTRY CLIPOBJ_bEnum(
     ULONG    cj,
     ULONG   *pul
     );
+_Win32_SupportedOS_Windows2000_
 
 PATHOBJ* APIENTRY CLIPOBJ_ppoGetPath(
     CLIPOBJ* pco
@@ -1932,17 +1940,20 @@ typedef struct _FONTINFO /* fi */
     ULONG   cjMaxGlyph8;
     ULONG   cjMaxGlyph32;
 } FONTINFO, *PFONTINFO;
+_Win32_SupportedOS_Windows2000_
 
 ULONG APIENTRY FONTOBJ_cGetAllGlyphHandles(
     FONTOBJ *pfo,
     HGLYPH  *phg
     );
+_Win32_SupportedOS_Windows2000_
 
 VOID APIENTRY FONTOBJ_vGetInfo(
     FONTOBJ  *pfo,
     __in_data_source(USER_MODE) ULONG     cjSize,
     FONTINFO *pfi
     );
+_Win32_SupportedOS_Windows2000_
 
 ULONG APIENTRY FONTOBJ_cGetGlyphs(
     FONTOBJ *pfo,
@@ -1956,29 +1967,35 @@ ULONG APIENTRY FONTOBJ_cGetGlyphs(
 GAMMA_TABLES* APIENTRY FONTOBJ_pGetGammaTables(
     FONTOBJ *pfo);
 #endif // (NTDDI_VERSION <= NTDDI_WINXP)
+_Win32_SupportedOS_Windows2000_
 
 XFORMOBJ * APIENTRY FONTOBJ_pxoGetXform(
     _In_ FONTOBJ *pfo
     );
+_Win32_SupportedOS_Windows2000_
 
 IFIMETRICS * APIENTRY FONTOBJ_pifi(
     _In_ FONTOBJ *pfo
     );
+_Win32_SupportedOS_Windows2000_
 
 FD_GLYPHSET * APIENTRY FONTOBJ_pfdg(
     FONTOBJ *pfo
     );
+_Win32_SupportedOS_Windows2000_
 
 PVOID APIENTRY FONTOBJ_pvTrueTypeFontFile(
     FONTOBJ *pfo,
     ULONG   *pcjFile
     );
+_Win32_SupportedOS_Windows2000_
 
 PBYTE APIENTRY FONTOBJ_pjOpenTypeTablePointer (
     FONTOBJ *pfo,
     ULONG    ulTag,
     ULONG   *pcjTable
     );
+_Win32_SupportedOS_Windows2000_
 
 LPWSTR APIENTRY FONTOBJ_pwszFontFilePaths (
     FONTOBJ *pfo,
@@ -1988,6 +2005,7 @@ LPWSTR APIENTRY FONTOBJ_pwszFontFilePaths (
 // for now only one mode is defined for glyph attributes
 
 #define FO_ATTR_MODE_ROTATE         1
+_Win32_SupportedOS_Windows2000_
 
 PFD_GLYPHATTR APIENTRY FONTOBJ_pQueryGlyphAttrs(
     FONTOBJ       *pfo,
@@ -2003,6 +2021,7 @@ PFD_GLYPHATTR APIENTRY FONTOBJ_pQueryGlyphAttrs(
 #define PAL_RGB           0x00000004
 #define PAL_BGR           0x00000008
 #define PAL_CMYK          0x00000010
+_Win32_SupportedOS_Windows2000_
 
 ULONG APIENTRY PALOBJ_cGetColors(
     PALOBJ *ppalo,
@@ -2055,17 +2074,20 @@ typedef struct  _CLIPLINE
     ULONG   c;
     RUN     arun[1];
 } CLIPLINE, *PCLIPLINE;
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 VOID APIENTRY PATHOBJ_vEnumStart(
     PATHOBJ *ppo
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY PATHOBJ_bEnum(
     PATHOBJ  *ppo,
     PATHDATA *ppd
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 VOID APIENTRY PATHOBJ_vEnumStartClipLines(
@@ -2074,6 +2096,7 @@ VOID APIENTRY PATHOBJ_vEnumStartClipLines(
     SURFOBJ   *pso,
     LINEATTRS *pla
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY PATHOBJ_bEnumClipLines(
@@ -2081,12 +2104,14 @@ BOOL APIENTRY PATHOBJ_bEnumClipLines(
     ULONG     cb,
     CLIPLINE *pcl
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY PATHOBJ_bMoveTo(
     _In_ PATHOBJ    *ppo,
     _In_ POINTFIX    ptfx
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY PATHOBJ_bPolyLineTo(
@@ -2094,6 +2119,7 @@ BOOL APIENTRY PATHOBJ_bPolyLineTo(
     _In_reads_(cptfx)  POINTFIX  *pptfx,
     _In_ ULONG         cptfx
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY PATHOBJ_bPolyBezierTo(
@@ -2101,17 +2127,20 @@ BOOL APIENTRY PATHOBJ_bPolyBezierTo(
     _In_reads_(cptfx) POINTFIX  *pptfx,
     _In_ ULONG      cptfx
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY PATHOBJ_bCloseFigure(
     _In_ PATHOBJ *ppo
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 VOID APIENTRY PATHOBJ_vGetBounds(
     PATHOBJ *ppo,
     PRECTFX prectfx
     );
+_Win32_SupportedOS_Windows2000_
 
 /*
  * STROBJ callbacks
@@ -2121,6 +2150,7 @@ ENGAPI
 VOID APIENTRY STROBJ_vEnumStart(
     STROBJ *pstro
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY STROBJ_bEnum(
@@ -2128,6 +2158,7 @@ BOOL APIENTRY STROBJ_bEnum(
     ULONG     *pc,
     PGLYPHPOS *ppgpos
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY STROBJ_bEnumPositionsOnly(
@@ -2135,21 +2166,25 @@ BOOL APIENTRY STROBJ_bEnumPositionsOnly(
     ULONG     *pc,
     PGLYPHPOS *ppgpos
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 DWORD APIENTRY STROBJ_dwGetCodePage(
     STROBJ  *pstro
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 FIX APIENTRY STROBJ_fxCharacterExtra(
     STROBJ  *pstro
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 FIX APIENTRY STROBJ_fxBreakExtra(
     STROBJ  *pstro
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY STROBJ_bGetAdvanceWidths(
@@ -2227,12 +2262,14 @@ BOOL APIENTRY STROBJ_bGetAdvanceWidths(
 #define XF_INV_LTOL     1L
 #define XF_LTOFX        2L
 #define XF_INV_FXTOL    3L
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 ULONG APIENTRY XFORMOBJ_iGetXform(
     _In_      XFORMOBJ *pxo,
     _Out_opt_ XFORML   *pxform
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY XFORMOBJ_bApplyXform(
@@ -2265,17 +2302,20 @@ HANDLE APIENTRY XFORMOBJ_cmGetTransform(
 #define XO_DESTDCPALETTE 3
 #define XO_SRCBITFIELDS  4
 #define XO_DESTBITFIELDS 5
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 ULONG APIENTRY XLATEOBJ_iXlate(
     XLATEOBJ *pxlo,
     ULONG iColor
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 ULONG * APIENTRY XLATEOBJ_piVector(
     XLATEOBJ *pxlo
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 ULONG APIENTRY XLATEOBJ_cGetPalette(
@@ -2284,6 +2324,7 @@ ULONG APIENTRY XLATEOBJ_cGetPalette(
     ULONG     cPal,
     ULONG    *pPal
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 HANDLE APIENTRY XLATEOBJ_hGetColorTransform(
@@ -2300,9 +2341,11 @@ HANDLE APIENTRY XLATEOBJ_hGetColorTransform(
 #define EngSetLastError     SetLastError
 
 #else // !USERMODE_DRIVER
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 VOID APIENTRY EngSetLastError(ULONG);
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 ULONG APIENTRY EngGetLastError();
@@ -2335,6 +2378,7 @@ ULONG APIENTRY EngGetLastError();
 #else
 #define HOOK_FLAGS                      0x0003b5ef
 #endif
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 HBITMAP APIENTRY EngCreateBitmap(
@@ -2344,6 +2388,7 @@ HBITMAP APIENTRY EngCreateBitmap(
     __in_data_source(USER_MODE) FLONG fl,
     __in_data_source(USER_MODE) PVOID pvBits
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 HSURF APIENTRY EngCreateDeviceSurface(
@@ -2351,6 +2396,7 @@ HSURF APIENTRY EngCreateDeviceSurface(
     __in_data_source(USER_MODE) SIZEL sizl,
     ULONG iFormatCompat
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 HBITMAP APIENTRY EngCreateDeviceBitmap(
@@ -2367,21 +2413,25 @@ HBITMAP APIENTRY EngCreateRedirectionDeviceBitmap(
     ULONG iFormatCompat
     );
 #endif // (NTDDI_VERSION >= NTDDI_WIN7)
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY EngDeleteSurface(
     __in_data_source(USER_MODE) HSURF hsurf
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 SURFOBJ * APIENTRY EngLockSurface(
     HSURF hsurf
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 VOID APIENTRY EngUnlockSurface(
     __in_data_source(USER_MODE) SURFOBJ *pso
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY EngEraseSurface(
@@ -2389,6 +2439,7 @@ BOOL APIENTRY EngEraseSurface(
     RECTL   *prcl,
     __in_data_source(USER_MODE) ULONG    iColor
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY EngAssociateSurface(
@@ -2403,6 +2454,7 @@ BOOL APIENTRY EngAssociateSurface(
 #if (NTDDI_VERSION >= NTDDI_WIN10_RS2)
 #define MS_REUSEDDEVICEBITMAP 0x0008
 #endif // (NTDDI_VERSION >= NTDDI_WIN10_RS2)
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY EngModifySurface(
@@ -2415,16 +2467,19 @@ BOOL APIENTRY EngModifySurface(
     LONG    lDelta,
     VOID*   pvReserved
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY EngMarkBandingSurface(
     __in_data_source(USER_MODE) HSURF hsurf
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY EngCheckAbort(
     SURFOBJ *pso
     );
+_Win32_SupportedOS_Windows2000_
 
 /*
  * Engine callbacks - Paths
@@ -2432,11 +2487,13 @@ BOOL APIENTRY EngCheckAbort(
 
 ENGAPI
 PATHOBJ * APIENTRY EngCreatePath();
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 VOID APIENTRY EngDeletePath(
     PATHOBJ *ppo
     );
+_Win32_SupportedOS_Windows2000_
 
 /*
  * Engine callbacks - Palettes
@@ -2451,6 +2508,7 @@ HPALETTE APIENTRY EngCreatePalette(
     __in_data_source(USER_MODE) FLONG  flGreen,
     __in_data_source(USER_MODE) FLONG  flBlue
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 ULONG APIENTRY EngQueryPalette(
@@ -2458,11 +2516,13 @@ ULONG APIENTRY EngQueryPalette(
     ULONG      *piMode,
     ULONG       cColors,
     ULONG      *pulColors);
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY EngDeletePalette(
     __in_data_source(USER_MODE) HPALETTE hpal
     );
+_Win32_SupportedOS_Windows2000_
 
 /*
  * Engine callbacks - Clipping
@@ -2470,6 +2530,7 @@ BOOL APIENTRY EngDeletePalette(
 
 ENGAPI
 CLIPOBJ * APIENTRY EngCreateClip();
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 VOID APIENTRY EngDeleteClip(
@@ -3391,6 +3452,7 @@ typedef VOID (CALLBACK * WNDOBJCHANGEPROC)(WNDOBJ *pwo, FLONG fl);
 #if (NTDDI_VERSION >= NTDDI_VISTA)
 #define WO_RGN_SPRITE           0x0200
 #endif // (NTDDI_VERSION >= NTDDI_VISTA)
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 WNDOBJ * APIENTRY EngCreateWnd(
@@ -3400,11 +3462,13 @@ WNDOBJ * APIENTRY EngCreateWnd(
     FLONG            fl,
     int              iPixelFormat
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 VOID APIENTRY EngDeleteWnd(
     WNDOBJ  *pwo
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 ULONG APIENTRY WNDOBJ_cEnumStart(
@@ -3413,6 +3477,7 @@ ULONG APIENTRY WNDOBJ_cEnumStart(
     ULONG    iDirection,
     ULONG    cLimit
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY WNDOBJ_bEnum(
@@ -3420,6 +3485,7 @@ BOOL APIENTRY WNDOBJ_bEnum(
     ULONG    cj,
     ULONG   *pul
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 VOID APIENTRY WNDOBJ_vSetConsumer(
@@ -3450,6 +3516,7 @@ VOID APIENTRY EngRenderHint(
 
 #define EHN_RESTORED        0
 #define EHN_ERROR           1
+_Win32_SupportedOS_WindowsXP_
 
 ENGAPI
 ULONG APIENTRY EngHangNotification(
@@ -3457,6 +3524,7 @@ ULONG APIENTRY EngHangNotification(
     PVOID Reserved
     );
 #endif // (NTDDI_VERSION >= NTDDI_WINXP)
+_Win32_SupportedOS_Windows2000_
 
 /*
  * Engine callbacks - tracking driver managed resources
@@ -3468,6 +3536,7 @@ HDRVOBJ APIENTRY EngCreateDriverObj(
     FREEOBJPROC pFreeObjProc,
     HDEV hdev
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY EngDeleteDriverObj(
@@ -3475,16 +3544,19 @@ BOOL APIENTRY EngDeleteDriverObj(
     BOOL bCallBack,
     BOOL bLocked
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 DRIVEROBJ* APIENTRY EngLockDriverObj(
     HDRVOBJ hdo
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY EngUnlockDriverObj(
     HDRVOBJ hdo
     );
+_Win32_SupportedOS_Windows2000_
 
 /*
  * Engine callback - return current process handle.
@@ -3492,6 +3564,7 @@ BOOL APIENTRY EngUnlockDriverObj(
 
 ENGAPI
 HANDLE APIENTRY EngGetProcessHandle();
+_Win32_SupportedOS_WindowsXP_
 
 /*
  * Engine callback - return current thread id
@@ -3499,6 +3572,7 @@ HANDLE APIENTRY EngGetProcessHandle();
 
 ENGAPI
 HANDLE APIENTRY EngGetCurrentThreadId();
+_Win32_SupportedOS_WindowsXP_
 
 /*
  * Engine callback - return current process id
@@ -3532,6 +3606,7 @@ BOOL APIENTRY DrvSwapBuffers(
     SURFOBJ *pso,
     WNDOBJ  *pwo
     );
+_Win32_SupportedOS_Windows2000_
 
 /*
  * Function prototypes - Engine Simulations
@@ -3551,6 +3626,7 @@ BOOL APIENTRY EngBitBlt(
     _In_ POINTL   *pptlBrush,
     __in_data_source(USER_MODE) ROP4      rop4
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY EngLineTo(
@@ -3564,6 +3640,7 @@ BOOL APIENTRY EngLineTo(
     RECTL     *prclBounds,
     __in_data_source(USER_MODE) MIX        mix
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY EngStretchBlt(
@@ -3579,6 +3656,7 @@ BOOL APIENTRY EngStretchBlt(
     POINTL          *pptlMask,
     __in_data_source(USER_MODE) ULONG            iMode
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY EngStretchBltROP(
@@ -3596,6 +3674,7 @@ BOOL APIENTRY EngStretchBltROP(
     BRUSHOBJ        *pbo,
     __in_data_source(USER_MODE) DWORD            rop4
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY EngAlphaBlend(
@@ -3607,6 +3686,7 @@ BOOL APIENTRY EngAlphaBlend(
     RECTL         *prclSrc,
     BLENDOBJ      *pBlendObj
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY EngGradientFill(
@@ -3621,6 +3701,7 @@ BOOL APIENTRY EngGradientFill(
     POINTL          *pptlDitherOrg,
     __in_data_source(USER_MODE) ULONG            ulMode
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY EngTransparentBlt(
@@ -3633,6 +3714,7 @@ BOOL APIENTRY EngTransparentBlt(
     __in_data_source(USER_MODE) ULONG      TransColor,
     __in_data_source(USER_MODE) ULONG      bCalledFromBitBlt
     ); 
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY EngTextOut(
@@ -3647,6 +3729,7 @@ BOOL APIENTRY EngTextOut(
     POINTL   *pptlOrg,
     __in_data_source(USER_MODE) MIX       mix
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY EngStrokePath(
@@ -3659,6 +3742,7 @@ BOOL APIENTRY EngStrokePath(
     __in_data_source(USER_MODE) LINEATTRS *plineattrs,
     __in_data_source(USER_MODE) MIX        mix
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY EngFillPath(
@@ -3670,6 +3754,7 @@ BOOL APIENTRY EngFillPath(
     __in_data_source(USER_MODE) MIX       mix,
     __in_data_source(USER_MODE) FLONG     flOptions
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY EngStrokeAndFillPath(
@@ -3684,6 +3769,7 @@ BOOL APIENTRY EngStrokeAndFillPath(
     __in_data_source(USER_MODE) MIX        mixFill,
     __in_data_source(USER_MODE) FLONG      flOptions
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY EngPaint(
@@ -3693,6 +3779,7 @@ BOOL APIENTRY EngPaint(
     POINTL   *pptlBrushOrg,
     __in_data_source(USER_MODE) MIX       mix
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY EngCopyBits(
@@ -3703,6 +3790,7 @@ BOOL APIENTRY EngCopyBits(
     __in_data_source(USER_MODE) RECTL    *prclDest,
     __in_data_source(USER_MODE) POINTL   *pptlSrc
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 ULONG APIENTRY EngSetPointerShape(
@@ -3717,6 +3805,7 @@ ULONG APIENTRY EngSetPointerShape(
     RECTL    *prcl,
     FLONG     fl
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 VOID APIENTRY EngMovePointer(
@@ -3725,6 +3814,7 @@ VOID APIENTRY EngMovePointer(
     LONG      y,
     RECTL    *prcl
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY EngPlgBlt(
@@ -3740,6 +3830,7 @@ BOOL APIENTRY EngPlgBlt(
     POINTL          *pptl,
     __in_data_source(USER_MODE) ULONG            iMode
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 ULONG APIENTRY EngDitherColor(
@@ -3775,12 +3866,14 @@ ULONG APIENTRY EngCTGetCurrentGamma(
 
 #define ECS_TEARDOWN    0x0001
 #define ECS_REDRAW      0x0002
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY EngControlSprites(
     WNDOBJ  *pwo,
     FLONG    fl
     );
+_Win32_SupportedOS_Windows2000_
 
 
 //
@@ -3795,6 +3888,7 @@ LONG APIENTRY HT_ComputeRGBGammaTable(
     _In_    USHORT  BlueGamma,
     _Out_writes_bytes_(GammaTableEntries * 3)   LPBYTE  pGammaTable
     );
+_Win32_SupportedOS_Windows2000_
 
 LONG APIENTRY HT_Get8BPPFormatPalette(
     _Out_opt_   LPPALETTEENTRY  pPaletteEntry,
@@ -3802,6 +3896,7 @@ LONG APIENTRY HT_Get8BPPFormatPalette(
     _In_        USHORT          GreenGamma,
     _In_        USHORT          BlueGamma
     );
+_Win32_SupportedOS_Windows2000_
 
 LONG APIENTRY HT_Get8BPPMaskPalette(
     _Out_opt_   LPPALETTEENTRY  pPaletteEntry,
@@ -3829,6 +3924,7 @@ typedef struct _DEVHTADJDATA {
     PDEVHTINFO  pDefHTInfo;
     PDEVHTINFO  pAdjHTInfo;
     } DEVHTADJDATA, *PDEVHTADJDATA;
+_Win32_SupportedOS_Windows2000_
 
 LONG
 APIENTRY
@@ -3836,6 +3932,7 @@ HTUI_DeviceColorAdjustment(
     _In_opt_    LPSTR           pDeviceName,
     _In_        PDEVHTADJDATA   pDevHTAdjData
     );
+_Win32_SupportedOS_Windows2000_
 
 
 //
@@ -3858,6 +3955,7 @@ VOID APIENTRY EngBugCheckEx(
     _In_                ULONG_PTR P4
     );
 #endif // (NTDDI_VERSION >= NTDDI_WINXPSP2)
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 VOID APIENTRY EngDebugPrint(
@@ -3865,16 +3963,19 @@ VOID APIENTRY EngDebugPrint(
     _In_z_              PCHAR DebugMessage,
     _In_                va_list ap
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 VOID APIENTRY EngQueryPerformanceCounter(
     _Out_               LONGLONG  *pPerformanceCount
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 VOID APIENTRY EngQueryPerformanceFrequency(
     _Out_               LONGLONG  *pFrequency
     );
+_Win32_SupportedOS_Windows2000_
 
 __drv_preferredFunction("(see documentation)", "Obsolete, always returns false. ") 
 ENGAPI
@@ -3908,6 +4009,7 @@ BOOL APIENTRY EngSetPointerTag(
 #define EngMulDiv                   MulDiv
 
 #else // !USERMODE_DRIVER
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 _Post_writable_byte_size_(MemSize)
@@ -3921,6 +4023,7 @@ ENGAPI
 VOID APIENTRY EngFreeMem(
     _In_                PVOID Mem
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 _Post_writable_byte_size_(cj)
@@ -3933,6 +4036,7 @@ ENGAPI
 VOID APIENTRY EngFreeUserMem(
     _In_                PVOID pv
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 _Post_writable_byte_size_(cj)
@@ -3958,6 +4062,7 @@ EngDxIoctl(
     ULONG ulBufferSize
     );
 #endif // (NTDDI_VERSION >= NTDDI_WINXP)
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 int APIENTRY EngMulDiv(
@@ -3968,6 +4073,7 @@ int APIENTRY EngMulDiv(
 
 
 #endif // !USERMODE_DRIVER
+_Win32_SupportedOS_Windows2000_
 
 //
 // User mode memory Operations
@@ -3983,6 +4089,7 @@ VOID APIENTRY EngProbeForRead(
 #endif // (NTDDI_VERSION <= NTDDI_WINXP)
     _In_                    ULONG Alignment
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 VOID APIENTRY EngProbeForReadAndWrite(
@@ -3994,17 +4101,20 @@ VOID APIENTRY EngProbeForReadAndWrite(
 #endif // (NTDDI_VERSION <= NTDDI_WINXP)
     _In_                    ULONG Alignment
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 HANDLE APIENTRY EngSecureMem(
     _In_reads_bytes_(Length)     PVOID Address,
     _In_                    ULONG Length
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 VOID APIENTRY EngUnsecureMem(
     _In_                    HANDLE hSecure
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 DWORD APIENTRY EngDeviceIoControl(
@@ -4028,11 +4138,13 @@ DWORD APIENTRY EngDeviceIoControl(
 #define EngUnloadImage(h)                    FreeLibrary((HMODULE) (h))
 
 #else // !USERMODE_DRIVER
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 HANDLE APIENTRY EngLoadImage(
     _In_ LPWSTR pwszDriver
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 PVOID APIENTRY EngFindImageProcAddress(
@@ -4044,6 +4156,7 @@ ENGAPI
 VOID APIENTRY EngUnloadImage(
     _In_ HANDLE hModule
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 PVOID APIENTRY EngMapModule(
@@ -4052,6 +4165,7 @@ PVOID APIENTRY EngMapModule(
     );
 
 #endif // !USERMODE_DRIVER
+_Win32_SupportedOS_Windows2000_
 
 
 //
@@ -4062,6 +4176,7 @@ ENGAPI
 LPWSTR APIENTRY EngGetPrinterDataFileName(
     _In_                    HDEV hdev
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 LPWSTR APIENTRY EngGetDriverName(
@@ -4074,6 +4189,7 @@ typedef struct _TYPE1_FONT
     HANDLE  hPFB;
     ULONG   ulIdentifier;
 } TYPE1_FONT;
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY EngGetType1FontList(
@@ -4084,6 +4200,7 @@ BOOL APIENTRY EngGetType1FontList(
     _Out_                           PULONG          pulRemoteFonts,
     _Out_                           LARGE_INTEGER   *pLastModified
     );
+_Win32_SupportedOS_Windows2000_
 
 //
 // Manipulating resource sections
@@ -4093,6 +4210,7 @@ ENGAPI
 HANDLE APIENTRY EngLoadModule(
     _In_                    LPWSTR pwsz
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 PVOID APIENTRY EngFindResource(
@@ -4101,11 +4219,13 @@ PVOID APIENTRY EngFindResource(
     _In_                    int    iType,
     _Out_                   PULONG pulSize
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 VOID APIENTRY EngFreeModule(
     _In_                    HANDLE h
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL
@@ -4113,6 +4233,7 @@ APIENTRY
 EngDeleteFile (
     _In_                    LPWSTR  pwszFileName
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 _Success_(return != 0)
@@ -4124,6 +4245,7 @@ EngMapFile(
     _In_     ULONG       cjSize,
     _Out_    ULONG_PTR  *piFile
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL
@@ -4131,6 +4253,7 @@ APIENTRY
 EngUnmapFile (
      _In_                   ULONG_PTR iFile
      );
+_Win32_SupportedOS_Windows2000_
 
 //
 // FontFile Callbacks
@@ -4141,6 +4264,7 @@ ENGAPI
 VOID APIENTRY EngUnmapFontFile(
     _In_                    ULONG_PTR iFile
     );
+_Win32_SupportedOS_Windows2000_
 
 __drv_preferredFunction("EngMapFontFileFD", "Obsolete") 
 ENGAPI
@@ -4149,11 +4273,13 @@ BOOL APIENTRY EngMapFontFile(
     _Outptr_result_bytebuffer_(*pcjBuf)   PULONG *ppjBuf,
     _Out_                           ULONG  *pcjBuf
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 VOID APIENTRY EngUnmapFontFileFD(
     _In_                    ULONG_PTR iFile
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY EngMapFontFileFD(
@@ -4161,6 +4287,7 @@ BOOL APIENTRY EngMapFontFileFD(
     _Outptr_result_bytebuffer_(*pcjBuf)   PULONG *ppjBuf,
     _Out_                           ULONG  *pcjBuf
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY EngLpkInstalled();
@@ -4170,21 +4297,25 @@ BOOL APIENTRY EngLpkInstalled();
 //
 
 DECLARE_HANDLE(HSEMAPHORE);
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 HSEMAPHORE APIENTRY EngCreateSemaphore(
     VOID
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 VOID APIENTRY EngAcquireSemaphore(
     _In_                    HSEMAPHORE hsem
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 VOID APIENTRY EngReleaseSemaphore(
     _In_                    HSEMAPHORE hsem
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 VOID APIENTRY EngDeleteSemaphore(
@@ -4210,10 +4341,12 @@ BOOL APIENTRY EngAcquireSemaphoreSharedNoWait(
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_WINXP)
+_Win32_SupportedOS_Windows2000_
 ENGAPI
 BOOL APIENTRY EngIsSemaphoreOwned(
     _In_                    HSEMAPHORE hsem
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY EngIsSemaphoreOwnedByCurrentThread(
@@ -4260,16 +4393,19 @@ typedef struct _ENGSAFESEMAPHORE
     HSEMAPHORE hsem;
     LONG lCount;
 } ENGSAFESEMAPHORE;
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY EngInitializeSafeSemaphore(
     _Out_                   ENGSAFESEMAPHORE *pssem
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 VOID APIENTRY EngDeleteSafeSemaphore(
     _Inout_                 ENGSAFESEMAPHORE *pssem
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 VOID APIENTRY EngMultiByteToUnicodeN(
@@ -4279,6 +4415,7 @@ VOID APIENTRY EngMultiByteToUnicodeN(
     _In_reads_bytes_(BytesInMultiByteString)                                 PCHAR MultiByteString,
     _In_                                                                ULONG BytesInMultiByteString
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 VOID APIENTRY EngUnicodeToMultiByteN(
@@ -4302,6 +4439,7 @@ VOID APIENTRY EngUnicodeToMultiByteN(
 #define EngGetForm          GetForm
 
 #else // !USERMODE_DRIVER
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY EngGetPrinterDriver(
@@ -4312,6 +4450,7 @@ BOOL APIENTRY EngGetPrinterDriver(
     _In_                    DWORD   cbBuf,
     _Out_                   DWORD  *pcbNeeded
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 DWORD APIENTRY EngGetPrinterData(
@@ -4322,6 +4461,7 @@ DWORD APIENTRY EngGetPrinterData(
     _In_                    DWORD    nSize,
     _Out_                   LPDWORD  pcbNeeded
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 DWORD APIENTRY EngSetPrinterData(
@@ -4331,6 +4471,7 @@ DWORD APIENTRY EngSetPrinterData(
     _In_reads_bytes_(cjPrinterData)  LPBYTE   lpbPrinterData,
     _In_                        DWORD    cjPrinterData
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY EngGetForm(
@@ -4341,6 +4482,7 @@ BOOL APIENTRY EngGetForm(
     _In_                    DWORD   cbBuf,
     _Out_                   LPDWORD pcbNeeded
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY EngWritePrinter(
@@ -4349,6 +4491,7 @@ BOOL APIENTRY EngWritePrinter(
     _In_                    DWORD   cbBuf,
     _Out_                   LPDWORD pcWritten
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY EngGetPrinter(
@@ -4358,6 +4501,7 @@ BOOL APIENTRY EngGetPrinter(
     _In_                    DWORD   cbBuf,
     _Out_                   LPDWORD pcbNeeded
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY EngEnumForms(
@@ -4383,6 +4527,7 @@ BOOL APIENTRY EngEnumForms(
     VOID APIENTRY FLOATOBJ_SetLong(PFLOATOBJ,LONG);
 
     LONG APIENTRY FLOATOBJ_GetFloat(PFLOATOBJ);
+_Win32_SupportedOS_Windows2000_
     LONG APIENTRY FLOATOBJ_GetLong(PFLOATOBJ);
 
     VOID APIENTRY FLOATOBJ_AddFloat(PFLOATOBJ,FLOATL);
@@ -4404,11 +4549,16 @@ BOOL APIENTRY EngEnumForms(
     VOID APIENTRY FLOATOBJ_Neg(PFLOATOBJ);
 
     BOOL APIENTRY FLOATOBJ_EqualLong(PFLOATOBJ,LONG);
+_Win32_SupportedOS_Windows2000_
     BOOL APIENTRY FLOATOBJ_GreaterThanLong(PFLOATOBJ,LONG);
+_Win32_SupportedOS_Windows2000_
     BOOL APIENTRY FLOATOBJ_LessThanLong(PFLOATOBJ,LONG);
+_Win32_SupportedOS_Windows2000_
 
     BOOL APIENTRY FLOATOBJ_Equal(PFLOATOBJ,PFLOATOBJ);
+_Win32_SupportedOS_Windows2000_
     BOOL APIENTRY FLOATOBJ_GreaterThan(PFLOATOBJ,PFLOATOBJ);
+_Win32_SupportedOS_Windows2000_
     BOOL APIENTRY FLOATOBJ_LessThan(PFLOATOBJ,PFLOATOBJ);
 
 #else
@@ -4471,6 +4621,7 @@ typedef struct  tagFLOATOBJ_XFORM
     FLOATOBJ eDx;
     FLOATOBJ eDy;
 } FLOATOBJ_XFORM, *PFLOATOBJ_XFORM, FAR *LPFLOATOBJ_XFORM;
+_Win32_SupportedOS_Windows2000_
 
 ULONG APIENTRY XFORMOBJ_iGetFloatObjXform(
     XFORMOBJ *pxo,
@@ -4483,6 +4634,7 @@ ULONG APIENTRY XFORMOBJ_iGetFloatObjXform(
 // SORT specific defines
 
 typedef int (__cdecl *SORTCOMP)(const void *pv1, const void *pv2);
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 VOID APIENTRY EngSort(
@@ -4502,11 +4654,13 @@ typedef struct _ENG_TIME_FIELDS {
     USHORT usMilliseconds;// range [0..999]
     USHORT usWeekday;     // range [0..6] == [Sunday..Saturday]
 } ENG_TIME_FIELDS, *PENG_TIME_FIELDS;
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 VOID APIENTRY EngQueryLocalTime(
     _Out_                   PENG_TIME_FIELDS
     );
+_Win32_SupportedOS_Windows2000_
 
 _Success_(return != 0)
 ENGAPI
@@ -4515,6 +4669,7 @@ FD_GLYPHSET* APIENTRY EngComputeGlyphSet(
     _In_                    INT nFirstChar,
     _In_                    INT cChars
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 INT APIENTRY EngMultiByteToWideChar(
@@ -4524,6 +4679,7 @@ INT APIENTRY EngMultiByteToWideChar(
     _In_reads_bytes_opt_(BytesInMultiByteString) _Null_terminated_ LPSTR MultiByteString,
     _In_                                    INT BytesInMultiByteString
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 INT APIENTRY EngWideCharToMultiByte(
@@ -4533,23 +4689,27 @@ INT APIENTRY EngWideCharToMultiByte(
     _Out_writes_bytes_opt_(BytesInMultiByteString) _Null_terminated_ LPSTR MultiByteString,
     _In_                                    INT BytesInMultiByteString
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 VOID APIENTRY EngGetCurrentCodePage(
     _Out_   PUSHORT OemCodePage,
     _Out_   PUSHORT AnsiCodePage
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 HANDLE APIENTRY EngLoadModuleForWrite(
     _In_    LPWSTR pwsz,
     _In_    ULONG  cjSizeOfModule
     );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 LARGE_INTEGER APIENTRY EngQueryFileTimeStamp (
     _In_    LPWSTR  pwsz
     );
+_Win32_SupportedOS_Windows2000_
 
 _Success_(return)
 ENGAPI
@@ -4557,6 +4717,7 @@ BOOL APIENTRY EngGetFileChangeTime(
     _In_    HANDLE          h,
     _Out_   LARGE_INTEGER   *pChangeTime
     );
+_Win32_SupportedOS_Windows2000_
 
 _Success_(return)
 ENGAPI
@@ -4635,6 +4796,7 @@ BOOL APIENTRY EngRestoreFloatingPointState(
     );
 
 #endif
+_Win32_SupportedOS_Windows2000_
 
 //
 // DirectDraw surface locking
@@ -4644,6 +4806,7 @@ ENGAPI
 PDD_SURFACE_LOCAL APIENTRY EngLockDirectDrawSurface(
         _In_    HANDLE hSurface
         );
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY EngUnlockDirectDrawSurface(
@@ -4659,21 +4822,25 @@ BOOL APIENTRY EngUnlockDirectDrawSurface(
 //
 
 typedef struct _ENG_EVENT *PEVENT;
+_Win32_SupportedOS_WindowsXP_
 
 ENGAPI
 BOOL APIENTRY EngDeleteEvent(
     _In_    PEVENT  pEvent
     );
+_Win32_SupportedOS_WindowsXP_
 
 ENGAPI
 BOOL APIENTRY EngCreateEvent(
     _Out_   PEVENT *ppEvent
     );
+_Win32_SupportedOS_WindowsXP_
 
 ENGAPI
 BOOL APIENTRY EngUnmapEvent(
     _In_    PEVENT pEvent
     );
+_Win32_SupportedOS_WindowsXP_
 
 ENGAPI
 PEVENT APIENTRY EngMapEvent(
@@ -4683,12 +4850,14 @@ PEVENT APIENTRY EngMapEvent(
     _Reserved_  PVOID           Reserved2,
     _Reserved_  PVOID           Reserved3
     );
+_Win32_SupportedOS_WindowsXP_
 
 ENGAPI
 BOOL APIENTRY EngWaitForSingleObject(
     _In_    PEVENT          pEvent,
     _In_    PLARGE_INTEGER  pTimeOut
     );
+_Win32_SupportedOS_WindowsXP_
 
 ENGAPI
 LONG APIENTRY EngSetEvent(
@@ -4696,11 +4865,13 @@ LONG APIENTRY EngSetEvent(
     );
 
 #if (NTDDI_VERSION >= NTDDI_WINXP)
+_Win32_SupportedOS_WindowsXP_
 ENGAPI
 VOID APIENTRY
 EngClearEvent (
     _In_    PEVENT pEvent
 );
+_Win32_SupportedOS_WindowsXP_
 
 ENGAPI
 LONG APIENTRY
@@ -4730,6 +4901,7 @@ typedef enum _ENG_SYSTEM_ATTRIBUTE {
 #define QSA_SSE2 0x00010000
 #define QSA_SSE3 0x00080000
 #endif // (NTDDI_VERSION >= NTDDI_LONGHORN)
+_Win32_SupportedOS_Windows2000_
 
 
 ENGAPI
@@ -4740,6 +4912,7 @@ EngQuerySystemAttribute(
 
 #define ENG_FNT_CACHE_READ_FAULT    0x1
 #define ENG_FNT_CACHE_WRITE_FAULT   0x2
+_Win32_SupportedOS_WindowsXP_
 
 _Success_(return != nullptr)
 ENGAPI
@@ -4752,12 +4925,14 @@ ENGAPI
 BOOL WINAPI EngFntCacheFlush(
     _In_  PVOID OffsetBuffer,
     _In_  BOOL  DiscardContent);
+_Win32_SupportedOS_WindowsXP_
 
 ENGAPI
 _Post_writable_byte_size_(ulSize)
 PVOID APIENTRY  EngFntCacheAlloc(
     _In_    ULONG FastCheckSum, 
     _In_    ULONG ulSize);
+_Win32_SupportedOS_WindowsXP_
 
 ENGAPI
 VOID  APIENTRY  EngFntCacheFault(
@@ -4768,6 +4943,7 @@ typedef enum _ENG_DEVICE_ATTRIBUTE {
     QDA_RESERVED = 0,
     QDA_ACCELERATION_LEVEL = 1
 } ENG_DEVICE_ATTRIBUTE;
+_Win32_SupportedOS_Windows2000_
 
 ENGAPI
 BOOL APIENTRY

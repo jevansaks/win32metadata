@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /********************************************************************************
 *                                                                               *
 * powerbase.h -- ApiSet Contract for api-ms-win-power-base-l1-1-0               *
@@ -43,6 +44,7 @@ typedef PVOID HPOWERNOTIFY, *PHPOWERNOTIFY;
 #define NTSTATUS LONG
 #define _OVERRIDE_NTSTATUS_
 #endif
+_Win32_SupportedOS_WindowsXP_
 
 NTSTATUS
 WINAPI
@@ -57,6 +59,8 @@ CallNtPowerInformation(
 #ifdef _OVERRIDE_NTSTATUS_
 #undef NTSTATUS
 #endif
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 BOOLEAN
 WINAPI
@@ -65,6 +69,7 @@ GetPwrCapabilities(
     );
 
 #if (NTDDI_VERSION >= NTDDI_WIN8)
+_Win32_SupportedOS_Windows8_
 POWER_PLATFORM_ROLE
 WINAPI
 PowerDeterminePlatformRoleEx(
@@ -74,6 +79,7 @@ PowerDeterminePlatformRoleEx(
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_WIN8)
+_Win32_SupportedOS_Windows8_
 DWORD
 WINAPI
 PowerRegisterSuspendResumeNotification(
@@ -85,6 +91,7 @@ PowerRegisterSuspendResumeNotification(
 #endif
 
 #if (NTDDI_VERSION >= NTDDI_WIN8)
+_Win32_SupportedOS_Windows8_
 DWORD
 WINAPI
 PowerUnregisterSuspendResumeNotification(

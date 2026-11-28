@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) 2004  Microsoft Corporation
@@ -26,6 +27,7 @@ Abstract:
 #ifdef __cplusplus
 extern "C" {
 #endif
+_Win32_SetLastError_
 
 /*++
 
@@ -52,6 +54,7 @@ WINAPI
 AuxUlibInitialize (
     VOID
     );
+_Win32_SetLastError_
 
 /*++
 
@@ -89,6 +92,7 @@ AuxUlibSetSystemFileCacheSize (
     _In_ SIZE_T MaximumFileCacheSize,
     _In_ DWORD Flags
    );
+_Win32_SetLastError_
 
 /*++
 

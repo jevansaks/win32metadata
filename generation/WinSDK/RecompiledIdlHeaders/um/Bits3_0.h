@@ -185,6 +185,7 @@ extern "C"{
 /* interface __MIDL_itf_bits3_0_0000_0000 */
 /* [local] */ 
 
+#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -368,7 +369,7 @@ EXTERN_C const IID IID_IEnumBitsPeerCacheRecords;
             _In_  ULONG celt,
             /* [length_is][size_is][out] */ __RPC__out_ecount_part(celt, pceltFetched ? *pceltFetched : celt) IBitsPeerCacheRecord **rgelt,
             /* [annotation][unique][out][in] */ 
-            _Inout_  ULONG *pceltFetched) = 0;
+            _Inout_opt_  ULONG *pceltFetched) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE Skip( 
             /* [annotation][in] */ 
@@ -416,7 +417,7 @@ EXTERN_C const IID IID_IEnumBitsPeerCacheRecords;
             _In_  ULONG celt,
             /* [length_is][size_is][out] */ __RPC__out_ecount_part(celt, pceltFetched ? *pceltFetched : celt) IBitsPeerCacheRecord **rgelt,
             /* [annotation][unique][out][in] */ 
-            _Inout_  ULONG *pceltFetched);
+            _Inout_opt_  ULONG *pceltFetched);
         
         DECLSPEC_XFGVIRT(IEnumBitsPeerCacheRecords, Skip)
         HRESULT ( STDMETHODCALLTYPE *Skip )( 
@@ -616,7 +617,7 @@ EXTERN_C const IID IID_IEnumBitsPeers;
             _In_  ULONG celt,
             /* [length_is][size_is][out] */ __RPC__out_ecount_part(celt, pceltFetched ? *pceltFetched : celt) IBitsPeer **rgelt,
             /* [annotation][unique][out][in] */ 
-            _Inout_  ULONG *pceltFetched) = 0;
+            _Inout_opt_  ULONG *pceltFetched) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE Skip( 
             /* [annotation][in] */ 
@@ -664,7 +665,7 @@ EXTERN_C const IID IID_IEnumBitsPeers;
             _In_  ULONG celt,
             /* [length_is][size_is][out] */ __RPC__out_ecount_part(celt, pceltFetched ? *pceltFetched : celt) IBitsPeer **rgelt,
             /* [annotation][unique][out][in] */ 
-            _Inout_  ULONG *pceltFetched);
+            _Inout_opt_  ULONG *pceltFetched);
         
         DECLSPEC_XFGVIRT(IEnumBitsPeers, Skip)
         HRESULT ( STDMETHODCALLTYPE *Skip )( 
@@ -972,6 +973,15 @@ EXTERN_C const IID IID_IBitsPeerCacheAdministration;
 #endif 	/* __IBitsPeerCacheAdministration_INTERFACE_DEFINED__ */
 
 
+/* interface __MIDL_itf_bits3_0_0000_0005 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_METHOD_(IBitsPeerCacheAdministration::SetMaximumContentAge, _Win32_PreserveResult_);
+
+
+extern RPC_IF_HANDLE __MIDL_itf_bits3_0_0000_0005_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_bits3_0_0000_0005_v0_0_s_ifspec;
+
 #ifndef __IBackgroundCopyJob4_INTERFACE_DEFINED__
 #define __IBackgroundCopyJob4_INTERFACE_DEFINED__
 
@@ -1209,9 +1219,9 @@ EXTERN_C const IID IID_IBackgroundCopyJob4;
             /* [annotation][in] */ 
             _In_  BG_JOB_PROXY_USAGE ProxyUsage,
             /* [annotation][unique][string][in] */ 
-            _In_  const WCHAR *ProxyList,
+            _In_opt_  const WCHAR *ProxyList,
             /* [annotation][unique][string][in] */ 
-            _In_  const WCHAR *ProxyBypassList);
+            _In_opt_  const WCHAR *ProxyBypassList);
         
         DECLSPEC_XFGVIRT(IBackgroundCopyJob, GetProxySettings)
         HRESULT ( STDMETHODCALLTYPE *GetProxySettings )( 
@@ -1231,9 +1241,9 @@ EXTERN_C const IID IID_IBackgroundCopyJob4;
         HRESULT ( STDMETHODCALLTYPE *SetNotifyCmdLine )( 
             __RPC__in IBackgroundCopyJob4 * This,
             /* [annotation][unique][in] */ 
-            _In_  LPCWSTR Program,
+            _In_opt_  LPCWSTR Program,
             /* [annotation][unique][in] */ 
-            _In_  LPCWSTR Parameters);
+            _In_opt_  LPCWSTR Parameters);
         
         DECLSPEC_XFGVIRT(IBackgroundCopyJob2, GetNotifyCmdLine)
         HRESULT ( STDMETHODCALLTYPE *GetNotifyCmdLine )( 
@@ -1254,13 +1264,13 @@ EXTERN_C const IID IID_IBackgroundCopyJob4;
             __RPC__in IBackgroundCopyJob4 * This,
             /* [size_is][size_is][out] */ __RPC__deref_out_ecount_full_opt(( unsigned long  )*pLength) byte **ppBuffer,
             /* [annotation][unique][out][in] */ 
-            _Inout_  UINT64 *pLength);
+            _Inout_opt_  UINT64 *pLength);
         
         DECLSPEC_XFGVIRT(IBackgroundCopyJob2, SetReplyFileName)
         HRESULT ( STDMETHODCALLTYPE *SetReplyFileName )( 
             __RPC__in IBackgroundCopyJob4 * This,
             /* [annotation][unique][in] */ 
-            _In_  LPCWSTR ReplyFileName);
+            _In_opt_  LPCWSTR ReplyFileName);
         
         DECLSPEC_XFGVIRT(IBackgroundCopyJob2, GetReplyFileName)
         HRESULT ( STDMETHODCALLTYPE *GetReplyFileName )( 
@@ -1605,7 +1615,7 @@ EXTERN_C const IID IID_IBackgroundCopyFile3;
         HRESULT ( STDMETHODCALLTYPE *GetFileRanges )( 
             __RPC__in IBackgroundCopyFile3 * This,
             /* [annotation][unique][out][in] */ 
-            _Inout_  DWORD *RangeCount,
+            _Inout_opt_  DWORD *RangeCount,
             /* [annotation][size_is][size_is][out] */ 
             _Out_writes_(*RangeCount)  BG_FILE_RANGE **Ranges);
         

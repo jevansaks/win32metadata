@@ -13,6 +13,7 @@ namespace ClangSharpSourceToWinmdTests
     {
         private const string Predecessor = "c16762d41f1bd641ff8c4389ebf16ee50747129f";
         private const string Declaration = "int __stdcall Example(void* buffer, unsigned long count);";
+        public TestContext TestContext { get; set; } = null!;
 
         [DataTestMethod]
         [DataRow("i686-pc-windows-msvc", "webauthn.dll")]
@@ -130,7 +131,8 @@ namespace ClangSharpSourceToWinmdTests
             foreach (var owner in new[] { ("webauthnplugin.h", 27), ("HtmlHelp.h", 2) })
             {
                 string path = "generation/WinSDK/RecompiledIdlHeaders/um/" + owner.Item1;
-                string header = File.ReadAllText(Path.Combine(root, path)).Replace("\r\n", "\n");
+                string header = FullHeaderMigrationExperimentTests.ReadRecoveryText(
+                    "RecompiledIdlHeaders/um/" + owner.Item1).Replace("\r\n", "\n");
                 var original = LastErrorHeaderTests.Run("git", "-C", root, "show", Predecessor + ":" + path);
                 Assert.AreEqual(0, original.ExitCode, original.Output);
                 string stripped = Regex.Replace(header, @"_Win32_ImportLibrary_\(""[^""]+""\)(?:\n| )", "")
@@ -149,7 +151,7 @@ namespace ClangSharpSourceToWinmdTests
                 !line.StartsWith("# webauthnplugin.h APIs", StringComparison.Ordinal) &&
                 !line.StartsWith("# The documentation lists WebAuthnPlugin", StringComparison.Ordinal) &&
                 !line.StartsWith("# or in Windows; LoadLibrary", StringComparison.Ordinal)));
-            Assert.AreEqual(expected, File.ReadAllText(Path.Combine(root, "generation", "WinSDK", "libMappingsManual.rsp"))
+            Assert.AreEqual(expected, FullHeaderMigrationExperimentTests.ReadRecoveryText("libMappingsManual.rsp")
                 .Replace("\r\n", "\n"));
             string inferred = File.ReadAllText(Path.Combine(root, "generation", "WinSDK", "libMappings.rsp"));
             foreach (string name in retired.Keys)
@@ -185,12 +187,17 @@ namespace ClangSharpSourceToWinmdTests
                 .Cast<Match>().Select(match => match.Groups[1].Value).ToArray();
             Assert.AreEqual(count, names.Length);
             string prefix = "#include <windows.h>\n";
+            System.Collections.Generic.Dictionary<string, string>? headers = null;
             if (owner == "webauthnplugin.h")
                 prefix += File.ReadAllText(Path.Combine(include, "um", "webauthn.h")) + "\n";
             else
+            {
+                headers = new() { [owner] = header };
+                prefix += "#include \"" + owner + "\"\n";
                 header = string.Join("\n", Regex.Matches(header,
                     @"_Win32_ImportLibrary_\(""[^""]+""\) HWND\s+WINAPI\s+\w+\([^;]+;")
                     .Cast<Match>().Select(match => match.Value));
+            }
             var compilerInclude = LastErrorHeaderTests.Run("pwsh", "-NoProfile", "-NonInteractive", "-Command",
                 ". '" + Path.Combine(root, "scripts", "CommonUtils.ps1").Replace("'", "''") +
                 "'; [IO.Path]::GetFullPath((Join-Path (Get-VcDirPath -Arch x64 -HostArch x64) '..\\..\\..\\include'))");
@@ -200,14 +207,29 @@ namespace ClangSharpSourceToWinmdTests
                 "\n" + compilerInclude.Output.Trim() +
                 "\n--remap\nHWND__=void\n--additional\n-DWINVER=0x0A00\n-D_WIN32_WINNT=0x0A00\n-DNTDDI_VERSION=0x0A00000C";
             using var fixture = new LastErrorHeaderTests.Fixture();
+            var legacyHeaders = headers?.ToDictionary(pair => pair.Key,
+                pair => Regex.Replace(pair.Value, @"_Win32_ImportLibrary_\(""[^""]+""\)", ""));
             var legacy = fixture.Scrape(prefix + Regex.Replace(header, @"_Win32_ImportLibrary_\(""[^""]+""\)", ""),
                 target, sal: true, extraSettings: settings + "\n--with-librarypath\n" +
-                string.Join("\n", names.Select(name => name + "=" + module)));
+                string.Join("\n", names.Select(name => name + "=" + module)), headers: legacyHeaders);
+            if (legacyHeaders != null)
+                Save(Path.Combine(fixture.DirectoryPath, owner), owner + "-" + target + "-baseline-owner");
+            Save(Path.Combine(fixture.DirectoryPath, "input.h"), owner + "-" + target + "-baseline");
+            Save(Path.Combine(fixture.DirectoryPath, "settings.rsp"), owner + "-" + target + "-baseline");
             Assert.AreEqual(0, legacy.ExitCode, legacy.Output);
-            byte[] expected = File.ReadAllBytes(fixture.Emit());
-            var result = fixture.Scrape(prefix + header, target, sal: true, extraSettings: settings);
+            Save(fixture.GeneratedSource, owner + "-" + target + "-baseline");
+            string expectedOutput = fixture.Emit();
+            byte[] expected = File.ReadAllBytes(expectedOutput);
+            Save(expectedOutput, owner + "-" + target + "-baseline");
+            var result = fixture.Scrape(prefix + header, target, sal: true, extraSettings: settings, headers: headers);
+            if (headers != null)
+                Save(Path.Combine(fixture.DirectoryPath, owner), owner + "-" + target + "-native-owner");
+            Save(Path.Combine(fixture.DirectoryPath, "input.h"), owner + "-" + target + "-native");
+            Save(Path.Combine(fixture.DirectoryPath, "settings.rsp"), owner + "-" + target + "-native");
             Assert.AreEqual(0, result.ExitCode, result.Output);
+            Save(fixture.GeneratedSource, owner + "-" + target + "-native");
             string output = fixture.Emit();
+            Save(output, owner + "-" + target + "-native");
             CollectionAssert.AreEqual(expected, File.ReadAllBytes(output));
             using (var pe = new PEReader(File.OpenRead(output)))
             {
@@ -218,6 +240,13 @@ namespace ClangSharpSourceToWinmdTests
                 Assert.AreEqual(count, imports.Count(name => names.Contains(name)));
             }
             foreach (string name in names) AssertImport(output, name, name, module);
+        }
+
+        private void Save(string path, string name)
+        {
+            string destination = Path.Combine(TestContext.ResultsDirectory!, name + "-" + Path.GetFileName(path));
+            File.Copy(path, destination, overwrite: true);
+            TestContext.AddResultFile(destination);
         }
 
         private static void Reject(string header)

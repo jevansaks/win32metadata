@@ -1,3 +1,5 @@
+cpp_quote("#include <win32metadata_annotations.h>")
+#include <win32metadata_annotations.h>
 //+---------------------------------------------------------------------------
 //
 //  Microsoft Windows
@@ -541,6 +543,7 @@ interface IPersistMoniker : IUnknown
     HRESULT GetCurMoniker(
         [out] IMoniker ** ppimkName);
 }
+_Win32_AnnotateMethod_(IPersistMoniker::IsDirty, _Win32_PreserveResult_)
 
 cpp_quote("#endif")
 

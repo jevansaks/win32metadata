@@ -1,0 +1,404 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/clfsw32.h b/generation/WinSDK/RecompiledIdlHeaders/um/clfsw32.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/clfsw32.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/clfsw32.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*=============================================================================
+ 
+     Copyright (c) 1998-2001  Microsoft Corporation
+@@ -155,6 +156,8 @@
+ #endif /* _WIN32_WINNT */
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // CreateLogFile
+ //
+@@ -167,12 +170,14 @@
+                     IN ACCESS_MASK fDesiredAccess,
+                     IN DWORD dwShareMode,
+                     IN LPSECURITY_ATTRIBUTES psaLogFile OPTIONAL,
+-                    IN ULONG fCreateDisposition,
++                    _Win32_AssociatedEnum_(FILE_CREATION_DISPOSITION) IN ULONG fCreateDisposition,
+                     IN ULONG fFlagsAndAttributes
+                     );
+ #endif /* _WIN32_WINNT */
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // DeleteLogByHandle
+ //
+@@ -184,6 +189,8 @@
+ #endif /* _WIN32_WINNT */
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // DeleteLogFile
+ //
+@@ -198,6 +205,8 @@
+ #endif /* _WIN32_WINNT */
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // AddLogContainer
+ //
+@@ -214,6 +223,8 @@
+ #endif /* _WIN32_WINNT */
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // AddLogContainerSet
+ //
+@@ -231,6 +242,8 @@
+ #endif /* _WIN32_WINNT */
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // RemoveLogContainer
+ //
+@@ -247,6 +260,8 @@
+ #endif /* _WIN32_WINNT */
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // RemoveLogContainerSet
+ //
+@@ -265,6 +280,8 @@
+ #endif /* _WIN32_WINNT */
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // SetLogArchiveTail
+ //
+@@ -280,6 +297,8 @@
+ #endif /* _WIN32_WINNT */
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // SetEndOfLog
+ //
+@@ -300,6 +319,8 @@
+ #endif /* _WIN32_WINNT */
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_LONGHORN)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // TruncateLog
+ //
+@@ -317,6 +338,8 @@
+ 
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // CreateLogContainerScanContext
+ //
+@@ -335,6 +358,8 @@
+ #endif /* _WIN32_WINNT */
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // ScanLogContainers
+ //
+@@ -350,6 +375,8 @@
+ #endif /* _WIN32_WINNT */
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // AlignReservedLog
+ //
+@@ -366,6 +393,8 @@
+ #endif /* _WIN32_WINNT */
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // AllocReservedLog
+ //
+@@ -381,6 +410,8 @@
+ #endif /* _WIN32_WINNT */
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // FreeReservedLog
+ //
+@@ -396,6 +427,8 @@
+ #endif /* _WIN32_WINNT */
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // GetLogFileInformation
+ //
+@@ -411,6 +444,8 @@
+ #endif /* _WIN32_WINNT */
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // SetLogArchiveMode
+ //
+@@ -424,6 +459,8 @@
+ #endif /* _WIN32_WINNT */
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // ReadLogRestartArea
+ //
+@@ -442,6 +479,8 @@
+ #endif /* _WIN32_WINNT */
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // ReadPreviousLogRestartArea
+ //
+@@ -460,6 +499,8 @@
+ #endif /* _WIN32_WINNT */
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // WriteLogRestartArea
+ //
+@@ -471,7 +512,7 @@
+                     IN PVOID pvRestartBuffer,
+                     IN ULONG cbRestartBuffer,
+                     IN PCLFS_LSN plsnBase OPTIONAL,
+-                    IN ULONG fFlags,
++                    _Win32_AssociatedEnum_(CLFS_FLAG) IN ULONG fFlags,
+                     OUT PULONG pcbWritten OPTIONAL,
+                     OUT PCLFS_LSN plsnNext OPTIONAL,
+                     IN OUT LPOVERLAPPED pOverlapped OPTIONAL
+@@ -494,6 +535,8 @@
+ #endif /* _WIN32_WINNT */
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // AdvanceLogBase
+ //
+@@ -509,6 +552,8 @@
+ #endif /* _WIN32_WINNT */
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // CloseAndResetLogFile
+ //
+@@ -521,6 +566,8 @@
+ #endif /* _WIN32_WINNT */
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // CreateLogMarshallingArea
+ //
+@@ -541,6 +588,8 @@
+ #endif /* _WIN32_WINNT */
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // DeleteLogMarshallingArea
+ //
+@@ -552,6 +601,8 @@
+ #endif /* _WIN32_WINNT */
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // ReserveAndAppendLog
+ //
+@@ -567,13 +618,15 @@
+                     IN PCLFS_LSN plsnPrevious OPTIONAL,
+                     IN ULONG cReserveRecords,
+                     IN OUT LONGLONG rgcbReservation [] OPTIONAL,
+-                    IN ULONG fFlags,
++                    _Win32_AssociatedEnum_(CLFS_FLAG) IN ULONG fFlags,
+                     OUT PCLFS_LSN plsn OPTIONAL,
+                     IN OUT LPOVERLAPPED pOverlapped OPTIONAL
+                     );
+ #endif /* _WIN32_WINNT */
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // ReserveAndAppendLogAligned
+ //
+@@ -590,13 +643,15 @@
+                     IN PCLFS_LSN plsnPrevious OPTIONAL,
+                     IN ULONG cReserveRecords,
+                     IN OUT LONGLONG rgcbReservation [] OPTIONAL,
+-                    IN ULONG fFlags,
++                    _Win32_AssociatedEnum_(CLFS_FLAG) IN ULONG fFlags,
+                     OUT PCLFS_LSN plsn OPTIONAL,
+                     IN OUT LPOVERLAPPED pOverlapped OPTIONAL
+                     );
+ #endif /* _WIN32_WINNT */
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // FlushLogBuffers
+ // 
+@@ -605,12 +660,14 @@
+ //------------------------------------------------------------------------------
+ 
+ CLFSUSER_API BOOL WINAPI FlushLogBuffers (
+-                    IN PVOID pvMarshal,
+-                    IN OUT LPOVERLAPPED pOverlapped OPTIONAL
+-                    );
+-#endif /* _WIN32_WINNT */
+-
+-#if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++                    _In_ IN PVOID pvMarshal,
++                    _Inout_opt_ _In_opt_ _Win32_Retained_ IN OUT LPOVERLAPPED pOverlapped OPTIONAL
++                    );
++#endif /* _WIN32_WINNT */
++
++#if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // FlushLogToLsn
+ // 
+@@ -627,6 +684,8 @@
+ #endif /* _WIN32_WINNT */
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // ReadLogRecord
+ //
+@@ -650,6 +709,8 @@
+ #endif /* _WIN32_WINNT */
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // ReadNextLogRecord
+ //
+@@ -671,6 +732,8 @@
+ #endif /* _WIN32_WINNT */
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // TerminateReadLog
+ //
+@@ -681,6 +744,8 @@
+ #endif /* _WIN32_WINNT */
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // DumpLogRecords
+ //
+@@ -704,6 +769,8 @@
+ #endif /* _WIN32_WINNT */
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // PrepareLogArchive
+ //
+@@ -731,6 +798,8 @@
+ #endif /* _WIN32_WINNT */
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // ReadLogArchiveMetadata
+ //
+@@ -749,6 +818,8 @@
+ #endif /* _WIN32_WINNT */
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // GetNextLogArchiveExtent
+ //
+@@ -766,6 +837,8 @@
+ #endif /* _WIN32_WINNT */
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // TerminateLogArchive
+ //
+@@ -780,6 +853,8 @@
+ #endif /* _WIN32_WINNT */
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // ValidateLog
+ //
+@@ -797,6 +872,8 @@
+ #endif /* _WIN32_WINNT */
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // GetLogContainerName
+ //
+@@ -814,6 +891,8 @@
+ #endif /* _WIN32_WINNT */
+ 
+ #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsVista_
+ //------------------------------------------------------------------------------
+ // GetLogIoStatistics
+ //

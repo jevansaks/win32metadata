@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //+---------------------------------------------------------------------------
 //
 //  Microsoft Windows
@@ -177,6 +178,8 @@ typedef struct  _CRYPTPROTECT_PROMPTSTRUCT
 
 #pragma region App Family or OneCore or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 DPAPI_IMP
 BOOL
@@ -190,6 +193,8 @@ CryptProtectData(
     _In_            DWORD           dwFlags,
     _Out_           DATA_BLOB*      pDataOut            // out encr blob
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 DPAPI_IMP
 BOOL
@@ -249,6 +254,8 @@ CryptUnprotectDataNoUI(
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 DPAPI_IMP
 BOOL
@@ -305,6 +312,8 @@ CryptUpdateProtectedState(
 
 #pragma region App Family or OneCore or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 DPAPI_IMP
 BOOL
@@ -314,6 +323,8 @@ CryptProtectMemory(
     _In_            DWORD           cbDataIn,            // multiple of CRYPTPROTECTMEMORY_BLOCK_SIZE
     _In_            DWORD           dwFlags
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 DPAPI_IMP
 BOOL

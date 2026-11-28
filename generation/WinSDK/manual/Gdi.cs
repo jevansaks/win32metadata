@@ -26,30 +26,7 @@ namespace Windows.Win32.Graphics.Gdi
         R2_LAST = 16
     }
 
-    public enum RGN_COMBINE_MODE
-    {
-        RGN_AND = 1,
-        RGN_OR = 2,
-        RGN_XOR = 3,
-        RGN_DIFF = 4,
-        RGN_COPY = 5,
-        RGN_MIN = RGN_AND,
-        RGN_MAX = RGN_COPY
-    }
 
-    [Flags]
-    public enum ETO_OPTIONS : uint
-    {
-        ETO_OPAQUE = 0x0002,
-        ETO_CLIPPED = 0x0004,
-        ETO_GLYPH_INDEX = 0x0010,
-        ETO_RTLREADING = 0x0080,
-        ETO_NUMERICSLOCAL = 0x0400,
-        ETO_NUMERICSLATIN = 0x0800,
-        ETO_IGNORELANGUAGE = 0x1000,
-        ETO_PDY = 0x2000,
-        ETO_REVERSE_INDEX_MAP = 0x10000,
-    }
 
     public enum OBJ_TYPE
     {
@@ -69,11 +46,6 @@ namespace Windows.Win32.Graphics.Gdi
         OBJ_COLORSPACE = 14
     }
 
-    public enum DIB_USAGE : uint
-    {
-        DIB_RGB_COLORS = 0,
-        DIB_PAL_COLORS = 1
-    }
     
     [NativeTypeName("struct tagMONITORINFOEXA : tagMONITORINFO")]
     [NativeInheritance("tagMONITORINFO")]

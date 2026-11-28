@@ -1,3 +1,5 @@
+cpp_quote("#include <win32metadata_annotations.h>")
+#include <win32metadata_annotations.h>
 //------------------------------------------------------------------------------
 // File: DynGraph.idl
 //
@@ -42,6 +44,7 @@ interface IPinConnection : IUnknown {
 
     HRESULT DynamicDisconnect();
 };
+_Win32_AnnotateMethod_(IPinConnection::IsEndPin, _Win32_PreserveResult_)
 
 //--------------------------------------------------------------------
 //

@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -686,6 +687,7 @@ typedef DWORD          RTM_NOTIFY_FLAGS,
 // Dests whose changes to notify
 
 #define RTM_NOTIFY_ONLY_MARKED_DESTS 0x00010000
+_Win32_SupportedOS_Server2000_
 
 
 //
@@ -702,12 +704,14 @@ RtmRegisterEntity (
     OUT     PRTM_REGN_PROFILE               RtmRegProfile,
     OUT     PRTM_ENTITY_HANDLE              RtmRegHandle
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
 RtmDeregisterEntity (
     IN      RTM_ENTITY_HANDLE               RtmRegHandle
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -717,6 +721,7 @@ RtmGetRegisteredEntities (
     OUT     PRTM_ENTITY_HANDLE              EntityHandles,
     OUT     PRTM_ENTITY_INFO                EntityInfos OPTIONAL
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -725,6 +730,7 @@ RtmReleaseEntities (
     IN      UINT                            NumEntities,
     IN      PRTM_ENTITY_HANDLE              EntityHandles
     );
+_Win32_SupportedOS_Server2000_
 
 //
 // Opaque Ptr APIs
@@ -738,6 +744,7 @@ RtmLockDestination(
     IN      BOOL                            Exclusive,
     IN      BOOL                            LockDest
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -746,6 +753,7 @@ RtmGetOpaqueInformationPointer (
     IN      RTM_DEST_HANDLE                 DestHandle,
     OUT     PVOID                          *OpaqueInfoPointer
     );
+_Win32_SupportedOS_Server2000_
 
 //
 // Export Method API Prototypes
@@ -759,6 +767,7 @@ RtmGetEntityMethods (
     IN OUT  PUINT                           NumMethods,
     OUT     PRTM_ENTITY_EXPORT_METHOD       ExptMethods
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -769,6 +778,7 @@ RtmInvokeMethod (
     IN OUT  PUINT                           OutputSize,
     OUT     PRTM_ENTITY_METHOD_OUTPUT       Output
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -778,6 +788,7 @@ RtmBlockMethods (
     IN      UCHAR                           TargetType   OPTIONAL,
     IN      DWORD                           BlockingFlag
     );
+_Win32_SupportedOS_Server2000_
 
 //
 // Handle to Info Structures
@@ -790,6 +801,7 @@ RtmGetEntityInfo (
     IN      RTM_ENTITY_HANDLE               EntityHandle,
     OUT     PRTM_ENTITY_INFO                EntityInfo
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -800,6 +812,7 @@ RtmGetDestInfo (
     IN      RTM_VIEW_SET                    TargetViews,
     OUT     PRTM_DEST_INFO                  DestInfo
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -809,6 +822,7 @@ RtmGetRouteInfo (
     OUT     PRTM_ROUTE_INFO                 RouteInfo   OPTIONAL,
     OUT     PRTM_NET_ADDRESS                DestAddress OPTIONAL
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -817,6 +831,7 @@ RtmGetNextHopInfo (
     IN      RTM_NEXTHOP_HANDLE              NextHopHandle,
     OUT     PRTM_NEXTHOP_INFO               NextHopInfo
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -824,6 +839,7 @@ RtmReleaseEntityInfo (
     IN      RTM_ENTITY_HANDLE              RtmRegHandle,
     IN      PRTM_ENTITY_INFO               EntityInfo
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -831,6 +847,7 @@ RtmReleaseDestInfo (
     IN      RTM_ENTITY_HANDLE              RtmRegHandle,
     IN      PRTM_DEST_INFO                 DestInfo
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -838,6 +855,7 @@ RtmReleaseRouteInfo (
     IN      RTM_ENTITY_HANDLE              RtmRegHandle,
     IN      PRTM_ROUTE_INFO                RouteInfo
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -845,6 +863,7 @@ RtmReleaseNextHopInfo (
     IN      RTM_ENTITY_HANDLE              RtmRegHandle,
     IN      PRTM_NEXTHOP_INFO              NextHopInfo
     );
+_Win32_SupportedOS_Server2000_
 
 
 //
@@ -864,6 +883,7 @@ RtmAddRouteToDest (
     IN      RTM_NOTIFY_HANDLE               NotifyHandle    OPTIONAL,
     IN OUT  PRTM_ROUTE_CHANGE_FLAGS         ChangeFlags
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -872,6 +892,7 @@ RtmDeleteRouteToDest (
     IN      RTM_ROUTE_HANDLE                RouteHandle,
     OUT     PRTM_ROUTE_CHANGE_FLAGS         ChangeFlags
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -881,6 +902,7 @@ RtmHoldDestination (
     IN      RTM_VIEW_SET                    TargetViews,
     IN      ULONG                           HoldTime
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -889,6 +911,7 @@ RtmGetRoutePointer (
     IN      RTM_ROUTE_HANDLE                RouteHandle,
     OUT     PRTM_ROUTE_INFO                *RoutePointer
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -899,6 +922,7 @@ RtmLockRoute(
     IN      BOOL                            LockRoute,
     OUT     PRTM_ROUTE_INFO                *RoutePointer OPTIONAL
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -911,6 +935,7 @@ RtmUpdateAndUnlockRoute(
     IN      RTM_NOTIFY_HANDLE               NotifyHandle    OPTIONAL,
     OUT     PRTM_ROUTE_CHANGE_FLAGS         ChangeFlags
     );
+_Win32_SupportedOS_Server2000_
 
 //
 // RIB Query API Prototypes
@@ -925,6 +950,7 @@ RtmGetExactMatchDestination (
     IN      RTM_VIEW_SET                    TargetViews,
     OUT     PRTM_DEST_INFO                  DestInfo
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -935,6 +961,7 @@ RtmGetMostSpecificDestination (
     IN      RTM_VIEW_SET                    TargetViews,
     OUT     PRTM_DEST_INFO                  DestInfo
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -945,6 +972,7 @@ RtmGetLessSpecificDestination (
     IN      RTM_VIEW_SET                    TargetViews,
     OUT     PRTM_DEST_INFO                  DestInfo
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -957,6 +985,7 @@ RtmGetExactMatchRoute (
     IN      RTM_VIEW_SET                    TargetViews,
     OUT     PRTM_ROUTE_HANDLE               RouteHandle
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -965,6 +994,7 @@ RtmIsBestRoute (
     IN      RTM_ROUTE_HANDLE                RouteHandle,
     OUT     PRTM_VIEW_SET                   BestInViews
     );
+_Win32_SupportedOS_Server2000_
 
 //
 // NextHop Object API Prototypes
@@ -978,6 +1008,7 @@ RtmAddNextHop (
     IN OUT  PRTM_NEXTHOP_HANDLE             NextHopHandle OPTIONAL,
     OUT     PRTM_NEXTHOP_CHANGE_FLAGS       ChangeFlags
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -987,6 +1018,7 @@ RtmFindNextHop (
     OUT     PRTM_NEXTHOP_HANDLE             NextHopHandle,
     OUT     PRTM_NEXTHOP_INFO              *NextHopPointer OPTIONAL
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -995,6 +1027,7 @@ RtmDeleteNextHop (
     IN      RTM_NEXTHOP_HANDLE              NextHopHandle  OPTIONAL,
     IN      PRTM_NEXTHOP_INFO               NextHopInfo
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -1003,6 +1036,7 @@ RtmGetNextHopPointer (
     IN      RTM_NEXTHOP_HANDLE              NextHopHandle,
     OUT     PRTM_NEXTHOP_INFO              *NextHopPointer
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -1013,6 +1047,7 @@ RtmLockNextHop(
     IN      BOOL                            LockNextHop,
     OUT     PRTM_NEXTHOP_INFO              *NextHopPointer OPTIONAL
     );
+_Win32_SupportedOS_Server2000_
 
 
 //
@@ -1029,6 +1064,7 @@ RtmCreateDestEnum (
     IN      ULONG                           ProtocolId,
     OUT     PRTM_ENUM_HANDLE                RtmEnumHandle
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -1038,6 +1074,7 @@ RtmGetEnumDests (
     IN OUT  PUINT                           NumDests,
     OUT     PRTM_DEST_INFO                  DestInfos
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -1046,6 +1083,7 @@ RtmReleaseDests (
     IN      UINT                            NumDests,
     IN      PRTM_DEST_INFO                  DestInfos
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -1060,6 +1098,7 @@ RtmCreateRouteEnum (
     IN      ULONG                           CriteriaInterface OPTIONAL,
     OUT     PRTM_ENUM_HANDLE                RtmEnumHandle
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -1069,6 +1108,7 @@ RtmGetEnumRoutes (
     IN OUT  PUINT                           NumRoutes,
     OUT     PRTM_ROUTE_HANDLE               RouteHandles
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -1077,6 +1117,7 @@ RtmReleaseRoutes (
     IN      UINT                            NumRoutes,
     IN      PRTM_ROUTE_HANDLE               RouteHandles
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -1086,6 +1127,7 @@ RtmCreateNextHopEnum (
     IN      PRTM_NET_ADDRESS                NetAddress,
     OUT     PRTM_ENUM_HANDLE                RtmEnumHandle
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -1095,6 +1137,7 @@ RtmGetEnumNextHops (
     IN OUT  PUINT                           NumNextHops,
     OUT     PRTM_NEXTHOP_HANDLE             NextHopHandles
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -1103,6 +1146,7 @@ RtmReleaseNextHops (
     IN      UINT                            NumNextHops,
     IN      PRTM_NEXTHOP_HANDLE             NextHopHandles
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -1110,6 +1154,7 @@ RtmDeleteEnumHandle (
     IN      RTM_ENTITY_HANDLE               RtmRegHandle,
     IN      RTM_ENUM_HANDLE                 EnumHandle
     );
+_Win32_SupportedOS_Server2000_
 
 
 //
@@ -1125,6 +1170,7 @@ RtmRegisterForChangeNotification (
     IN      PVOID                           NotifyContext,
     OUT     PRTM_NOTIFY_HANDLE              NotifyHandle
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -1134,6 +1180,7 @@ RtmGetChangedDests (
     IN OUT  PUINT                           NumDests,
     OUT     PRTM_DEST_INFO                  ChangedDests
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -1143,6 +1190,7 @@ RtmReleaseChangedDests (
     IN      UINT                            NumDests,
     IN      PRTM_DEST_INFO                  ChangedDests
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -1152,6 +1200,7 @@ RtmIgnoreChangedDests (
     IN      UINT                            NumDests,
     IN      PRTM_DEST_HANDLE                ChangedDests
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -1161,6 +1210,7 @@ RtmGetChangeStatus (
     IN      RTM_DEST_HANDLE                 DestHandle,
     OUT     PBOOL                           ChangeStatus
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -1170,6 +1220,7 @@ RtmMarkDestForChangeNotification (
     IN      RTM_DEST_HANDLE                 DestHandle,
     IN      BOOL                            MarkDest
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -1179,6 +1230,7 @@ RtmIsMarkedForChangeNotification (
     IN      RTM_DEST_HANDLE                 DestHandle,
     OUT     PBOOL                           DestMarked
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -1186,6 +1238,7 @@ RtmDeregisterFromChangeNotification (
     IN      RTM_ENTITY_HANDLE               RtmRegHandle,
     IN      RTM_NOTIFY_HANDLE               NotifyHandle
     );
+_Win32_SupportedOS_Server2000_
 
 
 //
@@ -1198,6 +1251,7 @@ RtmCreateRouteList (
     IN      RTM_ENTITY_HANDLE               RtmRegHandle,
     OUT     PRTM_ROUTE_LIST_HANDLE          RouteListHandle
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -1207,6 +1261,7 @@ RtmInsertInRouteList (
     IN      UINT                            NumRoutes,
     IN      PRTM_ROUTE_HANDLE               RouteHandles
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -1215,6 +1270,7 @@ RtmCreateRouteListEnum (
     IN      RTM_ROUTE_LIST_HANDLE           RouteListHandle,
     OUT     PRTM_ENUM_HANDLE                RtmEnumHandle
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -1224,6 +1280,7 @@ RtmGetListEnumRoutes (
     IN OUT  PUINT                           NumRoutes,
     _Out_writes_(*NumRoutes) OUT     PRTM_ROUTE_HANDLE               RouteHandles
     );
+_Win32_SupportedOS_Server2000_
 
 DWORD
 WINAPI
@@ -1231,6 +1288,7 @@ RtmDeleteRouteList (
     IN      RTM_ENTITY_HANDLE               RtmRegHandle,
     IN      RTM_ROUTE_LIST_HANDLE           RouteListHandle
     );
+_Win32_SupportedOS_Server2000_
 
 //
 // Handle Management APIs

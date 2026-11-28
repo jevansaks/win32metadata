@@ -1,0 +1,41 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/cscapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/cscapi.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/cscapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/cscapi.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*++
+ 
+ Copyright (c) Microsoft Corporation.  All rights reserved.
+@@ -28,6 +29,7 @@
+ 
+ 
+ #include <specstrings.h>
++_Win32_SupportedOS_WindowsVista_
+ 
+ //
+ // Enable or disable the Offline Files feature. 
+@@ -41,6 +43,7 @@
+     );
+ 
+ #if (NTDDI_VERSION >= NTDDI_WIN8)
++_Win32_SupportedOS_Windows8_
+ //
+ // Start Offline Files feature if it's available. 
+ // If the feature is not available then a ERROR_NOT_SUPPORTED error is returned.
+@@ -49,6 +52,7 @@
+ OfflineFilesStart(
+     );
+ #endif
++_Win32_SupportedOS_WindowsVista_
+ 
+ //
+ // Query the active/inactive and enabled/disabled state of the Offline Files feature.
+@@ -65,6 +69,7 @@
+     );
+ 
+ #if (NTDDI_VERSION >= NTDDI_WIN8)
++_Win32_SupportedOS_Windows8_
+ //
+ // Query the active/inactive, enabled/disabled and available/unavailable state of the 
+ // Offline Files feature.

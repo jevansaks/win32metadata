@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 
 //*@@@+++@@@@******************************************************************
@@ -3811,4 +3812,8 @@ cpp_quote("#endif /* 0 */")
 
 #endif /* __midl */
 
-
+#ifndef _WIN32METADATA_MMREG_SECURITY_SYSTEM_91_GROUPS_
+#define _WIN32METADATA_MMREG_SECURITY_SYSTEM_91_GROUPS_
+_Win32_Enum_(MPEGLAYER3WAVEFORMAT_FLAGS, unsigned int, MPEGLAYER3_FLAG_PADDING_ISO, MPEGLAYER3_FLAG_PADDING_ON, MPEGLAYER3_FLAG_PADDING_OFF);
+_Win32_AnnotateField_(MPEGLAYER3WAVEFORMAT::fdwFlags, _Win32_AssociatedEnum_(MPEGLAYER3WAVEFORMAT_FLAGS));
+#endif

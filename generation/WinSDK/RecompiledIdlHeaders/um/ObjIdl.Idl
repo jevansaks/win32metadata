@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 cpp_quote("#include <winapifamily.h>")
 cpp_quote("#include <win32metadata_annotations.h>")
 
@@ -351,6 +352,8 @@ interface IEnumMoniker : IUnknown
     HRESULT Clone(
         [out] IEnumMoniker **ppenum);
 }
+_Win32_AnnotateMethod_(IEnumMoniker::Next, _Win32_PreserveResult_)
+_Win32_AnnotateMethod_(IEnumMoniker::Skip, _Win32_PreserveResult_)
 
 cpp_quote("#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES) */")
 #pragma endregion
@@ -495,6 +498,7 @@ interface IPersistStream : IPersist
     );
 
 }
+_Win32_AnnotateMethod_(IPersistStream::IsDirty, _Win32_PreserveResult_)
 
 [
     object,
@@ -620,6 +624,7 @@ interface IMoniker : IPersistStream
         [out] DWORD *pdwMksys);
 
 }
+_Win32_AnnotateMethod_(IMoniker::IsEqual, _Win32_PreserveResult_)
 
 cpp_quote("#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES) */")
 #pragma endregion
@@ -853,6 +858,7 @@ interface IPersistFile : IPersist
         [out] LPOLESTR *ppszFileName
     );
 }
+_Win32_AnnotateMethod_(IPersistFile::IsDirty, _Win32_PreserveResult_)
 
 [
     object,
@@ -896,6 +902,7 @@ interface IPersistStorage : IPersist
         void
     );
 }
+_Win32_AnnotateMethod_(IPersistStorage::IsDirty, _Win32_PreserveResult_)
 
 cpp_quote("#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM) */")
 #pragma endregion
@@ -1019,6 +1026,7 @@ midl_pragma warning( default: 2480 )
     HRESULT Clone(
         [out] IEnumFORMATETC **ppenum);
 }
+_Win32_AnnotateMethod_(IEnumFORMATETC::Next, _Win32_PreserveResult_)
 
 [
     object,
@@ -1480,6 +1488,8 @@ interface IDataObject : IUnknown
         [out] IEnumSTATDATA **ppenumAdvise);
 
 }
+_Win32_AnnotateMethod_(IDataObject::GetCanonicalFormatEtc, _Win32_PreserveResult_)
+_Win32_AnnotateMethod_(IDataObject::QueryGetData, _Win32_PreserveResult_)
 
 cpp_quote("#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES) */")
 #pragma endregion

@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*=============================================================================
 
     Copyright (c) 1998  Microsoft Corporation
@@ -1308,4 +1309,7 @@ operator>=
 //                                      END OF FILE
 //-----------------------------------------------------------------------------
 
-
+#ifndef _WIN32METADATA_CLFS_SECURITY_SYSTEM_91_GROUPS_
+#define _WIN32METADATA_CLFS_SECURITY_SYSTEM_91_GROUPS_
+_Win32_FlagsEnum_(CLFS_FLAG, unsigned int, CLFS_FLAG_FORCE_APPEND, CLFS_FLAG_FORCE_FLUSH, CLFS_FLAG_NO_FLAGS, CLFS_FLAG_USE_RESERVATION);
+#endif

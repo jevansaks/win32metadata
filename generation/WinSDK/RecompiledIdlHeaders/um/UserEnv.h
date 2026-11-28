@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 
 //=============================================================================
 //  userenv.h   -   Header file for user environment API.
@@ -69,6 +70,8 @@ extern "C" {
 
 #define PI_NOUI         0x00000001      // Prevents displaying of messages
 #define PI_APPLYPOLICY  0x00000002      // Apply NT4 style policy
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 USERENVAPI
 BOOL
@@ -76,6 +79,8 @@ WINAPI
 LoadUserProfileA(
     _In_    HANDLE          hToken,
     _Inout_ LPPROFILEINFOA  lpProfileInfo);
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 USERENVAPI
 BOOL
 WINAPI
@@ -87,6 +92,8 @@ LoadUserProfileW(
 #else
 #define LoadUserProfile  LoadUserProfileA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 //=============================================================================
 //
@@ -110,6 +117,8 @@ WINAPI
 UnloadUserProfile(
     _In_    HANDLE  hToken,
     _In_    HANDLE  hProfile);
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 //=============================================================================
 //
@@ -136,6 +145,8 @@ WINAPI
 GetProfilesDirectoryA(
     _Out_writes_opt_(*lpcchSize)    LPSTR lpProfileDir,
     _Inout_                         LPDWORD lpcchSize);
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 USERENVAPI
 BOOL
 WINAPI
@@ -175,6 +186,8 @@ GetProfilesDirectoryW(
 #define PT_ROAMING                   0x00000002      // The loaded profile is a roaming profile.
 #define PT_MANDATORY                 0x00000004      // The loaded profile is mandatory.
 #define PT_ROAMING_PREEXISTING       0x00000008      // The loaded roaming profile is not a brand new one - it was obtained from roamed location
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 USERENVAPI
 BOOL
@@ -201,6 +214,8 @@ GetProfileType(
 //=============================================================================
 
 #if(WINVER >= 0x0500)
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 USERENVAPI
 BOOL
@@ -209,6 +224,8 @@ DeleteProfileA (
     _In_        LPCSTR    lpSidString,
     _In_opt_    LPCSTR    lpProfilePath,
     _In_opt_    LPCSTR    lpComputerName);
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 USERENVAPI
 BOOL
 WINAPI
@@ -248,6 +265,7 @@ DeleteProfileW (
 //=============================================================================
 
 #if(WINVER >= 0x0600)
+_Win32_SupportedOS_WindowsVista_
 
 USERENVAPI
 HRESULT
@@ -280,6 +298,8 @@ CreateProfile(
 //=============================================================================
 
 #if(WINVER >= 0x0500)
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 USERENVAPI
 BOOL
@@ -287,6 +307,8 @@ WINAPI
 GetDefaultUserProfileDirectoryA(
     _Out_writes_opt_(*lpcchSize)    LPSTR lpProfileDir,
     _Inout_                         LPDWORD lpcchSize);
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 USERENVAPI
 BOOL
 WINAPI
@@ -321,6 +343,8 @@ GetDefaultUserProfileDirectoryW(
 //=============================================================================
 
 #if(WINVER >= 0x0500)
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 USERENVAPI
 BOOL
@@ -328,6 +352,8 @@ WINAPI
 GetAllUsersProfileDirectoryA(
     _Out_writes_opt_(*lpcchSize)    LPSTR lpProfileDir,
     _Inout_                         LPDWORD lpcchSize);
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 USERENVAPI
 BOOL
 WINAPI
@@ -341,6 +367,8 @@ GetAllUsersProfileDirectoryW(
 #endif // !UNICODE
 
 #endif /* WINVER >= 0x0500 */
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 //=============================================================================
 //
@@ -369,6 +397,8 @@ GetUserProfileDirectoryA(
     _In_                            HANDLE  hToken,
     _Out_writes_opt_(*lpcchSize)    LPSTR lpProfileDir,
     _Inout_                         LPDWORD lpcchSize);
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 USERENVAPI
 BOOL
 WINAPI
@@ -381,6 +411,8 @@ GetUserProfileDirectoryW(
 #else
 #define GetUserProfileDirectory  GetUserProfileDirectoryA
 #endif // !UNICODE
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 
 
@@ -415,6 +447,8 @@ CreateEnvironmentBlock(
     _At_((PZZWSTR *)lpEnvironment, _Outptr_)  LPVOID  *lpEnvironment,
     _In_opt_                                  HANDLE  hToken,
     _In_                                      BOOL    bInherit);
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 //=============================================================================
 //
@@ -455,6 +489,8 @@ DestroyEnvironmentBlock(
 //=============================================================================
 
 #if(WINVER >= 0x0500)
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 USERENVAPI
 BOOL
@@ -464,6 +500,8 @@ ExpandEnvironmentStringsForUserA(
     _In_                    LPCSTR    lpSrc,
     _Out_writes_(dwSize)    LPSTR     lpDest,
     _In_                    DWORD       dwSize);
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 USERENVAPI
 BOOL
 WINAPI
@@ -494,6 +532,8 @@ ExpandEnvironmentStringsForUserW(
 //=============================================================================
 
 #if(WINVER >= 0x0500)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 USERENVAPI
 BOOL
@@ -521,6 +561,8 @@ RefreshPolicy(
 
 #define RP_FORCE            1      // Refresh policies without any optimisations.
 #define RP_SYNC             2      // Refresh Policy sync; the call does not return till the time policy processing is completed
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 USERENVAPI
 BOOL
@@ -559,6 +601,8 @@ RefreshPolicyEx(
 //=============================================================================
 
 #if(WINVER >= 0x0500)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 USERENVAPI
 HANDLE
@@ -585,6 +629,8 @@ EnterCriticalPolicySection(
 //=============================================================================
 
 #if(WINVER >= 0x0500)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 USERENVAPI
 BOOL
@@ -620,6 +666,8 @@ LeaveCriticalPolicySection(
 //=============================================================================
 
 #if(WINVER >= 0x0500)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 USERENVAPI
 BOOL
@@ -644,6 +692,8 @@ RegisterGPNotification(
 //=============================================================================
 
 #if(WINVER >= 0x0500)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 USERENVAPI
 BOOL
@@ -832,6 +882,8 @@ typedef PGROUP_POLICY_OBJECTA PGROUP_POLICY_OBJECT;
 #define GPO_LIST_FLAG_SITEONLY       0x00000002  // Return site policy information only
 #define GPO_LIST_FLAG_NO_WMIFILTERS  0x00000004  // Ignore WMI filters when filtering GPO's
 #define GPO_LIST_FLAG_NO_SECURITYFILTERS 0x00000008 // Ignore security filters
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 USERENVAPI
 BOOL
@@ -843,6 +895,8 @@ GetGPOListA (
     _In_opt_    LPCSTR    lpComputerName,
     _In_        DWORD       dwFlags,
     _Outptr_ PGROUP_POLICY_OBJECTA * pGPOList);
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 USERENVAPI
 BOOL
 WINAPI
@@ -877,12 +931,16 @@ GetGPOListW (
 //=============================================================================
 
 #if(WINVER >= 0x0500)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 USERENVAPI
 BOOL
 WINAPI
 FreeGPOListA (
     _In_        PGROUP_POLICY_OBJECTA   pGPOList);
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 USERENVAPI
 BOOL
 WINAPI
@@ -923,6 +981,7 @@ FreeGPOListW (
 //=============================================================================
 
 #if(WINVER >= 0x0500)
+_Win32_SupportedOS_WindowsVista_
 
 USERENVAPI
 DWORD
@@ -933,6 +992,7 @@ GetAppliedGPOListA (
     _In_opt_    PSID        pSidUser,
     _In_        GUID        *pGuidExtension,
     _Outptr_ PGROUP_POLICY_OBJECTA   *ppGPOList);
+_Win32_SupportedOS_WindowsVista_
 USERENVAPI
 DWORD
 WINAPI
@@ -1102,6 +1162,7 @@ typedef DWORD(*PFNGENERATEGROUPPOLICY)(
 #if(WINVER >= 0x0500)
 
 typedef GUID *REFGPEXTENSIONID;
+_Win32_SupportedOS_WindowsVista_
 
 USERENVAPI
 DWORD
@@ -1129,6 +1190,7 @@ ProcessGroupPolicyCompleted(
 //=============================================================================
 
 #if(WINVER >= 0x0500)
+_Win32_SupportedOS_WindowsVista_
 
 USERENVAPI
 DWORD
@@ -1171,6 +1233,8 @@ ProcessGroupPolicyCompletedEx(
 //=============================================================================
 
 #if(WINVER >= 0x0500)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 USERENVAPI
 HRESULT 
@@ -1213,6 +1277,7 @@ RsopAccessCheckByType(
 //=============================================================================
 
 #if(WINVER >= 0x0500)
+_Win32_SupportedOS_WindowsVista_
 
 USERENVAPI
 HRESULT 
@@ -1260,6 +1325,7 @@ typedef struct _POLICYSETTINGSTATUSINFO
         SETTINGSTATUS   status;
         SYSTEMTIME              timeLogged;
 } POLICYSETTINGSTATUSINFO, *LPPOLICYSETTINGSTATUSINFO;
+_Win32_SupportedOS_WindowsVista_
 
 //=============================================================================
 //
@@ -1286,6 +1352,7 @@ RsopSetPolicySettingStatus( _In_ DWORD                       dwFlags,
                             _In_ IWbemClassObject*           pSettingInstance,
                             _In_ DWORD                       nInfo,
                             _In_reads_(nInfo) POLICYSETTINGSTATUSINFO*    pStatus );
+_Win32_SupportedOS_WindowsVista_
 
 //=============================================================================
 //
@@ -1391,6 +1458,7 @@ GenerateGPNotification (
 //=============================================================================
 
 #if(WINVER >= 0x0602)
+_Win32_SupportedOS_Windows8_
 
 USERENVAPI
 HRESULT
@@ -1422,6 +1490,7 @@ CreateAppContainerProfile(
 //=============================================================================
 
 #if(WINVER >= 0x0602)
+_Win32_SupportedOS_Windows8_
 
 USERENVAPI
 HRESULT
@@ -1450,6 +1519,7 @@ DeleteAppContainerProfile(
 //=============================================================================
 
 #if(WINVER >= 0x0602)
+_Win32_SupportedOS_Windows8_
 
 USERENVAPI
 HRESULT
@@ -1479,6 +1549,7 @@ GetAppContainerRegistryLocation(
 //=============================================================================
 
 #if(WINVER >= 0x0602)
+_Win32_SupportedOS_Windows8_
 
 USERENVAPI
 HRESULT
@@ -1507,6 +1578,7 @@ GetAppContainerFolderPath(
 //=============================================================================
 
 #if(WINVER >= 0x0603)
+_Win32_SupportedOS_10240_
 
 USERENVAPI
 HRESULT
@@ -1543,6 +1615,7 @@ DeriveRestrictedAppContainerSidFromAppContainerSidAndRestrictedName(
 //=============================================================================
 
 #if(WINVER >= 0x0602)
+_Win32_SupportedOS_Windows8_
 
 USERENVAPI
 HRESULT

@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -72,6 +73,7 @@ typedef struct _MIDL_TYPE_PICKLING_INFO
     unsigned long   Flags;    
     UINT_PTR        Reserved[3];
 } MIDL_TYPE_PICKLING_INFO,  * PMIDL_TYPE_PICKLING_INFO;
+_Win32_SupportedOS_Windows2000_
 
 
 RPC_STATUS  RPC_ENTRY
@@ -80,12 +82,14 @@ MesEncodeIncrementalHandleCreate(
     MIDL_ES_ALLOC   AllocFn,
     MIDL_ES_WRITE   WriteFn,
     handle_t      * pHandle );
+_Win32_SupportedOS_Windows2000_
 
 RPC_STATUS  RPC_ENTRY
 MesDecodeIncrementalHandleCreate(
     void         *  UserState,
     MIDL_ES_READ    ReadFn,
     handle_t     *  pHandle );
+_Win32_SupportedOS_Windows2000_
 
 
 RPC_STATUS  RPC_ENTRY
@@ -96,6 +100,7 @@ MesIncrementalHandleReset(
     MIDL_ES_WRITE   WriteFn,
     MIDL_ES_READ    ReadFn,
     MIDL_ES_CODE    Operation );
+_Win32_SupportedOS_Windows2000_
 
 
 RPC_STATUS  RPC_ENTRY
@@ -105,6 +110,7 @@ MesEncodeFixedBufferHandleCreate(
     _Out_ unsigned long *pEncodedSize,
     _Out_ handle_t *pHandle
     );
+_Win32_SupportedOS_Windows2000_
 
 RPC_STATUS  RPC_ENTRY
 MesEncodeDynBufferHandleCreate(
@@ -112,6 +118,7 @@ MesEncodeDynBufferHandleCreate(
     _Out_ unsigned long *pEncodedSize,
     _Out_ handle_t *pHandle
     );
+_Win32_SupportedOS_Windows2000_
 
 RPC_STATUS  RPC_ENTRY
 MesDecodeBufferHandleCreate(
@@ -119,6 +126,7 @@ MesDecodeBufferHandleCreate(
     _In_ unsigned long   BufferSize,
     _Out_ handle_t  * pHandle
     );
+_Win32_SupportedOS_Windows2000_
 
 
 RPC_STATUS  RPC_ENTRY
@@ -130,10 +138,12 @@ MesBufferHandleReset(
     _In_ unsigned long BufferSize,
     _Out_opt_ unsigned long *pEncodedSize
     );
+_Win32_SupportedOS_Windows2000_
 
 
 RPC_STATUS  RPC_ENTRY
 MesHandleFree( handle_t  Handle );
+_Win32_SupportedOS_Windows2000_
 
 RPC_STATUS  RPC_ENTRY
 MesInqProcEncodingId(
@@ -218,6 +228,7 @@ NdrMesProcEncodeDecode(
     const MIDL_STUB_DESC *  pStubDesc,
     PFORMAT_STRING          pFormatString,
     ... );
+_Win32_SupportedOS_Windows2000_
 
 CLIENT_CALL_RETURN  RPC_VAR_ENTRY
 NdrMesProcEncodeDecode2(

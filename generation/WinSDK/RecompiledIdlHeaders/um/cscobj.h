@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 
 
 /* this ALWAYS GENERATED file contains the definitions for the interfaces */
@@ -4284,6 +4285,7 @@ EXTERN_C const IID IID_IOfflineFilesChangeInfo;
     IOfflineFilesChangeInfo : public IUnknown
     {
     public:
+        _Win32_PreserveResult_
         virtual HRESULT STDMETHODCALLTYPE IsDirty( 
             /* [out] */ __RPC__out BOOL *pbDirty) = 0;
         

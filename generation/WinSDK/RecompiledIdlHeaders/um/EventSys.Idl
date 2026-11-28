@@ -1,3 +1,5 @@
+cpp_quote("#include <win32metadata_annotations.h>")
+#include <win32metadata_annotations.h>
 ////////////////////////////////// -*- C++ -*- /////////////////////////////////
 //
 //   EventSystem.idl : IDL source for EventSystem.dll
@@ -497,6 +499,7 @@ interface IEnumEventObject : IUnknown
 	[id(5), helpstring("method Skip")]
 		HRESULT Skip([in] ULONG cSkipElem);
 };
+_Win32_AnnotateMethod_(IEnumEventObject::Reset, _Win32_PreserveResult_)
 
 [
  object,

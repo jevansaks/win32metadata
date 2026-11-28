@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /**********************************************************************/
 /*      immdev.h - Input Method Manager definitions                   */
 /*                 for IME developers                                 */
@@ -920,8 +921,10 @@ BOOL WINAPI ImmGenerateMessage(IN HIMC);
 
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+_Win32_SupportedOS_WindowsXP_
 
 LRESULT WINAPI ImmRequestMessageA(IN HIMC, IN WPARAM, IN LPARAM);
+_Win32_SupportedOS_WindowsXP_
 LRESULT WINAPI ImmRequestMessageW(IN HIMC, IN WPARAM, IN LPARAM);
 #ifdef UNICODE
 #define ImmRequestMessage  ImmRequestMessageW

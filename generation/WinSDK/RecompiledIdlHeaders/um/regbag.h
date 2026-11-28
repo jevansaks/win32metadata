@@ -106,9 +106,9 @@ EXTERN_C const IID IID_ICreatePropBagOnRegKey;
             _In_  DWORD ulOptions,
             /* [annotation][in] */ 
             _In_  DWORD samDesired,
-            REFIID iid,
+            __RPC__in REFIID iid,
             /* [annotation][out] */ 
-            _Out_  LPVOID *ppBag) = 0;
+            _COM_Outptr_  LPVOID *ppBag) = 0;
         
     };
     
@@ -121,7 +121,7 @@ EXTERN_C const IID IID_ICreatePropBagOnRegKey;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            ICreatePropBagOnRegKey * This,
+            __RPC__in ICreatePropBagOnRegKey * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -129,15 +129,15 @@ EXTERN_C const IID IID_ICreatePropBagOnRegKey;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            ICreatePropBagOnRegKey * This);
+            __RPC__in ICreatePropBagOnRegKey * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            ICreatePropBagOnRegKey * This);
+            __RPC__in ICreatePropBagOnRegKey * This);
         
         DECLSPEC_XFGVIRT(ICreatePropBagOnRegKey, Create)
         HRESULT ( STDMETHODCALLTYPE *Create )( 
-            ICreatePropBagOnRegKey * This,
+            __RPC__in ICreatePropBagOnRegKey * This,
             /* [annotation][in] */ 
             _In_  HKEY hkey,
             /* [annotation][in] */ 
@@ -146,9 +146,9 @@ EXTERN_C const IID IID_ICreatePropBagOnRegKey;
             _In_  DWORD ulOptions,
             /* [annotation][in] */ 
             _In_  DWORD samDesired,
-            REFIID iid,
+            __RPC__in REFIID iid,
             /* [annotation][out] */ 
-            _Out_  LPVOID *ppBag);
+            _COM_Outptr_  LPVOID *ppBag);
         
         END_INTERFACE
     } ICreatePropBagOnRegKeyVtbl;

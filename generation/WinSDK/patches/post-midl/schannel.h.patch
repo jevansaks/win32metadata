@@ -1,0 +1,83 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/schannel.h b/generation/WinSDK/RecompiledIdlHeaders/um/schannel.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/schannel.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/schannel.h
+@@ -1,4 +1,5 @@
+-﻿//+---------------------------------------------------------------------------
++﻿#include <win32metadata_annotations.h>
++//+---------------------------------------------------------------------------
+ //
+ //  Microsoft Windows
+ //  Copyright (C) Microsoft Corporation, 1992-1999.
+@@ -695,7 +696,7 @@
+ typedef struct _SCHANNEL_ALERT_TOKEN
+ {
+     DWORD   dwTokenType;            // SCHANNEL_ALERT
+-    DWORD   dwAlertType;
++    _Win32_AssociatedEnum_(SCHANNEL_ALERT_TOKEN_ALERT_TYPE) DWORD   dwAlertType;
+     DWORD   dwAlertNumber;
+ } SCHANNEL_ALERT_TOKEN;
+ 
+@@ -739,7 +740,7 @@
+ typedef struct _SCHANNEL_SESSION_TOKEN
+ {
+     DWORD   dwTokenType;        // SCHANNEL_SESSION
+-    DWORD   dwFlags;
++    _Win32_AssociatedEnum_(SCHANNEL_SESSION_TOKEN_FLAGS) DWORD   dwFlags;
+ } SCHANNEL_SESSION_TOKEN;
+ 
+ 
+@@ -886,6 +887,7 @@
+ (WINAPI * SSL_EMPTY_CACHE_FN_A)(
+     LPSTR  pszTargetName,
+     DWORD  dwFlags);
++_Win32_SupportedOS_WindowsXP_
+ 
+ BOOL
+ WINAPI
+@@ -896,6 +898,7 @@
+ (WINAPI * SSL_EMPTY_CACHE_FN_W)(
+     LPWSTR pszTargetName,
+     DWORD  dwFlags);
++_Win32_SupportedOS_WindowsXP_
+ 
+ BOOL
+ WINAPI
+@@ -1021,6 +1024,7 @@
+     PUCHAR      pRandomData,
+     LONG        cRandomData
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ // Pre NT4.0 SP2 calls.  Call CAPI1 or CAPI2
+ // to get the same functionality instead.
+@@ -1032,6 +1036,7 @@
+     DWORD               dwFlags,
+     PX509Certificate *  ppCertificate
+     );
++_Win32_SupportedOS_WindowsXP_
+ 
+ // Pre NT4.0 SP2 calls.  Call CAPI1 or CAPI2
+ // to get the same functionality instead.
+@@ -1085,6 +1090,7 @@
+     _Out_                                   PDWORD      ServerIdentitySize,
+     _In_                                    DWORD       Flags
+ );
++_Win32_SupportedOS_Windows8_
+ 
+ EXTERN_C
+ SECURITY_STATUS
+@@ -1159,3 +1165,13 @@
+ #pragma endregion
+ 
+ #endif //__SCHANNEL_H__
++
++#ifndef _WIN32METADATA_SCHANNEL_MANUAL_28_GROUPS_
++#define _WIN32METADATA_SCHANNEL_MANUAL_28_GROUPS_
++_Win32_Enum_(SCHANNEL_ALERT_TOKEN_ALERT_TYPE, unsigned int, TLS1_ALERT_WARNING, TLS1_ALERT_FATAL);
++#endif
++
++#ifndef _WIN32METADATA_SCHANNEL_NATIVE_OWNER_16_GROUPS_
++#define _WIN32METADATA_SCHANNEL_NATIVE_OWNER_16_GROUPS_
++_Win32_Enum_(SCHANNEL_SESSION_TOKEN_FLAGS, unsigned int, SSL_SESSION_ENABLE_RECONNECTS, SSL_SESSION_DISABLE_RECONNECTS);
++#endif

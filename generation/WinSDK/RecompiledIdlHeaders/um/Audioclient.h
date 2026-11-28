@@ -180,6 +180,7 @@ extern "C"{
 /* interface __MIDL_itf_audioclient_0000_0000 */
 /* [local] */ 
 
+#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 #if 0
 typedef /* [hidden][restricted] */ LONGLONG REFERENCE_TIME;
@@ -486,6 +487,15 @@ EXTERN_C const IID IID_IAudioClient;
 
 #endif 	/* __IAudioClient_INTERFACE_DEFINED__ */
 
+
+/* interface __MIDL_itf_audioclient_0000_0001 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_METHOD_(IAudioClient::IsFormatSupported, _Win32_PreserveResult_);
+
+
+extern RPC_IF_HANDLE __MIDL_itf_audioclient_0000_0001_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_audioclient_0000_0001_v0_0_s_ifspec;
 
 #ifndef __IAudioClient2_INTERFACE_DEFINED__
 #define __IAudioClient2_INTERFACE_DEFINED__

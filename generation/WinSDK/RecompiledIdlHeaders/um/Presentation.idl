@@ -205,7 +205,7 @@ interface IPresentationManager : IUnknown
     // retiring - that is, a subsequent present has been queued to take its place.
     HRESULT GetPresentRetiringFence(
         [in] REFIID riid,
-        [out, retval] void** fence);
+        [out, retval, annotation("_COM_Outptr_")] void** fence);
 
     // Cancel any previously issued and still in-flight presents which have not yet displayed,
     // and whose Present Ids are at least the passed presentIdToCancelFrom. If any presents in

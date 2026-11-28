@@ -244,7 +244,9 @@ public static class RemapDiscovery
     /// reducePointerLevel entries. Uses AST structure (bare vs pointer-to-function)
     /// to determine direction, replacing the old name-prefix heuristic.
     ///
-    /// Only the "bare function + pointer alias" pattern generates fixups:
+    /// An unaliased bare function keeps its own name and reduces one native
+    /// address level, since the generated delegate already represents that pointer.
+    /// A unique pointer alias additionally selects the generated callback name:
     ///   typedef void CALLBACK(int x);      // bare function proto
     ///   typedef CALLBACK *LPCALLBACK;      // pointer alias (adds *)
     /// → remap proto→alias, exclude alias, reducePointerLevel alias
@@ -266,11 +268,20 @@ public static class RemapDiscovery
         configuredExcludes ??= new HashSet<string>(StringComparer.Ordinal);
         var result = new ResolvedRemaps();
 
-        // Pass 1: bare function typedefs with pointer aliases
+        // Pass 1: bare function typedefs
         foreach (var protoName in discovery.FnBareFunctionTypedefs)
         {
-            if (!discovery.FnProtoToPointerTypedefs.TryGetValue(protoName, out var aliasNames))
+            if (callbacksOutsideTraversal?.Contains(protoName) == true)
                 continue;
+            if (!discovery.FnProtoToPointerTypedefs.TryGetValue(protoName, out var aliasNames))
+            {
+                if (!discovery.FnSameLevelAliases.ContainsKey(protoName) &&
+                    !discovery.NonGlobalTypedefs.Contains(protoName) &&
+                    !configuredExcludes.Contains(protoName) &&
+                    (configuredRemaps == null || !configuredRemaps.TryGetValue(protoName, out var remap) || remap == protoName))
+                    result.ReducePointerLevel.Add(protoName);
+                continue;
+            }
 
             // Filter out aliases that are already manually excluded
             var candidates = aliasNames.Where(a => !configuredExcludes.Contains(a)).ToList();
@@ -327,18 +338,36 @@ public static class RemapDiscovery
                     if (indirection.Length == 0 &&
                         (configuredRemaps == null || !configuredRemaps.TryGetValue(name, out var selectedName) ||
                          selectedName != protoName))
+                    {
+                        if (result.FnPtrRemaps.ContainsKey(protoName))
+                            result.FnPtrTypes[name] = name;
                         continue;
+                    }
+                    string selectedType = protoName + indirection;
                     if (configuredRemaps != null && configuredRemaps.TryGetValue(name, out var aliasRemap) &&
                         aliasRemap != name && aliasRemap != protoName)
-                        throw new FormatException($"Configured remap for callback alias '{name}' conflicts with native callback '{protoName}'.");
+                    {
+                        if (indirection == "*" && aliasRemap.EndsWith("*", StringComparison.Ordinal) &&
+                            IsSameLevelAlias(protoName, aliasRemap.Substring(0, aliasRemap.Length - 1), new HashSet<string>()))
+                            selectedType = aliasRemap;
+                        else
+                            throw new FormatException($"Configured remap for callback alias '{name}' conflicts with native callback '{protoName}'.");
+                    }
                     result.FnPtrRemaps[protoName] = protoName;
                     result.FnPtrExcludes.Add(name);
-                    result.FnPtrTypes[name] = protoName + indirection;
+                    result.FnPtrTypes[name] = selectedType;
                 }
             }
         }
 
         return result;
+
+        bool IsSameLevelAlias(string source, string target, HashSet<string> visited)
+        {
+            if (source == target) return true;
+            return visited.Add(source) && discovery.FnSameLevelAliases.TryGetValue(source, out var aliases) &&
+                aliases.Any(alias => !discovery.NonGlobalTypedefs.Contains(alias) && IsSameLevelAlias(alias, target, visited));
+        }
     }
 
     /// <summary>

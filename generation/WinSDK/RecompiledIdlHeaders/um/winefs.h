@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 //+---------------------------------------------------------------------------
 //
@@ -308,6 +309,7 @@ typedef struct _ENCRYPTION_PROTECTOR_LIST {
 } ENCRYPTION_PROTECTOR_LIST, *PENCRYPTION_PROTECTOR_LIST;
 
 #endif
+_Win32_SupportedOS_WindowsXP_
 
 //+---------------------------------------------------------------------------------/
 //                                                                                  /
@@ -325,6 +327,7 @@ QueryUsersOnEncryptedFile(
     _In_            LPCWSTR                                 lpFileName,
     _Outptr_     PENCRYPTION_CERTIFICATE_HASH_LIST      *pUsers
     );
+_Win32_SupportedOS_WindowsXP_
 
 
 WINADVAPI
@@ -334,6 +337,7 @@ QueryRecoveryAgentsOnEncryptedFile(
     _In_            LPCWSTR                                 lpFileName,
     _Outptr_     PENCRYPTION_CERTIFICATE_HASH_LIST      *pRecoveryAgents
     );
+_Win32_SupportedOS_WindowsXP_
 
 
 WINADVAPI
@@ -343,6 +347,7 @@ RemoveUsersFromEncryptedFile(
     _In_    LPCWSTR                             lpFileName,
     _In_    PENCRYPTION_CERTIFICATE_HASH_LIST   pHashes
     );
+_Win32_SupportedOS_WindowsXP_
 
 WINADVAPI
 DWORD
@@ -390,6 +395,7 @@ SetUserFileEncryptionKeyEx(
     );
 
 #endif // #if (NTDDI_VERSION >= NTDDI_VISTA) 
+_Win32_SupportedOS_WindowsXP_
 
 WINADVAPI
 VOID
@@ -397,6 +403,8 @@ WINAPI
 FreeEncryptionCertificateHashList(
     _In_    PENCRYPTION_CERTIFICATE_HASH_LIST       pUsers
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 WINADVAPI
 BOOL

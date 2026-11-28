@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 
 /*++
 
@@ -75,6 +76,7 @@ typedef enum
     kPTDocumentScope,
     kPTJobScope
 } EPrintTicketScope;
+_Win32_SupportedOS_WindowsXP_
 
 
 HRESULT WINAPI
@@ -89,6 +91,7 @@ PTOpenProvider(
                         DWORD        dwVersion,
             _Out_       HPTPROVIDER *phProvider
             );
+_Win32_SupportedOS_WindowsXP_
 
 HRESULT WINAPI
 PTOpenProviderEx( 
@@ -108,6 +111,7 @@ HRESULT WINAPI
 PTReleaseMemory(
     _In_ PVOID pBuffer
     );
+_Win32_SupportedOS_WindowsXP_
     
 HRESULT WINAPI
 PTGetPrintCapabilities( 
@@ -116,6 +120,7 @@ PTGetPrintCapabilities(
             _Inout_         IStream            *pCapabilities,
             _Out_opt_       BSTR               *pbstrErrorMessage
             );
+_Win32_SupportedOS_15063_
 
 HRESULT WINAPI
 PTGetPrintDeviceCapabilities(
@@ -124,6 +129,7 @@ PTGetPrintDeviceCapabilities(
     _Inout_         IStream            *pDeviceCapabilities,
     _Out_opt_       BSTR               *pbstrErrorMessage
     );
+_Win32_SupportedOS_15063_
 
 HRESULT WINAPI
 PTGetPrintDeviceResources(
@@ -133,6 +139,7 @@ PTGetPrintDeviceResources(
     _Inout_         IStream            *pDeviceResources,
     _Out_opt_       BSTR               *pbstrErrorMessage
 );
+_Win32_SupportedOS_WindowsXP_
 
 HRESULT WINAPI
 PTMergeAndValidatePrintTicket(
@@ -143,6 +150,7 @@ PTMergeAndValidatePrintTicket(
             _Inout_         IStream           *pResultTicket, 
             _Out_opt_       BSTR              *pbstrErrorMessage 
             );
+_Win32_SupportedOS_WindowsXP_
 
 HRESULT WINAPI
 PTConvertPrintTicketToDevMode( 
@@ -154,6 +162,7 @@ PTConvertPrintTicketToDevMode(
             _Outptr_result_bytebuffer_(*pcbDevmode) OUT PDEVMODE *ppDevmode,
             _Out_opt_                BSTR                *pbstrErrorMessage 
             );
+_Win32_SupportedOS_WindowsXP_
         
 HRESULT WINAPI
 PTConvertDevModeToPrintTicket( 

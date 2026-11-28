@@ -1,0 +1,68 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/LMUse.h b/generation/WinSDK/RecompiledIdlHeaders/um/LMUse.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/LMUse.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/LMUse.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*++ BUILD Version: 0001    // Increment this if a change has global effects
+ 
+ Copyright (c) 1991-1999  Microsoft Corporation
+@@ -54,6 +55,7 @@
+ 
+ #define USE_LEVEL(LEVELFLAGS) ((LEVELFLAGS) & 0xffff)
+ #define USE_FLAGS(LEVELFLAGS) ((LEVELFLAGS) & 0xffff0000)
++_Win32_SupportedOS_Windows2000_
+ 
+ 
+ //
+@@ -73,6 +75,7 @@
+     LPBYTE buf,
+     _Out_opt_ LPDWORD parm_err
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ NET_API_STATUS NET_API_FUNCTION
+ NetUseDel (
+@@ -80,6 +83,7 @@
+     _In_ LMSTR  UseName,
+     _In_ DWORD ForceLevelFlags
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ NET_API_STATUS NET_API_FUNCTION
+ NetUseEnum (
+@@ -91,6 +95,7 @@
+     _Out_ LPDWORD TotalEntries,
+     _Inout_opt_ LPDWORD ResumeHandle
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ NET_API_STATUS NET_API_FUNCTION
+ NetUseGetInfo (
+@@ -120,7 +125,7 @@
+     LMSTR   ui1_remote;
+     LMSTR   ui1_password;
+     DWORD   ui1_status;
+-    DWORD   ui1_asg_type;
++    _Win32_AssociatedEnum_(USE_INFO_ASG_TYPE) DWORD   ui1_asg_type;
+     DWORD   ui1_refcount;
+     DWORD   ui1_usecount;
+ }USE_INFO_1, *PUSE_INFO_1, *LPUSE_INFO_1;
+@@ -130,7 +135,7 @@
+     LMSTR    ui2_remote;
+     LMSTR    ui2_password;
+     DWORD    ui2_status;
+-    DWORD    ui2_asg_type;
++    _Win32_AssociatedEnum_(USE_INFO_ASG_TYPE) DWORD    ui2_asg_type;
+     DWORD    ui2_refcount;
+     DWORD    ui2_usecount;
+     LMSTR    ui2_username;
+@@ -340,3 +345,8 @@
+ #pragma endregion
+ 
+ #endif // _LMUSE_
++
++#ifndef _WIN32METADATA_LMUSE_MANUAL_28_GROUPS_
++#define _WIN32METADATA_LMUSE_MANUAL_28_GROUPS_
++_Win32_Enum_(USE_INFO_ASG_TYPE, unsigned int, USE_WILDCARD, USE_DISKDEV, USE_SPOOLDEV, USE_IPC);
++#endif

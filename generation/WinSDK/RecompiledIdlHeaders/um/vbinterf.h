@@ -4,6 +4,7 @@
 // This interface lives on the Extender Object
 //---------------------------------------------------------------------------
 
+#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 
 #pragma region Desktop Family
@@ -27,7 +28,7 @@ DECLARE_INTERFACE_(IVBGetControl, IUnknown)
     STDMETHOD_(ULONG, Release)(THIS) PURE;
 
     // *** IVBGetControl methods ****
-    STDMETHOD(EnumControls)(THIS_ DWORD dwOleContF, DWORD dwWhich, LPENUMUNKNOWN FAR *ppenumUnk) PURE;
+    STDMETHOD(EnumControls)(THIS_ _Win32_AssociatedEnum_(OLECONTF) DWORD dwOleContF, DWORD dwWhich, LPENUMUNKNOWN FAR *ppenumUnk) PURE;
     };
 
 //---------------------------------------------------------------------------
@@ -43,7 +44,7 @@ DECLARE_INTERFACE_(IGetOleObject, IUnknown)
     STDMETHOD_(ULONG, Release)(THIS) PURE;
 
     // *** IGetOleObject methods ****
-    STDMETHOD(GetOleObject)(THIS_ REFIID riid, LPVOID FAR* ppvObj) PURE;
+    STDMETHOD(GetOleObject)(THIS_ REFIID riid, _COM_Outptr_ LPVOID FAR* ppvObj) PURE;
     };
 
 DECLARE_INTERFACE_(IVBFormat,IUnknown)

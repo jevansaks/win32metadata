@@ -729,6 +729,66 @@ namespace Win32MetadataScraperTests
         }
 
         [Fact]
+        public void FnPtr_BareFunctionWithoutAliases_ReducesItsNativeAddressOnly()
+        {
+            var result = HeaderSnippetParser.ParseAndResolveFnPtrFixups(@"
+                typedef int BareCallback(void* context);
+                typedef int (*PointerCallback)(void* context);
+                struct Slots {
+                    BareCallback* callback;
+                    BareCallback** address;
+                    PointerCallback* pointerAddress;
+                };
+            ");
+            Assert.Equal(new[] { "BareCallback" }, result.ReducePointerLevel);
+            Assert.Empty(result.FnPtrRemaps);
+            Assert.Empty(result.FnPtrExcludes);
+            Assert.Empty(result.FnPtrTypes);
+        }
+
+        [Fact]
+        public void FnPtr_BareFunctionWithoutAliases_DoesNotSelectUnownedOrConfiguredIdentity()
+        {
+            var discovery = HeaderSnippetParser.ParseAndDiscover(@"
+                typedef int BareCallback(void* context);
+                namespace Example { typedef int NestedCallback(void* context); }
+                typedef int AliasedCallback(void* context);
+                typedef AliasedCallback SameLevel;
+            ");
+            Assert.Empty(Win32MetadataScraper.RemapDiscovery.ResolveFunctionPointerFixups(discovery,
+                configuredExcludes: new HashSet<string> { "BareCallback" }).ReducePointerLevel);
+            Assert.Empty(Win32MetadataScraper.RemapDiscovery.ResolveFunctionPointerFixups(discovery,
+                configuredRemaps: new Dictionary<string, string> { ["BareCallback"] = "SelectedCallback" }).ReducePointerLevel);
+            Assert.Empty(Win32MetadataScraper.RemapDiscovery.ResolveFunctionPointerFixups(discovery,
+                callbacksOutsideTraversal: new HashSet<string> { "BareCallback" }).ReducePointerLevel);
+        }
+
+        [Fact]
+        public void FnPtr_BareFunctionWithPointerAliasesOutsideTraversal_DoesNotPublishOwnerFixups()
+        {
+            var discovery = HeaderSnippetParser.ParseAndDiscover(@"
+                typedef int LSA_REDIRECTED_LOGON_CALLBACK(void* context);
+                typedef LSA_REDIRECTED_LOGON_CALLBACK *PLSA_REDIRECTED_LOGON_CALLBACK;
+                typedef int LSA_REDIRECTED_LOGON_CLEANUP_CALLBACK(void* context);
+                typedef LSA_REDIRECTED_LOGON_CLEANUP_CALLBACK *PLSA_REDIRECTED_LOGON_CLEANUP_CALLBACK;
+            ");
+            var result = Win32MetadataScraper.RemapDiscovery.ResolveFunctionPointerFixups(discovery,
+                callbacksOutsideTraversal: new HashSet<string>
+                {
+                    "LSA_REDIRECTED_LOGON_CALLBACK", "LSA_REDIRECTED_LOGON_CLEANUP_CALLBACK",
+                });
+            Assert.Empty(result.ReducePointerLevel);
+            Assert.Empty(result.FnPtrRemaps);
+            Assert.Empty(result.FnPtrExcludes);
+            Assert.Empty(result.FnPtrTypes);
+
+            var owned = Win32MetadataScraper.RemapDiscovery.ResolveFunctionPointerFixups(discovery);
+            Assert.Equal(2, owned.ReducePointerLevel.Count);
+            Assert.Contains("PLSA_REDIRECTED_LOGON_CALLBACK", owned.ReducePointerLevel);
+            Assert.Contains("PLSA_REDIRECTED_LOGON_CLEANUP_CALLBACK", owned.ReducePointerLevel);
+        }
+
+        [Fact]
         public void FnPtr_MultiplePointerNames_Skipped()
         {
             // If a prototype has multiple pointer aliases, skip (ambiguous)
@@ -823,6 +883,40 @@ namespace Win32MetadataScraperTests
             ");
             Assert.Empty(result.FnPtrTypes);
             Assert.Empty(result.FnPtrExcludes);
+        }
+
+        [Fact]
+        public void FnPtr_PointerAliasCanSelectItsNativeSameLevelCallback()
+        {
+            var discovery = HeaderSnippetParser.ParseAndDiscover(@"
+                typedef int (*ROOT_CALLBACK)(int value);
+                typedef ROOT_CALLBACK PUBLIC_CALLBACK;
+                typedef PUBLIC_CALLBACK CHAIN_CALLBACK;
+                typedef ROOT_CALLBACK *CALLBACK_ADDRESS;
+            ");
+            var result = Win32MetadataScraper.RemapDiscovery.ResolveFunctionPointerFixups(discovery,
+                configuredRemaps: new Dictionary<string, string> { ["CALLBACK_ADDRESS"] = "CHAIN_CALLBACK*" });
+            Assert.Equal("CHAIN_CALLBACK*", result.FnPtrTypes["CALLBACK_ADDRESS"]);
+            Assert.Equal("PUBLIC_CALLBACK", result.FnPtrTypes["PUBLIC_CALLBACK"]);
+            Assert.Contains("CALLBACK_ADDRESS", result.FnPtrExcludes);
+            Assert.DoesNotContain("PUBLIC_CALLBACK", result.FnPtrExcludes);
+            Assert.Empty(result.ReducePointerLevel);
+        }
+
+        [Theory]
+        [InlineData("UNRELATED_CALLBACK*")]
+        [InlineData("PUBLIC_CALLBACK**")]
+        public void FnPtr_PointerAliasDoesNotSelectUnrelatedOrExtraPointerStorage(string target)
+        {
+            var discovery = HeaderSnippetParser.ParseAndDiscover(@"
+                typedef int (*ROOT_CALLBACK)(int value);
+                typedef ROOT_CALLBACK PUBLIC_CALLBACK;
+                typedef ROOT_CALLBACK *CALLBACK_ADDRESS;
+                typedef int (*UNRELATED_CALLBACK)(int value);
+            ");
+            Assert.Throws<System.FormatException>(() =>
+                Win32MetadataScraper.RemapDiscovery.ResolveFunctionPointerFixups(discovery,
+                    configuredRemaps: new Dictionary<string, string> { ["CALLBACK_ADDRESS"] = target }));
         }
     }
 

@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 
 
@@ -736,15 +737,18 @@ struct  linger {
 extern "C" {
 #endif
 
+_Win32_SetLastError_
 SOCKET PASCAL FAR accept (
                           _In_ SOCKET s,
                           _Out_writes_bytes_opt_(*addrlen) struct sockaddr FAR *addr,
                           _Inout_opt_ int FAR *addrlen);
+_Win32_SetLastError_
 
 int PASCAL FAR bind (
                      _In_ SOCKET s,
                      _In_reads_bytes_(namelen) const struct sockaddr FAR *addr,
                      _In_ int namelen);
+_Win32_SetLastError_
 
 int PASCAL FAR closesocket ( IN SOCKET s);
 
@@ -752,21 +756,25 @@ int PASCAL FAR connect (
                         _In_ SOCKET s,
                         _In_reads_bytes_(namelen) const struct sockaddr FAR *name,
                         _In_ int namelen);
+_Win32_SetLastError_
 
 int PASCAL FAR ioctlsocket (
                             _In_ SOCKET s,
                             _In_ long cmd,
                             _Inout_ u_long FAR *argp);
+_Win32_SetLastError_
 
 int PASCAL FAR getpeername (
                             _In_ SOCKET s,
                             _Out_writes_bytes_to_(*namelen, *namelen) struct sockaddr FAR *name,
                             _Inout_ int FAR * namelen);
+_Win32_SetLastError_
 
 int PASCAL FAR getsockname (
                             _In_ SOCKET s,
                             _Out_writes_bytes_to_(*namelen, *namelen) struct sockaddr FAR *name,
                             _Inout_ int FAR * namelen);
+_Win32_SetLastError_
 
 int PASCAL FAR getsockopt (
                            _In_ SOCKET s,
@@ -774,28 +782,36 @@ int PASCAL FAR getsockopt (
                            _In_ int optname,
                            _Out_writes_bytes_(*optlen) char FAR * optval,
                            _Inout_ int FAR *optlen);
+_Win32_SetLastError_
 
 u_long PASCAL FAR htonl ( _In_ u_long hostlong);
+_Win32_SetLastError_
 
 u_short PASCAL FAR htons (_In_ u_short hostshort);
 
+_Win32_SetLastError_
 unsigned long PASCAL FAR inet_addr (_In_z_ const char FAR * cp);
 
+_Win32_SetLastError_
 char FAR * PASCAL FAR inet_ntoa (_In_ struct in_addr in);
 
 int PASCAL FAR listen (
                        _In_ SOCKET s,
                        _In_ int backlog);
+_Win32_SetLastError_
 
 u_long PASCAL FAR ntohl (_In_ u_long netlong);
+_Win32_SetLastError_
 
 u_short PASCAL FAR ntohs (_In_ u_short netshort);
+_Win32_SetLastError_
 
 int PASCAL FAR recv (
                      _In_ SOCKET s,
                      _Out_writes_bytes_to_(len, return) __out_data_source(NETWORK) char FAR * buf,
                      _In_ int len,
                      _In_ int flags);
+_Win32_SetLastError_
 
 int PASCAL FAR recvfrom (
                          _In_ SOCKET s,
@@ -818,6 +834,7 @@ int PASCAL FAR send (
                      _In_ int len,
                      _In_ int flags);
 
+_Win32_SetLastError_
 int PASCAL FAR sendto (
                        _In_ SOCKET s,
                        _In_reads_bytes_(len) const char FAR * buf,
@@ -825,6 +842,7 @@ int PASCAL FAR sendto (
                        _In_ int flags,
                        _In_reads_bytes_opt_(tolen) const struct sockaddr FAR *to,
                        _In_ int tolen);
+_Win32_SetLastError_
 
 int PASCAL FAR setsockopt (
                            _In_ SOCKET s,
@@ -832,11 +850,13 @@ int PASCAL FAR setsockopt (
                            _In_ int optname,
                            _In_reads_bytes_opt_(optlen) const char FAR * optval,
                            _In_ int optlen);
+_Win32_SetLastError_
 
 int PASCAL FAR shutdown (
                          _In_ SOCKET s,
                          _In_ int how);
 
+_Win32_SetLastError_
 SOCKET PASCAL FAR socket (
                           _In_ int af,
                           _In_ int type,
@@ -844,36 +864,46 @@ SOCKET PASCAL FAR socket (
 
 /* Database function prototypes */
 
+_Win32_SetLastError_
 struct hostent FAR * PASCAL FAR gethostbyaddr(
                                               _In_reads_bytes_(len) const char FAR * addr,
                                               _In_ int len,
                                               _In_ int type);
 
+_Win32_SetLastError_
 struct hostent FAR * PASCAL FAR gethostbyname(_In_z_ const char FAR * name);
+_Win32_SetLastError_
 
 int PASCAL FAR gethostname (
                             _Out_writes_bytes_to_(namelen, return) char FAR * name,
                             _In_ int namelen);
+_Win32_SetLastError_
 
 struct servent FAR * PASCAL FAR getservbyport(
                                               _In_ int port,
                                               _In_z_ const char FAR * proto);
+_Win32_SetLastError_
 
 struct servent FAR * PASCAL FAR getservbyname(
                                               _In_z_ const char FAR * name,
                                               _In_z_ const char FAR * proto);
+_Win32_SetLastError_
 
 struct protoent FAR * PASCAL FAR getprotobynumber(_In_ int proto);
+_Win32_SetLastError_
 
 struct protoent FAR * PASCAL FAR getprotobyname(_In_z_ const char FAR * name);
+_Win32_SetLastError_
 
 /* Microsoft Windows Extension function prototypes */
 
 int PASCAL FAR WSAStartup(
                           _In_ WORD wVersionRequired,
                           _Out_ LPWSADATA lpWSAData);
+_Win32_SetLastError_
 
 int PASCAL FAR WSACleanup(void);
+_Win32_SetLastError_
 
 void PASCAL FAR WSASetLastError(_In_ int iError);
 
@@ -887,6 +917,7 @@ FARPROC PASCAL FAR WSASetBlockingHook(_In_ FARPROC lpBlockFunc);
 
 int PASCAL FAR WSACancelBlockingCall(void);
 
+_Win32_SetLastError_
 HANDLE PASCAL FAR WSAAsyncGetServByName(
                                         _In_ HWND hWnd,
                                         _In_ u_int wMsg,
@@ -895,6 +926,7 @@ HANDLE PASCAL FAR WSAAsyncGetServByName(
                                         _Out_writes_bytes_(buflen) char FAR * buf,
                                         _In_ int buflen);
 
+_Win32_SetLastError_
 HANDLE PASCAL FAR WSAAsyncGetServByPort(
                                         _In_ HWND hWnd,
                                         _In_ u_int wMsg,
@@ -903,6 +935,7 @@ HANDLE PASCAL FAR WSAAsyncGetServByPort(
                                         _Out_writes_bytes_(buflen) char FAR * buf,
                                         _In_ int buflen);
 
+_Win32_SetLastError_
 HANDLE PASCAL FAR WSAAsyncGetProtoByName(
                                          _In_ HWND hWnd,
                                          _In_ u_int wMsg,
@@ -910,12 +943,14 @@ HANDLE PASCAL FAR WSAAsyncGetProtoByName(
                                          _Out_writes_bytes_(buflen) char FAR * buf,
                                          _In_ int buflen);
 
+_Win32_SetLastError_
 HANDLE PASCAL FAR WSAAsyncGetProtoByNumber(
                                            _In_ HWND hWnd,
                                            _In_ u_int wMsg,
                                            _In_ int number,
                                            _Out_writes_bytes_(buflen) char FAR * buf,
                                            _In_ int buflen);
+_Win32_SetLastError_
 
 HANDLE PASCAL FAR WSAAsyncGetHostByName(
                                         _In_ HWND hWnd,
@@ -924,6 +959,7 @@ HANDLE PASCAL FAR WSAAsyncGetHostByName(
                                         _Out_writes_bytes_(buflen) char FAR * buf,
                                         _In_ int buflen);
 
+_Win32_SetLastError_
 HANDLE PASCAL FAR WSAAsyncGetHostByAddr(
                                         _In_ HWND hWnd,
                                         _In_ u_int wMsg,
@@ -932,9 +968,11 @@ HANDLE PASCAL FAR WSAAsyncGetHostByAddr(
                                         _In_ int type,
                                         _Out_writes_bytes_(buflen) char FAR * buf,
                                         _In_ int buflen);
+_Win32_SetLastError_
 
 int PASCAL FAR WSACancelAsyncRequest(_In_ HANDLE hAsyncTaskHandle);
 
+_Win32_SetLastError_
 int PASCAL FAR WSAAsyncSelect(
                               _In_ SOCKET s,
                               _In_ HWND hWnd,

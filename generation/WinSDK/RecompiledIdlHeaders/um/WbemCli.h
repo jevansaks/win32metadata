@@ -429,6 +429,7 @@ extern "C"{
 /* interface __MIDL_itf_wbemcli_0000_0000 */
 /* [local] */ 
 
+#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 #pragma region Desktop Family or WinMgmt Package
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PKG_WINMGMT)
@@ -906,9 +907,9 @@ EXTERN_C const IID IID_IWbemClassObject;
             _In_  LPCWSTR wszName,
             /* [annotation][in] */ 
             _In_  long lFlags,
-            /* [unique][in][out] */ VARIANT *pVal,
-            /* [unique][in][out] */ CIMTYPE *pType,
-            /* [unique][in][out] */ long *plFlavor) = 0;
+            /* [unique][in][out] */ __RPC__inout_opt VARIANT *pVal,
+            /* [unique][in][out] */ __RPC__inout_opt CIMTYPE *pType,
+            /* [unique][in][out] */ __RPC__inout_opt long *plFlavor) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE Put( 
             /* [annotation][string][in] */ 
@@ -941,10 +942,10 @@ EXTERN_C const IID IID_IWbemClassObject;
         virtual HRESULT STDMETHODCALLTYPE Next( 
             /* [annotation][in] */ 
             _In_  long lFlags,
-            /* [unique][in][out] */ BSTR *strName,
-            /* [unique][in][out] */ VARIANT *pVal,
-            /* [unique][in][out] */ CIMTYPE *pType,
-            /* [unique][in][out] */ long *plFlavor) = 0;
+            /* [unique][in][out] */ __RPC__deref_opt_inout_opt BSTR *strName,
+            /* [unique][in][out] */ __RPC__inout_opt VARIANT *pVal,
+            /* [unique][in][out] */ __RPC__inout_opt CIMTYPE *pType,
+            /* [unique][in][out] */ __RPC__inout_opt long *plFlavor) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE EndEnumeration( void) = 0;
         
@@ -1023,9 +1024,9 @@ EXTERN_C const IID IID_IWbemClassObject;
         virtual HRESULT STDMETHODCALLTYPE NextMethod( 
             /* [annotation][in] */ 
             _In_  long lFlags,
-            /* [unique][in][out] */ BSTR *pstrName,
-            /* [unique][in][out] */ IWbemClassObject **ppInSignature,
-            /* [unique][in][out] */ IWbemClassObject **ppOutSignature) = 0;
+            /* [unique][in][out] */ __RPC__deref_opt_inout_opt BSTR *pstrName,
+            /* [unique][in][out] */ __RPC__deref_opt_inout_opt IWbemClassObject **ppInSignature,
+            /* [unique][in][out] */ __RPC__deref_opt_inout_opt IWbemClassObject **ppOutSignature) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE EndMethodEnumeration( void) = 0;
         
@@ -1052,7 +1053,7 @@ EXTERN_C const IID IID_IWbemClassObject;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IWbemClassObject * This,
+            __RPC__in IWbemClassObject * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -1060,32 +1061,32 @@ EXTERN_C const IID IID_IWbemClassObject;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IWbemClassObject * This);
+            __RPC__in IWbemClassObject * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IWbemClassObject * This);
+            __RPC__in IWbemClassObject * This);
         
         DECLSPEC_XFGVIRT(IWbemClassObject, GetQualifierSet)
         HRESULT ( STDMETHODCALLTYPE *GetQualifierSet )( 
-            IWbemClassObject * This,
+            __RPC__in IWbemClassObject * This,
             /* [annotation][out] */ 
             _Out_  IWbemQualifierSet **ppQualSet);
         
         DECLSPEC_XFGVIRT(IWbemClassObject, Get)
         HRESULT ( STDMETHODCALLTYPE *Get )( 
-            IWbemClassObject * This,
+            __RPC__in IWbemClassObject * This,
             /* [annotation][string][in] */ 
             _In_  LPCWSTR wszName,
             /* [annotation][in] */ 
             _In_  long lFlags,
-            /* [unique][in][out] */ VARIANT *pVal,
-            /* [unique][in][out] */ CIMTYPE *pType,
-            /* [unique][in][out] */ long *plFlavor);
+            /* [unique][in][out] */ __RPC__inout_opt VARIANT *pVal,
+            /* [unique][in][out] */ __RPC__inout_opt CIMTYPE *pType,
+            /* [unique][in][out] */ __RPC__inout_opt long *plFlavor);
         
         DECLSPEC_XFGVIRT(IWbemClassObject, Put)
         HRESULT ( STDMETHODCALLTYPE *Put )( 
-            IWbemClassObject * This,
+            __RPC__in IWbemClassObject * This,
             /* [annotation][string][in] */ 
             _In_  LPCWSTR wszName,
             /* [annotation][in] */ 
@@ -1097,13 +1098,13 @@ EXTERN_C const IID IID_IWbemClassObject;
         
         DECLSPEC_XFGVIRT(IWbemClassObject, Delete)
         HRESULT ( STDMETHODCALLTYPE *Delete )( 
-            IWbemClassObject * This,
+            __RPC__in IWbemClassObject * This,
             /* [annotation][string][in] */ 
             _In_  LPCWSTR wszName);
         
         DECLSPEC_XFGVIRT(IWbemClassObject, GetNames)
         HRESULT ( STDMETHODCALLTYPE *GetNames )( 
-            IWbemClassObject * This,
+            __RPC__in IWbemClassObject * This,
             /* [annotation][string][in] */ 
             _In_  LPCWSTR wszQualifierName,
             /* [annotation][in] */ 
@@ -1115,27 +1116,27 @@ EXTERN_C const IID IID_IWbemClassObject;
         
         DECLSPEC_XFGVIRT(IWbemClassObject, BeginEnumeration)
         HRESULT ( STDMETHODCALLTYPE *BeginEnumeration )( 
-            IWbemClassObject * This,
+            __RPC__in IWbemClassObject * This,
             /* [annotation][in] */ 
             _In_  long lEnumFlags);
         
         DECLSPEC_XFGVIRT(IWbemClassObject, Next)
         HRESULT ( STDMETHODCALLTYPE *Next )( 
-            IWbemClassObject * This,
+            __RPC__in IWbemClassObject * This,
             /* [annotation][in] */ 
             _In_  long lFlags,
-            /* [unique][in][out] */ BSTR *strName,
-            /* [unique][in][out] */ VARIANT *pVal,
-            /* [unique][in][out] */ CIMTYPE *pType,
-            /* [unique][in][out] */ long *plFlavor);
+            /* [unique][in][out] */ __RPC__deref_opt_inout_opt BSTR *strName,
+            /* [unique][in][out] */ __RPC__inout_opt VARIANT *pVal,
+            /* [unique][in][out] */ __RPC__inout_opt CIMTYPE *pType,
+            /* [unique][in][out] */ __RPC__inout_opt long *plFlavor);
         
         DECLSPEC_XFGVIRT(IWbemClassObject, EndEnumeration)
         HRESULT ( STDMETHODCALLTYPE *EndEnumeration )( 
-            IWbemClassObject * This);
+            __RPC__in IWbemClassObject * This);
         
         DECLSPEC_XFGVIRT(IWbemClassObject, GetPropertyQualifierSet)
         HRESULT ( STDMETHODCALLTYPE *GetPropertyQualifierSet )( 
-            IWbemClassObject * This,
+            __RPC__in IWbemClassObject * This,
             /* [annotation][string][in] */ 
             _In_  LPCWSTR wszProperty,
             /* [annotation][out] */ 
@@ -1143,13 +1144,13 @@ EXTERN_C const IID IID_IWbemClassObject;
         
         DECLSPEC_XFGVIRT(IWbemClassObject, Clone)
         HRESULT ( STDMETHODCALLTYPE *Clone )( 
-            IWbemClassObject * This,
+            __RPC__in IWbemClassObject * This,
             /* [annotation][out] */ 
             _Out_  IWbemClassObject **ppCopy);
         
         DECLSPEC_XFGVIRT(IWbemClassObject, GetObjectText)
         HRESULT ( STDMETHODCALLTYPE *GetObjectText )( 
-            IWbemClassObject * This,
+            __RPC__in IWbemClassObject * This,
             /* [annotation][in] */ 
             _In_  long lFlags,
             /* [annotation][out] */ 
@@ -1157,7 +1158,7 @@ EXTERN_C const IID IID_IWbemClassObject;
         
         DECLSPEC_XFGVIRT(IWbemClassObject, SpawnDerivedClass)
         HRESULT ( STDMETHODCALLTYPE *SpawnDerivedClass )( 
-            IWbemClassObject * This,
+            __RPC__in IWbemClassObject * This,
             /* [annotation][in] */ 
             _In_  long lFlags,
             /* [annotation][out] */ 
@@ -1165,7 +1166,7 @@ EXTERN_C const IID IID_IWbemClassObject;
         
         DECLSPEC_XFGVIRT(IWbemClassObject, SpawnInstance)
         HRESULT ( STDMETHODCALLTYPE *SpawnInstance )( 
-            IWbemClassObject * This,
+            __RPC__in IWbemClassObject * This,
             /* [annotation][in] */ 
             _In_  long lFlags,
             /* [annotation][out] */ 
@@ -1173,7 +1174,7 @@ EXTERN_C const IID IID_IWbemClassObject;
         
         DECLSPEC_XFGVIRT(IWbemClassObject, CompareTo)
         HRESULT ( STDMETHODCALLTYPE *CompareTo )( 
-            IWbemClassObject * This,
+            __RPC__in IWbemClassObject * This,
             /* [annotation][in] */ 
             _In_  long lFlags,
             /* [annotation][in] */ 
@@ -1181,7 +1182,7 @@ EXTERN_C const IID IID_IWbemClassObject;
         
         DECLSPEC_XFGVIRT(IWbemClassObject, GetPropertyOrigin)
         HRESULT ( STDMETHODCALLTYPE *GetPropertyOrigin )( 
-            IWbemClassObject * This,
+            __RPC__in IWbemClassObject * This,
             /* [annotation][string][in] */ 
             _In_  LPCWSTR wszName,
             /* [annotation][out] */ 
@@ -1189,13 +1190,13 @@ EXTERN_C const IID IID_IWbemClassObject;
         
         DECLSPEC_XFGVIRT(IWbemClassObject, InheritsFrom)
         HRESULT ( STDMETHODCALLTYPE *InheritsFrom )( 
-            IWbemClassObject * This,
+            __RPC__in IWbemClassObject * This,
             /* [annotation][in] */ 
             _In_  LPCWSTR strAncestor);
         
         DECLSPEC_XFGVIRT(IWbemClassObject, GetMethod)
         HRESULT ( STDMETHODCALLTYPE *GetMethod )( 
-            IWbemClassObject * This,
+            __RPC__in IWbemClassObject * This,
             /* [annotation][string][in] */ 
             _In_  LPCWSTR wszName,
             /* [annotation][in] */ 
@@ -1207,7 +1208,7 @@ EXTERN_C const IID IID_IWbemClassObject;
         
         DECLSPEC_XFGVIRT(IWbemClassObject, PutMethod)
         HRESULT ( STDMETHODCALLTYPE *PutMethod )( 
-            IWbemClassObject * This,
+            __RPC__in IWbemClassObject * This,
             /* [annotation][string][in] */ 
             _In_  LPCWSTR wszName,
             /* [annotation][in] */ 
@@ -1219,32 +1220,32 @@ EXTERN_C const IID IID_IWbemClassObject;
         
         DECLSPEC_XFGVIRT(IWbemClassObject, DeleteMethod)
         HRESULT ( STDMETHODCALLTYPE *DeleteMethod )( 
-            IWbemClassObject * This,
+            __RPC__in IWbemClassObject * This,
             /* [annotation][string][in] */ 
             _In_  LPCWSTR wszName);
         
         DECLSPEC_XFGVIRT(IWbemClassObject, BeginMethodEnumeration)
         HRESULT ( STDMETHODCALLTYPE *BeginMethodEnumeration )( 
-            IWbemClassObject * This,
+            __RPC__in IWbemClassObject * This,
             /* [annotation][in] */ 
             _In_  long lEnumFlags);
         
         DECLSPEC_XFGVIRT(IWbemClassObject, NextMethod)
         HRESULT ( STDMETHODCALLTYPE *NextMethod )( 
-            IWbemClassObject * This,
+            __RPC__in IWbemClassObject * This,
             /* [annotation][in] */ 
             _In_  long lFlags,
-            /* [unique][in][out] */ BSTR *pstrName,
-            /* [unique][in][out] */ IWbemClassObject **ppInSignature,
-            /* [unique][in][out] */ IWbemClassObject **ppOutSignature);
+            /* [unique][in][out] */ __RPC__deref_opt_inout_opt BSTR *pstrName,
+            /* [unique][in][out] */ __RPC__deref_opt_inout_opt IWbemClassObject **ppInSignature,
+            /* [unique][in][out] */ __RPC__deref_opt_inout_opt IWbemClassObject **ppOutSignature);
         
         DECLSPEC_XFGVIRT(IWbemClassObject, EndMethodEnumeration)
         HRESULT ( STDMETHODCALLTYPE *EndMethodEnumeration )( 
-            IWbemClassObject * This);
+            __RPC__in IWbemClassObject * This);
         
         DECLSPEC_XFGVIRT(IWbemClassObject, GetMethodQualifierSet)
         HRESULT ( STDMETHODCALLTYPE *GetMethodQualifierSet )( 
-            IWbemClassObject * This,
+            __RPC__in IWbemClassObject * This,
             /* [annotation][string][in] */ 
             _In_  LPCWSTR wszMethod,
             /* [annotation][out] */ 
@@ -1252,7 +1253,7 @@ EXTERN_C const IID IID_IWbemClassObject;
         
         DECLSPEC_XFGVIRT(IWbemClassObject, GetMethodOrigin)
         HRESULT ( STDMETHODCALLTYPE *GetMethodOrigin )( 
-            IWbemClassObject * This,
+            __RPC__in IWbemClassObject * This,
             /* [annotation][string][in] */ 
             _In_  LPCWSTR wszMethodName,
             /* [annotation][out] */ 
@@ -1456,7 +1457,7 @@ EXTERN_C const IID IID_IWbemObjectAccess;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IWbemObjectAccess * This,
+            __RPC__in IWbemObjectAccess * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -1464,32 +1465,32 @@ EXTERN_C const IID IID_IWbemObjectAccess;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IWbemObjectAccess * This);
+            __RPC__in IWbemObjectAccess * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IWbemObjectAccess * This);
+            __RPC__in IWbemObjectAccess * This);
         
         DECLSPEC_XFGVIRT(IWbemClassObject, GetQualifierSet)
         HRESULT ( STDMETHODCALLTYPE *GetQualifierSet )( 
-            IWbemObjectAccess * This,
+            __RPC__in IWbemObjectAccess * This,
             /* [annotation][out] */ 
             _Out_  IWbemQualifierSet **ppQualSet);
         
         DECLSPEC_XFGVIRT(IWbemClassObject, Get)
         HRESULT ( STDMETHODCALLTYPE *Get )( 
-            IWbemObjectAccess * This,
+            __RPC__in IWbemObjectAccess * This,
             /* [annotation][string][in] */ 
             _In_  LPCWSTR wszName,
             /* [annotation][in] */ 
             _In_  long lFlags,
-            /* [unique][in][out] */ VARIANT *pVal,
-            /* [unique][in][out] */ CIMTYPE *pType,
-            /* [unique][in][out] */ long *plFlavor);
+            /* [unique][in][out] */ __RPC__inout_opt VARIANT *pVal,
+            /* [unique][in][out] */ __RPC__inout_opt CIMTYPE *pType,
+            /* [unique][in][out] */ __RPC__inout_opt long *plFlavor);
         
         DECLSPEC_XFGVIRT(IWbemClassObject, Put)
         HRESULT ( STDMETHODCALLTYPE *Put )( 
-            IWbemObjectAccess * This,
+            __RPC__in IWbemObjectAccess * This,
             /* [annotation][string][in] */ 
             _In_  LPCWSTR wszName,
             /* [annotation][in] */ 
@@ -1501,13 +1502,13 @@ EXTERN_C const IID IID_IWbemObjectAccess;
         
         DECLSPEC_XFGVIRT(IWbemClassObject, Delete)
         HRESULT ( STDMETHODCALLTYPE *Delete )( 
-            IWbemObjectAccess * This,
+            __RPC__in IWbemObjectAccess * This,
             /* [annotation][string][in] */ 
             _In_  LPCWSTR wszName);
         
         DECLSPEC_XFGVIRT(IWbemClassObject, GetNames)
         HRESULT ( STDMETHODCALLTYPE *GetNames )( 
-            IWbemObjectAccess * This,
+            __RPC__in IWbemObjectAccess * This,
             /* [annotation][string][in] */ 
             _In_  LPCWSTR wszQualifierName,
             /* [annotation][in] */ 
@@ -1519,27 +1520,27 @@ EXTERN_C const IID IID_IWbemObjectAccess;
         
         DECLSPEC_XFGVIRT(IWbemClassObject, BeginEnumeration)
         HRESULT ( STDMETHODCALLTYPE *BeginEnumeration )( 
-            IWbemObjectAccess * This,
+            __RPC__in IWbemObjectAccess * This,
             /* [annotation][in] */ 
             _In_  long lEnumFlags);
         
         DECLSPEC_XFGVIRT(IWbemClassObject, Next)
         HRESULT ( STDMETHODCALLTYPE *Next )( 
-            IWbemObjectAccess * This,
+            __RPC__in IWbemObjectAccess * This,
             /* [annotation][in] */ 
             _In_  long lFlags,
-            /* [unique][in][out] */ BSTR *strName,
-            /* [unique][in][out] */ VARIANT *pVal,
-            /* [unique][in][out] */ CIMTYPE *pType,
-            /* [unique][in][out] */ long *plFlavor);
+            /* [unique][in][out] */ __RPC__deref_opt_inout_opt BSTR *strName,
+            /* [unique][in][out] */ __RPC__inout_opt VARIANT *pVal,
+            /* [unique][in][out] */ __RPC__inout_opt CIMTYPE *pType,
+            /* [unique][in][out] */ __RPC__inout_opt long *plFlavor);
         
         DECLSPEC_XFGVIRT(IWbemClassObject, EndEnumeration)
         HRESULT ( STDMETHODCALLTYPE *EndEnumeration )( 
-            IWbemObjectAccess * This);
+            __RPC__in IWbemObjectAccess * This);
         
         DECLSPEC_XFGVIRT(IWbemClassObject, GetPropertyQualifierSet)
         HRESULT ( STDMETHODCALLTYPE *GetPropertyQualifierSet )( 
-            IWbemObjectAccess * This,
+            __RPC__in IWbemObjectAccess * This,
             /* [annotation][string][in] */ 
             _In_  LPCWSTR wszProperty,
             /* [annotation][out] */ 
@@ -1547,13 +1548,13 @@ EXTERN_C const IID IID_IWbemObjectAccess;
         
         DECLSPEC_XFGVIRT(IWbemClassObject, Clone)
         HRESULT ( STDMETHODCALLTYPE *Clone )( 
-            IWbemObjectAccess * This,
+            __RPC__in IWbemObjectAccess * This,
             /* [annotation][out] */ 
             _Out_  IWbemClassObject **ppCopy);
         
         DECLSPEC_XFGVIRT(IWbemClassObject, GetObjectText)
         HRESULT ( STDMETHODCALLTYPE *GetObjectText )( 
-            IWbemObjectAccess * This,
+            __RPC__in IWbemObjectAccess * This,
             /* [annotation][in] */ 
             _In_  long lFlags,
             /* [annotation][out] */ 
@@ -1561,7 +1562,7 @@ EXTERN_C const IID IID_IWbemObjectAccess;
         
         DECLSPEC_XFGVIRT(IWbemClassObject, SpawnDerivedClass)
         HRESULT ( STDMETHODCALLTYPE *SpawnDerivedClass )( 
-            IWbemObjectAccess * This,
+            __RPC__in IWbemObjectAccess * This,
             /* [annotation][in] */ 
             _In_  long lFlags,
             /* [annotation][out] */ 
@@ -1569,7 +1570,7 @@ EXTERN_C const IID IID_IWbemObjectAccess;
         
         DECLSPEC_XFGVIRT(IWbemClassObject, SpawnInstance)
         HRESULT ( STDMETHODCALLTYPE *SpawnInstance )( 
-            IWbemObjectAccess * This,
+            __RPC__in IWbemObjectAccess * This,
             /* [annotation][in] */ 
             _In_  long lFlags,
             /* [annotation][out] */ 
@@ -1577,7 +1578,7 @@ EXTERN_C const IID IID_IWbemObjectAccess;
         
         DECLSPEC_XFGVIRT(IWbemClassObject, CompareTo)
         HRESULT ( STDMETHODCALLTYPE *CompareTo )( 
-            IWbemObjectAccess * This,
+            __RPC__in IWbemObjectAccess * This,
             /* [annotation][in] */ 
             _In_  long lFlags,
             /* [annotation][in] */ 
@@ -1585,7 +1586,7 @@ EXTERN_C const IID IID_IWbemObjectAccess;
         
         DECLSPEC_XFGVIRT(IWbemClassObject, GetPropertyOrigin)
         HRESULT ( STDMETHODCALLTYPE *GetPropertyOrigin )( 
-            IWbemObjectAccess * This,
+            __RPC__in IWbemObjectAccess * This,
             /* [annotation][string][in] */ 
             _In_  LPCWSTR wszName,
             /* [annotation][out] */ 
@@ -1593,13 +1594,13 @@ EXTERN_C const IID IID_IWbemObjectAccess;
         
         DECLSPEC_XFGVIRT(IWbemClassObject, InheritsFrom)
         HRESULT ( STDMETHODCALLTYPE *InheritsFrom )( 
-            IWbemObjectAccess * This,
+            __RPC__in IWbemObjectAccess * This,
             /* [annotation][in] */ 
             _In_  LPCWSTR strAncestor);
         
         DECLSPEC_XFGVIRT(IWbemClassObject, GetMethod)
         HRESULT ( STDMETHODCALLTYPE *GetMethod )( 
-            IWbemObjectAccess * This,
+            __RPC__in IWbemObjectAccess * This,
             /* [annotation][string][in] */ 
             _In_  LPCWSTR wszName,
             /* [annotation][in] */ 
@@ -1611,7 +1612,7 @@ EXTERN_C const IID IID_IWbemObjectAccess;
         
         DECLSPEC_XFGVIRT(IWbemClassObject, PutMethod)
         HRESULT ( STDMETHODCALLTYPE *PutMethod )( 
-            IWbemObjectAccess * This,
+            __RPC__in IWbemObjectAccess * This,
             /* [annotation][string][in] */ 
             _In_  LPCWSTR wszName,
             /* [annotation][in] */ 
@@ -1623,32 +1624,32 @@ EXTERN_C const IID IID_IWbemObjectAccess;
         
         DECLSPEC_XFGVIRT(IWbemClassObject, DeleteMethod)
         HRESULT ( STDMETHODCALLTYPE *DeleteMethod )( 
-            IWbemObjectAccess * This,
+            __RPC__in IWbemObjectAccess * This,
             /* [annotation][string][in] */ 
             _In_  LPCWSTR wszName);
         
         DECLSPEC_XFGVIRT(IWbemClassObject, BeginMethodEnumeration)
         HRESULT ( STDMETHODCALLTYPE *BeginMethodEnumeration )( 
-            IWbemObjectAccess * This,
+            __RPC__in IWbemObjectAccess * This,
             /* [annotation][in] */ 
             _In_  long lEnumFlags);
         
         DECLSPEC_XFGVIRT(IWbemClassObject, NextMethod)
         HRESULT ( STDMETHODCALLTYPE *NextMethod )( 
-            IWbemObjectAccess * This,
+            __RPC__in IWbemObjectAccess * This,
             /* [annotation][in] */ 
             _In_  long lFlags,
-            /* [unique][in][out] */ BSTR *pstrName,
-            /* [unique][in][out] */ IWbemClassObject **ppInSignature,
-            /* [unique][in][out] */ IWbemClassObject **ppOutSignature);
+            /* [unique][in][out] */ __RPC__deref_opt_inout_opt BSTR *pstrName,
+            /* [unique][in][out] */ __RPC__deref_opt_inout_opt IWbemClassObject **ppInSignature,
+            /* [unique][in][out] */ __RPC__deref_opt_inout_opt IWbemClassObject **ppOutSignature);
         
         DECLSPEC_XFGVIRT(IWbemClassObject, EndMethodEnumeration)
         HRESULT ( STDMETHODCALLTYPE *EndMethodEnumeration )( 
-            IWbemObjectAccess * This);
+            __RPC__in IWbemObjectAccess * This);
         
         DECLSPEC_XFGVIRT(IWbemClassObject, GetMethodQualifierSet)
         HRESULT ( STDMETHODCALLTYPE *GetMethodQualifierSet )( 
-            IWbemObjectAccess * This,
+            __RPC__in IWbemObjectAccess * This,
             /* [annotation][string][in] */ 
             _In_  LPCWSTR wszMethod,
             /* [annotation][out] */ 
@@ -1656,7 +1657,7 @@ EXTERN_C const IID IID_IWbemObjectAccess;
         
         DECLSPEC_XFGVIRT(IWbemClassObject, GetMethodOrigin)
         HRESULT ( STDMETHODCALLTYPE *GetMethodOrigin )( 
-            IWbemObjectAccess * This,
+            __RPC__in IWbemObjectAccess * This,
             /* [annotation][string][in] */ 
             _In_  LPCWSTR wszMethodName,
             /* [annotation][out] */ 
@@ -1664,7 +1665,7 @@ EXTERN_C const IID IID_IWbemObjectAccess;
         
         DECLSPEC_XFGVIRT(IWbemObjectAccess, GetPropertyHandle)
         HRESULT ( STDMETHODCALLTYPE *GetPropertyHandle )( 
-            IWbemObjectAccess * This,
+            __RPC__in IWbemObjectAccess * This,
             /* [annotation][string][in] */ 
             _In_  LPCWSTR wszPropertyName,
             /* [annotation][out] */ 
@@ -1674,7 +1675,7 @@ EXTERN_C const IID IID_IWbemObjectAccess;
         
         DECLSPEC_XFGVIRT(IWbemObjectAccess, WritePropertyValue)
         HRESULT ( STDMETHODCALLTYPE *WritePropertyValue )( 
-            IWbemObjectAccess * This,
+            __RPC__in IWbemObjectAccess * This,
             /* [annotation][in] */ 
             _In_  long lHandle,
             /* [annotation][in] */ 
@@ -1684,7 +1685,7 @@ EXTERN_C const IID IID_IWbemObjectAccess;
         
         DECLSPEC_XFGVIRT(IWbemObjectAccess, ReadPropertyValue)
         HRESULT ( STDMETHODCALLTYPE *ReadPropertyValue )( 
-            IWbemObjectAccess * This,
+            __RPC__in IWbemObjectAccess * This,
             /* [annotation][in] */ 
             _In_  long lHandle,
             /* [annotation][in] */ 
@@ -1696,7 +1697,7 @@ EXTERN_C const IID IID_IWbemObjectAccess;
         
         DECLSPEC_XFGVIRT(IWbemObjectAccess, ReadDWORD)
         HRESULT ( STDMETHODCALLTYPE *ReadDWORD )( 
-            IWbemObjectAccess * This,
+            __RPC__in IWbemObjectAccess * This,
             /* [annotation][in] */ 
             _In_  long lHandle,
             /* [annotation][out] */ 
@@ -1704,7 +1705,7 @@ EXTERN_C const IID IID_IWbemObjectAccess;
         
         DECLSPEC_XFGVIRT(IWbemObjectAccess, WriteDWORD)
         HRESULT ( STDMETHODCALLTYPE *WriteDWORD )( 
-            IWbemObjectAccess * This,
+            __RPC__in IWbemObjectAccess * This,
             /* [annotation][in] */ 
             _In_  long lHandle,
             /* [annotation][in] */ 
@@ -1712,7 +1713,7 @@ EXTERN_C const IID IID_IWbemObjectAccess;
         
         DECLSPEC_XFGVIRT(IWbemObjectAccess, ReadQWORD)
         HRESULT ( STDMETHODCALLTYPE *ReadQWORD )( 
-            IWbemObjectAccess * This,
+            __RPC__in IWbemObjectAccess * This,
             /* [annotation][in] */ 
             _In_  long lHandle,
             /* [annotation][out] */ 
@@ -1720,7 +1721,7 @@ EXTERN_C const IID IID_IWbemObjectAccess;
         
         DECLSPEC_XFGVIRT(IWbemObjectAccess, WriteQWORD)
         HRESULT ( STDMETHODCALLTYPE *WriteQWORD )( 
-            IWbemObjectAccess * This,
+            __RPC__in IWbemObjectAccess * This,
             /* [annotation][in] */ 
             _In_  long lHandle,
             /* [annotation][in] */ 
@@ -1728,7 +1729,7 @@ EXTERN_C const IID IID_IWbemObjectAccess;
         
         DECLSPEC_XFGVIRT(IWbemObjectAccess, GetPropertyInfoByHandle)
         HRESULT ( STDMETHODCALLTYPE *GetPropertyInfoByHandle )( 
-            IWbemObjectAccess * This,
+            __RPC__in IWbemObjectAccess * This,
             /* [annotation][in] */ 
             _In_  long lHandle,
             /* [annotation][out] */ 
@@ -1738,13 +1739,13 @@ EXTERN_C const IID IID_IWbemObjectAccess;
         
         DECLSPEC_XFGVIRT(IWbemObjectAccess, Lock)
         HRESULT ( STDMETHODCALLTYPE *Lock )( 
-            IWbemObjectAccess * This,
+            __RPC__in IWbemObjectAccess * This,
             /* [annotation][in] */ 
             _In_  long lFlags);
         
         DECLSPEC_XFGVIRT(IWbemObjectAccess, Unlock)
         HRESULT ( STDMETHODCALLTYPE *Unlock )( 
-            IWbemObjectAccess * This,
+            __RPC__in IWbemObjectAccess * This,
             /* [annotation][in] */ 
             _In_  long lFlags);
         
@@ -1905,8 +1906,8 @@ EXTERN_C const IID IID_IWbemQualifierSet;
             _In_  LPCWSTR wszName,
             /* [annotation][in] */ 
             _In_  long lFlags,
-            /* [unique][in][out] */ VARIANT *pVal,
-            /* [unique][in][out] */ long *plFlavor) = 0;
+            /* [unique][in][out] */ __RPC__inout_opt VARIANT *pVal,
+            /* [unique][in][out] */ __RPC__inout_opt long *plFlavor) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE Put( 
             /* [annotation][string][in] */ 
@@ -1933,9 +1934,9 @@ EXTERN_C const IID IID_IWbemQualifierSet;
         virtual HRESULT STDMETHODCALLTYPE Next( 
             /* [annotation][in] */ 
             _In_  long lFlags,
-            /* [unique][in][out] */ BSTR *pstrName,
-            /* [unique][in][out] */ VARIANT *pVal,
-            /* [unique][in][out] */ long *plFlavor) = 0;
+            /* [unique][in][out] */ __RPC__deref_opt_inout_opt BSTR *pstrName,
+            /* [unique][in][out] */ __RPC__inout_opt VARIANT *pVal,
+            /* [unique][in][out] */ __RPC__inout_opt long *plFlavor) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE EndEnumeration( void) = 0;
         
@@ -1950,7 +1951,7 @@ EXTERN_C const IID IID_IWbemQualifierSet;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IWbemQualifierSet * This,
+            __RPC__in IWbemQualifierSet * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -1958,25 +1959,25 @@ EXTERN_C const IID IID_IWbemQualifierSet;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IWbemQualifierSet * This);
+            __RPC__in IWbemQualifierSet * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IWbemQualifierSet * This);
+            __RPC__in IWbemQualifierSet * This);
         
         DECLSPEC_XFGVIRT(IWbemQualifierSet, Get)
         HRESULT ( STDMETHODCALLTYPE *Get )( 
-            IWbemQualifierSet * This,
+            __RPC__in IWbemQualifierSet * This,
             /* [annotation][string][in] */ 
             _In_  LPCWSTR wszName,
             /* [annotation][in] */ 
             _In_  long lFlags,
-            /* [unique][in][out] */ VARIANT *pVal,
-            /* [unique][in][out] */ long *plFlavor);
+            /* [unique][in][out] */ __RPC__inout_opt VARIANT *pVal,
+            /* [unique][in][out] */ __RPC__inout_opt long *plFlavor);
         
         DECLSPEC_XFGVIRT(IWbemQualifierSet, Put)
         HRESULT ( STDMETHODCALLTYPE *Put )( 
-            IWbemQualifierSet * This,
+            __RPC__in IWbemQualifierSet * This,
             /* [annotation][string][in] */ 
             _In_  LPCWSTR wszName,
             /* [annotation][in] */ 
@@ -1986,13 +1987,13 @@ EXTERN_C const IID IID_IWbemQualifierSet;
         
         DECLSPEC_XFGVIRT(IWbemQualifierSet, Delete)
         HRESULT ( STDMETHODCALLTYPE *Delete )( 
-            IWbemQualifierSet * This,
+            __RPC__in IWbemQualifierSet * This,
             /* [annotation][string][in] */ 
             _In_  LPCWSTR wszName);
         
         DECLSPEC_XFGVIRT(IWbemQualifierSet, GetNames)
         HRESULT ( STDMETHODCALLTYPE *GetNames )( 
-            IWbemQualifierSet * This,
+            __RPC__in IWbemQualifierSet * This,
             /* [annotation][in] */ 
             _In_  long lFlags,
             /* [annotation][out] */ 
@@ -2000,22 +2001,22 @@ EXTERN_C const IID IID_IWbemQualifierSet;
         
         DECLSPEC_XFGVIRT(IWbemQualifierSet, BeginEnumeration)
         HRESULT ( STDMETHODCALLTYPE *BeginEnumeration )( 
-            IWbemQualifierSet * This,
+            __RPC__in IWbemQualifierSet * This,
             /* [annotation][in] */ 
             _In_  long lFlags);
         
         DECLSPEC_XFGVIRT(IWbemQualifierSet, Next)
         HRESULT ( STDMETHODCALLTYPE *Next )( 
-            IWbemQualifierSet * This,
+            __RPC__in IWbemQualifierSet * This,
             /* [annotation][in] */ 
             _In_  long lFlags,
-            /* [unique][in][out] */ BSTR *pstrName,
-            /* [unique][in][out] */ VARIANT *pVal,
-            /* [unique][in][out] */ long *plFlavor);
+            /* [unique][in][out] */ __RPC__deref_opt_inout_opt BSTR *pstrName,
+            /* [unique][in][out] */ __RPC__inout_opt VARIANT *pVal,
+            /* [unique][in][out] */ __RPC__inout_opt long *plFlavor);
         
         DECLSPEC_XFGVIRT(IWbemQualifierSet, EndEnumeration)
         HRESULT ( STDMETHODCALLTYPE *EndEnumeration )( 
-            IWbemQualifierSet * This);
+            __RPC__in IWbemQualifierSet * This);
         
         END_INTERFACE
     } IWbemQualifierSetVtbl;
@@ -2769,7 +2770,7 @@ EXTERN_C const IID IID_IWbemLocator;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IWbemLocator * This,
+            __RPC__in IWbemLocator * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -2777,15 +2778,15 @@ EXTERN_C const IID IID_IWbemLocator;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IWbemLocator * This);
+            __RPC__in IWbemLocator * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IWbemLocator * This);
+            __RPC__in IWbemLocator * This);
         
         DECLSPEC_XFGVIRT(IWbemLocator, ConnectServer)
         HRESULT ( STDMETHODCALLTYPE *ConnectServer )( 
-            IWbemLocator * This,
+            __RPC__in IWbemLocator * This,
             /* [annotation][in] */ 
             _In_  const BSTR strNetworkResource,
             /* [annotation][in] */ 
@@ -2867,9 +2868,9 @@ EXTERN_C const IID IID_IWbemObjectSink;
             /* [annotation][in] */ 
             _In_  HRESULT hResult,
             /* [annotation][unique][in] */ 
-            _In_  BSTR strParam,
+            _In_opt_  BSTR strParam,
             /* [annotation][unique][in] */ 
-            _In_  IWbemClassObject *pObjParam) = 0;
+            _In_opt_  IWbemClassObject *pObjParam) = 0;
         
     };
     
@@ -2912,9 +2913,9 @@ EXTERN_C const IID IID_IWbemObjectSink;
             /* [annotation][in] */ 
             _In_  HRESULT hResult,
             /* [annotation][unique][in] */ 
-            _In_  BSTR strParam,
+            _In_opt_  BSTR strParam,
             /* [annotation][unique][in] */ 
-            _In_  IWbemClassObject *pObjParam);
+            _In_opt_  IWbemClassObject *pObjParam);
         
         END_INTERFACE
     } IWbemObjectSinkVtbl;
@@ -3327,7 +3328,7 @@ EXTERN_C const IID IID_IWbemContext;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IWbemContext * This,
+            __RPC__in IWbemContext * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -3335,21 +3336,21 @@ EXTERN_C const IID IID_IWbemContext;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IWbemContext * This);
+            __RPC__in IWbemContext * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IWbemContext * This);
+            __RPC__in IWbemContext * This);
         
         DECLSPEC_XFGVIRT(IWbemContext, Clone)
         HRESULT ( STDMETHODCALLTYPE *Clone )( 
-            IWbemContext * This,
+            __RPC__in IWbemContext * This,
             /* [annotation][out] */ 
             _Out_  IWbemContext **ppNewCopy);
         
         DECLSPEC_XFGVIRT(IWbemContext, GetNames)
         HRESULT ( STDMETHODCALLTYPE *GetNames )( 
-            IWbemContext * This,
+            __RPC__in IWbemContext * This,
             /* [annotation][in] */ 
             _In_  long lFlags,
             /* [annotation][out] */ 
@@ -3357,13 +3358,13 @@ EXTERN_C const IID IID_IWbemContext;
         
         DECLSPEC_XFGVIRT(IWbemContext, BeginEnumeration)
         HRESULT ( STDMETHODCALLTYPE *BeginEnumeration )( 
-            IWbemContext * This,
+            __RPC__in IWbemContext * This,
             /* [annotation][in] */ 
             _In_  long lFlags);
         
         DECLSPEC_XFGVIRT(IWbemContext, Next)
         HRESULT ( STDMETHODCALLTYPE *Next )( 
-            IWbemContext * This,
+            __RPC__in IWbemContext * This,
             /* [annotation][in] */ 
             _In_  long lFlags,
             /* [annotation][out] */ 
@@ -3373,11 +3374,11 @@ EXTERN_C const IID IID_IWbemContext;
         
         DECLSPEC_XFGVIRT(IWbemContext, EndEnumeration)
         HRESULT ( STDMETHODCALLTYPE *EndEnumeration )( 
-            IWbemContext * This);
+            __RPC__in IWbemContext * This);
         
         DECLSPEC_XFGVIRT(IWbemContext, SetValue)
         HRESULT ( STDMETHODCALLTYPE *SetValue )( 
-            IWbemContext * This,
+            __RPC__in IWbemContext * This,
             /* [annotation][string][in] */ 
             _In_  LPCWSTR wszName,
             /* [annotation][in] */ 
@@ -3387,7 +3388,7 @@ EXTERN_C const IID IID_IWbemContext;
         
         DECLSPEC_XFGVIRT(IWbemContext, GetValue)
         HRESULT ( STDMETHODCALLTYPE *GetValue )( 
-            IWbemContext * This,
+            __RPC__in IWbemContext * This,
             /* [annotation][string][in] */ 
             _In_  LPCWSTR wszName,
             /* [annotation][in] */ 
@@ -3397,7 +3398,7 @@ EXTERN_C const IID IID_IWbemContext;
         
         DECLSPEC_XFGVIRT(IWbemContext, DeleteValue)
         HRESULT ( STDMETHODCALLTYPE *DeleteValue )( 
-            IWbemContext * This,
+            __RPC__in IWbemContext * This,
             /* [annotation][string][in] */ 
             _In_  LPCWSTR wszName,
             /* [annotation][in] */ 
@@ -3405,7 +3406,7 @@ EXTERN_C const IID IID_IWbemContext;
         
         DECLSPEC_XFGVIRT(IWbemContext, DeleteAll)
         HRESULT ( STDMETHODCALLTYPE *DeleteAll )( 
-            IWbemContext * This);
+            __RPC__in IWbemContext * This);
         
         END_INTERFACE
     } IWbemContextVtbl;
@@ -3580,7 +3581,7 @@ EXTERN_C const IID IID_IWbemUnsecuredApartment;
             /* [annotation][in] */ 
             _In_  DWORD dwFlags,
             /* [annotation][unique][in] */ 
-            _In_  LPCWSTR wszReserved,
+            _In_opt_  LPCWSTR wszReserved,
             /* [annotation][out] */ 
             _Out_  IWbemObjectSink **ppStub) = 0;
         
@@ -3625,7 +3626,7 @@ EXTERN_C const IID IID_IWbemUnsecuredApartment;
             /* [annotation][in] */ 
             _In_  DWORD dwFlags,
             /* [annotation][unique][in] */ 
-            _In_  LPCWSTR wszReserved,
+            _In_opt_  LPCWSTR wszReserved,
             /* [annotation][out] */ 
             _Out_  IWbemObjectSink **ppStub);
         
@@ -3716,7 +3717,7 @@ EXTERN_C const IID IID_IWbemStatusCodeText;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IWbemStatusCodeText * This,
+            __RPC__in IWbemStatusCodeText * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -3724,15 +3725,15 @@ EXTERN_C const IID IID_IWbemStatusCodeText;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IWbemStatusCodeText * This);
+            __RPC__in IWbemStatusCodeText * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IWbemStatusCodeText * This);
+            __RPC__in IWbemStatusCodeText * This);
         
         DECLSPEC_XFGVIRT(IWbemStatusCodeText, GetErrorCodeText)
         HRESULT ( STDMETHODCALLTYPE *GetErrorCodeText )( 
-            IWbemStatusCodeText * This,
+            __RPC__in IWbemStatusCodeText * This,
             /* [annotation][in] */ 
             _In_  HRESULT hRes,
             /* [annotation][in] */ 
@@ -3744,7 +3745,7 @@ EXTERN_C const IID IID_IWbemStatusCodeText;
         
         DECLSPEC_XFGVIRT(IWbemStatusCodeText, GetFacilityCodeText)
         HRESULT ( STDMETHODCALLTYPE *GetFacilityCodeText )( 
-            IWbemStatusCodeText * This,
+            __RPC__in IWbemStatusCodeText * This,
             /* [annotation][in] */ 
             _In_  HRESULT hRes,
             /* [annotation][in] */ 
@@ -4047,7 +4048,7 @@ EXTERN_C const IID IID_IWbemRefresher;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IWbemRefresher * This,
+            __RPC__in IWbemRefresher * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -4055,15 +4056,15 @@ EXTERN_C const IID IID_IWbemRefresher;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IWbemRefresher * This);
+            __RPC__in IWbemRefresher * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IWbemRefresher * This);
+            __RPC__in IWbemRefresher * This);
         
         DECLSPEC_XFGVIRT(IWbemRefresher, Refresh)
         HRESULT ( STDMETHODCALLTYPE *Refresh )( 
-            IWbemRefresher * This,
+            __RPC__in IWbemRefresher * This,
             /* [annotation][in] */ 
             _In_  long lFlags);
         
@@ -4162,7 +4163,7 @@ EXTERN_C const IID IID_IWbemHiPerfEnum;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IWbemHiPerfEnum * This,
+            __RPC__in IWbemHiPerfEnum * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -4170,15 +4171,15 @@ EXTERN_C const IID IID_IWbemHiPerfEnum;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IWbemHiPerfEnum * This);
+            __RPC__in IWbemHiPerfEnum * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IWbemHiPerfEnum * This);
+            __RPC__in IWbemHiPerfEnum * This);
         
         DECLSPEC_XFGVIRT(IWbemHiPerfEnum, AddObjects)
         HRESULT ( STDMETHODCALLTYPE *AddObjects )( 
-            IWbemHiPerfEnum * This,
+            __RPC__in IWbemHiPerfEnum * This,
             /* [annotation][in] */ 
             _In_  long lFlags,
             /* [annotation][in] */ 
@@ -4190,7 +4191,7 @@ EXTERN_C const IID IID_IWbemHiPerfEnum;
         
         DECLSPEC_XFGVIRT(IWbemHiPerfEnum, RemoveObjects)
         HRESULT ( STDMETHODCALLTYPE *RemoveObjects )( 
-            IWbemHiPerfEnum * This,
+            __RPC__in IWbemHiPerfEnum * This,
             /* [annotation][in] */ 
             _In_  long lFlags,
             /* [annotation][in] */ 
@@ -4200,7 +4201,7 @@ EXTERN_C const IID IID_IWbemHiPerfEnum;
         
         DECLSPEC_XFGVIRT(IWbemHiPerfEnum, GetObjects)
         HRESULT ( STDMETHODCALLTYPE *GetObjects )( 
-            IWbemHiPerfEnum * This,
+            __RPC__in IWbemHiPerfEnum * This,
             /* [annotation][in] */ 
             _In_  long lFlags,
             /* [annotation][in] */ 
@@ -4212,7 +4213,7 @@ EXTERN_C const IID IID_IWbemHiPerfEnum;
         
         DECLSPEC_XFGVIRT(IWbemHiPerfEnum, RemoveAll)
         HRESULT ( STDMETHODCALLTYPE *RemoveAll )( 
-            IWbemHiPerfEnum * This,
+            __RPC__in IWbemHiPerfEnum * This,
             /* [annotation][in] */ 
             _In_  long lFlags);
         
@@ -4288,7 +4289,7 @@ EXTERN_C const IID IID_IWbemConfigureRefresher;
             _In_  IWbemContext *pContext,
             /* [annotation][out] */ 
             _Out_  IWbemClassObject **ppRefreshable,
-            /* [unique][in][out] */ long *plId) = 0;
+            /* [unique][in][out] */ __RPC__inout_opt long *plId) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE AddObjectByTemplate( 
             /* [annotation][in] */ 
@@ -4301,14 +4302,14 @@ EXTERN_C const IID IID_IWbemConfigureRefresher;
             _In_  IWbemContext *pContext,
             /* [annotation][out] */ 
             _Out_  IWbemClassObject **ppRefreshable,
-            /* [unique][in][out] */ long *plId) = 0;
+            /* [unique][in][out] */ __RPC__inout_opt long *plId) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE AddRefresher( 
             /* [annotation][in] */ 
             _In_  IWbemRefresher *pRefresher,
             /* [annotation][in] */ 
             _In_  long lFlags,
-            /* [unique][in][out] */ long *plId) = 0;
+            /* [unique][in][out] */ __RPC__inout_opt long *plId) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE Remove( 
             /* [annotation][in] */ 
@@ -4327,7 +4328,7 @@ EXTERN_C const IID IID_IWbemConfigureRefresher;
             _In_  IWbemContext *pContext,
             /* [annotation][out] */ 
             _Out_  IWbemHiPerfEnum **ppEnum,
-            /* [unique][in][out] */ long *plId) = 0;
+            /* [unique][in][out] */ __RPC__inout_opt long *plId) = 0;
         
     };
     
@@ -4340,7 +4341,7 @@ EXTERN_C const IID IID_IWbemConfigureRefresher;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IWbemConfigureRefresher * This,
+            __RPC__in IWbemConfigureRefresher * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -4348,15 +4349,15 @@ EXTERN_C const IID IID_IWbemConfigureRefresher;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IWbemConfigureRefresher * This);
+            __RPC__in IWbemConfigureRefresher * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IWbemConfigureRefresher * This);
+            __RPC__in IWbemConfigureRefresher * This);
         
         DECLSPEC_XFGVIRT(IWbemConfigureRefresher, AddObjectByPath)
         HRESULT ( STDMETHODCALLTYPE *AddObjectByPath )( 
-            IWbemConfigureRefresher * This,
+            __RPC__in IWbemConfigureRefresher * This,
             /* [annotation][in] */ 
             _In_  IWbemServices *pNamespace,
             /* [annotation][string][in] */ 
@@ -4367,11 +4368,11 @@ EXTERN_C const IID IID_IWbemConfigureRefresher;
             _In_  IWbemContext *pContext,
             /* [annotation][out] */ 
             _Out_  IWbemClassObject **ppRefreshable,
-            /* [unique][in][out] */ long *plId);
+            /* [unique][in][out] */ __RPC__inout_opt long *plId);
         
         DECLSPEC_XFGVIRT(IWbemConfigureRefresher, AddObjectByTemplate)
         HRESULT ( STDMETHODCALLTYPE *AddObjectByTemplate )( 
-            IWbemConfigureRefresher * This,
+            __RPC__in IWbemConfigureRefresher * This,
             /* [annotation][in] */ 
             _In_  IWbemServices *pNamespace,
             /* [annotation][in] */ 
@@ -4382,20 +4383,20 @@ EXTERN_C const IID IID_IWbemConfigureRefresher;
             _In_  IWbemContext *pContext,
             /* [annotation][out] */ 
             _Out_  IWbemClassObject **ppRefreshable,
-            /* [unique][in][out] */ long *plId);
+            /* [unique][in][out] */ __RPC__inout_opt long *plId);
         
         DECLSPEC_XFGVIRT(IWbemConfigureRefresher, AddRefresher)
         HRESULT ( STDMETHODCALLTYPE *AddRefresher )( 
-            IWbemConfigureRefresher * This,
+            __RPC__in IWbemConfigureRefresher * This,
             /* [annotation][in] */ 
             _In_  IWbemRefresher *pRefresher,
             /* [annotation][in] */ 
             _In_  long lFlags,
-            /* [unique][in][out] */ long *plId);
+            /* [unique][in][out] */ __RPC__inout_opt long *plId);
         
         DECLSPEC_XFGVIRT(IWbemConfigureRefresher, Remove)
         HRESULT ( STDMETHODCALLTYPE *Remove )( 
-            IWbemConfigureRefresher * This,
+            __RPC__in IWbemConfigureRefresher * This,
             /* [annotation][in] */ 
             _In_  long lId,
             /* [annotation][in] */ 
@@ -4403,7 +4404,7 @@ EXTERN_C const IID IID_IWbemConfigureRefresher;
         
         DECLSPEC_XFGVIRT(IWbemConfigureRefresher, AddEnum)
         HRESULT ( STDMETHODCALLTYPE *AddEnum )( 
-            IWbemConfigureRefresher * This,
+            __RPC__in IWbemConfigureRefresher * This,
             /* [annotation][in] */ 
             _In_  IWbemServices *pNamespace,
             /* [annotation][string][in] */ 
@@ -4414,7 +4415,7 @@ EXTERN_C const IID IID_IWbemConfigureRefresher;
             _In_  IWbemContext *pContext,
             /* [annotation][out] */ 
             _Out_  IWbemHiPerfEnum **ppEnum,
-            /* [unique][in][out] */ long *plId);
+            /* [unique][in][out] */ __RPC__inout_opt long *plId);
         
         END_INTERFACE
     } IWbemConfigureRefresherVtbl;
@@ -4588,7 +4589,7 @@ EXTERN_C const IID IID_IWbemObjectSinkEx;
         
         virtual HRESULT STDMETHODCALLTYPE WriteError( 
             /* [annotation][unique][in] */ 
-            _In_  IWbemClassObject *pObjError,
+            _In_opt_  IWbemClassObject *pObjError,
             /* [annotation][out] */ 
             _Out_  unsigned char *puReturned) = 0;
         
@@ -4663,9 +4664,9 @@ EXTERN_C const IID IID_IWbemObjectSinkEx;
             /* [annotation][in] */ 
             _In_  HRESULT hResult,
             /* [annotation][unique][in] */ 
-            _In_  BSTR strParam,
+            _In_opt_  BSTR strParam,
             /* [annotation][unique][in] */ 
-            _In_  IWbemClassObject *pObjParam);
+            _In_opt_  IWbemClassObject *pObjParam);
         
         DECLSPEC_XFGVIRT(IWbemObjectSinkEx, WriteMessage)
         HRESULT ( STDMETHODCALLTYPE *WriteMessage )( 
@@ -4679,7 +4680,7 @@ EXTERN_C const IID IID_IWbemObjectSinkEx;
         HRESULT ( STDMETHODCALLTYPE *WriteError )( 
             __RPC__in IWbemObjectSinkEx * This,
             /* [annotation][unique][in] */ 
-            _In_  IWbemClassObject *pObjError,
+            _In_opt_  IWbemClassObject *pObjError,
             /* [annotation][out] */ 
             _Out_  unsigned char *puReturned);
         
@@ -4774,6 +4775,17 @@ EXTERN_C const IID IID_IWbemObjectSinkEx;
 
 #endif 	/* __IWbemObjectSinkEx_INTERFACE_DEFINED__ */
 
+
+/* interface __MIDL_itf_wbemcli_0000_0007 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_METHOD_(IEnumWbemClassObject::Next, _Win32_PreserveResult_);
+_WIN32META_ANNOTATE_METHOD_(IEnumWbemClassObject::NextAsync, _Win32_PreserveResult_);
+_WIN32META_ANNOTATE_METHOD_(IEnumWbemClassObject::Skip, _Win32_PreserveResult_);
+
+
+extern RPC_IF_HANDLE __MIDL_itf_wbemcli_0000_0007_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_wbemcli_0000_0007_v0_0_s_ifspec;
 
 #ifndef __IWbemShutdown_INTERFACE_DEFINED__
 #define __IWbemShutdown_INTERFACE_DEFINED__
@@ -4946,7 +4958,7 @@ EXTERN_C const IID IID_IWbemObjectTextSrc;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IWbemObjectTextSrc * This,
+            __RPC__in IWbemObjectTextSrc * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -4954,15 +4966,15 @@ EXTERN_C const IID IID_IWbemObjectTextSrc;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IWbemObjectTextSrc * This);
+            __RPC__in IWbemObjectTextSrc * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IWbemObjectTextSrc * This);
+            __RPC__in IWbemObjectTextSrc * This);
         
         DECLSPEC_XFGVIRT(IWbemObjectTextSrc, GetText)
         HRESULT ( STDMETHODCALLTYPE *GetText )( 
-            IWbemObjectTextSrc * This,
+            __RPC__in IWbemObjectTextSrc * This,
             /* [annotation][in] */ 
             _In_  long lFlags,
             /* [annotation][in] */ 
@@ -4976,7 +4988,7 @@ EXTERN_C const IID IID_IWbemObjectTextSrc;
         
         DECLSPEC_XFGVIRT(IWbemObjectTextSrc, CreateFromText)
         HRESULT ( STDMETHODCALLTYPE *CreateFromText )( 
-            IWbemObjectTextSrc * This,
+            __RPC__in IWbemObjectTextSrc * This,
             /* [annotation][in] */ 
             _In_  long lFlags,
             /* [annotation][in] */ 
@@ -5150,7 +5162,7 @@ EXTERN_C const IID IID_IMofCompiler;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IMofCompiler * This,
+            __RPC__in IMofCompiler * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -5158,15 +5170,15 @@ EXTERN_C const IID IID_IMofCompiler;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IMofCompiler * This);
+            __RPC__in IMofCompiler * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IMofCompiler * This);
+            __RPC__in IMofCompiler * This);
         
         DECLSPEC_XFGVIRT(IMofCompiler, CompileFile)
         HRESULT ( STDMETHODCALLTYPE *CompileFile )( 
-            IMofCompiler * This,
+            __RPC__in IMofCompiler * This,
             /* [annotation][string][in] */ 
             _In_  LPWSTR FileName,
             /* [annotation][string][in] */ 
@@ -5188,7 +5200,7 @@ EXTERN_C const IID IID_IMofCompiler;
         
         DECLSPEC_XFGVIRT(IMofCompiler, CompileBuffer)
         HRESULT ( STDMETHODCALLTYPE *CompileBuffer )( 
-            IMofCompiler * This,
+            __RPC__in IMofCompiler * This,
             /* [annotation][in] */ 
             _In_  long BuffSize,
             /* [annotation][size_is][in] */ 
@@ -5212,7 +5224,7 @@ EXTERN_C const IID IID_IMofCompiler;
         
         DECLSPEC_XFGVIRT(IMofCompiler, CreateBMOF)
         HRESULT ( STDMETHODCALLTYPE *CreateBMOF )( 
-            IMofCompiler * This,
+            __RPC__in IMofCompiler * This,
             /* [annotation][string][in] */ 
             _In_  LPWSTR TextFileName,
             /* [annotation][string][in] */ 

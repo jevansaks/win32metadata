@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 // begin_1_0
 /********************************************************************************
 *                                                                               *
@@ -53,6 +54,8 @@ typedef struct _TIME_DYNAMIC_ZONE_INFORMATION {
     WCHAR TimeZoneKeyName[ 128 ];
     BOOLEAN DynamicDaylightTimeDisabled;
 } DYNAMIC_TIME_ZONE_INFORMATION, *PDYNAMIC_TIME_ZONE_INFORMATION;
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 
 WINBASEAPI
 _Success_(return != FALSE)
@@ -73,6 +76,7 @@ TzSpecificLocalTimeToSystemTime(
     _In_ CONST SYSTEMTIME* lpLocalTime,
     _Out_ LPSYSTEMTIME lpUniversalTime
     );
+_Win32_SetLastError_
 
 WINBASEAPI
 _Success_(return != FALSE)
@@ -91,6 +95,7 @@ SystemTimeToFileTime(
     _In_ CONST SYSTEMTIME* lpSystemTime,
     _Out_ LPFILETIME lpFileTime
     );
+_Win32_SetLastError_
 
 WINBASEAPI
 _Success_(return != TIME_ZONE_ID_INVALID)
@@ -99,6 +104,7 @@ WINAPI
 GetTimeZoneInformation(
     _Out_ LPTIME_ZONE_INFORMATION lpTimeZoneInformation
     );
+_Win32_SetLastError_
 
 WINBASEAPI
 BOOL
@@ -108,6 +114,7 @@ SetTimeZoneInformation(
     );
 
 #if (_WIN32_WINNT >= 0x0600)
+_Win32_SetLastError_
 
 WINBASEAPI
 BOOL
@@ -119,6 +126,7 @@ SetDynamicTimeZoneInformation(
 #endif // _WIN32_WINNT >= 0x0600
 
 #if (_WIN32_WINNT >= 0x0600)
+_Win32_SetLastError_
 
 WINBASEAPI
 _Success_(return != TIME_ZONE_ID_INVALID)
@@ -131,6 +139,7 @@ GetDynamicTimeZoneInformation(
 #endif // _WIN32_WINNT >= 0x0600
 
 #if (_WIN32_WINNT >= 0x0601)
+_Win32_SetLastError_
 
 _Success_(return != FALSE)
 BOOL
@@ -175,6 +184,7 @@ SystemTimeToTzSpecificLocalTimeEx(
     _In_ CONST SYSTEMTIME* lpUniversalTime,
     _Out_ LPSYSTEMTIME lpLocalTime
     );
+_Win32_SetLastError_
 
 WINBASEAPI
 _Success_(return != FALSE)

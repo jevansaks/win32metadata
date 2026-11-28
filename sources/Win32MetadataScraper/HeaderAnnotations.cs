@@ -13,13 +13,12 @@ namespace Win32MetadataScraper
     {
         private const string Owner = "Win32Metadata.";
         public HashSet<string> FunctionNames { get; } = new(StringComparer.Ordinal);
-        private readonly List<(Attr Attribute, string EnumName, ClangSharp.Type Storage)> enumAssociations = new();
+        private readonly List<(Attr Attribute, string EnumName)> enumAssociations = new();
         private readonly HashSet<string> nativeEnums = new(StringComparer.Ordinal);
         public Dictionary<string, EnumObject> EnumGroups { get; } = new(StringComparer.Ordinal);
         public Dictionary<string, (string Type, string Value)> EnumConstants { get; } = new(StringComparer.Ordinal);
         public Dictionary<string, List<string>> AssociatedConstants { get; } = new(StringComparer.Ordinal);
         private readonly List<(Decl Declaration, Attr Attribute, string Name)> constantAssociations = new();
-        private readonly Dictionary<string, ClangSharp.Type> enumStorage = new(StringComparer.Ordinal);
         private readonly Dictionary<string, (string Version, Cursor Source)> supportedFunctions = new(StringComparer.Ordinal);
         private readonly SupportedOSScopes supportedScopes = new();
         private readonly HashSet<NamedDecl> supportedDeclarations = new();
@@ -215,6 +214,11 @@ namespace Win32MetadataScraper
                     continue;
 
                 string payload = attribute.Spelling;
+                // Clang copies field annotations onto anonymous-record lookup aliases.
+                // Validate the defining FieldDecl, not its synthetic promoted aliases.
+                if (declaration is IndirectFieldDecl &&
+                    payload.StartsWith(Owner + "AssociatedEnum(", StringComparison.Ordinal))
+                    continue;
                 if (payload.StartsWith(AssociatedConstantAnnotation.Prefix, StringComparison.Ordinal))
                 {
                     this.VisitAssociatedConstant(declaration, attribute);
@@ -358,6 +362,9 @@ namespace Win32MetadataScraper
             {
                 var parameter = parameters[i];
                 var start = i == 0 ? owner.Extent.Start : parameters[i - 1].Extent.End;
+                // Declaration annotations can contain parentheses before the native parameter list.
+                if (i == 0 && owner is FunctionDecl)
+                    start = owner.Location;
                 var unit = owner.TranslationUnit.Handle;
                 var tokens = unit.Tokenize(CXSourceRange.Create(start, parameter.Location));
                 bool retval = false;
@@ -398,10 +405,6 @@ namespace Win32MetadataScraper
             {
                 if (!this.nativeEnums.Contains(association.EnumName))
                     throw Error(association.Attribute, $"AssociatedEnum requires an existing native enum '{association.EnumName}'.");
-                if (this.enumStorage.TryGetValue(association.EnumName, out var storage) &&
-                    (association.Storage is not BuiltinType ||
-                    GetIntegerStorage(storage, association.Attribute) != GetIntegerStorage(association.Storage, association.Attribute)))
-                    throw Error(association.Attribute, $"AssociatedEnum storage conflicts with enum group '{association.EnumName}'.");
             }
             foreach (var association in this.constantAssociations)
             {
@@ -510,10 +513,11 @@ namespace Win32MetadataScraper
                 address.Opcode != CXUnaryOperatorKind.CXUnaryOperator_AddrOf ||
                 StripParens(address.SubExpr) is not DeclRefExpr reference ||
                 reference.Decl is not FunctionDecl cleanup || cleanup is CXXMethodDecl ||
-                cleanup.HasBody || cleanup.Parameters.Count != 1 ||
+                cleanup.HasBody || cleanup.Parameters.Count == 0 ||
                 cleanup.Type.CanonicalType is not FunctionProtoType prototype || prototype.IsVariadic ||
                 !IsResourceType(cleanup.Parameters[0].Type.CanonicalType) ||
-                !cleanup.Parameters[0].Type.CanonicalType.Equals(resource))
+                !cleanup.Parameters[0].Type.CanonicalType.Equals(resource) ||
+                cleanup.Parameters.Skip(1).Any(parameter => !IsReservedNullPointer(parameter)))
                 throw Error(attribute, "RAIIFree cleanup must resolve to one declared non-member, non-variadic native function accepting exactly the produced resource type.");
             string cleanupName = QualifiedName(cleanup);
             var invalidExpressions = new List<Expr>();
@@ -531,6 +535,17 @@ namespace Win32MetadataScraper
             type is PointerType pointer ? pointer.PointeeType.CanonicalType is not FunctionType :
             type.Kind is CXTypeKind.CXType_Int or CXTypeKind.CXType_UInt or CXTypeKind.CXType_Long or
                 CXTypeKind.CXType_ULong or CXTypeKind.CXType_LongLong or CXTypeKind.CXType_ULongLong;
+
+        private static bool IsReservedNullPointer(ParmVarDecl parameter)
+        {
+            // Native _Reserved_ pointers require NULL; optional/context parameters do not.
+            var attributes = parameter.Attrs.Where(a => a.Kind == CX_AttrKind.CX_AttrKind_Annotate).ToArray();
+            return parameter.Type.CanonicalType is PointerType pointer &&
+                pointer.PointeeType.CanonicalType is not FunctionType &&
+                attributes.Any(a => Regex.IsMatch(a.Spelling, @"\AName=SAL_name;\s*p1=""_Reserved_""(?:;|\z)")) &&
+                attributes.Any(a => a.Spelling == "Name=SAL_pre") &&
+                attributes.Any(a => a.Spelling == "Name=SAL_null");
+        }
 
         private static Expr StripParens(Expr expression) =>
             expression is ParenExpr parens ? StripParens(parens.SubExpr) : expression;
@@ -726,7 +741,6 @@ namespace Win32MetadataScraper
             if (this.EnumGroups.ContainsKey(alias.Name))
                 throw Error(attribute, $"Duplicate enum group '{alias.Name}'.");
             this.EnumGroups.Add(alias.Name, group);
-            this.enumStorage.Add(alias.Name, storage);
             this.nativeEnums.Add(alias.Name);
         }
 
@@ -815,7 +829,7 @@ namespace Win32MetadataScraper
                     storage.Kind < CXTypeKind.CXType_Bool || storage.Kind > CXTypeKind.CXType_UInt128 &&
                     (storage.Kind < CXTypeKind.CXType_Char_S || storage.Kind > CXTypeKind.CXType_Int128))
                     throw Error(attribute, "AssociatedEnum requires integer or native enum storage, optionally through pointers.");
-                this.enumAssociations.Add((attribute, annotation.EnumName, storage));
+                this.enumAssociations.Add((attribute, annotation.EnumName));
             }
         }
 

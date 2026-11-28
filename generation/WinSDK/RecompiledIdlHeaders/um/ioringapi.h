@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*******************************************************************
 *                                                                  *
 * ioringapi.h -- ApiSet Contract for api-ms-win-core-ioring-l1     *
@@ -214,6 +215,7 @@ STDAPI SubmitIoRing(_In_ HIORING ioRing, UINT32 waitOperations, UINT32 milliseco
 
 STDAPI CloseIoRing(_In_ _Post_ptr_invalid_ HIORING ioRing);
 
+_Win32_PreserveResult_
 STDAPI PopIoRingCompletion(_In_ HIORING ioRing, _Out_ IORING_CQE* cqe);
 
 STDAPI SetIoRingCompletionEvent(_In_ HIORING ioRing, _In_ HANDLE hEvent);

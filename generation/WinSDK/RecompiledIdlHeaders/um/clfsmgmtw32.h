@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*=============================================================================
 
     Copyright (c) 2003  Microsoft Corporation
@@ -86,6 +87,8 @@ typedef struct _LOG_MANAGEMENT_CALLBACKS
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // RegisterManageableLogClient
 // 
@@ -100,6 +103,8 @@ CLFSUSER_API BOOL WINAPI RegisterManageableLogClient (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // DeregisterManageableLogClient
 // 
@@ -114,6 +119,8 @@ CLFSUSER_API BOOL WINAPI DeregisterManageableLogClient (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // ReadLogNotification
 // 
@@ -129,6 +136,8 @@ CLFSUSER_API BOOL WINAPI ReadLogNotification (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // InstallLogPolicy
 // 
@@ -142,6 +151,8 @@ CLFSUSER_API BOOL WINAPI InstallLogPolicy (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // InstallLogPolicy
 // 
@@ -156,6 +167,8 @@ CLFSUSER_API BOOL WINAPI RemoveLogPolicy (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // QueryLogPolicy
 // 
@@ -170,6 +183,8 @@ CLFSUSER_API BOOL WINAPI QueryLogPolicy (
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // SetLogFileSizeWithPolicy
 // 
@@ -178,12 +193,14 @@ CLFSUSER_API BOOL WINAPI QueryLogPolicy (
 //------------------------------------------------------------------------------
 CLFSUSER_API BOOL WINAPI SetLogFileSizeWithPolicy(
     IN  HANDLE     hLog,
-    IN  PULONGLONG pDesiredSize,
-    OUT PULONGLONG pResultingSize
+    _In_  PULONGLONG pDesiredSize,
+    _Out_ PULONGLONG pResultingSize
     );
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // HandleLogFull
 // 
@@ -199,6 +216,8 @@ CLFSUSER_API BOOL WINAPI HandleLogFull(
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // LogTailAdvanceFailure
 // 
@@ -212,6 +231,8 @@ CLFSUSER_API BOOL WINAPI LogTailAdvanceFailure(
 #endif /* _WIN32_WINNT */
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WS03)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 //------------------------------------------------------------------------------
 // RegisterForLogWriteNotification
 // 

@@ -12,15 +12,6 @@ namespace Windows.Win32.Storage.FileSystem
         FIND_FIRST_EX_ON_DISK_ENTRIES_ONLY = 0x00000004
     }
 
-    [Flags]
-    public enum DEFINE_DOS_DEVICE_FLAGS : uint
-    {
-        DDD_RAW_TARGET_PATH = 0x00000001,
-        DDD_REMOVE_DEFINITION = 0x00000002,
-        DDD_EXACT_MATCH_ON_REMOVE = 0x00000004,
-        DDD_NO_BROADCAST_SYSTEM = 0x00000008,
-        DDD_LUID_BROADCAST_DRIVE = 0x00000010,
-    }
 
     [Flags]
     public enum FILE_FLAGS_AND_ATTRIBUTES : uint

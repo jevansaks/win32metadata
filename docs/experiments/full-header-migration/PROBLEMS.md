@@ -1,0 +1,930 @@
+# Retained migration problems
+
+These are restoration boundaries, not reasons to stop unrelated header work.
+The initial broad experiment left production tooling unchanged; the accepted
+through-mixer19 continuation now includes narrow reader/emitter fixes within the
+existing contract. The original failures below remain historical evidence,
+not blanket claims that their every previously restored selector is still blocked.
+Exact
+historical repros and raw diagnostics are retained in [README.md](README.md)
+and [RECOVERY.md](RECOVERY.md); the current counts are at the top of
+RECOVERY.md. A rejected trial is not migrated coverage.
+
+## Saved FileSystem30: distinguish native contracts from fixture slicing
+
+EventLog18 is independently hosted-qualified at `2b997fc0`, ordinary run
+46120136302 attempt 1: 275 LastError transfers, 192 residual rows and one
+separate getter correction. The next saved-only family retires thirty RSP
+facts binding thirty-four concrete FileSystem exports. Twenty-six exports
+receive new prefixes: fifteen in fileapi.h and eleven in WinBase.h. Four
+generic facts already have native markers on both A/W exports; these are
+redundancy retirements, not twenty-six plus eight new annotation transfers.
+The candidate residual count is 162, not qualification. Main **65/424/290**,
+zero repair credit and all held policies remain unchanged.
+
+Both complete owners retain every existing carrier. Actual three-architecture
+WinProg scraping refreshes three whole bodies in the 987-C# union, conserving
+984 other bodies, accepted post-constants prefixes and all seventeen other
+inputs. The entire 35,385-type/36,304,763-byte `93793909` API matches the
+genuine qualified hosted parent unmasked. All thirty-four concrete imports,
+thirty-three protected policies and the AreFileApisANSI mode-query control
+are verified in actual metadata. All 4707 retained remaps and four exclusions
+remain; the fresh partial map has 2644 pairs and zero additional observations
+or conflicts. No typedef/global-map credit, reader change, fallback, semantic
+delta or intentional-deltas journal entry is introduced.
+
+The original full cohort has 1237 passes and six failures among 1243 cases.
+Three failures are existing protected CoreKernel cleanup cases, one per
+architecture. Their test-only regex captured a RAIIFree carrier only when
+immediately adjacent to WINBASEAPI; the new intervening SetLastError marker
+caused it to drop the carriers on FindFirstVolumeW and
+FindFirstVolumeMountPointW. Complete production did not lose ownership.
+Exact parent/proposed slice reconstruction proves that preserving both
+prefix forms restores the original declaration after only the new marker
+is removed. All cleanup, invalid-value, uniqueness and negative assertions
+remain strict; no resource/type/contextual-cleanup policy is changed.
+
+The other three failures are the new WinBase fixture's evidence copies.
+Its owner/target/mode directory names collided with the existing EventLog
+fixture during the full run, although the isolated six-case run passed.
+The new fixture now prefixes evidence directories with its class name and
+still forbids overwrites. The protected cleanup fixture additionally captures
+its actual input, settings, generated source and image under a distinct
+class/target directory. This expands the proposal to nine source files,
+including the existing protected fixture, not an already-approved eight-file
+scope. The original raw full cohort, failing sources and executed test
+assembly are preserved; bounded corrected coverage is separate, never a
+replacement all-passing full cohort.
+
+The corrected bounded run passes all eighty cases across the complete
+HandleProducer SDK class, the new FileSystem class and the existing EventLog
+class. It preserves the exact original eighty-name multiset and covers all
+six original failures without repeating or relabelling the full cohort.
+Only the fixture assembly changes in this rebuild; the fifteen original
+executed module bindings and separate corrected bindings remain recorded.
+
+Twenty-four fresh C/C++ objects preserve every non-timestamp byte in twelve
+pairs; both complete pinned SDK owners replay raw-byte-exactly through the
+unchanged patch runner. Thirty-four official API pages document the native
+error contracts; a separate mode-query page protects AreFileApisANSI.
+MetadataUtils, scraper and actual-image integrity pass 17, 58 and 54 cases.
+Cold empty no-restore invocations and input-inventory verifier setup failures
+remain zero-credit evidence. No live incorporation, publication or new CI
+owner is released.
+
+## Historical saved EventLog18: preserve neighboring annotation ownership
+
+SetupAPI/Newdev21 is now independently hosted-qualified at `d7ccbeea`:
+257 LastError transfers, 210 residual rows and one separate getter correction.
+The next saved-only family adds twelve first-declaration markers in winevt.h
+and six in WinBase.h, retiring exactly eighteen RSP rows. Candidate totals
+275/192 are not qualification; **65/424/290** and zero repair credit remain
+separate. No semantic delta or intentional-deltas journal entry is added.
+
+An initial attempt moved ten existing trailing winevt.h markers to the
+preceding handle-returning functions. Its smaller focused comparisons passed,
+but the entire production API lost LastError on EvtClose, EvtNext, EvtRender,
+EvtGetLogInfo, EvtNextChannelPath, EvtSaveChannelConfig, EvtNextPublisherId,
+EvtGetPublisherMetadataProperty, EvtGetEventMetadataProperty and EvtUpdateBookmark.
+Those old carriers were active on following declarations, not ignored.
+The original sources, emitted image and complete unmasked ten-flag diff remain
+failed evidence. Source-text reconstruction alone did not prove conservation.
+The corrected proposal retains every existing carrier and adds only eighteen
+prefixes; removing those additions recovers both whole parent owners.
+No reader change, fallback or intended API correction is needed.
+
+Actual production refreshes three WinProg bodies and the existing common Wes
+body. The 987-C# union conserves 983 other inputs, post-constants preambles and
+all seventeen non-C# inputs. The complete 35,385-type/36,304,763-byte API matches
+the qualified parent's `93793909` unmasked. All eighteen transfers, all ten
+neighbor policies, two controls, two held Setup status policies and the false
+WSAGetLastError policy are checked in actual metadata. Existing EVT_HANDLE,
+callbacks, native enums and cleanup contracts remain unchanged. Fresh discovery
+finds 2669 remap pairs, including 26 observations absent from the retained
+4707-pair map; there are zero conflicts and no new global-map credit.
+
+Expanding the isolated fixture to every modern export and neighbor exposed
+missing traversed EVT enum/record definitions during its standalone emission.
+The same complete production emission succeeds, so these are retained fixture
+dependency failures, not established production reader limitations. The bounded
+fixture uses complete native include contexts, eleven representative transfers,
+six neighboring policies and two controls. Entire-image equality and every
+selected import assertion remain strict; coverage of all eighteen transfers
+and ten neighbors comes from the actual complete output, not the smaller fixture.
+Failed wide runs remain failed; corrected focused executions do not relabel
+their raw TRXs or manufacture a new all-passing complete cohort.
+The original complete run has 1234 passes and three modern fixture dependency
+failures among 1237 cases; all 1231 previously accepted names pass unchanged.
+The corrected six owner cases pass separately. Their raw report has seventy
+attachments and ten images; only the genuine passing classic ARM64 full-cohort
+execution supplements the missing pair, with unchanged-classic source provenance.
+All twelve selected final images and twelve original missing-flag images are
+dumped under their generated `Test.winmd` basename; all six final whole pairs agree.
+
+The first native object comparison also failed because different `/Fo` paths
+were embedded in MSVC's CodeView section and affected its checksum section.
+Its script, objects and byte offsets remain preserved setup evidence.
+Using the established same-staging-output mechanism preserves every
+non-timestamp byte in twelve final C/C++ pairs across all three architectures.
+Both complete pinned headers replay byte-exactly through the unchanged SDK
+patch runner. Earlier NTDDI/include/carrier fixture failures and cold missing
+test/build props likewise remain separately classified, with no migration credit.
+
+## Historical saved SetupAPI/Newdev21: declaration ownership, not a reader expansion
+
+The qualified live parent is `7422e923`: 236 LastError transfers, 231 residual
+rows, and one separately qualified getter correction. The next saved-only
+family moves 18 SetupAPI and three Newdev facts to their first native
+declarations. Markers precede the complete SAL/export prefix. Removing only
+those 21 additions recovers both whole parent headers, apart from CRLF transport.
+The two DWORD-status APIs SetupDecompressOrCopyFileW and
+SetupGetFileCompressionInfoW remain sidecars pending separate native-semantic
+verification; their return type alone does not prove a LastError policy.
+
+Real production includes both owners in DevInst and SetupAPI.h again in Setup.
+The existing project deliberately emits Setup as common, not three separate
+architecture bodies. All three DevInst bodies and the common Setup body are
+fresh; 983 other C# inputs, accepted post-constants preambles and complete
+retained maps are conserved. The full 987-source emission and entire
+36,304,763-byte API preserve `93793909` unmasked, including all 21 imports,
+both retained status policies, controls, the corrected getter and held types.
+The fresh partial map has 96 additional observations and no conflicts with
+the retained map; these are not new global rows or migration credit.
+
+The initial all-export fixture lacked traversed dependent records; expanding
+traversal introduced further unrelated record dependencies. Those emission
+failures are fixture setup evidence, not established production reader gaps.
+The isolated fixture retains complete native include contexts and tests five
+representative exports and two existing controls. Six genuine missing-flag
+failures become six passes without reader changes or softened assertions;
+coverage of all 21 comes from actual production, not this smaller fixture.
+
+Original focused capture contains 70 genuine ResultFiles and ten images.
+The final Newdev ARM64 row has none, even after a TestContext snapshot.
+Only its genuine complete-cohort execution supplements the missing pair;
+all twelve selected original-name images have matching entire legacy/native
+images and API dumps. The original focused TRXs and accounting remain unchanged.
+The complete 1231-case Clang/SDK cohort passes: all 1225 accepted names plus
+six new cases. Complementary suites pass 17 MetadataUtils, 58 scraper and
+54 integrity cases against the actual fresh image.
+
+Cold no-restore test invocations produced no executions before restoring the
+test SDK props. Initial integrity passed 53 cases but failed because its
+default scratch directory differed from the real scrape's explicit ObjDir.
+Copying all genuine production scratch files byte-identically restores that
+context; no empty-directory substitution, allow-list or assertion change
+is used. These preserved setup failures are not production reader limitations.
+Twelve real C/C++ native pairs preserve every non-timestamp object byte, and
+both whole pinned owners replay through the unchanged SDK patch runner.
+No RSP fallback, JSON restoration, new semantic correction or held-policy
+release is introduced. Candidate 257 transfers/210 residual rows remain
+unqualified; **65/424/290** and zero repair credit remain separate.
+
+## Historical network correction: 33 transfers and one wrong legacy getter flag
+
+The original 669ABE50 proposal is not accepted. WSAGetLastError retrieves
+the thread's existing error; it must not request the runtime's pre-call
+error clearing. Its pre-existing sidecar SetLastError=true is wrong native
+semantics, even though the original proposal preserved the accepted API.
+On .NET 10.0.15/X64, false getters return and preserve seeded 10022/10035/10061;
+true getters return zero and clear both native and cached error to zero.
+This is pre-existing metadata wrongness, not a new runtime regression.
+
+The separate amended proposal removes only the two newly proposed getter
+markers. The other 33 facts transfer at 46 real declaration sites; the
+getter's RSP retirement is separately classified as one semantic correction.
+All 34 rows still retire, 265 to candidate 231. Qualified LastError203 and
+65/424/290 remain unchanged. No native getter replacement, new helper,
+reader fix, sidecar fallback or held-policy change is introduced.
+
+Each of the same six cases explicitly retains original-legacy true, corrected
+legacy false and native false paths. Corrected legacy/native full-image
+equality remains exact. Original legacy differs by only the getter flag plus
+the writer's derived MVID/timestamp: the original identity is verified, the
+single flag is toggled and identities are recomputed, then every final byte
+must match. The first one-byte-only assertion failed on these 21 actual
+file-byte changes and remains setup failure evidence, not a getter repro.
+The final fixture independently reproduces six false/true getter failures
+against the old proposal and passes six corrected owner cases.
+
+Fresh complete production metadata changes only that getter's flag. The
+entire unmasked API changes from F781 to 93793909, 36,304,784 to 36,304,763
+bytes; the fresh image is 2223A9A9, 24,204,288 bytes. All other complete API
+bytes and all imports, entrypoints, parameters, controls and held native
+contracts remain exact. Original proposal sources, runs and failures stay
+immutable and superseded, not accepted by this correction.
+
+## Historical superseded network LastError34: bounded inputs and retained diagnostics
+
+Above qualified `33797f41`, 34 existing LastError facts move to 48 native
+declarations in the complete WinSock2.h/winsock.h owners. Genuine legacy/native
+fixtures and actual complete production emission preserve the accepted F781
+API. The legacy path uses the qualified source and explicit legacy mappings,
+not the newly annotated native owner. No reader or held-policy expansion is
+needed for this candidate.
+
+The first legacy fixture extraction matched the WSAGetLastError prose comment,
+not its declaration. Its three setup failures remain separate from the six
+genuine original-owner missing-LastError failures. Requiring PASCAL FAR uses
+the real declaration spelling without broadening input-only traversal.
+Generated patch metadata/target omissions and a missing integrity image-path
+setup are also preserved failures, not successful intermediate evidence.
+An in-memory dictionary-grouping mistake rejected ten otherwise matching
+focused dumps; the corrected JSON-bound comparison does not rerun the images
+or rewrite the failed helper's disposition.
+
+Actual x86 scraping reports four remap inconsistencies for in6_addr, in_addr,
+sockaddr and timeval. The suggested production includes are already present.
+Keep the diagnostics and complete accepted maps; changing mains to repeat
+existing includes or treating this alone as new reader failure is unwarranted.
+Fresh complete bodies and the entire unmasked API are the semantic evidence.
+
+P2P is not a supported pinned-owner import family: SDK 10.0.28000.2705 lacks
+p2p.h. All 149 existing mappings remain; four mapping names are additionally
+absent from the retained legacy header. Do not resurrect that SDK surface or
+credit it as a native migration. Unprobed public-name/FreeWith slices remain
+unprobed, not established limitations.
+
+The focused six-case TRX has 50 actual ResultFiles and ten original-name images;
+its final ARM64 legacy-owner execution has none. A genuine complete-cohort
+pair may supplement it with explicit execution/ResultFile provenance, never
+by changing the original TRX or calling focused capture complete.
+Qualified LastError203/residual265 and **65/424/290** remain unchanged.
+
+## Historical saved PSAPI LastError27: input corrections, subsequently qualified
+
+The separate saved proposal above qualified `e1a02663` moves 27 existing
+PSAPI LastError facts without changing the accepted API or held policies.
+The real header expands original export names into K32 aliases for
+PSAPI_VERSION 2. Unconditional markers change that alias policy: three genuine
+controls fail with expected false/actual true. Version-conditional markers
+conserve the existing policy rather than introducing K32 LastError support.
+
+The validator also correctly rejects markers after `_Success_`/`_Ret_range_`
+on GetModuleFileNameExA/W. They must precede that complete native declaration
+prefix. A real C/C++ owner compilation exposed an independent source omission:
+the newly annotated header must include the existing canonical helper itself,
+not rely on the scraper fixture's earlier helper include. Those bounded input
+corrections need no reader, helper, SDK-pin, assertion or workflow change.
+
+The final six unchanged owner cases, twelve full image/dump pairs and twelve
+native C/C++ pairs preserve the version-specific imports and ABI. Fresh actual
+PsApi1/PsApi2 namespace bodies and complete 987-input emission preserve the
+entire F781 API, with no known-diff mask. Source-location-derived anonymous
+record names shift when the helper include is added; final actual whole bodies
+are retained and emitted, not normalized back to older generated source.
+Twelve newly observed partition-local remappings are backed by real native
+typedefs and do not conflict with the preserved complete accepted maps.
+
+Cold missing NuGet assets, a non-executing `--no-restore` test invocation,
+an omitted fixture using, diagnostic/deployment-path and runtime-assembly-path
+setup mistakes remain separately attributed failures. A generated patch briefly
+landed as our untracked live file because relative .NET I/O used process cwd;
+it was moved into the saved scope, with no tracked live/index change. It is not
+reader evidence. Prior passing pre-helper owner/emission evidence is superseded
+where it lacks final source binding, not relabeled as final qualification.
+
+LastError27 is saved and unqualified; qualified Debug LastError176 and
+**65/424/290** remain unchanged. FreeWith/public-name slices remain unprobed,
+not established limitations. Earlier continuation text below is historical.
+
+## Historical accepted continuation and remaining boundaries
+
+Published `a74c977d` is independently qualified by its own ordinary ten-job
+CI/output gate, including 175 SDK cases and 54 integrity cases. Its complete API
+is `F781562F...`. Published totals are **65 whole JSON retirements / 424 manual
+emitter rows / 290 enums remaining**, with **zero selected result-policy rows**
+and **2259 namespace routes** remaining. Transform21, the 151 result-row
+retirements, the separately qualified native SAL refresh and the 905 reviewed
+route removals are included. The two 1107-case tooling cohorts overlap.
+The previous `b24738dc`, `16ec4e88`, `d68f08f2`, `aa10b8a9` and `f156cc0d`
+failed attempts are not retroactively accepted. The current published total is **65/424/290**;
+the older 65/358 checkpoint and its evidence below remain historical.
+
+The qualified stage1 native36 milestone adds 35 parameter associations and one return
+association without changing native enum identities, storage or the complete
+accepted API. Its own repaired-head hosted gate is accepted, not its failed original attempt. Its
+five retained GDI prerequisite rows do not establish a storage limitation:
+the actual failed producer names missing FONT_CHARSET, while supported
+FONT_OUTPUT_PRECISION and FONT_QUALITY retain their byte enum definitions and
+DWORD use-site storage. The first four Debug losses came from annotating only
+DbgHelp.h when the unchanged actual production main includes ImageHlp.h.
+Mirroring the four native facts fixes the input ownership, not the reader.
+
+Generated-owner replay also requires the real annotated dependency closure.
+The existing Shell fixture used stock ObjIdlbase rather than its selected
+owning patch, omitting three existing IStream associations in inherited
+IStreamAsync C-vtable slots. That dependency and the two preprocessor-included
+XML IDLs are now prepared, with every existing full-byte assertion preserved.
+No native group, validator exception, sidecar fallback or new transfer credit
+is introduced by this fixture correction. Setup failures and unprobed
+FreeWith/canonical-enum-name slices remain separately classified.
+
+The next saved Debug LastError family retires 176 exact RSP facts through
+352 first-declaration annotations in the two real Debug owners. An initial
+trial correctly failed because eight markers followed DBHLP_DEPRECIATED;
+placing them before that native prefix is an input correction, not a reader
+exception. New real-owner fixtures also require the already annotated Winnt.h
+dependency for IMAGE_DIRECTORY_ENTRY. Omitting it is a fixture-context error,
+not a missing-enum limitation. All discarded runs remain failures.
+Whole-owning-header native ABI proof uses unchanged pinned SDK dependencies;
+stock SAL cannot compile unrelated older prepared msxml.h _Out_retval_ input.
+That discarded broad-context setup is retained without changing held sources.
+The existing same-output-path COFF comparison avoids compiler-generated object
+path differences; only timestamp bytes are excluded, never metadata/API output.
+The first complete union copied ScrapeHeaders-only preambles over accepted
+post-constants preambles, dropping System imports required by native Flags
+groups. Retaining the unchanged accepted compilation preambles while replacing
+all 19 fresh complete namespace bodies restores the existing pipeline contract.
+The resulting fresh full emission has zero unmasked delta against the entire
+36,304,784-byte F781 API. No global-using, reader or workflow fix was added.
+Private integrity setup failures (missing assets/tooling and the diagnostic
+scratch-root layout) and a private evidence-helper grouping mistake are retained
+separately; they do not establish metadata-reader or native ABI limitations.
+The complete integrated cohort passes 1288 cases (1113 tooling plus 175 SDK).
+Accepted Clang/SDK and scraper case-name multisets remain intact. Three existing
+MetadataUtils LibScraper labels contain machine-specific truncated absolute
+paths; their unchanged source and actual library/expected-data bytes bind the
+three-case cohort. Raw labels are preserved, and no individual architecture is
+inferred from those collapsed labels. The historical WinHttp whole-RSP
+control still uses its unchanged frozen recovery source, not the evolving
+candidate RSP, so no assertion alignment or relaxation was necessary. The
+candidate's 176 deletions are independently checked against both actual owners.
+No FreeWith/public-name probe, policy change or publication is implied.
+
+The published producer-lifetime family is separately attributable. Core26 and DeviceQuery6
+transfer 32 native cleanup facts with full semantic preservation; a separate
+38-fact/20-owner direct-header checkpoint also closes full output qualification.
+Its only complete API changes are the four approved GDI return-attribute
+removals and ordering of identical cleanup declarations. All 27 selected
+cleanup blocks preserve their signatures, attributes and namespaces.
+Four reviewed GDI rows remove incorrect DeleteMetaFile/DeleteEnhMetaFile
+associations from recording HDC producers: zero transfer credit and no
+replacement Close function. The published 74-row delta leaves exactly eight
+standalone cleanup rows and does not change whole JSON, enum or nominal-type
+counts. The six contextual selectors are BeginUpdateResourceA/W,
+CreatePrivateNamespaceA/W and OpenPrivateNamespaceA/W. They remain separate
+from the accepted published AMSI1 and Wlan1 contributions.
+Wlan's native Reserved/pre/NULL non-function-pointer exception is now narrowly
+implemented and recorded in the shift-left spec. Its original real-SDK arity
+failures remain retained. Optional, unannotated, scalar, name-only and meaningful
+context arguments still do not qualify; context arguments have no default policy.
+
+The published combined candidate adds 25 OLE parameter associations to those
+two lifetime contributions, retiring 27 exact RSP rows with no additions or
+fallbacks. Eight existing native enum definitions and their sidecar type facts
+are unchanged. Complete `F781562F...` API and `3F5883A2...` WinMD equal the
+accepted saved Wlan checkpoint byte-for-byte; OLE adds no public API delta.
+Combined qualified totals are **65/358/290**. Exactly the six
+contextual cleanup selectors remain. The four earlier GDI defects retain zero
+transfer credit. Existing association controls pass 47/47 and actual-candidate
+integrity passes 54/54 with the six unchanged authoritative source assets. The
+original 53/1 stale runtime RPC allowlist failure and restored image/assets
+remain separate evidence, not a candidate regression or new allowlist entry.
+
+The OLE private evaluation also preserves setup failures separately from reader
+findings: imported wtypes belongs to shared, MIDL input casing must match the
+production recipe, mixed physical SDK roots disturb include guards, and SDK SAL
+must not shadow the repository's existing SAL extension. Uniform current headers
+with production include priority resolve the owning scrape without a product
+change, sidecar fallback or global-constant rescrape.
+
+The first combined ordinary run failed strict whole-ocidl replay because the
+saved conversion omitted preprocessor-IDL includes. Complete import-plus-include
+conversion reproduces all three affected ocidl/oleidl/amsi headers. The reviewed
+three-header-only repair earns zero transfer credit; its successful new-head
+ordinary gate does not erase that preparation failure or change the comparer.
+
+The next MSI owner proposal independently transfers 16 integer parameter
+associations without changing the four native enum definitions or storage.
+Its four reserved-scalar contributions remain sidecars rather than blocking
+the supported associations. The saved actual 20-site trial contains only four
+In-to-Optional changes, with Reserved retained, in two complete method lines.
+`sal.h:291-292` documents `_Reserved_` as pointer/NULL-oriented;
+`MetadataSyntaxTreeCleaner.cs:1308-1311,1433-1440` recognizes it and emits
+Optional for every Reserved parameter, without a scalar-storage distinction.
+Retain these four exact MsiDatabaseGenerateTransformA/W selectors until the
+scalar-zero transport and direction/optionality semantics are qualified.
+There is no cleanup-context, blanket-default or new annotation policy change.
+
+The next current Theme slice qualifies 14 signed-int use sites of the unchanged
+unsigned THEME_PROPERTY_SYMBOL_ID group. All 22 focused cases and 54 actual
+integrity cases pass; the complete combined MSI16/Theme14 API and local image
+remain `F781562F...`/`3F5883A2...`, with zero-byte unmasked semantic delta.
+The older width/signedness rejection is not a current blanket limitation.
+
+GetThemeSysColorBrush::iColorId remains individually retained. The SDK comment
+names winuser.h system-color indices, but the current official documentation
+lists TMT_* values; COLOR_SCROLLBAR=0 and TMT_SCROLLBAR=1601 are distinct native
+definitions. A separate saved deletion-only variant exposes the proposed
+one-row retirement for bounded semantic adjudication, not transfer credit.
+Neither a replacement enum nor a main-candidate removal is selected.
+
+The fresh owner also exposed a local pipeline-stage preparation boundary:
+ScrapeHeaders companions carry the scraper header, not the final constants
+header with System imports. The original full compile rejected unqualified
+Flags attributes. All six Controls companion namespace bodies exactly match
+the accepted final pipeline producers, so retaining those unchanged files and
+overlaying the fresh methods preserves the complete actual API without a
+global constants rescrape or tooling/metadata mask. The original failure and
+both missing-dependency fixture runs remain saved, not relabeled as passes.
+
+| Finding | Accepted correction / retained evidence | Remaining boundary |
+|---|---|---|
+| Native callback transport and ownership | Complete selected callback records now derive their aliases and invoke contracts from native declarations and SAL. A real certificate-selection traversal exposed a foreign-owner reduction; the resolver guard now precedes both bare-function branches. The original wrong candidate remains excluded even though its generic integrity suite passed. | `PTHREAD_START_ROUTINE`, `INTERNET_STATUS_CALLBACK`, `PBMCALLBACKFN` and `LPFNADDPROPSHEETPAGE` remain sidecars. Do not infer identity or ownership from an alias spelling alone. |
+| Anonymous defining fields versus synthetic carriers | The two DEVMODE A/W groups now cover all four actual nested fields. Copied AssociatedEnum is ignored only on synthetic IndirectFieldDecl/ref-property targets; defining storage fields retain it. Complete layout/member/storage and unmasked output checks accompany the focused repros. | This is not blanket qualification of every formerly restored anonymous-field or cross-owner group. |
+| Mistaken sidecar membership | PANOSE's four position-table indices are removed from value-group member lists. All 113 genuine value members and 20 sentinel aliases remain; the four native uint position globals remain unmasked. The incorrect first trial and its separate corrected qualification are both preserved. | Do not put an index into a value group merely to preserve old WinMD membership. |
+| Mistaken sidecar values, storage or omitted native constants | MODEM settings use genuine native values rather than capability bits; selected WinBio/GDI/TBS/PDH/restore-point/PeerDist associations are qualified at their actual native declarations. Genuine native additions such as WCTP_OPEN_ALL_FLAGS and CERT_SELECT_LAST are retained under the user's header-authoritative instruction. | Native evidence and the entire output difference must still establish identity, ownership, value and ABI. Unexplained changes remain blockers; no exclusion/mask is introduced to reproduce a sidecar mistake. |
+| Fixture setup versus product defects | Original missing native dependencies, wrong target typedefs, missing CHAR projection and compiler/setup failures remain separate from genuine missing-association or reader failures. Final fixtures use actual SDK declarations/macros and assert native ABI as well as emitted contracts. | A repaired fixture is not itself a production reader fix. The historical unexplained Fixture.Apply timeout remains recorded despite later passing suites. |
+| Common-dialog definition visibility in ordinary CI | The first through-mixer19 ordinary run fails KernelStreaming on all three targets and eight common-architecture consumers in the x86 job: commdlg.h associates CommDlgExtendedError with COMMON_DLG_ERRORS but does not include its cderr.h definition. The older sliced fixture supplied cderr.h separately, hiding this consumer dependency. commdlg.h and its owning SDK patch now include that real definition only for metadata Clang; a three-target regression consumes the actual header prologue instead of prepending the definition. | Preserve the original hosted failures. This is a migration-input dependency correction, not a reason to weaken enum validation or restore JSON. Native declarations and ordinary native compilation remain unchanged. Ten real consumers, including all nine failed owners and DlgBox, produce a complete candidate byte-identical to accepted mixer19; all 16 raw companion differences are exact preamble refreshes with unchanged declaration bodies. Fresh suites and the next exact-head hosted gate remain separate requirements. |
+| Cold scrape versus inherited incremental maps | The repaired ordinary pipeline passes all ten jobs but additionally corrects 22 callback parameters across 14 methods. Its cold x86 automatic map discovers 21 native function-type aliases absent from every one of the 17 inherited local maps. Actual native declarations, unchanged delegate definitions and consumer pointer depth establish that the emitted delegate itself is correct; the historical delegate-pointer forms were stale. | This is a local validation-baseline coverage gap, not evidence that the cold reader needs a compatibility workaround. Preserve both complete outputs and the unmasked difference; do not restore the stale forms or claim byte-equivalence. Further qualification must use actual cold producers and maps, with assembly-version differences accounted separately. The complete exact-head hosted output is independently accepted; these automatic corrections are not additional JSON retirements. |
+| Fresh complete publication gate: stale fixture expectations/context | The original 998 tooling cases retain four Winapi1-versus-Cdecl2 retval/vtable failures; the original 175 SDK cases retain one stale Uxtheme comment-proof patch failure. Six independent MSVC C/C++ compilations prove the exact native stdcall field and the distinct-x86/unified-64-bit ABI. The repair aligns the vtable assertion with the existing named callback's Winapi expectation and refreshes only the test patch's unchanged-context lines. | Production inputs/output are unchanged. Keep all original failed source/DLL/log/TRX evidence and require separate fresh complete qualification. The measured 23m03s/22m29s whole-suite durations justify 40-minute job budgets, not a change to any individual test timeout. |
+
+Major accepted checkpoints are now authorized for publication and exact-head CI
+qualification. A previous head's green checks do not qualify the next one.
+CI-only app maintenance does not permit merges, stack/base changes, unrelated
+review edits or external-consumer work. Contextual NCRYPT ownership, nine CLR
+exceptions, converter/ownership closures without new qualification, and the
+previous external-consumer namespace/U2 and VARCMP conversion failures remain
+outside this checkpoint's claims.
+
+## Large result-policy migration (local engineering)
+
+The selected family contains 151 emitter rows: 52 exports and 99 COM selectors.
+The first internal checkpoint moves all 52 exported policies into 17 native
+headers and matching SDK patches. Its complete API comparison contains only
+52 legacy `CanReturnMultipleSuccessValues` removals and 52 changes from
+`PreserveSig = false` to native-signature preservation. Native return types,
+parameters, SAL, DLLs and LastError are unchanged. This is an intentional policy
+representation change, not exact equivalence of the old custom attributes.
+Result rows decrease from 151 to 99; total member-remap rows decrease from 1592
+to 1540. The accepted CryptXML and cold callback corrections remain separate.
+
+The settled COM slice adds 55 IDL-backed and ten directly shipped method policies.
+It removes 67 rows: 64 effective old-policy replacements, the corrected
+`IDXGIFactory::EnumAdapters` policy, one inherited redundancy and one absent
+selector. `DXGIFactory::EnumAdapters` was ineffective; correcting its native
+owner activates the policy, rather than completing a one-for-one transfer.
+`IDXGIDecodeSwapChainPartner::PresentBuffer` is absent and retires without
+recreating an API. `IMoniker::IsDirty` uses its defining `IPersistStream` method.
+Together with exports, **119 rows retire and 117 native policies are introduced**;
+result rows are **151 -> 32**, and total member-remap rows are **1592 -> 1473**.
+
+The complete settled candidate difference against the 52-export checkpoint
+contains only 60 `CanReturnMultipleSuccessValues` and four
+`CanReturnErrorsAsSuccess` removals plus 65 `PreserveSig` additions. All changed
+method identities reconcile. No parameter/SAL, signature, namespace, DLL or
+LastError change remains. Fresh 22-producer scraping/full emission, 35 original-
+SDK patch replays, 70 result/carrier/transform cases, six native retval controls,
+six real SDK families and actual-candidate/current-asset integrity 54/54 qualify
+this local checkpoint, not its future ordinary hosted CI.
+
+| Observed failure | Bounded correction | Accounting / remaining scope |
+|---|---|---|
+| Interface-local IDL `cpp_quote` carriers generate before the class, so unqualified names fail actual scraping. IUnknown also has a hand-written branch with overloaded QueryInterface. | Use qualified `Owner::Method` carriers after complete interfaces; explicitly exclude the fallback carrier from IUnknown's manual branch while preserving its direct annotation. Regenerate only the settled 12 headers from 13 authoritative IDLs. | Original 531-error and overload failures remain retained. No helper vocabulary change or sidecar fallback. |
+| Adding the helper moves d2d1.h's genuine anonymous interpolation enum by one line; its positional remap no longer selects it. | Maintain the existing `__AnonymousEnum_d2d1_L90_C1` remap and assert the actual native enum line. | One retained RSP dependency, not another enum migration. All existing enum members and namespace placement remain unchanged. |
+| Prefixing actual `IADsPropertyList::Next` loses its first parameter's native `[retval][out]` fact. The focused actual-prototype repro fails on all three targets. | Tokenize the first FunctionDecl parameter from the native declarator location, excluding preceding annotation parentheses. Callback typedef/field ranges remain unchanged. The three-target baseline/annotated signatures and native RetVal now agree. | A real narrow reader defect, separate from the qualified broad SAL refresh. Earlier raw producers lacked the fact while an earlier output retained it; the exact inherited masking mechanism is not established. |
+| The first integrity run flags `RPC_DISPATCH_TABLE.DispatchTable`; the runtime allowlist lacks the already committed row. | Run the actual candidate with all six current authoritative test assets, then restore the previous runtime assets and root WinMD. | No product allowlist change; retain the earlier 53/54 report separately. |
+| Dxgi/Shell/Audio SDK fixtures lack the annotation helper; Audio additionally converts original axcore/axextend/dyngraph instead of the selected authored IDLs. | Supply the current helper and include those three existing IDLs in Audio's fixture input/patch/conversion closure. | Assertions remain intact; all six actual SDK families pass after correction. |
+
+The subsequent broad tooling/SDK run passes 1117 of 1122 cases and preserves
+five further fixture failures: three explicit-availability MIDL replays need
+the same helper dependency, and two historical SAL-only byte assertions need
+the exact current Audioclient/axextend/UrlMon result-policy additions. Those
+expectations now construct only the selected carriers after their complete
+native owners; they still compare every byte, including encoding, newlines
+and all independent SAL. The authored-result fixture selects the real Read
+prototype instead of the first unrelated carrier. A separate six-case run
+passes the original five failures plus one unchanged Imaging control; all raw
+identities reconcile. Metadata-utility 17/17 and scraper 58/58 add disjoint
+coverage, for 1197 cases without an unresolved observed failure. This is not a
+claim that the original full run passed or that a new hosted head is accepted.
+No production/SDK-input/sidecar edit accompanies these fixture corrections.
+
+Regenerating other COM owners exposes older committed-header SAL/retval
+materialization. Its separately preserved 18-header checkpoint changes 90
+methods on 43 interfaces, including 121 Optional additions, five direction
+changes and one element-count association. It adds no result transports and
+retires no rows. **The scope decision is now released and this separate
+checkpoint is qualified** against the settled result plus 905-route candidate.
+All 90 changed declarations match the intended scope, with no other API change.
+The actual SetData owner is IOleCache; the historical method inventory labelled
+that one unchanged before/after signature pair IDataObject. This is an inventory
+correction, not an added semantic delta. The following separately attributable
+result-only checkpoint replaces the 32 affected selectors after this SAL baseline.
+Source-backed corrections are not reader limitations or 151-result-row progress.
+The private actual-candidate integrity run retains its original 53 passes and
+one missing-scratch-input failure; that exact case passes with the actual
+candidate's scratch logs. Three native direction/count methods on two owners
+compile in C and C++ for all three architectures, yielding six identical COFF
+pairs. Initial broad ABI fixtures and their SAL-shadowing/duplicate-declaration
+failures are preserved; no all-90-method native ABI claim is made.
+The original MIDL failures remain: an invocation's extra semicolon after
+`cpp_quote`, then two audio owners compiled against post-MIDL `mmreg.h` instead
+of the original pre-MIDL SDK include inputs. Correct preparation compiles all
+30 generated owners from 54 converted IDLs; these were staging errors, not
+production reader fixes. No result sidecar fallback is introduced.
+
+### Remaining 32 result policies: qualified separate checkpoint
+
+All 32 remaining rows now derive from 17 authoritative IDLs and their owning
+pre-MIDL patches. Their include closure regenerates 19 physical headers:
+the 18 SAL headers plus `strmif.h`; `PropIdl.h` and `strmif.h` also derive from
+included changed IDLs. All 19 actual MIDL roots compile and all 17 original-SDK
+patch replays exactly match the authored inputs.
+
+Actual 15-partition scraping and complete emission produce WinMD `D76C03B5...`
+and full dump `7FA8EA90...`. Against the separately accepted `E6025FC8...` SAL
+dump, the complete difference is exactly **32 CanReturnMultipleSuccessValues
+removals and 32 PreserveSig additions**, with all 32 method identities checked.
+There are no additional parameter, SAL, namespace, declaration or field changes.
+The exact final candidate passes all 54 integrity cases with current assets and
+actual scratch logs. Result rows are **32 -> 0** and member-remap rows
+**1473 -> 1441** in this slice.
+
+| Observed failure | Bounded correction | Accounting |
+|---|---|---|
+| Five `IXmlReader` carriers and `IMILBitmapEffectPrimitiveImpl::IsDirty` still precede the emitted owner when placed after an interface inside a MIDL library. Actual scraping reports six incomplete-owner errors. | Move only these six qualified carriers after the complete enclosing library, then regenerate the same bounded native scope. | Migration-input placement correction, not a reader fix or a sidecar fallback. Original sources, MIDL outputs and failed scrape remain preserved. |
+| The authored `WbemCli.Idl` copy uses LF while the selected SDK and patch replay use CRLF; normalized content already matches. | Preserve the selected SDK's CRLF in the saved authored input. The existing converter produces the same CRLF from either input. | Preparation-only newline correction; all 17 whole-byte patch replays now agree. |
+| A private emitter override appends its response file after documentation mappings, producing nine attribute-order-only differences. | Replace the saved settings at the original production position and reemit the same actual producers; do not normalize or mask the API comparison. | The first output, 54-pass report and rejected exact-diff checker remain distinct. The final full diff contains only the 32 result replacements. No product response-order change or native rerun. |
+
+The complete family retires **151 rows and adds 149 native policies**:
+148 effective old-policy replacements plus the one DXGIFactory typo activation.
+The inherited redundancy and absent selector are retirements, not transfers.
+The original reviewed 98-source result/route proposal, the accepted SAL baseline
+and this final result-only source/output remain separately identifiable.
+
+## Redundant namespace-route cleanup (separate local slice)
+
+The reviewed 905-route removal is applied without changing any other active
+row, comment or retained order: 3164 -> 2259. Its categories are 543 enums,
+75 structs, 99 imports, two callbacks, 21 prewritten constants, 151 methods with
+unconditionally empty import modules and 14 wholly absent names. The retained
+2259 include all 2141 active public-placement routes, 111 unresolved constants
+and seven wildcards. Those unresolved routes are not guessed away.
+
+The exact selected rows and current consumers were rechecked against the
+evolving result candidate. Complete fresh emission preserves both its entire
+`F8AFFB39...` API dump and `360738F6...` WinMD bytes, rather than relying on the
+researcher's older accepted-parent comparison. No method is made emitting,
+renamed or moved; existing result/SAL and native-value corrections remain.
+The namespace-removal units are separate from the 119 result RSP retirements
+and 65 whole JSON retirements. Normal bounded source/semantic review has
+accepted the unchanged 98-source proposal. The broader 18-header SAL refresh
+and completed 32-result slice are separately qualified saved checkpoints.
+Publication still needs fresh branch/ref/stack preflight and its own ordinary
+new-head CI/output qualification.
+
+## Unpublished CryptXML transform-flags21 cohort
+
+The actual SDK defines `CRYPT_XML_TRANSFORM_URI_QUERY_STRING` as `4`, not the
+legacy JSON value `3`; it is a separate bit from the stream and node-set flags.
+The probe moves the complete `CRYPT_XML_TRANSFORM_FLAGS` definition into the
+shipped header and associates the actual `CRYPT_XML_TRANSFORM_INFO.dwFlags`
+DWORD field without changing its native declaration or layout. The selected
+original-SDK patch replays to the complete authored header byte-for-byte.
+
+One owner refresh and complete emission use the independently accepted
+CryptXML20 hosted producers/maps, not the older incremental cache. Reversing
+only the complete enum-value block and the UInt32/association field lines
+reconstructs every byte of that accepted API dump. All 21 cold callback
+corrections remain. The three automatic maps are unchanged; raw producer
+accounting isolates four owned semantic files and exact machine-path-only
+changes. Intermediate native integer constants do not add public globals.
+The same-version metadata has one additional custom attribute; moving the enum
+also relocates coded type handles without changing the callback's resolved type.
+This is not a binary-equivalence claim. The native/scientific cohort is now
+independently accepted; publication remains separate.
+
+The first focused execution passes three metadata cases but fails six native
+cases: the real `sal.h` angle-includes `concurrencysal.h`, already copied beside
+the fixture, while the native compiler lacks that directory on its include path.
+Adding only the fixture-local `/I` argument makes all nine new cases and six
+existing native controls pass. All six new native cases retain both COFFs, with
+six complete byte-identical pairs. The original failed inputs/reports remain
+separate. Actual-candidate/current-asset integrity passes 54 cases; it is not
+rerun after the fixture-only correction. No reader change, sidecar fallback,
+generated-source edit or masked output is needed.
+
+The native/scientific cohort is independently accepted. The approved
+algorithm-error documentation correction is applied with the original frozen
+evidence preserved; this does not rerun or alter transform science.
+The transform-only inventory is 65 whole JSON retirements, 106 emitter rows and
+290 enum records; the later result batch adds its separately counted 119 RSP
+retirements. Normal substantial-checkpoint review/publication remains pending;
+the published inventory above is unchanged.
+
+## Preserved historical trials
+
+The following table records each trial's restoration state at the time.
+Where a later accepted cohort resolves a selector, its separately qualified
+source/output supersedes that restoration; the failed trial is not rewritten.
+
+| Class | Exact closure / observed evidence | Historical restoration state | Narrow follow-up |
+|---|---|---|---|
+| Demonstrated clean-generation definition leak | Exact `350e73c0` hosted run 43338802835 passes all architecture scrapes but fails emission with `Unknown or malformed owned annotation 'Win32Metadata.Enum(DEVPROP_TYPEMOD_ARRAY, ...)'`. Emitting the untouched hosted artifacts in workflow merge order reproduces it. `DeviceQuery.cs:482` attaches the DEVPROPTYPE definition annotation to `DEVPROPERTY.Type`. | Complete original 30-member auto-populated JSON definition restored; genuine native typedef/header bytes preserved; helper/group patch and routing bridge removed. Fresh local `5148224F...` and actual hosted `8FC4AA51...` preserve full raw output. Exact-`d3a0` ordinary run 43359091013 passes all ten jobs, including 54 integrity cases; the older local binary alone was not clean-CI qualification. | Keep this complete fallback until definition-only native typedef annotations cannot leak to transitive field consumers. Trace the reader transfer in a later tooling layer; do not make the owned-annotation parser ignore it or edit generated C#. |
+| Fixture dependency / obsolete projection expectation | All three COM sliced-header controls lack EMBDHLP_FLAGS after its independent definition migration; all three mapped-view cleanup controls lack FILE_MAP before reaching the intended const cleanup check. Historical versus current whole-WinMD equality also enforces an intentionally retired enum shape. | COM now supplies the actual EMBDHLP definition and asserts twelve COM contracts; current header-only versus redundant COM overrides retains byte equality. Cleanup uses the pinned SDK declaration. All six targeted cases and the complete 768-case tooling suite pass in exact-`d3a0` hosted CI. | Maintain tests of replacement contracts, not fictional historical structure. Keep genuine cleanup rejection and unrelated metadata preservation. |
+| Fixture dependency / obsolete projection expectation, further closure | The native-owner 13-group actual WinMD is unchanged, but the original 792-case tooling run ends 789 passed / three failed: HandleProducer's sliced LocalAlloc prototype references LOCAL_ALLOC_FLAGS without its actual minwinbase.h definition. | Original failed reports/source/F163 assembly preserved. The fixture replays and byte-compares real minwinbase.h, supplies its actual LMEM operands/group, and replaces only the bare-UInt32 expectation with the exact enum handle plus UInt32 storage. All ownership, native-byte, ABI and paired legacy equality assertions remain. Fresh04DC complete 792+151 passes the exact disjoint943 scope; targeted three are diagnostic only. | Keep sliced fixtures closed over the real current SDK dependencies. Do not restore valid production JSON, change the reader or erase semantic assertions to accommodate an incomplete fixture. |
+| Coverage accounting, not a reader failure | This same cohort has 31 actual SDK-native association sites, but six entrypoints are absent from both complete actual parent/candidate WinMD dumps. All six generated imports have empty module names; unchanged cleaner lines 899-910 deliberately remove them before enum handling. | Exact 25 public associations plus six unchanged non-emitting native sites are recorded separately. All 13 enum/member/storage sets and 31 native sites are verified; complete raw output equality remains mandatory. The initial checker that wrongly assumed 31 public associations is preserved, not treated as a migration defect. | Distinguish native declaration/annotation consumption from public emission. Do not count those six as lost APIs, unsupported associations or visible public coverage; no import mapping or callback selector is invented. |
+| Fixture include dependency | Core COM native MIDL replay fails MIDL1003 because the patched ocidl.idl includes `win32metadata_annotations.h`, absent beside the converted inputs. | The fixture stages the same canonical helper used by preparation; the original MIDL/patch assertions pass locally. | Keep the fixture dependency closure complete; no reader or IDL syntax workaround. |
+| Native compiler output qualification | Six DirectX C++ cases differ in physical COFF serialization, not actual section payloads/flags, resolved relocations, symbol bindings or checksum values after section-index resolution. Same-input triple compilation is stable. One hosted Media Foundation C/ARM64 case does not reproduce locally. | Test-only code/data/linkage assertion preserves exact payloads, checksums, COMDAT keys/associations, native signature compiles and meaningful contribution order; section/table indices are resolved, not masked. Revised 18 regressions and all 24 affected native cases pass locally and in exact-`d3a0` hosted CI; its complete tooling/SDK suites pass 943/943. | Preserve exact-head qualification. Unknown auxiliary kinds fail explicitly; do not discard linker directives, unwind data, initialization order, arbitrary checksums or genuine ABI changes. |
+| Native pointer operand / input contract | The 44-group native trial cannot evaluate GR_GLOBAL (`((HANDLE)-2)`) as an unsigned GET_GUI_RESOURCES_FLAGS member argument. | Complete definition/use closure restored; rejected inputs retained outside checkout. | Resolve the intended pointer sentinel versus integer group contract; do not substitute a fictional integer operand. |
+| Demonstrated native typedef/group collision | The 43-group trial reports `Duplicate enum group 'ALG_ID'` when a native ALG_ID typedef and a new same-name group typedef coexist. | Complete legacy definition/use closure restored; no trial output accepted. | Qualify annotation placement on the actual native typedef without introducing a second group declaration. |
+| Demonstrated anonymous-field carrier boundary | SYSTEM_INFO::wProcessorArchitecture and DEVMODE promoted fields reject named carriers with `AnnotateField requires a native non-static record field`; an inline AssociatedEnum on the actual anonymous field rejects `requires a parameter declaration`. | PROCESSOR_ARCHITECTURE and both DEVMODE groups restored after separate 43/42/41-group attempts; actual native records unchanged. | Add focused actual-anonymous-field carrier support in the owning reader layer; no wrapper records or changed native layout. |
+| Owning-definition visibility | The 39-group retry annotates three NTSecAPI AddressType fields, but cryptography/WinTrust translation units cannot see the KERB_ADDRESS_TYPE definition in DsGetDC.h. | Complete 39-group provisional union saved separately and restored before CI repair. None is counted as a retirement. | Close the real definition/consumer include dependency before retrying; the parse failure is not proof every other group is unsupported. |
+| Cross-header definition dependency | The fresh 38-group retry fails only Parcon: its evntprov.h callback association cannot see ENABLECALLBACK_ENABLED_STATE or its EVENT_CONTROL_CODE_* operands in evntrace.h. | Exact rejected inputs and failed traversal retained. A metadata-Clang-only include of the actual owning evntrace.h makes the real Parcon repro pass. The final 32-group full traversal/emission, fresh complete raw equality, unmasked comparison, 54 integrity and 943 final-source cases qualify this corrected dependency locally; ordinary hosted qualification remains separate. Native compilation does not gain that include. | Qualify the complete consumer/definition dependency, as for the accepted WinInet/winhttp closure. A legacy JSON definition owner alone does not establish visibility in every consumer translation unit. |
+| Obsolete fixture input assumption | All three ServiceNoChange SDK controls require SERVICE_START_TYPE and SERVICE_ERROR records to remain in enums.json and fail before scraping once those two definitions move into headers. | Removed only that obsolete JSON-presence/member-count check. All emitted member/value/storage, unscoped shape, global SERVICE_NO_CHANGE and redundant-sidecar byte assertions remain. The corrected 38-group diagnostic passes 943/943, including these controls, although production emission separately fails. | Keep useful metadata contracts independent of the retired configuration's storage location. |
+| Demonstrated generated-attribute import failure | The corrected 38-group complete traversal succeeds, but emission reports CS0246 in relocated Backup.headerEnums.modified.cs: three SERVICE_NO_CHANGE AssociatedConstant carriers and REG_NOTIFY_THREAD_AGNOSTIC's SupportedOSPlatform carrier lack their required imports. The header-enum writer supplies only `using System;`; later attribute rewriting does not add the metadata/versioning namespaces. | Failed inputs, complete generated sources and diagnostics retained; no candidate emitted or retirement accepted. Complete ENUM_SERVICE_TYPE, SERVICE_ERROR, SERVICE_START_TYPE and REG_NOTIFY_FILTER definition/use/routing closures restored. This extends the STGM/architecture import boundary below, not four newly distinct reader defects. | Make header-enum files self-contained for their generated and transferred attributes, preserving imports across namespace relocation. Add actual multi-partition coverage for metadata, availability and architecture attributes in the owning tooling layer. |
+| Constant alias dependency/integration | The same fresh 38-group emission reports eight CS0103 errors for DBPROPVAL_STGM_* in System.Search: their generated expressions still refer to OF_READ, OF_WRITE, OF_READWRITE, four OF_SHARE_* names and OF_CREATE after the LZOPENFILE_STYLE group moves into the header. | Exact generated consumer expressions and failed source closure retained. Complete LZOPENFILE_STYLE definition/use/routing closure restored, including exact parent lzexpand.h bytes and patch; no numeric replacement, generated-source edit or accepted output. | Resolve retained dependent constant expressions against migrated header-group ownership before retiring their definition-side closure. Preserve the actual operand values and global API surface. |
+| Constant alias/type-name integration | The isolated 33-group candidate emits `218BFFF8...`. Its complete raw dump and unmasked actual-parent comparison differ only by a new global `System.Power.Apis.POWER_PLATFORM_ROLE_VERSION = 2`. The real native macro aliases V2/V1 and also names the metadata group; its two emitted enum members are unchanged. | Exact rejected binary and complete raw diff retained. Complete POWER_PLATFORM_ROLE_VERSION definition/use/routing closure restored, including exact parent powerbase.h and patch. The remaining 32 groups emit `8DA7BE1C...` with complete raw equality and unmasked zero; no difference is masked. The original JSON lists CURRENT_VERSION as well, but that absent SDK operand is not invented or counted as a migrated emitted member. | Preserve dependent macro-alias ownership when a group name is also a native constant name. Qualify the public global/type-name collision separately rather than silently accepting an additional API or hardcoding an operand. |
+| Constant alias/global ownership, further closures | The fresh eight-group full `33217838...` candidate preserves all eight groups/50 members/twelve sites but adds exactly eleven `int` globals: PRE_CONFIG_INTERNET_ACCESS, LOCAL_INTERNET_ACCESS, CERN_PROXY_INTERNET_ACCESS, INTERNET_STATE_ONLINE, INTERNET_STATE_OFFLINE, INTERNET_STATE_OFFLINE_USER, NCRYPT_RNG_OPERATION, CARD_BLOCK_PADDING, CERT_SELECT_LAST, WCTP_OPEN_ALL_FLAGS and WER_SUBMIT_DISCARD_IF_QUEUED. ConstantsScraper.cs:154 seeds writtenConstants from generated Apis fields before JSON loading; actual header backing roots already provide integer types (ScraperUtils.cs:88-177). The emission predicate includes headerEnumMemberNames, not only !updatedEnum; typed aliases survive constituent-only cleanup. | Original binary, complete eleven-addition raw diff, original passing792 and superseded private root account remain preserved with the precise initial-seed correction. Complete BCRYPT_OPERATION, BCRYPT_FLAGS, OPEN_THREAD_WAIT_CHAIN_SESSION_FLAGS, WER_SUBMIT_FLAGS, INTERNET_ACCESS_TYPE, CERT_SELECT_CRITERIA_TYPE and INTERNET_STATE closures restored; no excludes, numeric substitutions or masks. Final NCRYPT_OPERATION alone emits actual F4ED with complete raw equality and fresh exact943+54. | Qualify typed alias seeding and public global ownership together with a moved definition. Preserve both generated-backing and later constant-seeding routes in an actual repro; decide any intentional global additions explicitly. This extends an existing integration boundary, not eleven reader defects. |
+| Demonstrated reader/import failure | STGM: the relocated `Com.StructuredStorage.headerEnums.modified.cs` lacks `Windows.Win32.Foundation.Metadata`; the unchanged allowed `STGM=[Documentation(...)]` mapping fails CS0246. Qualified `global::` input decodes to `[global]` and also fails. Three-target `StructuredStorageGroup_DocumentationSidecarNeedsMetadataNamespaceImport` reproduces the first failure. | All 18 members, 14 unique uses and both legacy records retained. All 14 trial files restored; no trial-only fallback or WinMD accepted. | Preserve/qualify metadata attribute imports when relocating a header enum. Do not remove the allowed documentation fact. |
+| Owning-IDL/current-converter boundary | Untouched `functiondiscoveryapi.idl` native-MIDL control changes 18/31 methods, including returned-pointer retval SAL and unique-pointer optionality. Three other STGM owners preserve 498 method contracts. | FunctionDiscovery and the complete failed STGM closure retained. | Compare actual native-MIDL versus converted contracts before enabling this owner; do not call 18 methods 18 enum-reader defects. |
+| Owning-IDL/current-converter boundary | ComAdmin/ExDisp lose returned-pointer retval SAL; oaidl/OleIdl alter unique-pointer optionality; WbemCli alters optional/inout SAL; Wmcontainer alters returned extent/direction. Controls reproduce these before enum carriers are added. | Six owner closures and their sidecars retained; qualified ocidl closure is accepted. | Fix/qualify each converter/native-output contract in its owning tooling layer, then replay unchanged coverage. |
+| Storage-policy decision | SNMP_PDU_TYPE legacy UInt32 group versus actual signed `smiINT`/`smiLPINT` parameters. Unsigned header group is rejected on all three targets with `AssociatedEnum storage conflicts`; signed storage changes the old enum. | Complete definition/use closure retained. | Decide intended native storage and explicitly account for that allowed shape change. |
+| Storage-policy decision, further closures | After complete TXFS restoration, the actual 15-group traversal rejects SNMP_ERROR_STATUS's legacy UInt32 group on native signed AsnInteger32*/AsnInteger* parameters across all targets. Its complete restoration exposes SNMP_GENERICTRAP's signed-pointer conflict in a separate 14-group Snmp traversal. | Both complete JSON/use/routing/header-patch closures restored; MgmtAPI.h and its patch equal the parent. Original 15/14 frozen inputs and diagnostics are preserved. Remaining SNMP_EXTENSION_REQUEST_TYPE is qualified in the 13-group output, not falsely rejected with the failed partition. | Resolve intended signed native versus legacy unsigned group storage explicitly. This extends the existing SNMP storage class; do not change native signedness, silently change public enum shape or relax exact storage validation. |
+| Native storage and owning-definition visibility | The original 16-group Fs traversal rejects TXFS_MINIVERSION: the actual CreateFileTransactedA/W parameters are PUSHORT while the legacy group is UInt32. Other consumers cannot see its definition in txfw32.h. | Complete definition, both uses, namespace and affected native-header/patch closure restored; txfw32.h and its patch equal the parent. Exact frozen original source and diagnostics remain; no coverage is counted for the rejected group. | Qualify both native storage and actual definition visibility before transport. Do not force a UInt32 enum onto a USHORT pointer, weaken validation or assume that a legacy definition owner is visible to every consumer. |
+| Demonstrated storage-policy boundary, further closures | The fresh 28-group real Gdi common traversal rejects CREATE_FONT_PACKAGE_SUBSET_PLATFORM at fontsub.h:41. After restoring that complete closure, an independent fresh Gdi traversal rejects CREATE_FONT_PACKAGE_SUBSET_ENCODING at line 42. Both existing emitted enums are signed `short`; the actual CreateFontPackage parameters remain `CONST unsigned short`. The reader compares their integer storage exactly. | Both complete JSON definition/use/namespace closures restored; fontsub.h and its authoritative patch equal the qualified parent exactly. Both rejected source snapshots, actual diagnostics and 165 distinct physical input hashes are retained. Neither group is counted as migrated. This extends the existing storage-policy class, not two unrelated reader defects. | Decide whether header associations should preserve this legacy signed projection or adopt an explicitly approved unsigned enum shape. Do not change native parameter signedness, silently change public enum storage, or weaken storage validation in this migration layer. |
+| Demonstrated migration-input owner error | The fresh 26-group full candidate emits `4E7E18B4...`, but its fresh full dump and unmasked actual-parent comparison lose five DbgHelp groups, their 29 members and eight associations, adding those members as globals. The declarations were annotated in duplicate DbgHelp.h, while the actual Debug translation unit includes and traverses ImageHlp.h. All three generated Debug header-enum files omit the five groups; their two newly migrated minidump groups are present. | Exact rejected source, binary, complete raw diff and generated consumers retained; rejected output is not coverage. Restoring DbgHelp and authoring the actual ImageHlp owner preserves every native source byte. Corrected probe/full output contains all 26 exact member/storage sets; actual `5FB6EA33...` preserves the full `1F4F3839...` dump, unmasked comparison zero, 54 integrity and disjoint 792+151 final cases. Exact728bf ordinary run43413701369 subsequently qualifies all ten jobs and actual hostedF1553FC9 output. | Bind authoring to the actual included/traversed owner, not a matching declaration in another SDK header. A successful owner-scrape exit alone does not establish annotation consumption: verify the generated group/member/storage output before the full candidate gate. This is not a demonstrated reader limitation or five unsupported groups. |
+| Constant dependency/integration | PROCESS_CREATION_FLAGS trial fails emission with CS0103 for `CREATE_UNICODE_ENVIRONMENT` in Debug.Extensions. | Whole definition/use closure restored. | Preserve dependent constant references across generated sources before retiring this group. |
+| Constant dependency/integration | The actual 28-group cfgmgr32/SetupAPI output adds five `CM_LOCATE_DEVINST_*` globals and two `NDW_INSTALLFLAG_NEED*` globals. Restoring two implicated groups exposes two `DI_REMOVEDEVICE_*` additions to the restored install-flags group in the next 26-group output; duplicate-member integrity fails. | Complete `CM_LOCATE_DEVNODE_FLAGS`, `SETUP_DI_DEVICE_INSTALL_FLAGS` and `SETUP_DI_REMOVE_DEVICE_SCOPE` definition/use closures restored. The other 25 groups have exact full-dump equality. | Qualify dependent aliases/global-constant and retained auto-population integration as one closure; do not mask additional globals or duplicate enum members. |
+| Cross-target operand/input ownership | `GET_CLASS_LONG_INDEX`, `WINDOW_LONG_PTR_INDEX`, `RTL_VIRTUAL_UNWIND_HANDLER_TYPE`: the actual 195-group parse cannot resolve `GCL_HBRBACKGROUND` / `GWL_HINSTANCE` on 64-bit targets or `UNW_FLAG_CHAININFO` on x86/ARM64. | All three complete definition/use closures retained. Canonical alias authoring for unrelated LCSCSTYPE/EXECUTION_STATE is corrected and accepted. | Model actual architecture-specific operands and preserve existing public member facts; do not invent missing constant definitions. |
+| Native-version operand/input ownership | The ten-group actual Identity/Cryptography traversal rejects TRUST_TYPE_DCE and TRUST_ATTRIBUTE_FILTER_SIDS. Both native definitions are guarded by `_WIN32_WINNT < 0x0502`; the modern branch uses TRUST_ATTRIBUTE_QUARANTINED_DOMAIN instead of FILTER_SIDS. | Complete TRUSTED_DOMAIN_TRUST_TYPE and TRUSTED_DOMAIN_TRUST_ATTRIBUTES JSON/use/routing/native-patch closures restored. Original ten-group source/diagnostics and source-only nine-group intermediate remain preserved; neither rejected group is coverage. | Resolve the legacy projection versus actual target-version operands before transporting the definition. Do not invent missing macros, substitute a different member or call an inactive operand a general reader failure. |
+| Private patch-authoring serialization | The ten-group replay rejects an NTSecAPI patch hunk because Python str.splitlines counts preserved native form-feed bytes as line breaks, unlike the LF-based patch format. The header has four such bytes; no native encoding corruption is found. | Original malformed patch evidence retained. The private serializer uses LF-only splitting; the complete trust restoration returns the header and patch to exact accepted raw bytes. Final replay verifies all353 actual targets. The earlier excpt.h/INCLUDE failure is separately preserved as environment setup. | Keep binary-safe native inverses and LF-aware patch construction. Do not change the production patch parser or classify local authoring/environment errors as reader defects. |
+| Storage-policy decision | `IS_TEXT_UNICODE_RESULT`: the actual 191-group parse reports `AssociatedEnum storage conflicts` at WinBase.h:3246; legacy UInt32 group versus native `LPINT` result. | Complete group and use retained. | Decide the intended signed native group storage, then explicitly account for that enum-shape change. |
+| Constant dependency/integration | `MENU_ITEM_STATE`, `SET_BOUNDS_RECT_FLAGS`, `MODIFY_WORLD_TRANSFORM_MODE`, `HDC_MAP_MODE`: the emitted 190-group trial adds fourteen dependent globals, including eight `IMFS_*`, `DCB_DIRTY`, `MWT_MIN/MAX`, and three `MM_*`. | All four complete groups retained; the other 183 accepted definitions have byte-identical full output. | Qualify dependent alias/global ownership rather than suppressing unexpected additions. |
+| Native-value versus legacy-input policy | `QUEUE_STATUS_FLAGS` and `PEEK_MESSAGE_REMOVE_TYPE`: current SDK evaluation changes `QS_INPUT`, `QS_ALLINPUT`, `QS_ALLEVENTS` and dependent `PM_QS_INPUT` from legacy JSON values. Separate read-only cryptxml observations find CRYPT_XML_TRANSFORM_FLAGS::CRYPT_XML_TRANSFORM_URI_QUERY_STRING native4 versus legacy3, and CRYPT_XML_STATUS_ERROR_STATUS::CRYPT_XML_STATUS_ERROR_NOT_SUPPORTED_ALGORITHM native4 versus legacy5. | Complete records remain retained. The cryptxml groups were not authored or run as generated rejection trials; FONT_CHARSET remains unattempted, not unsupported. | Decide the native SDK value update separately from one-for-one annotation transport; no hardcoded native-value override or fictional failed trial. |
+| Native-name/input collision | `SERVICE_NOTIFY` group name collides with the genuine SERVICE_NOTIFYA/W struct typedef and UNICODE alias; the 95-group parse reports conflicting typedefs. | Complete definition/use closure retained. | Choose a non-conflicting group identity with explicit API accounting; do not overwrite the genuine native typedef. |
+| Native SDK input defect | `WTS_SECURITY_CURRENT_USER_ACCESS` lacks a `|` between continuation-line operands; the 95-group parse fails when the group evaluates it. | Complete WTS_SECURITY_FLAGS closure retained. | Qualify a narrowly owned native-input correction before transporting this operand; no invented numeric fallback. |
+| Input traversal / owner closure, not isolated | The emitted 93-group trial loses MIXERLINE_COMPONENTTYPE and both MIXERLINEA/W.dwComponentType associations, adding its 20 members as globals. | Whole definition/use closure restored. The other 91 groups pass complete fresh-union accounting. | Establish the actual traversed definition owner and a focused native-input control before attributing the loss to the reader. |
+| Constant dependency/integration | CERT_SELECT_CRITERIA_TYPE retirement adds the dependent CERT_SELECT_LAST global in the 93-group output. | Complete definition/use closure retained. | Qualify alias/global ownership together, not by suppressing the added API. |
+| Storage-policy decision | VARCMP's legacy UInt32 group conflicts with the actual STDAPI/HRESULT return at OleAuto.h:831 in the 70-group trial. | Complete definition/use closure retained. | Decide native signed/HRESULT association semantics and itemize the group-shape change separately from transport. |
+| Current SDK operand/input boundary | TRUSTED_DOMAIN_TRUST_TYPE and TRUSTED_DOMAIN_TRUST_ATTRIBUTES reference TRUST_TYPE_DCE and TRUST_ATTRIBUTE_FILTER_SIDS, which the actual current-SDK parse cannot resolve. | Both complete closures retained. | Qualify actual supported-version operand ownership; do not invent missing numeric definitions. |
+| Constant dependency/integration | INTERNET_ACCESS_TYPE and INTERNET_STATE retirement adds CERN_PROXY/LOCAL/PRE_CONFIG access aliases and three INTERNET_STATE aliases as globals in the 67-group output. | Both complete closures retained. | Preserve dependent alias/global ownership as one closure, not with a known-difference mask. |
+| Native-value versus legacy-input policy | SHARE_INFO_PERMISSIONS.ACCESS_ALL is 32768 in the accepted legacy API but evaluates to 127 from the current native SDK macro in the 67-group output. | Whole definition/use closure retained. | Decide the intended value update independently; no hardcoded native-value override or silent acceptance. |
+| Constant/typedef dependency integration, not fully isolated | FACILITY_CODE's 157-member native group parses in the actual 13-group trial, but emission reports CS0229/CS0119 for dependent FACILITY_* expressions, including FACILITY_OPC in Storage.Packaging.Opc HRESULT constants. The diagnostics reference both Apis.FACILITY_* types and FACILITY_CODE members. | Complete FACILITY_CODE JSON/header/routing/patch closure restored. The other twelve shared groups emit with complete raw-output equality. | Qualify dependent typedef/constant-reference ownership as a closure before retrying; no numeric replacement, generated-source edit or suppressed compiler errors. |
+| Owning-IDL input closure | MENU_ITEM_FLAGS also owns OLEVERB::fuFlags; MODIFIERKEYS_FLAGS owns five active IDropSource/IDropTarget/IRichEditOleCallback method selectors. The 99-group output loses the latter associations/nominal typings when qualified method names are incorrectly treated as inactive free functions. | Both complete definition/use closures retained. MENU_ITEM_FLAGS was deferred before source writes; MODIFIERKEYS_FLAGS was actually emitted and rejected. | Use authoritative owning IDL and qualify converter output; a C-header-only carrier is not coverage of these uses. |
+| Current SDK operand/input boundary | SETUP_DI_DEVICE_CONFIGURATION_FLAGS references CONFIGFLAG_NETBOOT_CARD, unresolved by the actual 101-group current-SDK parse. | Complete definition/use closure retained. | Establish supported-version operand ownership; no invented numeric definition. |
+| Cross-partition definition integration | The 100-group union parses, but PsApi1/PsApi2 both emit ENUM_PROCESS_MODULES_EX_FLAGS and its four LIST_MODULES_* globals, causing CS0101/CS0102. | Complete group and uses retained. | Qualify shared ownership/deduplication across both real partitions before retirement. |
+| Constant alias dependency/integration | The 99-group output adds CARD_BLOCK_PADDING, NCRYPT_RNG_OPERATION, WCTP_OPEN_ALL_FLAGS and WER_SUBMIT_DISCARD_IF_QUEUED. After restoring seven implicated groups, the 92-group output still adds NCRYPT_RNG_OPERATION, whose native definition aliases BCRYPT_RNG_OPERATION. | Complete BCRYPT_FLAGS, BCRYPT_OPERATION/NCRYPT_OPERATION, OPEN_THREAD_WAIT_CHAIN_SESSION_FLAGS and WER_SUBMIT_FLAGS closures retained. Restoring the BCrypt dependency removes the final added global in the 91-group output. | Qualify related alias/constant owners jointly; header separation does not make these fact-closed independent groups. No global-difference mask. |
+| Demonstrated generated-attribute import failure | The file/PE24 trial emits architecture-split IMAGE_OPTIONAL_HEADER_MAGIC into relocated Backup.headerEnums.modified.cs. The generated SupportedArchitecture attribute lacks the metadata namespace import, causing CS0246 on x86/x64. The native IMAGE_NT_OPTIONAL_HDR_MAGIC alias evaluates differently across targets. | Complete four-member definition and both uses restored; the other 23 groups have complete raw-output equality. No generated source or RSP edit. | Preserve generated architecture-attribute imports when relocating header enums, then account for intended architecture-specific values separately. |
+| Retained-header source/ownership boundary | The peer/DRT import trial finds 145 active P2P/P2PGRAPH overrides whose existing p2p.h is absent from SDK 28000, with no current IDL or AdditionalHeaders owner. RecompileIdlFilesForScraping.ps1 explicitly restores that deprecated header from origin/main after resetting generated inputs, so branch-only generated-header edits would not survive preparation. | All 145 manual rows and p2p.h unchanged; the missing-origin authoring attempt wrote no source. The other 27 shipped DRT mappings emit byte-identical output from native ImportLibrary annotations. | Separately establish a versioned authoritative compatibility-header source/provenance before annotation retirement. Do not manufacture a pinned-SDK patch, resurrect removed SDK assets or classify this as an import-reader failure. |
+| Native-value versus legacy-input policy | CRYPT_XML_STATUS_ERROR_STATUS.CRYPT_XML_STATUS_ERROR_NOT_SUPPORTED_ALGORITHM changes 5 to native 4; CRYPT_XML_TRANSFORM_FLAGS.CRYPT_XML_TRANSFORM_URI_QUERY_STRING changes 3 to native 4 in the 99-group output. | Both complete closures retained. | Decide native-value updates separately from annotation transport; no hardcoded replacement values. |
+| Input/dependency, causality not fully isolated | Combined FILE_FLAGS_AND_ATTRIBUTES / REG_VALUE_TYPE trial adds dependent/global constants such as FILE_ATTRIBUTE_DEDICATED and REGSTR_*_TYPE aliases. The same rejected union also changes two Identity callbacks; neither occurs in the accepted byte-identical dump. | Both complete groups restored. No callback workaround or diff mask. | Subdivide actual constant owners and consumers; do not attribute every combined difference to a proved reader bug or a cache. |
+| Cleanup contract/policy | Thirteen WFP/IPsec/IKE enum-handle records require both engine and enumeration handles for destruction. | All 13 records retained. | Specify contextual ownership separately from the accepted one-argument RAIIFree contract; no synthetic wrappers. |
+| Cleanup type/context contract | MEMORY_MAPPED_VIEW_ADDRESS: MapViewOfFile produces `void*`; UnmapViewOfFile takes `const void*`. Three-target controls reject that canonical-type mismatch. Remote unmapping also needs a process handle. | Record and exact signatures retained. | Qualify cleanup type compatibility/context without erasing const or inventing a one-argument cleanup. |
+| Demonstrated native-reader boundary | Six genuine DiagnosticDataQuery `DECLARE_HANDLE` aliases expand to pointers to complete dummy records. Actual native selection fails at DiagnosticDataQuery.h:8 with `Unsupported native typedef pointer shape; expected void or an incomplete opaque record`. | All six original storage/NativeTypedef selections retained. No nominal handle is removed or claimed fictitious. | Qualify the SDK's exact `DECLARE_HANDLE` shape without flattening arbitrary pointers to complete records. |
+| Native-alias projection policy | Selecting BOOLEAN native storage changes `CrediUnmarshalandDecodeStringFn.Invoke::IsFailureFatal` and `PKSEC_DEREFERENCE_LIST_ENTRY.Invoke::Delete` from `Byte*` to `BOOLEAN*` in the actual three-primitive output. These are distinct from the earlier callback aggregation differences. | BOOLEAN's byte storage and NativeTypedef flag restored; COLORREF remains native. The earlier bounded BOOL pass is superseded by the broader bitfield qualification below. | Decide whether these two genuine native-alias signature changes are intended before accepting them; no blanket callback suppression or fictitious-handle classification. |
+| Demonstrated native-alias/bitfield boundary | Broader owner refresh changes ten backing fields in MENUBARINFO, TOUCHPAD_PARAMETERS_V1/V2, CABINETSTATE and SHELLFLAGSTATE/SHELLSTATEA/W from Int32 to BOOL. An actual SDK MENUBARINFO control isolates legacy int versus native BOOL backing on all three targets; all six scrapes succeed. | BOOL's exact int storage and NativeTypedef flag restored. The fresh 65-partition 92-group output and accepted 91-group union preserve all ten original fields. | Qualify primitive bitfield backing storage for native aliases in the owning tooling layer. This is not a fictitious handle or an accepted enum use-site change. |
+| Historical AssociatedEnum storage diagnostic | Actual CreateFontW::iCharSet is DWORD while FONT_CHARSET is byte; GetThemeInt::iPropId is signed int while THEME_PROPERTY_SYMBOL_ID is uint. The preserved earlier reader rejected six association variants across x86/x64/ARM64. | Those original failures and both exact RSP facts remain saved. The current contract/reader preserves native integer storage independently of enum width and signedness; the MSI slice exercises DWORD uses of unchanged native enums. | Font/theme owner sites still need current individual qualification. The earlier storage-match prohibition is not a current blanket reader limitation; do not widen enum definitions or silently erase facts. |
+| Generated configuration dependency | The independent six-producer ownership retry changes callback pointer depth/direction in `SpGetRemoteCredGuardLogonBufferFn` and `SpGetRemoteCredGuardSupplementalCredsFn`; an untouched-header filtered scrape regenerates that same changed reduction RSP. The later rejected 93-group filtered refresh repeats eight callback differences, while the fresh complete 91-group source union preserves all eight facts. | Complete six-handle/producer closure remains restored; no producer retirement counted. The complete 91-group union is accepted without editing generated RSP. | Qualify complete global function-pointer aggregation for filtered refresh before retrying the producer closure. Current full-union equality does not by itself accept that distinct trial. |
+| Wrapper-storage policy | Four Cloudapi hydration/population policy bindings: C++ `DEFINE_USHORT_ENUM` creates wrapper structs. Three-target controls reject AssociatedEnum on non-integer/non-enum storage. | All four bindings retained. | Define wrapper flattening/storage policy explicitly; do not silently change native layout. |
+| Unqualified residual effect | Genuine EApiCategories is already the native parameter type. The redundant SetProtectedCategories selector was removed with exact output equality, but the separate legacy `flags: true` effect has not been qualified. | Flags-only record retained, not added to CLR exceptions. | Inspect raw flag metadata/intent before retiring or transporting that request. |
+| Individually inventoried parameter inputs | 361 original parameter atoms remain, including nine accepted CLR exception selectors, explicit negative projection overrides, and exact SAL/ownership/enum facts without an accepted native replacement. Some earlier owner trials lose facts. | Each atom, earlier control and reason retained in `retained-parameter-facts.tsv`; no entire-file exemption. | Retry plausible small native owner closures as new input evidence permits. Absence of a qualified replacement is not proof the reader is unsupported. |
+| Historical migration-input defects | Old typed cleanup/association operands appear before declarations; malformed GR_GLOBAL (`(HANDLE)-2`) was placed in an unsigned GUI-resource group; old comment carriers are inert. | Original 88991 inputs/repros preserved, not re-enabled wholesale. | Repair exact declaration ordering/native-type/input transport; do not misclassify these as enum-reader failures. |
+| Historical reader/policy boundaries | HRGN→HGDIOBJ and generic GDI cleanup policy; nominal typedef projection after JSON retirement; returned-interface-pointer SAL; IFrequencyMap outer extent. | Exact original evidence preserved. Qualified later closures are separately counted, not a blanket resolution of all eight old findings. | Apply targeted fixes in the relevant existing stack layer after deciding scope. |
+| Test ownership / validation cost | Corpus-snapshot tests read files or projection structure the migration intentionally retires. Original broad SDK patch validation exceeded the existing job budget without producing an assertion report. | Selected repros use owned baseline/control inputs. Obsolete shape-only assertions may be updated or removed; native ABI, genuine metadata validity and unrelated API preservation remain required. No timeout change. | Preserve useful replacement semantic contracts rather than obsolete projections; measure broad validation cost before changing budgets. |
+| Full-generation cost qualification | Retained recovery all-arch generation is 12m32.63s; later fresh full91 scrape/emission totals 19m32.01s, an observed +6m59.38s/+55.7%. Filtered refresh timings measure different work. | Original commands, concurrency/cache context and logs retained; no duplicate reference build, timeout or concurrency adjustment. | Compare like-for-like stages on the next genuinely needed full generation. These unmatched observations do not attribute the increase solely to annotations. |
+
+## Preserved documented biometric enum rejection
+
+WINBIO_SETTING_SOURCE and WINBIO_POOL pass native discovery, complete values,
+UInt32 storage and all five generated native associations. Whole emission
+instead fails with four CS0246 diagnostics at SecBitomet.headerEnums.modified.cs
+lines 122/127: the unchanged Documentation mappings require
+Windows.Win32.Foundation.Metadata, absent from the header-enum writer's
+`using System;` header. The cleaner transfers those attributes without the
+import; legacy JSON enum output receives ConstantsScraper's metadata import.
+This extends the demonstrated managed source/import boundary above, not a
+native typedef/value/storage rejection or two unrelated reader defects.
+
+No biometric candidate exists. Its original frozen 792+151 reports remain
+separate; both complete header/patch/JSON/use/namespace closures were restored
+to c7f540 with all prior WinBio annotations intact. The hypothetical two-row
+Documentation RSP workaround was never attempted and is withdrawn; dotted
+attribute parsing is not established by SyntaxFactory.ParseName alone.
+documentationMappings.rsp is unchanged. Preserve the real repro for a
+separately authorized minimal import fix with regression coverage; no reader,
+fixture or RSP workaround is introduced by the verifier continuation.
+
+The independently hosted-qualified VERIFIER_ENUM_RESOURCE_FLAGS closure
+does not have a Documentation remap and does not fix that defect. Its two real
+members retain UInt32/Flags and one complete public signature in actual 5EA5,
+with complete raw output equality and genuinely new 943+54. Its owning
+ApplicationVerifier traversal emits the group; FileHistory inclusion alone
+does not. Initial private raw/prepared ownership and cross-stage producer
+prefix assumptions are preserved as checker corrections, not reader failures.
+
+## Qualified WinUSB policy continuation
+
+WINUSB_PIPE_POLICY and WINUSB_POWER_POLICY retire two complete JSON/use records,
+eleven members and four native scalar sites without a reader or input workaround.
+Both full enum blocks remain UInt32/nonflags and all four whole public signatures
+match the accepted parent. Actual 56530D0B freshly dumps to complete 1F4F3839;
+unmasked comparison against actual hosted 400E8C77 is zero. Genuinely new
+792+151 and actual-candidate 54 pass the exact parent inventories and controls.
+Its exact e4fb35 ordinary run 43536791650 is independently hosted-qualified:
+both actual 848417E5 artifacts preserve full 1F4F3839 and unmasked comparison
+against local 5653 is zero. Both original complete 943 inventories and all
+required controls pass. This does not fix the documented biometric defect.
+
+Buses owns both direct shipped headers; all eleven roots have no dependent
+non-member macro aliases. The existing recipe consumes the new winusbio patch,
+bringing exact replay to 354 targets without changing 403/407 ownership.
+Four native sites produce twelve target observations by reusing common output;
+neither this reuse nor the initial private checker's separate-CppAttributeList
+assumption is a reader limitation. Removing only selected prefixes within
+the real unchanged SAL aggregates and their NativeAnnotations recovers all
+other producer bytes; the original checker is preserved. No generated source,
+fixture, tooling, import workaround or API mask is introduced.
+
+## Qualified HTTP initialization continuation and preserved producer delta
+
+HTTP_INITIALIZE retires one complete JSON/use record, two members and two
+native scalar sites without changing the reader or weakening an input
+contract. UInt32/Flags, CONFIG=2, SERVER=1, separate HTTP_DEMAND_CBT=4 and
+both whole public signatures remain exact. HttpServer actually includes and
+traverses the shipped http.h owner; its existing patch preserves 354 consumed
+replay targets and 403/407 ownership. The complete raw header inverse, every
+prior annotation, all original/rejected snapshots and nine fallbacks remain.
+
+Strict producer equality after removing only the two selected carrier pairs
+is **false**. The preserved original diff 7185449E/checker 5BE50B47 records
+exactly eight NativeTypeName anonymous-record locators shifted five source
+lines; native line/column text and every other scraper-body byte are exact.
+The whole ConstantsScraper prefix equals the parent. This is not a reader
+correction: the unchanged cleaner preserves NativeTypeName, but the unchanged
+final writer deliberately omits that attribute. Original raw diff/checker,
+the initial private filtered-versus-raw Git pin assumption 459C and explicit
+checkout line-ending bindings remain preserved. No native/generated source
+normalization or output mask is used to dismiss the difference.
+
+All fourteen raw emitter inputs and 93 installed tools/tests stay pinned;
+the writer itself is raw-parent-exact 06030F83. Actual 9AB39D0E freshly dumps
+to complete raw 1F4F3839, and completely unmasked actual8484-to-9AB3 comparison
+is zero. Both whole signatures/enum/value/storage sets pass. New original
+sequential 792+151 and actual9AB3 integrity54 preserve exact disjoint parent
+local/hosted 943 identities and all required controls. Independent local
+release A5949DA5 accepts those local gates. Original exact-head ordinary
+run 43552560586 attempt 1 is independently hosted-qualified under release
+0979A65F: both actual B223F11B artifacts preserve full 1F4F3839, unmasked
+9AB3-to-B223 comparison zero and both original complete 943 inventories.
+Owner inspection511F remains distinct from independent E154.
+The biometric Documentation import failure remains unfixed,
+its RSP idea withdrawn and unattempted; no tooling workaround is claimed.
+
+## Qualified DEP flags and retained emitter-only zero
+
+PROCESS_DEP_FLAGS retires one complete JSON/use record, two native members
+and one setter association from actual shipped WinBase.h. Both real roots
+retain values1/2 and DWORD/UInt32/Flags; the entire setter and unselected
+getter import/signature/availability/documentation blocks remain exact.
+The existing PROCESS_DEP_NONE=0 is still an emitter-only addition, with the
+entire emitter.settings.rsp byte-exact. No native NONE macro is invented or
+counted as a third migrated member. This is a retained synthetic-zero
+ownership boundary, not a newly demonstrated reader failure or fallback.
+
+WinProg alone explicitly traverses the owner. All25 direct include routes
+include WinProg, leaving24 other include-only partitions; original planA9
+and separate correction705E remain bound. Raw inverse, original354 SDK
+replay and403/407 ownership are preserved. All three physical WinProg
+producers, with no common-file reuse, contain the full native UInt32/Flags
+set and exact setter annotation. Strict carrier-only equality remains
+**false**: exactly18 NativeTypeName locators per producer shift+5 with
+unchanged native text/columns, and every other body byte/full constant
+prefix remains exact. Original raw output is never normalized. The
+unchanged writer's deliberate attribute omission is not reader correction.
+
+Actual71031816 independently freshly dumps to full1F4F3839; completely
+unmasked original B223-to-7103 comparison is zero, including all three
+public enum members and both whole public signatures. Writer14/tools93
+equal the accepted immutable parent; owner511F and independentE154 remain
+distinct. Original new792+151 and actual7103-54 preserve exact disjoint943,
+distinct IDs/times, all18/24/separate108/3/3/6 controls and only the original
+9AB3-to-7103 integrity copy. Independent releaseEF9B accepts these local
+gates. Original cdc4b56c ordinary run43569638942 attempt1 is subsequently
+independently hosted-qualified under releaseC25E4D0E: both actualBA21
+artifacts preserve full1F4F and unmasked7103-to-BA21 zero; both distinct
+original complete943 inventories and all controls pass. All previous
+fallbacks and the separate biometric import failure/restoration/withdrawn
+RSP proposal remain unchanged; no tooling or fixture workaround is added.
+
+## Qualified SNMP status and raw producer differences
+
+SNMP_STATUS retires one whole JSON/use record, two real native macros
+(ON=1/OFF=0) and six actual public associations, three scalar and three
+pointer. The complete UInt32/nonflags enum, existing IN/OUT/[In]/[In][Out],
+uint returns, imports/docs/availability and four unselected public blocks
+remain exact. Neither the SNMPAPI_STATUS return alias nor translation
+record is globally remapped. Native OFF=0 is not a synthetic zero or
+new fallback. Only shipped WinSnmp.h, its existing patch, whole JSON record
+and one namespace bridge change; Snmp alone includes/traverses the owner.
+
+All three physical producers and eighteen observations are retained.
+Main Snmp.cs strict carrier-only equality is **true**, with zero locator
+changes. Equality across all raw files is **false**: each raw
+headerConstants file gains native int OFF0/ON1, headerEnums gains the
+UInt32 enum, and generated JSON enum output disappears. The complete
+1886-path inventory is1873 byte-exact plus13 classified changes, including
+four root/emitter-transformed files; the earlier582 inventory is only
+partial. No producer normalization is used. Actual A6E3 freshly dumps
+to full1F4F and unmasked BA21-to-A6E3 comparison is zero, proving the
+selected raw constants do not leak as public Apis members.
+
+Original object-only virtual JSON equality remains **false**; actual
+whole-record-line retirement has an exact raw inverse, additionally
+removing only the selected record's two leading spaces/trailing CRLF.
+Original private checker assumptions and coordinator guard selector
+72FFC9FB remain preserved with separate corrections; immutable-parent
+hashes cover the two WinSnmp paths absent from the DEP source manifest.
+No frozen source or producer changed to satisfy these inspections.
+
+Original new792/151/actual54, exact disjoint943/all controls,354 SDK replay,
+407/403 ownership, source260/238 and unchanged writer14/tools93 pass.
+Independent local release967674F3 binds source3C1C3C55/outputD390C61F/
+testsA8B6333A/fullguard6C43BF31. Owner511F remains distinct from
+independentE154. This is locally accepted transport, not a new reader
+fix, new retention exception or inherited hosted qualification. Its own
+immutable publication and original ordinary hosted output/tests remain
+separate gates.
+
+## Qualified SNMP translation mode and preserved inspection failures
+
+SNMP_API_TRANSLATE_MODE retires its complete three-member/four-use JSON
+record using actual shipped WinSnmp.h: TRANSLATED=0, UNTRANSLATED_V1=1
+and UNTRANSLATED_V2=2 are all real roots, with actual UInt32/nonflags
+storage. One scalar and three pointer associations preserve complete
+public imports/docs/availability, native IN/OUT, actual [In]/[In][Out],
+uint returns and six unselected public blocks. All accepted SNMP_STATUS
+sites and overlapping startup retransmit parameters remain exact. There
+is no global typedef/return-alias remap or emitter RSP change.
+
+Original focused and whole output each retain three physical producers,
+nine raw files and twelve selected observations, with no common reuse.
+Main carrier-only equality is **true**, with zero NativeTypeName locator
+changes; all raw-file equality is **false**. The complete **1886 =
+1873 byte-exact + thirteen classified** inventory retains native int
+0/1/2 constants, the native UInt32 enum, the whole generated JSON enum's
+retirement and corresponding emitter transforms without normalization.
+Actual46E5 freshly dumps to full1F4F; wholly unmasked actual133F-to-46E5
+comparison is zero and proves no selected public constant leakage.
+Owner511F and independentE154 are distinct.
+
+Original new792/151/actual54, exact disjoint943/all controls, sole
+A6E3-to-46E5 integrity copy, source66B/260/238,354 SDK replay,
+407/403 ownership and unchanged writer14/tools93 are independently
+accepted under release8716DC50. The new full-record-line JSON inverse
+is exact; previous SNMP status inverse scopes remain unchanged.
+Three original private inspection failures and their separate corrections
+are retained, not called reader defects: a parent-test receipt selector
+needed its existing local-join hop; a post-actual54 guard and a later
+join both misapplied historical pre-copy bin bindings after the
+explicitly required copy. The original54 passed before that post-guard
+threw. Only the exact mutable bin observation uses the original wrapper's
+hashes/times; every other preservation binding remains byte-exact.
+No scientific execution or copy was repeated. This is qualified input
+transport, not a tooling fix; independent immutable publication and this
+head's own ordinary hosted output/full tests remain separate gates.
+
+## Backlog, not established retention exceptions
+
+The locally qualified SNMP translation continuation has 308 remaining
+definition-bearing enum records; hosted SNMP status32629854 has309,
+DEPcdc4 has310, HTTP6cc has311, WinUSB e4fb has312,
+verifier15eed has314, c7f540 has315 and the preceding
+hosted0ce410 checkpoint has 316. Additional-use records and a separate CLR
+flag request remain distinct.
+That inventory mixes demonstrated restored closures above with unqualified
+or unattempted groups; no complete attempted/unattempted split is asserted.
+The DEVPROPTYPE clean-CI fallback restores one of those definition records.
+Remaining genuine autoTypes selections/producer facts,
+manual DLL overrides, availability, imports and SAL also need actual owning
+input trials. The 39-group provisional union is not accepted coverage.
+
+Documentation's 90,502 allowed URL rows, 26,376 scan-derived DLL cache rows
+and parser/global reference configuration are separately accounted, not
+thousands of authored API facts or demonstrated migration failures. Remaining
+API-specific input is a final retention exception only after a concrete failed
+migration, complete restoration and reason are recorded. Resume the next
+plausible owner cohorts only after each published head's own exact-head hosted
+actual-output qualification; no global-minimum or blanket-unsupported claim
+is made.
+
+Mechanical input-authoring errors are not new reader defects. Examples include
+using named instance-method carriers on free functions, conflicting partial
+legacy/header definitions, and initially omitting implicit sequential enum
+members when extracting a declaration dump. Correct the input, then evaluate
+the actual native and emitted facts.
+
+Resolved input qualification is recorded rather than left in the backlog:
+`REASON_CONTEXT.Flags` now preserves its association through an inline carrier
+on its actual `minwinbase.h` definition, confirmed by the complete 91-group
+production output. Scoped macro save/undef/restore likewise qualifies
+`CFE_UNDERLINE` without changing the existing native macro or helper.
+RASENTRYA/W field carriers likewise use the native injected tagRASENTRYA/W
+record names rather than macro-expanded `struct ...` expressions; this input
+correction is accepted in the 91-group security/system union.
+WinInet/WinProg's WIN_HTTP_CREATE_URL_FLAGS association likewise needs its
+actual winhttp.h definition in the translation unit. A metadata-Clang-only
+owning-header include resolves this dependency; full output equality qualifies
+it in the 23-group file/memory/PE union.

@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) 2008 Microsoft Corporation
@@ -537,6 +538,7 @@ typedef struct _WINBIO_SENSOR_INTERFACE {
     PIBIO_SENSOR_FINISH_NOTIFY_WAKE_FN          FinishNotifyWake;
 #endif
 } WINBIO_SENSOR_INTERFACE, *PWINBIO_SENSOR_INTERFACE;
+_Win32_SupportedOS_Windows7_
 
 //
 // Interface-retrieval function exported by the Sensor Adapter
@@ -1834,6 +1836,7 @@ typedef struct _WINBIO_ENGINE_INTERFACE {
 #endif
 
 } WINBIO_ENGINE_INTERFACE, *PWINBIO_ENGINE_INTERFACE;
+_Win32_SupportedOS_Windows7_
 
 //
 // Interface-retrieval function exported by the Engine Adapter
@@ -3353,6 +3356,7 @@ typedef struct _WINBIO_STORAGE_INTERFACE {
 #endif
 
 } WINBIO_STORAGE_INTERFACE, *PWINBIO_STORAGE_INTERFACE;
+_Win32_SupportedOS_Windows7_
 
 
 //

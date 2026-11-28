@@ -1,0 +1,26 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SyncMgr.idl b/generation/WinSDK/RecompiledIdlHeaders/um/SyncMgr.idl
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/SyncMgr.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/SyncMgr.idl
+@@ -1,3 +1,5 @@
++cpp_quote("#include <win32metadata_annotations.h>")
++#include <win32metadata_annotations.h>
+ //****************************************************************************
+ //
+ //  Copyright (c) Microsoft Corporation. All rights reserved.
+@@ -364,6 +366,7 @@
+     HRESULT IsEnabled();
+     HRESULT IsConnected();
+ }
++_Win32_AnnotateMethod_(ISyncMgrSyncItemInfo::IsConnected, _Win32_PreserveResult_)
+ 
+ //
+ // The IEnumSyncMgrSyncItems interface simply enumerates the sync item objects
+@@ -561,6 +564,7 @@
+ {
+     HRESULT Run([in, unique] HWND hwndOwner);
+ }
++_Win32_AnnotateMethod_(ISyncMgrUIOperation::Run, _Win32_PreserveResult_)
+ 
+ //
+ // The ISyncMgrEventLinkUIOperation interface will be called when event links

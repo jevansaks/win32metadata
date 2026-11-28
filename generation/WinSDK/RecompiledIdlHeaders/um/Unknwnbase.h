@@ -79,6 +79,7 @@ extern "C"{
 /* interface __MIDL_itf_unknwnbase_0000_0000 */
 /* [local] */ 
 
+#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 //+-------------------------------------------------------------------------
 //
@@ -118,6 +119,7 @@ typedef /* [unique] */  __RPC_unique_pointer IUnknown *LPUNKNOWN;
         {
         public:
             BEGIN_INTERFACE
+            _Win32_PreserveResult_
             virtual HRESULT STDMETHODCALLTYPE QueryInterface( 
                 /* [in] */ REFIID riid,
                 /* [iid_is][out] */ _COM_Outptr_ void __RPC_FAR *__RPC_FAR *ppvObject) = 0;
@@ -289,6 +291,9 @@ void __RPC_STUB IUnknown_Release_Stub(
 /* interface __MIDL_itf_unknwnbase_0000_0001 */
 /* [local] */ 
 
+#if !((_MSC_VER >= 1100) && defined(__cplusplus) && !defined(CINTERFACE))
+_WIN32META_ANNOTATE_METHOD_(IUnknown::QueryInterface, _Win32_PreserveResult_);
+#endif
 #endif
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES) */
 #pragma endregion

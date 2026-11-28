@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++    
 
 Copyright (c) Microsoft Corporation.  All rights reserved.
@@ -139,6 +140,14 @@ typedef struct PRJ_STARTVIRTUALIZING_OPTIONS
     PRJ_NOTIFICATION_MAPPING* NotificationMappings;
     UINT32 NotificationMappingsCount;
 } PRJ_STARTVIRTUALIZING_OPTIONS;
+#if defined(WIN32METADATA) && defined(__clang__)
+_Win32_SupportedOS_17763_
+STDAPI_(void)
+PrjStopVirtualizing(
+    _In_ PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT namespaceVirtualizationContext
+    );
+#endif
+_Win32_SupportedOS_17763_
 
 STDAPI
 PrjStartVirtualizing(
@@ -146,13 +155,15 @@ PrjStartVirtualizing(
     _In_ const PRJ_CALLBACKS* callbacks,
     _In_opt_ const void* instanceContext,
     _In_opt_ const PRJ_STARTVIRTUALIZING_OPTIONS* options,
-    _Outptr_ PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT* namespaceVirtualizationContext
+    _Outptr_ _Win32_RAIIFree_(PrjStopVirtualizing) PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT* namespaceVirtualizationContext
     );
+_Win32_SupportedOS_17763_
 
 STDAPI_(void)
 PrjStopVirtualizing(
     _In_ PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT namespaceVirtualizationContext
     );
+_Win32_SupportedOS_17763_
 
 STDAPI
 PrjClearNegativePathCache(
@@ -165,6 +176,7 @@ typedef struct PRJ_VIRTUALIZATION_INSTANCE_INFO
     GUID InstanceID;
     UINT32 WriteAlignment;
 } PRJ_VIRTUALIZATION_INSTANCE_INFO;
+_Win32_SupportedOS_17763_
 
 STDAPI
 PrjGetVirtualizationInstanceInfo(
@@ -186,6 +198,7 @@ typedef struct PRJ_PLACEHOLDER_VERSION_INFO
     UINT8 ProviderID[PRJ_PLACEHOLDER_ID_LENGTH];
     UINT8 ContentID[PRJ_PLACEHOLDER_ID_LENGTH];
 } PRJ_PLACEHOLDER_VERSION_INFO;
+_Win32_SupportedOS_17763_
 
 STDAPI
 PrjMarkDirectoryAsPlaceholder(
@@ -230,6 +243,7 @@ typedef struct PRJ_PLACEHOLDER_INFO
     PRJ_PLACEHOLDER_VERSION_INFO VersionInfo;
     UINT8 VariableData[1];
 } PRJ_PLACEHOLDER_INFO;
+_Win32_SupportedOS_17763_
 
 STDAPI
 PrjWritePlaceholderInfo(
@@ -238,6 +252,7 @@ PrjWritePlaceholderInfo(
     _In_reads_bytes_(placeholderInfoSize) const PRJ_PLACEHOLDER_INFO* placeholderInfo,
     _In_ UINT32 placeholderInfoSize
     );
+_Win32_SupportedOS_19041_
 
 STDAPI
 PrjWritePlaceholderInfo2(
@@ -272,6 +287,7 @@ typedef enum PRJ_UPDATE_FAILURE_CAUSES
 } PRJ_UPDATE_FAILURE_CAUSES;
 
 DEFINE_ENUM_FLAG_OPERATORS(PRJ_UPDATE_FAILURE_CAUSES);
+_Win32_SupportedOS_17763_
 
 STDAPI
 PrjUpdateFileIfNeeded(
@@ -282,6 +298,7 @@ PrjUpdateFileIfNeeded(
     _In_opt_ PRJ_UPDATE_TYPES updateFlags,
     _Out_opt_ PRJ_UPDATE_FAILURE_CAUSES* failureReason
     );
+_Win32_SupportedOS_17763_
 
 STDAPI
 PrjDeleteFile(
@@ -290,6 +307,7 @@ PrjDeleteFile(
     _In_opt_ PRJ_UPDATE_TYPES updateFlags,
     _Out_opt_ PRJ_UPDATE_FAILURE_CAUSES* failureReason
    );
+_Win32_SupportedOS_17763_
 
 STDAPI
 PrjWriteFileData(
@@ -310,18 +328,21 @@ typedef enum PRJ_FILE_STATE
 } PRJ_FILE_STATE;
 
 DEFINE_ENUM_FLAG_OPERATORS(PRJ_FILE_STATE);
+_Win32_SupportedOS_17763_
 
 STDAPI
 PrjGetOnDiskFileState(
     _In_ PCWSTR destinationFileName,
     _Out_ PRJ_FILE_STATE* fileState
     );
+_Win32_SupportedOS_17763_
 
 STDAPI_(void*)
 PrjAllocateAlignedBuffer (
     _In_ PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT namespaceVirtualizationContext,
     _In_ size_t size
     );
+_Win32_SupportedOS_17763_
 
 STDAPI_(void)
 PrjFreeAlignedBuffer (
@@ -468,6 +489,7 @@ typedef struct PRJ_COMPLETE_COMMAND_EXTENDED_PARAMETERS {
     } DUMMYUNIONNAME;
 
 } PRJ_COMPLETE_COMMAND_EXTENDED_PARAMETERS;
+_Win32_SupportedOS_17763_
 
 STDAPI
 PrjCompleteCommand(
@@ -480,6 +502,7 @@ PrjCompleteCommand(
 #pragma endregion
 
 #pragma region Enumeration APIs
+_Win32_SupportedOS_17763_
 
 STDAPI
 PrjFillDirEntryBuffer(
@@ -487,6 +510,7 @@ PrjFillDirEntryBuffer(
     _In_opt_ PRJ_FILE_BASIC_INFO* fileBasicInfo,
     _In_ PRJ_DIR_ENTRY_BUFFER_HANDLE dirEntryBufferHandle
     );
+_Win32_SupportedOS_19041_
 
 STDAPI
 PrjFillDirEntryBuffer2(
@@ -495,18 +519,21 @@ PrjFillDirEntryBuffer2(
     _In_opt_ PRJ_FILE_BASIC_INFO* fileBasicInfo,
     _In_opt_ PRJ_EXTENDED_INFO* extendedInfo
     );
+_Win32_SupportedOS_17763_
 
 STDAPI_(BOOLEAN)
 PrjFileNameMatch (
     _In_ PCWSTR fileNameToCheck,
     _In_ PCWSTR pattern
     );
+_Win32_SupportedOS_17763_
 
 STDAPI_(int)
 PrjFileNameCompare (
     _In_ PCWSTR fileName1,
     _In_ PCWSTR fileName2
     );
+_Win32_SupportedOS_17763_
 
 STDAPI_(BOOLEAN)
 PrjDoesNameContainWildCards (

@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
  
 /*++
 Copyright (C) Microsoft Corporation.  All rights reserved.
@@ -154,6 +155,7 @@ typedef struct _EVT_RPC_LOGIN
 
 
 // Timeout and Flags must currently be 0
+_Win32_SetLastError_
 EVT_HANDLE
 WINAPI
 EvtOpenSession(
@@ -162,6 +164,8 @@ EvtOpenSession(
     _Reserved_ DWORD Timeout,
     _Reserved_ DWORD Flags
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 ////////////////////////////////////////////////////////////////////////////////
 //
@@ -175,6 +179,8 @@ WINAPI
 EvtClose(
     _In_ _Post_invalid_ EVT_HANDLE Object
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 
 BOOL
@@ -182,6 +188,7 @@ WINAPI
 EvtCancel(
     _In_opt_ EVT_HANDLE Object
     );
+_Win32_SupportedOS_WindowsVista_
 
 _Success_(return == ERROR_SUCCESS)
 DWORD
@@ -223,6 +230,7 @@ typedef enum _EVT_SEEK_FLAGS
 } EVT_SEEK_FLAGS;
 
 
+_Win32_SetLastError_
 EVT_HANDLE
 WINAPI
 EvtQuery(
@@ -231,6 +239,8 @@ EvtQuery(
     _In_opt_z_ LPCWSTR Query,
     DWORD Flags
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 _Success_(return != 0)
 BOOL
@@ -243,6 +253,8 @@ EvtNext(
     DWORD Flags,
     _Out_range_(0, EventsSize) PDWORD Returned
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 // Timeout must currently be 0
 BOOL
@@ -286,6 +298,7 @@ typedef DWORD (WINAPI *EVT_SUBSCRIBE_CALLBACK)(
     _Maybenull_ PVOID UserContext,
     _In_ EVT_HANDLE Event );
 
+_Win32_SetLastError_
 EVT_HANDLE
 WINAPI
 EvtSubscribe(
@@ -345,6 +358,7 @@ typedef enum _EVT_RENDER_FLAGS
 
  } EVT_RENDER_FLAGS;
 
+_Win32_SetLastError_
 EVT_HANDLE
 WINAPI
 EvtCreateRenderContext(
@@ -352,6 +366,8 @@ EvtCreateRenderContext(
     _In_reads_opt_(ValuePathsCount) LPCWSTR* ValuePaths,
     DWORD Flags
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 _Success_(return != 0)
 BOOL
@@ -361,7 +377,7 @@ EvtRender(
     _In_ EVT_HANDLE Fragment,
     DWORD Flags,
     DWORD BufferSize,
-    _Out_writes_bytes_to_opt_(BufferSize, *BufferUsed) PVOID Buffer,
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_to_opt_(BufferSize, *BufferUsed) PVOID Buffer,
     _Out_ PDWORD BufferUsed,
     _Out_ PDWORD PropertyCount
     );
@@ -379,6 +395,8 @@ typedef enum _EVT_FORMAT_MESSAGE_FLAGS
     EvtFormatMessageXml,
 
  } EVT_FORMAT_MESSAGE_FLAGS;
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 
 // PublisherMetadata is NULL for forwarded events
@@ -423,6 +441,7 @@ typedef enum _EVT_LOG_PROPERTY_ID
 
 } EVT_LOG_PROPERTY_ID;
 
+_Win32_SetLastError_
 EVT_HANDLE
 WINAPI
 EvtOpenLog(
@@ -430,6 +449,8 @@ EvtOpenLog(
     _In_z_ LPCWSTR Path,
     DWORD Flags
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 _Success_(return != 0)
 BOOL
@@ -441,6 +462,8 @@ EvtGetLogInfo(
     _Out_writes_bytes_to_opt_(PropertyValueBufferSize, *PropertyValueBufferUsed) PEVT_VARIANT PropertyValueBuffer,
     _Out_ PDWORD PropertyValueBufferUsed
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 BOOL
 WINAPI
@@ -460,6 +483,8 @@ typedef enum _EVT_EXPORTLOG_FLAGS
     EvtExportLogOverwrite = 0x2000
 
 } EVT_EXPORTLOG_FLAGS;
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 BOOL
 WINAPI
@@ -470,6 +495,8 @@ EvtExportLog(
     _In_z_ LPCWSTR TargetFilePath,
     DWORD Flags
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 
 BOOL
@@ -546,12 +573,15 @@ typedef enum _EVT_CHANNEL_SID_TYPE
 } EVT_CHANNEL_SID_TYPE;
 
 
+_Win32_SetLastError_
 EVT_HANDLE
 WINAPI
 EvtOpenChannelEnum(
     _In_opt_ EVT_HANDLE Session,
     DWORD Flags
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 _Success_(return != 0)
 BOOL
@@ -563,6 +593,7 @@ EvtNextChannelPath(
     _Out_ PDWORD ChannelPathBufferUsed
     );
 
+_Win32_SetLastError_
 EVT_HANDLE
 WINAPI
 EvtOpenChannelConfig(
@@ -570,6 +601,8 @@ EvtOpenChannelConfig(
     _In_z_ LPCWSTR ChannelPath,
     DWORD Flags
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 
 BOOL
@@ -578,6 +611,8 @@ EvtSaveChannelConfig(
     _In_ EVT_HANDLE ChannelConfig,
     DWORD Flags
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 BOOL
 WINAPI
@@ -587,6 +622,8 @@ EvtSetChannelConfigProperty(
     DWORD Flags,
     _In_ PEVT_VARIANT PropertyValue
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 _Success_(return != 0)
 BOOL
@@ -596,7 +633,7 @@ EvtGetChannelConfigProperty(
     EVT_CHANNEL_CONFIG_PROPERTY_ID PropertyId,
     DWORD Flags,
     DWORD PropertyValueBufferSize,
-    _Out_writes_bytes_to_opt_(PropertyValueBufferSize, *PropertyValueBufferUsed) PEVT_VARIANT PropertyValueBuffer,
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_to_opt_(PropertyValueBufferSize, *PropertyValueBufferUsed) PEVT_VARIANT PropertyValueBuffer,
     _Out_ PDWORD PropertyValueBufferUsed
     );
 
@@ -654,12 +691,15 @@ typedef enum _EVT_PUBLISHER_METADATA_PROPERTY_ID
 } EVT_PUBLISHER_METADATA_PROPERTY_ID;
 
 
+_Win32_SetLastError_
 EVT_HANDLE
 WINAPI
 EvtOpenPublisherEnum(
     _In_opt_ EVT_HANDLE Session,
     DWORD Flags
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 _Success_(return != 0)
 BOOL
@@ -671,6 +711,7 @@ EvtNextPublisherId(
     _Out_ PDWORD PublisherIdBufferUsed
     );
 
+_Win32_SetLastError_
 EVT_HANDLE
 WINAPI
 EvtOpenPublisherMetadata(
@@ -680,6 +721,8 @@ EvtOpenPublisherMetadata(
     LCID Locale,
     DWORD Flags
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 _Success_(return != 0)
 BOOL
@@ -689,7 +732,7 @@ EvtGetPublisherMetadataProperty(
     EVT_PUBLISHER_METADATA_PROPERTY_ID PropertyId,
     DWORD Flags,
     DWORD PublisherMetadataPropertyBufferSize,
-    _Out_writes_bytes_to_opt_(PublisherMetadataPropertyBufferSize, *PublisherMetadataPropertyBufferUsed) PEVT_VARIANT PublisherMetadataPropertyBuffer,
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_to_opt_(PublisherMetadataPropertyBufferSize, *PublisherMetadataPropertyBufferUsed) PEVT_VARIANT PublisherMetadataPropertyBuffer,
     _Out_ PDWORD PublisherMetadataPropertyBufferUsed
     );
 
@@ -715,6 +758,7 @@ typedef enum _EVT_EVENT_METADATA_PROPERTY_ID
 } EVT_EVENT_METADATA_PROPERTY_ID;
 
 
+_Win32_SetLastError_
 EVT_HANDLE
 WINAPI
 EvtOpenEventMetadataEnum(
@@ -722,12 +766,15 @@ EvtOpenEventMetadataEnum(
     DWORD Flags
     );
 
+_Win32_SetLastError_
 EVT_HANDLE
 WINAPI
 EvtNextEventMetadata(
     _In_ EVT_HANDLE EventMetadataEnum,
     DWORD Flags
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 _Success_(return != 0)
 BOOL
@@ -737,7 +784,7 @@ EvtGetEventMetadataProperty(
     EVT_EVENT_METADATA_PROPERTY_ID PropertyId,
     DWORD Flags,
     DWORD EventMetadataPropertyBufferSize,
-    _Out_writes_bytes_to_opt_(EventMetadataPropertyBufferSize, *EventMetadataPropertyBufferUsed) PEVT_VARIANT EventMetadataPropertyBuffer,
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_to_opt_(EventMetadataPropertyBufferSize, *EventMetadataPropertyBufferUsed) PEVT_VARIANT EventMetadataPropertyBuffer,
     _Out_ PDWORD EventMetadataPropertyBufferUsed
     );
 
@@ -748,6 +795,8 @@ EvtGetEventMetadataProperty(
 ////////////////////////////////////////////////////////////////////////////////
 
 typedef HANDLE EVT_OBJECT_ARRAY_PROPERTY_HANDLE;
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 
 _Success_(return != 0)
@@ -757,6 +806,8 @@ EvtGetObjectArraySize(
     _In_ EVT_OBJECT_ARRAY_PROPERTY_HANDLE ObjectArray,
     _Out_ PDWORD ObjectArraySize
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 _Success_(return != 0)
 BOOL
@@ -767,7 +818,7 @@ EvtGetObjectArrayProperty(
     DWORD ArrayIndex,
     DWORD Flags,
     DWORD PropertyValueBufferSize,
-    _Out_writes_bytes_to_opt_(PropertyValueBufferSize, *PropertyValueBufferUsed) PEVT_VARIANT PropertyValueBuffer,
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_to_opt_(PropertyValueBufferSize, *PropertyValueBufferUsed) PEVT_VARIANT PropertyValueBuffer,
     _Out_ PDWORD PropertyValueBufferUsed
     );
 
@@ -803,6 +854,8 @@ typedef enum _EVT_EVENT_PROPERTY_ID
     EvtEventPropertyIdEND
 
 } EVT_EVENT_PROPERTY_ID;
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 
 _Success_(return != 0)
@@ -812,15 +865,18 @@ EvtGetQueryInfo(
     _In_ EVT_HANDLE QueryOrSubscription,
     EVT_QUERY_PROPERTY_ID PropertyId,
     DWORD PropertyValueBufferSize,
-    _Out_writes_bytes_to_opt_(PropertyValueBufferSize, *PropertyValueBufferUsed) PEVT_VARIANT PropertyValueBuffer,
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_to_opt_(PropertyValueBufferSize, *PropertyValueBufferUsed) PEVT_VARIANT PropertyValueBuffer,
     _Out_ PDWORD PropertyValueBufferUsed
     );
 
+_Win32_SetLastError_
 EVT_HANDLE
 WINAPI
 EvtCreateBookmark(
     _In_opt_z_ LPCWSTR BookmarkXml
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 BOOL
 WINAPI
@@ -828,6 +884,8 @@ EvtUpdateBookmark(
     _In_ EVT_HANDLE Bookmark,
     _In_ EVT_HANDLE Event
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 _Success_(return != 0)
 BOOL
@@ -836,7 +894,7 @@ EvtGetEventInfo(
     _In_ EVT_HANDLE Event,
     EVT_EVENT_PROPERTY_ID PropertyId,
     DWORD PropertyValueBufferSize,
-    _Out_writes_bytes_to_opt_(PropertyValueBufferSize, *PropertyValueBufferUsed) PEVT_VARIANT PropertyValueBuffer,
+    _Win32_ContainsInteriorPointers_ _Out_writes_bytes_to_opt_(PropertyValueBufferSize, *PropertyValueBufferUsed) PEVT_VARIANT PropertyValueBuffer,
     _Out_ PDWORD PropertyValueBufferUsed
     );
 

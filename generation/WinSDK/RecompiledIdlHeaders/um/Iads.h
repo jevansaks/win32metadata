@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 
 
 /* this ALWAYS GENERATED file contains the definitions for the interfaces */
@@ -2486,9 +2487,11 @@ EXTERN_C const IID IID_IADsPropertyList;
         virtual /* [propget][id] */ HRESULT STDMETHODCALLTYPE get_PropertyCount( 
             /* [retval][out] */ __RPC__out long *plCount) = 0;
         
+        _Win32_PreserveResult_
         virtual /* [id] */ HRESULT STDMETHODCALLTYPE Next( 
             /* [retval][out] */ __RPC__out VARIANT *pVariant) = 0;
         
+        _Win32_PreserveResult_
         virtual /* [id] */ HRESULT STDMETHODCALLTYPE Skip( 
             /* [in] */ long cElements) = 0;
         
@@ -13700,15 +13703,19 @@ EXTERN_C const IID IID_IDirectorySearch;
         virtual HRESULT STDMETHODCALLTYPE AbandonSearch( 
             /* [in] */ __RPC__in ADS_SEARCH_HANDLE phSearchResult) = 0;
         
+        _Win32_PreserveResult_
         virtual HRESULT STDMETHODCALLTYPE GetFirstRow( 
             /* [in] */ __RPC__in ADS_SEARCH_HANDLE hSearchResult) = 0;
         
+        _Win32_PreserveResult_
         virtual HRESULT STDMETHODCALLTYPE GetNextRow( 
             /* [in] */ __RPC__in ADS_SEARCH_HANDLE hSearchResult) = 0;
         
+        _Win32_PreserveResult_
         virtual HRESULT STDMETHODCALLTYPE GetPreviousRow( 
             /* [in] */ __RPC__in ADS_SEARCH_HANDLE hSearchResult) = 0;
         
+        _Win32_PreserveResult_
         virtual HRESULT STDMETHODCALLTYPE GetNextColumnName( 
             /* [in] */ __RPC__in ADS_SEARCH_HANDLE hSearchHandle,
             /* [out] */ __RPC__deref_out_opt LPWSTR *ppszColumnName) = 0;

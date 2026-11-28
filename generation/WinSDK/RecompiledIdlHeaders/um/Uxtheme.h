@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //---------------------------------------------------------------------------
 //
 // uxtheme.h - theming API header file.
@@ -16,6 +17,9 @@
 
 #include <commctrl.h>
 #include <SpecStrings.h>
+#if defined(WIN32METADATA) && defined(__clang__)
+#include <vssym32.h>
+#endif
 
 #ifndef THEMEAPI
 #if !defined(_UXTHEME_)
@@ -399,7 +403,7 @@ THEMEAPI_(HTHEME)
 OpenThemeDataEx(
     _In_opt_ HWND hwnd,
     _In_ LPCWSTR pszClassList,
-    _In_ DWORD dwFlags
+    _Win32_AssociatedEnum_(OPEN_THEME_DATA_FLAGS) _In_ DWORD dwFlags
     );
 
 //---------------------------------------------------------------------------
@@ -541,7 +545,7 @@ DrawThemeText(
     _In_ int iStateId,
     _In_reads_(cchText) LPCWSTR pszText,
     _In_ int cchText,
-    _In_ DWORD dwTextFlags,
+    _Win32_AssociatedEnum_(DRAW_TEXT_FORMAT) _In_ DWORD dwTextFlags,
     _In_ DWORD dwTextFlags2,
     _In_ LPCRECT pRect
     );
@@ -667,7 +671,7 @@ GetThemeTextExtent(
     _In_ int iStateId,
     _In_reads_(cchCharCount) LPCWSTR pszText,
     _In_ int cchCharCount,
-    _In_ DWORD dwTextFlags,
+    _Win32_AssociatedEnum_(DRAW_TEXT_FORMAT) _In_ DWORD dwTextFlags,
     _In_opt_ LPCRECT pBoundingRect,
     _Out_ LPRECT pExtentRect
     );
@@ -756,7 +760,7 @@ HitTestThemeBackground(
     _In_opt_ HDC hdc,
     _In_ int iPartId,
     _In_ int iStateId,
-    _In_ DWORD dwOptions,
+    _Win32_AssociatedEnum_(HIT_TEST_BACKGROUND_OPTIONS) _In_ DWORD dwOptions,
     _In_ LPCRECT pRect,
     _In_opt_ HRGN hrgn,
     _In_ POINT ptTest,
@@ -782,8 +786,8 @@ DrawThemeEdge(
     _In_ int iPartId,
     _In_ int iStateId,
     _In_ LPCRECT pDestRect,
-    _In_ UINT uEdge,
-    _In_ UINT uFlags,
+    _Win32_AssociatedEnum_(DRAWEDGE_FLAGS) _In_ UINT uEdge,
+    _Win32_AssociatedEnum_(DRAW_EDGE_FLAGS) _In_ UINT uFlags,
     _Out_opt_ LPRECT pContentRect
     );
 
@@ -873,7 +877,7 @@ GetThemeColor(
     _In_ HTHEME hTheme,
     _In_ int iPartId,
     _In_ int iStateId,
-    _In_ int iPropId,
+    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
     _Out_ COLORREF *pColor
     );
 
@@ -894,7 +898,7 @@ GetThemeMetric(
     _In_opt_ HDC hdc,
     _In_ int iPartId,
     _In_ int iStateId,
-    _In_ int iPropId,
+    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
     _Out_ int *piVal
     );
 
@@ -932,7 +936,7 @@ GetThemeBool(
     _In_ HTHEME hTheme,
     _In_ int iPartId,
     _In_ int iStateId,
-    _In_ int iPropId,
+    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
     _Out_ BOOL *pfVal
     );
 
@@ -950,7 +954,7 @@ GetThemeInt(
     _In_ HTHEME hTheme,
     _In_ int iPartId,
     _In_ int iStateId,
-    _In_ int iPropId,
+    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
     _Out_ int *piVal
     );
 
@@ -968,7 +972,7 @@ GetThemeEnumValue(
     _In_ HTHEME hTheme,
     _In_ int iPartId,
     _In_ int iStateId,
-    _In_ int iPropId,
+    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
     _Out_ int *piVal
     );
 
@@ -987,7 +991,7 @@ GetThemePosition(
     _In_ HTHEME hTheme,
     _In_ int iPartId,
     _In_ int iStateId,
-    _In_ int iPropId,
+    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
     _Out_ POINT *pPoint
     );
 
@@ -1056,7 +1060,7 @@ GetThemeMargins(
     _In_opt_ HDC hdc,
     _In_ int iPartId,
     _In_ int iStateId,
-    _In_ int iPropId,
+    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
     _In_opt_ LPCRECT prc,
     _Out_ MARGINS *pMargins
     );
@@ -1087,7 +1091,7 @@ GetThemeIntList(
     _In_ HTHEME hTheme,
     _In_ int iPartId,
     _In_ int iStateId,
-    _In_ int iPropId,
+    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
     _Out_ INTLIST *pIntList
     );
 
@@ -1172,7 +1176,7 @@ GetThemeFilename(
     _In_ HTHEME hTheme,
     _In_ int iPartId,
     _In_ int iStateId,
-    _In_ int iPropId,
+    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
     _Out_writes_(cchMaxBuffChars) LPWSTR pszThemeFileName,
     _In_ int cchMaxBuffChars
     );
@@ -1222,7 +1226,7 @@ GetThemeSysColorBrush(
 THEMEAPI_(BOOL)
 GetThemeSysBool(
     _In_opt_ HTHEME hTheme,
-    _In_ int iBoolId
+    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iBoolId
     );
 
 //---------------------------------------------------------------------------
@@ -1272,7 +1276,7 @@ GetThemeSysSize(
 THEMEAPI
 GetThemeSysFont(
     _In_opt_ HTHEME hTheme,
-    _In_ int iFontId,
+    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iFontId,
     _Out_ LOGFONTW *plf
     );
 
@@ -1293,7 +1297,7 @@ GetThemeSysFont(
 THEMEAPI
 GetThemeSysString(
     _In_ HTHEME hTheme,
-    _In_ int iStringId,
+    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iStringId,
     _Out_writes_(cchMaxStringChars) LPWSTR pszStringBuff,
     _In_ int cchMaxStringChars
     );
@@ -1314,7 +1318,7 @@ GetThemeSysString(
 THEMEAPI
 GetThemeSysInt(
     _In_ HTHEME hTheme,
-    _In_ int iIntId,
+    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iIntId,
     _Out_ int *piValue
     );
 
@@ -1413,10 +1417,20 @@ IsThemeDialogTextureEnabled(
                                  STAP_ALLOW_CONTROLS | \
                                  STAP_ALLOW_WEBCONTENT)
 
+#if defined(WIN32METADATA) && defined(__clang__)
+const unsigned int ALLOW_NONCLIENT = STAP_ALLOW_NONCLIENT;
+const unsigned int ALLOW_CONTROLS = STAP_ALLOW_CONTROLS;
+const unsigned int ALLOW_WEBCONTENT = STAP_ALLOW_WEBCONTENT;
+const unsigned int VALIDBITS = STAP_VALIDBITS;
+_Win32_FlagsEnum_(SET_THEME_APP_PROPERTIES_FLAGS, unsigned int,
+    ALLOW_NONCLIENT, ALLOW_CONTROLS, ALLOW_WEBCONTENT, VALIDBITS);
+#endif
+
 //---------------------------------------------------------------------------
 //  GetThemeAppProperties()
 //                      - returns the app property flags that control theming
 //---------------------------------------------------------------------------
+_Win32_AssociatedEnum_(SET_THEME_APP_PROPERTIES_FLAGS)
 THEMEAPI_(DWORD)
 GetThemeAppProperties(
     VOID
@@ -1430,7 +1444,7 @@ GetThemeAppProperties(
 //---------------------------------------------------------------------------
 THEMEAPI_(void)
 SetThemeAppProperties(
-    _In_ DWORD dwFlags
+    _In_ _Win32_AssociatedEnum_(SET_THEME_APP_PROPERTIES_FLAGS) DWORD dwFlags
     );
 
 //---------------------------------------------------------------------------
@@ -1563,7 +1577,7 @@ THEMEAPI
 DrawThemeParentBackgroundEx(
     _In_ HWND hwnd,
     _In_ HDC hdc,
-    _In_ DWORD dwFlags,
+    _Win32_AssociatedEnum_(DRAW_THEME_PARENT_BACKGROUND_FLAGS) _In_ DWORD dwFlags,
     _In_opt_ const RECT* prc
     );
 
@@ -1685,7 +1699,7 @@ DrawThemeTextEx(
     _In_ int iStateId,
     _In_reads_(cchText) LPCWSTR pszText,
     _In_ int cchText,
-    _In_ DWORD dwTextFlags,
+    _Win32_AssociatedEnum_(DRAW_TEXT_FORMAT) _In_ DWORD dwTextFlags,
     _Inout_ LPRECT pRect,
     _In_opt_ const DTTOPTS *pOptions
     );
@@ -1709,8 +1723,8 @@ GetThemeBitmap(
     _In_ HTHEME hTheme,
     _In_ int iPartId,
     _In_ int iStateId,
-    _In_ int iPropId,
-    _In_ ULONG dwFlags,
+    _Win32_AssociatedEnum_(THEME_PROPERTY_SYMBOL_ID) _In_ int iPropId,
+    _Win32_AssociatedEnum_(GET_THEME_BITMAP_FLAGS) _In_ ULONG dwFlags,
     _Out_ HBITMAP* phBitmap
     );
 
@@ -1816,6 +1830,7 @@ typedef struct _BP_PAINTPARAMS
     const RECT *                prcExclude;
     const BLENDFUNCTION *       pBlendFunction;
 } BP_PAINTPARAMS, *PBP_PAINTPARAMS;
+_Win32_SetLastError_
 
 THEMEAPI_(_Success_(return != NULL) HPAINTBUFFER)
 BeginBufferedPaint(
@@ -1988,4 +2003,14 @@ GetThemeTransitionDuration(
 
 #endif /* _UXTHEME_H_ */
 
-
+#ifndef _WIN32METADATA_UXTHEME_SECURITY_SYSTEM_91_GROUPS_
+#define _WIN32METADATA_UXTHEME_SECURITY_SYSTEM_91_GROUPS_
+_Win32_FlagsEnum_(OPEN_THEME_DATA_FLAGS, unsigned int, OTD_FORCE_RECT_SIZING, OTD_NONCLIENT);
+_Win32_Enum_(GET_THEME_BITMAP_FLAGS, unsigned int, GBF_DIRECT, GBF_COPY, GBF_VALIDBITS);
+_Win32_FlagsEnum_(DRAW_THEME_PARENT_BACKGROUND_FLAGS, unsigned int, DTPB_WINDOWDC, DTPB_USECTLCOLORSTATIC, DTPB_USEERASEBKGND);
+_Win32_FlagsEnum_(BP_PAINTPARAMS_FLAGS, unsigned int, BPPF_ERASE, BPPF_NOCLIP, BPPF_NONCLIENT);
+_Win32_AnnotateField_(BP_PAINTPARAMS::dwFlags, _Win32_AssociatedEnum_(BP_PAINTPARAMS_FLAGS));
+_Win32_FlagsEnum_(DTTOPTS_FLAGS, unsigned int, DTT_TEXTCOLOR, DTT_BORDERCOLOR, DTT_SHADOWCOLOR, DTT_SHADOWTYPE, DTT_SHADOWOFFSET, DTT_BORDERSIZE, DTT_FONTPROP, DTT_COLORPROP, DTT_STATEID, DTT_CALCRECT, DTT_APPLYOVERLAY, DTT_GLOWSIZE, DTT_CALLBACK, DTT_COMPOSITED, DTT_VALIDBITS);
+_Win32_AnnotateField_(DTTOPTS::dwFlags, _Win32_AssociatedEnum_(DTTOPTS_FLAGS));
+_Win32_Enum_(HIT_TEST_BACKGROUND_OPTIONS, unsigned int, HTTB_BACKGROUNDSEG, HTTB_FIXEDBORDER, HTTB_CAPTION, HTTB_RESIZINGBORDER_LEFT, HTTB_RESIZINGBORDER_TOP, HTTB_RESIZINGBORDER_RIGHT, HTTB_RESIZINGBORDER_BOTTOM, HTTB_RESIZINGBORDER, HTTB_SIZINGTEMPLATE, HTTB_SYSTEMSIZINGMARGINS);
+#endif

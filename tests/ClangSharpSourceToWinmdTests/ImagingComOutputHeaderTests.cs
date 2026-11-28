@@ -63,8 +63,7 @@ namespace ClangSharpSourceToWinmdTests
             Assert.AreEqual(15, Selectors.Length);
             Assert.IsFalse(records.Any(record => record.Split('=')[0].Contains('*')));
             foreach (string selector in Selectors) CollectionAssert.Contains(records, selector + "=[ComOutPtr]");
-            string current = File.ReadAllText(Path.Combine(LastErrorHeaderTests.RepositoryRoot(),
-                "generation", "WinSDK", "emitter.settings.rsp")).Replace("\r\n", "\n");
+            string current = FullHeaderMigrationExperimentTests.ReadRecoveryText("emitter.settings.rsp").Replace("\r\n", "\n");
             Assert.AreEqual(SyncComOutputHeaderTests.RetireRecords(RetireRecords(parent)), current, "Preserve the complete independent sidecar exactly.");
             CollectionAssert.AreEqual(SyncComOutputHeaderTests.RetireRecords(RetireRecords(parent)).Split('\n').Where(Contract).ToArray(),
                 current.Split('\n').Where(Contract).ToArray());
@@ -144,8 +143,7 @@ namespace ClangSharpSourceToWinmdTests
                 Path.ChangeExtension(idl, "h").Equals(Path.GetFileName(owner.Path), StringComparison.OrdinalIgnoreCase))))
                 CollectionAssert.AreEqual(Encoding.Latin1.GetBytes(PatchHeader(owner.Path,
                     Encoding.Latin1.GetString(ReadOriginalBytes("RecompiledIdlHeaders/" + owner.Path)))),
-                    File.ReadAllBytes(Path.Combine(LastErrorHeaderTests.RepositoryRoot(), "generation", "WinSDK",
-                        "RecompiledIdlHeaders", owner.Path.Replace('/', Path.DirectorySeparatorChar))), owner.Path);
+                    FullHeaderMigrationExperimentTests.ReadRecoveryBytes("RecompiledIdlHeaders/" + owner.Path), owner.Path);
             foreach (string idl in Idls)
                 CollectionAssert.AreEqual(Encoding.Latin1.GetBytes(PatchIdl(idl, Encoding.Latin1.GetString(
                     ReadOriginalBytes("RecompiledIdlHeaders/um/" + idl)))),

@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) 2006 Microsoft Corporation
@@ -49,6 +50,7 @@ typedef struct tagWDS_CLI_CRED
            pwszDomain,
            pwszPassword;
 } WDS_CLI_CRED, *PWDS_CLI_CRED, *LPWDS_CLI_CRED;
+_Win32_SupportedOS_WindowsVista_
 
 
 //
@@ -66,12 +68,14 @@ VOID
     _In_ LPCWSTR pwszFormat,
     _In_ va_list Params
 );
+_Win32_SupportedOS_WindowsVista_
 
 
 HRESULT
 WDSCLIAPI
 WdsCliRegisterTrace(
     _In_opt_ PFN_WdsCliTraceFunction pfn );
+_Win32_SupportedOS_Windows7_
 
 
 HRESULT
@@ -79,6 +83,7 @@ WDSCLIAPI
 WdsCliFreeStringArray(
     _Inout_updates_opt_(ulCount) PWSTR *ppwszArray,
     _In_ ULONG ulCount );
+_Win32_SupportedOS_WindowsVista_
 
 //
 // Image enumeration functions
@@ -93,12 +98,14 @@ HRESULT
 WDSCLIAPI
 WdsCliFindNextImage(
     _In_ HANDLE Handle );
+_Win32_SupportedOS_WindowsVista_
 
 HRESULT
 WDSCLIAPI
 WdsCliGetEnumerationFlags(
     _In_ HANDLE Handle,
     _Out_ PDWORD pdwFlags );
+_Win32_SupportedOS_WindowsVista_
 
 HRESULT
 WDSCLIAPI
@@ -156,6 +163,8 @@ typedef enum _WDS_CLI_IMAGE_PARAM_TYPE
     WDS_CLI_IMAGE_PARAM_SPARSE_FILE = 1,
     WDS_CLI_IMAGE_PARAM_SUPPORTED_FIRMWARES = 2,
 } WDS_CLI_IMAGE_PARAM_TYPE, *PWDS_CLI_IMAGE_PARAM_TYPE;
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 //
 // Session functions
@@ -172,6 +181,7 @@ WDSCLIAPI
 WdsCliAuthorizeSession(
     _Inout_ HANDLE hSession,
     _In_opt_ PWDS_CLI_CRED pCred );
+_Win32_SupportedOS_WindowsVista_
 
 //
 // Client -> Server Logging functions
@@ -183,6 +193,7 @@ WdsCliInitializeLog(
     _In_ ULONG ulClientArchitecture,
     _In_ PWSTR pwszClientId,
     _In_ PWSTR pwszClientAddress );
+_Win32_SupportedOS_WindowsVista_
 
 HRESULT
 WDSCLIAPI
@@ -237,6 +248,7 @@ enum
     WDS_LOG_LEVEL_WARNING = 2,
     WDS_LOG_LEVEL_INFO = 3
 };
+_Win32_SupportedOS_WindowsVista_
 
 //
 // Image information functions
@@ -247,6 +259,7 @@ WDSCLIAPI
 WdsCliGetImageName(
     _In_ HANDLE hIfh, 
     _Out_ PWSTR *ppwszValue );
+_Win32_SupportedOS_WindowsVista_
 
 HRESULT
 WDSCLIAPI
@@ -266,12 +279,14 @@ WdsCliGetImageFiles(
     _In_ HANDLE hIfh,
     _Outptr_result_buffer_(*pdwCount) LPWSTR **pppwszFiles,
    _Out_ PDWORD pdwCount );
+_Win32_SupportedOS_WindowsVista_
 
 HRESULT
 WDSCLIAPI
 WdsCliGetImageLanguage(
     _In_ HANDLE hIfh, 
     _Out_ PWSTR *ppwszValue );
+_Win32_SupportedOS_WindowsVista_
 
 HRESULT
 WDSCLIAPI
@@ -279,24 +294,28 @@ WdsCliGetImageLanguages(
     _In_ HANDLE hIfh,
     _Outptr_result_buffer_(*pdwNumValues) PTSTR **pppszValues,
     _Out_ PDWORD pdwNumValues );
+_Win32_SupportedOS_WindowsVista_
 
 HRESULT
 WDSCLIAPI
 WdsCliGetImageVersion(
     _In_ HANDLE hIfh, 
     _Out_ PWSTR *ppwszValue );
+_Win32_SupportedOS_WindowsVista_
 
 HRESULT
 WDSCLIAPI
 WdsCliGetImagePath(
     _In_ HANDLE hIfh,
     _Out_ PWSTR *ppwszValue );
+_Win32_SupportedOS_WindowsVista_
 
 HRESULT
 WDSCLIAPI
 WdsCliGetImageIndex(
     _In_ HANDLE hIfh,
     _Out_ PDWORD pdwValue );
+_Win32_SupportedOS_WindowsVista_
 
 HRESULT
 WDSCLIAPI
@@ -309,24 +328,28 @@ WDSCLIAPI
 WdsCliGetImageLastModifiedTime(
     _In_ HANDLE hIfh,
     _Out_ PSYSTEMTIME *ppSysTimeValue );
+_Win32_SupportedOS_WindowsVista_
 
 HRESULT
 WDSCLIAPI
 WdsCliGetImageSize(
     _In_ HANDLE hIfh,
     _Out_ PULONGLONG pullValue );
+_Win32_SupportedOS_WindowsVista_
 
 HRESULT
 WDSCLIAPI
 WdsCliGetImageHalName(
     _In_ HANDLE hIfh,
     _Out_ PWSTR *ppwszValue );
+_Win32_SupportedOS_WindowsVista_
 
 HRESULT
 WDSCLIAPI
 WdsCliGetImageGroup(
     _In_ HANDLE hIfh,
     _Out_ PWSTR *ppwszValue );
+_Win32_SupportedOS_WindowsVista_
 
 HRESULT
 WDSCLIAPI
@@ -385,6 +408,7 @@ VOID
 WDSCLIAPI
 WdsCliSetTransferBufferSize(
     _In_ ULONG ulSizeInBytes );
+_Win32_SupportedOS_WindowsVista_
 
 HRESULT
 WDSCLIAPI
@@ -414,11 +438,13 @@ HRESULT
 WDSCLIAPI
 WdsCliCancelTransfer(
     _In_ HANDLE hTransfer );
+_Win32_SupportedOS_WindowsVista_
 
 HRESULT
 WDSCLIAPI
 WdsCliWaitForTransfer(
     _In_ HANDLE hTransfer );
+_Win32_SupportedOS_Windows7_
 
 //
 // Dynamic Driver Provisioning functions
@@ -431,6 +457,7 @@ WdsCliObtainDriverPackages(
     _Outptr_result_buffer_(*pulCount) PWSTR **pppwszDriverPackages,
     _Out_ ULONG *pulCount    
     );
+_Win32_SupportedOS_Windows8_
 
 HRESULT
 WDSCLIAPI
@@ -441,6 +468,7 @@ WdsCliObtainDriverPackagesEx (
     _Outptr_result_buffer_(*pulCount) PWSTR **pppwszDriverPackages,
     _Out_ ULONG* pulCount
     );
+_Win32_SupportedOS_Windows8_
 
 HRESULT
 WDSCLIAPI

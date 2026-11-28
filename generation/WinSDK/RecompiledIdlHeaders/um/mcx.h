@@ -34,11 +34,11 @@ typedef struct _MODEMDEVCAPS {
     DWORD   dwModemVersionSize;
 
     // local option capabilities
-    DWORD   dwDialOptions;          // bitmap of supported values
+    _Win32_AssociatedEnum_(MODEMDEVCAPS_DIAL_OPTIONS) DWORD   dwDialOptions;          // bitmap of supported values
     DWORD   dwCallSetupFailTimer;   // maximum in seconds
     DWORD   dwInactivityTimeout;    // maximum in seconds
-    DWORD   dwSpeakerVolume;        // bitmap of supported values
-    DWORD   dwSpeakerMode;          // bitmap of supported values
+    _Win32_AssociatedEnum_(MODEMDEVCAPS_SPEAKER_VOLUME) DWORD   dwSpeakerVolume;        // bitmap of supported values
+    _Win32_AssociatedEnum_(MODEMDEVCAPS_SPEAKER_MODE) DWORD   dwSpeakerMode;          // bitmap of supported values
     DWORD   dwModemOptions;         // bitmap of supported values
     DWORD   dwMaxDTERate;           // maximum value in bit/s
     DWORD   dwMaxDCERate;           // maximum value in bit/s
@@ -56,8 +56,8 @@ typedef struct _MODEMSETTINGS {
     // static local options (read/write)
     DWORD   dwCallSetupFailTimer;       // seconds
     DWORD   dwInactivityTimeout;        // seconds
-    DWORD   dwSpeakerVolume;            // level
-    DWORD   dwSpeakerMode;              // mode
+    _Win32_AssociatedEnum_(MODEM_SPEAKER_VOLUME) DWORD   dwSpeakerVolume;            // level
+    _Win32_AssociatedEnum_(MODEMSETTINGS_SPEAKER_MODE) DWORD   dwSpeakerMode;              // mode
     DWORD   dwPreferredModemOptions;    // bitmap
 
     // negotiated options (read only) for current or last call
@@ -72,28 +72,33 @@ typedef struct _MODEMSETTINGS {
 #define DIALOPTION_BILLING  0x00000040  // Supports wait for bong "$"
 #define DIALOPTION_QUIET    0x00000080  // Supports wait for quiet "@"
 #define DIALOPTION_DIALTONE 0x00000100  // Supports wait for dial tone "W"
+_Win32_FlagsEnum_(MODEMDEVCAPS_DIAL_OPTIONS, unsigned int, DIALOPTION_BILLING, DIALOPTION_DIALTONE, DIALOPTION_QUIET);
 
 // SpeakerVolume for MODEMDEVCAPS
 #define MDMVOLFLAG_LOW      0x00000001
 #define MDMVOLFLAG_MEDIUM   0x00000002
 #define MDMVOLFLAG_HIGH     0x00000004
+_Win32_FlagsEnum_(MODEMDEVCAPS_SPEAKER_VOLUME, unsigned int, MDMVOLFLAG_HIGH, MDMVOLFLAG_LOW, MDMVOLFLAG_MEDIUM);
 
 // SpeakerVolume for MODEMSETTINGS
 #define MDMVOL_LOW          0x00000000
 #define MDMVOL_MEDIUM       0x00000001
 #define MDMVOL_HIGH         0x00000002
+_Win32_Enum_(MODEM_SPEAKER_VOLUME, unsigned int, MDMVOL_HIGH, MDMVOL_LOW, MDMVOL_MEDIUM);
 
 // SpeakerMode for MODEMDEVCAPS
 #define MDMSPKRFLAG_OFF         0x00000001
 #define MDMSPKRFLAG_DIAL        0x00000002
 #define MDMSPKRFLAG_ON          0x00000004
 #define MDMSPKRFLAG_CALLSETUP   0x00000008
+_Win32_FlagsEnum_(MODEMDEVCAPS_SPEAKER_MODE, unsigned int, MDMSPKRFLAG_CALLSETUP, MDMSPKRFLAG_DIAL, MDMSPKRFLAG_OFF, MDMSPKRFLAG_ON);
 
 // SpeakerMode for MODEMSETTINGS
 #define MDMSPKR_OFF         0x00000000
 #define MDMSPKR_DIAL        0x00000001
 #define MDMSPKR_ON          0x00000002
 #define MDMSPKR_CALLSETUP   0x00000003
+_Win32_Enum_(MODEMSETTINGS_SPEAKER_MODE, unsigned int, MDMSPKR_CALLSETUP, MDMSPKR_DIAL, MDMSPKR_OFF, MDMSPKR_ON);
 
 // Modem Options
 #define MDM_COMPRESSION      0x00000001

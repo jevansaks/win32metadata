@@ -981,7 +981,7 @@ EXTERN_C const IID IID_IDXGISurface;
     {
     public:
         virtual HRESULT STDMETHODCALLTYPE GetDesc( 
-            /* [annotation][out] */ 
+            /* [retval][annotation][out] */ 
             _Out_  DXGI_SURFACE_DESC *pDesc) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE Map( 
@@ -1064,7 +1064,7 @@ EXTERN_C const IID IID_IDXGISurface;
         DECLSPEC_XFGVIRT(IDXGISurface, GetDesc)
         HRESULT ( STDMETHODCALLTYPE *GetDesc )( 
             __RPC__in IDXGISurface * This,
-            /* [annotation][out] */ 
+            /* [retval][annotation][out] */ 
             _Out_  DXGI_SURFACE_DESC *pDesc);
         
         DECLSPEC_XFGVIRT(IDXGISurface, Map)
@@ -1236,7 +1236,7 @@ EXTERN_C const IID IID_IDXGISurface1;
         DECLSPEC_XFGVIRT(IDXGISurface, GetDesc)
         HRESULT ( STDMETHODCALLTYPE *GetDesc )( 
             __RPC__in IDXGISurface1 * This,
-            /* [annotation][out] */ 
+            /* [retval][annotation][out] */ 
             _Out_  DXGI_SURFACE_DESC *pDesc);
         
         DECLSPEC_XFGVIRT(IDXGISurface, Map)
@@ -1514,6 +1514,7 @@ EXTERN_C const IID IID_IDXGIAdapter;
 /* interface __MIDL_itf_dxgi_0000_0007 */
 /* [local] */ 
 
+_WIN32META_ANNOTATE_METHOD_(IDXGIAdapter::EnumOutputs, _Win32_PreserveResult_);
 #define	DXGI_ENUM_MODES_INTERLACED	( 1UL )
 
 #define	DXGI_ENUM_MODES_SCALING	( 2UL )
@@ -1539,7 +1540,7 @@ EXTERN_C const IID IID_IDXGIOutput;
     {
     public:
         virtual HRESULT STDMETHODCALLTYPE GetDesc( 
-            /* [annotation][out] */ 
+            /* [retval][annotation][out] */ 
             _Out_  DXGI_OUTPUT_DESC *pDesc) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE GetDisplayModeList( 
@@ -1657,7 +1658,7 @@ EXTERN_C const IID IID_IDXGIOutput;
         DECLSPEC_XFGVIRT(IDXGIOutput, GetDesc)
         HRESULT ( STDMETHODCALLTYPE *GetDesc )( 
             __RPC__in IDXGIOutput * This,
-            /* [annotation][out] */ 
+            /* [retval][annotation][out] */ 
             _Out_  DXGI_OUTPUT_DESC *pDesc);
         
         DECLSPEC_XFGVIRT(IDXGIOutput, GetDisplayModeList)
@@ -1876,7 +1877,7 @@ EXTERN_C const IID IID_IDXGISwapChain;
             _COM_Outptr_opt_result_maybenull_  IDXGIOutput **ppTarget) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE GetDesc( 
-            /* [annotation][out] */ 
+            /* [retval][annotation][out] */ 
             _Out_  DXGI_SWAP_CHAIN_DESC *pDesc) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE ResizeBuffers( 
@@ -2013,7 +2014,7 @@ EXTERN_C const IID IID_IDXGISwapChain;
         DECLSPEC_XFGVIRT(IDXGISwapChain, GetDesc)
         HRESULT ( STDMETHODCALLTYPE *GetDesc )( 
             __RPC__in IDXGISwapChain * This,
-            /* [annotation][out] */ 
+            /* [retval][annotation][out] */ 
             _Out_  DXGI_SWAP_CHAIN_DESC *pDesc);
         
         DECLSPEC_XFGVIRT(IDXGISwapChain, ResizeBuffers)
@@ -2138,6 +2139,8 @@ EXTERN_C const IID IID_IDXGISwapChain;
 /* interface __MIDL_itf_dxgi_0000_0009 */
 /* [local] */ 
 
+_WIN32META_ANNOTATE_METHOD_(IDXGISwapChain::Present, _Win32_PreserveResult_);
+_WIN32META_ANNOTATE_PARAMETER_(IDXGISwapChain::ResizeBuffers, SwapChainFlags, _Win32_AssociatedEnum_(DXGI_SWAP_CHAIN_FLAG));
 #define DXGI_MWA_NO_WINDOW_CHANGES      ( 1 << 0 )
 #define DXGI_MWA_NO_ALT_ENTER           ( 1 << 1 )
 #define DXGI_MWA_NO_PRINT_SCREEN        ( 1 << 2 )
@@ -2354,6 +2357,8 @@ EXTERN_C const IID IID_IDXGIFactory;
 /* interface __MIDL_itf_dxgi_0000_0010 */
 /* [local] */ 
 
+_WIN32META_ANNOTATE_METHOD_(IDXGIFactory::CreateSwapChain, _Win32_PreserveResult_);
+_WIN32META_ANNOTATE_METHOD_(IDXGIFactory::EnumAdapters, _Win32_PreserveResult_);
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 HRESULT WINAPI CreateDXGIFactory(REFIID riid, _COM_Outptr_ void **ppFactory);
@@ -2818,6 +2823,15 @@ EXTERN_C const IID IID_IDXGIFactory1;
 #endif 	/* __IDXGIFactory1_INTERFACE_DEFINED__ */
 
 
+/* interface __MIDL_itf_dxgi_0000_0012 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_METHOD_(IDXGIFactory1::EnumAdapters1, _Win32_PreserveResult_);
+
+
+extern RPC_IF_HANDLE __MIDL_itf_dxgi_0000_0012_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_dxgi_0000_0012_v0_0_s_ifspec;
+
 #ifndef __IDXGIAdapter1_INTERFACE_DEFINED__
 #define __IDXGIAdapter1_INTERFACE_DEFINED__
 
@@ -2834,7 +2848,7 @@ EXTERN_C const IID IID_IDXGIAdapter1;
     {
     public:
         virtual HRESULT STDMETHODCALLTYPE GetDesc1( 
-            /* [annotation][out] */ 
+            /* [retval][annotation][out] */ 
             _Out_  DXGI_ADAPTER_DESC1 *pDesc) = 0;
         
     };
@@ -2923,7 +2937,7 @@ EXTERN_C const IID IID_IDXGIAdapter1;
         DECLSPEC_XFGVIRT(IDXGIAdapter1, GetDesc1)
         HRESULT ( STDMETHODCALLTYPE *GetDesc1 )( 
             __RPC__in IDXGIAdapter1 * This,
-            /* [annotation][out] */ 
+            /* [retval][annotation][out] */ 
             _Out_  DXGI_ADAPTER_DESC1 *pDesc);
         
         END_INTERFACE

@@ -1,3 +1,5 @@
+cpp_quote("#include <win32metadata_annotations.h>")
+#include <win32metadata_annotations.h>
 //------------------------------------------------------------------------------
 // File: BDAIface.idl
 //
@@ -1103,6 +1105,7 @@ interface IEnumPIDMap : IUnknown
         [out]   IEnumPIDMap **  ppIEnumPIDMap
         ) ;
 } ;
+_Win32_AnnotateMethod_(IEnumPIDMap::Next, _Win32_PreserveResult_)
 
 //---------------------------------------------------------------------
 // IMPEG2PIDMap interface

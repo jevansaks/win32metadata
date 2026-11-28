@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //
 //    Copyright (C) Microsoft.  All rights reserved.
 //
@@ -11,6 +12,7 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+_Win32_SupportedOS_Windows7_
 
 NTSTATUS 
 NTAPI
@@ -38,6 +40,7 @@ PstGetCertificateChain(
     _In_                                    PSecPkgContext_IssuerListInfoEx     pTrustedIssuers,
     _Out_                                   PCCERT_CHAIN_CONTEXT*               ppCertChainContext
     );
+_Win32_SupportedOS_Windows7_
     
 NTSTATUS 
 NTAPI
@@ -49,12 +52,14 @@ PstGetCertificates(
     _Out_                                   PDWORD                              pdwCertChainContextCount,
     _Outptr_result_buffer_(*pdwCertChainContextCount) PCCERT_CHAIN_CONTEXT**    ppCertChainContexts
     );
+_Win32_SupportedOS_Windows7_
     
 NTSTATUS
 NTAPI
 PstAcquirePrivateKey(
     _In_                                    PCCERT_CONTEXT                      pCert
     );
+_Win32_SupportedOS_Windows7_
 
 
 NTSTATUS 
@@ -67,6 +72,7 @@ PstValidate(
     _In_                                    PCCERT_CONTEXT                      pCert,
     _Out_opt_                               GUID*                               pProvGUID
    );
+_Win32_SupportedOS_Windows7_
 
 NTSTATUS 
 NTAPI
@@ -75,6 +81,7 @@ PstMapCertificate(
     _Out_                                   LSA_TOKEN_INFORMATION_TYPE*         pTokenInformationType,
     _Outptr_                             PVOID*                              ppTokenInformation
   );
+_Win32_SupportedOS_Windows7_
 
 NTSTATUS 
 NTAPI

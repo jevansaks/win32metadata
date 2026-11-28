@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation
@@ -236,6 +237,7 @@ HRESULT WINAPI
 IsMdmUxWithoutAadAllowed(
     _Out_ BOOL* isEnrollmentAllowed
     );
+_Win32_SupportedOS_Windows81_
 
 /*++
 Routine Description:
@@ -435,6 +437,7 @@ SetDeviceManagementConfigInfo(
     _In_ PCWSTR providerID,
     _In_ PCWSTR configString
     );    
+_Win32_SupportedOS_Windows81_
 
 
 /*++
@@ -462,6 +465,7 @@ GetManagementAppHyperlink(
 
 #if (NTDDI_VERSION > NTDDI_WINBLUE || \
 (NTDDI_VERSION == NTDDI_WINBLUE && defined(WINBLUE_KBSPRING14)))
+_Win32_SupportedOS_Windows81_
 
 /*++
 Routine Description:

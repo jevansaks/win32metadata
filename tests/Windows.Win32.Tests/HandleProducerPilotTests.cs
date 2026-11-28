@@ -81,7 +81,8 @@ namespace Windows.Win32.Tests
 
             var types = DecompilerUtils.LoadDecompilerTypeSystem(path);
             var projectedMethods = types.MainModule.TypeDefinitions.SelectMany(type => type.Methods).ToArray();
-            foreach (var site in new[] { ("OpenPrinterW", 1, "System.Void**"), ("ClosePrinter", 0, "System.Void*"),
+            foreach (var site in new[] { ("OpenPrinterW", 1, "Windows.Win32.Foundation.HANDLE*"),
+                ("ClosePrinter", 0, "Windows.Win32.Foundation.HANDLE"),
                 ("GetProcessHeap", -1, "System.Void*"), ("LocalAlloc", -1, "System.Void*"),
                 ("LocalFree", -1, "System.Void*"), ("LocalFree", 0, "System.Void*") })
             {

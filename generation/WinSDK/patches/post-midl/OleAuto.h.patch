@@ -1,0 +1,65 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/OleAuto.h b/generation/WinSDK/RecompiledIdlHeaders/um/OleAuto.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/OleAuto.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/OleAuto.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ #include <winapifamily.h>
+ 
+ #if _MSC_VER >= 1200
+@@ -75,7 +76,9 @@
+ WINOLEAUTAPI_(INT)  SysReAllocString(_Inout_ _At_(*pbstr, _Pre_z_ _Post_z_ _Post_readable_size_(_String_length_(psz)+1)) BSTR* pbstr, _In_opt_z_ const OLECHAR* psz);
+ WINOLEAUTAPI_(_Ret_writes_maybenull_z_(ui+1) BSTR) SysAllocStringLen(_In_reads_opt_(ui) const OLECHAR * strIn, UINT ui);
+ _Check_return_ WINOLEAUTAPI_(INT)  SysReAllocStringLen(_Inout_ _At_(*pbstr, _Pre_z_ _Post_z_ _Post_readable_size_(len+1)) BSTR* pbstr, _In_opt_z_ const OLECHAR* psz, _In_ unsigned int len);
++_Win32_SupportedOS_WindowsXP_
+ WINOLEAUTAPI SysAddRefString(_In_ BSTR bstrString);
++_Win32_SupportedOS_WindowsXP_
+ WINOLEAUTAPI_(void) SysReleaseString(_In_ BSTR bstrString);
+ WINOLEAUTAPI_(void) SysFreeString(_Frees_ptr_opt_ BSTR bstrString);
+ WINOLEAUTAPI_(_Post_equal_to_(pbstr == NULL ? 0 : _String_length_(pbstr)) UINT) SysStringLen(_In_opt_ BSTR pbstr);
+@@ -131,8 +134,10 @@
+ WINOLEAUTAPI_(SAFEARRAY *) SafeArrayCreateEx(_In_ VARTYPE vt, _In_ UINT cDims, _In_ SAFEARRAYBOUND * rgsabound, _In_ PVOID pvExtra);
+ _Check_return_
+ WINOLEAUTAPI SafeArrayCopyData(_In_ SAFEARRAY *psaSource, _In_ SAFEARRAY *psaTarget);
++_Win32_SupportedOS_WindowsXP_
+ WINOLEAUTAPI_(void) SafeArrayReleaseDescriptor(_In_ SAFEARRAY * psa);
+ WINOLEAUTAPI SafeArrayDestroyDescriptor(_In_ SAFEARRAY * psa);
++_Win32_SupportedOS_WindowsXP_
+ WINOLEAUTAPI_(void) SafeArrayReleaseData(_In_ PVOID pData);
+ WINOLEAUTAPI SafeArrayDestroyData(_In_ SAFEARRAY * psa);
+ WINOLEAUTAPI SafeArrayAddRef(_In_ SAFEARRAY * psa, _Out_ PVOID *ppDataToRelease);
+@@ -179,10 +184,10 @@
+ WINOLEAUTAPI VariantCopyInd(_Inout_ VARIANT * pvarDest, _In_ const VARIANTARG * pvargSrc);
+ _Check_return_
+ WINOLEAUTAPI VariantChangeType(_Inout_ VARIANTARG * pvargDest,
+-               _In_ const VARIANTARG * pvarSrc, _In_ USHORT wFlags, _In_ VARTYPE vt);
++               _In_ const VARIANTARG * pvarSrc, _Win32_AssociatedEnum_(VAR_CHANGE_FLAGS) _In_ USHORT wFlags, _In_ VARTYPE vt);
+ _Check_return_
+ WINOLEAUTAPI VariantChangeTypeEx(_Inout_ VARIANTARG * pvargDest,
+-               _In_ const VARIANTARG * pvarSrc, _In_ LCID lcid, _In_ USHORT wFlags, _In_ VARTYPE vt);
++               _In_ const VARIANTARG * pvarSrc, _In_ LCID lcid, _Win32_AssociatedEnum_(VAR_CHANGE_FLAGS) _In_ USHORT wFlags, _In_ VARTYPE vt);
+ 
+ #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM) */
+ #pragma endregion
+@@ -1301,7 +1306,7 @@
+ 
+ _Check_return_
+ WINOLEAUTAPI RegisterActiveObject(IUnknown * punk, REFCLSID rclsid,
+-            DWORD dwFlags, DWORD * pdwRegister);
++            _Win32_AssociatedEnum_(ACTIVEOBJECT_FLAGS) DWORD dwFlags, DWORD * pdwRegister);
+ 
+ WINOLEAUTAPI RevokeActiveObject(DWORD dwRegister, void * pvReserved);
+ 
+@@ -1434,3 +1439,12 @@
+ #if _MSC_VER >= 1200
+ #pragma warning(pop)
+ #endif
++
++#ifndef _WIN32METADATA_OLEAUTO_NATIVE_C_64_GROUPS_
++#define _WIN32METADATA_OLEAUTO_NATIVE_C_64_GROUPS_
++_Win32_FlagsEnum_(ACTIVEOBJECT_FLAGS, unsigned int, ACTIVEOBJECT_STRONG, ACTIVEOBJECT_WEAK);
++_Win32_FlagsEnum_(NUMPARSE_FLAGS, unsigned int, NUMPRS_LEADING_WHITE, NUMPRS_TRAILING_WHITE, NUMPRS_LEADING_PLUS, NUMPRS_TRAILING_PLUS, NUMPRS_LEADING_MINUS, NUMPRS_TRAILING_MINUS, NUMPRS_HEX_OCT, NUMPRS_PARENS, NUMPRS_DECIMAL, NUMPRS_THOUSANDS, NUMPRS_CURRENCY, NUMPRS_EXPONENT, NUMPRS_USE_ALL, NUMPRS_STD, NUMPRS_NEG, NUMPRS_INEXACT);
++_Win32_AnnotateField_(NUMPARSE::dwInFlags, _Win32_AssociatedEnum_(NUMPARSE_FLAGS));
++_Win32_AnnotateField_(NUMPARSE::dwOutFlags, _Win32_AssociatedEnum_(NUMPARSE_FLAGS));
++_Win32_FlagsEnum_(VAR_CHANGE_FLAGS, unsigned short, VARIANT_NOVALUEPROP, VARIANT_ALPHABOOL, VARIANT_NOUSEROVERRIDE, VARIANT_CALENDAR_HIJRI, VARIANT_LOCALBOOL, VARIANT_CALENDAR_THAI, VARIANT_CALENDAR_GREGORIAN, VARIANT_USE_NLS);
++#endif

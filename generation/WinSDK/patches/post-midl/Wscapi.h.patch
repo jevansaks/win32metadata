@@ -1,0 +1,33 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Wscapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/Wscapi.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/Wscapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/Wscapi.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ //
+ //    Copyright (C) Microsoft.  All rights reserved.
+ //
+@@ -45,6 +46,7 @@
+     WSC_SECURITY_PROVIDER_HEALTH_POOR,  // Red pillar in English locales
+     WSC_SECURITY_PROVIDER_HEALTH_SNOOZE, // Yellow pillar in English locales
+ } WSC_SECURITY_PROVIDER_HEALTH, *PWSC_SECURITY_PROVIDER_HEALTH;
++_Win32_SupportedOS_WindowsVista_
+ 
+ 
+ // The WscRegisterForChanges function registers a callback function to be run when Windows Security Center (WSC) detects 
+@@ -73,6 +75,7 @@
+                              PHANDLE phCallbackRegistration,
+                              LPTHREAD_START_ROUTINE lpCallbackAddress, 
+                              PVOID pContext);
++_Win32_SupportedOS_WindowsVista_
+ 
+ // The WscUnRegisterChanges function cancels a callback registration that was made by a call to the WscRegisterForChanges 
+ // function.
+@@ -95,6 +98,7 @@
+ // Returns S_OK if the function succeeds, otherwise returns an error code.
+ 
+ STDAPI WscRegisterForUserNotifications();
++_Win32_SupportedOS_WindowsVista_
+ 
+ // The WscGetSecurityProviderHealth function gets the aggregate health state of the security provider categories represented 
+ // by the specified WSC_SECURITY_PROVIDER enumeration values.

@@ -86,6 +86,7 @@ extern "C"{
 /* interface __MIDL_itf_comcat_0000_0000 */
 /* [local] */ 
 
+#include <win32metadata_annotations.h>
 //=--------------------------------------------------------------------------=
 // ComCat.h
 //=--------------------------------------------------------------------------=
@@ -233,7 +234,7 @@ EXTERN_C const IID IID_IEnumGUID;
         
         DECLSPEC_XFGVIRT(IEnumGUID, Next)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Next )( 
-            IEnumGUID * This,
+            __RPC__in IEnumGUID * This,
             /* [annotation][in] */ 
             _In_  ULONG celt,
             /* [annotation][length_is][size_is][out] */ 
@@ -323,6 +324,8 @@ void __RPC_STUB IEnumGUID_RemoteNext_Stub(
 /* interface __MIDL_itf_comcat_0000_0001 */
 /* [local] */ 
 
+_WIN32META_ANNOTATE_METHOD_(IEnumGUID::Next, _Win32_PreserveResult_);
+_WIN32META_ANNOTATE_METHOD_(IEnumGUID::Skip, _Win32_PreserveResult_);
 #endif
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP) */
 #pragma endregion
@@ -804,7 +807,7 @@ EXTERN_C const IID IID_ICatInformation;
         
         DECLSPEC_XFGVIRT(ICatInformation, EnumClassesOfCategories)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *EnumClassesOfCategories )( 
-            ICatInformation * This,
+            __RPC__in ICatInformation * This,
             /* [annotation][in] */ 
             _In_  ULONG cImplemented,
             /* [annotation][size_is][in] */ 
@@ -818,7 +821,7 @@ EXTERN_C const IID IID_ICatInformation;
         
         DECLSPEC_XFGVIRT(ICatInformation, IsClassOfCategories)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *IsClassOfCategories )( 
-            ICatInformation * This,
+            __RPC__in ICatInformation * This,
             /* [annotation][in] */ 
             _In_  REFCLSID rclsid,
             /* [annotation][in] */ 
@@ -899,11 +902,11 @@ EXTERN_C const IID IID_ICatInformation;
     /* [annotation][in] */ 
     _In_  ULONG cImplemented,
     /* [annotation][size_is][unique][in] */ 
-    _In_reads_(cImplemented)  const CATID rgcatidImpl[  ],
+    _In_reads_opt_(cImplemented)  const CATID rgcatidImpl[  ],
     /* [annotation][in] */ 
     _In_  ULONG cRequired,
     /* [annotation][size_is][unique][in] */ 
-    _In_reads_(cRequired)  const CATID rgcatidReq[  ],
+    _In_reads_opt_(cRequired)  const CATID rgcatidReq[  ],
     /* [annotation][out] */ 
     _Out_  IEnumGUID **ppenumClsid);
 
@@ -922,11 +925,11 @@ void __RPC_STUB ICatInformation_RemoteEnumClassesOfCategories_Stub(
     /* [annotation][in] */ 
     _In_  ULONG cImplemented,
     /* [annotation][size_is][unique][in] */ 
-    _In_reads_(cImplemented)  const CATID rgcatidImpl[  ],
+    _In_reads_opt_(cImplemented)  const CATID rgcatidImpl[  ],
     /* [annotation][in] */ 
     _In_  ULONG cRequired,
     /* [annotation][size_is][unique][in] */ 
-    _In_reads_(cRequired)  const CATID rgcatidReq[  ]);
+    _In_reads_opt_(cRequired)  const CATID rgcatidReq[  ]);
 
 
 void __RPC_STUB ICatInformation_RemoteIsClassOfCategories_Stub(
@@ -954,7 +957,7 @@ extern RPC_IF_HANDLE __MIDL_itf_comcat_0000_0004_v0_0_s_ifspec;
 /* Additional Prototypes for ALL interfaces */
 
 /* [local] */ HRESULT STDMETHODCALLTYPE IEnumGUID_Next_Proxy( 
-    IEnumGUID * This,
+    __RPC__in IEnumGUID * This,
     /* [annotation][in] */ 
     _In_  ULONG celt,
     /* [annotation][length_is][size_is][out] */ 
@@ -973,7 +976,7 @@ extern RPC_IF_HANDLE __MIDL_itf_comcat_0000_0004_v0_0_s_ifspec;
     _Out_  ULONG *pceltFetched);
 
 /* [local] */ HRESULT STDMETHODCALLTYPE ICatInformation_EnumClassesOfCategories_Proxy( 
-    ICatInformation * This,
+    __RPC__in ICatInformation * This,
     /* [annotation][in] */ 
     _In_  ULONG cImplemented,
     /* [annotation][size_is][in] */ 
@@ -991,16 +994,16 @@ extern RPC_IF_HANDLE __MIDL_itf_comcat_0000_0004_v0_0_s_ifspec;
     /* [annotation][in] */ 
     _In_  ULONG cImplemented,
     /* [annotation][size_is][unique][in] */ 
-    _In_reads_(cImplemented)  const CATID rgcatidImpl[  ],
+    _In_reads_opt_(cImplemented)  const CATID rgcatidImpl[  ],
     /* [annotation][in] */ 
     _In_  ULONG cRequired,
     /* [annotation][size_is][unique][in] */ 
-    _In_reads_(cRequired)  const CATID rgcatidReq[  ],
+    _In_reads_opt_(cRequired)  const CATID rgcatidReq[  ],
     /* [annotation][out] */ 
     _Out_  IEnumGUID **ppenumClsid);
 
 /* [local] */ HRESULT STDMETHODCALLTYPE ICatInformation_IsClassOfCategories_Proxy( 
-    ICatInformation * This,
+    __RPC__in ICatInformation * This,
     /* [annotation][in] */ 
     _In_  REFCLSID rclsid,
     /* [annotation][in] */ 
@@ -1020,11 +1023,11 @@ extern RPC_IF_HANDLE __MIDL_itf_comcat_0000_0004_v0_0_s_ifspec;
     /* [annotation][in] */ 
     _In_  ULONG cImplemented,
     /* [annotation][size_is][unique][in] */ 
-    _In_reads_(cImplemented)  const CATID rgcatidImpl[  ],
+    _In_reads_opt_(cImplemented)  const CATID rgcatidImpl[  ],
     /* [annotation][in] */ 
     _In_  ULONG cRequired,
     /* [annotation][size_is][unique][in] */ 
-    _In_reads_(cRequired)  const CATID rgcatidReq[  ]);
+    _In_reads_opt_(cRequired)  const CATID rgcatidReq[  ]);
 
 
 

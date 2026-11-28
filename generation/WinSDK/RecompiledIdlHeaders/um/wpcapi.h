@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 
 
 /* this ALWAYS GENERATED file contains the definitions for the interfaces */
@@ -300,6 +301,7 @@ EXTERN_C const IID IID_IWPCProviderConfig;
             /* [in] */ DWORD dwFlags) = 0;
         
     };
+_Win32_AnnotateParameter_(IWPCProviderConfig::RequestOverride, dwFlags, _Win32_AssociatedEnum_(WPCFLAG_RESTRICTION));
     
     
 #else 	/* C style interface */
@@ -431,6 +433,8 @@ EXTERN_C const IID IID_IWPCSettings;
             /* [out] */ __RPC__out DWORD *pdwRestrictions) = 0;
         
     };
+_Win32_AnnotateParameter_(IWPCSettings::GetRestrictions, pdwRestrictions, _Win32_AssociatedEnum_(WPCFLAG_RESTRICTION));
+
     
     
 #else 	/* C style interface */
@@ -664,6 +668,8 @@ EXTERN_C const IID IID_IWPCWebSettings;
             /* [out] */ __RPC__out BOOL *pfChanged) = 0;
         
     };
+_Win32_AnnotateParameter_(IWPCWebSettings::GetSettings, pdwSettings, _Win32_AssociatedEnum_(WPCFLAG_WEB_SETTING));
+
     
     
 #else 	/* C style interface */

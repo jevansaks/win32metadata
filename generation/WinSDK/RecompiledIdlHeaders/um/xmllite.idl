@@ -1,3 +1,5 @@
+cpp_quote("#include <win32metadata_annotations.h>")
+#include <win32metadata_annotations.h>
 //+-------------------------------------------------------------------------
 //
 //  File: XmlLite.idl
@@ -560,6 +562,11 @@ interface IXmlWriterLite : IUnknown
 };
 
 };
+_Win32_AnnotateMethod_(IXmlReader::MoveToAttributeByName, _Win32_PreserveResult_)
+_Win32_AnnotateMethod_(IXmlReader::MoveToNextAttribute, _Win32_PreserveResult_)
+_Win32_AnnotateMethod_(IXmlReader::MoveToFirstAttribute, _Win32_PreserveResult_)
+_Win32_AnnotateMethod_(IXmlReader::Read, _Win32_PreserveResult_)
+_Win32_AnnotateMethod_(IXmlReader::ReadValueChunk, _Win32_PreserveResult_)
 
 cpp_quote("////////////////////////////////////////////////////////////////////////////////////////////////////////////")
 cpp_quote("// IID helpers")

@@ -1,3 +1,5 @@
+#include <win32metadata_annotations.h>
+cpp_quote("#include <win32metadata_annotations.h>")
 cpp_quote("#include <winapifamily.h>")
 
 //+---------------------------------------------------------------------------
@@ -230,6 +232,7 @@ interface IEnumConnections : IUnknown
                 [out] IEnumConnections ** ppEnum
             );
 }
+_Win32_AnnotateMethod_(IEnumConnections::Next, _Win32_PreserveResult_)
 
 
 [
@@ -305,6 +308,7 @@ interface IEnumConnectionPoints : IUnknown
                 [out] IEnumConnectionPoints ** ppEnum
             );
 }
+_Win32_AnnotateMethod_(IEnumConnectionPoints::Next, _Win32_PreserveResult_)
 
 
 [
@@ -548,6 +552,7 @@ interface IOleControlSite : IUnknown
                 void
             );
 }
+_Win32_AnnotateParameter_(IOleControlSite::TransformCoords, dwFlags, _Win32_AssociatedEnum_(XFORMCOORDS))
 
 
 [
@@ -668,6 +673,7 @@ interface IPropertyPageSite : IUnknown
                 [in] MSG * pMsg
             );
 }
+_Win32_AnnotateParameter_(IPropertyPageSite::OnStatusChange, dwFlags, _Win32_AssociatedEnum_(PROPPAGESTATUS))
 
 
 [
@@ -761,6 +767,7 @@ interface IPersistMemory : IPersist
                 void
             );
 }
+_Win32_AnnotateMethod_(IPersistMemory::IsDirty, _Win32_PreserveResult_)
 
 
 [
@@ -794,6 +801,7 @@ interface IPersistStreamInit : IPersist
                 void
             );
 }
+_Win32_AnnotateMethod_(IPersistStreamInit::IsDirty, _Win32_PreserveResult_)
 
 
 [
@@ -1520,6 +1528,7 @@ interface IEnumOleUndoUnits : IUnknown
                 [out] IEnumOleUndoUnits ** ppEnum
             );
 }
+_Win32_AnnotateMethod_(IEnumOleUndoUnits::Next, _Win32_PreserveResult_)
 
 
 [
@@ -1583,6 +1592,7 @@ cpp_quote("#define SID_SOleUndoManager IID_IOleUndoManager")
                 [in] BOOL fEnable
             );
 }
+_Win32_AnnotateMethod_(IOleUndoManager::Close, _Win32_PreserveResult_)
 
 
 [
@@ -1620,6 +1630,8 @@ interface IPointerInactive : IUnknown
                 [in] BOOL fSetAlways
             );
 }
+_Win32_AnnotateParameter_(IPointerInactive::GetActivationPolicy, pdwPolicy, _Win32_AssociatedEnum_(POINTERINACTIVE))
+
 
 
 [
@@ -1810,6 +1822,7 @@ interface IPersistPropertyBag2 : IPersist
                 void
             );
 }
+_Win32_AnnotateMethod_(IPersistPropertyBag2::IsDirty, _Win32_PreserveResult_)
 
 cpp_quote("#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM) */")
 #pragma endregion

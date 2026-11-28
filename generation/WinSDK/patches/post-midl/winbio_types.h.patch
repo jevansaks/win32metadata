@@ -1,0 +1,40 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/winbio_types.h b/generation/WinSDK/RecompiledIdlHeaders/shared/winbio_types.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/shared/winbio_types.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/shared/winbio_types.h
+@@ -1,3 +1,5 @@
++#include <win32metadata_annotations.h>
++
+ /*++
+ 
+ Copyright (c) 2007 Microsoft Corporation
+@@ -1102,6 +1104,8 @@
+ #define WINBIO_POOL_PRIVATE         ((WINBIO_POOL_TYPE)2)
+ #define WINBIO_POOL_UNASSIGNED      ((WINBIO_POOL_TYPE)3) // Reserved for Microsoft - do not use.
+ 
++_Win32_Enum_(WINBIO_POOL, ULONG, WINBIO_POOL_SYSTEM, WINBIO_POOL_PRIVATE);
++
+ //
+ // Specific access rights for Biometric Units
+ //
+@@ -1150,6 +1154,9 @@
+ #define WINBIO_COMPONENT_SENSOR     ((WINBIO_COMPONENT)1)
+ #define WINBIO_COMPONENT_ENGINE     ((WINBIO_COMPONENT)2)
+ #define WINBIO_COMPONENT_STORAGE    ((WINBIO_COMPONENT)3)
++
++_Win32_Enum_(WINBIO_COMPONENT, ULONG,
++    WINBIO_COMPONENT_SENSOR, WINBIO_COMPONENT_ENGINE, WINBIO_COMPONENT_STORAGE);
+ 
+ //
+ // Event Monitor stuff...
+@@ -2303,6 +2310,10 @@
+ #define WINBIO_SETTING_SOURCE_POLICY     ((WINBIO_SETTING_SOURCE_TYPE)2)
+ #define WINBIO_SETTING_SOURCE_LOCAL      ((WINBIO_SETTING_SOURCE_TYPE)3)
+ 
++_Win32_Enum_(WINBIO_SETTING_SOURCE, ULONG32,
++    WINBIO_SETTING_SOURCE_INVALID, WINBIO_SETTING_SOURCE_DEFAULT,
++    WINBIO_SETTING_SOURCE_LOCAL, WINBIO_SETTING_SOURCE_POLICY);
++
+ typedef ULONG32 WINBIO_SETTING_TYPE, *PWINBIO_SETTING_TYPE;
+ 
+ #define WINBIO_SETTING_TYPE_PERIPHERALS_WITH_ESS ((WINBIO_SETTING_TYPE)0)

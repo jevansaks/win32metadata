@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 //
 // Copyright (c) 1991-1999  Microsoft Corporation
 //
@@ -294,6 +295,7 @@ typedef struct _ACTION_HEADER {
 #define NRC_SYSTEM      0x40    /* system error                               */
 
 #define NRC_PENDING     0xff    /* asynchronous command is not yet finished   */
+_Win32_SupportedOS_Windows2000_
 
 /****************************************************************
  *                                                              *

@@ -1,0 +1,139 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ncryptprotect.h b/generation/WinSDK/RecompiledIdlHeaders/um/ncryptprotect.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/ncryptprotect.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/ncryptprotect.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*-------------------------------------------------------------------
+ //
+ //  Copyright (C) Microsoft, 2010
+@@ -132,6 +133,7 @@ extern "C" {
+ DECLARE_HANDLE( NCRYPT_DESCRIPTOR_HANDLE );
+ 
+ #if (NTDDI_VERSION >= NTDDI_WIN8)
++_Win32_SupportedOS_Windows8_
+ 
+ /****************************************************************************
+  NCryptRegisterProtectionDescriptorName
+@@ -182,6 +184,7 @@ NCryptRegisterProtectionDescriptorName(
+     _In_opt_        LPCWSTR                             pwszDescriptorString,
+                     DWORD                               dwFlags
+     );
++_Win32_SupportedOS_Windows8_
+ 
+ /****************************************************************************
+  NCryptQueryProtectionDescriptorName
+@@ -227,6 +230,15 @@ NCryptQueryProtectionDescriptorName(
+     _Inout_         SIZE_T                              *pcDescriptorString,
+                     DWORD                               dwFlags
+     );
++#if defined(WIN32METADATA) && defined(__clang__)
++_Win32_SupportedOS_Windows8_
++SECURITY_STATUS
++WINAPI
++NCryptCloseProtectionDescriptor(
++    _In_            NCRYPT_DESCRIPTOR_HANDLE             hDescriptor
++    );
++#endif
++_Win32_SupportedOS_Windows8_
+ 
+ 
+ /****************************************************************************
+@@ -266,7 +278,7 @@ WINAPI
+ NCryptCreateProtectionDescriptor(
+     _In_            LPCWSTR                             pwszDescriptorString,
+                     DWORD                               dwFlags,
+-    _Out_           NCRYPT_DESCRIPTOR_HANDLE            *phDescriptor
++    _Out_           _Win32_RAIIFree_(NCryptCloseProtectionDescriptor) NCRYPT_DESCRIPTOR_HANDLE            *phDescriptor
+     );
+ 
+ //
+@@ -274,6 +286,7 @@ NCryptCreateProtectionDescriptor(
+ // value is a name registered by NCryptRegisterProtectionDescriptorName()
+ //
+ #define NCRYPT_NAMED_DESCRIPTOR_FLAG                    0x00000001
++_Win32_SupportedOS_Windows8_
+ 
+ /****************************************************************************
+  NCryptCloseProtectionDescriptor
+@@ -354,6 +367,7 @@ NCryptCloseProtectionDescriptor(
+ //      ----------------------------------------------  ----------- ----------------------------------
+ //
+ #define NCRYPT_PROTECTION_INFO_TYPE_DESCRIPTOR_STRING   0x00000001  // LPWSTR
++_Win32_SupportedOS_Windows8_
+ 
+ _Success_(return == 0)
+ _When_(dwInfoType == NCRYPT_PROTECTION_INFO_TYPE_DESCRIPTOR_STRING,
+@@ -366,6 +380,7 @@ NCryptGetProtectionDescriptorInfo(
+                     DWORD                               dwInfoType,
+     _Outptr_        void*                               *ppvInfo
+     );
++_Win32_SupportedOS_Windows8_
+ 
+ /****************************************************************************
+  NCryptProtectSecret
+@@ -434,6 +449,7 @@ NCryptProtectSecret(
+                     BYTE                                **ppbProtectedBlob,
+     _Out_           ULONG                               *pcbProtectedBlob
+     );
++_Win32_SupportedOS_Windows8_
+ 
+ 
+ /****************************************************************************
+@@ -587,6 +603,15 @@ typedef struct NCRYPT_PROTECT_STREAM_INFO {
+     PFNCryptStreamOutputCallback        pfnStreamOutput;
+     void                                *pvCallbackCtxt;
+ } NCRYPT_PROTECT_STREAM_INFO;
++#if defined(WIN32METADATA) && defined(__clang__)
++_Win32_SupportedOS_Windows8_
++SECURITY_STATUS
++WINAPI
++NCryptStreamClose(
++    _In_            NCRYPT_STREAM_HANDLE                hStream
++    );
++#endif
++_Win32_SupportedOS_Windows8_
+ 
+ /****************************************************************************
+  NCryptStreamOpenToProtect
+@@ -634,8 +659,9 @@ NCryptStreamOpenToProtect(
+                     DWORD                               dwFlags,
+     _In_opt_        HWND                    hWnd,
+     _In_            NCRYPT_PROTECT_STREAM_INFO          *pStreamInfo,
+-    _Out_           NCRYPT_STREAM_HANDLE                *phStream
++    _Out_           _Win32_RAIIFree_(NCryptStreamClose) NCRYPT_STREAM_HANDLE                *phStream
+     );
++_Win32_SupportedOS_Windows8_
+ 
+ /****************************************************************************
+  NCryptStreamOpenToUnprotect
+@@ -678,7 +704,7 @@ NCryptStreamOpenToUnprotect(
+     _In_            NCRYPT_PROTECT_STREAM_INFO          *pStreamInfo,
+                     DWORD                               dwFlags,
+     _In_opt_        HWND                hWnd,
+-    _Out_           NCRYPT_STREAM_HANDLE                *phStream
++    _Out_           _Win32_RAIIFree_(NCryptStreamClose) NCRYPT_STREAM_HANDLE                *phStream
+     );
+ 
+ #if (NTDDI_VERSION >= NTDDI_WINTHRESHOLD)
+@@ -795,10 +821,11 @@ NCryptStreamOpenToUnprotectEx(
+     _In_            NCRYPT_PROTECT_STREAM_INFO_EX       *pStreamInfo,
+                     DWORD                               dwFlags,
+     _In_opt_        HWND                                hWnd,
+-    _Out_           NCRYPT_STREAM_HANDLE                *phStream
++    _Out_           _Win32_RAIIFree_(NCryptStreamClose) NCRYPT_STREAM_HANDLE                *phStream
+ );
+ 
+ #endif
++_Win32_SupportedOS_Windows8_
+ 
+ /****************************************************************************
+  NCryptStreamUpdate
+@@ -846,6 +873,7 @@ NCryptStreamUpdate(
+                     SIZE_T                              cbData,
+                     BOOL                                fFinal
+     );
++_Win32_SupportedOS_Windows8_
+ 
+ /****************************************************************************
+  NCryptStreamClose

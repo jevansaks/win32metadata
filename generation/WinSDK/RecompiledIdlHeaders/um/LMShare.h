@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0001    // Increment this if a change has global effects
 
 Copyright (c) 1990-1999  Microsoft Corporation
@@ -46,6 +47,7 @@ extern "C" {
 #endif
 
 #include <lmcons.h>
+_Win32_SupportedOS_WindowsXP_
 
 //
 // Function Prototypes - Share
@@ -62,6 +64,7 @@ NetShareAdd(
     LPBYTE buf,
     _Out_opt_ LPDWORD parm_err
     );
+_Win32_SupportedOS_WindowsXP_
 
 _Check_return_
 _Success_( return == 0 || return == ERROR_MORE_DATA )
@@ -98,6 +101,7 @@ NetShareEnumSticky(
     _Out_ LPDWORD totalentries,
     _Inout_opt_ LPDWORD resume_handle
     );
+_Win32_SupportedOS_WindowsXP_
 
 _Check_return_
 _Success_( return == 0 || return == ERROR_MORE_DATA )
@@ -115,6 +119,7 @@ NetShareGetInfo(
     _When_( level == 1005, _Outptr_result_bytebuffer_(sizeof(SHARE_INFO_1005)) )
     LPBYTE *bufptr
     );
+_Win32_SupportedOS_WindowsXP_
 
 _Check_return_
 NET_API_STATUS NET_API_FUNCTION
@@ -133,6 +138,7 @@ NetShareSetInfo(
     LPBYTE  buf,
     _Out_opt_ LPDWORD parm_err
     );
+_Win32_SupportedOS_WindowsXP_
 
 _Check_return_
 NET_API_STATUS NET_API_FUNCTION
@@ -149,6 +155,7 @@ NetShareDelSticky(
     _In_ LMSTR netname,
     _Reserved_ DWORD reserved
     );
+_Win32_SupportedOS_WindowsXP_
 
 _Check_return_
 NET_API_STATUS NET_API_FUNCTION
@@ -413,6 +420,7 @@ typedef struct _SERVER_ALIAS_INFO_0 {
 
 #ifndef _LMSESSION_
 #define _LMSESSION_
+_Win32_SupportedOS_WindowsXP_
 
 //
 // Function Prototypes Session
@@ -436,6 +444,7 @@ NetSessionEnum(
     _Out_ LPDWORD totalentries,
     _Inout_opt_ LPDWORD resume_handle
     );
+_Win32_SupportedOS_WindowsXP_
 
 _Check_return_
 NET_API_STATUS NET_API_FUNCTION
@@ -444,6 +453,7 @@ NetSessionDel(
     _In_opt_ LMSTR UncClientName,
     _In_opt_ LMSTR username
     );
+_Win32_SupportedOS_WindowsXP_
 
 _Check_return_
 _Success_( return == 0 )
@@ -528,6 +538,7 @@ typedef struct _SESSION_INFO_502 {
 #ifndef _LMCONNECTION_
 
 #define _LMCONNECTION_
+_Win32_SupportedOS_WindowsXP_
 
 //
 // Function Prototypes - CONNECTION
@@ -575,6 +586,7 @@ typedef struct _CONNECTION_INFO_1 {
 
 #ifndef _LMFILE_
 #define _LMFILE_
+_Win32_SupportedOS_WindowsXP_
 
 //
 // Function Prototypes - FILE
@@ -586,6 +598,7 @@ NetFileClose(
     _In_opt_ LMSTR servername,
     _In_ DWORD fileid
     );
+_Win32_SupportedOS_WindowsXP_
 
 _Check_return_
 _Success_( return == 0 || return == ERROR_MORE_DATA )
@@ -603,6 +616,7 @@ NetFileEnum(
     _Out_ LPDWORD totalentries,
     _Inout_opt_ PDWORD_PTR resume_handle
     );
+_Win32_SupportedOS_WindowsXP_
 
 _Check_return_
 _Success_( return == 0)
@@ -657,3 +671,19 @@ typedef struct _FILE_INFO_3 {
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM) */
 #pragma endregion
 
+#ifndef _WIN32METADATA_LMSHARE_NATIVE_C_64_GROUPS_
+#define _WIN32METADATA_LMSHARE_NATIVE_C_64_GROUPS_
+_Win32_FlagsEnum_(SHARE_TYPE, unsigned int, STYPE_DISKTREE, STYPE_PRINTQ, STYPE_DEVICE, STYPE_IPC, STYPE_SPECIAL, STYPE_TEMPORARY, STYPE_MASK);
+_Win32_AnnotateField_(SHARE_INFO_501::shi501_type, _Win32_AssociatedEnum_(SHARE_TYPE));
+_Win32_AnnotateField_(SHARE_INFO_2::shi2_type, _Win32_AssociatedEnum_(SHARE_TYPE));
+_Win32_AnnotateField_(SHARE_INFO_1::shi1_type, _Win32_AssociatedEnum_(SHARE_TYPE));
+_Win32_AnnotateField_(SHARE_INFO_502::shi502_type, _Win32_AssociatedEnum_(SHARE_TYPE));
+_Win32_AnnotateField_(CONNECTION_INFO_1::coni1_type, _Win32_AssociatedEnum_(SHARE_TYPE));
+_Win32_AnnotateField_(SHARE_INFO_503::shi503_type, _Win32_AssociatedEnum_(SHARE_TYPE));
+_Win32_Enum_(SESSION_INFO_USER_FLAGS, unsigned int, SESS_GUEST, SESS_NOENCRYPTION);
+_Win32_AnnotateField_(SESSION_INFO_502::sesi502_user_flags, _Win32_AssociatedEnum_(SESSION_INFO_USER_FLAGS));
+_Win32_AnnotateField_(SESSION_INFO_2::sesi2_user_flags, _Win32_AssociatedEnum_(SESSION_INFO_USER_FLAGS));
+_Win32_AnnotateField_(SESSION_INFO_1::sesi1_user_flags, _Win32_AssociatedEnum_(SESSION_INFO_USER_FLAGS));
+_Win32_FlagsEnum_(FILE_INFO_FLAGS_PERMISSIONS, unsigned int, PERM_FILE_READ, PERM_FILE_WRITE, PERM_FILE_CREATE);
+_Win32_AnnotateField_(FILE_INFO_3::fi3_permissions, _Win32_AssociatedEnum_(FILE_INFO_FLAGS_PERMISSIONS));
+#endif

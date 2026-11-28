@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /***************************************************************************
 
 Copyright (c) 2002 Microsoft Corporation
@@ -92,6 +93,12 @@ typedef struct _WINUSB_PIPE_INFORMATION_EX {
     ULONG          MaximumBytesPerInterval;
 } WINUSB_PIPE_INFORMATION_EX, *PWINUSB_PIPE_INFORMATION_EX;
 
+
+#ifndef _WIN32METADATA_WINUSBIO_WINUSB_2_GROUPS_
+#define _WIN32METADATA_WINUSBIO_WINUSB_2_GROUPS_
+_Win32_Enum_(WINUSB_PIPE_POLICY, unsigned int, SHORT_PACKET_TERMINATE, AUTO_CLEAR_STALL, PIPE_TRANSFER_TIMEOUT, IGNORE_SHORT_PACKETS, ALLOW_PARTIAL_READS, AUTO_FLUSH, RAW_IO, MAXIMUM_TRANSFER_SIZE, RESET_PIPE_ON_RESUME);
+_Win32_Enum_(WINUSB_POWER_POLICY, unsigned int, AUTO_SUSPEND, SUSPEND_DELAY);
+#endif
 #endif // (NTDDI_VERSION >= NTDDI_WINXP)
 
 

@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 
 
 /* this ALWAYS GENERATED file contains the definitions for the interfaces */
@@ -255,6 +256,10 @@ EXTERN_C const IID IID_IDiscRecorder;
         virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE Close( void) = 0;
         
     };
+_Win32_AnnotateParameter_(IDiscRecorder::QueryMediaType, fMediaFlags, _Win32_AssociatedEnum_(MEDIA_FLAGS));
+_Win32_AnnotateParameter_(IDiscRecorder::QueryMediaType, fMediaType, _Win32_AssociatedEnum_(MEDIA_TYPES));
+_Win32_AnnotateParameter_(IDiscRecorder::GetRecorderType, fTypeCode, _Win32_AssociatedEnum_(RECORDER_TYPES));
+
     
     
 #else 	/* C style interface */

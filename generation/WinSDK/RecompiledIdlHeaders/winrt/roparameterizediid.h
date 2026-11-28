@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 // Copyright (C) Microsoft Corporation. All rights reserved.
 
 #if defined(_MSC_VER)
@@ -64,6 +65,7 @@ struct IRoMetaDataLocator
         _In_ IRoSimpleMetaDataBuilder&   metaDataDestination
     ) const = 0;
 };
+_Win32_SupportedOS_Windows8_
 
 STDAPI
 RoGetParameterizedTypeInstanceIID(
@@ -73,11 +75,13 @@ RoGetParameterizedTypeInstanceIID(
     _Out_ GUID* iid,
     _Outptr_opt_ ROPARAMIIDHANDLE* pExtra
     );
+_Win32_SupportedOS_Windows8_
 
 STDAPI_(void)
 RoFreeParameterizedTypeExtra(
     _In_ ROPARAMIIDHANDLE extra
     );
+_Win32_SupportedOS_Windows8_
 
 STDAPI_(PCSTR)
 RoParameterizedTypeExtraGetTypeSignature(

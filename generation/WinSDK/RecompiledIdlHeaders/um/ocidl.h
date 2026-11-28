@@ -341,6 +341,7 @@ extern "C"{
 /* interface __MIDL_itf_ocidl_0000_0000 */
 /* [local] */ 
 
+#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 //+-------------------------------------------------------------------------
 //
@@ -616,6 +617,15 @@ void __RPC_STUB IEnumConnections_RemoteNext_Stub(
 
 #endif 	/* __IEnumConnections_INTERFACE_DEFINED__ */
 
+
+/* interface __MIDL_itf_ocidl_0000_0002 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_METHOD_(IEnumConnections::Next, _Win32_PreserveResult_);
+
+
+extern RPC_IF_HANDLE __MIDL_itf_ocidl_0000_0002_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ocidl_0000_0002_v0_0_s_ifspec;
 
 #ifndef __IConnectionPoint_INTERFACE_DEFINED__
 #define __IConnectionPoint_INTERFACE_DEFINED__
@@ -914,6 +924,15 @@ void __RPC_STUB IEnumConnectionPoints_RemoteNext_Stub(
 
 #endif 	/* __IEnumConnectionPoints_INTERFACE_DEFINED__ */
 
+
+/* interface __MIDL_itf_ocidl_0000_0004 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_METHOD_(IEnumConnectionPoints::Next, _Win32_PreserveResult_);
+
+
+extern RPC_IF_HANDLE __MIDL_itf_ocidl_0000_0004_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ocidl_0000_0004_v0_0_s_ifspec;
 
 #ifndef __IConnectionPointContainer_INTERFACE_DEFINED__
 #define __IConnectionPointContainer_INTERFACE_DEFINED__
@@ -1904,6 +1923,15 @@ EXTERN_C const IID IID_IOleControlSite;
 #endif 	/* __IOleControlSite_INTERFACE_DEFINED__ */
 
 
+/* interface __MIDL_itf_ocidl_0000_0011 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_PARAMETER_(IOleControlSite::TransformCoords, dwFlags, _Win32_AssociatedEnum_(XFORMCOORDS));
+
+
+extern RPC_IF_HANDLE __MIDL_itf_ocidl_0000_0011_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ocidl_0000_0011_v0_0_s_ifspec;
+
 #ifndef __IPropertyPage_INTERFACE_DEFINED__
 #define __IPropertyPage_INTERFACE_DEFINED__
 
@@ -2460,6 +2488,15 @@ EXTERN_C const IID IID_IPropertyPageSite;
 #endif 	/* __IPropertyPageSite_INTERFACE_DEFINED__ */
 
 
+/* interface __MIDL_itf_ocidl_0000_0014 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_PARAMETER_(IPropertyPageSite::OnStatusChange, dwFlags, _Win32_AssociatedEnum_(PROPPAGESTATUS));
+
+
+extern RPC_IF_HANDLE __MIDL_itf_ocidl_0000_0014_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ocidl_0000_0014_v0_0_s_ifspec;
+
 #ifndef __IPropertyNotifySink_INTERFACE_DEFINED__
 #define __IPropertyNotifySink_INTERFACE_DEFINED__
 
@@ -2846,6 +2883,15 @@ void __RPC_STUB IPersistMemory_RemoteSave_Stub(
 #endif 	/* __IPersistMemory_INTERFACE_DEFINED__ */
 
 
+/* interface __MIDL_itf_ocidl_0000_0017 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_METHOD_(IPersistMemory::IsDirty, _Win32_PreserveResult_);
+
+
+extern RPC_IF_HANDLE __MIDL_itf_ocidl_0000_0017_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ocidl_0000_0017_v0_0_s_ifspec;
+
 #ifndef __IPersistStreamInit_INTERFACE_DEFINED__
 #define __IPersistStreamInit_INTERFACE_DEFINED__
 
@@ -2992,6 +3038,15 @@ EXTERN_C const IID IID_IPersistStreamInit;
 
 #endif 	/* __IPersistStreamInit_INTERFACE_DEFINED__ */
 
+
+/* interface __MIDL_itf_ocidl_0000_0018 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_METHOD_(IPersistStreamInit::IsDirty, _Win32_PreserveResult_);
+
+
+extern RPC_IF_HANDLE __MIDL_itf_ocidl_0000_0018_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ocidl_0000_0018_v0_0_s_ifspec;
 
 #ifndef __IPersistPropertyBag_INTERFACE_DEFINED__
 #define __IPersistPropertyBag_INTERFACE_DEFINED__
@@ -6333,6 +6388,15 @@ void __RPC_STUB IEnumOleUndoUnits_RemoteNext_Stub(
 #endif 	/* __IEnumOleUndoUnits_INTERFACE_DEFINED__ */
 
 
+/* interface __MIDL_itf_ocidl_0000_0033 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_METHOD_(IEnumOleUndoUnits::Next, _Win32_PreserveResult_);
+
+
+extern RPC_IF_HANDLE __MIDL_itf_ocidl_0000_0033_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ocidl_0000_0033_v0_0_s_ifspec;
+
 #ifndef __IOleUndoManager_INTERFACE_DEFINED__
 #define __IOleUndoManager_INTERFACE_DEFINED__
 
@@ -6570,6 +6634,15 @@ EXTERN_C const IID IID_IOleUndoManager;
 #endif 	/* __IOleUndoManager_INTERFACE_DEFINED__ */
 
 
+/* interface __MIDL_itf_ocidl_0000_0034 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_METHOD_(IOleUndoManager::Close, _Win32_PreserveResult_);
+
+
+extern RPC_IF_HANDLE __MIDL_itf_ocidl_0000_0034_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ocidl_0000_0034_v0_0_s_ifspec;
+
 #ifndef __IPointerInactive_INTERFACE_DEFINED__
 #define __IPointerInactive_INTERFACE_DEFINED__
 
@@ -6720,6 +6793,15 @@ EXTERN_C const IID IID_IPointerInactive;
 
 #endif 	/* __IPointerInactive_INTERFACE_DEFINED__ */
 
+
+/* interface __MIDL_itf_ocidl_0000_0035 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_PARAMETER_(IPointerInactive::GetActivationPolicy, pdwPolicy, _Win32_AssociatedEnum_(POINTERINACTIVE));
+
+
+extern RPC_IF_HANDLE __MIDL_itf_ocidl_0000_0035_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_ocidl_0000_0035_v0_0_s_ifspec;
 
 #ifndef __IObjectWithSite_INTERFACE_DEFINED__
 #define __IObjectWithSite_INTERFACE_DEFINED__
@@ -7387,6 +7469,7 @@ EXTERN_C const IID IID_IPersistPropertyBag2;
 /* interface __MIDL_itf_ocidl_0000_0039 */
 /* [local] */ 
 
+_WIN32META_ANNOTATE_METHOD_(IPersistPropertyBag2::IsDirty, _Win32_PreserveResult_);
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM) */
 #pragma endregion
 #pragma region Desktop Family or OneCore Family

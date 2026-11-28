@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 cpp_quote("#include <winapifamily.h>")
 cpp_quote("#include <win32metadata_annotations.h>")
 cpp_quote("#if defined(__cplusplus) && !defined(CINTERFACE)")
@@ -408,6 +409,7 @@ interface IEnumUnknown : IUnknown
     HRESULT Clone(
         [out] IEnumUnknown **ppenum);
 }
+_Win32_AnnotateMethod_(IEnumUnknown::Next, _Win32_PreserveResult_)
 
 [
     object,
@@ -443,6 +445,8 @@ interface IEnumString : IUnknown
     HRESULT Clone(
         [out] IEnumString **ppenum);
 }
+_Win32_AnnotateMethod_(IEnumString::Next, _Win32_PreserveResult_)
+_Win32_AnnotateMethod_(IEnumString::Skip, _Win32_PreserveResult_)
 
 [
     object,
@@ -477,6 +481,8 @@ interface ISequentialStream : IUnknown
         [in] ULONG cb,
         [out] ULONG *pcbWritten);
 }
+_Win32_AnnotateMethod_(ISequentialStream::Read, _Win32_PreserveResult_)
+_Win32_AnnotateMethod_(ISequentialStream::Write, _Win32_PreserveResult_)
 
 
 

@@ -453,6 +453,8 @@ struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID iid, _COM_Outp
                 File.ReadAllBytes(input));
             string converted = Path.Combine(fixture.Path, "converted");
             Directory.CreateDirectory(converted);
+            File.Copy(Path.Combine(MidlHeaderTests.SharedHeaders(), "win32metadata_annotations.h"),
+                Path.Combine(converted, "win32metadata_annotations.h"));
             var pending = new Queue<string>(new[] { "dxgi.idl" });
             var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             string command = "";
@@ -1104,6 +1106,8 @@ struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID iid, _COM_Outp
             }
             string converted = System.IO.Path.Combine(fixture.Path, "converted");
             Directory.CreateDirectory(converted);
+            File.Copy(Path.Combine(MidlHeaderTests.SharedHeaders(), "win32metadata_annotations.h"),
+                Path.Combine(converted, "win32metadata_annotations.h"));
             string idl = System.IO.Path.Combine(converted, owner.ToLowerInvariant() + ".idl");
             string header = System.IO.Path.Combine(fixture.Headers, "um", owner.ToLowerInvariant() + ".h");
             if (owner == "ObjIdl")
@@ -1138,10 +1142,10 @@ struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID iid, _COM_Outp
             if (authoredResult)
             {
                 string generated = File.ReadAllText(header);
-                int marker = generated.IndexOf("_Win32_PreserveResult_", StringComparison.Ordinal);
-                Assert.IsTrue(marker >= 0, "MIDL must preserve the authored result marker.");
-                string method = generated.Substring(generated.LastIndexOf("virtual", marker, StringComparison.Ordinal));
-                method = method.Substring(0, method.IndexOf(" = 0;", StringComparison.Ordinal) + " = 0;".Length);
+                var declarations = Regex.Matches(generated, @"virtual\b[^;{}]*?\bRead\s*\([^;{}]*?=\s*0\s*;");
+                Assert.AreEqual(1, declarations.Count, "Select the real Read declaration, not an earlier result carrier.");
+                string method = declarations[0].Value;
+                StringAssert.Contains(method, "_Win32_PreserveResult_", "MIDL must preserve the authored result marker.");
                 using var resultFixture = new LastErrorHeaderTests.Fixture();
                 var scraped = resultFixture.Scrape("typedef long HRESULT; typedef unsigned long ULONG;\n" +
                     "#define STDMETHODCALLTYPE __stdcall\n" +
@@ -1320,7 +1324,7 @@ struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID iid, _COM_Outp
                 "#else\nreturn ITransferSource_OpenItem(source, item, 0, riid, output) + ITransferDestination_CreateItem(destination, 0, 0, 0, 0, riid, output, riid, resources);\n" +
                 "#endif\n}\n");
             string obj = Path.Combine(fixture.Path, "native.obj");
-            // Use identical include paths for old/new headers; MSVC orders UUID COMDATs by header identity.
+            // Keep include paths identical and package independent fixture globals as COMDATs.
             string replacements = string.Join("; ", new[] { "ShObjIdl_core.h", "ShlObj_core.h",
                 "propsys.h", "shellapi.h", "Shlwapi.h" }.Select(owner =>
                 "Copy-Item -LiteralPath " + Quote(Path.Combine(Root(), "generation", "WinSDK", "RecompiledIdlHeaders", "um", owner)) +
@@ -1329,7 +1333,7 @@ struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID iid, _COM_Outp
                 "; $vc = Get-VcDirPath -Arch " + Quote(arch) + " -HostArch x64; " +
                 "$compiler = Join-Path $vc 'cl.exe'; $vcInclude = Join-Path $vc '..\\..\\..\\include'; " +
                 "foreach ($mode in 'baseline', 'ordinary', 'metadata') { if ($mode -eq 'ordinary') { " + replacements + " }; " +
-                "& $compiler /nologo /c " + language + " " + Quote(source) + " " + Quote("/Fo" + obj) +
+                "& $compiler /nologo /c /Gw " + language + " " + Quote(source) + " " + Quote("/Fo" + obj) +
                 " " + Quote("/I" + Path.Combine(fixture.Headers, "um")) + " " + Quote("/I" + fixture.Headers) +
                 " \"/I$vcInclude\" " + Quote("/I" + Path.Combine(include, "um")) +
                 " " + Quote("/I" + Path.Combine(include, "shared")) + " " + Quote("/I" + Path.Combine(include, "ucrt")) +
@@ -1345,8 +1349,8 @@ struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID iid, _COM_Outp
                 Assert.AreEqual(arch == "x86" ? 0x14c : arch == "x64" ? 0x8664 : 0xaa64, BitConverter.ToUInt16(bytes, 0));
                 Array.Clear(bytes, 4, 4);
             }
-            CollectionAssert.AreEqual(outputs[0], outputs[1]);
-            CollectionAssert.AreEqual(outputs[1], outputs[2]);
+            NativeCoffAssertions.CodeDataAndLinkageEqual(outputs[0], outputs[1]);
+            NativeCoffAssertions.CodeDataAndLinkageEqual(outputs[1], outputs[2]);
         }
 
         [TestMethod]
@@ -1357,27 +1361,31 @@ struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID iid, _COM_Outp
             string include = Path.Combine(sdk, "c", "include", "10.0.28000.0");
             string patches = Path.Combine(Root(), "generation", "WinSDK", "patches");
             foreach (string owner in new[] { "ShObjIdl_core.idl", "ShObjIdl.idl", "ShlObj_core.h", "ShlObj.h",
-                "propsys.idl", "shellapi.h", "Shlwapi.h", "shdeprecated.h" })
+                "propsys.idl", "shellapi.h", "Shlwapi.h", "shdeprecated.h", "ObjIdlbase.Idl" })
                 fixture.Header(owner, File.ReadAllBytes(Path.Combine(include, "um", owner)));
             const string selections = "pre-midl/ShObjIdl_core.idl.patch','post-midl/ShlObj_core.h.patch'," +
                 "'pre-midl/propsys.idl.patch','post-midl/shellapi.h.patch','post-midl/Shlwapi.h.patch'," +
-                "'pre-midl/ShObjIdl.idl.patch','post-midl/ShlObj.h.patch','post-midl/shdeprecated.h.patch";
+                "'pre-midl/ShObjIdl.idl.patch','post-midl/ShlObj.h.patch','post-midl/shdeprecated.h.patch','pre-midl/ObjIdlbase.Idl.patch";
             fixture.Apply("pre-midl", selections, true, patchRoot: patches, midlInputRoot: include);
             fixture.Apply("post-midl", selections, true, patchRoot: patches, midlInputRoot: include);
             foreach (string owner in new[] { "ShObjIdl_core.idl", "ShObjIdl.idl", "ShlObj_core.h", "ShlObj.h",
-                "propsys.idl", "shellapi.h", "Shlwapi.h", "shdeprecated.h" })
+                "propsys.idl", "shellapi.h", "Shlwapi.h", "shdeprecated.h", "ObjIdlbase.Idl" })
                 CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK",
                     "RecompiledIdlHeaders", "um", owner)), File.ReadAllBytes(Path.Combine(fixture.Headers, "um", owner)), owner);
 
             string converted = Path.Combine(fixture.Path, "converted");
             Directory.CreateDirectory(converted);
+            File.Copy(Path.Combine(MidlHeaderTests.SharedHeaders(), "win32metadata_annotations.h"),
+                Path.Combine(converted, "win32metadata_annotations.h"));
             string command = "";
             foreach (string dependency in new[] { "wtypesbase.idl", "wtypes.idl", "unknwnbase.idl", "unknwn.idl",
                 "objidlbase.idl", "objidl.idl", "oaidl.idl", "oleidl.idl", "servprov.idl", "urlmon.idl", "ocidl.idl",
                 "msxml.idl", "propidlbase.idl", "propidl.idl", "StructuredQueryCondition.idl", "shtypes.idl",
-                "comcat.idl", "propsys.idl", "ObjectArray.idl", "shobjidl_core.idl", "docobj.idl", "prsht.idl", "shobjidl.idl" })
+                "comcat.idl", "propsys.idl", "ObjectArray.idl", "shobjidl_core.idl", "docobj.idl", "prsht.idl", "shobjidl.idl",
+                "xmldom.idl", "xmldso.idl" })
             {
-                string input = dependency == "shobjidl_core.idl" || dependency == "shobjidl.idl" || dependency == "propsys.idl" ? Path.Combine(fixture.Headers, "um", dependency) :
+                string input = dependency == "shobjidl_core.idl" || dependency == "shobjidl.idl" ||
+                    dependency == "propsys.idl" || dependency == "objidlbase.idl" ? Path.Combine(fixture.Headers, "um", dependency) :
                     Path.Combine(include, dependency.StartsWith("wtypes", StringComparison.Ordinal) ? "shared" : "um", dependency);
                 command += "& " + Quote(Script("ConvertMidlAttributesToSalAnnotations.ps1")) + " " +
                     Quote(input) + " " + Quote(Path.Combine(converted, dependency)) + "; ";
@@ -1515,6 +1523,8 @@ struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID iid, _COM_Outp
 
             string converted = Path.Combine(fixture.Path, "converted");
             Directory.CreateDirectory(converted);
+            File.Copy(Path.Combine(Root(), "generation", "WinSDK", "RecompiledIdlHeaders", "shared",
+                "win32metadata_annotations.h"), Path.Combine(converted, "win32metadata_annotations.h"));
             string command = "";
             foreach (string dependency in new[] { "wtypesbase.idl", "wtypes.idl", "unknwnbase.idl", "unknwn.idl",
                 "objidlbase.idl", "objidl.idl", "oaidl.idl", "oleidl.idl", "servprov.idl", "urlmon.idl", "ocidl.idl" })
@@ -1735,8 +1745,8 @@ struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID iid, _COM_Outp
                 Assert.AreEqual(arch == "x86" ? 0x14c : arch == "x64" ? 0x8664 : 0xaa64, BitConverter.ToUInt16(bytes, 0));
                 Array.Clear(bytes, 4, 4);
             }
-            CollectionAssert.AreEqual(outputs[0], outputs[1]);
-            CollectionAssert.AreEqual(outputs[1], outputs[2]);
+            NativeCoffAssertions.CodeDataAndLinkageEqual(outputs[0], outputs[1]);
+            NativeCoffAssertions.CodeDataAndLinkageEqual(outputs[1], outputs[2]);
         }
 
         [TestMethod]
@@ -1912,8 +1922,8 @@ struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID iid, _COM_Outp
                 Assert.AreEqual(arch == "x86" ? 0x14c : arch == "x64" ? 0x8664 : 0xaa64, BitConverter.ToUInt16(bytes, 0));
                 Array.Clear(bytes, 4, 4);
             }
-            CollectionAssert.AreEqual(outputs[0], outputs[1]);
-            CollectionAssert.AreEqual(outputs[1], outputs[2]);
+            NativeCoffAssertions.CodeDataAndLinkageEqual(outputs[0], outputs[1]);
+            NativeCoffAssertions.CodeDataAndLinkageEqual(outputs[1], outputs[2]);
         }
 
         [DataTestMethod]
@@ -2181,6 +2191,8 @@ struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID iid, _COM_Outp
         public void AudioOutput_RealSdkPatchesAndMidlReplayEveryPhysicalOwner()
         {
             using var fixture = new Fixture();
+            var idls = AudioComOutputHeaderTests.Idls.Concat(new[] { "axcore.idl", "axextend.idl", "dyngraph.idl", "icodecapi.idl" })
+                .Distinct(StringComparer.OrdinalIgnoreCase).ToArray();
             string sdk = LastErrorHeaderTests.SdkPackagePath();
             string include = Path.Combine(sdk, "c", "include", "10.0.28000.0");
             string patches = Path.Combine(Root(), "generation", "WinSDK", "patches");
@@ -2194,7 +2206,7 @@ struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID iid, _COM_Outp
                 "if (Select-String -LiteralPath (Join-Path " + Quote(include) + " $header) " +
                 "-SimpleMatch 'File created by MIDL compiler' -Quiet) { throw \"Direct owner is generated: $header\" } }");
             Assert.AreEqual(0, ownership.ExitCode, ownership.Output);
-            foreach (string path in AudioComOutputHeaderTests.Idls.Select(name => "um/" + name)
+            foreach (string path in idls.Select(name => "um/" + name)
                 .Concat(new[] { "um/dsound.h", "shared/ksproxy.h" }))
             {
                 byte[] original = File.ReadAllBytes(Path.Combine(include, path.Replace('/', Path.DirectorySeparatorChar)));
@@ -2206,7 +2218,7 @@ struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID iid, _COM_Outp
             }
             foreach (string absent in new[] { "um/dsound.idl", "shared/ksproxy.idl" })
                 Assert.IsFalse(File.Exists(Path.Combine(include, absent.Replace('/', Path.DirectorySeparatorChar))));
-            string selection = string.Join("','", AudioComOutputHeaderTests.Idls.Select(name => "pre-midl/" + name + ".patch")
+            string selection = string.Join("','", idls.Select(name => "pre-midl/" + name + ".patch")
                 .Concat(new[] { "post-midl/dsound.h.patch", "post-midl/ksproxy.h.patch" }));
             foreach (var owner in AudioComOutputHeaderTests.Owners.Where(owner =>
                 owner.Path != "um/dsound.h" && owner.Path != "shared/ksproxy.h"))
@@ -2225,20 +2237,20 @@ struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID iid, _COM_Outp
             }
             fixture.Apply("pre-midl", selection, true, patchRoot: patches, midlInputRoot: include);
             fixture.Apply("post-midl", selection, true, patchRoot: patches, midlInputRoot: include);
-            foreach (string idl in AudioComOutputHeaderTests.Idls)
+            foreach (string idl in idls)
                 CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(Root(), "generation", "WinSDK",
                     "RecompiledIdlHeaders", "um", idl)), File.ReadAllBytes(Path.Combine(fixture.Headers, "um", idl)), idl);
 
             string converted = Path.Combine(fixture.Path, "converted");
             Directory.CreateDirectory(converted);
-            var pending = new System.Collections.Generic.Queue<string>(AudioComOutputHeaderTests.Idls.Concat(new[] { "strmif.idl" }));
+            var pending = new System.Collections.Generic.Queue<string>(idls.Concat(new[] { "strmif.idl" }));
             var seen = new System.Collections.Generic.HashSet<string>(StringComparer.OrdinalIgnoreCase);
             string command = "";
             while (pending.Count > 0)
             {
                 string name = pending.Dequeue();
                 if (!seen.Add(name)) continue;
-                string input = AudioComOutputHeaderTests.Idls.Contains(name, StringComparer.OrdinalIgnoreCase) ?
+                string input = idls.Contains(name, StringComparer.OrdinalIgnoreCase) ?
                     Path.Combine(fixture.Headers, "um", name) :
                     new[] { "um", "shared", "winrt" }.Select(area => Path.Combine(include, area, name)).Single(File.Exists);
                 foreach (Match match in Regex.Matches(File.ReadAllText(input),
@@ -2247,6 +2259,8 @@ struct IUnknown { virtual HRESULT __stdcall QueryInterface(REFIID iid, _COM_Outp
                 command += "& " + Quote(Script("ConvertMidlAttributesToSalAnnotations.ps1")) + " " +
                     Quote(input) + " " + Quote(Path.Combine(converted, name)) + "; ";
             }
+            File.Copy(Path.Combine(MidlHeaderTests.SharedHeaders(), "win32metadata_annotations.h"),
+                Path.Combine(converted, "win32metadata_annotations.h"));
             Assert.AreEqual(33, seen.Count, "Bounded actual selected/imported/included IDL closure.");
             var conversion = fixture.Run(command);
             Assert.AreEqual(0, conversion.ExitCode, conversion.Output);

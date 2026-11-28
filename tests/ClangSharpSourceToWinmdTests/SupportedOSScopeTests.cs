@@ -606,7 +606,7 @@ _Win32_SupportedOS_END_()
             using var fixture = new LastErrorHeaderTests.Fixture();
             string root = LastErrorHeaderTests.RepositoryRoot();
             string sdk = Path.Combine(root, "generation", "WinSDK");
-            string shipped = File.ReadAllText(Path.Combine(sdk, "RecompiledIdlHeaders", "um", "handleapi.h"));
+            string shipped = FullHeaderMigrationExperimentTests.ReadRecoveryText("RecompiledIdlHeaders/um/handleapi.h");
             int facts = Regex.Matches(shipped, @"(?m)^_Win32_SupportedOS_\w+_\r?$").Count;
             Assert.AreEqual(5, facts, "Factor only the five already reviewed availability facts, never version guards.");
             string scoped = Regex.Replace(shipped, @"(?m)^_Win32_SupportedOS_(\w+)_\r?\n([^;]+;)", match =>
@@ -618,8 +618,8 @@ _Win32_SupportedOS_END_()
                 ". '" + Path.Combine(root, "scripts", "CommonUtils.ps1").Replace("'", "''") +
                 "'; [IO.Path]::GetFullPath((Join-Path (Get-VcDirPath -Arch x64 -HostArch x64) '..\\..\\..\\include'))");
             Assert.AreEqual(0, vc.ExitCode, vc.Output);
-            string[] directories = { Path.Combine(sdk, "inc"), Path.Combine(sdk, "RecompiledIdlHeaders", "shared"),
-                Path.Combine(sdk, "RecompiledIdlHeaders", "um"), Path.Combine(include, "shared"),
+            // Isolate the five reviewed facts from unrelated migrations in SDK dependencies.
+            string[] directories = { Path.Combine(sdk, "inc"), Path.Combine(include, "shared"),
                 Path.Combine(include, "um"), Path.Combine(include, "ucrt"), vc.Output.Trim() };
             string settings = "--include-directory\n" + string.Join("\n", directories) +
                 "\n--traverse\n" + Path.Combine(fixture.DirectoryPath, "pilot.h") +
@@ -627,6 +627,8 @@ _Win32_SupportedOS_END_()
                 "\n" + Path.Combine(fixture.DirectoryPath, "cached.h");
             var headers = new Dictionary<string, string>
             {
+                ["win32metadata_annotations.h"] = File.ReadAllText(Path.Combine(sdk,
+                    "RecompiledIdlHeaders", "shared", "win32metadata_annotations.h")),
                 ["pilot.h"] = shipped,
                 ["repeat.h"] = "#if FIRST\n_Win32_SupportedOS_BEGIN_(Windows7)\nextern \"C\" int __stdcall FirstInstance(void);\n_Win32_SupportedOS_END_()\n" +
                     "#else\nextern \"C\" int __stdcall SecondInstance(void);\n#endif",

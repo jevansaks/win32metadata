@@ -2123,7 +2123,7 @@ EXTERN_C const IID IID_IStreamAsync;
         HRESULT ( STDMETHODCALLTYPE *Commit )( 
             __RPC__in IStreamAsync * This,
             /* [annotation][in] */ 
-            _In_  DWORD grfCommitFlags);
+            _In_ _Win32_AssociatedEnum_(STGC)  DWORD grfCommitFlags);
         
         DECLSPEC_XFGVIRT(IStream, Revert)
         HRESULT ( STDMETHODCALLTYPE *Revert )( 
@@ -2137,7 +2137,7 @@ EXTERN_C const IID IID_IStreamAsync;
             /* [annotation][in] */ 
             _In_  ULARGE_INTEGER cb,
             /* [annotation][in] */ 
-            _In_  DWORD dwLockType);
+            _In_ _Win32_AssociatedEnum_(LOCKTYPE)  DWORD dwLockType);
         
         DECLSPEC_XFGVIRT(IStream, UnlockRegion)
         HRESULT ( STDMETHODCALLTYPE *UnlockRegion )( 
@@ -2155,7 +2155,7 @@ EXTERN_C const IID IID_IStreamAsync;
             /* [annotation][out] */ 
             _Out_  STATSTG *pstatstg,
             /* [annotation][in] */ 
-            _In_  DWORD grfStatFlag);
+            _In_ _Win32_AssociatedEnum_(STATFLAG)  DWORD grfStatFlag);
         
         DECLSPEC_XFGVIRT(IStream, Clone)
         HRESULT ( STDMETHODCALLTYPE *Clone )( 

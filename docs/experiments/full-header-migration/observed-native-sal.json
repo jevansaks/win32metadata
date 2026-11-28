@@ -1,0 +1,38 @@
+[
+  {
+    "owner": "dispex",
+    "method": "GetNameSpaceParent",
+    "native": "virtual HRESULT STDMETHODCALLTYPE GetNameSpaceParent( \r\n            /* [out] */ __RPC__deref_out_opt IUnknown **ppunk) = 0;",
+    "converted": "virtual HRESULT STDMETHODCALLTYPE GetNameSpaceParent( \r\n            /* [annotation][out] */ \r\n            _Out_  IUnknown **ppunk) = 0;"
+  },
+  {
+    "owner": "dispex",
+    "method": "QueryErrorInfo",
+    "native": "virtual HRESULT STDMETHODCALLTYPE QueryErrorInfo( \r\n            /* [in] */ GUID guidErrorType,\r\n            /* [out] */ __RPC__deref_out_opt IDispError **ppde) = 0;",
+    "converted": "virtual HRESULT STDMETHODCALLTYPE QueryErrorInfo( \r\n            /* [annotation][in] */ \r\n            _In_  GUID guidErrorType,\r\n            /* [annotation][out] */ \r\n            _Out_  IDispError **ppde) = 0;"
+  },
+  {
+    "owner": "dispex",
+    "method": "GetNext",
+    "native": "virtual HRESULT STDMETHODCALLTYPE GetNext( \r\n            /* [out] */ __RPC__deref_out_opt IDispError **ppde) = 0;",
+    "converted": "virtual HRESULT STDMETHODCALLTYPE GetNext( \r\n            /* [annotation][out] */ \r\n            _Out_  IDispError **ppde) = 0;"
+  },
+  {
+    "owner": "docobj",
+    "method": "QueryStatus",
+    "native": "virtual /* [input_sync] */ HRESULT STDMETHODCALLTYPE QueryStatus( \r\n            /* [unique][in] */ __RPC__in_opt const GUID *pguidCmdGroup,\r\n            /* [in] */ ULONG cCmds,\r\n            /* [out][in][size_is] */ __RPC__inout_ecount_full(cCmds) OLECMD prgCmds[  ],\r\n            /* [unique][out][in] */ __RPC__inout_opt OLECMDTEXT *pCmdText) = 0;",
+    "converted": "virtual /* [input_sync] */ HRESULT STDMETHODCALLTYPE QueryStatus( \r\n            /* [annotation][unique][in] */ \r\n            _In_opt_  const GUID *pguidCmdGroup,\r\n            /* [annotation][in] */ \r\n            _In_  ULONG cCmds,\r\n            /* [annotation][out][in][size_is] */ \r\n            _Inout_updates_(cCmds)  OLECMD prgCmds[  ],\r\n            /* [annotation][unique][out][in] */ \r\n            _Inout_opt_  OLECMDTEXT *pCmdText) = 0;"
+  },
+  {
+    "owner": "bdaiface",
+    "method": "get_FrequencyMapping",
+    "native": "virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE get_FrequencyMapping( \r\n            /* [out] */ __RPC__out ULONG *ulCount,\r\n            /* [size_is][size_is][out] */ __RPC__out_ecount_full(1) ULONG **ppulList) = 0;",
+    "converted": "virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE get_FrequencyMapping( \r\n            /* [annotation][out] */ \r\n            _Out_  ULONG *ulCount,\r\n            /* [annotation][size_is][size_is][out] */ \r\n            _Out_  ULONG **ppulList) = 0;"
+  },
+  {
+    "owner": "bdaiface",
+    "method": "get_DefaultFrequencyMapping",
+    "native": "virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE get_DefaultFrequencyMapping( \r\n            /* [in] */ ULONG ulCountryCode,\r\n            /* [out] */ __RPC__out ULONG *pulCount,\r\n            /* [size_is][size_is][out] */ __RPC__out_ecount_full(1) ULONG **ppulList) = 0;",
+    "converted": "virtual /* [helpstring] */ HRESULT STDMETHODCALLTYPE get_DefaultFrequencyMapping( \r\n            /* [annotation][in] */ \r\n            _In_  ULONG ulCountryCode,\r\n            /* [annotation][out] */ \r\n            _Out_  ULONG *pulCount,\r\n            /* [annotation][size_is][size_is][out] */ \r\n            _Out_  ULONG **ppulList) = 0;"
+  }
+]

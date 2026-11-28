@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -125,6 +126,8 @@ extern "C" {
 
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows2000_
 _WINSOCK_DEPRECATED_BY("WSARecv()")
 #if(_WIN32_WINNT < 0x0600)
 int
@@ -161,6 +164,7 @@ typedef struct _TRANSMIT_FILE_BUFFERS {
 #define TF_USE_DEFAULT_WORKER 0x00
 #define TF_USE_SYSTEM_THREAD  0x10
 #define TF_USE_KERNEL_APC     0x20
+_Win32_SupportedOS_Windows81_
 
 BOOL
 PASCAL FAR
@@ -173,6 +177,7 @@ TransmitFile (
     _In_opt_ LPTRANSMIT_FILE_BUFFERS lpTransmitBuffers,
     _In_  DWORD dwReserved
     );
+_Win32_SupportedOS_Windows81_
 
 BOOL
 PASCAL FAR
@@ -186,6 +191,7 @@ AcceptEx (
     _Out_ LPDWORD lpdwBytesReceived,
     _Inout_ LPOVERLAPPED lpOverlapped
     );
+_Win32_SupportedOS_Windows81_
 
 VOID
 PASCAL FAR

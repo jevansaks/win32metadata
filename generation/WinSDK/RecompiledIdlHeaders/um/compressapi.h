@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -66,13 +67,14 @@ typedef enum {
     COMPRESS_INFORMATION_CLASS_BLOCK_SIZE,
     COMPRESS_INFORMATION_CLASS_LEVEL
 } COMPRESS_INFORMATION_CLASS;
+_Win32_SetLastError_
 
 // Compression routines
 
 BOOL
 WINAPI
 CreateCompressor (
-    _In_ DWORD Algorithm,
+    _Win32_AssociatedEnum_(COMPRESS_ALGORITHM) _In_ DWORD Algorithm,
     _In_opt_ PCOMPRESS_ALLOCATION_ROUTINES AllocationRoutines,
     _Out_ PCOMPRESSOR_HANDLE CompressorHandle
     );
@@ -85,6 +87,8 @@ SetCompressorInformation (
     _In_reads_bytes_(CompressInformationSize) LPCVOID CompressInformation,
     _In_ SIZE_T CompressInformationSize
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows8_
 
 BOOL
 WINAPI
@@ -94,6 +98,8 @@ QueryCompressorInformation (
     _Out_writes_bytes_(CompressInformationSize) PVOID CompressInformation,
     _In_ SIZE_T CompressInformationSize
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows8_
 
 BOOL
 WINAPI
@@ -105,25 +111,30 @@ Compress (
     _In_ SIZE_T CompressedBufferSize,
     _Out_ PSIZE_T CompressedDataSize
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows8_
 
 BOOL
 WINAPI
 ResetCompressor (
     _In_ COMPRESSOR_HANDLE CompressorHandle
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows8_
 
 BOOL
 WINAPI
 CloseCompressor (
     _In_ COMPRESSOR_HANDLE CompressorHandle
     );
+_Win32_SetLastError_
 
 // Decompression routines
 
 BOOL
 WINAPI
 CreateDecompressor (
-    _In_ DWORD Algorithm,
+    _Win32_AssociatedEnum_(COMPRESS_ALGORITHM) _In_ DWORD Algorithm,
     _In_opt_ PCOMPRESS_ALLOCATION_ROUTINES AllocationRoutines,
     _Out_ PDECOMPRESSOR_HANDLE DecompressorHandle
     );
@@ -136,6 +147,8 @@ SetDecompressorInformation (
     _In_reads_bytes_(CompressInformationSize) LPCVOID CompressInformation,
     _In_ SIZE_T CompressInformationSize
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows8_
 
 BOOL
 WINAPI
@@ -145,6 +158,8 @@ QueryDecompressorInformation (
     _Out_writes_bytes_(CompressInformationSize) PVOID CompressInformation,
     _In_ SIZE_T CompressInformationSize
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows8_
 
 BOOL
 WINAPI
@@ -156,12 +171,16 @@ Decompress (
     _In_ SIZE_T UncompressedBufferSize,
     _Out_opt_ PSIZE_T UncompressedDataSize
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows8_
 
 BOOL
 WINAPI
 ResetDecompressor (
     _In_ DECOMPRESSOR_HANDLE DecompressorHandle
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows8_
 
 BOOL
 WINAPI
@@ -176,4 +195,9 @@ CloseDecompressor (
 }
 #endif
 
+#endif
+
+#ifndef _WIN32METADATA_COMPRESSAPI_SECURITY_SYSTEM_91_GROUPS_
+#define _WIN32METADATA_COMPRESSAPI_SECURITY_SYSTEM_91_GROUPS_
+_Win32_Enum_(COMPRESS_ALGORITHM, unsigned int, COMPRESS_ALGORITHM_MSZIP, COMPRESS_ALGORITHM_XPRESS, COMPRESS_ALGORITHM_XPRESS_HUFF, COMPRESS_ALGORITHM_LZMS);
 #endif

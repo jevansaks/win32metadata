@@ -302,7 +302,8 @@ struct __declspec(uuid(""00000002-0000-0000-C000-000000000046"")) IMalloc : publ
             foreach (string owner in new[] { "winhttp.h", "errhandlingapi.h", "handleapi.h", "combaseapi.h", "objbase.h", "ObjIdlbase.h", "ObjIdl.h" })
             {
                 string path = "generation/WinSDK/RecompiledIdlHeaders/um/" + owner;
-                string current = File.ReadAllText(Path.Combine(root, path.Replace('/', Path.DirectorySeparatorChar))).Replace("\r\n", "\n");
+                string current = FullHeaderMigrationExperimentTests.ReadRecoveryText(
+                    "RecompiledIdlHeaders/um/" + owner).Replace("\r\n", "\n");
                 if (owner is not "ObjIdlbase.h" and not "ObjIdl.h")
                     AssertOnlyAvailabilityEdits(Legacy(path), current);
                 foreach (Match match in Regex.Matches(current,
@@ -329,14 +330,14 @@ struct __declspec(uuid(""00000002-0000-0000-C000-000000000046"")) IMalloc : publ
             Assert.AreEqual(182, declarationCount);
             foreach (string owner in new[] { "ObjIdl", "ObjIdlbase" })
                 Assert.IsFalse(File.Exists(Path.Combine(root, "generation", "WinSDK", "patches", "post-midl", owner + ".h.patch")));
-            string idl = File.ReadAllText(Path.Combine(root, "generation", "WinSDK", "RecompiledIdlHeaders", "um", "ObjIdlbase.Idl"));
+            string idl = FullHeaderMigrationExperimentTests.ReadRecoveryText("RecompiledIdlHeaders/um/ObjIdlbase.Idl");
             foreach (string name in new[] { "IMalloc", "ISequentialStream", "IStream" })
                 StringAssert.Contains(idl, "cpp_quote(\"struct _Win32_SupportedOS_Windows2000_ " + name + ";\")");
             foreach (var fact in retired)
                 StringAssert.Contains(oldSidecar, fact.Key + "=" + fact.Value + "\n");
             string expected = string.Join("\n", oldSidecar.Split('\n').Where(line =>
                 !retired.ContainsKey(line.Split('=')[0])));
-            Assert.AreEqual(expected, File.ReadAllText(Path.Combine(root, "generation", "WinSDK", "supportedOS.rsp")).Replace("\r\n", "\n"));
+            Assert.AreEqual(expected, FullHeaderMigrationExperimentTests.ReadRecoveryText("supportedOS.rsp").Replace("\r\n", "\n"));
         }
 
         [DataTestMethod]

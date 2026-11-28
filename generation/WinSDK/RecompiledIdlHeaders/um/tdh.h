@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (c) Microsoft Corporation
@@ -719,6 +720,7 @@ typedef struct _PAYLOAD_FILTER_PREDICATE {
 #define MAX_PAYLOAD_PREDICATES 8
 
 #if (WINVER >= _WIN32_WINNT_WINBLUE)
+_Win32_SupportedOS_Windows81_
 
 TDHSTATUS
 __stdcall
@@ -730,12 +732,14 @@ TdhCreatePayloadFilter(
     _In_reads_(PayloadPredicateCount) PPAYLOAD_FILTER_PREDICATE PayloadPredicates,
     _Outptr_result_maybenull_ PVOID* PayloadFilter
     );
+_Win32_SupportedOS_Windows81_
 
 TDHSTATUS
 __stdcall
 TdhDeletePayloadFilter(
     _Inout_ PVOID* PayloadFilter
     );
+_Win32_SupportedOS_Windows81_
 
 TDHSTATUS
 __stdcall
@@ -745,6 +749,7 @@ TdhAggregatePayloadFilters(
     _In_reads_opt_(PayloadFilterCount) PBOOLEAN EventMatchALLFlags,
     _Out_ PEVENT_FILTER_DESCRIPTOR EventFilterDescriptor
     );
+_Win32_SupportedOS_Windows81_
 
 TDHSTATUS
 __stdcall
@@ -856,6 +861,7 @@ typedef struct _TDH_CONTEXT {
     ULONG ParameterSize; /* Reserved. Set to 0. */
 } TDH_CONTEXT;
 typedef TDH_CONTEXT *PTDH_CONTEXT;
+_Win32_SupportedOS_WindowsVista_
 
 TDHSTATUS
 __stdcall
@@ -866,6 +872,7 @@ TdhGetEventInformation(
     _Out_writes_bytes_opt_(*BufferSize) PTRACE_EVENT_INFO Buffer,
     _Inout_ PULONG BufferSize
     );
+_Win32_SupportedOS_WindowsVista_
 
 TDHSTATUS
 __stdcall
@@ -875,6 +882,7 @@ TdhGetEventMapInformation(
     _Out_writes_bytes_opt_(*pBufferSize) PEVENT_MAP_INFO pBuffer,
     _Inout_ ULONG* pBufferSize
     );
+_Win32_SupportedOS_WindowsVista_
 
 TDHSTATUS
 __stdcall
@@ -886,6 +894,7 @@ TdhGetPropertySize(
     _In_reads_(PropertyDataCount) PPROPERTY_DATA_DESCRIPTOR pPropertyData,
     _Out_ ULONG* pPropertySize
     );
+_Win32_SupportedOS_WindowsVista_
 
 TDHSTATUS
 __stdcall
@@ -898,6 +907,7 @@ TdhGetProperty(
     _In_ ULONG BufferSize,
     _Out_writes_bytes_(BufferSize) PBYTE pBuffer
     );
+_Win32_SupportedOS_WindowsVista_
 
 TDHSTATUS
 __stdcall
@@ -928,6 +938,7 @@ TdhEnumerateProvidersForDecodingSource(
     _Out_ ULONG* bufferRequired
     );
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 TDHSTATUS
 __stdcall
@@ -938,6 +949,7 @@ TdhQueryProviderFieldInformation(
     _Out_writes_bytes_opt_(*pBufferSize) PPROVIDER_FIELD_INFOARRAY pBuffer,
     _Inout_ ULONG* pBufferSize
     );
+_Win32_SupportedOS_WindowsVista_
 
 TDHSTATUS
 __stdcall
@@ -955,6 +967,7 @@ TdhEnumerateProviderFieldInformation(
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 
 #if (WINVER >= _WIN32_WINNT_WIN7)
+_Win32_SupportedOS_Windows7_
 TDHSTATUS
 __stdcall
 TdhEnumerateProviderFilters(
@@ -973,6 +986,7 @@ TdhEnumerateProviderFilters(
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
 #if (WINVER >= _WIN32_WINNT_WIN7)
+_Win32_SupportedOS_Windows7_
 TDHSTATUS
 __stdcall
 TdhLoadManifest(
@@ -990,6 +1004,7 @@ TdhLoadManifestFromMemory(
 #endif
 
 #if (WINVER >= _WIN32_WINNT_WIN7)
+_Win32_SupportedOS_Windows7_
 TDHSTATUS
 __stdcall
 TdhUnloadManifest(
@@ -1007,6 +1022,7 @@ TdhUnloadManifestFromMemory(
 #endif
 
 #if (WINVER >= _WIN32_WINNT_WIN7)
+_Win32_SupportedOS_Windows7_
 TDHSTATUS
 __stdcall
 TdhFormatProperty(
@@ -1031,6 +1047,7 @@ TdhFormatProperty(
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 
 #if (WINVER >= _WIN32_WINNT_WIN8)
+_Win32_SupportedOS_Windows8_
 TDHSTATUS
 __stdcall
 TdhOpenDecodingHandle(
@@ -1039,6 +1056,7 @@ TdhOpenDecodingHandle(
 #endif
 
 #if (WINVER >= _WIN32_WINNT_WIN8)
+_Win32_SupportedOS_Windows8_
 TDHSTATUS
 __stdcall
 TdhSetDecodingParameter(
@@ -1048,6 +1066,7 @@ TdhSetDecodingParameter(
 #endif
 
 #if (WINVER >= _WIN32_WINNT_WIN8)
+_Win32_SupportedOS_Windows8_
 TDHSTATUS
 __stdcall
 TdhGetDecodingParameter(
@@ -1057,6 +1076,7 @@ TdhGetDecodingParameter(
 #endif
 
 #if (WINVER >= _WIN32_WINNT_WIN8)
+_Win32_SupportedOS_Windows8_
 TDHSTATUS
 __stdcall
 TdhGetWppProperty(
@@ -1069,6 +1089,7 @@ TdhGetWppProperty(
 #endif
 
 #if (WINVER >= _WIN32_WINNT_WIN8)
+_Win32_SupportedOS_Windows8_
 TDHSTATUS
 __stdcall
 TdhGetWppMessage(
@@ -1080,6 +1101,7 @@ TdhGetWppMessage(
 #endif
 
 #if (WINVER >= _WIN32_WINNT_WIN8)
+_Win32_SupportedOS_Windows8_
 TDHSTATUS
 __stdcall
 TdhCloseDecodingHandle(
@@ -1088,6 +1110,7 @@ TdhCloseDecodingHandle(
 #endif
 
 #if (WINVER >= _WIN32_WINNT_WIN8)
+_Win32_SupportedOS_Windows8_
 TDHSTATUS
 __stdcall
 TdhLoadManifestFromBinary(
@@ -1102,6 +1125,7 @@ TdhLoadManifestFromBinary(
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
 
 #if (WINVER >= _WIN32_WINNT_WINBLUE)
+_Win32_SupportedOS_Windows81_
 TDHSTATUS
 __stdcall
 TdhEnumerateManifestProviderEvents(
@@ -1112,6 +1136,7 @@ TdhEnumerateManifestProviderEvents(
 #endif
 
 #if (WINVER >= _WIN32_WINNT_WINBLUE)
+_Win32_SupportedOS_Windows81_
 TDHSTATUS
 __stdcall
 TdhGetManifestEventInformation(

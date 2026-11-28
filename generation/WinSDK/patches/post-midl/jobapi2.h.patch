@@ -1,0 +1,89 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/jobapi2.h b/generation/WinSDK/RecompiledIdlHeaders/um/jobapi2.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/jobapi2.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/jobapi2.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /********************************************************************************
+ *                                                                               *
+ * jobapiset2.h -- ApiSet Contract for api-ms-win-core-job-l2                     *
+@@ -31,6 +32,8 @@
+     ULONG BaseIoSize;
+     ULONG ControlFlags;
+ } JOBOBJECT_IO_RATE_CONTROL_INFORMATION;
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ HANDLE
+@@ -39,6 +42,7 @@
+     _In_opt_ LPSECURITY_ATTRIBUTES lpJobAttributes,
+     _In_opt_ LPCWSTR lpName
+     );
++_Win32_SupportedOS_10240_
+ 
+ WINBASEAPI
+ VOID
+@@ -46,6 +50,8 @@
+ FreeMemoryJobObject(
+     _In_ _Frees_ptr_ VOID* Buffer
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ HANDLE
+@@ -55,6 +61,8 @@
+     _In_ BOOL bInheritHandle,
+     _In_ LPCWSTR lpName
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ BOOL
+@@ -63,6 +71,8 @@
+     _In_ HANDLE hJob,
+     _In_ HANDLE hProcess
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ BOOL
+@@ -71,6 +81,8 @@
+     _In_ HANDLE hJob,
+     _In_ UINT uExitCode
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ BOOL
+@@ -81,6 +93,8 @@
+     _In_reads_bytes_(cbJobObjectInformationLength) LPVOID lpJobObjectInformation,
+     _In_ DWORD cbJobObjectInformationLength
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_10240_
+ 
+ WINBASEAPI
+ DWORD
+@@ -89,6 +103,8 @@
+     _In_ HANDLE hJob,
+     _In_ JOBOBJECT_IO_RATE_CONTROL_INFORMATION* IoRateControlInfo
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_WindowsXP_
+ 
+ WINBASEAPI
+ BOOL
+@@ -100,6 +116,8 @@
+     _In_ DWORD cbJobObjectInformationLength,
+     _Out_opt_ LPDWORD lpReturnLength
+     );
++_Win32_SetLastError_
++_Win32_SupportedOS_10240_
+ 
+ WINBASEAPI
+ DWORD

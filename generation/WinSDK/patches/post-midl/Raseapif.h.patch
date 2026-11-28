@@ -1,0 +1,49 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/Raseapif.h b/generation/WinSDK/RecompiledIdlHeaders/um/Raseapif.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/Raseapif.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/Raseapif.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*++
+ 
+ Copyright (c) Microsoft Corporation. All rights reserved.
+@@ -682,6 +683,7 @@
+         _Field_size_(dwSizeofInteractiveUIData) BYTE* pInteractiveUIData;
+         DWORD dwError;
+     } LEGACY_INTERACTIVE_UI_PARAMS;
++_Win32_SupportedOS_Windows2000_
+ 
+     //
+     // RasEapGetInfo should be exported by the 3rd party EAP dll installed in the
+@@ -689,6 +691,7 @@
+     //
+ 
+     DWORD APIENTRY RasEapGetInfo(_In_ DWORD dwEapTypeId, _Out_ PPP_EAP_INFO* pEapInfo);
++_Win32_SupportedOS_Windows2000_
+ 
+     //
+     // RasEapFreeMemory should be exported by the 3rd party EAP dlls installed in
+@@ -697,6 +700,7 @@
+     //
+ 
+     DWORD APIENTRY RasEapFreeMemory(_In_ BYTE* pMemory);
++_Win32_SupportedOS_Windows2000_
+ 
+     //
+     // RasEapInvokeInteractiveUI and RasEapFreeMemory should be exported by the
+@@ -711,6 +715,7 @@
+         _In_ DWORD dwSizeOfUIContextData,
+         _Outptr_result_buffer_(*pdwSizeOfDataFromInteractiveUI) BYTE** ppDataFromInteractiveUI,
+         _Out_ DWORD* pdwSizeOfDataFromInteractiveUI);
++_Win32_SupportedOS_Windows2000_
+ 
+     //
+     // RasEapInvokeConfigUI and RasEapFreeMemory should be exported by the
+@@ -725,6 +730,7 @@
+         _In_ DWORD dwSizeOfConnectionDataIn,
+         _Outptr_result_buffer_(*pdwSizeOfConnectionDataOut) BYTE** ppConnectionDataOut,
+         _Out_ DWORD* pdwSizeOfConnectionDataOut);
++_Win32_SupportedOS_Windows2000_
+ 
+     //
+     // RasEapGetIdentity and RasEapFreeMemory should be exported by the

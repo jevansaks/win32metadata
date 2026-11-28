@@ -1,3 +1,5 @@
+cpp_quote("#include <win32metadata_annotations.h>")
+#include <win32metadata_annotations.h>
 
 /*++
 
@@ -187,6 +189,7 @@ cpp_quote("#define   BG_DISABLE_BRANCH_CACHE        0x0004")
 
     HRESULT DiscoverPeers();
 };
+_Win32_AnnotateMethod_(IBitsPeerCacheAdministration::SetMaximumContentAge, _Win32_PreserveResult_)
 
 [
     uuid(659cdeae-489e-11d9-a9cd-000d56965251),

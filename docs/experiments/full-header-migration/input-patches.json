@@ -1,0 +1,4424 @@
+[
+  {
+    "sourcePatch": "shared\\sal.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\sal.h.patch",
+    "target": "shared\\sal.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\winerror.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\winerror.h.patch",
+    "target": "shared\\winerror.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\SetupAPI.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\SetupAPI.h.patch",
+    "target": "um\\SetupAPI.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\waasapi.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\waasapi.idl.patch",
+    "target": "um\\waasapi.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\propidlbase.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\propidlbase.idl.patch",
+    "target": "um\\propidlbase.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\winhttp.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\winhttp.h.patch",
+    "target": "um\\winhttp.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\windowsceip.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\windowsceip.h.patch",
+    "target": "um\\windowsceip.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\avrfsdk.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\avrfsdk.h.patch",
+    "target": "um\\avrfsdk.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\magnification.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\magnification.h.patch",
+    "target": "um\\magnification.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\Psapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\Psapi.h.patch",
+    "target": "um\\Psapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\timezoneapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\timezoneapi.h.patch",
+    "target": "um\\timezoneapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\ual.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\ual.h.patch",
+    "target": "um\\ual.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\TlHelp32.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\TlHelp32.h.patch",
+    "target": "um\\TlHelp32.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\wslapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\wslapi.h.patch",
+    "target": "um\\wslapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\Xinput.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\Xinput.h.patch",
+    "target": "um\\Xinput.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\wcmapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\wcmapi.h.patch",
+    "target": "um\\wcmapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\Wscapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\Wscapi.h.patch",
+    "target": "um\\Wscapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\DhcpCSdk.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\DhcpCSdk.h.patch",
+    "target": "um\\DhcpCSdk.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\dhcpsapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\dhcpsapi.h.patch",
+    "target": "um\\dhcpsapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\Dhcpv6cSdk.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\Dhcpv6cSdk.h.patch",
+    "target": "um\\Dhcpv6cSdk.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\nb30.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\nb30.h.patch",
+    "target": "um\\nb30.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\NetSh.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\NetSh.h.patch",
+    "target": "um\\NetSh.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\Npapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\Npapi.h.patch",
+    "target": "um\\Npapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\winnetwk.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\winnetwk.h.patch",
+    "target": "um\\winnetwk.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\hidpi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\hidpi.h.patch",
+    "target": "shared\\hidpi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\bluetoothapis.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\bluetoothapis.h.patch",
+    "target": "um\\bluetoothapis.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\bluetoothleapis.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\bluetoothleapis.h.patch",
+    "target": "um\\bluetoothleapis.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\ws2bth.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\ws2bth.h.patch",
+    "target": "um\\ws2bth.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\dinput.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\dinput.h.patch",
+    "target": "um\\dinput.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\dwmapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\dwmapi.h.patch",
+    "target": "um\\dwmapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\ErrorRep.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\ErrorRep.h.patch",
+    "target": "um\\ErrorRep.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\EvColl.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\EvColl.h.patch",
+    "target": "um\\EvColl.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\powerbase.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\powerbase.h.patch",
+    "target": "um\\powerbase.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\powersetting.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\powersetting.h.patch",
+    "target": "um\\powersetting.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\powrprof.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\powrprof.h.patch",
+    "target": "um\\powrprof.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\winnt.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\winnt.h.patch",
+    "target": "um\\winnt.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\WerApi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\WerApi.h.patch",
+    "target": "um\\WerApi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\tbs.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\tbs.h.patch",
+    "target": "shared\\tbs.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\davclnt.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\davclnt.h.patch",
+    "target": "um\\davclnt.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\fdi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\fdi.h.patch",
+    "target": "um\\fdi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\fhsvcctl.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\fhsvcctl.h.patch",
+    "target": "um\\fhsvcctl.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\MDMRegistration.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\MDMRegistration.h.patch",
+    "target": "um\\MDMRegistration.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\websocket.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\websocket.h.patch",
+    "target": "um\\websocket.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\amxmlgraphbuilder.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\amxmlgraphbuilder.h.patch",
+    "target": "um\\amxmlgraphbuilder.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\DirectML.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\DirectML.h.patch",
+    "target": "um\\DirectML.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\highlevelmonitorconfigurationapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\highlevelmonitorconfigurationapi.h.patch",
+    "target": "um\\highlevelmonitorconfigurationapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\lowlevelmonitorconfigurationapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\lowlevelmonitorconfigurationapi.h.patch",
+    "target": "um\\lowlevelmonitorconfigurationapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\physicalmonitorenumerationapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\physicalmonitorenumerationapi.h.patch",
+    "target": "um\\physicalmonitorenumerationapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\processsnapshot.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\processsnapshot.h.patch",
+    "target": "um\\processsnapshot.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\Raseapif.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\Raseapif.h.patch",
+    "target": "um\\Raseapif.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\RestartManager.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\RestartManager.h.patch",
+    "target": "um\\RestartManager.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\wnvapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\wnvapi.h.patch",
+    "target": "um\\wnvapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\wsbonline.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\wsbonline.h.patch",
+    "target": "um\\wsbonline.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\RadialControllerInterop.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\RadialControllerInterop.idl.patch",
+    "target": "um\\RadialControllerInterop.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\ddpbackup.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\ddpbackup.idl.patch",
+    "target": "um\\ddpbackup.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\NotificationActivationCallback.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\NotificationActivationCallback.idl.patch",
+    "target": "um\\NotificationActivationCallback.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\wsbapp.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\wsbapp.idl.patch",
+    "target": "um\\wsbapp.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\IContact.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\IContact.idl.patch",
+    "target": "um\\IContact.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\FhCfg.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\FhCfg.idl.patch",
+    "target": "um\\FhCfg.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\netlistmgr.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\netlistmgr.idl.patch",
+    "target": "um\\netlistmgr.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\msrdc.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\msrdc.idl.patch",
+    "target": "um\\msrdc.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\callobj.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\callobj.idl.patch",
+    "target": "um\\callobj.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\EventSys.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\EventSys.idl.patch",
+    "target": "um\\EventSys.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\amsi.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\amsi.idl.patch",
+    "target": "um\\amsi.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\RrasCfg.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\RrasCfg.idl.patch",
+    "target": "um\\RrasCfg.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\winuser.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\winuser.h.patch",
+    "target": "um\\winuser.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\winsvc.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\winsvc.h.patch",
+    "target": "um\\winsvc.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\lmaccess.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\lmaccess.h.patch",
+    "target": "um\\lmaccess.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\lmjoin.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\lmjoin.h.patch",
+    "target": "um\\lmjoin.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\lmserver.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\lmserver.h.patch",
+    "target": "um\\lmserver.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\lmwksta.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\lmwksta.h.patch",
+    "target": "um\\lmwksta.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\lmmsg.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\lmmsg.h.patch",
+    "target": "um\\lmmsg.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\lmapibuf.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\lmapibuf.h.patch",
+    "target": "um\\lmapibuf.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\lmat.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\lmat.h.patch",
+    "target": "um\\lmat.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\lmuse.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\lmuse.h.patch",
+    "target": "um\\lmuse.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\atacct.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\atacct.h.patch",
+    "target": "um\\atacct.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\lmalert.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\lmalert.h.patch",
+    "target": "um\\lmalert.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\lmremutl.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\lmremutl.h.patch",
+    "target": "um\\lmremutl.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\winbase.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\winbase.h.patch",
+    "target": "um\\winbase.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\wingdi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\wingdi.h.patch",
+    "target": "um\\wingdi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\winnls.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\winnls.h.patch",
+    "target": "um\\winnls.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\fileapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\fileapi.h.patch",
+    "target": "um\\fileapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\securitybaseapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\securitybaseapi.h.patch",
+    "target": "um\\securitybaseapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\processthreadsapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\processthreadsapi.h.patch",
+    "target": "um\\processthreadsapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\memoryapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\memoryapi.h.patch",
+    "target": "um\\memoryapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\synchapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\synchapi.h.patch",
+    "target": "um\\synchapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\cfgmgr32.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\cfgmgr32.h.patch",
+    "target": "um\\cfgmgr32.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\newdev.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\newdev.h.patch",
+    "target": "um\\newdev.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\winusb.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\winusb.h.patch",
+    "target": "um\\winusb.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\swdevice.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\swdevice.h.patch",
+    "target": "um\\swdevice.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\nspapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\nspapi.h.patch",
+    "target": "um\\nspapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\winineti.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\winineti.h.patch",
+    "target": "um\\winineti.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\drt.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\drt.h.patch",
+    "target": "um\\drt.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\dsgetdc.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\dsgetdc.h.patch",
+    "target": "um\\dsgetdc.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\icmpapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\icmpapi.h.patch",
+    "target": "um\\icmpapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\traffic.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\traffic.h.patch",
+    "target": "shared\\traffic.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\adshlp.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\adshlp.h.patch",
+    "target": "um\\adshlp.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\mgm.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\mgm.h.patch",
+    "target": "um\\mgm.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\ndfapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\ndfapi.h.patch",
+    "target": "um\\ndfapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\mgmtapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\mgmtapi.h.patch",
+    "target": "um\\mgmtapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\dsparse.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\dsparse.h.patch",
+    "target": "um\\dsparse.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\winber.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\winber.h.patch",
+    "target": "um\\winber.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\qos2.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\qos2.h.patch",
+    "target": "um\\qos2.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\uiautomationclient.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\uiautomationclient.idl.patch",
+    "target": "um\\uiautomationclient.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\shobjidl_core.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\shobjidl_core.idl.patch",
+    "target": "um\\shobjidl_core.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\mfidl.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\mfidl.idl.patch",
+    "target": "um\\mfidl.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\msctf.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\msctf.idl.patch",
+    "target": "um\\msctf.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\wuapi.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\wuapi.idl.patch",
+    "target": "um\\wuapi.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\objidl.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\objidl.idl.patch",
+    "target": "um\\objidl.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\oleidl.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\oleidl.idl.patch",
+    "target": "um\\oleidl.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\uiautomationcore.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\uiautomationcore.idl.patch",
+    "target": "um\\uiautomationcore.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\appxpackaging.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\appxpackaging.idl.patch",
+    "target": "um\\appxpackaging.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\d3d11.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\d3d11.idl.patch",
+    "target": "um\\d3d11.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\ocidl.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\ocidl.idl.patch",
+    "target": "um\\ocidl.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\tuner.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\tuner.idl.patch",
+    "target": "um\\tuner.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\shobjidl.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\shobjidl.idl.patch",
+    "target": "um\\shobjidl.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\wincodec.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\wincodec.idl.patch",
+    "target": "um\\wincodec.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\xpsobjectmodel.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\xpsobjectmodel.idl.patch",
+    "target": "um\\xpsobjectmodel.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\wbemcli.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\wbemcli.idl.patch",
+    "target": "um\\wbemcli.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\dvbsiparser.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\dvbsiparser.idl.patch",
+    "target": "um\\dvbsiparser.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\mmc.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\mmc.idl.patch",
+    "target": "um\\mmc.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\mbnapi.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\mbnapi.idl.patch",
+    "target": "um\\mbnapi.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\gpmgmt.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\gpmgmt.idl.patch",
+    "target": "um\\gpmgmt.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\mfmediaengine.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\mfmediaengine.idl.patch",
+    "target": "um\\mfmediaengine.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "shared\\rpcasync.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\rpcasync.h.patch",
+    "target": "shared\\rpcasync.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\rasshost.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\rasshost.h.patch",
+    "target": "um\\rasshost.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\midles.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\midles.h.patch",
+    "target": "um\\midles.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\adsprop.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\adsprop.h.patch",
+    "target": "um\\adsprop.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\madcapcl.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\madcapcl.h.patch",
+    "target": "um\\madcapcl.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\dsclient.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\dsclient.h.patch",
+    "target": "um\\dsclient.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\rasdlg.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\rasdlg.h.patch",
+    "target": "um\\rasdlg.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\ondemandconnroutehelper.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\ondemandconnroutehelper.h.patch",
+    "target": "um\\ondemandconnroutehelper.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\sporder.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\sporder.h.patch",
+    "target": "um\\sporder.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\rpcdcep.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\rpcdcep.h.patch",
+    "target": "shared\\rpcdcep.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\rpcssl.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\rpcssl.h.patch",
+    "target": "um\\rpcssl.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\dsrole.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\dsrole.h.patch",
+    "target": "um\\dsrole.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\smbclnt.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\smbclnt.h.patch",
+    "target": "um\\smbclnt.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\socketapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\socketapi.h.patch",
+    "target": "um\\socketapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\wininet.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\wininet.h.patch",
+    "target": "um\\wininet.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\clusapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\clusapi.h.patch",
+    "target": "um\\clusapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\winldap.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\winldap.h.patch",
+    "target": "um\\winldap.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\rpcdce.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\rpcdce.h.patch",
+    "target": "shared\\rpcdce.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\webservices.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\webservices.h.patch",
+    "target": "um\\webservices.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\fwpmu.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\fwpmu.h.patch",
+    "target": "um\\fwpmu.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\mprapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\mprapi.h.patch",
+    "target": "um\\mprapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\winsock2.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\winsock2.h.patch",
+    "target": "um\\winsock2.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\netioapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\netioapi.h.patch",
+    "target": "shared\\netioapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\resapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\resapi.h.patch",
+    "target": "um\\resapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\ras.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\ras.h.patch",
+    "target": "um\\ras.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\iphlpapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\iphlpapi.h.patch",
+    "target": "um\\iphlpapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\winsnmp.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\winsnmp.h.patch",
+    "target": "um\\winsnmp.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\snmp.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\snmp.h.patch",
+    "target": "um\\snmp.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\http.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\http.h.patch",
+    "target": "um\\http.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\ntdsapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\ntdsapi.h.patch",
+    "target": "um\\ntdsapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\rpcndr.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\rpcndr.h.patch",
+    "target": "shared\\rpcndr.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\windns.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\windns.h.patch",
+    "target": "um\\windns.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\rtmv2.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\rtmv2.h.patch",
+    "target": "um\\rtmv2.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\wlanapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\wlanapi.h.patch",
+    "target": "um\\wlanapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\rpcnsi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\rpcnsi.h.patch",
+    "target": "um\\rpcnsi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\ws2spi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\ws2spi.h.patch",
+    "target": "um\\ws2spi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\ws2tcpip.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\ws2tcpip.h.patch",
+    "target": "um\\ws2tcpip.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\peerdist.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\peerdist.h.patch",
+    "target": "um\\peerdist.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\cryptuiapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\cryptuiapi.h.patch",
+    "target": "um\\cryptuiapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\richedit.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\richedit.h.patch",
+    "target": "um\\richedit.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\ncrypt.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\ncrypt.h.patch",
+    "target": "um\\ncrypt.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\winevt.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\winevt.h.patch",
+    "target": "um\\winevt.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\wintrust.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\wintrust.h.patch",
+    "target": "um\\wintrust.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\iscsidsc.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\iscsidsc.h.patch",
+    "target": "um\\iscsidsc.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\sysinfoapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\sysinfoapi.h.patch",
+    "target": "um\\sysinfoapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\libloaderapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\libloaderapi.h.patch",
+    "target": "um\\libloaderapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\userenv.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\userenv.h.patch",
+    "target": "um\\userenv.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\virtdisk.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\virtdisk.h.patch",
+    "target": "um\\virtdisk.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\cryptxml.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\cryptxml.h.patch",
+    "target": "um\\cryptxml.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\mscat.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\mscat.h.patch",
+    "target": "um\\mscat.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\oledlg.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\oledlg.h.patch",
+    "target": "um\\oledlg.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\dpa_dsa.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\dpa_dsa.h.patch",
+    "target": "um\\dpa_dsa.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\slpublic.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\slpublic.h.patch",
+    "target": "um\\slpublic.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\usp10.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\usp10.h.patch",
+    "target": "um\\usp10.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\diagnosticdataquery.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\diagnosticdataquery.h.patch",
+    "target": "um\\diagnosticdataquery.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\threadpoolapiset.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\threadpoolapiset.h.patch",
+    "target": "um\\threadpoolapiset.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\minidumpapiset.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\minidumpapiset.h.patch",
+    "target": "um\\minidumpapiset.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\prsht.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\prsht.h.patch",
+    "target": "um\\prsht.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\recapis.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\recapis.h.patch",
+    "target": "um\\recapis.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\t2embapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\t2embapi.h.patch",
+    "target": "um\\t2embapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\imagehlp.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\imagehlp.h.patch",
+    "target": "um\\imagehlp.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\cfapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\cfapi.h.patch",
+    "target": "um\\cfapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\advpub.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\advpub.h.patch",
+    "target": "um\\advpub.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\dmemmgr.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\dmemmgr.h.patch",
+    "target": "um\\dmemmgr.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\gb18030.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\gb18030.h.patch",
+    "target": "um\\gb18030.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\ime.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\ime.h.patch",
+    "target": "um\\ime.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\immdev.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\immdev.h.patch",
+    "target": "um\\immdev.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\jobapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\jobapi.h.patch",
+    "target": "um\\jobapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\libloaderapi2.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\libloaderapi2.h.patch",
+    "target": "um\\libloaderapi2.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\mschapp.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\mschapp.h.patch",
+    "target": "um\\mschapp.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\msctfmonitorapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\msctfmonitorapi.h.patch",
+    "target": "um\\msctfmonitorapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\securityappcontainer.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\securityappcontainer.h.patch",
+    "target": "um\\securityappcontainer.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\utilapiset.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\utilapiset.h.patch",
+    "target": "um\\utilapiset.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\windowsdefender.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\windowsdefender.h.patch",
+    "target": "um\\windowsdefender.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\edpwin32.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\edpwin32.h.patch",
+    "target": "um\\edpwin32.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\filehc.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\filehc.h.patch",
+    "target": "um\\filehc.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\lmstats.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\lmstats.h.patch",
+    "target": "um\\lmstats.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\mtxdm.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\mtxdm.h.patch",
+    "target": "um\\mtxdm.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\propapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\propapi.h.patch",
+    "target": "um\\propapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\sas.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\sas.h.patch",
+    "target": "um\\sas.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\winnls32.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\winnls32.h.patch",
+    "target": "um\\winnls32.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\consoleapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\consoleapi.h.patch",
+    "target": "um\\consoleapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\consoleapi2.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\consoleapi2.h.patch",
+    "target": "um\\consoleapi2.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\consoleapi3.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\consoleapi3.h.patch",
+    "target": "um\\consoleapi3.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\winspool.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\winspool.h.patch",
+    "target": "um\\winspool.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\wdsclientapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\wdsclientapi.h.patch",
+    "target": "um\\wdsclientapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\objbase.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\objbase.h.patch",
+    "target": "um\\objbase.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\winver.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\winver.h.patch",
+    "target": "um\\winver.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\oleauto.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\oleauto.h.patch",
+    "target": "um\\oleauto.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\aclui.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\aclui.h.patch",
+    "target": "um\\aclui.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\heapapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\heapapi.h.patch",
+    "target": "um\\heapapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\rtworkq.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\rtworkq.h.patch",
+    "target": "um\\rtworkq.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\wdspxe.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\wdspxe.h.patch",
+    "target": "um\\wdspxe.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\compressapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\compressapi.h.patch",
+    "target": "um\\compressapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\perflib.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\perflib.h.patch",
+    "target": "um\\perflib.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\cryptdlg.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\cryptdlg.h.patch",
+    "target": "um\\cryptdlg.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\pathcch.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\pathcch.h.patch",
+    "target": "um\\pathcch.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\coml2api.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\coml2api.h.patch",
+    "target": "um\\coml2api.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\olectl.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\olectl.h.patch",
+    "target": "um\\olectl.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\processenv.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\processenv.h.patch",
+    "target": "um\\processenv.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\wsman.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\wsman.h.patch",
+    "target": "um\\wsman.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\wow64apiset.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\wow64apiset.h.patch",
+    "target": "um\\wow64apiset.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\evntprov.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\evntprov.h.patch",
+    "target": "shared\\evntprov.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\eapmethodpeerapis.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\eapmethodpeerapis.h.patch",
+    "target": "um\\eapmethodpeerapis.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\schannel.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\schannel.h.patch",
+    "target": "um\\schannel.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\shlobj.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\shlobj.h.patch",
+    "target": "um\\shlobj.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\eappapis.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\eappapis.h.patch",
+    "target": "um\\eappapis.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\eaphostpeerconfigapis.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\eaphostpeerconfigapis.h.patch",
+    "target": "um\\eaphostpeerconfigapis.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\eapmethodauthenticatorapis.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\eapmethodauthenticatorapis.h.patch",
+    "target": "um\\eapmethodauthenticatorapis.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\wincrypt.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\wincrypt.h.patch",
+    "target": "um\\wincrypt.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\mi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\mi.h.patch",
+    "target": "um\\mi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\msi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\msi.h.patch",
+    "target": "um\\msi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\winreg.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\winreg.h.patch",
+    "target": "um\\winreg.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\wtsapi32.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\wtsapi32.h.patch",
+    "target": "um\\wtsapi32.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\ntsecapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\ntsecapi.h.patch",
+    "target": "um\\ntsecapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\sspi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\sspi.h.patch",
+    "target": "shared\\sspi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\ntmsapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\ntmsapi.h.patch",
+    "target": "um\\ntmsapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\mfapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\mfapi.h.patch",
+    "target": "um\\mfapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\pdh.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\pdh.h.patch",
+    "target": "um\\pdh.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\wincred.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\wincred.h.patch",
+    "target": "um\\wincred.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\bcrypt.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\bcrypt.h.patch",
+    "target": "shared\\bcrypt.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\evntrace.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\evntrace.h.patch",
+    "target": "shared\\evntrace.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\ddeml.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\ddeml.h.patch",
+    "target": "um\\ddeml.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\combaseapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\combaseapi.h.patch",
+    "target": "um\\combaseapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\msiquery.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\msiquery.h.patch",
+    "target": "um\\msiquery.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\authz.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\authz.h.patch",
+    "target": "um\\authz.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\winscard.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\winscard.h.patch",
+    "target": "um\\winscard.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\clfsw32.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\clfsw32.h.patch",
+    "target": "um\\clfsw32.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\appmodel.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\appmodel.h.patch",
+    "target": "um\\appmodel.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\ole2.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\ole2.h.patch",
+    "target": "um\\ole2.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\ktmw32.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\ktmw32.h.patch",
+    "target": "um\\ktmw32.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\aclapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\aclapi.h.patch",
+    "target": "um\\aclapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\srpapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\srpapi.h.patch",
+    "target": "um\\srpapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\winefs.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\winefs.h.patch",
+    "target": "um\\winefs.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\dde.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\dde.h.patch",
+    "target": "um\\dde.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\muiload.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\muiload.h.patch",
+    "target": "um\\muiload.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\tokenbinding.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\tokenbinding.h.patch",
+    "target": "um\\tokenbinding.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\d2d1_3.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\d2d1_3.h.patch",
+    "target": "um\\d2d1_3.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\dciman.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\dciman.h.patch",
+    "target": "um\\dciman.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\intshcut.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\intshcut.h.patch",
+    "target": "um\\intshcut.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\wdsbp.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\wdsbp.h.patch",
+    "target": "um\\wdsbp.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\certpoleng.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\certpoleng.h.patch",
+    "target": "um\\certpoleng.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\d2d1_2.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\d2d1_2.h.patch",
+    "target": "um\\d2d1_2.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\interlockedapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\interlockedapi.h.patch",
+    "target": "um\\interlockedapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\sensapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\sensapi.h.patch",
+    "target": "um\\sensapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\appmgmt.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\appmgmt.h.patch",
+    "target": "um\\appmgmt.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\elscore.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\elscore.h.patch",
+    "target": "um\\elscore.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\fltuser.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\fltuser.h.patch",
+    "target": "um\\fltuser.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\namespaceapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\namespaceapi.h.patch",
+    "target": "um\\namespaceapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\ntsecpkg.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\ntsecpkg.h.patch",
+    "target": "um\\ntsecpkg.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\scrnsave.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\scrnsave.h.patch",
+    "target": "um\\scrnsave.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\wtshintapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\wtshintapi.h.patch",
+    "target": "um\\wtshintapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "winrt\\robuffer.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\robuffer.h.patch",
+    "target": "winrt\\robuffer.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "winrt\\rometadata.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\rometadata.h.patch",
+    "target": "winrt\\rometadata.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\winddi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\winddi.h.patch",
+    "target": "um\\winddi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\vfw.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\vfw.h.patch",
+    "target": "um\\vfw.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\mmeapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\mmeapi.h.patch",
+    "target": "um\\mmeapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\winfax.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\winfax.h.patch",
+    "target": "um\\winfax.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\msacm.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\msacm.h.patch",
+    "target": "um\\msacm.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\winbio.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\winbio.h.patch",
+    "target": "um\\winbio.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\mmiscapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\mmiscapi.h.patch",
+    "target": "um\\mmiscapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\faxdev.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\faxdev.h.patch",
+    "target": "um\\faxdev.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\wsdutil.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\wsdutil.h.patch",
+    "target": "um\\wsdutil.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\prntvpt.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\prntvpt.h.patch",
+    "target": "um\\prntvpt.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\faxroute.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\faxroute.h.patch",
+    "target": "um\\faxroute.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\joystickapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\joystickapi.h.patch",
+    "target": "um\\joystickapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\faxext.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\faxext.h.patch",
+    "target": "um\\faxext.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\prnasnot.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\prnasnot.h.patch",
+    "target": "um\\prnasnot.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\winbio_adapter.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\winbio_adapter.h.patch",
+    "target": "um\\winbio_adapter.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\fxsutility.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\fxsutility.h.patch",
+    "target": "um\\fxsutility.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\shlwapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\shlwapi.h.patch",
+    "target": "um\\shlwapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\propvarutil.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\propvarutil.h.patch",
+    "target": "um\\propvarutil.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\shlobj_core.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\shlobj_core.h.patch",
+    "target": "um\\shlobj_core.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\uiautomationcoreapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\uiautomationcoreapi.h.patch",
+    "target": "um\\uiautomationcoreapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\commctrl.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\commctrl.h.patch",
+    "target": "um\\commctrl.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\Uxtheme.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\Uxtheme.h.patch",
+    "target": "um\\Uxtheme.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\shellapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\shellapi.h.patch",
+    "target": "um\\shellapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\avrt.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\avrt.h.patch",
+    "target": "um\\avrt.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\commdlg.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\commdlg.h.patch",
+    "target": "um\\commdlg.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\dcomptypes.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\dcomptypes.h.patch",
+    "target": "shared\\dcomptypes.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\dcomp.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\dcomp.h.patch",
+    "target": "um\\dcomp.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\d2d1.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\d2d1.h.patch",
+    "target": "um\\d2d1.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\debugapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\debugapi.h.patch",
+    "target": "um\\debugapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\enclaveapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\enclaveapi.h.patch",
+    "target": "um\\enclaveapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\txfw32.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\txfw32.h.patch",
+    "target": "um\\txfw32.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "winrt\\roerrorapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\roerrorapi.h.patch",
+    "target": "winrt\\roerrorapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\ncryptprotect.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\ncryptprotect.h.patch",
+    "target": "um\\ncryptprotect.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\wdstci.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\wdstci.h.patch",
+    "target": "um\\wdstci.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\datetimeapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\datetimeapi.h.patch",
+    "target": "um\\datetimeapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\realtimeapiset.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\realtimeapiset.h.patch",
+    "target": "um\\realtimeapiset.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\winternl.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\winternl.h.patch",
+    "target": "um\\winternl.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\lzexpand.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\lzexpand.h.patch",
+    "target": "um\\lzexpand.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\secext.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\secext.h.patch",
+    "target": "shared\\secext.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\wct.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\wct.h.patch",
+    "target": "um\\wct.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "winrt\\roapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\roapi.h.patch",
+    "target": "winrt\\roapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\handleapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\handleapi.h.patch",
+    "target": "um\\handleapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\textserv.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\textserv.h.patch",
+    "target": "um\\textserv.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\dpapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\dpapi.h.patch",
+    "target": "um\\dpapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\shellscalingapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\shellscalingapi.h.patch",
+    "target": "um\\shellscalingapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\subauth.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\subauth.h.patch",
+    "target": "um\\subauth.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\fibersapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\fibersapi.h.patch",
+    "target": "um\\fibersapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\fontsub.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\fontsub.h.patch",
+    "target": "um\\fontsub.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\lmshare.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\lmshare.h.patch",
+    "target": "um\\lmshare.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\tdh.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\tdh.h.patch",
+    "target": "um\\tdh.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\interactioncontext.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\interactioncontext.h.patch",
+    "target": "um\\interactioncontext.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\mssip.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\mssip.h.patch",
+    "target": "um\\mssip.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\winsafer.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\winsafer.h.patch",
+    "target": "um\\winsafer.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\certbcli.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\certbcli.h.patch",
+    "target": "um\\certbcli.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\namedpipeapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\namedpipeapi.h.patch",
+    "target": "um\\namedpipeapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\winwlx.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\winwlx.h.patch",
+    "target": "um\\winwlx.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\clfsmgmtw32.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\clfsmgmtw32.h.patch",
+    "target": "um\\clfsmgmtw32.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\lmdfs.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\lmdfs.h.patch",
+    "target": "um\\lmdfs.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\ioapiset.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\ioapiset.h.patch",
+    "target": "um\\ioapiset.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\projectedfslib.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\projectedfslib.h.patch",
+    "target": "um\\projectedfslib.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\stringapiset.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\stringapiset.h.patch",
+    "target": "um\\stringapiset.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "winrt\\winstring.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\winstring.h.patch",
+    "target": "winrt\\winstring.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\wdstpdi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\wdstpdi.h.patch",
+    "target": "um\\wdstpdi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\sddl.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\sddl.h.patch",
+    "target": "shared\\sddl.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\gpedit.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\gpedit.h.patch",
+    "target": "um\\gpedit.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\jobapi2.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\jobapi2.h.patch",
+    "target": "um\\jobapi2.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\threadpoollegacyapiset.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\threadpoollegacyapiset.h.patch",
+    "target": "um\\threadpoollegacyapiset.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\srrestoreptapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\srrestoreptapi.h.patch",
+    "target": "um\\srrestoreptapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\timeapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\timeapi.h.patch",
+    "target": "um\\timeapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\winenclaveapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\winenclaveapi.h.patch",
+    "target": "um\\winenclaveapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "winrt\\roparameterizediid.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\roparameterizediid.h.patch",
+    "target": "winrt\\roparameterizediid.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\cscapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\cscapi.h.patch",
+    "target": "um\\cscapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\dssec.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\dssec.h.patch",
+    "target": "um\\dssec.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\loadperf.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\loadperf.h.patch",
+    "target": "um\\loadperf.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\ntquery.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\ntquery.h.patch",
+    "target": "um\\ntquery.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\profileapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\profileapi.h.patch",
+    "target": "um\\profileapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\resourceindexer.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\resourceindexer.h.patch",
+    "target": "um\\resourceindexer.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\sfc.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\sfc.h.patch",
+    "target": "um\\sfc.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\storprop.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\storprop.h.patch",
+    "target": "um\\storprop.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\systemtopologyapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\systemtopologyapi.h.patch",
+    "target": "um\\systemtopologyapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\wmsdkvalidate.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\wmsdkvalidate.h.patch",
+    "target": "um\\wmsdkvalidate.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\aux_ulib.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\aux_ulib.h.patch",
+    "target": "um\\aux_ulib.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\evntcons.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\evntcons.h.patch",
+    "target": "um\\evntcons.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\oobenotification.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\oobenotification.h.patch",
+    "target": "um\\oobenotification.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\processtopologyapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\processtopologyapi.h.patch",
+    "target": "um\\processtopologyapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "winrt\\shcore.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\shcore.h.patch",
+    "target": "winrt\\shcore.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\vds.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\vds.idl.patch",
+    "target": "um\\vds.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "shared\\dxgi.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\dxgi.idl.patch",
+    "target": "shared\\dxgi.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\sbtsv.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\sbtsv.idl.patch",
+    "target": "um\\sbtsv.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\imapi2.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\imapi2.idl.patch",
+    "target": "um\\imapi2.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\oleacc.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\oleacc.idl.patch",
+    "target": "um\\oleacc.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\segment.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\segment.idl.patch",
+    "target": "um\\segment.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\mfobjects.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\mfobjects.idl.patch",
+    "target": "um\\mfobjects.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\msopc.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\msopc.idl.patch",
+    "target": "um\\msopc.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\uianimation.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\uianimation.idl.patch",
+    "target": "um\\uianimation.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\syncmgr.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\syncmgr.idl.patch",
+    "target": "um\\syncmgr.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\wmsdkidl.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\wmsdkidl.idl.patch",
+    "target": "um\\wmsdkidl.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\rdpencomapi.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\rdpencomapi.idl.patch",
+    "target": "um\\rdpencomapi.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\wmcontainer.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\wmcontainer.idl.patch",
+    "target": "um\\wmcontainer.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\devicetopology.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\devicetopology.idl.patch",
+    "target": "um\\devicetopology.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\wdstptmgmt.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\wdstptmgmt.idl.patch",
+    "target": "um\\wdstptmgmt.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\ctffunc.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\ctffunc.idl.patch",
+    "target": "um\\ctffunc.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\sbe.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\sbe.idl.patch",
+    "target": "um\\sbe.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\windowsstoragecom.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\windowsstoragecom.idl.patch",
+    "target": "um\\windowsstoragecom.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\netfw.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\netfw.idl.patch",
+    "target": "um\\netfw.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\mileffects.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\mileffects.idl.patch",
+    "target": "um\\mileffects.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "shared\\dxgi1_2.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\dxgi1_2.idl.patch",
+    "target": "shared\\dxgi1_2.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "shared\\dxgi1_3.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\dxgi1_3.idl.patch",
+    "target": "shared\\dxgi1_3.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\imapi2fs.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\imapi2fs.idl.patch",
+    "target": "um\\imapi2fs.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\wtsprotocol.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\wtsprotocol.idl.patch",
+    "target": "um\\wtsprotocol.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\bdaiface.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\bdaiface.idl.patch",
+    "target": "um\\bdaiface.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\mfplay.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\mfplay.idl.patch",
+    "target": "um\\mfplay.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\upnp.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\upnp.idl.patch",
+    "target": "um\\upnp.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\ctfutb.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\ctfutb.idl.patch",
+    "target": "um\\ctfutb.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\fsrmpipeline.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\fsrmpipeline.idl.patch",
+    "target": "um\\fsrmpipeline.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\textstor.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\textstor.idl.patch",
+    "target": "um\\textstor.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\dxva2api.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\dxva2api.idl.patch",
+    "target": "um\\dxva2api.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\netcon.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\netcon.idl.patch",
+    "target": "um\\netcon.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\bits.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\bits.idl.patch",
+    "target": "um\\bits.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\fsrm.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\fsrm.idl.patch",
+    "target": "um\\fsrm.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\mfreadwrite.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\mfreadwrite.idl.patch",
+    "target": "um\\mfreadwrite.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\structuredquery.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\structuredquery.idl.patch",
+    "target": "um\\structuredquery.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\vmr9.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\vmr9.idl.patch",
+    "target": "um\\vmr9.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\d3d11_3.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\d3d11_3.idl.patch",
+    "target": "um\\d3d11_3.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\mmdeviceapi.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\mmdeviceapi.idl.patch",
+    "target": "um\\mmdeviceapi.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\wincodecsdk.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\wincodecsdk.idl.patch",
+    "target": "um\\wincodecsdk.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\wsdbase.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\wsdbase.idl.patch",
+    "target": "um\\wsdbase.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\audioclient.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\audioclient.idl.patch",
+    "target": "um\\audioclient.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\credentialprovider.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\credentialprovider.idl.patch",
+    "target": "um\\credentialprovider.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\wsdhost.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\wsdhost.idl.patch",
+    "target": "um\\wsdhost.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\amstream.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\amstream.idl.patch",
+    "target": "um\\amstream.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\dxgidebug.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\dxgidebug.idl.patch",
+    "target": "um\\dxgidebug.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\dxvahd.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\dxvahd.idl.patch",
+    "target": "um\\dxvahd.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\ehstorapi.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\ehstorapi.idl.patch",
+    "target": "um\\ehstorapi.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\exdisp.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\exdisp.idl.patch",
+    "target": "um\\exdisp.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\mobsync.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\mobsync.idl.patch",
+    "target": "um\\mobsync.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\restrictederrorinfo.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\restrictederrorinfo.idl.patch",
+    "target": "um\\restrictederrorinfo.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\sdoias.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\sdoias.idl.patch",
+    "target": "um\\sdoias.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\sensevts.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\sensevts.idl.patch",
+    "target": "um\\sensevts.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\shappmgr.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\shappmgr.idl.patch",
+    "target": "um\\shappmgr.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\thumbcache.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\thumbcache.idl.patch",
+    "target": "um\\thumbcache.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\vidcap.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\vidcap.idl.patch",
+    "target": "um\\vidcap.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\wmlss.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\wmlss.idl.patch",
+    "target": "um\\wmlss.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\xpsobjectmodel_1.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\xpsobjectmodel_1.idl.patch",
+    "target": "um\\xpsobjectmodel_1.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "shared\\dxgi1_5.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\dxgi1_5.idl.patch",
+    "target": "shared\\dxgi1_5.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\bits2_5.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\bits2_5.idl.patch",
+    "target": "um\\bits2_5.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\endpointvolume.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\endpointvolume.idl.patch",
+    "target": "um\\endpointvolume.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\inkpresenterdesktop.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\inkpresenterdesktop.idl.patch",
+    "target": "um\\inkpresenterdesktop.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\mftransform.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\mftransform.idl.patch",
+    "target": "um\\mftransform.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\msxml6.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\msxml6.idl.patch",
+    "target": "um\\msxml6.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\ndhelper.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\ndhelper.idl.patch",
+    "target": "um\\ndhelper.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\opmapi.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\opmapi.idl.patch",
+    "target": "um\\opmapi.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\tsgpolicyengine.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\tsgpolicyengine.idl.patch",
+    "target": "um\\tsgpolicyengine.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\wsdattachment.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\wsdattachment.idl.patch",
+    "target": "um\\wsdattachment.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "winrt\\rdpappcontainerclient.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\rdpappcontainerclient.idl.patch",
+    "target": "winrt\\rdpappcontainerclient.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\bits2_0.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\bits2_0.idl.patch",
+    "target": "um\\bits2_0.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\documenttarget.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\documenttarget.idl.patch",
+    "target": "um\\documenttarget.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\manipulations.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\manipulations.idl.patch",
+    "target": "um\\manipulations.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\mfmediacapture.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\mfmediacapture.idl.patch",
+    "target": "um\\mfmediacapture.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\relogger.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\relogger.idl.patch",
+    "target": "um\\relogger.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\structuredquerycondition.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\structuredquerycondition.idl.patch",
+    "target": "um\\structuredquerycondition.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\wmiutils.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\wmiutils.idl.patch",
+    "target": "um\\wmiutils.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\wmsecure.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\wmsecure.idl.patch",
+    "target": "um\\wmsecure.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\wrdsgraphicschannels.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\wrdsgraphicschannels.idl.patch",
+    "target": "um\\wrdsgraphicschannels.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "winrt\\weakreference.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\weakreference.idl.patch",
+    "target": "winrt\\weakreference.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\bits10_1.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\bits10_1.idl.patch",
+    "target": "um\\bits10_1.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\bits10_2.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\bits10_2.idl.patch",
+    "target": "um\\bits10_2.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\bits5_0.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\bits5_0.idl.patch",
+    "target": "um\\bits5_0.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\bitscfg.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\bitscfg.idl.patch",
+    "target": "um\\bitscfg.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\certpol.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\certpol.idl.patch",
+    "target": "um\\certpol.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\d3d11_2.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\d3d11_2.idl.patch",
+    "target": "um\\d3d11_2.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\d3d11on12.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\d3d11on12.idl.patch",
+    "target": "um\\d3d11on12.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\directmanipulation.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\directmanipulation.idl.patch",
+    "target": "um\\directmanipulation.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\dwrite.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\dwrite.h.patch",
+    "target": "um\\dwrite.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\wbemprov.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\wbemprov.idl.patch",
+    "target": "um\\wbemprov.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\mfcaptureengine.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\mfcaptureengine.idl.patch",
+    "target": "um\\mfcaptureengine.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\uiribbon.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\uiribbon.idl.patch",
+    "target": "um\\uiribbon.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\portabledeviceapi.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\portabledeviceapi.idl.patch",
+    "target": "um\\portabledeviceapi.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\wsdclient.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\wsdclient.idl.patch",
+    "target": "um\\wsdclient.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\adhoc.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\adhoc.idl.patch",
+    "target": "um\\adhoc.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\audioengineendpoint.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\audioengineendpoint.idl.patch",
+    "target": "um\\audioengineendpoint.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\bits3_0.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\bits3_0.idl.patch",
+    "target": "um\\bits3_0.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\certexit.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\certexit.idl.patch",
+    "target": "um\\certexit.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\docobj.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\docobj.idl.patch",
+    "target": "um\\docobj.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\fsrmscreen.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\fsrmscreen.idl.patch",
+    "target": "um\\fsrmscreen.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\spellcheck.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\spellcheck.idl.patch",
+    "target": "um\\spellcheck.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\tsvirtualchannels.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\tsvirtualchannels.idl.patch",
+    "target": "um\\tsvirtualchannels.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\wsddisco.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\wsddisco.idl.patch",
+    "target": "um\\wsddisco.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\wsmandisp.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\wsmandisp.idl.patch",
+    "target": "um\\wsmandisp.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\audiopolicy.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\audiopolicy.idl.patch",
+    "target": "um\\audiopolicy.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\d3d11_1.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\d3d11_1.idl.patch",
+    "target": "um\\d3d11_1.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\fsrmquota.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\fsrmquota.idl.patch",
+    "target": "um\\fsrmquota.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\mfsharingengine.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\mfsharingengine.idl.patch",
+    "target": "um\\mfsharingengine.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\spatialaudiometadata.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\spatialaudiometadata.idl.patch",
+    "target": "um\\spatialaudiometadata.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\workspaceruntime.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\workspaceruntime.idl.patch",
+    "target": "um\\workspaceruntime.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\camerauicontrol.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\camerauicontrol.idl.patch",
+    "target": "um\\camerauicontrol.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\fsrmreports.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\fsrmreports.idl.patch",
+    "target": "um\\fsrmreports.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\functiondiscoveryprovider.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\functiondiscoveryprovider.idl.patch",
+    "target": "um\\functiondiscoveryprovider.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\printmanagerinterop.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\printmanagerinterop.idl.patch",
+    "target": "um\\printmanagerinterop.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\regbag.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\regbag.idl.patch",
+    "target": "um\\regbag.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\spatialinteractionmanagerinterop.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\spatialinteractionmanagerinterop.idl.patch",
+    "target": "um\\spatialinteractionmanagerinterop.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\thumbnailstreamcache.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\thumbnailstreamcache.idl.patch",
+    "target": "um\\thumbnailstreamcache.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\tspubplugin2com.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\tspubplugin2com.idl.patch",
+    "target": "um\\tspubplugin2com.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\tspubplugincom.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\tspubplugincom.idl.patch",
+    "target": "um\\tspubplugincom.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\tssbx.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\tssbx.idl.patch",
+    "target": "um\\tssbx.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\vsadmin.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\vsadmin.idl.patch",
+    "target": "um\\vsadmin.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\workspaceruntimeclientext.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\workspaceruntimeclientext.idl.patch",
+    "target": "um\\workspaceruntimeclientext.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "winrt\\activation.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\activation.idl.patch",
+    "target": "winrt\\activation.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "winrt\\asyncinfo.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\asyncinfo.idl.patch",
+    "target": "winrt\\asyncinfo.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "winrt\\inspectable.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\inspectable.idl.patch",
+    "target": "winrt\\inspectable.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\dshowasf.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\dshowasf.idl.patch",
+    "target": "um\\dshowasf.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\inputpanelconfiguration.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\inputpanelconfiguration.idl.patch",
+    "target": "um\\inputpanelconfiguration.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\mfspatialaudio.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\mfspatialaudio.idl.patch",
+    "target": "um\\mfspatialaudio.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\mixerocx.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\mixerocx.idl.patch",
+    "target": "um\\mixerocx.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\mmcobj.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\mmcobj.idl.patch",
+    "target": "um\\mmcobj.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\objectarray.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\objectarray.idl.patch",
+    "target": "um\\objectarray.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\spatialaudiohrtf.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\spatialaudiohrtf.idl.patch",
+    "target": "um\\spatialaudiohrtf.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\spellcheckprovider.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\spellcheckprovider.idl.patch",
+    "target": "um\\spellcheckprovider.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\tpmvscmgr.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\tpmvscmgr.idl.patch",
+    "target": "um\\tpmvscmgr.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\tsgauthenticationengine.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\tsgauthenticationengine.idl.patch",
+    "target": "um\\tsgauthenticationengine.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\tvratings.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\tvratings.idl.patch",
+    "target": "um\\tvratings.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\videoacc.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\videoacc.idl.patch",
+    "target": "um\\videoacc.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\vss.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\vss.idl.patch",
+    "target": "um\\vss.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\xpsobjectmodel_2.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\xpsobjectmodel_2.idl.patch",
+    "target": "um\\xpsobjectmodel_2.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\audioendpoints.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\audioendpoints.idl.patch",
+    "target": "um\\audioendpoints.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\bits1_5.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\bits1_5.idl.patch",
+    "target": "um\\bits1_5.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\certmod.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\certmod.idl.patch",
+    "target": "um\\certmod.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\ctfspui.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\ctfspui.idl.patch",
+    "target": "um\\ctfspui.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\ctxtcall.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\ctxtcall.idl.patch",
+    "target": "um\\ctxtcall.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\d3d11_4.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\d3d11_4.idl.patch",
+    "target": "um\\d3d11_4.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\dcompanimation.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\dcompanimation.idl.patch",
+    "target": "um\\dcompanimation.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\dmodshow.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\dmodshow.idl.patch",
+    "target": "um\\dmodshow.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\editionupgradehelper.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\editionupgradehelper.idl.patch",
+    "target": "um\\editionupgradehelper.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\filter.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\filter.idl.patch",
+    "target": "um\\filter.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\filtereg.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\filtereg.idl.patch",
+    "target": "um\\filtereg.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\holographicspaceinterop.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\holographicspaceinterop.idl.patch",
+    "target": "um\\holographicspaceinterop.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\iaccess.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\iaccess.idl.patch",
+    "target": "um\\iaccess.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\icontentprefetchertasktrigger.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\icontentprefetchertasktrigger.idl.patch",
+    "target": "um\\icontentprefetchertasktrigger.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\inkrenderer.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\inkrenderer.idl.patch",
+    "target": "um\\inkrenderer.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\inputpaneinterop.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\inputpaneinterop.idl.patch",
+    "target": "um\\inputpaneinterop.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\mfmp2dlna.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\mfmp2dlna.idl.patch",
+    "target": "um\\mfmp2dlna.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\mpeg2psiparser.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\mpeg2psiparser.idl.patch",
+    "target": "um\\mpeg2psiparser.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\msimeapi.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\msimeapi.idl.patch",
+    "target": "um\\msimeapi.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\msvidctl.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\msvidctl.idl.patch",
+    "target": "um\\msvidctl.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\playtomanagerinterop.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\playtomanagerinterop.idl.patch",
+    "target": "um\\playtomanagerinterop.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\portabledeviceconnectapi.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\portabledeviceconnectapi.idl.patch",
+    "target": "um\\portabledeviceconnectapi.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\msclus.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\msclus.idl.patch",
+    "target": "um\\msclus.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\mstask.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\mstask.idl.patch",
+    "target": "um\\mstask.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\xamlom.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\xamlom.idl.patch",
+    "target": "um\\xamlom.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\xpsdigitalsignature.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\xpsdigitalsignature.idl.patch",
+    "target": "um\\xpsdigitalsignature.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "shared\\dxgi1_4.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\dxgi1_4.idl.patch",
+    "target": "shared\\dxgi1_4.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "shared\\dxgi1_6.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\dxgi1_6.idl.patch",
+    "target": "shared\\dxgi1_6.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\emptyvc.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\emptyvc.idl.patch",
+    "target": "um\\emptyvc.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\encdec.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\encdec.idl.patch",
+    "target": "um\\encdec.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\functiondiscoveryapi.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\functiondiscoveryapi.idl.patch",
+    "target": "um\\functiondiscoveryapi.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\msaatext.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\msaatext.idl.patch",
+    "target": "um\\msaatext.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\upnphost.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\upnphost.idl.patch",
+    "target": "um\\upnphost.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "winrt\\webapplication.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\webapplication.idl.patch",
+    "target": "winrt\\webapplication.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\bits4_0.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\bits4_0.idl.patch",
+    "target": "um\\bits4_0.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\casetup.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\casetup.idl.patch",
+    "target": "um\\casetup.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\comcat.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\comcat.idl.patch",
+    "target": "um\\comcat.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\commoncontrols.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\commoncontrols.idl.patch",
+    "target": "um\\commoncontrols.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\d3d11sdklayers.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\d3d11sdklayers.idl.patch",
+    "target": "um\\d3d11sdklayers.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\inputscope.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\inputscope.idl.patch",
+    "target": "um\\inputscope.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\mfcontentdecryptionmodule.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\mfcontentdecryptionmodule.idl.patch",
+    "target": "um\\mfcontentdecryptionmodule.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\natupnp.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\natupnp.idl.patch",
+    "target": "um\\natupnp.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\qmgr.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\qmgr.idl.patch",
+    "target": "um\\qmgr.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\shldisp.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\shldisp.idl.patch",
+    "target": "um\\shldisp.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\spatialaudioclient.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\spatialaudioclient.idl.patch",
+    "target": "um\\spatialaudioclient.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\vsmgmt.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\vsmgmt.idl.patch",
+    "target": "um\\vsmgmt.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\vsprov.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\vsprov.idl.patch",
+    "target": "um\\vsprov.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\cluadmex.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\cluadmex.idl.patch",
+    "target": "um\\cluadmex.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\mpegtype.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\mpegtype.h.patch",
+    "target": "um\\mpegtype.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\comadmin.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\comadmin.idl.patch",
+    "target": "um\\comadmin.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\wabiab.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\wabiab.h.patch",
+    "target": "um\\wabiab.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\richole.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\richole.h.patch",
+    "target": "um\\richole.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\d2d1effectauthor.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\d2d1effectauthor.h.patch",
+    "target": "um\\d2d1effectauthor.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\dwrite_3.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\dwrite_3.h.patch",
+    "target": "um\\dwrite_3.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\dskquota.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\dskquota.h.patch",
+    "target": "um\\dskquota.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\dwrite_2.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\dwrite_2.h.patch",
+    "target": "um\\dwrite_2.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\qnetwork.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\qnetwork.h.patch",
+    "target": "um\\qnetwork.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\dwrite_1.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\dwrite_1.h.patch",
+    "target": "um\\dwrite_1.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\dsadmin.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\dsadmin.h.patch",
+    "target": "um\\dsadmin.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\d3d11shader.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\d3d11shader.h.patch",
+    "target": "um\\d3d11shader.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\wabdefs.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\wabdefs.h.patch",
+    "target": "um\\wabdefs.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\amvideo.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\amvideo.h.patch",
+    "target": "um\\amvideo.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\cmnquery.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\cmnquery.h.patch",
+    "target": "um\\cmnquery.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\vpnotify.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\vpnotify.h.patch",
+    "target": "um\\vpnotify.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\mpconfig.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\mpconfig.h.patch",
+    "target": "um\\mpconfig.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\objsel.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\objsel.h.patch",
+    "target": "um\\objsel.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\vpconfig.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\vpconfig.h.patch",
+    "target": "um\\vpconfig.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\wabapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\wabapi.h.patch",
+    "target": "um\\wabapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\amaudio.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\amaudio.h.patch",
+    "target": "um\\amaudio.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\amparse.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\amparse.h.patch",
+    "target": "um\\amparse.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\hrtfapoapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\hrtfapoapi.h.patch",
+    "target": "um\\hrtfapoapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\il21dec.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\il21dec.h.patch",
+    "target": "um\\il21dec.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\iwstdec.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\iwstdec.h.patch",
+    "target": "um\\iwstdec.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\cfg.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\cfg.h.patch",
+    "target": "shared\\cfg.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\mmreg.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\mmreg.h.patch",
+    "target": "shared\\mmreg.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\pciprop.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\pciprop.h.patch",
+    "target": "shared\\pciprop.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\tdiinfo.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\tdiinfo.h.patch",
+    "target": "shared\\tdiinfo.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\winbio_types.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\winbio_types.h.patch",
+    "target": "shared\\winbio_types.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\winusbio.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\winusbio.h.patch",
+    "target": "shared\\winusbio.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\accctrl.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\accctrl.h.patch",
+    "target": "um\\accctrl.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\certsrv.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\certsrv.h.patch",
+    "target": "um\\certsrv.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\dbt.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\dbt.h.patch",
+    "target": "um\\dbt.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\dvdmedia.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\dvdmedia.h.patch",
+    "target": "um\\dvdmedia.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\imm.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\imm.h.patch",
+    "target": "um\\imm.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\iptypes.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\iptypes.h.patch",
+    "target": "um\\iptypes.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\mq.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\mq.h.patch",
+    "target": "um\\mq.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\playsoundapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\playsoundapi.h.patch",
+    "target": "um\\playsoundapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\verrsrc.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\verrsrc.h.patch",
+    "target": "um\\verrsrc.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\vssym32.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\vssym32.h.patch",
+    "target": "um\\vssym32.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\winioctl.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\winioctl.h.patch",
+    "target": "um\\winioctl.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\winperf.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\winperf.h.patch",
+    "target": "um\\winperf.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\fwptypes.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\fwptypes.idl.patch",
+    "target": "shared\\fwptypes.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "shared\\wtypes.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\wtypes.idl.patch",
+    "target": "shared\\wtypes.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\hlink.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\hlink.idl.patch",
+    "target": "um\\hlink.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\xmllite.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\xmllite.idl.patch",
+    "target": "um\\xmllite.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\activprof.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\activprof.idl.patch",
+    "target": "um\\activprof.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\mshtmhst.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\mshtmhst.idl.patch",
+    "target": "um\\mshtmhst.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\audioenginebaseapo.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\audioenginebaseapo.idl.patch",
+    "target": "um\\audioenginebaseapo.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\dbgprop.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\dbgprop.idl.patch",
+    "target": "um\\dbgprop.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\presentation.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\presentation.idl.patch",
+    "target": "um\\presentation.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\dispex.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\dispex.idl.patch",
+    "target": "um\\dispex.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\netcfgn.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\netcfgn.idl.patch",
+    "target": "um\\netcfgn.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\scpops.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\scpops.idl.patch",
+    "target": "um\\scpops.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\rstkys.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\rstkys.idl.patch",
+    "target": "um\\rstkys.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\mcx.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\mcx.h.patch",
+    "target": "um\\mcx.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\tcpmib.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\tcpmib.h.patch",
+    "target": "shared\\tcpmib.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\minschannel.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\minschannel.h.patch",
+    "target": "um\\minschannel.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\credssp.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\credssp.h.patch",
+    "target": "um\\credssp.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\vbinterf.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\vbinterf.h.patch",
+    "target": "um\\vbinterf.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\mmsyscom.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\mmsyscom.h.patch",
+    "target": "um\\mmsyscom.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\ntstatus.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\ntstatus.h.patch",
+    "target": "shared\\ntstatus.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\cderr.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\cderr.h.patch",
+    "target": "shared\\cderr.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\bugcodes.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\bugcodes.h.patch",
+    "target": "shared\\bugcodes.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\devpropdef.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\devpropdef.h.patch",
+    "target": "shared\\devpropdef.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\lmuseflg.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\lmuseflg.h.patch",
+    "target": "um\\lmuseflg.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\dshow.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\dshow.h.patch",
+    "target": "um\\dshow.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\sens.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\sens.h.patch",
+    "target": "um\\sens.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\infotech.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\infotech.h.patch",
+    "target": "um\\infotech.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\statehelpers.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\statehelpers.h.patch",
+    "target": "um\\statehelpers.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\ntdef.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\ntdef.h.patch",
+    "target": "shared\\ntdef.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\regstr.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\regstr.h.patch",
+    "target": "um\\regstr.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\audiomediatype.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\audiomediatype.idl.patch",
+    "target": "um\\audiomediatype.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\devenum.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\devenum.idl.patch",
+    "target": "um\\devenum.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\axcore.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\axcore.idl.patch",
+    "target": "um\\axcore.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\axextend.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\axextend.idl.patch",
+    "target": "um\\axextend.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\dyngraph.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\dyngraph.idl.patch",
+    "target": "um\\dyngraph.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\VMRender.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\VMRender.idl.patch",
+    "target": "um\\VMRender.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\dvdif.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\dvdif.idl.patch",
+    "target": "um\\dvdif.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\urlaccsdk.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\urlaccsdk.idl.patch",
+    "target": "um\\urlaccsdk.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\urlacc.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\urlacc.idl.patch",
+    "target": "um\\urlacc.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\srchprth.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\srchprth.idl.patch",
+    "target": "um\\srchprth.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\SearchCrawlScopeManager.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\SearchCrawlScopeManager.idl.patch",
+    "target": "um\\SearchCrawlScopeManager.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\SearchNotifications.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\SearchNotifications.idl.patch",
+    "target": "um\\SearchNotifications.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\srchntfyinlinesite.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\srchntfyinlinesite.idl.patch",
+    "target": "um\\srchntfyinlinesite.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\SearchCatalog.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\SearchCatalog.idl.patch",
+    "target": "um\\SearchCatalog.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\SearchQuery.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\SearchQuery.idl.patch",
+    "target": "um\\SearchQuery.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\SearchAdmin.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\SearchAdmin.idl.patch",
+    "target": "um\\SearchAdmin.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\SearchLanguageSupport.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\SearchLanguageSupport.idl.patch",
+    "target": "um\\SearchLanguageSupport.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "shared\\fwpmtypes.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\fwpmtypes.idl.patch",
+    "target": "shared\\fwpmtypes.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\oaidl.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\oaidl.idl.patch",
+    "target": "um\\oaidl.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\d3dcommon.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\d3dcommon.idl.patch",
+    "target": "um\\d3dcommon.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\dxcapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\dxcapi.h.patch",
+    "target": "um\\dxcapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\winsock.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\winsock.h.patch",
+    "target": "um\\winsock.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\ntddtape.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\ntddtape.h.patch",
+    "target": "shared\\ntddtape.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\dbghelp.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\dbghelp.h.patch",
+    "target": "um\\dbghelp.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\intsafe.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\intsafe.h.patch",
+    "target": "shared\\intsafe.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\strsafe.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\strsafe.h.patch",
+    "target": "shared\\strsafe.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\baseaudioprocessingobject.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\baseaudioprocessingobject.h.patch",
+    "target": "um\\baseaudioprocessingobject.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\gdiplusinit.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\gdiplusinit.h.patch",
+    "target": "um\\gdiplusinit.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\gdiplusenums.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\gdiplusenums.h.patch",
+    "target": "um\\gdiplusenums.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\vswriter.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\vswriter.h.patch",
+    "target": "um\\vswriter.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "winrt\\roregistrationapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\roregistrationapi.h.patch",
+    "target": "winrt\\roregistrationapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\propsys.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\propsys.idl.patch",
+    "target": "um\\propsys.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\atlthunk.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\atlthunk.h.patch",
+    "target": "um\\atlthunk.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\d2d1_1.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\d2d1_1.h.patch",
+    "target": "um\\d2d1_1.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\d2d1_1helper.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\d2d1_1helper.h.patch",
+    "target": "um\\d2d1_1helper.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\d2d1helper.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\d2d1helper.h.patch",
+    "target": "um\\d2d1helper.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\gdiplusimagecodec.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\gdiplusimagecodec.h.patch",
+    "target": "um\\gdiplusimagecodec.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\ip2string.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\ip2string.h.patch",
+    "target": "shared\\ip2string.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\msdrm.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\msdrm.h.patch",
+    "target": "um\\msdrm.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\networkisolation.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\networkisolation.h.patch",
+    "target": "um\\networkisolation.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\ntlsa.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\ntlsa.h.patch",
+    "target": "um\\ntlsa.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "winrt\\rometadataresolution.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\rometadataresolution.h.patch",
+    "target": "winrt\\rometadataresolution.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\rpcproxy.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\rpcproxy.h.patch",
+    "target": "um\\rpcproxy.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\timeprov.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\timeprov.h.patch",
+    "target": "um\\timeprov.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\traceloggingprovider.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\traceloggingprovider.h.patch",
+    "target": "shared\\traceloggingprovider.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\iketypes.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\iketypes.idl.patch",
+    "target": "shared\\iketypes.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "shared\\ipsectypes.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\ipsectypes.idl.patch",
+    "target": "shared\\ipsectypes.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\minwinbase.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\minwinbase.h.patch",
+    "target": "um\\minwinbase.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\comppkgsup.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\comppkgsup.h.patch",
+    "target": "um\\comppkgsup.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\d2d1_3helper.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\d2d1_3helper.h.patch",
+    "target": "um\\d2d1_3helper.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\gdipluspixelformats.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\gdipluspixelformats.h.patch",
+    "target": "um\\gdipluspixelformats.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\lpmapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\lpmapi.h.patch",
+    "target": "um\\lpmapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\vsbackup.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\vsbackup.h.patch",
+    "target": "um\\vsbackup.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\clfs.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\clfs.h.patch",
+    "target": "shared\\clfs.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\dimm.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\dimm.idl.patch",
+    "target": "um\\dimm.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\objidlbase.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\objidlbase.idl.patch",
+    "target": "um\\objidlbase.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "shared\\guiddef.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\guiddef.h.patch",
+    "target": "shared\\guiddef.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\msime.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\msime.h.patch",
+    "target": "um\\msime.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\reason.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\reason.h.patch",
+    "target": "um\\reason.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\windef.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\windef.h.patch",
+    "target": "shared\\windef.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\gdiplusflat.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\gdiplusflat.h.patch",
+    "target": "um\\gdiplusflat.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\gdiplustypes.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\gdiplustypes.h.patch",
+    "target": "um\\gdiplustypes.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\mswsock.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\mswsock.h.patch",
+    "target": "um\\mswsock.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\winhvplatform.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\winhvplatform.h.patch",
+    "target": "um\\winhvplatform.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\cimfs.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\cimfs.h.patch",
+    "target": "um\\cimfs.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\ddrawgdi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\ddrawgdi.h.patch",
+    "target": "um\\ddrawgdi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\versionhelpers.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\versionhelpers.h.patch",
+    "target": "um\\versionhelpers.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\evr.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\evr.idl.patch",
+    "target": "um\\evr.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\icodecapi.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\icodecapi.idl.patch",
+    "target": "um\\icodecapi.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\mshtml.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\mshtml.idl.patch",
+    "target": "um\\mshtml.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\vdscmmn.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\vdscmmn.idl.patch",
+    "target": "um\\vdscmmn.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\vdshp.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\vdshp.idl.patch",
+    "target": "um\\vdshp.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\wsdxml.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\wsdxml.idl.patch",
+    "target": "um\\wsdxml.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\computecore.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\computecore.h.patch",
+    "target": "um\\computecore.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\featurestagingapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\featurestagingapi.h.patch",
+    "target": "um\\featurestagingapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\gamingexperience.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\gamingexperience.h.patch",
+    "target": "um\\gamingexperience.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\scesvc.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\scesvc.h.patch",
+    "target": "um\\scesvc.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\ioringapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\ioringapi.h.patch",
+    "target": "um\\ioringapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\dsound.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\dsound.h.patch",
+    "target": "um\\dsound.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\unknwnbase.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\unknwnbase.idl.patch",
+    "target": "um\\unknwnbase.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\propidl.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\propidl.idl.patch",
+    "target": "um\\propidl.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\chstring.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\chstring.h.patch",
+    "target": "um\\chstring.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\commapi.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\commapi.h.patch",
+    "target": "um\\commapi.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\winsplp.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\winsplp.h.patch",
+    "target": "um\\winsplp.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\urlmon.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\urlmon.idl.patch",
+    "target": "um\\urlmon.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "shared\\wtypesbase.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\wtypesbase.idl.patch",
+    "target": "shared\\wtypesbase.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\opcdigitalsignature.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\opcdigitalsignature.idl.patch",
+    "target": "um\\opcdigitalsignature.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\opcobjectmodel.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\opcobjectmodel.idl.patch",
+    "target": "um\\opcobjectmodel.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\opcparturi.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\opcparturi.idl.patch",
+    "target": "um\\opcparturi.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\servprov.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\servprov.idl.patch",
+    "target": "um\\servprov.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "shared\\windnsdef.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\windnsdef.h.patch",
+    "target": "shared\\windnsdef.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\ws2def.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\ws2def.h.patch",
+    "target": "shared\\ws2def.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\dbs.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\dbs.idl.patch",
+    "target": "um\\dbs.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\msports.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\msports.h.patch",
+    "target": "um\\msports.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\gdiplusheaders.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\gdiplusheaders.h.patch",
+    "target": "um\\gdiplusheaders.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "winrt\\wrl\\wrappers\\corewrappers.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\corewrappers.h.patch",
+    "target": "winrt\\wrl\\wrappers\\corewrappers.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\d3d9.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\d3d9.h.patch",
+    "target": "shared\\d3d9.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\devioctl.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\devioctl.h.patch",
+    "target": "shared\\devioctl.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\reconcil.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\reconcil.h.patch",
+    "target": "um\\reconcil.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\txlogpub.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\txlogpub.idl.patch",
+    "target": "um\\txlogpub.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\cmdtre.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\cmdtre.idl.patch",
+    "target": "um\\cmdtre.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\qrybas.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\qrybas.idl.patch",
+    "target": "um\\qrybas.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "um\\ieobj.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\ieobj.h.patch",
+    "target": "um\\ieobj.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\dbgeng.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\dbgeng.h.patch",
+    "target": "um\\dbgeng.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\imepad.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\imepad.h.patch",
+    "target": "um\\imepad.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\ddstream.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\ddstream.idl.patch",
+    "target": "um\\ddstream.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "shared\\ntddchgr.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\ntddchgr.h.patch",
+    "target": "shared\\ntddchgr.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\ntdddisk.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\ntdddisk.h.patch",
+    "target": "shared\\ntdddisk.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\rpcnterr.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\rpcnterr.h.patch",
+    "target": "shared\\rpcnterr.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "shared\\ntiologc.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\ntiologc.h.patch",
+    "target": "shared\\ntiologc.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\activdbg.idl.patch",
+    "patch": "generation\\WinSDK\\patches\\pre-midl\\activdbg.idl.patch",
+    "target": "um\\activdbg.idl",
+    "phase": "pre-midl"
+  },
+  {
+    "sourcePatch": "shared\\minwindef.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\minwindef.h.patch",
+    "target": "shared\\minwindef.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\Iads.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\Iads.h.patch",
+    "target": "um\\Iads.h",
+    "phase": "post-midl"
+  },
+  {
+    "sourcePatch": "um\\kbd.h.patch",
+    "patch": "generation\\WinSDK\\patches\\post-midl\\kbd.h.patch",
+    "target": "um\\kbd.h",
+    "phase": "post-midl"
+  }
+]

@@ -1,15 +1,32 @@
 # SDK-Version: 10.0.28000.2705
 diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/ObjIdl.Idl b/generation/WinSDK/RecompiledIdlHeaders/um/ObjIdl.Idl
-index c7c6f492..d34f4e7e 100644
 --- a/generation/WinSDK/RecompiledIdlHeaders/um/ObjIdl.Idl
 +++ b/generation/WinSDK/RecompiledIdlHeaders/um/ObjIdl.Idl
-@@ -1,4 +1,5 @@
+@@ -1,4 +1,6 @@
++#include <win32metadata_annotations.h>
  cpp_quote("#include <winapifamily.h>")
 +cpp_quote("#include <win32metadata_annotations.h>")
  
  //+-------------------------------------------------------------------------
  //
-@@ -538,7 +539,7 @@ interface IMoniker : IPersistStream
+@@ -350,6 +352,8 @@
+     HRESULT Clone(
+         [out] IEnumMoniker **ppenum);
+ }
++_Win32_AnnotateMethod_(IEnumMoniker::Next, _Win32_PreserveResult_)
++_Win32_AnnotateMethod_(IEnumMoniker::Skip, _Win32_PreserveResult_)
+ 
+ cpp_quote("#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES) */")
+ #pragma endregion
+@@ -494,6 +498,7 @@
+     );
+ 
+ }
++_Win32_AnnotateMethod_(IPersistStream::IsDirty, _Win32_PreserveResult_)
+ 
+ [
+     object,
+@@ -538,7 +543,7 @@
          [in, unique, annotation("_In_")] IBindCtx *pbc,
          [in, unique, annotation("_In_opt_")] IMoniker *pmkToLeft,
          [in, annotation("_In_")] REFIID riidResult,
@@ -18,7 +35,7 @@ index c7c6f492..d34f4e7e 100644
  
      [call_as(BindToObject)]
      HRESULT RemoteBindToObject(
-@@ -552,7 +553,7 @@ interface IMoniker : IPersistStream
+@@ -552,7 +557,7 @@
          [in, unique, annotation("_In_")] IBindCtx *pbc,
          [in, unique, annotation("_In_opt_")] IMoniker *pmkToLeft,
          [in, annotation("_In_")] REFIID riid,
@@ -27,7 +44,15 @@ index c7c6f492..d34f4e7e 100644
  
      [call_as(BindToStorage)]
      HRESULT RemoteBindToStorage(
-@@ -759,7 +760,7 @@ interface IStorage : IUnknown
+@@ -619,6 +624,7 @@
+         [out] DWORD *pdwMksys);
+ 
+ }
++_Win32_AnnotateMethod_(IMoniker::IsEqual, _Win32_PreserveResult_)
+ 
+ cpp_quote("#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES) */")
+ #pragma endregion
+@@ -759,7 +765,7 @@
          [in, string] const OLECHAR * pwcsName,
          [in, unique] IStorage *pstgDest,
          [in, string] const OLECHAR *pwcsNewName,
@@ -36,3 +61,36 @@ index c7c6f492..d34f4e7e 100644
  
      HRESULT Commit(
          [in] DWORD grfCommitFlags);
+@@ -852,6 +858,7 @@
+         [out] LPOLESTR *ppszFileName
+     );
+ }
++_Win32_AnnotateMethod_(IPersistFile::IsDirty, _Win32_PreserveResult_)
+ 
+ [
+     object,
+@@ -895,6 +902,7 @@
+         void
+     );
+ }
++_Win32_AnnotateMethod_(IPersistStorage::IsDirty, _Win32_PreserveResult_)
+ 
+ cpp_quote("#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM) */")
+ #pragma endregion
+@@ -1018,6 +1026,7 @@
+     HRESULT Clone(
+         [out] IEnumFORMATETC **ppenum);
+ }
++_Win32_AnnotateMethod_(IEnumFORMATETC::Next, _Win32_PreserveResult_)
+ 
+ [
+     object,
+@@ -1479,6 +1488,8 @@
+         [out] IEnumSTATDATA **ppenumAdvise);
+ 
+ }
++_Win32_AnnotateMethod_(IDataObject::GetCanonicalFormatEtc, _Win32_PreserveResult_)
++_Win32_AnnotateMethod_(IDataObject::QueryGetData, _Win32_PreserveResult_)
+ 
+ cpp_quote("#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES) */")
+ #pragma endregion

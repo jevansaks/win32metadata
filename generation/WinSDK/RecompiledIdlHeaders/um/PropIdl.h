@@ -104,6 +104,7 @@ extern "C"{
 #if ( _MSC_VER >= 1020 )
 #pragma once
 #endif
+#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 #ifndef _PROPIDLBASE_
 #pragma region Application Family or OneCore Family or Games Family
@@ -784,7 +785,7 @@ EXTERN_C const IID IID_IPropertySetStorage;
             /* [annotation][in] */ 
             _In_  REFFMTID rfmtid,
             /* [annotation][unique][in] */ 
-            _In_  const CLSID *pclsid,
+            _In_opt_  const CLSID *pclsid,
             /* [annotation][in] */ 
             _In_  DWORD grfFlags,
             /* [annotation][in] */ 
@@ -839,7 +840,7 @@ EXTERN_C const IID IID_IPropertySetStorage;
             /* [annotation][in] */ 
             _In_  REFFMTID rfmtid,
             /* [annotation][unique][in] */ 
-            _In_  const CLSID *pclsid,
+            _In_opt_  const CLSID *pclsid,
             /* [annotation][in] */ 
             _In_  DWORD grfFlags,
             /* [annotation][in] */ 
@@ -977,7 +978,7 @@ EXTERN_C const IID IID_IEnumSTATPROPSTG;
         
         DECLSPEC_XFGVIRT(IEnumSTATPROPSTG, Next)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Next )( 
-            IEnumSTATPROPSTG * This,
+            __RPC__in IEnumSTATPROPSTG * This,
             /* [annotation][in] */ 
             _In_  ULONG celt,
             /* [annotation][length_is][size_is][out] */ 
@@ -1064,6 +1065,16 @@ void __RPC_STUB IEnumSTATPROPSTG_RemoteNext_Stub(
 #endif 	/* __IEnumSTATPROPSTG_INTERFACE_DEFINED__ */
 
 
+/* interface __MIDL_itf_propidl_0000_0003 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_METHOD_(IEnumSTATPROPSTG::Next, _Win32_PreserveResult_);
+_WIN32META_ANNOTATE_METHOD_(IEnumSTATPROPSTG::Skip, _Win32_PreserveResult_);
+
+
+extern RPC_IF_HANDLE __MIDL_itf_propidl_0000_0003_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_propidl_0000_0003_v0_0_s_ifspec;
+
 #ifndef __IEnumSTATPROPSETSTG_INTERFACE_DEFINED__
 #define __IEnumSTATPROPSETSTG_INTERFACE_DEFINED__
 
@@ -1126,7 +1137,7 @@ EXTERN_C const IID IID_IEnumSTATPROPSETSTG;
         
         DECLSPEC_XFGVIRT(IEnumSTATPROPSETSTG, Next)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Next )( 
-            IEnumSTATPROPSETSTG * This,
+            __RPC__in IEnumSTATPROPSETSTG * This,
             /* [annotation][in] */ 
             _In_  ULONG celt,
             /* [annotation][length_is][size_is][out] */ 
@@ -1216,6 +1227,8 @@ void __RPC_STUB IEnumSTATPROPSETSTG_RemoteNext_Stub(
 /* interface __MIDL_itf_propidl_0000_0004 */
 /* [local] */ 
 
+_WIN32META_ANNOTATE_METHOD_(IEnumSTATPROPSETSTG::Next, _Win32_PreserveResult_);
+_WIN32META_ANNOTATE_METHOD_(IEnumSTATPROPSETSTG::Skip, _Win32_PreserveResult_);
 typedef /* [unique] */  __RPC_unique_pointer IPropertyStorage *LPPROPERTYSTORAGE;
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES) */
@@ -1411,7 +1424,7 @@ unsigned char * __RPC_USER  LPSAFEARRAY_UserUnmarshal64(__RPC__in unsigned long 
 void                      __RPC_USER  LPSAFEARRAY_UserFree64(     __RPC__in unsigned long *, __RPC__in LPSAFEARRAY * ); 
 
 /* [local] */ HRESULT STDMETHODCALLTYPE IEnumSTATPROPSTG_Next_Proxy( 
-    IEnumSTATPROPSTG * This,
+    __RPC__in IEnumSTATPROPSTG * This,
     /* [annotation][in] */ 
     _In_  ULONG celt,
     /* [annotation][length_is][size_is][out] */ 
@@ -1430,7 +1443,7 @@ void                      __RPC_USER  LPSAFEARRAY_UserFree64(     __RPC__in unsi
     _Out_  ULONG *pceltFetched);
 
 /* [local] */ HRESULT STDMETHODCALLTYPE IEnumSTATPROPSETSTG_Next_Proxy( 
-    IEnumSTATPROPSETSTG * This,
+    __RPC__in IEnumSTATPROPSETSTG * This,
     /* [annotation][in] */ 
     _In_  ULONG celt,
     /* [annotation][length_is][size_is][out] */ 

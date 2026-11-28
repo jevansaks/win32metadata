@@ -1,0 +1,33 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/shared/dxgi1_6.idl b/generation/WinSDK/RecompiledIdlHeaders/shared/dxgi1_6.idl
+--- a/generation/WinSDK/RecompiledIdlHeaders/shared/dxgi1_6.idl
++++ b/generation/WinSDK/RecompiledIdlHeaders/shared/dxgi1_6.idl
+@@ -1,5 +1,7 @@
+ // Copyright (c) Microsoft Corporation.  All Rights Reserved
+ cpp_quote("// Copyright (c) Microsoft Corporation.  All Rights Reserved")
++cpp_quote("#include <win32metadata_annotations.h>")
++#include <win32metadata_annotations.h>
+ 
+ import "dxgi1_5.idl";
+ 
+@@ -56,7 +58,7 @@
+ interface IDXGIAdapter4 :
+     IDXGIAdapter3
+ {
+-    HRESULT GetDesc3( [out, annotation("_Out_")] DXGI_ADAPTER_DESC3 *pDesc);
++    HRESULT GetDesc3( [out, annotation("_Out_"), retval] DXGI_ADAPTER_DESC3 *pDesc);
+ };
+ 
+ //--------------------------------------------------------------------------------------------------------
+@@ -121,9 +123,10 @@
+ interface IDXGIOutput6 :
+     IDXGIOutput5
+ {
+-    HRESULT GetDesc1([out, annotation("_Out_")] DXGI_OUTPUT_DESC1 *pDesc);
++    HRESULT GetDesc1([out, annotation("_Out_"), retval] DXGI_OUTPUT_DESC1 *pDesc);
+     HRESULT CheckHardwareCompositionSupport([out, annotation("_Out_")] UINT* pFlags);
+ };
++_Win32_AnnotateParameter_(IDXGIOutput6::CheckHardwareCompositionSupport, pFlags, _Win32_AssociatedEnum_(DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS))
+ 
+ //+-----------------------------------------------------------------------------
+ //

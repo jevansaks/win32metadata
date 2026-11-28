@@ -1,0 +1,77 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/RassHost.h b/generation/WinSDK/RecompiledIdlHeaders/um/RassHost.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/RassHost.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/RassHost.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*++
+ 
+ Copyright (c) Microsoft Corporation. All rights reserved.
+@@ -31,7 +32,7 @@
+ 
+ typedef struct _SECURITY_MESSAGE
+ {
+-    DWORD dwMsgId;
++    _Win32_AssociatedEnum_(SECURITY_MESSAGE_MSG_ID) DWORD dwMsgId;
+ 
+     HPORT hPort;
+ 
+@@ -72,6 +73,7 @@
+ }RAS_SECURITY_INFO,*PRAS_SECURITY_INFO;
+ 
+ typedef DWORD (WINAPI *RASSECURITYPROC)();
++_Win32_SupportedOS_Windows2000_
+ 
+ //
+ // Called by third party DLL to notify the supervisor of termination of
+@@ -82,6 +84,7 @@
+ RasSecurityDialogComplete(
+     IN SECURITY_MESSAGE * pSecMsg       // Pointer to the above info. structure
+ );
++_Win32_SupportedOS_Windows2000_
+ 
+ //
+ // Called by supervisor into the security DLL to notify it to begin the
+@@ -103,6 +106,7 @@
+                             // Pointer to function RasSecurityDialogComplete.
+                             // Guaranteed to be the same on every call.
+ );
++_Win32_SupportedOS_Windows2000_
+ 
+ //
+ // Called by supervisor into the security DLL to notify it to stop the
+@@ -117,6 +121,8 @@
+ RasSecurityDialogEnd(
+     IN HPORT    hPort           // RAS handle to port.
+ );
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ 
+ //
+ // The following entrypoints should be loaded by calling GetProcAddress from
+@@ -132,6 +138,8 @@
+     IN PBYTE    pBuffer,        // Pointer to buffer containing data to send
+     IN WORD     BufferLength    // Length of above buffer.
+ );
++_Win32_SetLastError_
++_Win32_SupportedOS_Windows2000_
+ 
+ //
+ // Called to receive data from remote host
+@@ -147,6 +155,7 @@
+     IN HANDLE   hEvent          // Event to set when receive completes or
+                                 // timeouts
+ );
++_Win32_SupportedOS_Windows2000_
+ 
+ //
+ // Called to get Information about port.
+@@ -164,3 +173,8 @@
+ #pragma endregion
+ 
+ #endif
++
++#ifndef _WIN32METADATA_RASSHOST_MANUAL_28_GROUPS_
++#define _WIN32METADATA_RASSHOST_MANUAL_28_GROUPS_
++_Win32_Enum_(SECURITY_MESSAGE_MSG_ID, unsigned int, SECURITYMSG_SUCCESS, SECURITYMSG_FAILURE, SECURITYMSG_ERROR);
++#endif

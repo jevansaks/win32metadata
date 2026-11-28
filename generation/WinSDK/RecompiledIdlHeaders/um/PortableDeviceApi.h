@@ -297,6 +297,7 @@ extern "C"{
 /* interface __MIDL_itf_portabledeviceapi_0000_0000 */
 /* [local] */ 
 
+#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 #if (_WIN32_WINNT >= 0x0501) // XP and later
 #pragma region Application Family
@@ -343,7 +344,7 @@ EXTERN_C const IID IID_IPortableDeviceManager;
     public:
         virtual HRESULT STDMETHODCALLTYPE GetDevices( 
             /* [annotation][unique][out][in] */ 
-            _Inout_  LPWSTR *pPnPDeviceIDs,
+            _Inout_opt_  LPWSTR *pPnPDeviceIDs,
             /* [annotation][out][in] */ 
             _Inout_  DWORD *pcPnPDeviceIDs) = 0;
         
@@ -353,7 +354,7 @@ EXTERN_C const IID IID_IPortableDeviceManager;
             /* [annotation][in] */ 
             _In_  LPCWSTR pszPnPDeviceID,
             /* [annotation][unique][out][in] */ 
-            _Inout_  WCHAR *pDeviceFriendlyName,
+            _Inout_opt_  WCHAR *pDeviceFriendlyName,
             /* [annotation][out][in] */ 
             _Inout_  DWORD *pcchDeviceFriendlyName) = 0;
         
@@ -361,7 +362,7 @@ EXTERN_C const IID IID_IPortableDeviceManager;
             /* [annotation][in] */ 
             _In_  LPCWSTR pszPnPDeviceID,
             /* [annotation][unique][out][in] */ 
-            _Inout_  WCHAR *pDeviceDescription,
+            _Inout_opt_  WCHAR *pDeviceDescription,
             /* [annotation][out][in] */ 
             _Inout_  DWORD *pcchDeviceDescription) = 0;
         
@@ -369,7 +370,7 @@ EXTERN_C const IID IID_IPortableDeviceManager;
             /* [annotation][in] */ 
             _In_  LPCWSTR pszPnPDeviceID,
             /* [annotation][unique][out][in] */ 
-            _Inout_  WCHAR *pDeviceManufacturer,
+            _Inout_opt_  WCHAR *pDeviceManufacturer,
             /* [annotation][out][in] */ 
             _Inout_  DWORD *pcchDeviceManufacturer) = 0;
         
@@ -379,15 +380,15 @@ EXTERN_C const IID IID_IPortableDeviceManager;
             /* [annotation][in] */ 
             _In_  LPCWSTR pszDevicePropertyName,
             /* [annotation][unique][out][in] */ 
-            _Inout_  BYTE *pData,
+            _Inout_opt_  BYTE *pData,
             /* [annotation][unique][out][in] */ 
-            _Inout_  DWORD *pcbData,
+            _Inout_opt_  DWORD *pcbData,
             /* [annotation][unique][out][in] */ 
-            _Inout_  DWORD *pdwType) = 0;
+            _Inout_opt_  DWORD *pdwType) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE GetPrivateDevices( 
             /* [annotation][unique][out][in] */ 
-            _Inout_  LPWSTR *pPnPDeviceIDs,
+            _Inout_opt_  LPWSTR *pPnPDeviceIDs,
             /* [annotation][out][in] */ 
             _Inout_  DWORD *pcPnPDeviceIDs) = 0;
         
@@ -420,7 +421,7 @@ EXTERN_C const IID IID_IPortableDeviceManager;
         HRESULT ( STDMETHODCALLTYPE *GetDevices )( 
             __RPC__in IPortableDeviceManager * This,
             /* [annotation][unique][out][in] */ 
-            _Inout_  LPWSTR *pPnPDeviceIDs,
+            _Inout_opt_  LPWSTR *pPnPDeviceIDs,
             /* [annotation][out][in] */ 
             _Inout_  DWORD *pcPnPDeviceIDs);
         
@@ -434,7 +435,7 @@ EXTERN_C const IID IID_IPortableDeviceManager;
             /* [annotation][in] */ 
             _In_  LPCWSTR pszPnPDeviceID,
             /* [annotation][unique][out][in] */ 
-            _Inout_  WCHAR *pDeviceFriendlyName,
+            _Inout_opt_  WCHAR *pDeviceFriendlyName,
             /* [annotation][out][in] */ 
             _Inout_  DWORD *pcchDeviceFriendlyName);
         
@@ -444,7 +445,7 @@ EXTERN_C const IID IID_IPortableDeviceManager;
             /* [annotation][in] */ 
             _In_  LPCWSTR pszPnPDeviceID,
             /* [annotation][unique][out][in] */ 
-            _Inout_  WCHAR *pDeviceDescription,
+            _Inout_opt_  WCHAR *pDeviceDescription,
             /* [annotation][out][in] */ 
             _Inout_  DWORD *pcchDeviceDescription);
         
@@ -454,7 +455,7 @@ EXTERN_C const IID IID_IPortableDeviceManager;
             /* [annotation][in] */ 
             _In_  LPCWSTR pszPnPDeviceID,
             /* [annotation][unique][out][in] */ 
-            _Inout_  WCHAR *pDeviceManufacturer,
+            _Inout_opt_  WCHAR *pDeviceManufacturer,
             /* [annotation][out][in] */ 
             _Inout_  DWORD *pcchDeviceManufacturer);
         
@@ -466,17 +467,17 @@ EXTERN_C const IID IID_IPortableDeviceManager;
             /* [annotation][in] */ 
             _In_  LPCWSTR pszDevicePropertyName,
             /* [annotation][unique][out][in] */ 
-            _Inout_  BYTE *pData,
+            _Inout_opt_  BYTE *pData,
             /* [annotation][unique][out][in] */ 
-            _Inout_  DWORD *pcbData,
+            _Inout_opt_  DWORD *pcbData,
             /* [annotation][unique][out][in] */ 
-            _Inout_  DWORD *pdwType);
+            _Inout_opt_  DWORD *pdwType);
         
         DECLSPEC_XFGVIRT(IPortableDeviceManager, GetPrivateDevices)
         HRESULT ( STDMETHODCALLTYPE *GetPrivateDevices )( 
             __RPC__in IPortableDeviceManager * This,
             /* [annotation][unique][out][in] */ 
-            _Inout_  LPWSTR *pPnPDeviceIDs,
+            _Inout_opt_  LPWSTR *pPnPDeviceIDs,
             /* [annotation][out][in] */ 
             _Inout_  DWORD *pcPnPDeviceIDs);
         
@@ -582,7 +583,7 @@ EXTERN_C const IID IID_IPortableDevice;
             /* [annotation][in] */ 
             _In_  IPortableDeviceEventCallback *pCallback,
             /* [annotation][unique][in] */ 
-            _In_  IPortableDeviceValues *pParameters,
+            _In_opt_  IPortableDeviceValues *pParameters,
             /* [annotation][out] */ 
             _Out_  LPWSTR *ppszCookie) = 0;
         
@@ -665,7 +666,7 @@ EXTERN_C const IID IID_IPortableDevice;
             /* [annotation][in] */ 
             _In_  IPortableDeviceEventCallback *pCallback,
             /* [annotation][unique][in] */ 
-            _In_  IPortableDeviceValues *pParameters,
+            _In_opt_  IPortableDeviceValues *pParameters,
             /* [annotation][out] */ 
             _Out_  LPWSTR *ppszCookie);
         
@@ -763,7 +764,7 @@ EXTERN_C const IID IID_IPortableDeviceContent;
             /* [annotation][in] */ 
             _In_  LPCWSTR pszParentObjectID,
             /* [annotation][unique][in] */ 
-            _In_  IPortableDeviceValues *pFilter,
+            _In_opt_  IPortableDeviceValues *pFilter,
             /* [annotation][out] */ 
             _Out_  IEnumPortableDeviceObjectIDs **ppEnum) = 0;
         
@@ -779,7 +780,7 @@ EXTERN_C const IID IID_IPortableDeviceContent;
             /* [annotation][in] */ 
             _In_  IPortableDeviceValues *pValues,
             /* [annotation][unique][out][in] */ 
-            _Inout_  LPWSTR *ppszObjectID) = 0;
+            _Inout_opt_  LPWSTR *ppszObjectID) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE CreateObjectWithPropertiesAndData( 
             /* [annotation][in] */ 
@@ -787,9 +788,9 @@ EXTERN_C const IID IID_IPortableDeviceContent;
             /* [annotation][out] */ 
             _Out_  IStream **ppData,
             /* [annotation][unique][out][in] */ 
-            _Inout_  DWORD *pdwOptimalWriteBufferSize,
+            _Inout_opt_  DWORD *pdwOptimalWriteBufferSize,
             /* [annotation][unique][out][in] */ 
-            _Inout_  LPWSTR *ppszCookie) = 0;
+            _Inout_opt_  LPWSTR *ppszCookie) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE Delete( 
             /* [annotation][in] */ 
@@ -797,7 +798,7 @@ EXTERN_C const IID IID_IPortableDeviceContent;
             /* [annotation][in] */ 
             _In_  IPortableDevicePropVariantCollection *pObjectIDs,
             /* [annotation][unique][out][in] */ 
-            _Inout_  IPortableDevicePropVariantCollection **ppResults) = 0;
+            _Inout_opt_  IPortableDevicePropVariantCollection **ppResults) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE GetObjectIDsFromPersistentUniqueIDs( 
             /* [annotation][in] */ 
@@ -813,7 +814,7 @@ EXTERN_C const IID IID_IPortableDeviceContent;
             /* [annotation][in] */ 
             _In_  LPCWSTR pszDestinationFolderObjectID,
             /* [annotation][unique][out][in] */ 
-            _Inout_  IPortableDevicePropVariantCollection **ppResults) = 0;
+            _Inout_opt_  IPortableDevicePropVariantCollection **ppResults) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE Copy( 
             /* [annotation][in] */ 
@@ -821,7 +822,7 @@ EXTERN_C const IID IID_IPortableDeviceContent;
             /* [annotation][in] */ 
             _In_  LPCWSTR pszDestinationFolderObjectID,
             /* [annotation][unique][out][in] */ 
-            _Inout_  IPortableDevicePropVariantCollection **ppResults) = 0;
+            _Inout_opt_  IPortableDevicePropVariantCollection **ppResults) = 0;
         
     };
     
@@ -856,7 +857,7 @@ EXTERN_C const IID IID_IPortableDeviceContent;
             /* [annotation][in] */ 
             _In_  LPCWSTR pszParentObjectID,
             /* [annotation][unique][in] */ 
-            _In_  IPortableDeviceValues *pFilter,
+            _In_opt_  IPortableDeviceValues *pFilter,
             /* [annotation][out] */ 
             _Out_  IEnumPortableDeviceObjectIDs **ppEnum);
         
@@ -878,7 +879,7 @@ EXTERN_C const IID IID_IPortableDeviceContent;
             /* [annotation][in] */ 
             _In_  IPortableDeviceValues *pValues,
             /* [annotation][unique][out][in] */ 
-            _Inout_  LPWSTR *ppszObjectID);
+            _Inout_opt_  LPWSTR *ppszObjectID);
         
         DECLSPEC_XFGVIRT(IPortableDeviceContent, CreateObjectWithPropertiesAndData)
         HRESULT ( STDMETHODCALLTYPE *CreateObjectWithPropertiesAndData )( 
@@ -888,9 +889,9 @@ EXTERN_C const IID IID_IPortableDeviceContent;
             /* [annotation][out] */ 
             _Out_  IStream **ppData,
             /* [annotation][unique][out][in] */ 
-            _Inout_  DWORD *pdwOptimalWriteBufferSize,
+            _Inout_opt_  DWORD *pdwOptimalWriteBufferSize,
             /* [annotation][unique][out][in] */ 
-            _Inout_  LPWSTR *ppszCookie);
+            _Inout_opt_  LPWSTR *ppszCookie);
         
         DECLSPEC_XFGVIRT(IPortableDeviceContent, Delete)
         HRESULT ( STDMETHODCALLTYPE *Delete )( 
@@ -900,7 +901,7 @@ EXTERN_C const IID IID_IPortableDeviceContent;
             /* [annotation][in] */ 
             _In_  IPortableDevicePropVariantCollection *pObjectIDs,
             /* [annotation][unique][out][in] */ 
-            _Inout_  IPortableDevicePropVariantCollection **ppResults);
+            _Inout_opt_  IPortableDevicePropVariantCollection **ppResults);
         
         DECLSPEC_XFGVIRT(IPortableDeviceContent, GetObjectIDsFromPersistentUniqueIDs)
         HRESULT ( STDMETHODCALLTYPE *GetObjectIDsFromPersistentUniqueIDs )( 
@@ -922,7 +923,7 @@ EXTERN_C const IID IID_IPortableDeviceContent;
             /* [annotation][in] */ 
             _In_  LPCWSTR pszDestinationFolderObjectID,
             /* [annotation][unique][out][in] */ 
-            _Inout_  IPortableDevicePropVariantCollection **ppResults);
+            _Inout_opt_  IPortableDevicePropVariantCollection **ppResults);
         
         DECLSPEC_XFGVIRT(IPortableDeviceContent, Copy)
         HRESULT ( STDMETHODCALLTYPE *Copy )( 
@@ -932,7 +933,7 @@ EXTERN_C const IID IID_IPortableDeviceContent;
             /* [annotation][in] */ 
             _In_  LPCWSTR pszDestinationFolderObjectID,
             /* [annotation][unique][out][in] */ 
-            _Inout_  IPortableDevicePropVariantCollection **ppResults);
+            _Inout_opt_  IPortableDevicePropVariantCollection **ppResults);
         
         END_INTERFACE
     } IPortableDeviceContentVtbl;
@@ -1021,7 +1022,7 @@ EXTERN_C const IID IID_IPortableDeviceContent2;
             /* [annotation][out] */ 
             _Out_  IStream **ppData,
             /* [annotation][unique][out][in] */ 
-            _Inout_  DWORD *pdwOptimalWriteBufferSize) = 0;
+            _Inout_opt_  DWORD *pdwOptimalWriteBufferSize) = 0;
         
     };
     
@@ -1056,7 +1057,7 @@ EXTERN_C const IID IID_IPortableDeviceContent2;
             /* [annotation][in] */ 
             _In_  LPCWSTR pszParentObjectID,
             /* [annotation][unique][in] */ 
-            _In_  IPortableDeviceValues *pFilter,
+            _In_opt_  IPortableDeviceValues *pFilter,
             /* [annotation][out] */ 
             _Out_  IEnumPortableDeviceObjectIDs **ppEnum);
         
@@ -1078,7 +1079,7 @@ EXTERN_C const IID IID_IPortableDeviceContent2;
             /* [annotation][in] */ 
             _In_  IPortableDeviceValues *pValues,
             /* [annotation][unique][out][in] */ 
-            _Inout_  LPWSTR *ppszObjectID);
+            _Inout_opt_  LPWSTR *ppszObjectID);
         
         DECLSPEC_XFGVIRT(IPortableDeviceContent, CreateObjectWithPropertiesAndData)
         HRESULT ( STDMETHODCALLTYPE *CreateObjectWithPropertiesAndData )( 
@@ -1088,9 +1089,9 @@ EXTERN_C const IID IID_IPortableDeviceContent2;
             /* [annotation][out] */ 
             _Out_  IStream **ppData,
             /* [annotation][unique][out][in] */ 
-            _Inout_  DWORD *pdwOptimalWriteBufferSize,
+            _Inout_opt_  DWORD *pdwOptimalWriteBufferSize,
             /* [annotation][unique][out][in] */ 
-            _Inout_  LPWSTR *ppszCookie);
+            _Inout_opt_  LPWSTR *ppszCookie);
         
         DECLSPEC_XFGVIRT(IPortableDeviceContent, Delete)
         HRESULT ( STDMETHODCALLTYPE *Delete )( 
@@ -1100,7 +1101,7 @@ EXTERN_C const IID IID_IPortableDeviceContent2;
             /* [annotation][in] */ 
             _In_  IPortableDevicePropVariantCollection *pObjectIDs,
             /* [annotation][unique][out][in] */ 
-            _Inout_  IPortableDevicePropVariantCollection **ppResults);
+            _Inout_opt_  IPortableDevicePropVariantCollection **ppResults);
         
         DECLSPEC_XFGVIRT(IPortableDeviceContent, GetObjectIDsFromPersistentUniqueIDs)
         HRESULT ( STDMETHODCALLTYPE *GetObjectIDsFromPersistentUniqueIDs )( 
@@ -1122,7 +1123,7 @@ EXTERN_C const IID IID_IPortableDeviceContent2;
             /* [annotation][in] */ 
             _In_  LPCWSTR pszDestinationFolderObjectID,
             /* [annotation][unique][out][in] */ 
-            _Inout_  IPortableDevicePropVariantCollection **ppResults);
+            _Inout_opt_  IPortableDevicePropVariantCollection **ppResults);
         
         DECLSPEC_XFGVIRT(IPortableDeviceContent, Copy)
         HRESULT ( STDMETHODCALLTYPE *Copy )( 
@@ -1132,7 +1133,7 @@ EXTERN_C const IID IID_IPortableDeviceContent2;
             /* [annotation][in] */ 
             _In_  LPCWSTR pszDestinationFolderObjectID,
             /* [annotation][unique][out][in] */ 
-            _Inout_  IPortableDevicePropVariantCollection **ppResults);
+            _Inout_opt_  IPortableDevicePropVariantCollection **ppResults);
         
         DECLSPEC_XFGVIRT(IPortableDeviceContent2, UpdateObjectWithPropertiesAndData)
         HRESULT ( STDMETHODCALLTYPE *UpdateObjectWithPropertiesAndData )( 
@@ -1144,7 +1145,7 @@ EXTERN_C const IID IID_IPortableDeviceContent2;
             /* [annotation][out] */ 
             _Out_  IStream **ppData,
             /* [annotation][unique][out][in] */ 
-            _Inout_  DWORD *pdwOptimalWriteBufferSize);
+            _Inout_opt_  DWORD *pdwOptimalWriteBufferSize);
         
         END_INTERFACE
     } IPortableDeviceContent2Vtbl;
@@ -1235,7 +1236,7 @@ EXTERN_C const IID IID_IEnumPortableDeviceObjectIDs;
             /* [annotation][length_is][size_is][out] */ 
             _Out_writes_to_(cObjects,*pcFetched)  LPWSTR *pObjIDs,
             /* [annotation][unique][out][in] */ 
-            _Inout_  ULONG *pcFetched) = 0;
+            _Inout_opt_  ULONG *pcFetched) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE Skip( 
             /* [annotation][in] */ 
@@ -1282,7 +1283,7 @@ EXTERN_C const IID IID_IEnumPortableDeviceObjectIDs;
             /* [annotation][length_is][size_is][out] */ 
             _Out_writes_to_(cObjects,*pcFetched)  LPWSTR *pObjIDs,
             /* [annotation][unique][out][in] */ 
-            _Inout_  ULONG *pcFetched);
+            _Inout_opt_  ULONG *pcFetched);
         
         DECLSPEC_XFGVIRT(IEnumPortableDeviceObjectIDs, Skip)
         HRESULT ( STDMETHODCALLTYPE *Skip )( 
@@ -1353,6 +1354,16 @@ EXTERN_C const IID IID_IEnumPortableDeviceObjectIDs;
 #endif 	/* __IEnumPortableDeviceObjectIDs_INTERFACE_DEFINED__ */
 
 
+/* interface __MIDL_itf_portabledeviceapi_0000_0005 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_METHOD_(IEnumPortableDeviceObjectIDs::Next, _Win32_PreserveResult_);
+_WIN32META_ANNOTATE_METHOD_(IEnumPortableDeviceObjectIDs::Skip, _Win32_PreserveResult_);
+
+
+extern RPC_IF_HANDLE __MIDL_itf_portabledeviceapi_0000_0005_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_portabledeviceapi_0000_0005_v0_0_s_ifspec;
+
 #ifndef __IPortableDeviceProperties_INTERFACE_DEFINED__
 #define __IPortableDeviceProperties_INTERFACE_DEFINED__
 
@@ -1386,7 +1397,7 @@ EXTERN_C const IID IID_IPortableDeviceProperties;
             /* [annotation][in] */ 
             _In_  LPCWSTR pszObjectID,
             /* [annotation][unique][in] */ 
-            _In_  IPortableDeviceKeyCollection *pKeys,
+            _In_opt_  IPortableDeviceKeyCollection *pKeys,
             /* [annotation][out] */ 
             _Out_  IPortableDeviceValues **ppValues) = 0;
         
@@ -1455,7 +1466,7 @@ EXTERN_C const IID IID_IPortableDeviceProperties;
             /* [annotation][in] */ 
             _In_  LPCWSTR pszObjectID,
             /* [annotation][unique][in] */ 
-            _In_  IPortableDeviceKeyCollection *pKeys,
+            _In_opt_  IPortableDeviceKeyCollection *pKeys,
             /* [annotation][out] */ 
             _Out_  IPortableDeviceValues **ppValues);
         
@@ -1570,7 +1581,7 @@ EXTERN_C const IID IID_IPortableDeviceResources;
             /* [annotation][in] */ 
             _In_  const DWORD dwMode,
             /* [annotation][unique][out][in] */ 
-            _Inout_  DWORD *pdwOptimalBufferSize,
+            _Inout_opt_  DWORD *pdwOptimalBufferSize,
             /* [annotation][out] */ 
             _Out_  IStream **ppStream) = 0;
         
@@ -1588,9 +1599,9 @@ EXTERN_C const IID IID_IPortableDeviceResources;
             /* [annotation][out] */ 
             _Out_  IStream **ppData,
             /* [annotation][unique][out][in] */ 
-            _Inout_  DWORD *pdwOptimalWriteBufferSize,
+            _Inout_opt_  DWORD *pdwOptimalWriteBufferSize,
             /* [annotation][unique][out][in] */ 
-            _Inout_  LPWSTR *ppszCookie) = 0;
+            _Inout_opt_  LPWSTR *ppszCookie) = 0;
         
     };
     
@@ -1645,7 +1656,7 @@ EXTERN_C const IID IID_IPortableDeviceResources;
             /* [annotation][in] */ 
             _In_  const DWORD dwMode,
             /* [annotation][unique][out][in] */ 
-            _Inout_  DWORD *pdwOptimalBufferSize,
+            _Inout_opt_  DWORD *pdwOptimalBufferSize,
             /* [annotation][out] */ 
             _Out_  IStream **ppStream);
         
@@ -1669,9 +1680,9 @@ EXTERN_C const IID IID_IPortableDeviceResources;
             /* [annotation][out] */ 
             _Out_  IStream **ppData,
             /* [annotation][unique][out][in] */ 
-            _Inout_  DWORD *pdwOptimalWriteBufferSize,
+            _Inout_opt_  DWORD *pdwOptimalWriteBufferSize,
             /* [annotation][unique][out][in] */ 
-            _Inout_  LPWSTR *ppszCookie);
+            _Inout_opt_  LPWSTR *ppszCookie);
         
         END_INTERFACE
     } IPortableDeviceResourcesVtbl;
@@ -2105,7 +2116,7 @@ EXTERN_C const IID IID_IPortableDeviceDataStream;
         
         DECLSPEC_XFGVIRT(ISequentialStream, Read)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Read )( 
-            IPortableDeviceDataStream * This,
+            __RPC__in IPortableDeviceDataStream * This,
             /* [annotation] */ 
             _Out_writes_bytes_to_(cb, *pcbRead)  void *pv,
             /* [annotation][in] */ 
@@ -2115,7 +2126,7 @@ EXTERN_C const IID IID_IPortableDeviceDataStream;
         
         DECLSPEC_XFGVIRT(ISequentialStream, Write)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Write )( 
-            IPortableDeviceDataStream * This,
+            __RPC__in IPortableDeviceDataStream * This,
             /* [annotation] */ 
             _In_reads_bytes_(cb)  const void *pv,
             /* [annotation][in] */ 
@@ -2125,7 +2136,7 @@ EXTERN_C const IID IID_IPortableDeviceDataStream;
         
         DECLSPEC_XFGVIRT(IStream, Seek)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Seek )( 
-            IPortableDeviceDataStream * This,
+            __RPC__in IPortableDeviceDataStream * This,
             /* [annotation][in] */ 
             _In_  LARGE_INTEGER dlibMove,
             /* [annotation][in] */ 
@@ -2141,7 +2152,7 @@ EXTERN_C const IID IID_IPortableDeviceDataStream;
         
         DECLSPEC_XFGVIRT(IStream, CopyTo)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *CopyTo )( 
-            IPortableDeviceDataStream * This,
+            __RPC__in IPortableDeviceDataStream * This,
             /* [annotation][unique][in] */ 
             _In_  IStream *pstm,
             /* [annotation][in] */ 
@@ -2155,7 +2166,7 @@ EXTERN_C const IID IID_IPortableDeviceDataStream;
         HRESULT ( STDMETHODCALLTYPE *Commit )( 
             __RPC__in IPortableDeviceDataStream * This,
             /* [annotation][in] */ 
-            _In_  DWORD grfCommitFlags);
+            _In_ _Win32_AssociatedEnum_(STGC)  DWORD grfCommitFlags);
         
         DECLSPEC_XFGVIRT(IStream, Revert)
         HRESULT ( STDMETHODCALLTYPE *Revert )( 
@@ -2169,7 +2180,7 @@ EXTERN_C const IID IID_IPortableDeviceDataStream;
             /* [annotation][in] */ 
             _In_  ULARGE_INTEGER cb,
             /* [annotation][in] */ 
-            _In_  DWORD dwLockType);
+            _In_ _Win32_AssociatedEnum_(LOCKTYPE)  DWORD dwLockType);
         
         DECLSPEC_XFGVIRT(IStream, UnlockRegion)
         HRESULT ( STDMETHODCALLTYPE *UnlockRegion )( 
@@ -2187,7 +2198,7 @@ EXTERN_C const IID IID_IPortableDeviceDataStream;
             /* [annotation][out] */ 
             _Out_  STATSTG *pstatstg,
             /* [annotation][in] */ 
-            _In_  DWORD grfStatFlag);
+            _In_ _Win32_AssociatedEnum_(STATFLAG)  DWORD grfStatFlag);
         
         DECLSPEC_XFGVIRT(IStream, Clone)
         HRESULT ( STDMETHODCALLTYPE *Clone )( 
@@ -2334,7 +2345,7 @@ EXTERN_C const IID IID_IPortableDeviceUnitsStream;
         
         DECLSPEC_XFGVIRT(IPortableDeviceUnitsStream, SeekInUnits)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *SeekInUnits )( 
-            IPortableDeviceUnitsStream * This,
+            __RPC__in IPortableDeviceUnitsStream * This,
             /* [annotation][in] */ 
             _In_  LARGE_INTEGER dlibMove,
             /* [annotation][in] */ 
@@ -2728,7 +2739,7 @@ EXTERN_C const IID IID_IPortableDeviceServiceManager;
             /* [annotation][in] */ 
             _In_  REFGUID guidServiceCategory,
             /* [annotation][unique][out][in] */ 
-            _Inout_  LPWSTR *pServices,
+            _Inout_opt_  LPWSTR *pServices,
             /* [annotation][out][in] */ 
             _Inout_  DWORD *pcServices) = 0;
         
@@ -2771,7 +2782,7 @@ EXTERN_C const IID IID_IPortableDeviceServiceManager;
             /* [annotation][in] */ 
             _In_  REFGUID guidServiceCategory,
             /* [annotation][unique][out][in] */ 
-            _Inout_  LPWSTR *pServices,
+            _Inout_opt_  LPWSTR *pServices,
             /* [annotation][out][in] */ 
             _Inout_  DWORD *pcServices);
         
@@ -2874,7 +2885,7 @@ EXTERN_C const IID IID_IPortableDeviceService;
             /* [annotation][in] */ 
             _In_  IPortableDeviceEventCallback *pCallback,
             /* [annotation][unique][in] */ 
-            _In_  IPortableDeviceValues *pParameters,
+            _In_opt_  IPortableDeviceValues *pParameters,
             /* [annotation][out] */ 
             _Out_  LPWSTR *ppszCookie) = 0;
         
@@ -2969,7 +2980,7 @@ EXTERN_C const IID IID_IPortableDeviceService;
             /* [annotation][in] */ 
             _In_  IPortableDeviceEventCallback *pCallback,
             /* [annotation][unique][in] */ 
-            _In_  IPortableDeviceValues *pParameters,
+            _In_opt_  IPortableDeviceValues *pParameters,
             /* [annotation][out] */ 
             _Out_  LPWSTR *ppszCookie);
         
@@ -3409,21 +3420,21 @@ EXTERN_C const IID IID_IPortableDeviceServiceMethods;
             /* [annotation][in] */ 
             _In_  REFGUID Method,
             /* [annotation][unique][in] */ 
-            _In_  IPortableDeviceValues *pParameters,
+            _In_opt_  IPortableDeviceValues *pParameters,
             /* [annotation][unique][out][in] */ 
-            _Inout_  IPortableDeviceValues **ppResults) = 0;
+            _Inout_opt_  IPortableDeviceValues **ppResults) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE InvokeAsync( 
             /* [annotation][in] */ 
             _In_  REFGUID Method,
             /* [annotation][unique][in] */ 
-            _In_  IPortableDeviceValues *pParameters,
+            _In_opt_  IPortableDeviceValues *pParameters,
             /* [annotation][unique][in] */ 
-            _In_  IPortableDeviceServiceMethodCallback *pCallback) = 0;
+            _In_opt_  IPortableDeviceServiceMethodCallback *pCallback) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE Cancel( 
             /* [annotation][unique][in] */ 
-            _In_  IPortableDeviceServiceMethodCallback *pCallback) = 0;
+            _In_opt_  IPortableDeviceServiceMethodCallback *pCallback) = 0;
         
     };
     
@@ -3456,9 +3467,9 @@ EXTERN_C const IID IID_IPortableDeviceServiceMethods;
             /* [annotation][in] */ 
             _In_  REFGUID Method,
             /* [annotation][unique][in] */ 
-            _In_  IPortableDeviceValues *pParameters,
+            _In_opt_  IPortableDeviceValues *pParameters,
             /* [annotation][unique][out][in] */ 
-            _Inout_  IPortableDeviceValues **ppResults);
+            _Inout_opt_  IPortableDeviceValues **ppResults);
         
         DECLSPEC_XFGVIRT(IPortableDeviceServiceMethods, InvokeAsync)
         HRESULT ( STDMETHODCALLTYPE *InvokeAsync )( 
@@ -3466,15 +3477,15 @@ EXTERN_C const IID IID_IPortableDeviceServiceMethods;
             /* [annotation][in] */ 
             _In_  REFGUID Method,
             /* [annotation][unique][in] */ 
-            _In_  IPortableDeviceValues *pParameters,
+            _In_opt_  IPortableDeviceValues *pParameters,
             /* [annotation][unique][in] */ 
-            _In_  IPortableDeviceServiceMethodCallback *pCallback);
+            _In_opt_  IPortableDeviceServiceMethodCallback *pCallback);
         
         DECLSPEC_XFGVIRT(IPortableDeviceServiceMethods, Cancel)
         HRESULT ( STDMETHODCALLTYPE *Cancel )( 
             __RPC__in IPortableDeviceServiceMethods * This,
             /* [annotation][unique][in] */ 
-            _In_  IPortableDeviceServiceMethodCallback *pCallback);
+            _In_opt_  IPortableDeviceServiceMethodCallback *pCallback);
         
         END_INTERFACE
     } IPortableDeviceServiceMethodsVtbl;
@@ -3833,7 +3844,7 @@ EXTERN_C const IID IID_IPortableDeviceDispatchFactory;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IPortableDeviceDispatchFactory * This,
+            __RPC__in IPortableDeviceDispatchFactory * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -3841,15 +3852,15 @@ EXTERN_C const IID IID_IPortableDeviceDispatchFactory;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IPortableDeviceDispatchFactory * This);
+            __RPC__in IPortableDeviceDispatchFactory * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IPortableDeviceDispatchFactory * This);
+            __RPC__in IPortableDeviceDispatchFactory * This);
         
         DECLSPEC_XFGVIRT(IPortableDeviceDispatchFactory, GetDeviceDispatch)
         HRESULT ( STDMETHODCALLTYPE *GetDeviceDispatch )( 
-            IPortableDeviceDispatchFactory * This,
+            __RPC__in IPortableDeviceDispatchFactory * This,
             /* [annotation][in] */ 
             _In_  LPCWSTR pszPnPDeviceID,
             /* [annotation][out] */ 
@@ -3944,7 +3955,7 @@ EXTERN_C const IID IID_IPortableDeviceWebControl;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            IPortableDeviceWebControl * This,
+            __RPC__in IPortableDeviceWebControl * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -3952,21 +3963,21 @@ EXTERN_C const IID IID_IPortableDeviceWebControl;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            IPortableDeviceWebControl * This);
+            __RPC__in IPortableDeviceWebControl * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            IPortableDeviceWebControl * This);
+            __RPC__in IPortableDeviceWebControl * This);
         
         DECLSPEC_XFGVIRT(IDispatch, GetTypeInfoCount)
         HRESULT ( STDMETHODCALLTYPE *GetTypeInfoCount )( 
-            IPortableDeviceWebControl * This,
+            __RPC__in IPortableDeviceWebControl * This,
             /* [annotation][out] */ 
             _Out_  UINT *pctinfo);
         
         DECLSPEC_XFGVIRT(IDispatch, GetTypeInfo)
         HRESULT ( STDMETHODCALLTYPE *GetTypeInfo )( 
-            IPortableDeviceWebControl * This,
+            __RPC__in IPortableDeviceWebControl * This,
             /* [annotation][in] */ 
             _In_  UINT iTInfo,
             /* [annotation][in] */ 
@@ -3976,12 +3987,12 @@ EXTERN_C const IID IID_IPortableDeviceWebControl;
         
         DECLSPEC_XFGVIRT(IDispatch, GetIDsOfNames)
         HRESULT ( STDMETHODCALLTYPE *GetIDsOfNames )( 
-            IPortableDeviceWebControl * This,
+            __RPC__in IPortableDeviceWebControl * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][size_is][in] */ 
             _In_reads_(cNames)  LPOLESTR *rgszNames,
-            /* [range][in] */ UINT cNames,
+            /* [range][in] */ __RPC__in_range(0,16384) UINT cNames,
             /* [annotation][in] */ 
             _In_  LCID lcid,
             /* [annotation][size_is][out] */ 
@@ -3989,7 +4000,7 @@ EXTERN_C const IID IID_IPortableDeviceWebControl;
         
         DECLSPEC_XFGVIRT(IDispatch, Invoke)
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Invoke )( 
-            IPortableDeviceWebControl * This,
+            __RPC__in IPortableDeviceWebControl * This,
             /* [annotation][in] */ 
             _In_  DISPID dispIdMember,
             /* [annotation][in] */ 
@@ -4009,7 +4020,7 @@ EXTERN_C const IID IID_IPortableDeviceWebControl;
         
         DECLSPEC_XFGVIRT(IPortableDeviceWebControl, GetDeviceFromId)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *GetDeviceFromId )( 
-            IPortableDeviceWebControl * This,
+            __RPC__in IPortableDeviceWebControl * This,
             /* [annotation][in] */ 
             _In_  BSTR deviceId,
             /* [annotation][retval][out] */ 
@@ -4017,7 +4028,7 @@ EXTERN_C const IID IID_IPortableDeviceWebControl;
         
         DECLSPEC_XFGVIRT(IPortableDeviceWebControl, GetDeviceFromIdAsync)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *GetDeviceFromIdAsync )( 
-            IPortableDeviceWebControl * This,
+            __RPC__in IPortableDeviceWebControl * This,
             /* [annotation][in] */ 
             _In_  BSTR deviceId,
             /* [annotation][in] */ 
@@ -4175,7 +4186,7 @@ extern RPC_IF_HANDLE __MIDL_itf_portabledeviceapi_0000_0023_v0_0_s_ifspec;
 /* Additional Prototypes for ALL interfaces */
 
 /* [local] */ HRESULT STDMETHODCALLTYPE IPortableDeviceUnitsStream_SeekInUnits_Proxy( 
-    IPortableDeviceUnitsStream * This,
+    __RPC__in IPortableDeviceUnitsStream * This,
     /* [annotation][in] */ 
     _In_  LARGE_INTEGER dlibMove,
     /* [annotation][in] */ 

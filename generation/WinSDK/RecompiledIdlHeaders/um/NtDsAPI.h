@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0001    // Increment this if a change has global effects
 
 Copyright (c) 1996-2000 Microsoft Corporation
@@ -821,6 +822,7 @@ typedef struct
 #define GUID_PROGRAM_DATA_CONTAINER_BYTE                "\x09\x46\x0c\x08\xae\x1e\x4a\x4e\xa0\xf6\x4a\xee\x7d\xaa\x1e\x5a"
 #define GUID_MICROSOFT_PROGRAM_DATA_CONTAINER_BYTE      "\xf4\xbe\x92\xa4\xc7\x77\x48\x5e\x87\x8e\x94\x21\xd5\x30\x87\xdb"
 #define GUID_NTDS_QUOTAS_CONTAINER_BYTE                 "\x62\x27\xf0\xaf\x1f\xc2\x41\x0d\x8e\x3b\xb1\x06\x15\xbb\x5b\x0f"
+_Win32_SupportedOS_WindowsVista_
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -900,6 +902,7 @@ DsBindW(
     _In_opt_ LPCWSTR         DomainControllerName,      // in, optional
     _In_opt_ LPCWSTR         DnsDomainName,             // in, optional
     _Out_ HANDLE          *phDS);
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI
@@ -915,6 +918,7 @@ DsBindA(
 #else
 #define DsBind DsBindA
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI
@@ -925,6 +929,7 @@ DsBindWithCredW(
     _In_opt_ LPCWSTR         DnsDomainName,             // in, optional
     _In_opt_ RPC_AUTH_IDENTITY_HANDLE AuthIdentity,     // in, optional
     _Out_ HANDLE          *phDS);
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI
@@ -941,6 +946,7 @@ DsBindWithCredA(
 #else
 #define DsBindWithCred DsBindWithCredA
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 //
 // DsBindWithSpn{A|W} allows the caller to specify the service principal
@@ -962,6 +968,7 @@ DsBindWithSpnW(
     _In_opt_ RPC_AUTH_IDENTITY_HANDLE AuthIdentity,     // in, optional
     _In_opt_ LPCWSTR         ServicePrincipalName,      // in, optional
     _Out_ HANDLE          *phDS);
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI
@@ -979,6 +986,7 @@ DsBindWithSpnA(
 #else
 #define DsBindWithSpn DsBindWithSpnA
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 //
 // DsBindWithSpnEx{A|W} allows you all the options of the previous
@@ -999,6 +1007,7 @@ DsBindWithSpnExW(
     _In_opt_ LPCWSTR         ServicePrincipalName,      // in, optional
     _In_opt_ DWORD           BindFlags,                 // in, optional
     _Out_ HANDLE          *phDS);
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI_POSTXP
@@ -1017,6 +1026,7 @@ DsBindWithSpnExA(
 #else
 #define DsBindWithSpnEx DsBindWithSpnExA
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 //
 // DsBindByInstance{A|W} Allows the explicit binding to any AD/AM
@@ -1039,6 +1049,7 @@ DsBindByInstanceW(
     _In_opt_ LPCWSTR         ServicePrincipalName,      // in, optional
     _In_opt_ DWORD           BindFlags,                 // in, optional
     _Out_ HANDLE          *phDS);
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI_POSTXP
@@ -1059,6 +1070,7 @@ DsBindByInstanceA(
 #else
 #define DsBindByInstance DsBindByInstanceA
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 //
 // DsBindToISTG{A|W} allows the caller to bind to the server which
@@ -1074,6 +1086,7 @@ WINAPI
 DsBindToISTGW(
     _In_opt_ LPCWSTR         SiteName,                  // in, optional
     _Out_ HANDLE          *phDS);
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI_POSTXP
@@ -1088,6 +1101,7 @@ DsBindToISTGA(
 #else
 #define DsBindToISTG DsBindToISTGA
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 //
 // DsBindingSetTimeout allows the caller to specify a timeout value
@@ -1103,6 +1117,7 @@ DsBindingSetTimeout(
     _In_ HANDLE          hDS,                        // in
     _In_ ULONG           cTimeoutSecs                // in
     );
+_Win32_SupportedOS_WindowsVista_
 
 //
 // DsUnBind
@@ -1113,6 +1128,7 @@ DWORD
 WINAPI
 DsUnBindW(
     _In_ HANDLE          *phDS);             // in
+_Win32_SupportedOS_WindowsVista_
 
 NTDSAPI
 DWORD
@@ -1125,6 +1141,7 @@ DsUnBindA(
 #else
 #define DsUnBind DsUnBindA
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 //
 // DsMakePasswordCredentials
@@ -1149,6 +1166,7 @@ DsMakePasswordCredentialsW(
     _In_opt_ LPCWSTR Password,
     _Out_ RPC_AUTH_IDENTITY_HANDLE *pAuthIdentity
     );
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI
@@ -1166,6 +1184,7 @@ DsMakePasswordCredentialsA(
 #else
 #define DsMakePasswordCredentials DsMakePasswordCredentialsA
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 NTDSAPI
 VOID
@@ -1176,6 +1195,7 @@ DsFreePasswordCredentials(
 
 #define DsFreePasswordCredentialsW DsFreePasswordCredentials
 #define DsFreePasswordCredentialsA DsFreePasswordCredentials
+_Win32_SupportedOS_WindowsVista_
 
 //
 // DsCrackNames
@@ -1193,6 +1213,7 @@ DsCrackNamesW(
     _In_ DWORD               cNames,             // in
     _In_reads_(cNames) const LPCWSTR *rpNames,  // in
     _Outptr_ PDS_NAME_RESULTW *ppResult);     // out
+_Win32_SupportedOS_WindowsVista_
 
 
 _Check_return_
@@ -1213,6 +1234,7 @@ DsCrackNamesA(
 #else
 #define DsCrackNames DsCrackNamesA
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 //
 // DsFreeNameResult
@@ -1223,6 +1245,7 @@ void
 WINAPI
 DsFreeNameResultW(
     _In_ DS_NAME_RESULTW *pResult);          // in
+_Win32_SupportedOS_WindowsVista_
 
 NTDSAPI
 void
@@ -1235,6 +1258,7 @@ DsFreeNameResultA(
 #else
 #define DsFreeNameResult DsFreeNameResultA
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 // ==========================================================
 // DsGetSPN -- server's call to gets SPNs for a service name by which it is
@@ -1274,6 +1298,7 @@ DsGetSpnA(
     _Out_ DWORD *pcSpn,
     _Outptr_result_buffer_ (*pcSpn) LPSTR **prpszSpn
     );
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI
@@ -1299,6 +1324,7 @@ DsGetSpnW(
 
 // ==========================================================
 // DsFreeSpnArray() -- Free array returned by DsGetSpn{A,W}
+_Win32_SupportedOS_WindowsVista_
 
 NTDSAPI
 void
@@ -1307,6 +1333,7 @@ DsFreeSpnArrayA(
     _In_ DWORD cSpn,
     _Inout_updates_to_(cSpn, 0) LPSTR *rpszSpn
     );
+_Win32_SupportedOS_WindowsVista_
 
 NTDSAPI
 void
@@ -1321,6 +1348,7 @@ DsFreeSpnArrayW(
 #else
 #define DsFreeSpnArray DsFreeSpnArrayA
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 // ==========================================================
 // DsWriteAccountSpn -- set or add SPNs for an account object
@@ -1353,6 +1381,7 @@ DsWriteAccountSpnA(
     _In_ DWORD cSpn,
     _In_reads_(cSpn) LPCSTR *rpszSpn
     );
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI
@@ -1371,6 +1400,7 @@ DsWriteAccountSpnW(
 #else
 #define DsWriteAccountSpn DsWriteAccountSpnA
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 /*++
 
@@ -1424,6 +1454,7 @@ DsClientMakeSpnForTargetServerW(
     _Inout_ DWORD *pcSpnLength,
     _Out_writes_to_ (*pcSpnLength, *pcSpnLength) LPWSTR pszSpn
     );
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI
@@ -1441,6 +1472,7 @@ DsClientMakeSpnForTargetServerA(
 #else
 #define DsClientMakeSpnForTargetServer DsClientMakeSpnForTargetServerA
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 /*++
 
@@ -1489,6 +1521,7 @@ DsServerRegisterSpnA(
     _In_ LPCSTR ServiceClass,
     _In_opt_ LPCSTR UserObjectDN
     );
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI
@@ -1505,6 +1538,7 @@ DsServerRegisterSpnW(
 #else
 #define DsServerRegisterSpn DsServerRegisterSpnA
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 // DsReplicaSync.  The server that this call is executing on is called the
 // destination.  The destination's naming context will be brought up to date
@@ -1533,6 +1567,7 @@ DsReplicaSyncA(
     _In_ const UUID *pUuidDsaSrc,
     ULONG Options
     );
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI
@@ -1550,6 +1585,7 @@ DsReplicaSyncW(
 #else
 #define DsReplicaSync DsReplicaSyncA
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 // DsReplicaAdd
 //
@@ -1595,6 +1631,7 @@ DsReplicaAddA(
     _In_opt_ const PSCHEDULE pSchedule,
     DWORD Options
     );
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI
@@ -1615,6 +1652,7 @@ DsReplicaAddW(
 #else
 #define DsReplicaAdd DsReplicaAddA
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 // DsReplicaDel
 //
@@ -1649,6 +1687,7 @@ DsReplicaDelA(
     _In_ LPCSTR DsaSrc,
     ULONG Options
     );
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI
@@ -1666,6 +1705,7 @@ DsReplicaDelW(
 #else
 #define DsReplicaDel DsReplicaDelA
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 // DsReplicaModify
 //
@@ -1731,6 +1771,7 @@ DsReplicaModifyA(
     DWORD ModifyFields,
     DWORD Options
     );
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI
@@ -1753,6 +1794,7 @@ DsReplicaModifyW(
 #else
 #define DsReplicaModify DsReplicaModifyA
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 // DsReplicaUpdateRefs
 //
@@ -1796,6 +1838,7 @@ DsReplicaUpdateRefsA(
     _In_ const UUID *pUuidDsaDest,
     ULONG Options
     );
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI
@@ -1941,6 +1984,7 @@ typedef struct {
 // the enterprise, across all sites, are eligible.  They must be connected by
 // a synchronous (RPC) transport, however.
 #define DS_REPSYNCALL_CROSS_SITE_BOUNDARIES             0x00000040
+_Win32_SupportedOS_WindowsVista_
 
 // DsReplicaSyncAll.  Syncs the destination server with all other servers
 // in the site.
@@ -1967,6 +2011,7 @@ DsReplicaSyncAllA (
     _In_opt_ LPVOID				pCallbackData,
     _Outptr_result_maybenull_z_ PDS_REPSYNCALL_ERRINFOA **		pErrors
     );
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI
@@ -1986,6 +2031,7 @@ DsReplicaSyncAllW (
 #else
 #define DsReplicaSyncAll DsReplicaSyncAllA
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI
@@ -1998,6 +2044,7 @@ DsRemoveDsServerW(
     _Out_opt_ BOOL   *fLastDcInDomain, // out, optional
     BOOL    fCommit          // in
     );
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI
@@ -2016,6 +2063,7 @@ DsRemoveDsServerA(
 #else
 #define DsRemoveDsServer DsRemoveDsServerA
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI
@@ -2025,6 +2073,7 @@ DsRemoveDsDomainW(
     _In_ HANDLE  hDs,               // in
     _In_ LPWSTR  DomainDN           // in
     );
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI
@@ -2040,6 +2089,7 @@ DsRemoveDsDomainA(
 #else
 #define DsRemoveDsDomain DsRemoveDsDomainA
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI
@@ -2048,6 +2098,7 @@ WINAPI
 DsListSitesA(
     _In_ HANDLE              hDs,            // in
     _Outptr_ PDS_NAME_RESULTA    *ppSites);      // out
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI
@@ -2062,6 +2113,7 @@ DsListSitesW(
 #else
 #define DsListSites DsListSitesA
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI
@@ -2071,6 +2123,7 @@ DsListServersInSiteA(
     _In_ HANDLE              hDs,            // in
     _In_ LPCSTR              site,           // in
     _Outptr_ PDS_NAME_RESULTA    *ppServers);    // out
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI
@@ -2086,6 +2139,7 @@ DsListServersInSiteW(
 #else
 #define DsListServersInSite DsListServersInSiteA
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI
@@ -2095,6 +2149,7 @@ DsListDomainsInSiteA(
     _In_ HANDLE              hDs,            // in
     _In_ LPCSTR              site,           // in
     _Outptr_ PDS_NAME_RESULTA    *ppDomains);    // out
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI
@@ -2110,6 +2165,7 @@ DsListDomainsInSiteW(
 #else
 #define DsListDomainsInSite DsListDomainsInSiteA
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI
@@ -2120,6 +2176,7 @@ DsListServersForDomainInSiteA(
     _In_ LPCSTR              domain,         // in
     _In_ LPCSTR              site,           // in
     _Outptr_ PDS_NAME_RESULTA    *ppServers);    // out
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI
@@ -2143,6 +2200,7 @@ DsListServersForDomainInSiteW(
 #define DS_LIST_DSA_OBJECT_FOR_SERVER       0
 #define DS_LIST_DNS_HOST_NAME_FOR_SERVER    1
 #define DS_LIST_ACCOUNT_OBJECT_FOR_SERVER   2
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI
@@ -2152,6 +2210,7 @@ DsListInfoForServerA(
     _In_ HANDLE              hDs,            // in
     _In_ LPCSTR              server,         // in
     _Outptr_ PDS_NAME_RESULTA    *ppInfo);       // out
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI
@@ -2176,6 +2235,7 @@ DsListInfoForServerW(
 #define DS_ROLE_PDC_OWNER                   2
 #define DS_ROLE_RID_OWNER                   3
 #define DS_ROLE_INFRASTRUCTURE_OWNER        4
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI
@@ -2184,6 +2244,7 @@ WINAPI
 DsListRolesA(
     _In_ HANDLE              hDs,            // in
     _Outptr_ PDS_NAME_RESULTA    *ppRoles);      // out
+_Win32_SupportedOS_WindowsVista_
 
 
 _Check_return_
@@ -2215,6 +2276,7 @@ typedef struct {
     DWORD               errorCode;
     DWORD               cost;
 } DS_SITE_COST_INFO, *PDS_SITE_COST_INFO;
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI_POSTXP
@@ -2228,6 +2290,7 @@ DsQuerySitesByCostW(
     _Reserved_ DWORD               dwFlags,        // in
     _Outptr_ PDS_SITE_COST_INFO *prgSiteInfo     // out
     );
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI_POSTXP
@@ -2247,6 +2310,7 @@ DsQuerySitesByCostA(
 #else
 #define DsQuerySitesByCost DsQuerySitesByCostA
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 //
 // DsQuerySitesByCost will free the site info array returned
@@ -2289,6 +2353,7 @@ typedef struct
 #endif
 
 } DS_SCHEMA_GUID_MAPW, *PDS_SCHEMA_GUID_MAPW;
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI
@@ -2299,12 +2364,14 @@ DsMapSchemaGuidsA(
     DWORD                   cGuids,         // in
     _In_reads_(cGuids) GUID                    *rGuids,        // in
     _Outptr_ DS_SCHEMA_GUID_MAPA     **ppGuidMap);   // out
+_Win32_SupportedOS_WindowsVista_
 
 NTDSAPI
 VOID
 WINAPI
 DsFreeSchemaGuidMapA(
     _In_ PDS_SCHEMA_GUID_MAPA    pGuidMap);      // in
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI
@@ -2315,6 +2382,7 @@ DsMapSchemaGuidsW(
     DWORD                   cGuids,         // in
     _In_reads_(cGuids) GUID                    *rGuids,        // in
     _Outptr_ DS_SCHEMA_GUID_MAPW     **ppGuidMap);   // out
+_Win32_SupportedOS_WindowsVista_
 
 NTDSAPI
 VOID
@@ -2511,6 +2579,7 @@ typedef struct
     GUID                    NtdsDsaObjectGuid;
 
 } DS_DOMAIN_CONTROLLER_INFO_3W, *PDS_DOMAIN_CONTROLLER_INFO_3W;
+_Win32_SupportedOS_WindowsVista_
 
 // The following APIs strictly find domain controller account objects
 // in the DS and return information associated with them.  As such, they
@@ -2532,6 +2601,7 @@ DsGetDomainControllerInfoA(
     _In_ DWORD                           InfoLevel,      // in
     _Out_ DWORD                          *pcOut,         // out
     _Outptr_ VOID                     **ppInfo);      // out
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 _When_(InfoLevel == 1, _At_(ppInfo, _Outptr_result_bytebuffer_(*pcOut * sizeof(DS_DOMAIN_CONTROLLER_INFO_1W))))
@@ -2546,6 +2616,7 @@ DsGetDomainControllerInfoW(
     _In_ DWORD                           InfoLevel,      // in
     _Out_ DWORD                          *pcOut,         // out
     _Outptr_ VOID                     **ppInfo);      // out
+_Win32_SupportedOS_WindowsVista_
 
 NTDSAPI
 VOID
@@ -2554,6 +2625,7 @@ DsFreeDomainControllerInfoA(
     DWORD                           InfoLevel,      // in
     DWORD                           cInfo,          // in
     _In_reads_(cInfo) VOID                            *pInfo);        // in
+_Win32_SupportedOS_WindowsVista_
 
 NTDSAPI
 VOID
@@ -2593,6 +2665,7 @@ typedef enum {
 
 // Don't enqueue the task if another queued task will run soon.
 #define DS_KCC_FLAG_DAMPED      (1 << 1)
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI
@@ -2602,6 +2675,7 @@ DsReplicaConsistencyCheck(
     _In_ HANDLE          hDS,        // in
     DS_KCC_TASKID   TaskID,     // in
     DWORD           dwFlags);   // in
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI
@@ -2612,6 +2686,7 @@ DsReplicaVerifyObjectsW(
     _In_ LPCWSTR         NameContext,// in
     _In_ const UUID *    pUuidDsaSrc,// in
     ULONG           ulOptions);   // in
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI
@@ -3080,6 +3155,7 @@ typedef struct _DS_REPL_QUEUE_STATISTICSW
 
 // Fields can be added only to the end of this structure.
 typedef struct _DS_REPL_QUEUE_STATISTICSW DS_REPL_QUEUE_STATISTICSW_BLOB;
+_Win32_SupportedOS_WindowsVista_
 
 
 _Check_return_
@@ -3092,6 +3168,7 @@ DsReplicaGetInfoW(
     _In_opt_ LPCWSTR             pszObject,                  // in
     _In_opt_ UUID *              puuidForSourceDsaObjGuid,   // in
     _Outptr_ VOID **             ppInfo);                    // out
+_Win32_SupportedOS_WindowsVista_
 
 // This API is not supported by Windows 2000 clients or Windows 2000 DCs.
 _Check_return_
@@ -3108,6 +3185,7 @@ DsReplicaGetInfo2W(
     DWORD               dwFlags,                    // in
     DWORD               dwEnumerationContext,       // in
     _Outptr_ VOID **             ppInfo);                    // out
+_Win32_SupportedOS_WindowsVista_
 
 NTDSAPI
 void
@@ -3131,6 +3209,7 @@ DsReplicaFreeInfo(
 #else
 // No ANSI equivalents currently supported.
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI
@@ -3145,6 +3224,7 @@ DsAddSidHistoryW(
     _In_opt_ RPC_AUTH_IDENTITY_HANDLE SrcDomainCreds,        // in - creds for src domain
     _In_ LPCWSTR                 DstDomain,              // in - DNS or NetBIOS
     _In_ LPCWSTR                 DstPrincipal);          // in - SAM account name
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI
@@ -3165,6 +3245,7 @@ DsAddSidHistoryA(
 #else
 #define DsAddSidHistory DsAddSidHistoryA
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 // The DsInheritSecurityIdentity API adds the source principal's SID and
 // SID history to the destination principal's SID history and then DELETES
@@ -3180,6 +3261,7 @@ DsInheritSecurityIdentityW(
     _Reserved_ DWORD                   Flags,                  // in - sbz for now
     _In_ LPCWSTR                 SrcPrincipal,           // in - distinguished name
     _In_ LPCWSTR                 DstPrincipal);          // in - distinguished name
+_Win32_SupportedOS_WindowsVista_
 
 _Check_return_
 NTDSAPI

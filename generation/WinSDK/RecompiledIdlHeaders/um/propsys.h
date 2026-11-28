@@ -273,6 +273,7 @@ extern "C"{
 /* interface __MIDL_itf_propsys_0000_0000 */
 /* [local] */ 
 
+#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 #ifndef PSSTDAPI
 #if defined(_PROPSYS_)
@@ -1333,6 +1334,15 @@ EXTERN_C const IID IID_IPropertyStoreCapabilities;
 
 #endif 	/* __IPropertyStoreCapabilities_INTERFACE_DEFINED__ */
 
+
+/* interface __MIDL_itf_propsys_0000_0008 */
+/* [local] */ 
+
+_WIN32META_ANNOTATE_METHOD_(IPropertyStoreCapabilities::IsPropertyWritable, _Win32_PreserveResult_);
+
+
+extern RPC_IF_HANDLE __MIDL_itf_propsys_0000_0008_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_propsys_0000_0008_v0_0_s_ifspec;
 
 #ifndef __IPropertyStoreCache_INTERFACE_DEFINED__
 #define __IPropertyStoreCache_INTERFACE_DEFINED__

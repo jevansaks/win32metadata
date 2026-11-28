@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++ BUILD Version: 0001    // Increment this if a change has global effects
 
 Copyright (c) 1991-1999  Microsoft Corporation
@@ -634,6 +635,7 @@ typedef struct _DFS_INFO_300 {
     DWORD   Flags;
     LPWSTR  DfsName;              // Dfs name
 } DFS_INFO_300, *PDFS_INFO_300, *LPDFS_INFO_300;
+_Win32_SupportedOS_WindowsVista_
 
 
 //
@@ -654,6 +656,7 @@ NetDfsAdd(
 //
 #define DFS_ADD_VOLUME          1   // Add a new volume to the DFS if not already there
 #define DFS_RESTORE_VOLUME      2   // Volume/Replica is being restored - do not verify share etc.
+_Win32_SupportedOS_WindowsVista_
 
 //
 // Setup/teardown API's for standard and FtDfs roots.
@@ -666,6 +669,7 @@ NetDfsAddStdRoot(
     _In_opt_ LPWSTR Comment,        // Comment
     _In_  DWORD     Flags           // Flags for operation.  Zero for no flags.
 );
+_Win32_SupportedOS_WindowsVista_
 
 NET_API_STATUS NET_API_FUNCTION
 NetDfsRemoveStdRoot(
@@ -673,6 +677,7 @@ NetDfsRemoveStdRoot(
     _In_  LPWSTR RootShare,         // Share that host Dfs root
     _Reserved_  DWORD  Flags        // Flags for operation.  Zero for no flags.
 );
+_Win32_SupportedOS_WindowsVista_
 
 NET_API_STATUS NET_API_FUNCTION
 NetDfsAddFtRoot(
@@ -682,6 +687,7 @@ NetDfsAddFtRoot(
     _In_opt_ LPWSTR     Comment,        // Comment
     _In_ DWORD          Flags           // Flags for operation.  Zero for no flags.
 );
+_Win32_SupportedOS_WindowsVista_
 
 
 NET_API_STATUS NET_API_FUNCTION
@@ -691,6 +697,7 @@ NetDfsRemoveFtRoot(
     _In_ LPWSTR         FtDfsName,      // Name of FtDfs to remove or unjoin from.
     _Reserved_ DWORD    Flags           // Flags for operation.  Zero for no flags.
 );
+_Win32_SupportedOS_WindowsVista_
 
 NET_API_STATUS NET_API_FUNCTION
 NetDfsRemoveFtRootForced(
@@ -736,6 +743,7 @@ typedef struct {
     DFS_SITENAME_INFO Site[1];
 #endif
 } DFS_SITELIST_INFO, *PDFS_SITELIST_INFO, *LPDFS_SITELIST_INFO;
+_Win32_SupportedOS_WindowsVista_
 
 //
 // Remove a volume or additional storage for volume from the Dfs at
@@ -748,6 +756,7 @@ NetDfsRemove(
     _In_opt_ LPWSTR ServerName,         // Name of server hosting the storage
     _In_opt_ LPWSTR ShareName           // Name of share hosting the storage
 );
+_Win32_SupportedOS_WindowsVista_
 
 //
 // Get information about all of the volumes in the Dfs. DfsName is
@@ -774,6 +783,7 @@ NetDfsEnum(
     _Out_ LPDWORD       EntriesRead,    // Number of entries returned
     _Inout_ LPDWORD     ResumeHandle    // Must be 0 on first call, reused on subsequent calls
 );
+_Win32_SupportedOS_WindowsVista_
 
 //
 // Get information about the volume or storage.
@@ -803,6 +813,7 @@ NetDfsGetInfo(
     _In_ DWORD          Level,          // Level of information requested
     _Out_ LPBYTE        *Buffer         // API allocates and returns buffer with requested info
 );
+_Win32_SupportedOS_WindowsVista_
 
 //
 // Set info about the volume or storage.
@@ -822,6 +833,7 @@ NetDfsSetInfo(
     _In_ DWORD          Level,          // Level of information to be set
     _In_ LPBYTE         Buffer          // Buffer holding information
 );
+_Win32_SupportedOS_WindowsVista_
 
 //
 // Get client's cached information about the volume or storage.
@@ -839,6 +851,7 @@ NetDfsGetClientInfo(
     _In_ DWORD          Level,          // Level of information requested
     _Out_ LPBYTE        *Buffer         // API allocates and returns buffer with requested info
 );
+_Win32_SupportedOS_WindowsVista_
 
 //
 // Set client's cached info about the volume or storage.
@@ -858,6 +871,7 @@ NetDfsSetClientInfo(
     _In_ DWORD          Level,          // Level of information to be set
     _In_ LPBYTE         Buffer          // Buffer holding information
 );
+_Win32_SupportedOS_WindowsVista_
 
 //
 // Move a DFS volume and all subordinate volumes from one place in the
@@ -899,6 +913,7 @@ NetDfsRename(
 
 #pragma region Desktop Family or OneCore Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
+_Win32_SupportedOS_WindowsVista_
 
 NET_API_STATUS NET_API_FUNCTION
 NetDfsAddRootTarget(
@@ -916,6 +931,7 @@ NetDfsAddRootTarget(
 #ifndef DFS_FORCE_REMOVE
 #define DFS_FORCE_REMOVE    0x80000000
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 NET_API_STATUS NET_API_FUNCTION
 NetDfsRemoveRootTarget(
@@ -923,6 +939,7 @@ NetDfsRemoveRootTarget(
     _In_opt_    LPWSTR  pTargetPath,
     _In_        ULONG   Flags
     );
+_Win32_SupportedOS_WindowsVista_
 
 NET_API_STATUS NET_API_FUNCTION
 NetDfsGetSecurity(
@@ -931,6 +948,7 @@ NetDfsGetSecurity(
     _Outptr_result_bytebuffer_(*lpcbSecurityDescriptor) PSECURITY_DESCRIPTOR    *ppSecurityDescriptor,
     _Out_ LPDWORD                                                       lpcbSecurityDescriptor
 );
+_Win32_SupportedOS_WindowsVista_
 
 NET_API_STATUS NET_API_FUNCTION
 NetDfsSetSecurity(
@@ -938,6 +956,7 @@ NetDfsSetSecurity(
     _In_ SECURITY_INFORMATION   SecurityInformation,
     _In_ PSECURITY_DESCRIPTOR   pSecurityDescriptor
 );
+_Win32_SupportedOS_WindowsVista_
 
 NET_API_STATUS NET_API_FUNCTION
 NetDfsGetStdContainerSecurity(
@@ -946,6 +965,7 @@ NetDfsGetStdContainerSecurity(
     _Outptr_result_bytebuffer_(*lpcbSecurityDescriptor) PSECURITY_DESCRIPTOR    *ppSecurityDescriptor,
     _Out_ LPDWORD                                                       lpcbSecurityDescriptor
 );
+_Win32_SupportedOS_WindowsVista_
 
 NET_API_STATUS NET_API_FUNCTION
 NetDfsSetStdContainerSecurity(
@@ -953,6 +973,7 @@ NetDfsSetStdContainerSecurity(
     _In_ SECURITY_INFORMATION   SecurityInformation,
     _In_ PSECURITY_DESCRIPTOR   pSecurityDescriptor
 );
+_Win32_SupportedOS_WindowsVista_
     
 NET_API_STATUS NET_API_FUNCTION
 NetDfsGetFtContainerSecurity(
@@ -961,6 +982,7 @@ NetDfsGetFtContainerSecurity(
     _Outptr_result_bytebuffer_(*lpcbSecurityDescriptor) PSECURITY_DESCRIPTOR    *ppSecurityDescriptor,
     _Out_ LPDWORD                                                       lpcbSecurityDescriptor
 );
+_Win32_SupportedOS_WindowsVista_
 
 NET_API_STATUS NET_API_FUNCTION
 NetDfsSetFtContainerSecurity(
@@ -1013,6 +1035,7 @@ typedef struct _DFS_SUPPORTED_NAMESPACE_VERSION_INFO {
     ULONG       StandaloneDfsMinorVersion;
     ULONGLONG   StandaloneDfsCapabilities;
 } DFS_SUPPORTED_NAMESPACE_VERSION_INFO, *PDFS_SUPPORTED_NAMESPACE_VERSION_INFO;
+_Win32_SupportedOS_WindowsVista_
 
 
 NET_API_STATUS NET_API_FUNCTION

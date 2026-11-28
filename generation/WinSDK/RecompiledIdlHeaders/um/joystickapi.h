@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /********************************************************************************
 *                                                                               *
 * joystickapi.h -- ApiSet Contract for api-ms-win-mm-joystick-l1-1-0            *
@@ -326,6 +327,7 @@ typedef struct joyinfoex_tag {
 /* joystick function prototypes */
 
 #if (WINVER >= 0x0400)
+_Win32_SupportedOS_Windows2000_
 WINMMAPI
 MMRESULT
 WINAPI
@@ -335,6 +337,7 @@ joyGetPosEx(
     );
 
 #endif /* WINVER >= 0x0400 */
+_Win32_SupportedOS_Windows2000_
 
 WINMMAPI
 UINT
@@ -353,6 +356,7 @@ joyGetDevCapsA(
     _Out_writes_bytes_(cbjc) LPJOYCAPSA pjc,
     _In_ UINT cbjc
     );
+_Win32_SupportedOS_Windows2000_
 
 WINMMAPI
 MMRESULT
@@ -380,6 +384,7 @@ joyGetPos(
     _In_ UINT uJoyID,
     _Out_ LPJOYINFO pji
     );
+_Win32_SupportedOS_Windows2000_
 
 WINMMAPI
 MMRESULT
@@ -388,6 +393,7 @@ joyGetThreshold(
     _In_ UINT uJoyID,
     _Out_ LPUINT puThreshold
     );
+_Win32_SupportedOS_Windows2000_
 
 WINMMAPI
 MMRESULT
@@ -395,6 +401,7 @@ WINAPI
 joyReleaseCapture(
     _In_ UINT uJoyID
     );
+_Win32_SupportedOS_Windows2000_
 
 WINMMAPI
 MMRESULT
@@ -405,6 +412,7 @@ joySetCapture(
     _In_ UINT uPeriod,
     _In_ BOOL fChanged
     );
+_Win32_SupportedOS_Windows2000_
 
 WINMMAPI
 MMRESULT

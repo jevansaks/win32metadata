@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 
 
 /* this ALWAYS GENERATED file contains the definitions for the interfaces */
@@ -1032,6 +1033,10 @@ EXTERN_C const IID IID_ITextDocument;
             /* [retval][out] */ __RPC__deref_out_opt ITextRange **ppRange) = 0;
         
     };
+_Win32_AnnotateParameter_(ITextDocument::SetSaved, Value, _Win32_AssociatedEnum_(tomConstants));
+_Win32_AnnotateParameter_(ITextDocument::Open, Flags, _Win32_AssociatedEnum_(tomConstants));
+_Win32_AnnotateParameter_(ITextDocument::Save, Flags, _Win32_AssociatedEnum_(tomConstants));
+
     
     
 #else 	/* C style interface */
@@ -1493,6 +1498,13 @@ EXTERN_C const IID IID_ITextRange;
             /* [retval][out] */ __RPC__deref_out_opt IUnknown **ppObject) = 0;
         
     };
+_Win32_AnnotateParameter_(ITextRange::SetPoint, Type, _Win32_AssociatedEnum_(tomConstants));
+_Win32_AnnotateParameter_(ITextRange::GetPoint, Type, _Win32_AssociatedEnum_(tomConstants));
+_Win32_AnnotateParameter_(ITextRange::FindText, Flags, _Win32_AssociatedEnum_(tomConstants));
+_Win32_AnnotateParameter_(ITextRange::FindTextEnd, Flags, _Win32_AssociatedEnum_(tomConstants));
+_Win32_AnnotateParameter_(ITextRange::FindTextStart, Flags, _Win32_AssociatedEnum_(tomConstants));
+_Win32_AnnotateParameter_(ITextRange::ChangeCase, Type, _Win32_AssociatedEnum_(tomConstants));
+
     
     
 #else 	/* C style interface */
@@ -2064,6 +2076,8 @@ EXTERN_C const IID IID_ITextSelection;
             /* [in] */ __RPC__in BSTR bstr) = 0;
         
     };
+_Win32_AnnotateParameter_(ITextSelection::HomeKey, Unit, _Win32_AssociatedEnum_(tomConstants));
+
     
     
 #else 	/* C style interface */
@@ -2842,6 +2856,8 @@ EXTERN_C const IID IID_ITextFont;
             /* [in] */ long Value) = 0;
         
     };
+_Win32_AnnotateParameter_(ITextFont::Reset, Value, _Win32_AssociatedEnum_(tomConstants));
+
     
     
 #else 	/* C style interface */
@@ -3500,6 +3516,10 @@ EXTERN_C const IID IID_ITextPara;
             /* [out] */ __RPC__out long *ptbLeader) = 0;
         
     };
+_Win32_AnnotateParameter_(ITextPara::GetKeepWithNext, pValue, _Win32_AssociatedEnum_(tomConstants));
+_Win32_AnnotateParameter_(ITextPara::GetHyphenation, pValue, _Win32_AssociatedEnum_(tomConstants));
+_Win32_AnnotateParameter_(ITextPara::GetKeepTogether, pValue, _Win32_AssociatedEnum_(tomConstants));
+
     
     
 #else 	/* C style interface */
@@ -4270,6 +4290,9 @@ EXTERN_C const IID IID_ITextDocument2;
             /* [retval][out] */ __RPC__deref_out_opt ITextStory **ppStory) = 0;
         
     };
+_Win32_AnnotateParameter_(ITextDocument2::GetClientRect, Type, _Win32_AssociatedEnum_(tomConstants));
+_Win32_AnnotateParameter_(ITextDocument2::GetEastAsianFlags, pFlags, _Win32_AssociatedEnum_(tomConstants));
+
     
     
 #else 	/* C style interface */
@@ -9345,6 +9368,8 @@ EXTERN_C const IID IID_ITextRow;
             /* [in] */ long Value) = 0;
         
     };
+_Win32_AnnotateParameter_(ITextRow::Apply, Flags, _Win32_AssociatedEnum_(tomConstants));
+
     
     
 #else 	/* C style interface */

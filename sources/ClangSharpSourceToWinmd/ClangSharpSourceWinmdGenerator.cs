@@ -1108,6 +1108,13 @@ namespace ClangSharpSourceToWinmd
                     nativeType = nativeType.Substring("const ".Length);
                 }
 
+                var parts = nativeType.Split(' ');
+                var nameOnly = parts[0];
+                // An association must not turn a scalar typedef into its same-named enum projection.
+                if (ownerAttributes.Any(attribute => attribute.AttributeClass.Name == "AssociatedEnumAttribute") &&
+                    this.GetTypeFromShortName(nameOnly)?.TypeKind == TypeKind.Enum)
+                    return;
+
                 var newTypeSymbol = this.GetTypeFromShortName(nativeType);
                 if (newTypeSymbol != null)
                 {
@@ -1115,8 +1122,6 @@ namespace ClangSharpSourceToWinmd
                     return;
                 }
 
-                var parts = nativeType.Split(' ');
-                var nameOnly = parts[0];
                 var star = parts.Length > 1 ? parts[1] : null;
 
                 if (star != null)

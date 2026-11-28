@@ -66,6 +66,7 @@ extern "C"{
 /* interface __MIDL_itf_icodecapi_0000_0000 */
 /* [local] */ 
 
+#include <win32metadata_annotations.h>
 #include <winapifamily.h>
 #pragma region Application Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP)
@@ -177,7 +178,7 @@ EXTERN_C const IID IID_ICodecAPI;
             _In_  IStream *__MIDL__ICodecAPI0001) = 0;
         
         virtual HRESULT STDMETHODCALLTYPE SetAllSettingsWithNotify( 
-            IStream *__MIDL__ICodecAPI0002,
+            __RPC__in_opt IStream *__MIDL__ICodecAPI0002,
             /* [annotation][size_is][size_is][out] */ 
             _Outptr_result_buffer_all_(*ChangedParamCount)  GUID **ChangedParam,
             /* [annotation][out] */ 
@@ -194,7 +195,7 @@ EXTERN_C const IID IID_ICodecAPI;
         
         DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            ICodecAPI * This,
+            __RPC__in ICodecAPI * This,
             /* [annotation][in] */ 
             _In_  REFIID riid,
             /* [annotation][iid_is][out] */ 
@@ -202,27 +203,27 @@ EXTERN_C const IID IID_ICodecAPI;
         
         DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            ICodecAPI * This);
+            __RPC__in ICodecAPI * This);
         
         DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            ICodecAPI * This);
+            __RPC__in ICodecAPI * This);
         
         DECLSPEC_XFGVIRT(ICodecAPI, IsSupported)
         HRESULT ( STDMETHODCALLTYPE *IsSupported )( 
-            ICodecAPI * This,
+            __RPC__in ICodecAPI * This,
             /* [annotation][in] */ 
             _In_  const GUID *Api);
         
         DECLSPEC_XFGVIRT(ICodecAPI, IsModifiable)
         HRESULT ( STDMETHODCALLTYPE *IsModifiable )( 
-            ICodecAPI * This,
+            __RPC__in ICodecAPI * This,
             /* [annotation][in] */ 
             _In_  const GUID *Api);
         
         DECLSPEC_XFGVIRT(ICodecAPI, GetParameterRange)
         HRESULT ( STDMETHODCALLTYPE *GetParameterRange )( 
-            ICodecAPI * This,
+            __RPC__in ICodecAPI * This,
             /* [annotation][in] */ 
             _In_  const GUID *Api,
             /* [annotation][out] */ 
@@ -234,7 +235,7 @@ EXTERN_C const IID IID_ICodecAPI;
         
         DECLSPEC_XFGVIRT(ICodecAPI, GetParameterValues)
         HRESULT ( STDMETHODCALLTYPE *GetParameterValues )( 
-            ICodecAPI * This,
+            __RPC__in ICodecAPI * This,
             /* [annotation][in] */ 
             _In_  const GUID *Api,
             /* [annotation][size_is][size_is][out] */ 
@@ -244,7 +245,7 @@ EXTERN_C const IID IID_ICodecAPI;
         
         DECLSPEC_XFGVIRT(ICodecAPI, GetDefaultValue)
         HRESULT ( STDMETHODCALLTYPE *GetDefaultValue )( 
-            ICodecAPI * This,
+            __RPC__in ICodecAPI * This,
             /* [annotation][in] */ 
             _In_  const GUID *Api,
             /* [annotation][out] */ 
@@ -252,7 +253,7 @@ EXTERN_C const IID IID_ICodecAPI;
         
         DECLSPEC_XFGVIRT(ICodecAPI, GetValue)
         HRESULT ( STDMETHODCALLTYPE *GetValue )( 
-            ICodecAPI * This,
+            __RPC__in ICodecAPI * This,
             /* [annotation][in] */ 
             _In_  const GUID *Api,
             /* [annotation][out] */ 
@@ -260,7 +261,7 @@ EXTERN_C const IID IID_ICodecAPI;
         
         DECLSPEC_XFGVIRT(ICodecAPI, SetValue)
         HRESULT ( STDMETHODCALLTYPE *SetValue )( 
-            ICodecAPI * This,
+            __RPC__in ICodecAPI * This,
             /* [annotation][in] */ 
             _In_  const GUID *Api,
             /* [annotation][in] */ 
@@ -268,7 +269,7 @@ EXTERN_C const IID IID_ICodecAPI;
         
         DECLSPEC_XFGVIRT(ICodecAPI, RegisterForEvent)
         HRESULT ( STDMETHODCALLTYPE *RegisterForEvent )( 
-            ICodecAPI * This,
+            __RPC__in ICodecAPI * This,
             /* [annotation][in] */ 
             _In_  const GUID *Api,
             /* [annotation][in] */ 
@@ -276,17 +277,17 @@ EXTERN_C const IID IID_ICodecAPI;
         
         DECLSPEC_XFGVIRT(ICodecAPI, UnregisterForEvent)
         HRESULT ( STDMETHODCALLTYPE *UnregisterForEvent )( 
-            ICodecAPI * This,
+            __RPC__in ICodecAPI * This,
             /* [annotation][in] */ 
             _In_  const GUID *Api);
         
         DECLSPEC_XFGVIRT(ICodecAPI, SetAllDefaults)
         HRESULT ( STDMETHODCALLTYPE *SetAllDefaults )( 
-            ICodecAPI * This);
+            __RPC__in ICodecAPI * This);
         
         DECLSPEC_XFGVIRT(ICodecAPI, SetValueWithNotify)
         HRESULT ( STDMETHODCALLTYPE *SetValueWithNotify )( 
-            ICodecAPI * This,
+            __RPC__in ICodecAPI * This,
             /* [annotation][in] */ 
             _In_  const GUID *Api,
             /* [annotation][in] */ 
@@ -298,7 +299,7 @@ EXTERN_C const IID IID_ICodecAPI;
         
         DECLSPEC_XFGVIRT(ICodecAPI, SetAllDefaultsWithNotify)
         HRESULT ( STDMETHODCALLTYPE *SetAllDefaultsWithNotify )( 
-            ICodecAPI * This,
+            __RPC__in ICodecAPI * This,
             /* [annotation][size_is][size_is][out] */ 
             _Outptr_result_buffer_all_(*ChangedParamCount)  GUID **ChangedParam,
             /* [annotation][out] */ 
@@ -306,20 +307,20 @@ EXTERN_C const IID IID_ICodecAPI;
         
         DECLSPEC_XFGVIRT(ICodecAPI, GetAllSettings)
         HRESULT ( STDMETHODCALLTYPE *GetAllSettings )( 
-            ICodecAPI * This,
+            __RPC__in ICodecAPI * This,
             /* [annotation][in] */ 
             _In_  IStream *__MIDL__ICodecAPI0000);
         
         DECLSPEC_XFGVIRT(ICodecAPI, SetAllSettings)
         HRESULT ( STDMETHODCALLTYPE *SetAllSettings )( 
-            ICodecAPI * This,
+            __RPC__in ICodecAPI * This,
             /* [annotation][in] */ 
             _In_  IStream *__MIDL__ICodecAPI0001);
         
         DECLSPEC_XFGVIRT(ICodecAPI, SetAllSettingsWithNotify)
         HRESULT ( STDMETHODCALLTYPE *SetAllSettingsWithNotify )( 
-            ICodecAPI * This,
-            IStream *__MIDL__ICodecAPI0002,
+            __RPC__in ICodecAPI * This,
+            __RPC__in_opt IStream *__MIDL__ICodecAPI0002,
             /* [annotation][size_is][size_is][out] */ 
             _Outptr_result_buffer_all_(*ChangedParamCount)  GUID **ChangedParam,
             /* [annotation][out] */ 
@@ -407,6 +408,7 @@ EXTERN_C const IID IID_ICodecAPI;
 /* interface __MIDL_itf_icodecapi_0000_0001 */
 /* [local] */ 
 
+_WIN32META_ANNOTATE_METHOD_(ICodecAPI::IsModifiable, _Win32_PreserveResult_);
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP) */
 #pragma endregion
 

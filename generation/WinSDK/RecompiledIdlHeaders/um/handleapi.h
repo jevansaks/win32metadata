@@ -29,6 +29,7 @@ extern "C" {
 
 #pragma region Application Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+_Win32_SetLastError_
 
 //
 // Prototypes
@@ -40,6 +41,7 @@ WINAPI
 CloseHandle(
     _In_ _Post_ptr_invalid_ HANDLE hObject
     );
+_Win32_SetLastError_
 
 _Win32_SupportedOS_Windows2000_
 WINBASEAPI
@@ -52,7 +54,7 @@ DuplicateHandle(
     _Outptr_ LPHANDLE lpTargetHandle,
     _In_ DWORD dwDesiredAccess,
     _In_ BOOL bInheritHandle,
-    _In_ DWORD dwOptions
+    _Win32_AssociatedEnum_(DUPLICATE_HANDLE_OPTIONS) _In_ DWORD dwOptions
     );
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES) */
@@ -75,6 +77,7 @@ CompareObjectHandles(
 
 #pragma region Application Family or OneCore Family or Games Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
+_Win32_SetLastError_
 
 _Win32_SupportedOS_Windows2000_
 WINBASEAPI
@@ -84,6 +87,7 @@ GetHandleInformation(
     _In_ HANDLE hObject,
     _Out_ LPDWORD lpdwFlags
     );
+_Win32_SetLastError_
 
 _Win32_SupportedOS_Windows2000_
 WINBASEAPI
@@ -92,7 +96,7 @@ WINAPI
 SetHandleInformation(
     _In_ HANDLE hObject,
     _In_ DWORD dwMask,
-    _In_ DWORD dwFlags
+    _Win32_AssociatedEnum_(HANDLE_FLAGS) _In_ DWORD dwFlags
     );
 
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES) */

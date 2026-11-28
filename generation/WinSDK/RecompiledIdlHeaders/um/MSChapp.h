@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*++
 
 Copyright (C) Microsoft Corporation, 1999
@@ -53,6 +54,7 @@ typedef struct _ENCRYPTED_LM_OWF_PASSWORD {
 typedef ENCRYPTED_LM_OWF_PASSWORD   ENCRYPTED_NT_OWF_PASSWORD;
 typedef ENCRYPTED_NT_OWF_PASSWORD * PENCRYPTED_NT_OWF_PASSWORD;
 #endif // _NTCRYPT
+_Win32_SupportedOS_WindowsXP_
 
 
 //
@@ -69,6 +71,7 @@ MSChapSrvChangePassword(
    _In_ PNT_OWF_PASSWORD NtOldOwfPassword,
    _In_ PNT_OWF_PASSWORD NtNewOwfPassword
    );
+_Win32_SupportedOS_WindowsXP_
 
 
 //

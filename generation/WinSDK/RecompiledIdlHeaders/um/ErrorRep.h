@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /******************************************************************************
 
 Copyright (c) Microsoft Corporation.  All rights reserved.
@@ -37,10 +38,15 @@ typedef enum tagEFaultRepRetVal
     frrvErrNoMemory,
     frrvErrDoubleFault,
 } EFaultRepRetVal;
+_Win32_SupportedOS_WindowsXP_
 
 EFaultRepRetVal APIENTRY ReportFault(_In_ LPEXCEPTION_POINTERS pep, _In_ DWORD dwOpt);
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 
 BOOL            APIENTRY AddERExcludedApplicationA(_In_ LPCSTR szApplication);
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsXP_
 BOOL            APIENTRY AddERExcludedApplicationW(_In_ LPCWSTR wszApplication);
 
 
@@ -55,6 +61,7 @@ typedef EFaultRepRetVal (APIENTRY *pfn_ADDEREXCLUDEDAPPLICATIONW)(_In_ LPCWSTR);
 #define AddERExcludedApplication AddERExcludedApplicationA
 #define pfn_ADDEREXCLUDEDAPPLICATION pfn_ADDEREXCLUDEDAPPLICATIONA
 #endif
+_Win32_SupportedOS_WindowsVista_
 
 // 
 //+++++++++++++++++++++ Hang reporting api ++++++++++++++++++++++++++++++++

@@ -16,6 +16,24 @@ namespace ClangSharpSourceToWinmdTests
         private const string Groups = "_Win32_Enum_(First, unsigned long, FIRST);\n_Win32_FlagsEnum_(Second, unsigned long, SECOND);\n";
         public TestContext TestContext { get; set; } = null!;
 
+        [TestMethod]
+        public void HeaderEnumCompanions_PreserveConfiguredHeaderForLegacyDocumentation()
+        {
+            using var fixture = new LastErrorHeaderTests.Fixture();
+            string header = Path.Combine(fixture.DirectoryPath, "header.txt");
+            File.WriteAllText(header, "using System;\nusing Windows.Win32.Foundation.Metadata;\n");
+            var result = fixture.Scrape(Constants + Groups, sal: true, extraSettings: "--headerFile\n" + header);
+            Assert.AreEqual(0, result.ExitCode, result.Output);
+            foreach (string suffix in new[] { ".headerEnums.cs", ".headerConstants.cs" })
+                StringAssert.Contains(File.ReadAllText(Path.ChangeExtension(fixture.GeneratedSource, suffix)),
+                    "using Windows.Win32.Foundation.Metadata;");
+            string path = fixture.Emit(new Dictionary<string, string> { ["First"] = "[Documentation(\"group-doc\")]" });
+            using var pe = new PEReader(File.OpenRead(path));
+            var reader = pe.GetMetadataReader();
+            CollectionAssert.AreEqual(new[] { "group-doc" }, StringAttributes(reader,
+                NativeTypedefHeaderTests.Type(reader, "First").GetCustomAttributes(), "DocumentationAttribute"));
+        }
+
         [DataTestMethod]
         [DataRow("i686-pc-windows-msvc")]
         [DataRow("x86_64-pc-windows-msvc")]
@@ -121,6 +139,7 @@ namespace ClangSharpSourceToWinmdTests
             const string source = @"
 enum Existing { VALUE = 1 };
 #define GROUP_VALUE 0x80000000UL
+typedef unsigned long NativeGroup;
 _Win32_FlagsEnum_(NativeGroup, unsigned long, GROUP_VALUE);
 typedef unsigned short Small;
 struct Record {
@@ -130,8 +149,14 @@ struct Record {
     Small absent;
     enum Existing genuine;
 };
-struct GroupRecord { _Win32_AssociatedEnum_(NativeGroup) const unsigned long** pointer; };
+struct GroupRecord {
+    _Win32_AssociatedEnum_(NativeGroup) const unsigned long** pointer;
+    _Win32_AssociatedEnum_(NativeGroup) NativeGroup scalar;
+    _Win32_AssociatedEnum_(NativeGroup) const NativeGroup** aliasedPointer;
+    NativeGroup genuine;
+};
 _Win32_AssociatedEnum_(Existing) Small** __stdcall Example(_Win32_AssociatedEnum_(Existing) Small*** value);
+_Win32_AssociatedEnum_(NativeGroup) NativeGroup** __stdcall GroupExample(_Win32_AssociatedEnum_(NativeGroup) NativeGroup*** value);
 ";
             using var fixture = new LastErrorHeaderTests.Fixture();
             var result = fixture.Scrape(source, target, sal: true, language: language);
@@ -150,34 +175,45 @@ _Win32_AssociatedEnum_(Existing) Small** __stdcall Example(_Win32_AssociatedEnum
                 AssertSignature(reader, fields["pointer"].Signature, 2, SignatureTypeCode.UInt16);
                 AssertSignature(reader, fields["signedPointer"].Signature, 2, SignatureTypeCode.Int16);
                 AssertSignature(reader, fields["absent"].Signature, 0, SignatureTypeCode.UInt16);
-                var groupField = NativeTypedefHeaderTests.Type(reader, "GroupRecord").GetFields()
-                    .Select(reader.GetFieldDefinition).Single();
-                var groupSignature = reader.GetBlobReader(groupField.Signature);
-                groupSignature.ReadSignatureHeader();
-                for (int i = 0; i < 2; i++) Assert.AreEqual(SignatureTypeCode.Pointer, groupSignature.ReadSignatureTypeCode());
-                Assert.AreEqual(SignatureTypeCode.TypeHandle, groupSignature.ReadSignatureTypeCode());
-                Assert.AreEqual("NativeGroup", EnumHeaderTests.TypeName(reader, groupSignature.ReadTypeHandle()));
-                Assert.AreEqual(0, groupSignature.RemainingBytes);
-                Assert.AreEqual(0, StringAttributes(reader, groupField.GetCustomAttributes(), "AssociatedEnumAttribute").Length);
-                var method = reader.MethodDefinitions.Select(reader.GetMethodDefinition)
-                    .Single(method => reader.GetString(method.Name) == "Example");
-                var signature = reader.GetBlobReader(method.Signature);
-                signature.ReadSignatureHeader();
-                Assert.AreEqual(1, signature.ReadCompressedInteger());
-                for (int i = 0; i < 2; i++) Assert.AreEqual(SignatureTypeCode.Pointer, signature.ReadSignatureTypeCode());
-                Assert.AreEqual(SignatureTypeCode.UInt16, signature.ReadSignatureTypeCode());
-                for (int i = 0; i < 3; i++) Assert.AreEqual(SignatureTypeCode.Pointer, signature.ReadSignatureTypeCode());
-                Assert.AreEqual(SignatureTypeCode.UInt16, signature.ReadSignatureTypeCode());
-                Assert.AreEqual(0, signature.RemainingBytes);
-                foreach (var parameter in method.GetParameters().Select(reader.GetParameter))
-                    CollectionAssert.AreEqual(new[] { "Existing" },
-                        StringAttributes(reader, parameter.GetCustomAttributes(), "AssociatedEnumAttribute"));
+                var groupFields = NativeTypedefHeaderTests.Type(reader, "GroupRecord").GetFields()
+                    .Select(reader.GetFieldDefinition).ToDictionary(field => reader.GetString(field.Name));
+                foreach (string name in new[] { "pointer", "scalar", "aliasedPointer" })
+                {
+                    AssertSignature(reader, groupFields[name].Signature, name == "scalar" ? 0 : 2, SignatureTypeCode.UInt32);
+                    CollectionAssert.AreEqual(new[] { "NativeGroup" },
+                        StringAttributes(reader, groupFields[name].GetCustomAttributes(), "AssociatedEnumAttribute"));
+                }
+                var genuine = reader.GetBlobReader(groupFields["genuine"].Signature);
+                genuine.ReadSignatureHeader();
+                NativeTypedefHeaderTests.AssertReference(reader, ref genuine, "NativeGroup");
+                Assert.AreEqual(0, genuine.RemainingBytes);
+                foreach (var example in new[] { ("Example", "Existing", SignatureTypeCode.UInt16),
+                    ("GroupExample", "NativeGroup", SignatureTypeCode.UInt32) })
+                {
+                    var method = reader.MethodDefinitions.Select(reader.GetMethodDefinition)
+                        .Single(method => reader.GetString(method.Name) == example.Item1);
+                    var signature = reader.GetBlobReader(method.Signature);
+                    signature.ReadSignatureHeader();
+                    Assert.AreEqual(1, signature.ReadCompressedInteger());
+                    for (int i = 0; i < 2; i++) Assert.AreEqual(SignatureTypeCode.Pointer, signature.ReadSignatureTypeCode());
+                    Assert.AreEqual(example.Item3, signature.ReadSignatureTypeCode());
+                    for (int i = 0; i < 3; i++) Assert.AreEqual(SignatureTypeCode.Pointer, signature.ReadSignatureTypeCode());
+                    Assert.AreEqual(example.Item3, signature.ReadSignatureTypeCode());
+                    Assert.AreEqual(0, signature.RemainingBytes);
+                    foreach (var parameter in method.GetParameters().Select(reader.GetParameter))
+                        CollectionAssert.AreEqual(new[] { example.Item2 },
+                            StringAttributes(reader, parameter.GetCustomAttributes(), "AssociatedEnumAttribute"));
+                }
             }
             var remaps = new Dictionary<string, string> {
                 ["Record::value"] = "[AssociatedEnum(\"Existing\")]",
                 ["Record::pointer"] = "[AssociatedEnum(\"Existing\")]",
                 ["Record::signedPointer"] = "[AssociatedEnum(\"Existing\")]",
-                ["GroupRecord::pointer"] = "NativeGroup**",
+                ["GroupRecord::pointer"] = "[AssociatedEnum(\"NativeGroup\")]",
+                ["GroupRecord::scalar"] = "[AssociatedEnum(\"NativeGroup\")]",
+                ["GroupRecord::aliasedPointer"] = "[AssociatedEnum(\"NativeGroup\")]",
+                ["GroupExample::return"] = "[AssociatedEnum(\"NativeGroup\")]",
+                ["GroupExample::value"] = "[AssociatedEnum(\"NativeGroup\")]",
                 ["Example::return"] = "[AssociatedEnum(\"Existing\")]",
                 ["Example::value"] = "[AssociatedEnum(\"Existing\")]",
             };
@@ -199,6 +235,66 @@ _Win32_AssociatedEnum_(Existing) Small** __stdcall Example(_Win32_AssociatedEnum
                 target, sal: true, language: language);
             Assert.AreEqual(0, result.ExitCode, result.Output);
             CollectionAssert.AreEqual(expected, File.ReadAllBytes(fixture.Emit(remaps)), "Legacy-only field/return/parameter associations.");
+        }
+
+        [DataTestMethod]
+        [DataRow("i686-pc-windows-msvc", "c")]
+        [DataRow("x86_64-pc-windows-msvc", "c")]
+        [DataRow("aarch64-pc-windows-msvc", "c")]
+        [DataRow("i686-pc-windows-msvc", "c++")]
+        [DataRow("x86_64-pc-windows-msvc", "c++")]
+        [DataRow("aarch64-pc-windows-msvc", "c++")]
+        public void GroupAssociations_DifferentWidthsAndSignednessPreserveNativeStorage(string target, string language)
+        {
+            foreach (var fact in new[] {
+                (Native: "int", Storage: SignatureTypeCode.Int32, Group: "unsigned long", EnumStorage: SignatureTypeCode.UInt32),
+                (Native: "unsigned short", Storage: SignatureTypeCode.UInt16, Group: "unsigned long long", EnumStorage: SignatureTypeCode.UInt64),
+                (Native: "long long", Storage: SignatureTypeCode.Int64, Group: "unsigned char", EnumStorage: SignatureTypeCode.Byte) })
+            {
+                using var fixture = new LastErrorHeaderTests.Fixture();
+                string source = "#define MEMBER 1\n_Win32_Enum_(Group, " + fact.Group + ", MEMBER);\n" +
+                    "struct Record { _Win32_AssociatedEnum_(Group) " + fact.Native + " scalar; " +
+                    "_Win32_AssociatedEnum_(Group) const " + fact.Native + "** pointer; " + fact.Native + " neighbor; };\n" +
+                    "_Win32_AssociatedEnum_(Group) " + fact.Native + "* __stdcall Example(" +
+                    "_Inout_ _Win32_AssociatedEnum_(Group) " + fact.Native + "*** value);";
+                var result = fixture.Scrape(source, target, sal: true, language: language);
+                Assert.AreEqual(0, result.ExitCode, result.Output);
+                using var pe = new PEReader(File.OpenRead(fixture.Emit()));
+                var reader = pe.GetMetadataReader();
+                var group = NativeTypedefHeaderTests.Type(reader, "Group");
+                var fields = group.GetFields().Select(reader.GetFieldDefinition).ToDictionary(field => reader.GetString(field.Name));
+                AssertSignature(reader, fields["value__"].Signature, 0, fact.EnumStorage);
+                Assert.AreEqual((ConstantTypeCode)fact.EnumStorage, reader.GetConstant(fields["MEMBER"].GetDefaultValue()).TypeCode);
+                Assert.AreEqual(0, group.GetCustomAttributes().Count, "Ordinary, unscoped group.");
+                var record = NativeTypedefHeaderTests.Type(reader, "Record").GetFields()
+                    .Select(reader.GetFieldDefinition).ToDictionary(field => reader.GetString(field.Name));
+                AssertSignature(reader, record["scalar"].Signature, 0, fact.Storage);
+                AssertSignature(reader, record["pointer"].Signature, 2, fact.Storage);
+                AssertSignature(reader, record["neighbor"].Signature, 0, fact.Storage);
+                foreach (string name in new[] { "scalar", "pointer", "neighbor" })
+                    CollectionAssert.AreEqual(name == "neighbor" ? Array.Empty<string>() : new[] { "Group" },
+                        StringAttributes(reader, record[name].GetCustomAttributes(), "AssociatedEnumAttribute"));
+                Assert.AreEqual(1, record["pointer"].GetCustomAttributes().Select(reader.GetCustomAttribute)
+                    .Count(attribute => ParameterHeaderTests.AttributeName(reader, attribute) == "ConstAttribute"));
+                var method = reader.MethodDefinitions.Select(reader.GetMethodDefinition)
+                    .Single(method => reader.GetString(method.Name) == "Example");
+                var signature = reader.GetBlobReader(method.Signature);
+                signature.ReadSignatureHeader();
+                Assert.AreEqual(1, signature.ReadCompressedInteger());
+                Assert.AreEqual(SignatureTypeCode.Pointer, signature.ReadSignatureTypeCode());
+                Assert.AreEqual(fact.Storage, signature.ReadSignatureTypeCode());
+                for (int i = 0; i < 3; i++)
+                    Assert.AreEqual(SignatureTypeCode.Pointer, signature.ReadSignatureTypeCode());
+                Assert.AreEqual(fact.Storage, signature.ReadSignatureTypeCode());
+                Assert.AreEqual(0, signature.RemainingBytes);
+                var parameters = method.GetParameters().Select(reader.GetParameter).ToArray();
+                Assert.AreEqual(2, parameters.Length, "Both return and input carry the association.");
+                foreach (var parameter in parameters)
+                    CollectionAssert.AreEqual(new[] { "Group" },
+                        StringAttributes(reader, parameter.GetCustomAttributes(), "AssociatedEnumAttribute"));
+                Assert.AreEqual(System.Reflection.ParameterAttributes.In | System.Reflection.ParameterAttributes.Out,
+                    parameters.Single(parameter => parameter.SequenceNumber == 1).Attributes);
+            }
         }
 
         [DataTestMethod]

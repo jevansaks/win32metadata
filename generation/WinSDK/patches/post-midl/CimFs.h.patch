@@ -1,0 +1,97 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/CimFs.h b/generation/WinSDK/RecompiledIdlHeaders/um/CimFs.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/CimFs.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/CimFs.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /*
+ Copyright (c) Microsoft Corporation
+ 
+@@ -71,6 +72,7 @@
+     UINT32 EaBufferSize;
+ 
+ } CIMFS_FILE_METADATA;
++_Win32_SupportedOS_19041_
+ 
+ //
+ //  Creates a handle representing a new image at the location
+@@ -96,6 +98,7 @@
+                 _In_opt_ PCWSTR existingImageName,
+                 _In_opt_ PCWSTR newImageName,
+                 _Out_ CIMFS_IMAGE_HANDLE* cimImageHandle);
++_Win32_SupportedOS_19041_
+ 
+ //
+ //  Adds a file with the specified metadata at a path relative
+@@ -109,6 +112,7 @@
+               _In_ PCWSTR imageRelativePath,
+               _In_ const CIMFS_FILE_METADATA* fileMetadata,
+               _Out_ CIMFS_STREAM_HANDLE* cimStreamHandle);
++_Win32_SupportedOS_19041_
+ 
+ //
+ //  Adds an alternate stream with the specified size at a path
+@@ -122,6 +126,7 @@
+                          _In_ PCWSTR imageRelativePath,
+                          _In_ UINT64 streamSize,
+                          _Out_ CIMFS_STREAM_HANDLE* cimStreamHandle);
++_Win32_SupportedOS_19041_
+ 
+ //
+ //  Adds a hardlink to an existing path relative to the image
+@@ -132,6 +137,7 @@
+ CimCreateHardLink(_In_ CIMFS_IMAGE_HANDLE cimImageHandle,
+                   _In_ PCWSTR imageRelativePath,
+                   _In_ PCWSTR existingImageRelativePath);
++_Win32_SupportedOS_19041_
+ 
+ //
+ //  Writes data from the specified buffer to the stream represented
+@@ -142,6 +148,7 @@
+ CimWriteStream(_In_ CIMFS_STREAM_HANDLE cimStreamHandle,
+                _In_reads_bytes_(bufferSize) const void* buffer,
+                _In_ UINT32 bufferSize);
++_Win32_SupportedOS_19041_
+ 
+ //
+ //  Frees resources associated with the stream handle.
+@@ -149,6 +156,7 @@
+ 
+ STDAPI_(void)
+ CimCloseStream(_In_ CIMFS_STREAM_HANDLE cimStreamHandle);
++_Win32_SupportedOS_19041_
+ 
+ //
+ //  Removes the file, stream, directory or hardlink at a path
+@@ -158,6 +166,7 @@
+ STDAPI
+ CimDeletePath(_In_ CIMFS_IMAGE_HANDLE cimImageHandle,
+               _In_ PCWSTR imageRelativePath);
++_Win32_SupportedOS_19041_
+ 
+ //
+ //  Commits the image represented by the image handle. The handle
+@@ -166,6 +175,7 @@
+ 
+ STDAPI
+ CimCommitImage(_In_ CIMFS_IMAGE_HANDLE cimImageHandle);
++_Win32_SupportedOS_19041_
+ 
+ //
+ //  Frees resources associated with the image handle.
+@@ -173,6 +183,7 @@
+ 
+ STDAPI_(void)
+ CimCloseImage(_In_ CIMFS_IMAGE_HANDLE cimImageHandle);
++_Win32_SupportedOS_19041_
+ 
+ //
+ //  Mounts the named image from the location specified by cimPath
+@@ -187,6 +198,7 @@
+               _In_ PCWSTR imageName,
+               _In_ CIM_MOUNT_IMAGE_FLAGS mountImageFlags,
+               _In_ const GUID* volumeId);
++_Win32_SupportedOS_19041_
+ 
+ //
+ //  Dismounts an image mounted with volumeId as the volume GUID.

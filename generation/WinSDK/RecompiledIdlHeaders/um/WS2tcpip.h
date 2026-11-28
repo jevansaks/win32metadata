@@ -1,3 +1,4 @@
+#include <win32metadata_annotations.h>
 /*
 **  WS2TCPIP.H - WinSock2 Extension for TCP/IP protocols
 **
@@ -114,6 +115,8 @@ typedef ADDRINFOEXA     ADDRINFOEX, *PADDRINFOEX;
 #ifdef __cplusplus
 extern "C" {
 #endif
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows81_
 
 WINSOCK_API_LINKAGE
 INT
@@ -126,6 +129,7 @@ getaddrinfo(
     );
 
 #if (NTDDI_VERSION >= NTDDI_WINXPSP2) || (_WIN32_WINNT >= 0x0502)
+_Win32_SupportedOS_Windows81_
 WINSOCK_API_LINKAGE
 INT
 WSAAPI
@@ -203,6 +207,7 @@ GetAddrInfoExA(
     );
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES) */
 #pragma endregion
+_Win32_SupportedOS_WindowsVista_
 
 WINSOCK_API_LINKAGE
 INT
@@ -219,6 +224,7 @@ GetAddrInfoExW(
     _In_opt_    LPLOOKUPSERVICE_COMPLETION_ROUTINE  lpCompletionRoutine,
     _Out_opt_   LPHANDLE        lpHandle
     );
+_Win32_SupportedOS_Windows81_
 
 WINSOCK_API_LINKAGE
 INT
@@ -226,6 +232,7 @@ WSAAPI
 GetAddrInfoExCancel(
     _In_        LPHANDLE        lpHandle
     );
+_Win32_SupportedOS_Windows81_
 
 WINSOCK_API_LINKAGE
 INT
@@ -320,6 +327,7 @@ SetAddrInfoExA(
     );
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES) */
 #pragma endregion
+_Win32_SupportedOS_Windows81_
 
 WINSOCK_API_LINKAGE
 INT
@@ -392,6 +400,8 @@ INT
 #endif
 
 #endif
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows81_
 
 WINSOCK_API_LINKAGE
 VOID
@@ -401,6 +411,7 @@ freeaddrinfo(
     );
 
 #if (NTDDI_VERSION >= NTDDI_WINXPSP2) || (_WIN32_WINNT >= 0x0502)
+_Win32_SupportedOS_Windows81_
 WINSOCK_API_LINKAGE
 VOID
 WSAAPI
@@ -452,6 +463,7 @@ FreeAddrInfoEx(
     );
 #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES) */
 #pragma endregion
+_Win32_SupportedOS_Windows81_
 
 WINSOCK_API_LINKAGE
 void
@@ -494,6 +506,8 @@ void
 #endif
 
 typedef int socklen_t;
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows81_
 
 WINSOCK_API_LINKAGE
 INT
@@ -509,6 +523,7 @@ getnameinfo(
     );
 
 #if (NTDDI_VERSION >= NTDDI_WINXPSP2) || (_WIN32_WINNT >= 0x0502)
+_Win32_SupportedOS_Windows81_
 WINSOCK_API_LINKAGE
 INT
 WSAAPI
@@ -567,6 +582,8 @@ INT
 
 
 #if (NTDDI_VERSION >= NTDDI_VISTA)
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows81_
 WINSOCK_API_LINKAGE
 INT
 WSAAPI
@@ -577,6 +594,7 @@ inet_pton(
     _When_(Family == AF_INET6, _Out_writes_bytes_(sizeof(IN6_ADDR)))
                                               PVOID           pAddrBuf
     );
+_Win32_SupportedOS_Windows81_
 
 INT
 WSAAPI
@@ -587,6 +605,8 @@ InetPtonW(
     _When_(Family == AF_INET6, _Out_writes_bytes_(sizeof(IN6_ADDR)))
                                               PVOID           pAddrBuf
     );
+_Win32_SetLastError_
+_Win32_SupportedOS_Windows81_
 
 PCSTR
 WSAAPI
@@ -596,6 +616,7 @@ inet_ntop(
     _Out_writes_(StringBufSize)         PSTR            pStringBuf,
     _In_                                size_t          StringBufSize
     );
+_Win32_SupportedOS_Windows81_
 
 PCWSTR
 WSAAPI
@@ -1224,6 +1245,8 @@ WSASetReceivedProcessorOption(
 #ifdef _SECURE_SOCKET_TYPES_DEFINED_
 #pragma region Desktop Family or AppRuntime Package
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_PKG_APPRUNTIME)
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 //
 // Secure socket API definitions
@@ -1239,6 +1262,8 @@ WSASetSocketSecurity (
    _In_opt_ LPWSAOVERLAPPED Overlapped,
    _In_opt_ LPWSAOVERLAPPED_COMPLETION_ROUTINE CompletionRoutine
 );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 WINSOCK_API_LINKAGE
 INT
@@ -1252,6 +1277,8 @@ WSAQuerySocketSecurity (
    _In_opt_ LPWSAOVERLAPPED Overlapped,
    _In_opt_ LPWSAOVERLAPPED_COMPLETION_ROUTINE CompletionRoutine
 );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 WINSOCK_API_LINKAGE
 INT
@@ -1263,6 +1290,8 @@ WSASetSocketPeerTargetName (
    _In_opt_ LPWSAOVERLAPPED Overlapped,
    _In_opt_ LPWSAOVERLAPPED_COMPLETION_ROUTINE CompletionRoutine
 );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 WINSOCK_API_LINKAGE
 INT
@@ -1274,6 +1303,8 @@ WSADeleteSocketPeerTargetName (
    _In_opt_ LPWSAOVERLAPPED Overlapped,
    _In_opt_ LPWSAOVERLAPPED_COMPLETION_ROUTINE CompletionRoutine
 );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 WINSOCK_API_LINKAGE
 INT
@@ -1283,6 +1314,8 @@ WSAImpersonateSocketPeer (
    _In_reads_bytes_opt_(PeerAddrLen) const struct sockaddr* PeerAddr,
    _In_ ULONG PeerAddrLen
 );
+_Win32_SetLastError_
+_Win32_SupportedOS_WindowsVista_
 
 WINSOCK_API_LINKAGE
 INT

@@ -1,0 +1,49 @@
+# SDK-Version: 10.0.28000.2705
+diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/timeapi.h b/generation/WinSDK/RecompiledIdlHeaders/um/timeapi.h
+--- a/generation/WinSDK/RecompiledIdlHeaders/um/timeapi.h
++++ b/generation/WinSDK/RecompiledIdlHeaders/um/timeapi.h
+@@ -1,3 +1,4 @@
++#include <win32metadata_annotations.h>
+ /********************************************************************************
+ *                                                                               *
+ * timerapi.h -- ApiSet Contract for api-ms-win-mm-time-l1-1-0                   *
+@@ -42,6 +43,7 @@
+     UINT    wPeriodMin;     /* minimum period supported  */
+     UINT    wPeriodMax;     /* maximum period supported  */
+ } TIMECAPS, *PTIMECAPS, NEAR *NPTIMECAPS, FAR *LPTIMECAPS;
++_Win32_SupportedOS_Windows2000_
+ 
+ /* timer function prototypes */
+ WINMMAPI
+@@ -54,6 +56,7 @@
+ 
+ #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM) */
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ DWORD
+ WINAPI
+@@ -63,6 +66,7 @@
+ 
+ #endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM) */
+ #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM)
++_Win32_SupportedOS_Windows2000_
+ WINMMAPI
+ MMRESULT
+ WINAPI
+@@ -70,6 +74,7 @@
+     _Out_writes_bytes_(cbtc) LPTIMECAPS ptc,
+     _In_ UINT cbtc
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
+@@ -77,6 +82,7 @@
+ timeBeginPeriod(
+     _In_ UINT uPeriod
+     );
++_Win32_SupportedOS_Windows2000_
+ 
+ WINMMAPI
+ MMRESULT
