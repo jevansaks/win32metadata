@@ -143,6 +143,7 @@ DiInstallDriverW(
     _Out_opt_ PBOOL NeedReboot
     );
 
+_Win32_SetLastError_
 BOOL
 WINAPI
 DiInstallDriverA(
@@ -198,6 +199,7 @@ DiUninstallDriverW(
     _Out_opt_ PBOOL NeedReboot
     );
 
+_Win32_SetLastError_
 BOOL
 WINAPI
 DiUninstallDriverA(
@@ -236,6 +238,7 @@ DiShowUpdateDevice(
 #define ROLLBACK_BITS                   0x00000001
 
 
+_Win32_SetLastError_
 BOOL
 WINAPI
 DiRollbackDriver(

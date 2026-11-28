@@ -7,7 +7,15 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  /*++
  
  Copyright (c) Microsoft Corporation.  All rights reserved.
-@@ -1966,6 +1967,8 @@
+@@ -1955,6 +1956,7 @@ typedef PSP_BACKUP_QUEUE_PARAMS_V2 PSP_BACKUP_QUEUE_PARAMS;
+ 
+ #endif // _SPAPI_ERRORS
+ 
++_Win32_SetLastError_
+ _Success_(return != FALSE)
+ WINSETUPAPI
+ BOOL
+@@ -1966,6 +1968,8 @@ SetupGetInfInformationA(
      _In_ DWORD ReturnBufferSize,
      _Out_opt_ PDWORD RequiredSize
      );
@@ -16,7 +24,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  _Success_(return != FALSE)
  WINSETUPAPI
-@@ -1993,6 +1996,8 @@
+@@ -1993,6 +1997,8 @@ SetupGetInfInformationW(
  #else
  #define SetupGetInfInformation SetupGetInfInformationA
  #endif
@@ -25,7 +33,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -2005,6 +2010,8 @@
+@@ -2005,6 +2011,8 @@ SetupQueryInfFileInformationA(
      _In_ DWORD ReturnBufferSize,
      _Out_opt_ PDWORD RequiredSize
      );
@@ -34,7 +42,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -2022,6 +2029,8 @@
+@@ -2022,6 +2030,8 @@ SetupQueryInfFileInformationW(
  #else
  #define SetupQueryInfFileInformation SetupQueryInfFileInformationA
  #endif
@@ -43,7 +51,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -2033,6 +2042,8 @@
+@@ -2033,6 +2043,8 @@ SetupQueryInfOriginalFileInformationA(
      _In_opt_ PSP_ALTPLATFORM_INFO AlternatePlatformInfo,
      _Out_ PSP_ORIGINAL_FILE_INFO_A OriginalFileInfo
      );
@@ -52,7 +60,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -2049,6 +2060,8 @@
+@@ -2049,6 +2061,8 @@ SetupQueryInfOriginalFileInformationW(
  #else
  #define SetupQueryInfOriginalFileInformation SetupQueryInfOriginalFileInformationA
  #endif
@@ -61,7 +69,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -2062,6 +2075,8 @@
+@@ -2062,6 +2076,8 @@ SetupQueryInfVersionInformationA(
      _In_ DWORD ReturnBufferSize,
      _Out_opt_ PDWORD RequiredSize
      );
@@ -70,7 +78,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -2083,6 +2098,8 @@
+@@ -2083,6 +2099,8 @@ SetupQueryInfVersionInformationW(
  
  
  #if _SETUPAPI_VER >= _WIN32_WINNT_LONGHORN
@@ -79,7 +87,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -2095,6 +2112,8 @@
+@@ -2095,6 +2113,8 @@ SetupGetInfDriverStoreLocationA(
      _In_ DWORD ReturnBufferSize,
      _Out_opt_ PDWORD RequiredSize
      );
@@ -88,7 +96,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -2113,6 +2132,8 @@
+@@ -2113,6 +2133,8 @@ SetupGetInfDriverStoreLocationW(
  #else
  #define SetupGetInfDriverStoreLocation SetupGetInfDriverStoreLocationA
  #endif
@@ -97,7 +105,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -2123,6 +2144,8 @@
+@@ -2123,6 +2145,8 @@ SetupGetInfPublishedNameA(
      _In_ DWORD ReturnBufferSize,
      _Out_opt_ PDWORD RequiredSize
      );
@@ -106,7 +114,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -2141,6 +2164,8 @@
+@@ -2141,6 +2165,8 @@ SetupGetInfPublishedNameW(
  #endif
  
  #endif // _SETUPAPI_VER >= _WIN32_WINNT_LONGHORN
@@ -115,7 +123,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -2148,18 +2173,20 @@
+@@ -2148,18 +2174,20 @@ BOOL
  WINAPI
  SetupGetInfFileListA(
      _In_opt_ PCSTR DirectoryPath,
@@ -138,7 +146,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
      _Out_writes_(ReturnBufferSize) PWSTR ReturnBuffer,
      _In_ DWORD ReturnBufferSize,
      _Out_opt_ PDWORD RequiredSize
-@@ -2170,6 +2197,8 @@
+@@ -2170,6 +2198,8 @@ SetupGetInfFileListW(
  #else
  #define SetupGetInfFileList SetupGetInfFileListA
  #endif
@@ -147,7 +155,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -2178,9 +2207,11 @@
+@@ -2178,9 +2208,11 @@ WINAPI
  SetupOpenInfFileW(
      _In_ PCWSTR FileName,
      _In_opt_ PCWSTR InfClass,
@@ -160,7 +168,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  HINF
-@@ -2188,7 +2219,7 @@
+@@ -2188,7 +2220,7 @@ WINAPI
  SetupOpenInfFileA(
      _In_ PCSTR FileName,
      _In_opt_ PCSTR InfClass,
@@ -169,7 +177,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
      _Out_opt_ PUINT ErrorLine
      );
  
-@@ -2197,6 +2228,8 @@
+@@ -2197,6 +2229,8 @@ SetupOpenInfFileA(
  #else
  #define SetupOpenInfFile SetupOpenInfFileA
  #endif
@@ -178,7 +186,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -2205,6 +2238,8 @@
+@@ -2205,6 +2239,8 @@ WINAPI
  SetupOpenMasterInf(
      VOID
      );
@@ -187,7 +195,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -2215,6 +2250,8 @@
+@@ -2215,6 +2251,8 @@ SetupOpenAppendInfFileW(
      _In_ HINF InfHandle,
      _Out_opt_ PUINT ErrorLine
      );
@@ -196,7 +204,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -2230,6 +2267,7 @@
+@@ -2230,6 +2268,7 @@ SetupOpenAppendInfFileA(
  #else
  #define SetupOpenAppendInfFile SetupOpenAppendInfFileA
  #endif
@@ -204,7 +212,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -2238,6 +2276,8 @@
+@@ -2238,6 +2277,8 @@ WINAPI
  SetupCloseInfFile(
      _In_ HINF InfHandle
      );
@@ -213,7 +221,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -2249,6 +2289,8 @@
+@@ -2249,6 +2290,8 @@ SetupFindFirstLineA(
      _In_opt_ PCSTR Key,
      _Out_ PINFCONTEXT Context
      );
@@ -222,7 +230,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -2265,6 +2307,8 @@
+@@ -2265,6 +2308,8 @@ SetupFindFirstLineW(
  #else
  #define SetupFindFirstLine SetupFindFirstLineA
  #endif
@@ -231,7 +239,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -2274,6 +2318,8 @@
+@@ -2274,6 +2319,8 @@ SetupFindNextLine(
      _In_ PINFCONTEXT ContextIn,
      _Out_ PINFCONTEXT ContextOut
      );
@@ -240,7 +248,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -2284,6 +2330,8 @@
+@@ -2284,6 +2331,8 @@ SetupFindNextMatchLineA(
      _In_opt_ PCSTR Key,
      _Out_ PINFCONTEXT ContextOut
      );
@@ -249,7 +257,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -2299,6 +2347,8 @@
+@@ -2299,6 +2348,8 @@ SetupFindNextMatchLineW(
  #else
  #define SetupFindNextMatchLine SetupFindNextMatchLineA
  #endif
@@ -258,7 +266,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -2310,6 +2360,8 @@
+@@ -2310,6 +2361,8 @@ SetupGetLineByIndexA(
      _In_ DWORD Index,
      _Out_ PINFCONTEXT Context
      );
@@ -267,7 +275,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -2326,6 +2378,8 @@
+@@ -2326,6 +2379,8 @@ SetupGetLineByIndexW(
  #else
  #define SetupGetLineByIndex SetupGetLineByIndexA
  #endif
@@ -276,7 +284,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -2335,6 +2389,8 @@
+@@ -2335,6 +2390,8 @@ SetupGetLineCountA(
      _In_ HINF InfHandle,
      _In_ PCSTR Section
      );
@@ -285,7 +293,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  LONG
-@@ -2349,6 +2405,8 @@
+@@ -2349,6 +2406,8 @@ SetupGetLineCountW(
  #else
  #define SetupGetLineCount SetupGetLineCountA
  #endif
@@ -294,7 +302,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -2363,6 +2421,8 @@
+@@ -2363,6 +2422,8 @@ SetupGetLineTextA(
      _In_ DWORD ReturnBufferSize,
      _Out_opt_ PDWORD RequiredSize
      );
@@ -303,7 +311,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -2382,6 +2442,8 @@
+@@ -2382,6 +2443,8 @@ SetupGetLineTextW(
  #else
  #define SetupGetLineText SetupGetLineTextA
  #endif
@@ -312,7 +320,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -2390,6 +2452,8 @@
+@@ -2390,6 +2453,8 @@ WINAPI
  SetupGetFieldCount(
      _In_ PINFCONTEXT Context
      );
@@ -321,7 +329,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -2402,6 +2466,8 @@
+@@ -2402,6 +2467,8 @@ SetupGetStringFieldA(
      _In_ DWORD ReturnBufferSize,
      _Out_opt_ PDWORD RequiredSize
      );
@@ -330,7 +338,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -2419,6 +2485,8 @@
+@@ -2419,6 +2486,8 @@ SetupGetStringFieldW(
  #else
  #define SetupGetStringField SetupGetStringFieldA
  #endif
@@ -339,7 +347,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -2429,6 +2497,8 @@
+@@ -2429,6 +2498,8 @@ SetupGetIntField(
      _In_ DWORD FieldIndex,
      _Out_ PINT IntegerValue
      );
@@ -348,7 +356,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -2441,6 +2511,8 @@
+@@ -2441,6 +2512,8 @@ SetupGetMultiSzFieldA(
      _In_ DWORD ReturnBufferSize,
      _Out_opt_ LPDWORD RequiredSize
      );
@@ -357,7 +365,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -2458,6 +2530,8 @@
+@@ -2458,6 +2531,8 @@ SetupGetMultiSzFieldW(
  #else
  #define SetupGetMultiSzField SetupGetMultiSzFieldA
  #endif
@@ -366,7 +374,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  _Success_(return != FALSE)
  WINSETUPAPI
-@@ -2470,6 +2544,8 @@
+@@ -2470,6 +2545,8 @@ SetupGetBinaryField(
      _In_ DWORD ReturnBufferSize,
      _Out_opt_ LPDWORD RequiredSize
      );
@@ -375,7 +383,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  //
  // SetupGetFileCompressionInfo is depreciated
-@@ -2487,7 +2563,7 @@
+@@ -2487,7 +2564,7 @@ SetupGetFileCompressionInfoA(
      _Out_ PSTR *ActualSourceFileName,
      _Out_ PDWORD SourceFileSize,
      _Out_ PDWORD TargetFileSize,
@@ -384,7 +392,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
      );
  
  WINSETUPAPI
-@@ -2498,7 +2574,7 @@
+@@ -2498,7 +2575,7 @@ SetupGetFileCompressionInfoW(
      _Out_ PWSTR *ActualSourceFileName,
      _Out_ PDWORD SourceFileSize,
      _Out_ PDWORD TargetFileSize,
@@ -393,7 +401,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
      );
  
  #ifdef UNICODE
-@@ -2508,6 +2584,8 @@
+@@ -2508,6 +2585,8 @@ SetupGetFileCompressionInfoW(
  #endif
  
  #if _SETUPAPI_VER >= _WIN32_WINNT_WINXP
@@ -402,7 +410,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  //
  // SetupGetFileCompressionInfoEx is the preferred API over
-@@ -2526,7 +2604,7 @@
+@@ -2526,9 +2605,10 @@ SetupGetFileCompressionInfoExA(
      _Out_opt_ PDWORD RequiredBufferLen,
      _Out_ PDWORD SourceFileSize,
      _Out_ PDWORD TargetFileSize,
@@ -410,8 +418,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
 +    _Win32_AssociatedEnum_(FILE_COMPRESSION_TYPE) _Out_ PUINT CompressionType
      );
  
++_Win32_SetLastError_
  WINSETUPAPI
-@@ -2539,7 +2617,7 @@
+ BOOL
+ WINAPI
+@@ -2539,7 +2619,7 @@ SetupGetFileCompressionInfoExW(
      _Out_opt_ PDWORD RequiredBufferLen,
      _Out_ PDWORD SourceFileSize,
      _Out_ PDWORD TargetFileSize,
@@ -420,7 +431,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
      );
  
  #ifdef UNICODE
-@@ -2557,6 +2635,8 @@
+@@ -2557,6 +2637,8 @@ SetupGetFileCompressionInfoExW(
  #define FILE_COMPRESSION_WINLZA     1
  #define FILE_COMPRESSION_MSZIP      2
  #define FILE_COMPRESSION_NTCAB      3
@@ -429,7 +440,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -2565,7 +2645,7 @@
+@@ -2565,7 +2647,7 @@ WINAPI
  SetupDecompressOrCopyFileA(
      _In_ PCSTR SourceFileName,
      _In_ PCSTR TargetFileName,
@@ -438,7 +449,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
      );
  
  WINSETUPAPI
-@@ -2574,7 +2654,7 @@
+@@ -2574,7 +2656,7 @@ WINAPI
  SetupDecompressOrCopyFileW(
      _In_ PCWSTR SourceFileName,
      _In_ PCWSTR TargetFileName,
@@ -447,7 +458,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
      );
  
  #ifdef UNICODE
-@@ -2582,6 +2662,8 @@
+@@ -2582,6 +2664,8 @@ SetupDecompressOrCopyFileW(
  #else
  #define SetupDecompressOrCopyFile SetupDecompressOrCopyFileA
  #endif
@@ -456,7 +467,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -2596,6 +2678,8 @@
+@@ -2596,6 +2680,8 @@ SetupGetSourceFileLocationA(
      _In_ DWORD ReturnBufferSize,
      _Out_opt_ PDWORD RequiredSize
      );
@@ -465,7 +476,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -2615,6 +2699,8 @@
+@@ -2615,6 +2701,8 @@ SetupGetSourceFileLocationW(
  #else
  #define SetupGetSourceFileLocation SetupGetSourceFileLocationA
  #endif
@@ -474,7 +485,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -2628,6 +2714,8 @@
+@@ -2628,6 +2716,8 @@ SetupGetSourceFileSizeA(
      _Out_ PDWORD FileSize,
      _In_ UINT RoundingFactor
      );
@@ -483,7 +494,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -2646,6 +2734,8 @@
+@@ -2646,6 +2736,8 @@ SetupGetSourceFileSizeW(
  #else
  #define SetupGetSourceFileSize SetupGetSourceFileSizeA
  #endif
@@ -492,7 +503,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -2659,6 +2749,8 @@
+@@ -2659,6 +2751,8 @@ SetupGetTargetPathA(
      _In_ DWORD ReturnBufferSize,
      _Out_opt_ PDWORD RequiredSize
      );
@@ -501,7 +512,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -2690,6 +2782,8 @@
+@@ -2690,6 +2784,8 @@ SetupGetTargetPathW(
  #define SRCLIST_SUBDIRS         0x00000100
  #define SRCLIST_APPEND          0x00000200
  #define SRCLIST_NOSTRIPPLATFORM 0x00000400
@@ -510,7 +521,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -2700,6 +2794,8 @@
+@@ -2700,6 +2796,8 @@ SetupSetSourceListA(
      _In_reads_(SourceCount) PCSTR *SourceList,
      _In_ UINT SourceCount
      );
@@ -519,7 +530,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -2715,6 +2811,8 @@
+@@ -2715,6 +2813,8 @@ SetupSetSourceListW(
  #else
  #define SetupSetSourceList SetupSetSourceListA
  #endif
@@ -528,7 +539,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -2723,6 +2821,8 @@
+@@ -2723,6 +2823,8 @@ WINAPI
  SetupCancelTemporarySourceList(
      VOID
      );
@@ -537,7 +548,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -2732,6 +2832,8 @@
+@@ -2732,6 +2834,8 @@ SetupAddToSourceListA(
      _In_ DWORD Flags,
      _In_ PCSTR Source
      );
@@ -546,7 +557,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -2746,6 +2848,8 @@
+@@ -2746,6 +2850,8 @@ SetupAddToSourceListW(
  #else
  #define SetupAddToSourceList SetupAddToSourceListA
  #endif
@@ -555,7 +566,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -2755,6 +2859,8 @@
+@@ -2755,6 +2861,8 @@ SetupRemoveFromSourceListA(
      _In_ DWORD Flags,
      _In_ PCSTR Source
      );
@@ -564,7 +575,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -2769,6 +2875,8 @@
+@@ -2769,6 +2877,8 @@ SetupRemoveFromSourceListW(
  #else
  #define SetupRemoveFromSourceList SetupRemoveFromSourceListA
  #endif
@@ -573,7 +584,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -2779,6 +2887,8 @@
+@@ -2779,6 +2889,8 @@ SetupQuerySourceListA(
      _Outptr_result_buffer_(*Count) PCSTR **List,
      _Out_ PUINT Count
      );
@@ -582,7 +593,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -2794,6 +2904,8 @@
+@@ -2794,6 +2906,8 @@ SetupQuerySourceListW(
  #else
  #define SetupQuerySourceList SetupQuerySourceListA
  #endif
@@ -591,7 +602,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -2803,6 +2915,8 @@
+@@ -2803,6 +2917,8 @@ SetupFreeSourceListA(
      _Inout_ _At_(*List, _Pre_readable_size_(Count) _Post_null_) PCSTR **List,
      _In_ UINT Count
      );
@@ -600,7 +611,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -2817,6 +2931,8 @@
+@@ -2817,6 +2933,8 @@ SetupFreeSourceListW(
  #else
  #define SetupFreeSourceList SetupFreeSourceListA
  #endif
@@ -609,7 +620,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -2834,6 +2950,8 @@
+@@ -2834,6 +2952,8 @@ SetupPromptForDiskA(
      _In_ DWORD PathBufferSize,
      _Out_opt_ PDWORD PathRequiredSize
      );
@@ -618,7 +629,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  UINT
-@@ -2856,6 +2974,8 @@
+@@ -2856,6 +2976,8 @@ SetupPromptForDiskW(
  #else
  #define SetupPromptForDisk SetupPromptForDiskA
  #endif
@@ -627,7 +638,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -2874,6 +2994,8 @@
+@@ -2874,6 +2996,8 @@ SetupCopyErrorA(
      _In_ DWORD PathBufferSize,
      _Out_opt_ PDWORD PathRequiredSize
      );
@@ -636,7 +647,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  UINT
-@@ -2897,6 +3019,8 @@
+@@ -2897,6 +3021,8 @@ SetupCopyErrorW(
  #else
  #define SetupCopyError SetupCopyErrorA
  #endif
@@ -645,7 +656,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -2910,6 +3034,8 @@
+@@ -2910,6 +3036,8 @@ SetupRenameErrorA(
      _In_ UINT Win32ErrorCode,
      _In_ DWORD Style
      );
@@ -654,7 +665,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  UINT
-@@ -2928,6 +3054,8 @@
+@@ -2928,6 +3056,8 @@ SetupRenameErrorW(
  #else
  #define SetupRenameError SetupRenameErrorA
  #endif
@@ -663,7 +674,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -2940,6 +3068,8 @@
+@@ -2940,6 +3070,8 @@ SetupDeleteErrorA(
      _In_ UINT Win32ErrorCode,
      _In_ DWORD Style
      );
@@ -672,7 +683,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  UINT
-@@ -2957,6 +3087,8 @@
+@@ -2957,6 +3089,8 @@ SetupDeleteErrorW(
  #else
  #define SetupDeleteError SetupDeleteErrorA
  #endif
@@ -681,7 +692,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  UINT
-@@ -2969,6 +3101,8 @@
+@@ -2969,6 +3103,8 @@ SetupBackupErrorA(
      _In_ UINT Win32ErrorCode,
      _In_ DWORD Style
      );
@@ -690,7 +701,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  UINT
-@@ -3019,6 +3153,8 @@
+@@ -3019,6 +3155,8 @@ SetupBackupErrorW(
  #define DPROMPT_SKIPFILE        2
  #define DPROMPT_BUFFERTOOSMALL  3
  #define DPROMPT_OUTOFMEMORY     4
@@ -699,7 +710,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -3029,6 +3165,8 @@
+@@ -3029,6 +3167,8 @@ SetupSetDirectoryIdA(
      _In_ DWORD Id,
      _In_opt_ PCSTR Directory
      );
@@ -708,7 +719,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -3044,6 +3182,8 @@
+@@ -3044,6 +3184,8 @@ SetupSetDirectoryIdW(
  #else
  #define SetupSetDirectoryId SetupSetDirectoryIdA
  #endif
@@ -717,7 +728,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -3057,6 +3197,8 @@
+@@ -3057,6 +3199,8 @@ SetupSetDirectoryIdExA(
      _Reserved_ DWORD Reserved1,
      _Reserved_ PVOID Reserved2
      );
@@ -726,7 +737,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -3080,6 +3222,8 @@
+@@ -3080,6 +3224,8 @@ SetupSetDirectoryIdExW(
  // Flags for SetupSetDirectoryIdEx
  //
  #define SETDIRID_NOT_FULL_PATH      0x00000001
@@ -735,7 +746,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -3093,6 +3237,8 @@
+@@ -3093,6 +3239,8 @@ SetupGetSourceInfoA(
      _In_ DWORD ReturnBufferSize,
      _Out_opt_ PDWORD RequiredSize
      );
@@ -744,7 +755,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -3132,6 +3278,8 @@
+@@ -3132,6 +3280,8 @@ SetupGetSourceInfoW(
  #define SRC_FLAGS_CABFILE       (0x0010) // if set, treat SRCINFO_TAGFILE as a cabfile and specify alternate tagfile
  
  #endif // _SETUPAPI_VER >= _WIN32_WINNT_WINXP
@@ -753,7 +764,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -3142,10 +3290,12 @@
+@@ -3142,10 +3292,12 @@ SetupInstallFileA(
      _In_opt_ PCSTR SourceFile,
      _In_opt_ PCSTR SourcePathRoot,
      _In_opt_ PCSTR DestinationName,
@@ -767,7 +778,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -3156,7 +3306,7 @@
+@@ -3156,7 +3308,7 @@ SetupInstallFileW(
      _In_opt_ PCWSTR SourceFile,
      _In_opt_ PCWSTR SourcePathRoot,
      _In_opt_ PCWSTR DestinationName,
@@ -776,7 +787,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
      _In_opt_ PSP_FILE_CALLBACK_W CopyMsgHandler,
      _In_opt_ PVOID Context
      );
-@@ -3166,6 +3316,8 @@
+@@ -3166,6 +3318,8 @@ SetupInstallFileW(
  #else
  #define SetupInstallFile SetupInstallFileA
  #endif
@@ -785,7 +796,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -3176,11 +3328,13 @@
+@@ -3176,11 +3330,13 @@ SetupInstallFileExA(
      _In_opt_ PCSTR SourceFile,
      _In_opt_ PCSTR SourcePathRoot,
      _In_opt_ PCSTR DestinationName,
@@ -800,7 +811,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -3191,7 +3345,7 @@
+@@ -3191,7 +3347,7 @@ SetupInstallFileExW(
      _In_opt_ PCWSTR SourceFile,
      _In_opt_ PCWSTR SourcePathRoot,
      _In_opt_ PCWSTR DestinationName,
@@ -809,7 +820,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
      _In_opt_ PSP_FILE_CALLBACK_W CopyMsgHandler,
      _In_opt_ PVOID Context,
      _Out_ PBOOL FileWasInUse
-@@ -3269,6 +3423,8 @@
+@@ -3269,6 +3425,8 @@ SetupInstallFileExW(
  
  
  #endif //_SETUPAPI_VER >= _WIN32_WINNT_WINXP
@@ -818,7 +829,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -3277,6 +3433,7 @@
+@@ -3277,6 +3435,7 @@ WINAPI
  SetupOpenFileQueue(
      VOID
      );
@@ -826,7 +837,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -3284,6 +3441,8 @@
+@@ -3284,6 +3443,8 @@ WINAPI
  SetupCloseFileQueue(
      _In_ HSPFILEQ QueueHandle
      );
@@ -835,7 +846,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -3293,6 +3452,8 @@
+@@ -3293,6 +3454,8 @@ SetupSetFileQueueAlternatePlatformA(
      _In_opt_ PSP_ALTPLATFORM_INFO AlternatePlatformInfo,
      _In_opt_ PCSTR AlternateDefaultCatalogFile
      );
@@ -844,7 +855,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -3308,6 +3469,8 @@
+@@ -3308,6 +3471,8 @@ SetupSetFileQueueAlternatePlatformW(
  #else
  #define SetupSetFileQueueAlternatePlatform SetupSetFileQueueAlternatePlatformA
  #endif
@@ -853,7 +864,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -3316,6 +3479,8 @@
+@@ -3316,6 +3481,8 @@ WINAPI
  SetupSetPlatformPathOverrideA(
      _In_opt_ PCSTR Override
      );
@@ -862,7 +873,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -3329,6 +3494,8 @@
+@@ -3329,6 +3496,8 @@ SetupSetPlatformPathOverrideW(
  #else
  #define SetupSetPlatformPathOverride SetupSetPlatformPathOverrideA
  #endif
@@ -871,7 +882,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -3345,6 +3512,8 @@
+@@ -3345,6 +3514,8 @@ SetupQueueCopyA(
      _In_opt_ PCSTR TargetFilename,
      _In_ DWORD CopyStyle
      );
@@ -880,7 +891,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -3366,6 +3535,8 @@
+@@ -3366,6 +3537,8 @@ SetupQueueCopyW(
  #else
  #define SetupQueueCopy SetupQueueCopyA
  #endif
@@ -889,7 +900,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -3374,6 +3545,8 @@
+@@ -3374,6 +3547,8 @@ WINAPI
  SetupQueueCopyIndirectA(
      _In_ PSP_FILE_COPY_PARAMS_A CopyParams
      );
@@ -898,7 +909,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -3387,6 +3560,8 @@
+@@ -3387,6 +3562,8 @@ SetupQueueCopyIndirectW(
  #else
  #define SetupQueueCopyIndirect SetupQueueCopyIndirectA
  #endif
@@ -907,7 +918,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -3400,6 +3575,8 @@
+@@ -3400,6 +3577,8 @@ SetupQueueDefaultCopyA(
      _In_opt_ PCSTR TargetFilename,
      _In_ DWORD CopyStyle
      );
@@ -916,7 +927,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -3418,6 +3595,8 @@
+@@ -3418,6 +3597,8 @@ SetupQueueDefaultCopyW(
  #else
  #define SetupQueueDefaultCopy SetupQueueDefaultCopyA
  #endif
@@ -925,7 +936,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -3431,6 +3610,8 @@
+@@ -3431,6 +3612,8 @@ SetupQueueCopySectionA(
      _In_ PCSTR Section,
      _In_ DWORD CopyStyle
      );
@@ -934,7 +945,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -3449,6 +3630,8 @@
+@@ -3449,6 +3632,8 @@ SetupQueueCopySectionW(
  #else
  #define SetupQueueCopySection SetupQueueCopySectionA
  #endif
@@ -943,7 +954,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -3459,6 +3642,8 @@
+@@ -3459,6 +3644,8 @@ SetupQueueDeleteA(
      _In_ PCSTR PathPart1,
      _In_opt_ PCSTR PathPart2
      );
@@ -952,7 +963,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -3474,6 +3659,8 @@
+@@ -3474,6 +3661,8 @@ SetupQueueDeleteW(
  #else
  #define SetupQueueDelete SetupQueueDeleteA
  #endif
@@ -961,7 +972,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -3485,6 +3672,8 @@
+@@ -3485,6 +3674,8 @@ SetupQueueDeleteSectionA(
      _In_opt_ HINF ListInfHandle,
      _In_ PCSTR Section
      );
@@ -970,7 +981,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -3501,6 +3690,8 @@
+@@ -3501,6 +3692,8 @@ SetupQueueDeleteSectionW(
  #else
  #define SetupQueueDeleteSection SetupQueueDeleteSectionA
  #endif
@@ -979,7 +990,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -3513,6 +3704,8 @@
+@@ -3513,6 +3706,8 @@ SetupQueueRenameA(
      _In_opt_ PCSTR TargetPath,
      _In_ PCSTR TargetFilename
      );
@@ -988,7 +999,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -3530,6 +3723,8 @@
+@@ -3530,6 +3725,8 @@ SetupQueueRenameW(
  #else
  #define SetupQueueRename SetupQueueRenameA
  #endif
@@ -997,7 +1008,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -3541,6 +3736,8 @@
+@@ -3541,6 +3738,8 @@ SetupQueueRenameSectionA(
      _In_opt_ HINF ListInfHandle,
      _In_ PCSTR Section
      );
@@ -1006,7 +1017,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -3557,6 +3754,8 @@
+@@ -3557,6 +3756,8 @@ SetupQueueRenameSectionW(
  #else
  #define SetupQueueRenameSection SetupQueueRenameSectionA
  #endif
@@ -1015,7 +1026,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -3568,6 +3767,8 @@
+@@ -3568,6 +3769,8 @@ SetupCommitFileQueueA(
      _In_ PSP_FILE_CALLBACK_A MsgHandler,
      _In_ PVOID Context
      );
@@ -1024,7 +1035,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -3584,6 +3785,8 @@
+@@ -3584,6 +3787,8 @@ SetupCommitFileQueueW(
  #else
  #define SetupCommitFileQueue SetupCommitFileQueueA
  #endif
@@ -1033,7 +1044,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -3591,19 +3794,21 @@
+@@ -3591,19 +3796,21 @@ BOOL
  WINAPI
  SetupScanFileQueueA(
      _In_ HSPFILEQ FileQueue,
@@ -1057,7 +1068,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
      _In_opt_ HWND Window,
      _In_opt_ PSP_FILE_CALLBACK_W CallbackRoutine,
      _In_opt_ PVOID CallbackContext,
-@@ -3654,6 +3859,8 @@
+@@ -3654,6 +3861,8 @@ SetupScanFileQueueW(
  #define SPQ_DELAYED_COPY                        0x00000001  // file was in use; registered for delayed copy
  
  #if _SETUPAPI_VER >= _WIN32_WINNT_WINXP
@@ -1066,7 +1077,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -3663,6 +3870,8 @@
+@@ -3663,6 +3872,8 @@ SetupGetFileQueueCount(
      _In_ UINT SubQueueFileOp,
      _Out_ PUINT NumOperations
      );
@@ -1075,7 +1086,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -3671,6 +3880,8 @@
+@@ -3671,6 +3882,8 @@ SetupGetFileQueueFlags(
      _In_ HSPFILEQ FileQueue,
      _Out_ PDWORD Flags
      );
@@ -1084,7 +1095,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -3718,6 +3929,8 @@
+@@ -3718,6 +3931,8 @@ SetupSetFileQueueFlags(
  #define SPOST_PATH  1
  #define SPOST_URL   2
  #define SPOST_MAX   3
@@ -1093,7 +1104,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -3725,13 +3938,15 @@
+@@ -3725,13 +3940,15 @@ WINAPI
  SetupCopyOEMInfA(
      _In_ PCSTR SourceInfFileName,
      _In_opt_ PCSTR OEMSourceMediaLocation,
@@ -1111,7 +1122,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -3739,8 +3954,8 @@
+@@ -3739,8 +3956,8 @@ WINAPI
  SetupCopyOEMInfW(
      _In_ PCWSTR SourceInfFileName,
      _In_opt_ PCWSTR OEMSourceMediaLocation,
@@ -1122,7 +1133,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
      _Out_writes_opt_(DestinationInfFileNameSize) PWSTR DestinationInfFileName,
      _In_ DWORD DestinationInfFileNameSize,
      _Out_opt_ PDWORD RequiredSize,
-@@ -3770,6 +3985,7 @@
+@@ -3770,6 +3987,7 @@ SetupCopyOEMInfW(
  
  
  #if _SETUPAPI_VER >= _WIN32_WINNT_WINXP
@@ -1130,7 +1141,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  WINSETUPAPI
  BOOL
  WINAPI
-@@ -3778,6 +3994,7 @@
+@@ -3778,6 +3996,7 @@ SetupUninstallOEMInfA(
      _In_ DWORD Flags,
      _Reserved_ PVOID Reserved
      );
@@ -1138,7 +1149,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -3793,6 +4010,8 @@
+@@ -3793,6 +4012,8 @@ SetupUninstallOEMInfW(
  #else
  #define SetupUninstallOEMInf SetupUninstallOEMInfA
  #endif
@@ -1147,7 +1158,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -3805,6 +4024,8 @@
+@@ -3805,6 +4026,8 @@ SetupUninstallNewlyCopiedInfs(
      );
  
  #endif // _SETUPAPI_VER >= _WIN32_WINNT_WINXP
@@ -1156,7 +1167,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  //
-@@ -3818,6 +4039,8 @@
+@@ -3818,6 +4041,8 @@ SetupCreateDiskSpaceListA(
      _Reserved_ DWORD Reserved2,
      _In_ UINT Flags
      );
@@ -1165,7 +1176,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  HDSKSPC
-@@ -3839,6 +4062,8 @@
+@@ -3839,6 +4064,8 @@ SetupCreateDiskSpaceListW(
  //
  #define SPDSL_IGNORE_DISK              0x00000001  // ignore deletes and on-disk files in copies
  #define SPDSL_DISALLOW_NEGATIVE_ADJUST 0x00000002
@@ -1174,7 +1185,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -3850,6 +4075,8 @@
+@@ -3850,6 +4077,8 @@ SetupDuplicateDiskSpaceListA(
      _Reserved_ DWORD Reserved2,
      _In_ UINT Flags
      );
@@ -1183,7 +1194,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  HDSKSPC
-@@ -3866,6 +4093,8 @@
+@@ -3866,6 +4095,8 @@ SetupDuplicateDiskSpaceListW(
  #else
  #define SetupDuplicateDiskSpaceList SetupDuplicateDiskSpaceListA
  #endif
@@ -1192,7 +1203,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -3874,6 +4103,8 @@
+@@ -3874,6 +4105,8 @@ WINAPI
  SetupDestroyDiskSpaceList(
      _Inout_ HDSKSPC DiskSpace
      );
@@ -1201,7 +1212,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -3885,6 +4116,8 @@
+@@ -3885,6 +4118,8 @@ SetupQueryDrivesInDiskSpaceListA(
      _In_ DWORD ReturnBufferSize,
      _Out_opt_ PDWORD RequiredSize
      );
@@ -1210,7 +1221,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -3901,6 +4134,8 @@
+@@ -3901,6 +4136,8 @@ SetupQueryDrivesInDiskSpaceListW(
  #else
  #define SetupQueryDrivesInDiskSpaceList SetupQueryDrivesInDiskSpaceListA
  #endif
@@ -1219,7 +1230,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -3913,6 +4148,8 @@
+@@ -3913,6 +4150,8 @@ SetupQuerySpaceRequiredOnDriveA(
      _Reserved_ PVOID Reserved1,
      _Reserved_ UINT Reserved2
      );
@@ -1228,7 +1239,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -3930,6 +4167,8 @@
+@@ -3930,6 +4169,8 @@ SetupQuerySpaceRequiredOnDriveW(
  #else
  #define SetupQuerySpaceRequiredOnDrive SetupQuerySpaceRequiredOnDriveA
  #endif
@@ -1237,7 +1248,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -3942,6 +4181,8 @@
+@@ -3942,6 +4183,8 @@ SetupAdjustDiskSpaceListA(
      _Reserved_ PVOID Reserved1,
      _Reserved_ UINT Reserved2
      );
@@ -1246,7 +1257,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -3959,6 +4200,8 @@
+@@ -3959,6 +4202,8 @@ SetupAdjustDiskSpaceListW(
  #else
  #define SetupAdjustDiskSpaceList SetupAdjustDiskSpaceListA
  #endif
@@ -1255,7 +1266,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -3968,10 +4211,12 @@
+@@ -3968,10 +4213,12 @@ SetupAddToDiskSpaceListA(
      _In_ HDSKSPC DiskSpace,
      _In_ PCSTR TargetFilespec,
      _In_ LONGLONG FileSize,
@@ -1269,7 +1280,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -3980,7 +4225,7 @@
+@@ -3980,7 +4227,7 @@ SetupAddToDiskSpaceListW(
      _In_ HDSKSPC DiskSpace,
      _In_ PCWSTR TargetFilespec,
      _In_ LONGLONG FileSize,
@@ -1278,7 +1289,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
      _Reserved_ PVOID Reserved1,
      _Reserved_ UINT Reserved2
      );
-@@ -3990,6 +4235,8 @@
+@@ -3990,6 +4237,8 @@ SetupAddToDiskSpaceListW(
  #else
  #define SetupAddToDiskSpaceList SetupAddToDiskSpaceListA
  #endif
@@ -1287,7 +1298,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -4000,10 +4247,12 @@
+@@ -4000,10 +4249,12 @@ SetupAddSectionToDiskSpaceListA(
      _In_ HINF InfHandle,
      _In_opt_ HINF ListInfHandle,
      _In_ PCSTR SectionName,
@@ -1301,7 +1312,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -4013,7 +4262,7 @@
+@@ -4013,7 +4264,7 @@ SetupAddSectionToDiskSpaceListW(
      _In_ HINF InfHandle,
      _In_opt_ HINF ListInfHandle,
      _In_ PCWSTR SectionName,
@@ -1310,7 +1321,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
      _Reserved_ PVOID Reserved1,
      _Reserved_ UINT Reserved2
      );
-@@ -4023,6 +4272,8 @@
+@@ -4023,6 +4274,8 @@ SetupAddSectionToDiskSpaceListW(
  #else
  #define SetupAddSectionToDiskSpaceList SetupAddSectionToDiskSpaceListA
  #endif
@@ -1319,7 +1330,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -4036,6 +4287,8 @@
+@@ -4036,6 +4289,8 @@ SetupAddInstallSectionToDiskSpaceListA(
      _Reserved_ PVOID Reserved1,
      _Reserved_ UINT Reserved2
      );
@@ -1328,7 +1339,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -4054,6 +4307,8 @@
+@@ -4054,6 +4309,8 @@ SetupAddInstallSectionToDiskSpaceListW(
  #else
  #define SetupAddInstallSectionToDiskSpaceList SetupAddInstallSectionToDiskSpaceListA
  #endif
@@ -1337,7 +1348,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -4062,10 +4317,12 @@
+@@ -4062,10 +4319,12 @@ WINAPI
  SetupRemoveFromDiskSpaceListA(
      _In_ HDSKSPC DiskSpace,
      _In_ PCSTR TargetFilespec,
@@ -1351,7 +1362,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -4073,7 +4330,7 @@
+@@ -4073,7 +4332,7 @@ WINAPI
  SetupRemoveFromDiskSpaceListW(
      _In_ HDSKSPC DiskSpace,
      _In_ PCWSTR TargetFilespec,
@@ -1360,7 +1371,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
      _Reserved_ PVOID Reserved1,
      _Reserved_ UINT Reserved2
      );
-@@ -4083,6 +4340,8 @@
+@@ -4083,6 +4342,8 @@ SetupRemoveFromDiskSpaceListW(
  #else
  #define SetupRemoveFromDiskSpaceList SetupRemoveFromDiskSpaceListA
  #endif
@@ -1369,7 +1380,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -4093,10 +4352,12 @@
+@@ -4093,10 +4354,12 @@ SetupRemoveSectionFromDiskSpaceListA(
      _In_ HINF InfHandle,
      _In_opt_ HINF ListInfHandle,
      _In_ PCSTR SectionName,
@@ -1383,7 +1394,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -4106,7 +4367,7 @@
+@@ -4106,7 +4369,7 @@ SetupRemoveSectionFromDiskSpaceListW(
      _In_ HINF InfHandle,
      _In_opt_ HINF ListInfHandle,
      _In_ PCWSTR SectionName,
@@ -1392,7 +1403,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
      _Reserved_ PVOID Reserved1,
      _Reserved_ UINT Reserved2
      );
-@@ -4116,6 +4377,8 @@
+@@ -4116,6 +4379,8 @@ SetupRemoveSectionFromDiskSpaceListW(
  #else
  #define SetupRemoveSectionFromDiskSpaceList SetupRemoveSectionFromDiskSpaceListA
  #endif
@@ -1401,7 +1412,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -4129,6 +4392,8 @@
+@@ -4129,6 +4394,8 @@ SetupRemoveInstallSectionFromDiskSpaceListA(
      _Reserved_ PVOID Reserved1,
      _Reserved_ UINT Reserved2
      );
@@ -1410,7 +1421,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -4147,6 +4412,8 @@
+@@ -4147,6 +4414,8 @@ SetupRemoveInstallSectionFromDiskSpaceListW(
  #else
  #define SetupRemoveInstallSectionFromDiskSpaceList SetupRemoveInstallSectionFromDiskSpaceListA
  #endif
@@ -1419,7 +1430,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  //
-@@ -4162,6 +4429,8 @@
+@@ -4162,6 +4431,8 @@ SetupIterateCabinetA(
      _In_ PSP_FILE_CALLBACK_A MsgHandler,
      _In_ PVOID Context
      );
@@ -1428,7 +1439,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -4178,6 +4447,8 @@
+@@ -4178,6 +4449,8 @@ SetupIterateCabinetW(
  #else
  #define SetupIterateCabinet SetupIterateCabinetA
  #endif
@@ -1437,7 +1448,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -4195,6 +4466,8 @@
+@@ -4195,6 +4468,8 @@ SetupPromptReboot(
  #define SPFILEQ_FILE_IN_USE         0x00000001
  #define SPFILEQ_REBOOT_RECOMMENDED  0x00000002
  #define SPFILEQ_REBOOT_IN_PROGRESS  0x00000004
@@ -1446,7 +1457,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -4203,6 +4476,7 @@
+@@ -4203,6 +4478,7 @@ WINAPI
  SetupInitDefaultQueueCallback(
      _In_opt_ HWND OwnerWindow
      );
@@ -1454,7 +1465,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  PVOID
-@@ -4214,6 +4488,8 @@
+@@ -4214,6 +4490,8 @@ SetupInitDefaultQueueCallbackEx(
      _Reserved_ DWORD Reserved1,
      _Reserved_ PVOID Reserved2
      );
@@ -1463,7 +1474,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  VOID
-@@ -4221,6 +4497,8 @@
+@@ -4221,6 +4499,8 @@ WINAPI
  SetupTermDefaultQueueCallback(
      _In_ PVOID Context
      );
@@ -1472,7 +1483,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  UINT
-@@ -4231,6 +4509,8 @@
+@@ -4231,6 +4511,8 @@ SetupDefaultQueueCallbackA(
      _In_ UINT_PTR Param1,
      _In_ UINT_PTR Param2
      );
@@ -1481,7 +1492,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  UINT
-@@ -4407,6 +4687,8 @@
+@@ -4407,6 +4689,8 @@ SetupDefaultQueueCallbackW(
  //
  
  #define FLG_DELPROPERTY_MULTI_SZ_DELSTRING  ( 0x00000001 )
@@ -1490,7 +1501,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -4425,6 +4707,8 @@
+@@ -4425,6 +4709,8 @@ SetupInstallFromInfSectionA(
      _In_opt_ HDEVINFO DeviceInfoSet,
      _In_opt_ PSP_DEVINFO_DATA DeviceInfoData
      );
@@ -1499,7 +1510,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -4498,6 +4782,8 @@
+@@ -4498,6 +4784,8 @@ SetupInstallFromInfSectionW(
  #define SPINST_DEVICEINSTALL            0x00100000
  
  #endif // _SETUPAPI_VER >= _WIN32_WINNT_LONGHORN
@@ -1508,7 +1519,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -4510,6 +4796,8 @@
+@@ -4510,6 +4798,8 @@ SetupInstallFilesFromInfSectionA(
      _In_opt_ PCSTR SourceRootPath,
      _In_ UINT CopyFlags
      );
@@ -1517,7 +1528,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -4645,6 +4933,8 @@
+@@ -4645,6 +4935,8 @@ SetupInstallFilesFromInfSectionW(
  #define SPSVCINST_NOCLOBBER_BOOTFLAGS (0x00040000)
  
  #endif // _SETUPAPI_VER >= _WIN32_WINNT_WIN10
@@ -1526,7 +1537,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -4652,7 +4942,7 @@
+@@ -4652,16 +4944,17 @@ WINAPI
  SetupInstallServicesFromInfSectionA(
      _In_ HINF InfHandle,
      _In_ PCSTR SectionName,
@@ -1534,8 +1545,10 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
 +    _Win32_AssociatedEnum_(SPSVCINST_FLAGS) _In_ DWORD Flags
      );
  
++_Win32_SetLastError_
  WINSETUPAPI
-@@ -4661,7 +4951,7 @@
+ BOOL
+ WINAPI
  SetupInstallServicesFromInfSectionW(
      _In_ HINF InfHandle,
      _In_ PCWSTR SectionName,
@@ -1544,7 +1557,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
      );
  
  #ifdef UNICODE
-@@ -4669,6 +4959,8 @@
+@@ -4669,6 +4962,8 @@ SetupInstallServicesFromInfSectionW(
  #else
  #define SetupInstallServicesFromInfSection SetupInstallServicesFromInfSectionA
  #endif
@@ -1553,7 +1566,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -4677,12 +4969,14 @@
+@@ -4677,12 +4972,14 @@ WINAPI
  SetupInstallServicesFromInfSectionExA(
      _In_ HINF InfHandle,
      _In_ PCSTR SectionName,
@@ -1569,7 +1582,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -4690,7 +4984,7 @@
+@@ -4690,7 +4987,7 @@ WINAPI
  SetupInstallServicesFromInfSectionExW(
      _In_ HINF InfHandle,
      _In_ PCWSTR SectionName,
@@ -1578,7 +1591,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
      _In_opt_ HDEVINFO DeviceInfoSet,
      _In_opt_ PSP_DEVINFO_DATA DeviceInfoData,
      _Reserved_ PVOID Reserved1,
-@@ -4712,6 +5006,7 @@
+@@ -4712,6 +5009,7 @@ SetupInstallServicesFromInfSectionExW(
  //
  // wsprintf(CmdLineBuffer,TEXT("DefaultInstall 132 %s"),InfPath);
  // InstallHinfSection(NULL,NULL,CmdLineBuffer,0);
@@ -1586,7 +1599,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  //
  VOID
  WINAPI
-@@ -4721,6 +5016,7 @@
+@@ -4721,6 +5019,7 @@ InstallHinfSectionA(
      _In_ PCSTR CommandLine,
      _In_ INT ShowCommand
      );
@@ -1594,7 +1607,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  VOID
  WINAPI
-@@ -4745,6 +5041,8 @@
+@@ -4745,6 +5044,8 @@ InstallHinfSectionW(
  // Define handle type for Setup file log.
  //
  typedef PVOID HSPFILELOG;
@@ -1603,7 +1616,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  HSPFILELOG
-@@ -4753,6 +5051,8 @@
+@@ -4753,6 +5054,8 @@ SetupInitializeFileLogA(
      _In_opt_ PCSTR LogFileName,
      _In_ DWORD Flags
      );
@@ -1612,7 +1625,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  HSPFILELOG
-@@ -4774,6 +5074,8 @@
+@@ -4774,6 +5077,8 @@ SetupInitializeFileLogW(
  #define SPFILELOG_SYSTEMLOG     0x00000001  // use system log -- must be Administrator
  #define SPFILELOG_FORCENEW      0x00000002  // not valid with SPFILELOG_SYSTEMLOG
  #define SPFILELOG_QUERYONLY     0x00000004  // allows non-administrators to read system log
@@ -1621,7 +1634,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -4782,6 +5084,8 @@
+@@ -4782,6 +5087,8 @@ WINAPI
  SetupTerminateFileLog(
      _In_ HSPFILELOG FileLogHandle
      );
@@ -1630,7 +1643,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -4798,6 +5102,8 @@
+@@ -4798,6 +5105,8 @@ SetupLogFileA(
      _In_opt_ PCSTR OtherInfo,
      _In_ DWORD Flags
      );
@@ -1639,7 +1652,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -4824,6 +5130,8 @@
+@@ -4824,6 +5133,8 @@ SetupLogFileW(
  // Flags for SetupLogFile
  //
  #define SPFILELOG_OEMFILE   0x00000001
@@ -1648,7 +1661,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -4834,6 +5142,8 @@
+@@ -4834,6 +5145,8 @@ SetupRemoveFileLogEntryA(
      _In_opt_ PCSTR LogSectionName,
      _In_opt_ PCSTR TargetFilename
      );
@@ -1657,7 +1670,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -4862,6 +5172,8 @@
+@@ -4862,6 +5175,8 @@ typedef enum {
      SetupFileLogOtherInfo,
      SetupFileLogMax
  } SetupFileLogInfo;
@@ -1666,7 +1679,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -4875,6 +5187,8 @@
+@@ -4875,6 +5190,8 @@ SetupQueryFileLogA(
      _In_ DWORD ReturnBufferSize,
      _Out_opt_ PDWORD RequiredSize
      );
@@ -1675,7 +1688,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -4904,6 +5218,8 @@
+@@ -4904,6 +5221,8 @@ SetupQueryFileLogW(
  #define LogSevError                 0x00000002
  #define LogSevFatalError            0x00000003
  #define LogSevMaximum               0x00000004
@@ -1684,7 +1697,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -4911,6 +5227,8 @@
+@@ -4911,6 +5230,8 @@ WINAPI
  SetupOpenLog (
      _In_ BOOL Erase
      );
@@ -1693,7 +1706,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -4919,6 +5237,8 @@
+@@ -4919,6 +5240,8 @@ SetupLogErrorA (
      _In_ LPCSTR MessageString,
      _In_ LogSeverity Severity
      );
@@ -1702,7 +1715,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -4933,6 +5253,7 @@
+@@ -4933,6 +5256,7 @@ SetupLogErrorW (
  #else
  #define SetupLogError SetupLogErrorA
  #endif
@@ -1710,7 +1723,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  VOID
-@@ -4946,6 +5267,7 @@
+@@ -4946,6 +5270,7 @@ SetupCloseLog (
  //
  
  #if _SETUPAPI_VER >= _WIN32_WINNT_LONGHORN
@@ -1718,7 +1731,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -4954,6 +5276,7 @@
+@@ -4954,6 +5279,7 @@ WINAPI
  SetupGetThreadLogToken(
      VOID
      );
@@ -1726,7 +1739,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  VOID
-@@ -4961,6 +5284,7 @@
+@@ -4961,6 +5287,7 @@ WINAPI
  SetupSetThreadLogToken(
      _In_ SP_LOG_TOKEN LogToken
      );
@@ -1734,7 +1747,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  VOID
-@@ -4972,6 +5296,7 @@
+@@ -4972,6 +5299,7 @@ SetupWriteTextLog(
      _In_ PCSTR MessageStr,
      ...
      );
@@ -1742,7 +1755,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  VOID
-@@ -4984,6 +5309,7 @@
+@@ -4984,6 +5312,7 @@ SetupWriteTextLogError(
      _In_ PCSTR MessageStr,
      ...
      );
@@ -1750,7 +1763,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  VOID
-@@ -5053,6 +5379,7 @@
+@@ -5053,6 +5382,7 @@ SetupPrepareQueueForRestoreW(
  #endif // _SETUPAPI_VER >= _WIN32_WINNT_WINXP
  
  #if _SETUPAPI_VER >= _WIN32_WINNT_WINXP
@@ -1758,7 +1771,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  //
  // Control forcing of Non-Interactive Mode
-@@ -5065,6 +5392,7 @@
+@@ -5065,6 +5395,7 @@ WINAPI
  SetupSetNonInteractiveMode(
      _In_ BOOL NonInteractiveFlag
      );
@@ -1766,7 +1779,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -5074,6 +5402,8 @@
+@@ -5074,6 +5405,8 @@ SetupGetNonInteractiveMode(
      );
  
  #endif // _SETUPAPI_VER >= _WIN32_WINNT_WINXP
@@ -1775,7 +1788,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  //
  // Device Installer APIs
-@@ -5087,6 +5417,8 @@
+@@ -5087,6 +5420,8 @@ SetupDiCreateDeviceInfoList(
      _In_opt_ CONST GUID *ClassGuid,
      _In_opt_ HWND hwndParent
      );
@@ -1784,7 +1797,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  _Check_return_
-@@ -5099,6 +5431,8 @@
+@@ -5099,6 +5434,8 @@ SetupDiCreateDeviceInfoListExA(
      _In_opt_ PCSTR MachineName,
      _Reserved_ PVOID Reserved
      );
@@ -1793,7 +1806,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  _Check_return_
  WINSETUPAPI
-@@ -5116,6 +5450,8 @@
+@@ -5116,6 +5453,8 @@ SetupDiCreateDeviceInfoListExW(
  #else
  #define SetupDiCreateDeviceInfoListEx SetupDiCreateDeviceInfoListExA
  #endif
@@ -1802,7 +1815,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -5125,13 +5461,15 @@
+@@ -5125,21 +5464,24 @@ SetupDiGetDeviceInfoListClass(
      _In_ HDEVINFO DeviceInfoSet,
      _Out_ LPGUID ClassGuid
      );
@@ -1818,8 +1831,9 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
 +    _Inout_ PSP_DEVINFO_LIST_DETAIL_DATA_A DeviceInfoSetDetailData
      );
  
++_Win32_SetLastError_
  WINSETUPAPI
-@@ -5139,7 +5477,7 @@
+ BOOL
  WINAPI
  SetupDiGetDeviceInfoListDetailW(
      _In_ HDEVINFO DeviceInfoSet,
@@ -1828,7 +1842,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
      );
  
  #ifdef UNICODE
-@@ -5154,6 +5492,8 @@
+@@ -5154,6 +5496,8 @@ SetupDiGetDeviceInfoListDetailW(
  //
  #define DICD_GENERATE_ID        0x00000001
  #define DICD_INHERIT_CLASSDRVS  0x00000002
@@ -1837,7 +1851,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -5164,8 +5504,8 @@
+@@ -5164,10 +5508,11 @@ SetupDiCreateDeviceInfoA(
      _In_ CONST GUID *ClassGuid,
      _In_opt_ PCSTR DeviceDescription,
      _In_opt_ HWND hwndParent,
@@ -1847,8 +1861,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
 +    _Inout_opt_ PSP_DEVINFO_DATA DeviceInfoData
      );
  
++_Win32_SetLastError_
  WINSETUPAPI
-@@ -5177,8 +5517,8 @@
+ BOOL
+ WINAPI
+@@ -5177,8 +5522,8 @@ SetupDiCreateDeviceInfoW(
      _In_ CONST GUID *ClassGuid,
      _In_opt_ PCWSTR DeviceDescription,
      _In_opt_ HWND hwndParent,
@@ -1859,7 +1876,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
      );
  
  #ifdef UNICODE
-@@ -5193,6 +5533,8 @@
+@@ -5193,6 +5538,8 @@ SetupDiCreateDeviceInfoW(
  //
  #define DIOD_INHERIT_CLASSDRVS  0x00000002
  #define DIOD_CANCEL_REMOVE      0x00000004
@@ -1868,7 +1885,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -5202,7 +5544,7 @@
+@@ -5202,9 +5549,10 @@ SetupDiOpenDeviceInfoA(
      _In_ PCSTR DeviceInstanceId,
      _In_opt_ HWND hwndParent,
      _In_ DWORD OpenFlags,
@@ -1876,8 +1893,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
 +    _Inout_opt_ PSP_DEVINFO_DATA DeviceInfoData
      );
  
++_Win32_SetLastError_
  WINSETUPAPI
-@@ -5213,7 +5555,7 @@
+ BOOL
+ WINAPI
+@@ -5213,7 +5561,7 @@ SetupDiOpenDeviceInfoW(
      _In_ PCWSTR DeviceInstanceId,
      _In_opt_ HWND hwndParent,
      _In_ DWORD OpenFlags,
@@ -1886,7 +1906,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
      );
  
  #ifdef UNICODE
-@@ -5221,6 +5563,8 @@
+@@ -5221,6 +5569,8 @@ SetupDiOpenDeviceInfoW(
  #else
  #define SetupDiOpenDeviceInfo SetupDiOpenDeviceInfoA
  #endif
@@ -1895,7 +1915,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -5233,6 +5577,8 @@
+@@ -5233,6 +5583,8 @@ SetupDiGetDeviceInstanceIdA(
      _In_ DWORD DeviceInstanceIdSize,
      _Out_opt_ PDWORD RequiredSize
      );
@@ -1904,7 +1924,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -5250,6 +5596,8 @@
+@@ -5250,6 +5602,8 @@ SetupDiGetDeviceInstanceIdW(
  #else
  #define SetupDiGetDeviceInstanceId SetupDiGetDeviceInstanceIdA
  #endif
@@ -1913,7 +1933,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -5259,6 +5607,8 @@
+@@ -5259,6 +5613,8 @@ SetupDiDeleteDeviceInfo(
      _In_ HDEVINFO DeviceInfoSet,
      _In_ PSP_DEVINFO_DATA DeviceInfoData
      );
@@ -1922,7 +1942,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -5267,7 +5617,7 @@
+@@ -5267,16 +5623,19 @@ WINAPI
  SetupDiEnumDeviceInfo(
      _In_ HDEVINFO DeviceInfoSet,
      _In_ DWORD MemberIndex,
@@ -1931,7 +1951,10 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
      );
  
  
-@@ -5277,6 +5627,8 @@
++_Win32_SetLastError_
+ WINSETUPAPI
+ BOOL
+ WINAPI
  SetupDiDestroyDeviceInfoList(
      _In_ HDEVINFO DeviceInfoSet
      );
@@ -1940,7 +1963,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -5287,13 +5639,15 @@
+@@ -5287,13 +5646,15 @@ SetupDiEnumDeviceInterfaces(
      _In_opt_ PSP_DEVINFO_DATA DeviceInfoData,
      _In_ CONST GUID *InterfaceClassGuid,
      _In_ DWORD MemberIndex,
@@ -1957,7 +1980,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -5305,7 +5659,7 @@
+@@ -5305,9 +5666,10 @@ SetupDiCreateDeviceInterfaceA(
      _In_ CONST GUID *InterfaceClassGuid,
      _In_opt_ PCSTR ReferenceString,
      _In_ DWORD CreationFlags,
@@ -1965,8 +1988,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
 +    _Inout_opt_ PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData
      );
  
++_Win32_SetLastError_
  WINSETUPAPI
-@@ -5317,7 +5671,7 @@
+ BOOL
+ WINAPI
+@@ -5317,7 +5679,7 @@ SetupDiCreateDeviceInterfaceW(
      _In_ CONST GUID *InterfaceClassGuid,
      _In_opt_ PCWSTR ReferenceString,
      _In_ DWORD CreationFlags,
@@ -1975,7 +2001,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
      );
  
  #ifdef UNICODE
-@@ -5342,6 +5696,8 @@
+@@ -5342,6 +5704,8 @@ SetupDiCreateDeviceInterfaceW(
  // Flags for SetupDiOpenDeviceInterface
  //
  #define DIODI_NO_ADD    0x00000001
@@ -1984,7 +2010,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -5350,7 +5706,7 @@
+@@ -5350,9 +5714,10 @@ SetupDiOpenDeviceInterfaceA(
      _In_ HDEVINFO DeviceInfoSet,
      _In_ PCSTR DevicePath,
      _In_ DWORD OpenFlags,
@@ -1992,8 +2018,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
 +    _Inout_opt_ PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData
      );
  
++_Win32_SetLastError_
  WINSETUPAPI
-@@ -5360,7 +5716,7 @@
+ BOOL
+ WINAPI
+@@ -5360,7 +5725,7 @@ SetupDiOpenDeviceInterfaceW(
      _In_ HDEVINFO DeviceInfoSet,
      _In_ PCWSTR DevicePath,
      _In_ DWORD OpenFlags,
@@ -2002,7 +2031,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
      );
  
  #ifdef UNICODE
-@@ -5379,6 +5735,8 @@
+@@ -5379,6 +5744,8 @@ SetupDiOpenDeviceInterfaceW(
  #else
  #define SetupDiOpenInterfaceDevice SetupDiOpenDeviceInterfaceA
  #endif
@@ -2011,7 +2040,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -5388,13 +5746,15 @@
+@@ -5388,13 +5755,15 @@ SetupDiGetDeviceInterfaceAlias(
      _In_ HDEVINFO DeviceInfoSet,
      _In_ PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData,
      _In_ CONST GUID *AliasInterfaceClassGuid,
@@ -2028,7 +2057,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -5409,6 +5769,8 @@
+@@ -5409,6 +5778,8 @@ SetupDiDeleteDeviceInterfaceData(
  // Backward compatibility--do not use.
  //
  #define SetupDiDeleteInterfaceDeviceData SetupDiDeleteDeviceInterfaceData
@@ -2037,7 +2066,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -5423,6 +5785,8 @@
+@@ -5423,6 +5794,8 @@ SetupDiRemoveDeviceInterface(
  // Backward compatibility--do not use.
  //
  #define SetupDiRemoveInterfaceDevice SetupDiRemoveDeviceInterface
@@ -2046,7 +2075,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  _Success_(return != FALSE)
  _At_((LPSTR)DeviceInterfaceDetailData->DevicePath, _Post_z_)
-@@ -5435,7 +5799,7 @@
+@@ -5435,9 +5808,10 @@ SetupDiGetDeviceInterfaceDetailA(
      _Inout_updates_bytes_to_opt_(DeviceInterfaceDetailDataSize, *RequiredSize) PSP_DEVICE_INTERFACE_DETAIL_DATA_A DeviceInterfaceDetailData,
      _In_ DWORD DeviceInterfaceDetailDataSize,
      _Out_opt_ _Out_range_(>=, sizeof(SP_DEVICE_INTERFACE_DETAIL_DATA_A)) PDWORD RequiredSize,
@@ -2054,8 +2083,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
 +    _Inout_opt_ PSP_DEVINFO_DATA DeviceInfoData
      );
  
++_Win32_SetLastError_
  _Success_(return != FALSE)
-@@ -5449,7 +5813,7 @@
+ _At_((LPWSTR)DeviceInterfaceDetailData->DevicePath, _Post_z_)
+ WINSETUPAPI
+@@ -5449,7 +5823,7 @@ SetupDiGetDeviceInterfaceDetailW(
      _Out_writes_bytes_to_opt_(DeviceInterfaceDetailDataSize, *RequiredSize) PSP_DEVICE_INTERFACE_DETAIL_DATA_W DeviceInterfaceDetailData,
      _In_ DWORD DeviceInterfaceDetailDataSize,
      _Out_opt_ _Out_range_(>=, sizeof(SP_DEVICE_INTERFACE_DETAIL_DATA_W)) PDWORD RequiredSize,
@@ -2064,7 +2096,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
      );
  
  #ifdef UNICODE
-@@ -5468,6 +5832,8 @@
+@@ -5468,6 +5842,8 @@ SetupDiGetDeviceInterfaceDetailW(
  #else
  #define SetupDiGetInterfaceDeviceDetail SetupDiGetDeviceInterfaceDetailA
  #endif
@@ -2073,7 +2105,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  //
-@@ -5488,6 +5854,8 @@
+@@ -5488,6 +5864,8 @@ SetupDiInstallDeviceInterfaces(
  
  
  #if _SETUPAPI_VER >= _WIN32_WINNT_WINXP
@@ -2082,7 +2114,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -5510,6 +5878,8 @@
+@@ -5510,6 +5888,8 @@ SetupDiSetDeviceInterfaceDefault(
  // Flags for SetupDiRegisterDeviceInfo
  //
  #define SPRDI_FIND_DUPS        0x00000001
@@ -2091,7 +2123,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -5520,7 +5890,7 @@
+@@ -5520,7 +5900,7 @@ SetupDiRegisterDeviceInfo(
      _In_ DWORD Flags,
      _In_opt_ PSP_DETSIG_CMPPROC CompareProc,
      _In_opt_ PVOID CompareContext,
@@ -2100,7 +2132,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
      );
  
  
-@@ -5532,6 +5902,8 @@
+@@ -5532,6 +5912,8 @@ SetupDiRegisterDeviceInfo(
  #define SPDIT_NODRIVER           0x00000000
  #define SPDIT_CLASSDRIVER        0x00000001
  #define SPDIT_COMPATDRIVER       0x00000002
@@ -2109,7 +2141,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -5539,7 +5911,7 @@
+@@ -5539,16 +5921,19 @@ WINAPI
  SetupDiBuildDriverInfoList(
      _In_ HDEVINFO DeviceInfoSet,
      _Inout_opt_ PSP_DEVINFO_DATA DeviceInfoData,
@@ -2118,7 +2150,10 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
      );
  
  
-@@ -5549,6 +5921,8 @@
++_Win32_SetLastError_
+ WINSETUPAPI
+ BOOL
+ WINAPI
  SetupDiCancelDriverInfoSearch(
      _In_ HDEVINFO DeviceInfoSet
      );
@@ -2127,7 +2162,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -5557,9 +5931,9 @@
+@@ -5557,20 +5942,21 @@ WINAPI
  SetupDiEnumDriverInfoA(
      _In_ HDEVINFO DeviceInfoSet,
      _In_opt_ PSP_DEVINFO_DATA DeviceInfoData,
@@ -2138,8 +2173,10 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
 +    _Inout_ PSP_DRVINFO_DATA_A DriverInfoData
      );
  
++_Win32_SetLastError_
  WINSETUPAPI
-@@ -5568,9 +5942,9 @@
+ BOOL
+ WINAPI
  SetupDiEnumDriverInfoW(
      _In_ HDEVINFO DeviceInfoSet,
      _In_opt_ PSP_DEVINFO_DATA DeviceInfoData,
@@ -2151,7 +2188,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
      );
  
  #ifdef UNICODE
-@@ -5578,6 +5952,8 @@
+@@ -5578,6 +5964,8 @@ SetupDiEnumDriverInfoW(
  #else
  #define SetupDiEnumDriverInfo SetupDiEnumDriverInfoA
  #endif
@@ -2160,7 +2197,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -5586,7 +5962,7 @@
+@@ -5586,16 +5974,17 @@ WINAPI
  SetupDiGetSelectedDriverA(
      _In_ HDEVINFO DeviceInfoSet,
      _In_opt_ PSP_DEVINFO_DATA DeviceInfoData,
@@ -2168,8 +2205,10 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
 +    _Inout_ PSP_DRVINFO_DATA_A DriverInfoData
      );
  
++_Win32_SetLastError_
  WINSETUPAPI
-@@ -5595,7 +5971,7 @@
+ BOOL
+ WINAPI
  SetupDiGetSelectedDriverW(
      _In_ HDEVINFO DeviceInfoSet,
      _In_opt_ PSP_DEVINFO_DATA DeviceInfoData,
@@ -2178,7 +2217,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
      );
  
  #ifdef UNICODE
-@@ -5603,6 +5979,8 @@
+@@ -5603,6 +5992,8 @@ SetupDiGetSelectedDriverW(
  #else
  #define SetupDiGetSelectedDriver SetupDiGetSelectedDriverA
  #endif
@@ -2187,7 +2226,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -5613,6 +5991,8 @@
+@@ -5613,6 +6004,8 @@ SetupDiSetSelectedDriverA(
      _Inout_opt_ PSP_DEVINFO_DATA DeviceInfoData,
      _Inout_opt_ PSP_DRVINFO_DATA_A DriverInfoData
      );
@@ -2196,7 +2235,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -5628,6 +6008,8 @@
+@@ -5628,6 +6021,8 @@ SetupDiSetSelectedDriverW(
  #else
  #define SetupDiSetSelectedDriver SetupDiSetSelectedDriverA
  #endif
@@ -2205,7 +2244,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -5640,6 +6022,8 @@
+@@ -5640,6 +6035,8 @@ SetupDiGetDriverInfoDetailA(
      _In_ DWORD DriverInfoDetailDataSize,
      _Out_opt_ PDWORD RequiredSize
      );
@@ -2214,7 +2253,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -5658,6 +6042,8 @@
+@@ -5658,6 +6055,8 @@ SetupDiGetDriverInfoDetailW(
  #else
  #define SetupDiGetDriverInfoDetail SetupDiGetDriverInfoDetailA
  #endif
@@ -2223,7 +2262,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -5666,7 +6052,7 @@
+@@ -5666,7 +6065,7 @@ WINAPI
  SetupDiDestroyDriverInfoList(
      _In_ HDEVINFO DeviceInfoSet,
      _In_opt_ PSP_DEVINFO_DATA DeviceInfoData,
@@ -2232,7 +2271,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
      );
  
  
-@@ -5684,6 +6070,8 @@
+@@ -5684,6 +6083,8 @@ SetupDiDestroyDriverInfoList(
  // Backward compatibility--do not use.
  //
  #define DIGCF_INTERFACEDEVICE DIGCF_DEVICEINTERFACE
@@ -2241,7 +2280,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  _Check_return_
-@@ -5694,7 +6082,7 @@
+@@ -5694,9 +6095,10 @@ SetupDiGetClassDevsA(
      _In_opt_ CONST GUID *ClassGuid,
      _In_opt_ PCSTR Enumerator,
      _In_opt_ HWND hwndParent,
@@ -2249,8 +2288,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
 +    _Win32_AssociatedEnum_(SETUP_DI_GET_CLASS_DEVS_FLAGS) _In_ DWORD Flags
      );
  
++_Win32_SetLastError_
  _Check_return_
-@@ -5705,7 +6093,7 @@
+ WINSETUPAPI
+ HDEVINFO
+@@ -5705,7 +6107,7 @@ SetupDiGetClassDevsW(
      _In_opt_ CONST GUID *ClassGuid,
      _In_opt_ PCWSTR Enumerator,
      _In_opt_ HWND hwndParent,
@@ -2259,7 +2301,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
      );
  
  #ifdef UNICODE
-@@ -5713,6 +6101,8 @@
+@@ -5713,6 +6115,8 @@ SetupDiGetClassDevsW(
  #else
  #define SetupDiGetClassDevs SetupDiGetClassDevsA
  #endif
@@ -2268,7 +2310,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  _Check_return_
-@@ -5723,11 +6113,13 @@
+@@ -5723,11 +6127,13 @@ SetupDiGetClassDevsExA(
      _In_opt_ CONST GUID *ClassGuid,
      _In_opt_ PCSTR Enumerator,
      _In_opt_ HWND hwndParent,
@@ -2283,7 +2325,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  _Check_return_
  WINSETUPAPI
-@@ -5737,7 +6129,7 @@
+@@ -5737,7 +6143,7 @@ SetupDiGetClassDevsExW(
      _In_opt_ CONST GUID *ClassGuid,
      _In_opt_ PCWSTR Enumerator,
      _In_opt_ HWND hwndParent,
@@ -2292,7 +2334,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
      _In_opt_ HDEVINFO DeviceInfoSet,
      _In_opt_ PCWSTR MachineName,
      _Reserved_ PVOID Reserved
-@@ -5748,6 +6140,8 @@
+@@ -5748,6 +6154,8 @@ SetupDiGetClassDevsExW(
  #else
  #define SetupDiGetClassDevsEx SetupDiGetClassDevsExA
  #endif
@@ -2301,7 +2343,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -5760,6 +6154,8 @@
+@@ -5760,6 +6168,8 @@ SetupDiGetINFClassA(
      _In_ DWORD ClassNameSize,
      _Out_opt_ PDWORD RequiredSize
      );
@@ -2310,7 +2352,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -5785,6 +6181,8 @@
+@@ -5785,6 +6195,8 @@ SetupDiGetINFClassW(
  //
  #define DIBCI_NOINSTALLCLASS   0x00000001
  #define DIBCI_NODISPLAYCLASS   0x00000002
@@ -2319,7 +2361,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  _Success_(return != FALSE)
  WINSETUPAPI
-@@ -5796,6 +6194,8 @@
+@@ -5796,6 +6208,8 @@ SetupDiBuildClassInfoList(
      _In_ DWORD ClassGuidListSize,
      _Out_ PDWORD RequiredSize
      );
@@ -2328,7 +2370,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  _Success_(return != FALSE)
  WINSETUPAPI
-@@ -5809,6 +6209,8 @@
+@@ -5809,6 +6223,8 @@ SetupDiBuildClassInfoListExA(
      _In_opt_ PCSTR MachineName,
      _Reserved_ PVOID Reserved
      );
@@ -2337,7 +2379,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  _Success_(return != FALSE)
  WINSETUPAPI
-@@ -5828,6 +6230,8 @@
+@@ -5828,6 +6244,8 @@ SetupDiBuildClassInfoListExW(
  #else
  #define SetupDiBuildClassInfoListEx SetupDiBuildClassInfoListExA
  #endif
@@ -2346,7 +2388,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -5839,6 +6243,8 @@
+@@ -5839,6 +6257,8 @@ SetupDiGetClassDescriptionA(
      _In_ DWORD ClassDescriptionSize,
      _Out_opt_ PDWORD RequiredSize
      );
@@ -2355,7 +2397,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -5855,6 +6261,8 @@
+@@ -5855,6 +6275,8 @@ SetupDiGetClassDescriptionW(
  #else
  #define SetupDiGetClassDescription SetupDiGetClassDescriptionA
  #endif
@@ -2364,7 +2406,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -5868,6 +6276,8 @@
+@@ -5868,6 +6290,8 @@ SetupDiGetClassDescriptionExA(
      _In_opt_ PCSTR MachineName,
      _Reserved_ PVOID Reserved
      );
@@ -2373,7 +2415,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -5886,16 +6296,20 @@
+@@ -5886,16 +6310,20 @@ SetupDiGetClassDescriptionExW(
  #else
  #define SetupDiGetClassDescriptionEx SetupDiGetClassDescriptionExA
  #endif
@@ -2395,7 +2437,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  //
-@@ -5908,6 +6322,8 @@
+@@ -5908,6 +6336,8 @@ SetupDiSelectDevice(
      _In_ HDEVINFO DeviceInfoSet,
      _Inout_opt_ PSP_DEVINFO_DATA DeviceInfoData
      );
@@ -2404,7 +2446,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  //
-@@ -5920,6 +6336,8 @@
+@@ -5920,6 +6350,8 @@ SetupDiSelectBestCompatDrv(
      _In_ HDEVINFO DeviceInfoSet,
      _Inout_opt_ PSP_DEVINFO_DATA DeviceInfoData
      );
@@ -2413,7 +2455,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  //
-@@ -5932,6 +6350,8 @@
+@@ -5932,6 +6364,8 @@ SetupDiInstallDevice(
      _In_ HDEVINFO DeviceInfoSet,
      _Inout_ PSP_DEVINFO_DATA DeviceInfoData
      );
@@ -2422,7 +2464,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  //
-@@ -5944,6 +6364,8 @@
+@@ -5944,6 +6378,8 @@ SetupDiInstallDriverFiles(
      _In_ HDEVINFO DeviceInfoSet,
      _In_ PSP_DEVINFO_DATA DeviceInfoData
      );
@@ -2431,7 +2473,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  //
-@@ -5956,6 +6378,7 @@
+@@ -5956,6 +6392,7 @@ SetupDiRegisterCoDeviceInstallers(
      _In_ HDEVINFO DeviceInfoSet,
      _In_ PSP_DEVINFO_DATA DeviceInfoData
      );
@@ -2439,7 +2481,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  //
-@@ -5968,6 +6391,8 @@
+@@ -5968,6 +6405,8 @@ SetupDiRemoveDevice(
      _In_ HDEVINFO DeviceInfoSet,
      _Inout_ PSP_DEVINFO_DATA DeviceInfoData
      );
@@ -2448,7 +2490,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  //
-@@ -5982,6 +6407,7 @@
+@@ -5982,6 +6421,7 @@ SetupDiUnremoveDevice(
      );
  
  #if _SETUPAPI_VER >= _WIN32_WINNT_WS03
@@ -2456,7 +2498,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -5992,6 +6418,8 @@
+@@ -5992,6 +6432,8 @@ SetupDiRestartDevices(
      );
  
  #endif // _SETUPAPI_VER >= _WIN32_WINNT_WS03
@@ -2465,7 +2507,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  //
  // Default install handler for DIF_PROPERTYCHANGE
-@@ -6003,6 +6431,8 @@
+@@ -6003,6 +6445,8 @@ SetupDiChangeState(
      _In_ HDEVINFO DeviceInfoSet,
      _Inout_ PSP_DEVINFO_DATA DeviceInfoData
      );
@@ -2474,7 +2516,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -6014,6 +6444,8 @@
+@@ -6014,6 +6458,8 @@ SetupDiInstallClassA(
      _In_ DWORD Flags,
      _In_opt_ HSPFILEQ FileQueue
      );
@@ -2483,7 +2525,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -6030,6 +6462,8 @@
+@@ -6030,6 +6476,8 @@ SetupDiInstallClassW(
  #else
  #define SetupDiInstallClass SetupDiInstallClassA
  #endif
@@ -2492,7 +2534,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -6044,6 +6478,8 @@
+@@ -6044,6 +6492,8 @@ SetupDiInstallClassExA(
      _Reserved_ PVOID Reserved1,
      _Reserved_ PVOID Reserved2
      );
@@ -2501,7 +2543,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -6063,6 +6499,8 @@
+@@ -6063,6 +6513,8 @@ SetupDiInstallClassExW(
  #else
  #define SetupDiInstallClassEx SetupDiInstallClassExA
  #endif
@@ -2510,7 +2552,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  _Check_return_
-@@ -6080,6 +6518,8 @@
+@@ -6080,6 +6532,8 @@ SetupDiOpenClassRegKey(
  //
  #define DIOCR_INSTALLER   0x00000001    // class installer registry branch
  #define DIOCR_INTERFACE   0x00000002    // interface class registry branch
@@ -2519,7 +2561,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  _Check_return_
  WINSETUPAPI
-@@ -6092,6 +6532,8 @@
+@@ -6092,6 +6546,8 @@ SetupDiOpenClassRegKeyExA(
      _In_opt_ PCSTR MachineName,
      _Reserved_ PVOID Reserved
      );
@@ -2528,7 +2570,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  _Check_return_
  WINSETUPAPI
-@@ -6110,6 +6552,8 @@
+@@ -6110,6 +6566,8 @@ SetupDiOpenClassRegKeyExW(
  #else
  #define SetupDiOpenClassRegKeyEx SetupDiOpenClassRegKeyExA
  #endif
@@ -2537,7 +2579,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  _Check_return_
-@@ -6124,6 +6568,8 @@
+@@ -6124,6 +6582,8 @@ SetupDiCreateDeviceInterfaceRegKeyA(
      _In_opt_ HINF InfHandle,
      _In_opt_ PCSTR InfSectionName
      );
@@ -2546,7 +2588,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  _Check_return_
  WINSETUPAPI
-@@ -6154,6 +6600,8 @@
+@@ -6154,6 +6614,8 @@ SetupDiCreateDeviceInterfaceRegKeyW(
  #else
  #define SetupDiCreateInterfaceDeviceRegKey SetupDiCreateDeviceInterfaceRegKeyA
  #endif
@@ -2555,7 +2597,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  _Check_return_
-@@ -6171,6 +6619,8 @@
+@@ -6171,6 +6633,8 @@ SetupDiOpenDeviceInterfaceRegKey(
  // Backward compatibility--do not use.
  //
  #define SetupDiOpenInterfaceDeviceRegKey SetupDiOpenDeviceInterfaceRegKey
@@ -2564,7 +2606,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -6195,6 +6645,8 @@
+@@ -6195,6 +6659,8 @@ SetupDiDeleteDeviceInterfaceRegKey(
  #define DIREG_DEV       0x00000001          // Open/Create/Delete device key
  #define DIREG_DRV       0x00000002          // Open/Create/Delete driver key
  #define DIREG_BOTH      0x00000004          // Delete both driver and Device key
@@ -2573,7 +2615,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  _Check_return_
  WINSETUPAPI
-@@ -6209,6 +6661,8 @@
+@@ -6209,6 +6675,8 @@ SetupDiCreateDevRegKeyA(
      _In_opt_ HINF InfHandle,
      _In_opt_ PCSTR InfSectionName
      );
@@ -2582,7 +2624,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  _Check_return_
  WINSETUPAPI
-@@ -6229,6 +6683,8 @@
+@@ -6229,6 +6697,8 @@ SetupDiCreateDevRegKeyW(
  #else
  #define SetupDiCreateDevRegKey SetupDiCreateDevRegKeyA
  #endif
@@ -2591,7 +2633,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  _Check_return_
-@@ -6243,6 +6699,8 @@
+@@ -6243,6 +6713,8 @@ SetupDiOpenDevRegKey(
      _In_ DWORD KeyType,
      _In_ REGSAM samDesired
      );
@@ -2600,7 +2642,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -6255,6 +6713,8 @@
+@@ -6255,6 +6727,8 @@ SetupDiDeleteDevRegKey(
      _In_ DWORD HwProfile,
      _In_ DWORD KeyType
      );
@@ -2609,7 +2651,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  _Success_(return != FALSE)
  WINSETUPAPI
-@@ -6266,6 +6726,8 @@
+@@ -6266,6 +6740,8 @@ SetupDiGetHwProfileList(
      _Out_ PDWORD RequiredSize,
      _Out_opt_ PDWORD CurrentlyActiveIndex
      );
@@ -2618,7 +2660,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  _Success_(return != FALSE)
  WINSETUPAPI
-@@ -6279,6 +6741,8 @@
+@@ -6279,6 +6755,8 @@ SetupDiGetHwProfileListExA(
      _In_opt_ PCSTR MachineName,
      _Reserved_ PVOID Reserved
      );
@@ -2627,7 +2669,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  _Success_(return != FALSE)
  WINSETUPAPI
-@@ -6300,6 +6764,8 @@
+@@ -6300,6 +6778,8 @@ SetupDiGetHwProfileListExW(
  #endif
  
  #if _SETUPAPI_VER >= _WIN32_WINNT_LONGHORN
@@ -2636,7 +2678,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -6312,6 +6778,8 @@
+@@ -6312,6 +6792,8 @@ SetupDiGetDevicePropertyKeys(
      _Out_opt_    PDWORD           RequiredPropertyKeyCount,
      _In_         DWORD            Flags
      );
@@ -2645,7 +2687,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  _Success_(return != FALSE)
  _When_(*PropertyType == DEVPROP_TYPE_STRING, _At_((PWSTR) PropertyBuffer, _Out_writes_bytes_to_opt_(PropertyBufferSize, *RequiredSize)))
-@@ -6334,6 +6802,8 @@
+@@ -6334,6 +6816,8 @@ SetupDiGetDevicePropertyW(
  #ifdef UNICODE
  #define SetupDiGetDeviceProperty SetupDiGetDevicePropertyW
  #endif
@@ -2654,7 +2696,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -6351,6 +6821,8 @@
+@@ -6351,6 +6835,8 @@ SetupDiSetDevicePropertyW(
  #ifdef UNICODE
  #define SetupDiSetDeviceProperty SetupDiSetDevicePropertyW
  #endif
@@ -2663,7 +2705,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -6363,6 +6835,8 @@
+@@ -6363,6 +6849,8 @@ SetupDiGetDeviceInterfacePropertyKeys(
      _Out_opt_    PDWORD           RequiredPropertyKeyCount,
      _In_         DWORD            Flags
      );
@@ -2672,7 +2714,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  _Success_(return != FALSE)
  _When_(*PropertyType == DEVPROP_TYPE_STRING, _At_((PWSTR) PropertyBuffer, _Out_writes_bytes_to_opt_(PropertyBufferSize, *RequiredSize)))
-@@ -6385,6 +6859,8 @@
+@@ -6385,6 +6873,8 @@ SetupDiGetDeviceInterfacePropertyW(
  #ifdef UNICODE
  #define SetupDiGetDeviceInterfaceProperty SetupDiGetDeviceInterfacePropertyW
  #endif
@@ -2681,7 +2723,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -6409,6 +6885,8 @@
+@@ -6409,6 +6899,8 @@ SetupDiSetDeviceInterfacePropertyW(
  //
  #define DICLASSPROP_INSTALLER   0x00000001    // device setup class property
  #define DICLASSPROP_INTERFACE   0x00000002    // device interface class property
@@ -2690,7 +2732,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -6420,6 +6898,8 @@
+@@ -6420,6 +6912,8 @@ SetupDiGetClassPropertyKeys(
      _Out_opt_    PDWORD           RequiredPropertyKeyCount,
      _In_         DWORD            Flags
      );
@@ -2699,7 +2741,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -6437,6 +6917,8 @@
+@@ -6437,6 +6931,8 @@ SetupDiGetClassPropertyKeysExW(
  #ifdef UNICODE
  #define SetupDiGetClassPropertyKeysEx SetupDiGetClassPropertyKeysExW
  #endif
@@ -2708,7 +2750,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  _Success_(return != FALSE)
  _When_(*PropertyType == DEVPROP_TYPE_STRING, _At_((PWSTR) PropertyBuffer, _Out_writes_bytes_to_opt_(PropertyBufferSize, *RequiredSize)))
-@@ -6458,6 +6940,8 @@
+@@ -6458,6 +6954,8 @@ SetupDiGetClassPropertyW(
  #ifdef UNICODE
  #define SetupDiGetClassProperty SetupDiGetClassPropertyW
  #endif
@@ -2717,7 +2759,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  _Success_(return != FALSE)
  _When_(*PropertyType == DEVPROP_TYPE_STRING, _At_((PWSTR) PropertyBuffer, _Out_writes_bytes_to_opt_(PropertyBufferSize, *RequiredSize)))
-@@ -6481,6 +6965,8 @@
+@@ -6481,6 +6979,8 @@ SetupDiGetClassPropertyExW(
  #ifdef UNICODE
  #define SetupDiGetClassPropertyEx SetupDiGetClassPropertyExW
  #endif
@@ -2726,7 +2768,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -6497,6 +6983,8 @@
+@@ -6497,6 +6997,8 @@ SetupDiSetClassPropertyW(
  #ifdef UNICODE
  #define SetupDiSetClassProperty SetupDiSetClassPropertyW
  #endif
@@ -2735,7 +2777,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -6587,6 +7075,8 @@
+@@ -6587,6 +7089,8 @@ SetupDiSetClassPropertyExW(
  #define SPCRP_EXCLUSIVE                   (0x0000001A)  // Device is exclusive-access (R/W)
  #define SPCRP_CHARACTERISTICS             (0x0000001B)  // Device Characteristics (R/W)
  #define SPCRP_MAXIMUM_PROPERTY            (0x0000001C)  // Upper bound on ordinals
@@ -2744,7 +2786,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  _Success_(return != FALSE)
  _When_((*PropertyRegDataType == REG_SZ), _At_((PSTR) PropertyBuffer, _Post_valid_))
-@@ -6597,12 +7087,14 @@
+@@ -6597,12 +7101,14 @@ WINAPI
  SetupDiGetDeviceRegistryPropertyA(
      _In_ HDEVINFO DeviceInfoSet,
      _In_ PSP_DEVINFO_DATA DeviceInfoData,
@@ -2760,7 +2802,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  _Success_(return != FALSE)
  _When_((*PropertyRegDataType == REG_SZ), _At_((PWSTR) PropertyBuffer, _Post_valid_))
-@@ -6613,7 +7105,7 @@
+@@ -6613,7 +7119,7 @@ WINAPI
  SetupDiGetDeviceRegistryPropertyW(
      _In_ HDEVINFO DeviceInfoSet,
      _In_ PSP_DEVINFO_DATA DeviceInfoData,
@@ -2769,7 +2811,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
      _Out_opt_ PDWORD PropertyRegDataType,
      _Out_writes_bytes_to_opt_(PropertyBufferSize, *RequiredSize) PBYTE PropertyBuffer,
      _In_ DWORD PropertyBufferSize,
-@@ -6627,6 +7119,8 @@
+@@ -6627,6 +7133,8 @@ SetupDiGetDeviceRegistryPropertyW(
  #endif
  
  #if _SETUPAPI_VER >= _WIN32_WINNT_WINXP
@@ -2778,7 +2820,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  _Success_(return != FALSE)
  WINSETUPAPI
-@@ -6642,6 +7136,8 @@
+@@ -6642,6 +7150,8 @@ SetupDiGetClassRegistryPropertyA(
      _In_opt_ PCSTR MachineName,
      _Reserved_ PVOID Reserved
      );
@@ -2787,7 +2829,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  _Success_(return != FALSE)
  WINSETUPAPI
-@@ -6665,6 +7161,8 @@
+@@ -6665,6 +7175,8 @@ SetupDiGetClassRegistryPropertyW(
  #endif
  
  #endif // _SETUPAPI_VER >= _WIN32_WINNT_WINXP
@@ -2796,7 +2838,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -6672,10 +7170,12 @@
+@@ -6672,10 +7184,12 @@ WINAPI
  SetupDiSetDeviceRegistryPropertyA(
      _In_ HDEVINFO DeviceInfoSet,
      _Inout_ PSP_DEVINFO_DATA DeviceInfoData,
@@ -2810,7 +2852,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -6683,7 +7183,7 @@
+@@ -6683,7 +7197,7 @@ WINAPI
  SetupDiSetDeviceRegistryPropertyW(
      _In_ HDEVINFO DeviceInfoSet,
      _Inout_ PSP_DEVINFO_DATA DeviceInfoData,
@@ -2819,7 +2861,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
      _In_reads_bytes_opt_(PropertyBufferSize) CONST BYTE *PropertyBuffer,
      _In_ DWORD PropertyBufferSize
      );
-@@ -6695,6 +7195,8 @@
+@@ -6695,6 +7209,8 @@ SetupDiSetDeviceRegistryPropertyW(
  #endif
  
  #if _SETUPAPI_VER >= _WIN32_WINNT_WINXP
@@ -2828,7 +2870,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -6707,6 +7209,8 @@
+@@ -6707,6 +7223,8 @@ SetupDiSetClassRegistryPropertyA(
      _In_opt_ PCSTR MachineName,
      _Reserved_ PVOID Reserved
      );
@@ -2837,7 +2879,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -6727,6 +7231,8 @@
+@@ -6727,6 +7245,8 @@ SetupDiSetClassRegistryPropertyW(
  #endif
  
  #endif // _SETUPAPI_VER >= _WIN32_WINNT_WINXP
@@ -2846,7 +2888,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -6734,7 +7240,7 @@
+@@ -6734,16 +7254,17 @@ WINAPI
  SetupDiGetDeviceInstallParamsA(
      _In_ HDEVINFO DeviceInfoSet,
      _In_opt_ PSP_DEVINFO_DATA DeviceInfoData,
@@ -2854,8 +2896,10 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
 +    _Inout_ PSP_DEVINSTALL_PARAMS_A DeviceInstallParams
      );
  
++_Win32_SetLastError_
  WINSETUPAPI
-@@ -6743,7 +7249,7 @@
+ BOOL
+ WINAPI
  SetupDiGetDeviceInstallParamsW(
      _In_ HDEVINFO DeviceInfoSet,
      _In_opt_ PSP_DEVINFO_DATA DeviceInfoData,
@@ -2864,7 +2908,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
      );
  
  #ifdef UNICODE
-@@ -6751,6 +7257,8 @@
+@@ -6751,6 +7272,8 @@ SetupDiGetDeviceInstallParamsW(
  #else
  #define SetupDiGetDeviceInstallParams SetupDiGetDeviceInstallParamsA
  #endif
@@ -2873,7 +2917,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  _Success_(return != FALSE)
  WINSETUPAPI
-@@ -6763,6 +7271,8 @@
+@@ -6763,6 +7286,8 @@ SetupDiGetClassInstallParamsA(
      _In_ DWORD ClassInstallParamsSize,
      _Out_opt_ PDWORD RequiredSize
      );
@@ -2882,7 +2926,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  _Success_(return != FALSE)
  WINSETUPAPI
-@@ -6781,6 +7291,8 @@
+@@ -6781,6 +7306,8 @@ SetupDiGetClassInstallParamsW(
  #else
  #define SetupDiGetClassInstallParams SetupDiGetClassInstallParamsA
  #endif
@@ -2891,7 +2935,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -6791,6 +7303,8 @@
+@@ -6791,6 +7318,8 @@ SetupDiSetDeviceInstallParamsA(
      _In_opt_ PSP_DEVINFO_DATA DeviceInfoData,
      _In_ PSP_DEVINSTALL_PARAMS_A DeviceInstallParams
      );
@@ -2900,7 +2944,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -6806,6 +7320,8 @@
+@@ -6806,6 +7335,8 @@ SetupDiSetDeviceInstallParamsW(
  #else
  #define SetupDiSetDeviceInstallParams SetupDiSetDeviceInstallParamsA
  #endif
@@ -2909,7 +2953,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -6817,6 +7333,8 @@
+@@ -6817,6 +7348,8 @@ SetupDiSetClassInstallParamsA(
      _In_reads_bytes_opt_(ClassInstallParamsSize) PSP_CLASSINSTALL_HEADER ClassInstallParams,
      _In_ DWORD ClassInstallParamsSize
      );
@@ -2918,7 +2962,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -6833,6 +7351,8 @@
+@@ -6833,6 +7366,8 @@ SetupDiSetClassInstallParamsW(
  #else
  #define SetupDiSetClassInstallParams SetupDiSetClassInstallParamsA
  #endif
@@ -2927,7 +2971,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -6842,7 +7362,7 @@
+@@ -6842,9 +7377,10 @@ SetupDiGetDriverInstallParamsA(
      _In_ HDEVINFO DeviceInfoSet,
      _In_opt_ PSP_DEVINFO_DATA DeviceInfoData,
      _In_ PSP_DRVINFO_DATA_A DriverInfoData,
@@ -2935,8 +2979,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
 +    _Inout_ PSP_DRVINSTALL_PARAMS DriverInstallParams
      );
  
++_Win32_SetLastError_
  WINSETUPAPI
-@@ -6852,7 +7372,7 @@
+ BOOL
+ WINAPI
+@@ -6852,7 +7388,7 @@ SetupDiGetDriverInstallParamsW(
      _In_ HDEVINFO DeviceInfoSet,
      _In_opt_ PSP_DEVINFO_DATA DeviceInfoData,
      _In_ PSP_DRVINFO_DATA_W DriverInfoData,
@@ -2945,7 +2992,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
      );
  
  #ifdef UNICODE
-@@ -6860,6 +7380,8 @@
+@@ -6860,6 +7396,8 @@ SetupDiGetDriverInstallParamsW(
  #else
  #define SetupDiGetDriverInstallParams SetupDiGetDriverInstallParamsA
  #endif
@@ -2954,7 +3001,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -6871,6 +7393,8 @@
+@@ -6871,6 +7409,8 @@ SetupDiSetDriverInstallParamsA(
      _In_ PSP_DRVINFO_DATA_A DriverInfoData,
      _In_ PSP_DRVINSTALL_PARAMS DriverInstallParams
      );
@@ -2963,7 +3010,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -6887,6 +7411,8 @@
+@@ -6887,6 +7427,8 @@ SetupDiSetDriverInstallParamsW(
  #else
  #define SetupDiSetDriverInstallParams SetupDiSetDriverInstallParamsA
  #endif
@@ -2972,7 +3019,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -6899,6 +7425,8 @@
+@@ -6899,6 +7441,8 @@ SetupDiLoadClassIcon(
      );
  
  #if _SETUPAPI_VER >= _WIN32_WINNT_LONGHORN
@@ -2981,7 +3028,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -6921,6 +7449,7 @@
+@@ -6921,6 +7465,7 @@ SetupDiLoadDeviceIcon(
  #define DMI_MASK      0x00000001
  #define DMI_BKCOLOR   0x00000002
  #define DMI_USERECT   0x00000004
@@ -2989,7 +3036,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  INT
-@@ -6931,6 +7460,8 @@
+@@ -6931,6 +7476,8 @@ SetupDiDrawMiniIcon(
      _In_ INT MiniIconIndex,
      _In_ DWORD Flags
      );
@@ -2998,7 +3045,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -6940,13 +7471,15 @@
+@@ -6940,30 +7487,35 @@ SetupDiGetClassBitmapIndex(
      _In_opt_ CONST GUID *ClassGuid,
      _Out_ PINT MiniIconIndex
      );
@@ -3015,7 +3062,8 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
      );
  
  
-@@ -6954,16 +7487,18 @@
++_Win32_SetLastError_
+ WINSETUPAPI
  BOOL
  WINAPI
  SetupDiGetClassImageListExA(
@@ -3036,7 +3084,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
      _In_opt_ PCWSTR MachineName,
      _Reserved_ PVOID Reserved
      );
-@@ -6973,6 +7508,8 @@
+@@ -6973,6 +7525,8 @@ SetupDiGetClassImageListExW(
  #else
  #define SetupDiGetClassImageListEx SetupDiGetClassImageListExA
  #endif
@@ -3045,7 +3093,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -6983,6 +7520,8 @@
+@@ -6983,6 +7537,8 @@ SetupDiGetClassImageIndex(
      _In_ CONST GUID *ClassGuid,
      _Out_ PINT ImageIndex
      );
@@ -3054,7 +3102,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -7005,6 +7544,8 @@
+@@ -7005,6 +7561,8 @@ SetupDiDestroyClassImageList(
  #define DIGCDP_FLAG_REMOTE_ADVANCED 0x00000004
  
  #endif // _SETUPAPI_VER >= _WIN32_WINNT_WINXP
@@ -3063,7 +3111,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -7017,6 +7558,8 @@
+@@ -7017,6 +7575,8 @@ SetupDiGetClassDevPropertySheetsA(
      _Out_opt_ PDWORD RequiredSize,
      _In_ DWORD PropertySheetType
      );
@@ -3072,7 +3120,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -7052,6 +7595,8 @@
+@@ -7052,6 +7612,8 @@ SetupDiGetClassDevPropertySheetsW(
  #define IDI_PROBLEM_OVL             500
  #define IDI_DISABLED_OVL            501
  #define IDI_FORCED_OVL              502
@@ -3081,7 +3129,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -7061,6 +7606,8 @@
+@@ -7061,6 +7623,8 @@ SetupDiAskForOEMDisk(
      _In_ HDEVINFO DeviceInfoSet,
      _In_opt_ PSP_DEVINFO_DATA DeviceInfoData
      );
@@ -3090,7 +3138,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -7071,6 +7618,8 @@
+@@ -7071,6 +7635,8 @@ SetupDiSelectOEMDrv(
      _In_ HDEVINFO DeviceInfoSet,
      _Inout_opt_ PSP_DEVINFO_DATA DeviceInfoData
      );
@@ -3099,7 +3147,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -7082,6 +7631,8 @@
+@@ -7082,6 +7648,8 @@ SetupDiClassNameFromGuidA(
      _In_ DWORD ClassNameSize,
      _Out_opt_ PDWORD RequiredSize
      );
@@ -3108,7 +3156,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -7098,6 +7649,8 @@
+@@ -7098,6 +7666,8 @@ SetupDiClassNameFromGuidW(
  #else
  #define SetupDiClassNameFromGuid SetupDiClassNameFromGuidA
  #endif
@@ -3117,7 +3165,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -7111,6 +7664,8 @@
+@@ -7111,6 +7681,8 @@ SetupDiClassNameFromGuidExA(
      _In_opt_ PCSTR MachineName,
      _Reserved_ PVOID Reserved
      );
@@ -3126,7 +3174,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -7129,6 +7684,8 @@
+@@ -7129,6 +7701,8 @@ SetupDiClassNameFromGuidExW(
  #else
  #define SetupDiClassNameFromGuidEx SetupDiClassNameFromGuidExA
  #endif
@@ -3135,7 +3183,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  _Success_(return != FALSE)
  WINSETUPAPI
-@@ -7140,6 +7697,8 @@
+@@ -7140,6 +7714,8 @@ SetupDiClassGuidsFromNameA(
      _In_ DWORD ClassGuidListSize,
      _Out_ PDWORD RequiredSize
      );
@@ -3144,7 +3192,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  _Success_(return != FALSE)
  WINSETUPAPI
-@@ -7157,6 +7716,8 @@
+@@ -7157,6 +7733,8 @@ SetupDiClassGuidsFromNameW(
  #else
  #define SetupDiClassGuidsFromName SetupDiClassGuidsFromNameA
  #endif
@@ -3153,7 +3201,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  _Success_(return != FALSE)
-@@ -7171,6 +7732,8 @@
+@@ -7171,6 +7749,8 @@ SetupDiClassGuidsFromNameExA(
      _In_opt_ PCSTR MachineName,
      _Reserved_ PVOID Reserved
      );
@@ -3162,7 +3210,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  _Success_(return != FALSE)
  WINSETUPAPI
-@@ -7190,6 +7753,8 @@
+@@ -7190,6 +7770,8 @@ SetupDiClassGuidsFromNameExW(
  #else
  #define SetupDiClassGuidsFromNameEx SetupDiClassGuidsFromNameExA
  #endif
@@ -3171,7 +3219,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -7201,6 +7766,8 @@
+@@ -7201,6 +7783,8 @@ SetupDiGetHwProfileFriendlyNameA(
      _In_ DWORD FriendlyNameSize,
      _Out_opt_ PDWORD RequiredSize
      );
@@ -3180,7 +3228,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -7217,6 +7784,8 @@
+@@ -7217,6 +7801,8 @@ SetupDiGetHwProfileFriendlyNameW(
  #else
  #define SetupDiGetHwProfileFriendlyName SetupDiGetHwProfileFriendlyNameA
  #endif
@@ -3189,7 +3237,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -7230,6 +7799,8 @@
+@@ -7230,6 +7816,8 @@ SetupDiGetHwProfileFriendlyNameExA(
      _In_opt_ PCSTR MachineName,
      _Reserved_ PVOID Reserved
      );
@@ -3198,7 +3246,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -7270,6 +7841,8 @@
+@@ -7270,6 +7858,8 @@ SetupDiGetWizardPage(
      _In_ DWORD PageType,
      _In_ DWORD Flags
      );
@@ -3207,7 +3255,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -7277,7 +7850,7 @@
+@@ -7277,10 +7867,11 @@ BOOL
  WINAPI
  SetupDiGetSelectedDevice(
      _In_ HDEVINFO DeviceInfoSet,
@@ -3216,7 +3264,11 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
      );
  
  
-@@ -7291,6 +7864,7 @@
++_Win32_SetLastError_
+ WINSETUPAPI
+ BOOL
+ WINAPI
+@@ -7291,6 +7882,7 @@ SetupDiSetSelectedDevice(
  
  
  #if _SETUPAPI_VER >= _WIN32_WINNT_WS03
@@ -3224,7 +3276,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -7303,6 +7877,7 @@
+@@ -7303,6 +7895,7 @@ SetupDiGetActualModelsSectionA(
      _Out_opt_ PDWORD RequiredSize,
      _Reserved_ PVOID Reserved
      );
@@ -3232,7 +3284,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -7323,6 +7898,8 @@
+@@ -7323,6 +7916,8 @@ SetupDiGetActualModelsSectionW(
  #endif
  
  #endif // _SETUPAPI_VER >= _WIN32_WINNT_WS03
@@ -3241,7 +3293,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -7336,6 +7913,8 @@
+@@ -7336,6 +7931,8 @@ SetupDiGetActualSectionToInstallA(
      _Out_opt_ PDWORD RequiredSize,
      _Out_opt_ PSTR *Extension
      );
@@ -3250,7 +3302,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -7357,6 +7936,8 @@
+@@ -7357,6 +7954,8 @@ SetupDiGetActualSectionToInstallW(
  
  
  #if _SETUPAPI_VER >= _WIN32_WINNT_WINXP
@@ -3259,7 +3311,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -7371,6 +7952,8 @@
+@@ -7371,6 +7970,8 @@ SetupDiGetActualSectionToInstallExA(
      _Out_opt_ PSTR *Extension,
      _Reserved_ PVOID Reserved
      );
@@ -3268,7 +3320,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -7396,6 +7979,8 @@
+@@ -7396,6 +7997,8 @@ SetupDiGetActualSectionToInstallExW(
  
  
  #if _SETUPAPI_VER >= _WIN32_WINNT_WINXP
@@ -3277,7 +3329,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  //
  // SetupEnumInfSections is for low-level parsing of an INF
-@@ -7410,6 +7995,8 @@
+@@ -7410,6 +8013,8 @@ SetupEnumInfSectionsA (
      _In_ UINT Size,
      _Out_opt_ UINT *SizeNeeded
      );
@@ -3286,7 +3338,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -7517,6 +8104,7 @@
+@@ -7517,6 +8122,7 @@ typedef SP_INF_SIGNER_INFO_V2 SP_INF_SIGNER_INFO;
  typedef PSP_INF_SIGNER_INFO_V2 PSP_INF_SIGNER_INFO;
  
  #endif  // use current version of signer info structure
@@ -3294,7 +3346,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  
  WINSETUPAPI
-@@ -7527,6 +8115,7 @@
+@@ -7527,6 +8133,7 @@ SetupVerifyInfFileA(
      _In_opt_ PSP_ALTPLATFORM_INFO AltPlatformInfo,
      _Inout_ PSP_INF_SIGNER_INFO_A InfSignerInfo
      );
@@ -3302,7 +3354,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -7551,6 +8140,8 @@
+@@ -7551,6 +8158,8 @@ SetupVerifyInfFileW(
  // Flags for use by SetupDiGetCustomDeviceProperty
  //
  #define DICUSTOMDEVPROP_MERGE_MULTISZ    0x00000001
@@ -3311,7 +3363,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  _Success_(return != FALSE)
  WINSETUPAPI
-@@ -7566,6 +8157,8 @@
+@@ -7566,6 +8175,8 @@ SetupDiGetCustomDevicePropertyA(
      _In_ DWORD PropertyBufferSize,
      _Out_opt_ PDWORD RequiredSize
      );
@@ -3320,7 +3372,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  _Success_(return != FALSE)
  WINSETUPAPI
-@@ -7603,6 +8196,7 @@
+@@ -7603,6 +8214,7 @@ SetupDiGetCustomDevicePropertyW(
  // Flags for use by SetupConfigureWmiFromInfSection
  //
  #define SCWMI_CLOBBER_SECURITY  0x00000001
@@ -3328,7 +3380,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -7612,6 +8206,7 @@
+@@ -7612,6 +8224,7 @@ SetupConfigureWmiFromInfSectionA(
      _In_ PCSTR SectionName,
      _In_ DWORD Flags
      );
@@ -3336,7 +3388,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/SetupAPI.h b/generation/W
  
  WINSETUPAPI
  BOOL
-@@ -7648,3 +8243,40 @@
+@@ -7648,3 +8261,40 @@ SetupConfigureWmiFromInfSectionW(
  #pragma endregion
  
  #endif // _INC_SETUPAPI

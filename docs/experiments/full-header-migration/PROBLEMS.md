@@ -10,7 +10,57 @@ historical repros and raw diagnostics are retained in [README.md](README.md)
 and [RECOVERY.md](RECOVERY.md); the current counts are at the top of
 RECOVERY.md. A rejected trial is not migrated coverage.
 
-## Saved network correction: 33 transfers and one wrong legacy getter flag
+## Saved SetupAPI/Newdev21: declaration ownership, not a reader expansion
+
+The qualified live parent is `7422e923`: 236 LastError transfers, 231 residual
+rows, and one separately qualified getter correction. The next saved-only
+family moves 18 SetupAPI and three Newdev facts to their first native
+declarations. Markers precede the complete SAL/export prefix. Removing only
+those 21 additions recovers both whole parent headers, apart from CRLF transport.
+The two DWORD-status APIs SetupDecompressOrCopyFileW and
+SetupGetFileCompressionInfoW remain sidecars pending separate native-semantic
+verification; their return type alone does not prove a LastError policy.
+
+Real production includes both owners in DevInst and SetupAPI.h again in Setup.
+The existing project deliberately emits Setup as common, not three separate
+architecture bodies. All three DevInst bodies and the common Setup body are
+fresh; 983 other C# inputs, accepted post-constants preambles and complete
+retained maps are conserved. The full 987-source emission and entire
+36,304,763-byte API preserve `93793909` unmasked, including all 21 imports,
+both retained status policies, controls, the corrected getter and held types.
+The fresh partial map has 96 additional observations and no conflicts with
+the retained map; these are not new global rows or migration credit.
+
+The initial all-export fixture lacked traversed dependent records; expanding
+traversal introduced further unrelated record dependencies. Those emission
+failures are fixture setup evidence, not established production reader gaps.
+The isolated fixture retains complete native include contexts and tests five
+representative exports and two existing controls. Six genuine missing-flag
+failures become six passes without reader changes or softened assertions;
+coverage of all 21 comes from actual production, not this smaller fixture.
+
+Original focused capture contains 70 genuine ResultFiles and ten images.
+The final Newdev ARM64 row has none, even after a TestContext snapshot.
+Only its genuine complete-cohort execution supplements the missing pair;
+all twelve selected original-name images have matching entire legacy/native
+images and API dumps. The original focused TRXs and accounting remain unchanged.
+The complete 1231-case Clang/SDK cohort passes: all 1225 accepted names plus
+six new cases. Complementary suites pass 17 MetadataUtils, 58 scraper and
+54 integrity cases against the actual fresh image.
+
+Cold no-restore test invocations produced no executions before restoring the
+test SDK props. Initial integrity passed 53 cases but failed because its
+default scratch directory differed from the real scrape's explicit ObjDir.
+Copying all genuine production scratch files byte-identically restores that
+context; no empty-directory substitution, allow-list or assertion change
+is used. These preserved setup failures are not production reader limitations.
+Twelve real C/C++ native pairs preserve every non-timestamp object byte, and
+both whole pinned owners replay through the unchanged SDK patch runner.
+No RSP fallback, JSON restoration, new semantic correction or held-policy
+release is introduced. Candidate 257 transfers/210 residual rows remain
+unqualified; **65/424/290** and zero repair credit remain separate.
+
+## Historical network correction: 33 transfers and one wrong legacy getter flag
 
 The original 669ABE50 proposal is not accepted. WSAGetLastError retrieves
 the thread's existing error; it must not request the runtime's pre-call

@@ -1,6 +1,59 @@
 # Working-first recovery and sidecar reduction
 
-## Current qualified checkpoint and amended saved network proposal
+## Current qualified checkpoint and saved SetupAPI/Newdev21 proposal
+
+Published `7422e923bc481b5694a05040e0746d9f39286cdc` is independently
+qualified by ordinary
+[run 46073524978](https://github.com/jevansaks/win32metadata/actions/runs/46073524978),
+attempt 1. Qualified LastError transfers are 236, with 231 residual rows and
+one separately qualified WSAGetLastError correction recorded in
+[INTENTIONAL_DELTAS.md](INTENTIONAL_DELTAS.md). Main totals **65/424/290** and
+zero repair credit remain unchanged.
+
+The separate saved family adds 21 first-declaration markers: 18 in SetupAPI.h,
+three in newdev.h, with exactly 21 RSP retirements. Both complete directly
+consumed owners replay from SDK 10.0.28000.2705 through the unchanged runner.
+SetupDecompressOrCopyFileW and SetupGetFileCompressionInfoW remain mapped;
+their status-returning contracts need independent semantic verification
+before promotion. No native type, handle, enum, contextual cleanup or other
+held policy changes.
+
+The genuine focused comparison uses whole qualified-parent owners plus five
+explicit legacy flags, versus the proposed headers without those mappings.
+It preserves two existing controls and the entire owner images. Six original
+native-flag failures and six final passes are distinct from the initial
+missing-record fixture setup failures. The five-export fixture is not claimed
+as all-21 coverage. Original focused capture has 70 ResultFiles/ten images;
+only the genuine complete-cohort Newdev ARM64 execution supplies the missing
+pair. All twelve selected original-name image/API pairs match completely;
+the original focused TRX and its incomplete capture remain unchanged.
+
+Actual production refreshes three DevInst bodies plus the existing common
+Setup body. The complete 987-C# union conserves 983 other inputs, post-constants
+preambles and all 17 non-C# inputs, including 4707 remap pairs/four exclusions.
+Fresh partial discovery adds 96 observations with zero retained-map conflicts,
+not new global mappings. The newly emitted image `2223A9A9` and entire
+35,385-type/36,304,763-byte `93793909` API are unmasked equivalent to the
+qualified parent. All 21 actual import policies, retained status policies,
+controls and corrected getter remain exact. Twelve native C/C++ pairs,
+24 objects and two entire pinned replays pass.
+
+The full Clang/SDK cohort passes all 1231 cases, preserving the complete
+1225-name accepted multiset and adding six Setup cases. Separate normal
+MetadataUtils, scraper and integrity suites pass 17, 58 and 54 cases.
+Cold no-execution test invocations and the initial 53/54 integrity run remain
+setup evidence. Integrity's missing default scratch context is repaired only
+by copying the genuine fresh production scratch files byte-identically;
+its assertions and allow-list remain unchanged. No full Clang repeat or
+reference regeneration is performed.
+
+This proposal remains saved-only and unqualified: candidate 257 transfers/
+210 residual rows do not change the qualified counters. No incorporation,
+publication, hosted CI, new reference, merge/restack, consumer change or
+Agent merge resume is released. All existing disputed-policy holds remain.
+Earlier checkpoint text below is preserved historical evidence.
+
+## Historical qualified checkpoint and amended saved network proposal
 
 Qualified live head remains 33797f414fd9f3448db2711cfda627297d1a884e:
 LastError203/residual265 and separate 65/424/290, repair credit zero.

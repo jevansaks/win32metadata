@@ -1956,6 +1956,7 @@ typedef PSP_BACKUP_QUEUE_PARAMS_V2 PSP_BACKUP_QUEUE_PARAMS;
 
 #endif // _SPAPI_ERRORS
 
+_Win32_SetLastError_
 _Success_(return != FALSE)
 WINSETUPAPI
 BOOL
@@ -2607,6 +2608,7 @@ SetupGetFileCompressionInfoExA(
     _Win32_AssociatedEnum_(FILE_COMPRESSION_TYPE) _Out_ PUINT CompressionType
     );
 
+_Win32_SetLastError_
 WINSETUPAPI
 BOOL
 WINAPI
@@ -4945,6 +4947,7 @@ SetupInstallServicesFromInfSectionA(
     _Win32_AssociatedEnum_(SPSVCINST_FLAGS) _In_ DWORD Flags
     );
 
+_Win32_SetLastError_
 WINSETUPAPI
 BOOL
 WINAPI
@@ -5472,6 +5475,7 @@ SetupDiGetDeviceInfoListDetailA(
     _Inout_ PSP_DEVINFO_LIST_DETAIL_DATA_A DeviceInfoSetDetailData
     );
 
+_Win32_SetLastError_
 WINSETUPAPI
 BOOL
 WINAPI
@@ -5508,6 +5512,7 @@ SetupDiCreateDeviceInfoA(
     _Inout_opt_ PSP_DEVINFO_DATA DeviceInfoData
     );
 
+_Win32_SetLastError_
 WINSETUPAPI
 BOOL
 WINAPI
@@ -5547,6 +5552,7 @@ SetupDiOpenDeviceInfoA(
     _Inout_opt_ PSP_DEVINFO_DATA DeviceInfoData
     );
 
+_Win32_SetLastError_
 WINSETUPAPI
 BOOL
 WINAPI
@@ -5621,6 +5627,7 @@ SetupDiEnumDeviceInfo(
     );
 
 
+_Win32_SetLastError_
 WINSETUPAPI
 BOOL
 WINAPI
@@ -5662,6 +5669,7 @@ SetupDiCreateDeviceInterfaceA(
     _Inout_opt_ PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData
     );
 
+_Win32_SetLastError_
 WINSETUPAPI
 BOOL
 WINAPI
@@ -5709,6 +5717,7 @@ SetupDiOpenDeviceInterfaceA(
     _Inout_opt_ PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData
     );
 
+_Win32_SetLastError_
 WINSETUPAPI
 BOOL
 WINAPI
@@ -5802,6 +5811,7 @@ SetupDiGetDeviceInterfaceDetailA(
     _Inout_opt_ PSP_DEVINFO_DATA DeviceInfoData
     );
 
+_Win32_SetLastError_
 _Success_(return != FALSE)
 _At_((LPWSTR)DeviceInterfaceDetailData->DevicePath, _Post_z_)
 WINSETUPAPI
@@ -5915,6 +5925,7 @@ SetupDiBuildDriverInfoList(
     );
 
 
+_Win32_SetLastError_
 WINSETUPAPI
 BOOL
 WINAPI
@@ -5936,6 +5947,7 @@ SetupDiEnumDriverInfoA(
     _Inout_ PSP_DRVINFO_DATA_A DriverInfoData
     );
 
+_Win32_SetLastError_
 WINSETUPAPI
 BOOL
 WINAPI
@@ -5965,6 +5977,7 @@ SetupDiGetSelectedDriverA(
     _Inout_ PSP_DRVINFO_DATA_A DriverInfoData
     );
 
+_Win32_SetLastError_
 WINSETUPAPI
 BOOL
 WINAPI
@@ -6085,6 +6098,7 @@ SetupDiGetClassDevsA(
     _Win32_AssociatedEnum_(SETUP_DI_GET_CLASS_DEVS_FLAGS) _In_ DWORD Flags
     );
 
+_Win32_SetLastError_
 _Check_return_
 WINSETUPAPI
 HDEVINFO
@@ -7243,6 +7257,7 @@ SetupDiGetDeviceInstallParamsA(
     _Inout_ PSP_DEVINSTALL_PARAMS_A DeviceInstallParams
     );
 
+_Win32_SetLastError_
 WINSETUPAPI
 BOOL
 WINAPI
@@ -7365,6 +7380,7 @@ SetupDiGetDriverInstallParamsA(
     _Inout_ PSP_DRVINSTALL_PARAMS DriverInstallParams
     );
 
+_Win32_SetLastError_
 WINSETUPAPI
 BOOL
 WINAPI
@@ -7483,6 +7499,7 @@ SetupDiGetClassImageList(
     );
 
 
+_Win32_SetLastError_
 WINSETUPAPI
 BOOL
 WINAPI
@@ -7854,6 +7871,7 @@ SetupDiGetSelectedDevice(
     );
 
 
+_Win32_SetLastError_
 WINSETUPAPI
 BOOL
 WINAPI

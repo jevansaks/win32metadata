@@ -7,7 +7,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/newdev.h b/generation/Win
  /*++
  
  Copyright (c) Microsoft Corporation.  All rights reserved.
-@@ -36,6 +37,8 @@
+@@ -36,6 +37,8 @@ extern "C" {
  #define INSTALLFLAG_BITS                0x00000007
  
  #if (WINVER >= _WIN32_WINNT_WIN2K)
@@ -16,7 +16,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/newdev.h b/generation/Win
  
  BOOL
  WINAPI
-@@ -43,9 +46,11 @@
+@@ -43,9 +46,11 @@ UpdateDriverForPlugAndPlayDevicesA(
      _In_opt_  HWND hwndParent,
      _In_      LPCSTR HardwareId,
      _In_      LPCSTR FullInfPath,
@@ -29,7 +29,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/newdev.h b/generation/Win
  
  BOOL
  WINAPI
-@@ -53,7 +58,7 @@
+@@ -53,7 +58,7 @@ UpdateDriverForPlugAndPlayDevicesW(
      _In_opt_  HWND hwndParent,
      _In_      LPCWSTR HardwareId,
      _In_      LPCWSTR FullInfPath,
@@ -38,7 +38,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/newdev.h b/generation/Win
      _Out_opt_ PBOOL bRebootRequired
      );
  
-@@ -73,6 +78,8 @@
+@@ -73,6 +78,8 @@ UpdateDriverForPlugAndPlayDevicesW(
  #define DIIDFLAG_INSTALLNULLDRIVER      0x00000004      // Install the NULL driver on this device.
  #define DIIDFLAG_INSTALLCOPYINFDRIVERS  0x00000008      // Install any extra INFs specified via CopyInf directive.
  #define DIIDFLAG_BITS                   0x0000000F
@@ -47,7 +47,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/newdev.h b/generation/Win
  
  BOOL
  WINAPI
-@@ -81,7 +88,7 @@
+@@ -81,7 +88,7 @@ DiInstallDevice(
      _In_      HDEVINFO DeviceInfoSet,
      _In_      PSP_DEVINFO_DATA DeviceInfoData,
      _In_opt_  PSP_DRVINFO_DATA DriverInfoData,
@@ -56,7 +56,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/newdev.h b/generation/Win
      _Out_opt_ PBOOL NeedReboot
      );
  
-@@ -124,13 +131,15 @@
+@@ -124,22 +131,25 @@ DiInstallDevice(
                                 DIIRFLAG_INSTALL_AS_SET )
  
  #endif // (WINVER >= _WIN32_WINNT_WINBLUE)
@@ -73,7 +73,9 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/newdev.h b/generation/Win
      _Out_opt_ PBOOL NeedReboot
      );
  
-@@ -139,7 +148,7 @@
++_Win32_SetLastError_
+ BOOL
+ WINAPI
  DiInstallDriverA(
      _In_opt_  HWND hwndParent,
      _In_      LPCSTR InfPath,
@@ -82,7 +84,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/newdev.h b/generation/Win
      _Out_opt_ PBOOL NeedReboot
      );
  
-@@ -153,6 +162,8 @@
+@@ -153,6 +163,8 @@ DiInstallDriverA(
  
  
  #if (WINVER >= _WIN32_WINNT_WIN7)
@@ -91,7 +93,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/newdev.h b/generation/Win
  BOOL
  WINAPI
  DiUninstallDevice(
-@@ -175,13 +186,15 @@
+@@ -175,22 +187,25 @@ DiUninstallDevice(
  
  #define DIURFLAG_VALID              (DIURFLAG_NO_REMOVE_INF |\
                                       DIURFLAG_RESERVED      )
@@ -108,7 +110,9 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/newdev.h b/generation/Win
      _Out_opt_ PBOOL NeedReboot
      );
  
-@@ -190,7 +203,7 @@
++_Win32_SetLastError_
+ BOOL
+ WINAPI
  DiUninstallDriverA(
      _In_opt_  HWND hwndParent,
      _In_      LPCSTR InfPath,
@@ -117,7 +121,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/newdev.h b/generation/Win
      _Out_opt_ PBOOL NeedReboot
      );
  
-@@ -203,6 +216,8 @@
+@@ -203,6 +218,8 @@ DiUninstallDriverA(
  
  
  #if (WINVER >= _WIN32_WINNT_LONGHORN)
@@ -126,7 +130,14 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/newdev.h b/generation/Win
  BOOL
  WINAPI
  DiShowUpdateDevice(
-@@ -227,7 +242,7 @@
+@@ -221,13 +238,14 @@ DiShowUpdateDevice(
+ #define ROLLBACK_BITS                   0x00000001
+ 
+ 
++_Win32_SetLastError_
+ BOOL
+ WINAPI
+ DiRollbackDriver(
      _In_      HDEVINFO DeviceInfoSet,
      _In_      PSP_DEVINFO_DATA DeviceInfoData,
      _In_opt_  HWND hwndParent,
@@ -135,7 +146,7 @@ diff --git a/generation/WinSDK/RecompiledIdlHeaders/um/newdev.h b/generation/Win
      _Out_opt_ PBOOL NeedReboot
      );
  #endif // (WINVER >= _WIN32_WINNT_LONGHORN)
-@@ -255,3 +270,11 @@
+@@ -255,3 +273,11 @@ DiShowUpdateDriver(
  
  #endif // _INC_NEWDEV
  
