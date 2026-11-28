@@ -1,6 +1,62 @@
 # Working-first recovery and sidecar reduction
 
-## Current qualified checkpoint and saved SetupAPI/Newdev21 proposal
+## Current qualified checkpoint and saved EventLog18 proposal
+
+Published `d7ccbeea131c32f9a54ea803e4c420041ed7c410` is independently
+hosted-qualified by ordinary run 46097539652, attempt 1. Qualified LastError
+transfers are 257, with 210 residual rows and one separately qualified
+WSAGetLastError correction in [INTENTIONAL_DELTAS.md](INTENTIONAL_DELTAS.md).
+Main totals **65/424/290** and zero repair credit remain unchanged.
+
+The separate EventLog proposal adds eighteen first-declaration markers:
+twelve winevt.h exports and six classic WinBase.h exports. It retains every
+old carrier, including ten whose removal in the original trial changed
+neighboring functions. Exactly eighteen RSP facts retire; candidate 275/192
+remains saved-only and unqualified. No native type, enum, handle, contextual
+cleanup, held status policy, semantic journal or reader/helper change is made.
+
+Three actual WinProg architecture bodies and the existing common Wes body
+replace only four whole namespace bodies in the accepted 987-source union.
+The other 983 sources, their accepted post-constants prefixes and all seventeen
+non-C# inputs remain exact. Complete output preserves image `2223A9A9` and
+the entire `93793909` API: 35,385 types and 36,304,763 bytes. The actual
+qualified hosted parent image is `D8497675`, not a substituted local reference.
+All eighteen transfer policies and ten neighboring policies remain true;
+both controls, both held Setup policies, the corrected false getter and every
+other complete API declaration remain unchanged.
+
+Fresh partial discovery contains 2669 remap pairs and 26 additional
+observations, with zero retained-map conflicts. All 4707 complete retained
+pairs and four exclusions remain conserved; additional observations receive
+no global-map or typedef migration credit. Twelve final native C/C++ pairs
+preserve every object byte except the COFF timestamp. Both complete pinned
+SDK owners replay raw-byte-exactly through the unchanged patch runner.
+
+The frozen evidence distinguishes six original missing-flag repros from
+fixture setup failures, the original passing narrower comparisons from the
+real ten-neighbor production regression, and wide fixture dependency failures
+from corrected bounded owner checks. The final fixture covers eleven
+representative transfers, six neighbors and two controls; actual complete
+output is the all-eighteen/all-ten evidence. Raw failed cohorts are not
+rewritten or reported as all-passing. MetadataUtils, scraper and actual-image
+integrity pass seventeen, fifty-eight and fifty-four cases respectively;
+integrity uses byte-bound genuine current production scratch.
+The original complete run retains 1234 passes and three modern fixture
+dependency failures among 1237 cases, with all 1231 accepted names unchanged
+and passing. Corrected affected coverage is six separate passes, not a repeated
+complete cohort. Eleven raw reports bind 1467 actual ResultFiles. The final
+focused report contains seventy files and ten images; the missing classic
+ARM64 pair comes only from its genuine passing full-cohort execution, whose
+classic source branch is unchanged. All twenty-four selected original-name
+images are dumped once; the six final full image/API pairs agree.
+
+No live source incorporation, publication, hosted CI admission or retry,
+reference regeneration, owner/watcher restart, merge/restack, consumer change
+or Agent merge resume is released. All existing disputed-policy holds and
+immutable accepted receipts remain unchanged. Earlier checkpoint text below
+is preserved historical evidence.
+
+## Historical qualified checkpoint and saved SetupAPI/Newdev21 proposal
 
 Published `7422e923bc481b5694a05040e0746d9f39286cdc` is independently
 qualified by ordinary

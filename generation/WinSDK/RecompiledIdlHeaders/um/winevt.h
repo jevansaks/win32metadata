@@ -155,6 +155,7 @@ typedef struct _EVT_RPC_LOGIN
 
 
 // Timeout and Flags must currently be 0
+_Win32_SetLastError_
 EVT_HANDLE
 WINAPI
 EvtOpenSession(
@@ -229,6 +230,7 @@ typedef enum _EVT_SEEK_FLAGS
 } EVT_SEEK_FLAGS;
 
 
+_Win32_SetLastError_
 EVT_HANDLE
 WINAPI
 EvtQuery(
@@ -296,6 +298,7 @@ typedef DWORD (WINAPI *EVT_SUBSCRIBE_CALLBACK)(
     _Maybenull_ PVOID UserContext,
     _In_ EVT_HANDLE Event );
 
+_Win32_SetLastError_
 EVT_HANDLE
 WINAPI
 EvtSubscribe(
@@ -355,6 +358,7 @@ typedef enum _EVT_RENDER_FLAGS
 
  } EVT_RENDER_FLAGS;
 
+_Win32_SetLastError_
 EVT_HANDLE
 WINAPI
 EvtCreateRenderContext(
@@ -437,6 +441,7 @@ typedef enum _EVT_LOG_PROPERTY_ID
 
 } EVT_LOG_PROPERTY_ID;
 
+_Win32_SetLastError_
 EVT_HANDLE
 WINAPI
 EvtOpenLog(
@@ -568,6 +573,7 @@ typedef enum _EVT_CHANNEL_SID_TYPE
 } EVT_CHANNEL_SID_TYPE;
 
 
+_Win32_SetLastError_
 EVT_HANDLE
 WINAPI
 EvtOpenChannelEnum(
@@ -587,6 +593,7 @@ EvtNextChannelPath(
     _Out_ PDWORD ChannelPathBufferUsed
     );
 
+_Win32_SetLastError_
 EVT_HANDLE
 WINAPI
 EvtOpenChannelConfig(
@@ -684,6 +691,7 @@ typedef enum _EVT_PUBLISHER_METADATA_PROPERTY_ID
 } EVT_PUBLISHER_METADATA_PROPERTY_ID;
 
 
+_Win32_SetLastError_
 EVT_HANDLE
 WINAPI
 EvtOpenPublisherEnum(
@@ -703,6 +711,7 @@ EvtNextPublisherId(
     _Out_ PDWORD PublisherIdBufferUsed
     );
 
+_Win32_SetLastError_
 EVT_HANDLE
 WINAPI
 EvtOpenPublisherMetadata(
@@ -749,6 +758,7 @@ typedef enum _EVT_EVENT_METADATA_PROPERTY_ID
 } EVT_EVENT_METADATA_PROPERTY_ID;
 
 
+_Win32_SetLastError_
 EVT_HANDLE
 WINAPI
 EvtOpenEventMetadataEnum(
@@ -756,6 +766,7 @@ EvtOpenEventMetadataEnum(
     DWORD Flags
     );
 
+_Win32_SetLastError_
 EVT_HANDLE
 WINAPI
 EvtNextEventMetadata(
@@ -858,6 +869,7 @@ EvtGetQueryInfo(
     _Out_ PDWORD PropertyValueBufferUsed
     );
 
+_Win32_SetLastError_
 EVT_HANDLE
 WINAPI
 EvtCreateBookmark(

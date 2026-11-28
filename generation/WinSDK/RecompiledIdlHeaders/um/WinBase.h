@@ -7213,6 +7213,7 @@ GetOldestEventLogRecord (
     _Out_ PDWORD OldestRecord
     );
 
+_Win32_SetLastError_
 _Success_(return != FALSE)
 _Win32_RAIIFree_(CloseEventLog)
 WINADVAPI
@@ -7222,6 +7223,7 @@ OpenEventLogA (
     _In_opt_ LPCSTR lpUNCServerName,
     _In_     LPCSTR lpSourceName
     );
+_Win32_SetLastError_
 _Success_(return != FALSE)
 _Win32_RAIIFree_(CloseEventLog)
 WINADVAPI
@@ -7243,6 +7245,7 @@ OpenEventLogW (
 #pragma region Application Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP)
 
+_Win32_SetLastError_
 _Success_(return != FALSE)
 _Win32_RAIIFree_(DeregisterEventSource)
 WINADVAPI
@@ -7252,6 +7255,7 @@ RegisterEventSourceA (
     _In_opt_ LPCSTR lpUNCServerName,
     _In_     LPCSTR lpSourceName
     );
+_Win32_SetLastError_
 _Success_(return != FALSE)
 _Win32_RAIIFree_(DeregisterEventSource)
 WINADVAPI
@@ -7273,6 +7277,7 @@ RegisterEventSourceW (
 #pragma region Desktop Family
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 
+_Win32_SetLastError_
 _Success_(return != FALSE)
 _Win32_RAIIFree_(CloseEventLog)
 WINADVAPI
@@ -7282,6 +7287,7 @@ OpenBackupEventLogA (
     _In_opt_ LPCSTR lpUNCServerName,
     _In_     LPCSTR lpFileName
     );
+_Win32_SetLastError_
 _Success_(return != FALSE)
 _Win32_RAIIFree_(CloseEventLog)
 WINADVAPI

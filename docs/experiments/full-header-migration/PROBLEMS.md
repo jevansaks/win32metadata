@@ -10,7 +10,65 @@ historical repros and raw diagnostics are retained in [README.md](README.md)
 and [RECOVERY.md](RECOVERY.md); the current counts are at the top of
 RECOVERY.md. A rejected trial is not migrated coverage.
 
-## Saved SetupAPI/Newdev21: declaration ownership, not a reader expansion
+## Saved EventLog18: preserve neighboring annotation ownership
+
+SetupAPI/Newdev21 is now independently hosted-qualified at `d7ccbeea`:
+257 LastError transfers, 210 residual rows and one separate getter correction.
+The next saved-only family adds twelve first-declaration markers in winevt.h
+and six in WinBase.h, retiring exactly eighteen RSP rows. Candidate totals
+275/192 are not qualification; **65/424/290** and zero repair credit remain
+separate. No semantic delta or intentional-deltas journal entry is added.
+
+An initial attempt moved ten existing trailing winevt.h markers to the
+preceding handle-returning functions. Its smaller focused comparisons passed,
+but the entire production API lost LastError on EvtClose, EvtNext, EvtRender,
+EvtGetLogInfo, EvtNextChannelPath, EvtSaveChannelConfig, EvtNextPublisherId,
+EvtGetPublisherMetadataProperty, EvtGetEventMetadataProperty and EvtUpdateBookmark.
+Those old carriers were active on following declarations, not ignored.
+The original sources, emitted image and complete unmasked ten-flag diff remain
+failed evidence. Source-text reconstruction alone did not prove conservation.
+The corrected proposal retains every existing carrier and adds only eighteen
+prefixes; removing those additions recovers both whole parent owners.
+No reader change, fallback or intended API correction is needed.
+
+Actual production refreshes three WinProg bodies and the existing common Wes
+body. The 987-C# union conserves 983 other inputs, post-constants preambles and
+all seventeen non-C# inputs. The complete 35,385-type/36,304,763-byte API matches
+the qualified parent's `93793909` unmasked. All eighteen transfers, all ten
+neighbor policies, two controls, two held Setup status policies and the false
+WSAGetLastError policy are checked in actual metadata. Existing EVT_HANDLE,
+callbacks, native enums and cleanup contracts remain unchanged. Fresh discovery
+finds 2669 remap pairs, including 26 observations absent from the retained
+4707-pair map; there are zero conflicts and no new global-map credit.
+
+Expanding the isolated fixture to every modern export and neighbor exposed
+missing traversed EVT enum/record definitions during its standalone emission.
+The same complete production emission succeeds, so these are retained fixture
+dependency failures, not established production reader limitations. The bounded
+fixture uses complete native include contexts, eleven representative transfers,
+six neighboring policies and two controls. Entire-image equality and every
+selected import assertion remain strict; coverage of all eighteen transfers
+and ten neighbors comes from the actual complete output, not the smaller fixture.
+Failed wide runs remain failed; corrected focused executions do not relabel
+their raw TRXs or manufacture a new all-passing complete cohort.
+The original complete run has 1234 passes and three modern fixture dependency
+failures among 1237 cases; all 1231 previously accepted names pass unchanged.
+The corrected six owner cases pass separately. Their raw report has seventy
+attachments and ten images; only the genuine passing classic ARM64 full-cohort
+execution supplements the missing pair, with unchanged-classic source provenance.
+All twelve selected final images and twelve original missing-flag images are
+dumped under their generated `Test.winmd` basename; all six final whole pairs agree.
+
+The first native object comparison also failed because different `/Fo` paths
+were embedded in MSVC's CodeView section and affected its checksum section.
+Its script, objects and byte offsets remain preserved setup evidence.
+Using the established same-staging-output mechanism preserves every
+non-timestamp byte in twelve final C/C++ pairs across all three architectures.
+Both complete pinned headers replay byte-exactly through the unchanged SDK
+patch runner. Earlier NTDDI/include/carrier fixture failures and cold missing
+test/build props likewise remain separately classified, with no migration credit.
+
+## Historical saved SetupAPI/Newdev21: declaration ownership, not a reader expansion
 
 The qualified live parent is `7422e923`: 236 LastError transfers, 231 residual
 rows, and one separately qualified getter correction. The next saved-only
