@@ -92,7 +92,17 @@ typedef const ACTCTXW* PCACTCTXW;
             using var fixture = new LastErrorHeaderTests.Fixture();
             var result = fixture.Scrape(declarations, target, sal: true);
             Assert.AreEqual(0, result.ExitCode, result.Output);
-            using var pe = new PEReader(File.OpenRead(fixture.Emit()));
+            string output = fixture.Emit();
+            string evidence = Path.Combine(TestContext.ResultsDirectory!, nameof(HandleProducerSdkTests), target);
+            Directory.CreateDirectory(evidence);
+            foreach (string path in new[] { Path.Combine(fixture.DirectoryPath, "input.h"),
+                Path.Combine(fixture.DirectoryPath, "settings.rsp"), fixture.GeneratedSource, output })
+            {
+                string destination = Path.Combine(evidence, Path.GetFileName(path));
+                File.Copy(path, destination, overwrite: false);
+                TestContext.AddResultFile(destination);
+            }
+            using var pe = new PEReader(File.OpenRead(output));
             var reader = pe.GetMetadataReader();
             foreach (var site in sites)
             {
@@ -862,7 +872,7 @@ typedef struct _PRINTER_DEFAULTSW* LPPRINTER_DEFAULTSW;
 
         private static string Declaration(string header, string name, string prefix)
         {
-            var declarations = Regex.Matches(header, @"(?m)^(?:_Win32_RAIIFree_\([^\r\n]*\)\r?\n)?" +
+            var declarations = Regex.Matches(header, @"(?m)^(?:(?:_Win32_RAIIFree_\([^\r\n]*\)|_Win32_SetLastError_)\r?\n)*" +
                 prefix + @"\r?\n[^;{}]*?\b" + name + @"\s*\([^;{}]*\);")
                 .Select(match => match.Value.Replace("\r\n", "\n")).Distinct().ToArray();
             Assert.AreEqual(1, declarations.Length, name);

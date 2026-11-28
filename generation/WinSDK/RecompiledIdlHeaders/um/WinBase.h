@@ -5798,6 +5798,7 @@ DefineDosDeviceA(
 #endif
 
 _Win32_PreserveResult_
+_Win32_SetLastError_
 WINBASEAPI
 DWORD
 WINAPI
@@ -6074,6 +6075,7 @@ CheckNameLegalDOS8Dot3W(
 #if _WIN32_WINNT >= 0x0600
 
 _Win32_RAIIFree_(FindClose)
+_Win32_SetLastError_
 WINBASEAPI
 HANDLE
 WINAPI
@@ -6087,6 +6089,7 @@ FindFirstFileTransactedA(
     _In_       HANDLE hTransaction
     );
 _Win32_RAIIFree_(FindClose)
+_Win32_SetLastError_
 WINBASEAPI
 HANDLE
 WINAPI
@@ -6200,6 +6203,7 @@ CopyFileExA(
     _Inout_opt_ LPBOOL pbCancel,
     _Win32_AssociatedEnum_(COPYFILE_FLAGS) _In_        DWORD dwCopyFlags
     );
+_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI
@@ -6603,6 +6607,7 @@ MoveFileExA(
     _In_opt_ LPCSTR lpNewFileName,
     _Win32_AssociatedEnum_(MOVE_FILE_FLAGS) _In_     DWORD    dwFlags
     );
+_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI
@@ -6636,6 +6641,7 @@ MoveFileWithProgressA(
     _In_opt_ LPVOID lpData,
     _Win32_AssociatedEnum_(MOVE_FILE_FLAGS) _In_     DWORD dwFlags
     );
+_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI
@@ -6833,6 +6839,7 @@ CreateHardLinkTransactedW(
 #if _WIN32_WINNT >= 0x0600
 
 _Win32_RAIIFree_(FindClose)
+_Win32_SetLastError_
 WINBASEAPI
 HANDLE
 WINAPI
@@ -6845,6 +6852,7 @@ FindFirstStreamTransactedW (
     );
 
 _Win32_RAIIFree_(FindClose)
+_Win32_SetLastError_
 WINBASEAPI
 HANDLE
 WINAPI
@@ -9022,6 +9030,7 @@ CreateJobSet (
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
 
 _Win32_RAIIFree_(FindVolumeClose)
+_Win32_SetLastError_
 WINBASEAPI
 HANDLE
 WINAPI
@@ -9060,6 +9069,7 @@ WINBASEAPI BOOL WINAPI FindVolumeMountPointClose(_In_ HANDLE hFindVolumeMountPoi
 _Win32_SupportedOS_WindowsXP_
 
 _Win32_RAIIFree_(FindVolumeMountPointClose)
+_Win32_SetLastError_
 WINBASEAPI
 HANDLE
 WINAPI
@@ -9070,6 +9080,7 @@ FindFirstVolumeMountPointA(
     );
 _Win32_SupportedOS_WindowsXP_
 _Win32_RAIIFree_(FindVolumeMountPointClose)
+_Win32_SetLastError_
 WINBASEAPI
 HANDLE
 WINAPI

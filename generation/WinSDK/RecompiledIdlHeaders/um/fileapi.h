@@ -265,6 +265,7 @@ FindFirstChangeNotificationW(
 #if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM | WINAPI_PARTITION_GAMES)
 
 _Win32_RAIIFree_(FindClose)
+_Win32_SetLastError_
 WINBASEAPI
 HANDLE
 WINAPI
@@ -274,6 +275,7 @@ FindFirstFileA(
     );
 
 _Win32_RAIIFree_(FindClose)
+_Win32_SetLastError_
 WINBASEAPI
 HANDLE
 WINAPI
@@ -291,6 +293,7 @@ FindFirstFileW(
 #if (_WIN32_WINNT >= 0x0400)
 
 _Win32_RAIIFree_(FindClose)
+_Win32_SetLastError_
 WINBASEAPI
 HANDLE
 WINAPI
@@ -304,6 +307,7 @@ FindFirstFileExA(
     );
 
 _Win32_RAIIFree_(FindClose)
+_Win32_SetLastError_
 WINBASEAPI
 HANDLE
 WINAPI
@@ -336,6 +340,7 @@ _Win32_SupportedOS_WindowsXP_
 WINBASEAPI BOOL WINAPI FindVolumeClose(_In_ HANDLE hFindVolume);
 #endif
 _Win32_RAIIFree_(FindVolumeClose)
+_Win32_SetLastError_
 WINBASEAPI
 HANDLE
 WINAPI
@@ -654,6 +659,7 @@ typedef struct _WIN32_FILE_ATTRIBUTE_DATA {
 _Win32_SupportedOS_WindowsXP_
 
 _Win32_PreserveResult_
+_Win32_SetLastError_
 WINBASEAPI
 DWORD
 WINAPI
@@ -663,6 +669,7 @@ GetFileAttributesA(
 _Win32_SupportedOS_WindowsXP_
 
 _Win32_PreserveResult_
+_Win32_SetLastError_
 WINBASEAPI
 DWORD
 WINAPI
@@ -760,6 +767,7 @@ GetFileSizeEx(
     );
 
 _Win32_AssociatedEnum_(FILE_TYPE)
+_Win32_SetLastError_
 WINBASEAPI
 DWORD
 WINAPI
@@ -781,6 +789,7 @@ GetFinalPathNameByHandleA(
     _Win32_AssociatedEnum_(GETFINALPATHNAMEBYHANDLE_FLAGS) _In_ DWORD dwFlags
     );
 
+_Win32_SetLastError_
 WINBASEAPI
 DWORD
 WINAPI
@@ -1074,6 +1083,7 @@ LockFileEx(
 _Win32_SupportedOS_WindowsXP_
 
 _Win32_PreserveResult_
+_Win32_SetLastError_
 WINBASEAPI
 DWORD
 WINAPI
@@ -1178,6 +1188,7 @@ SetFileAttributesA(
     _In_ DWORD dwFileAttributes
     );
 
+_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI
@@ -1220,6 +1231,7 @@ SetFilePointer(
     _Win32_AssociatedEnum_(SET_FILE_POINTER_MOVE_METHOD) _In_ DWORD dwMoveMethod
     );
 
+_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI
@@ -1230,6 +1242,7 @@ SetFilePointerEx(
     _Win32_AssociatedEnum_(SET_FILE_POINTER_MOVE_METHOD) _In_ DWORD dwMoveMethod
     );
 
+_Win32_SetLastError_
 WINBASEAPI
 BOOL
 WINAPI
@@ -1480,6 +1493,7 @@ typedef struct _WIN32_FIND_STREAM_DATA {
 } WIN32_FIND_STREAM_DATA, *PWIN32_FIND_STREAM_DATA;
 
 _Win32_RAIIFree_(FindClose)
+_Win32_SetLastError_
 WINBASEAPI
 HANDLE
 WINAPI
@@ -1545,6 +1559,7 @@ GetTempPathA(
 #if _WIN32_WINNT >= 0x0600
 
 _Win32_RAIIFree_(FindClose)
+_Win32_SetLastError_
 WINBASEAPI
 HANDLE
 WINAPI

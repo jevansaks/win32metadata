@@ -1,6 +1,67 @@
 # Working-first recovery and sidecar reduction
 
-## Current qualified checkpoint and saved EventLog18 proposal
+## Current qualified checkpoint and saved FileSystem30 proposal
+
+Published `2b997fc06e67661bb3d1e28da7fa5e54d2e4cb88` is independently
+hosted-qualified by ordinary run 46120136302, attempt 1. Qualified LastError
+transfers are 275 with 192 residual rows and one separately qualified
+WSAGetLastError correction. Main **65/424/290** and zero repair credit remain
+unchanged. Its original completed owner is not restarted.
+
+The separate saved-only family retires thirty RSP rows covering thirty-four
+concrete FileSystem imports. Twenty-six need new native prefixes; four generic
+rows already have markers on eight A/W exports. Keep new marker transfers
+and already-native redundancy retirements separate for independent accounting.
+Candidate residual 162 is unqualified. Both entire directly consumed headers
+use pinned post-MIDL patches and retain every preceding annotation carrier.
+No type, enum, handle, contextual-cleanup, disputed status policy, reader,
+consumer or semantic journal contract changes.
+
+Actual three-architecture WinProg scraping refreshes three complete bodies,
+retaining 984 other C# inputs, accepted constant preambles and all seventeen
+non-C# inputs. The 1921-file producer inventory and 3451 prepared headers are
+bound. Complete emission yields `2223A9A9`; its entire `93793909` API
+(35,385 types, 36,304,763 bytes) matches the genuine qualified hosted `1B77B1EF`
+parent unmasked. All thirty-four concrete imports, thirty-three prior policies
+and the false AreFileApisANSI control are verified. The complete map retains
+4707 pairs/four exclusions; fresh partial discovery has 2644 pairs, zero
+additional observations and zero conflicts, with no migration credit.
+Both whole pinned SDK replays and twelve fresh native C/C++ object pairs pass.
+
+The isolated original six owner cases pass. The original full 1243-case
+cohort is honestly 1237 Passed/6 Failed: retained accepted names are
+1234 Passed/3 Failed, new filesystem cases 3 Passed/3 Failed. The protected
+cleanup failures come from a narrow test declaration regex dropping existing
+RAIIFree carriers when a new SetLastError prefix intervenes. The new WinBase
+failures are evidence-directory collisions with EventLog, not native semantic
+failures. Exact extraction proof, distinct class-prefixed evidence paths and
+unchanged strict assertions address these tightly coupled fixture mechanics.
+The existing protected fixture also records its actual emitted artifacts.
+Original source/assembly and raw failure histories are preserved separately;
+the proposal has nine sources, not the initial anticipated eight.
+
+The corrected bounded run passes all eighty cases from the entire protected
+HandleProducer SDK class, the new FileSystem class and the existing EventLog
+class, preserving their actual original name multiset. Every original failure
+has a separate passing execution with unchanged assertions. No complete-cohort
+rerun or replacement passing 1243-case claim is made. Only the fixture DLL
+changes during this bounded build; original and corrected module bindings
+are retained separately.
+
+Normal complementary suites pass 17 MetadataUtils, 58 scraper and 54 integrity
+cases against the actual candidate and genuine fresh scratch logs. Empty
+no-restore test commands were rejected as validation; restore followed the
+actual missing project.assets.json failure without dependency changes.
+Original input-inventory and zero-observation serialization errors remain
+separately retained setup evidence, with no test or migration credit.
+
+This scope remains saved-only: no live source incorporation, staging, commit,
+push, publication, automatic CI admission, reference regeneration, owner
+replacement, merge/restack, consumer change or Agent merge resume is released.
+All previous immutable receipts and disputed-policy holds remain unchanged.
+Earlier checkpoint text below is preserved historical evidence.
+
+## Historical qualified checkpoint and saved EventLog18 proposal
 
 Published `d7ccbeea131c32f9a54ea803e4c420041ed7c410` is independently
 hosted-qualified by ordinary run 46097539652, attempt 1. Qualified LastError

@@ -10,7 +10,69 @@ historical repros and raw diagnostics are retained in [README.md](README.md)
 and [RECOVERY.md](RECOVERY.md); the current counts are at the top of
 RECOVERY.md. A rejected trial is not migrated coverage.
 
-## Saved EventLog18: preserve neighboring annotation ownership
+## Saved FileSystem30: distinguish native contracts from fixture slicing
+
+EventLog18 is independently hosted-qualified at `2b997fc0`, ordinary run
+46120136302 attempt 1: 275 LastError transfers, 192 residual rows and one
+separate getter correction. The next saved-only family retires thirty RSP
+facts binding thirty-four concrete FileSystem exports. Twenty-six exports
+receive new prefixes: fifteen in fileapi.h and eleven in WinBase.h. Four
+generic facts already have native markers on both A/W exports; these are
+redundancy retirements, not twenty-six plus eight new annotation transfers.
+The candidate residual count is 162, not qualification. Main **65/424/290**,
+zero repair credit and all held policies remain unchanged.
+
+Both complete owners retain every existing carrier. Actual three-architecture
+WinProg scraping refreshes three whole bodies in the 987-C# union, conserving
+984 other bodies, accepted post-constants prefixes and all seventeen other
+inputs. The entire 35,385-type/36,304,763-byte `93793909` API matches the
+genuine qualified hosted parent unmasked. All thirty-four concrete imports,
+thirty-three protected policies and the AreFileApisANSI mode-query control
+are verified in actual metadata. All 4707 retained remaps and four exclusions
+remain; the fresh partial map has 2644 pairs and zero additional observations
+or conflicts. No typedef/global-map credit, reader change, fallback, semantic
+delta or intentional-deltas journal entry is introduced.
+
+The original full cohort has 1237 passes and six failures among 1243 cases.
+Three failures are existing protected CoreKernel cleanup cases, one per
+architecture. Their test-only regex captured a RAIIFree carrier only when
+immediately adjacent to WINBASEAPI; the new intervening SetLastError marker
+caused it to drop the carriers on FindFirstVolumeW and
+FindFirstVolumeMountPointW. Complete production did not lose ownership.
+Exact parent/proposed slice reconstruction proves that preserving both
+prefix forms restores the original declaration after only the new marker
+is removed. All cleanup, invalid-value, uniqueness and negative assertions
+remain strict; no resource/type/contextual-cleanup policy is changed.
+
+The other three failures are the new WinBase fixture's evidence copies.
+Its owner/target/mode directory names collided with the existing EventLog
+fixture during the full run, although the isolated six-case run passed.
+The new fixture now prefixes evidence directories with its class name and
+still forbids overwrites. The protected cleanup fixture additionally captures
+its actual input, settings, generated source and image under a distinct
+class/target directory. This expands the proposal to nine source files,
+including the existing protected fixture, not an already-approved eight-file
+scope. The original raw full cohort, failing sources and executed test
+assembly are preserved; bounded corrected coverage is separate, never a
+replacement all-passing full cohort.
+
+The corrected bounded run passes all eighty cases across the complete
+HandleProducer SDK class, the new FileSystem class and the existing EventLog
+class. It preserves the exact original eighty-name multiset and covers all
+six original failures without repeating or relabelling the full cohort.
+Only the fixture assembly changes in this rebuild; the fifteen original
+executed module bindings and separate corrected bindings remain recorded.
+
+Twenty-four fresh C/C++ objects preserve every non-timestamp byte in twelve
+pairs; both complete pinned SDK owners replay raw-byte-exactly through the
+unchanged patch runner. Thirty-four official API pages document the native
+error contracts; a separate mode-query page protects AreFileApisANSI.
+MetadataUtils, scraper and actual-image integrity pass 17, 58 and 54 cases.
+Cold empty no-restore invocations and input-inventory verifier setup failures
+remain zero-credit evidence. No live incorporation, publication or new CI
+owner is released.
+
+## Historical saved EventLog18: preserve neighboring annotation ownership
 
 SetupAPI/Newdev21 is now independently hosted-qualified at `d7ccbeea`:
 257 LastError transfers, 210 residual rows and one separate getter correction.
